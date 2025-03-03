@@ -1,23 +1,18 @@
 import { Provider, ServiceType } from '@elizaos/core';
 import { ArtworkMemory, CreativeState } from '../types';
 import { StyleService } from '../services/style';
+import { CreativeEngine } from '../services/CreativeEngine';
 
 export const artContextProvider: Provider = {
   async get(runtime) {
     const styleService = runtime.getService(ServiceType.TEXT_GENERATION) as StyleService;
-    const creativeEngine = runtime.getService(ServiceType.TEXT_GENERATION);
+    const creativeEngine = runtime.getService(ServiceType.TEXT_GENERATION) as CreativeEngine;
     
-    // Get current creative state
-    const state = creativeEngine.getState() as CreativeState;
-    
-    // Get recent artworks
-    const recentWorks = state.completedWorks.slice(-5);
+    // Get recent artworks (last 5 completed works)
+    const recentWorks = creativeEngine.getRecentWorks(5);
     
     // Get style preferences
-    const stylePreferences = Object.entries(state.stylePreferences)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 3)
-      .map(([style]) => style);
+    const stylePreferences = creativeEngine.getStylePreferences();
 
     // Analyze recent works
     const recentAnalysis = await Promise.all(
@@ -31,7 +26,7 @@ export const artContextProvider: Provider = {
       recentWorks,
       stylePreferences,
       recentAnalysis,
-      explorationRate: state.explorationRate
+      explorationRate: creativeEngine.getExplorationRate()
     };
   }
 }; 
