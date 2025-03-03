@@ -19,11 +19,28 @@ fi
 echo "Building plugin-art-creator..."
 cd packages/plugin-art-creator && npm run build && cd ../..
 
-# Ensure the plugin is linked in the agent's node_modules
-echo "Linking plugin-art-creator to agent..."
-mkdir -p agent/node_modules/@elizaos
+# Ensure the plugin is properly installed in the agent's node_modules
+echo "Installing plugin-art-creator to agent..."
 rm -rf agent/node_modules/@elizaos/plugin-art-creator
-ln -sf ../../../../packages/plugin-art-creator agent/node_modules/@elizaos/plugin-art-creator
+mkdir -p agent/node_modules/@elizaos/plugin-art-creator/dist
+cp -r packages/plugin-art-creator/dist/* agent/node_modules/@elizaos/plugin-art-creator/dist/
+cp packages/plugin-art-creator/package.json agent/node_modules/@elizaos/plugin-art-creator/
+
+# Set environment variables for API keys if they're not already set
+if [ -z "$OPENAI_API_KEY" ]; then
+  export OPENAI_API_KEY=$(grep OPENAI_API_KEY .env | cut -d '=' -f2)
+  echo "Set OPENAI_API_KEY from .env file"
+fi
+
+if [ -z "$ANTHROPIC_API_KEY" ]; then
+  export ANTHROPIC_API_KEY=$(grep ANTHROPIC_API_KEY .env | cut -d '=' -f2)
+  echo "Set ANTHROPIC_API_KEY from .env file"
+fi
+
+if [ -z "$REPLICATE_API_KEY" ]; then
+  export REPLICATE_API_KEY=$(grep REPLICATE_API_KEY .env | cut -d '=' -f2)
+  echo "Set REPLICATE_API_KEY from .env file"
+fi
 
 # Run the agent with the art-creator character
 echo "Starting Eliza with the art-creator character..."

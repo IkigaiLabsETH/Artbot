@@ -84,6 +84,25 @@ try {
             // Check if the link points to the correct location
             const linkTarget = fs.readlinkSync(agentPluginPath);
             console.log('Link target:', linkTarget);
+            
+            // Check if the target exists
+            const targetPath = path.resolve(path.dirname(agentPluginPath), linkTarget);
+            console.log('Resolved target path:', targetPath);
+            
+            if (fs.existsSync(targetPath)) {
+              console.log('✅ Link target exists');
+              
+              // Check if the dist directory exists in the target
+              const distPath = path.join(targetPath, 'dist');
+              if (fs.existsSync(distPath)) {
+                console.log('✅ dist directory exists in the target');
+              } else {
+                console.error('❌ dist directory does not exist in the target');
+              }
+            } else {
+              console.error('❌ Link target does not exist');
+            }
+            
             if (linkTarget.includes('packages/plugin-art-creator')) {
               console.log('✅ Link points to the correct location');
             } else {
