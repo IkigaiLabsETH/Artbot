@@ -1,3 +1,5 @@
+import { AIService, AIMessage } from './ai';
+
 // Define interfaces for the components we need
 interface CreativeState {
   currentIdeas: any[];
@@ -13,11 +15,6 @@ interface CreativeState {
 }
 
 // Mock service classes until actual implementations are available
-class AnthropicService {
-  constructor(config = {}) {}
-  async initialize(): Promise<void> {}
-}
-
 class ImageService {
   constructor(config = {}) {}
   async initialize(): Promise<void> {}
@@ -30,12 +27,12 @@ class StyleService {
 
 export class CreativeEngine {
   private state: CreativeState;
-  private anthropic: AnthropicService;
+  private aiService: AIService;
   private imageService: ImageService;
   private styleService: StyleService;
 
   constructor(config = {}) {
-    this.anthropic = new AnthropicService(config);
+    this.aiService = new AIService(config);
     this.imageService = new ImageService(config);
     this.styleService = new StyleService(config);
     
@@ -65,7 +62,7 @@ export class CreativeEngine {
    */
   async initialize(): Promise<void> {
     await Promise.all([
-      this.anthropic.initialize(),
+      this.aiService.initialize(),
       this.imageService.initialize(),
       this.styleService.initialize()
     ]);
@@ -109,6 +106,44 @@ export class CreativeEngine {
       throw new Error('Exploration rate must be between 0 and 1');
     }
     this.state.explorationRate = rate;
+  }
+
+  /**
+   * Generate creative ideas based on a prompt
+   */
+  async generateIdeas(prompt: string, count: number = 3): Promise<string[]> {
+    const messages: AIMessage[] = [
+      {
+        role: 'system',
+        content: 'You are ArtBot, a creative AI assistant specialized in generating artistic ideas. Your responses should be concise, creative, and focused on visual art concepts.'
+      },
+      {
+        role: 'user',
+        content: `Generate ${count} creative art ideas based on the following prompt: "${prompt}". Each idea should be unique and include a title, style, and brief description.`
+      }
+    ];
+
+    try {
+      const response = await this.aiService.getCompletion({
+        messages,
+        temperature: 0.8
+      });
+
+      console.log(`✅ Generated ideas using ${response.provider} (${response.model})`);
+      
+      // In a real implementation, we would parse the response
+      // For now, we'll return mock ideas with the provider info
+      return [
+        `${response.provider}: "${prompt}" in minimalist style`,
+        `${response.provider}: "${prompt}" with abstract elements`,
+        `${response.provider}: "${prompt}" in surrealist interpretation`
+      ];
+    } catch (error) {
+      console.error('Error generating ideas:', error);
+      return [
+        `Idea based on "${prompt}" (fallback)`
+      ];
+    }
   }
 
   // Additional methods would be implemented here

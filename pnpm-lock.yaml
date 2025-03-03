@@ -17,12 +17,18 @@ importers:
       '@tensorflow/tfjs-node':
         specifier: ^4.17.0
         version: 4.22.0(encoding@0.1.13)(seedrandom@3.0.5)
+      dotenv:
+        specifier: ^16.4.7
+        version: 16.4.7
       ml-kmeans:
         specifier: ^6.0.0
         version: 6.0.0
       node-fetch:
         specifier: ^2.7.0
         version: 2.7.0(encoding@0.1.13)
+      openai:
+        specifier: ^4.28.0
+        version: 4.82.0(encoding@0.1.13)(ws@8.18.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.24.2)
       sharp:
         specifier: ^0.33.2
         version: 0.33.5

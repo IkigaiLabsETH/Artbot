@@ -15,10 +15,12 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.18.0",
     "@elizaos/core": "^0.25.9",
+    "@tensorflow/tfjs-node": "^4.17.0",
+    "dotenv": "^16.4.7",
     "ml-kmeans": "^6.0.0",
     "node-fetch": "^2.7.0",
+    "openai": "^4.28.0",
     "sharp": "^0.33.2",
-    "@tensorflow/tfjs-node": "^4.17.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
