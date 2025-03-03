@@ -1,0 +1,26 @@
+{
+  "name": "@elizaos/plugin-art-creator",
+  "version": "0.1.0",
+  "description": "Autonomous AI art creation plugin inspired by Keke",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.18.0",
+    "@elizaos/core": "workspace:*",
+    "@tensorflow/tfjs-node": "^4.17.0",
+    "@types/uuid": "10.0.0",
+    "node-fetch": "^2.6.1",
+    "sharp": "^0.32.1",
+    "uuid": "^11.1.0",
+    "onnxruntime-node": "^1.17.0",
+    "ml-kmeans": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}
