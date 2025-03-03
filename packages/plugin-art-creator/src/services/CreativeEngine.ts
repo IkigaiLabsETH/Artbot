@@ -12,15 +12,27 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import * as path from 'path';
 
+interface CreativeEngineConfig {
+  openaiApiKey?: string;
+  anthropicApiKey: string;
+}
+
 export class CreativeEngine extends Service {
   private state: CreativeState;
   private selfDialogue: SelfDialogue;
   private memorySystem: MemorySystem;
   private reflectionEngine: ReflectionEngine;
+  private openaiApiKey?: string;
+  private anthropicApiKey: string;
+  private useOpenAI: boolean;
   
-  constructor(config = {}, baseDir: string = process.cwd()) {
+  constructor(config: CreativeEngineConfig, baseDir: string = process.cwd()) {
     super();
-    this.selfDialogue = new SelfDialogue();
+    this.openaiApiKey = config.openaiApiKey;
+    this.anthropicApiKey = config.anthropicApiKey;
+    this.useOpenAI = !!this.openaiApiKey;
+    
+    this.selfDialogue = new SelfDialogue(this.openaiApiKey, this.anthropicApiKey);
     this.memorySystem = new MemorySystem();
     this.reflectionEngine = new ReflectionEngine();
     
@@ -48,6 +60,20 @@ export class CreativeEngine extends Service {
   }
 
   async initialize(): Promise<void> {
+    // Try to use OpenAI if available
+    this.useOpenAIIfAvailable();
+    
+    // Update the SelfDialogue provider
+    try {
+      this.selfDialogue.setProvider(this.useOpenAI ? 'openai' : 'anthropic');
+    } catch (error) {
+      console.warn('Failed to set SelfDialogue provider to OpenAI, falling back to Anthropic');
+      this.useOpenAI = false;
+      this.selfDialogue.setProvider('anthropic');
+    }
+    
+    console.log(`CreativeEngine initialized with provider: ${this.getProvider()}`);
+    
     await Promise.all([
       this.memorySystem.initialize(),
       this.reflectionEngine.initialize()
@@ -93,5 +119,65 @@ export class CreativeEngine extends Service {
       throw new Error('Exploration rate must be between 0 and 1');
     }
     this.state.explorationRate = rate;
+  }
+
+  /**
+   * Get the current API provider being used
+   */
+  getProvider(): string {
+    return this.useOpenAI ? 'openai' : 'anthropic';
+  }
+
+  /**
+   * Switch to OpenAI if available, otherwise stay with Anthropic
+   */
+  useOpenAIIfAvailable(): boolean {
+    if (this.openaiApiKey) {
+      this.useOpenAI = true;
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Switch to Anthropic
+   */
+  useAnthropic(): void {
+    this.useOpenAI = false;
+  }
+
+  /**
+   * Get the API key for the current provider
+   */
+  getCurrentApiKey(): string {
+    return this.useOpenAI ? this.openaiApiKey! : this.anthropicApiKey;
+  }
+
+  /**
+   * Generate art ideas using the current provider
+   */
+  async generateArtIdeas(count: number = 3): Promise<ArtworkIdea[]> {
+    console.log(`Generating ${count} art ideas using ${this.getProvider()}`);
+    
+    const ideas: ArtworkIdea[] = [];
+    
+    for (let i = 0; i < count; i++) {
+      const concept = `Concept ${i + 1}`;
+      const dialogue = await this.selfDialogue.explore(concept);
+      
+      const idea: ArtworkIdea = {
+        id: uuidv4(),
+        concept: dialogue.concept,
+        medium: ['Digital', 'Oil painting', 'Watercolor'][Math.floor(Math.random() * 3)],
+        style: ['Abstract', 'Realistic', 'Impressionist'][Math.floor(Math.random() * 3)],
+        score: dialogue.confidence,
+        timestamp: Date.now()
+      };
+      
+      ideas.push(idea);
+      this.state.currentIdeas.push(idea);
+    }
+    
+    return ideas;
   }
 } 

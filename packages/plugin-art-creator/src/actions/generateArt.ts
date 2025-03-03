@@ -8,46 +8,60 @@ export interface GenerateArtParams {
   style?: string;
   medium?: string;
   explorationRate?: number;
+  count?: number;
 }
 
 export const generateArt = {
   name: 'generate-art',
   description: 'Generate artwork using autonomous creative processes',
   
-  async execute({ concept, style, medium, explorationRate }, { runtime }) {
+  async execute({ concept, style, medium, explorationRate, count = 1 }, { runtime }) {
     const engine = await runtime.getService(
       ServiceType.TEXT_GENERATION,
       CreativeEngine
     );
     
-    // Create a simplified idea
-    const idea: ArtworkIdea = {
-      id: uuidv4(),
-      concept: concept || 'Autonomous creation',
-      style: style || 'Contemporary',
-      medium: medium || 'Digital',
-      score: 0.8,
-      timestamp: Date.now()
-    };
-
+    // Log the provider being used
+    console.log(`Using provider: ${engine.getProvider()}`);
+    
     // Adjust exploration rate if provided
     if (typeof explorationRate === 'number') {
       engine.setExplorationRate(explorationRate);
     }
 
-    // Create a simplified artwork
-    const artwork: ArtworkMemory = {
+    // Generate ideas using the appropriate API
+    let ideas: ArtworkIdea[];
+    if (concept) {
+      // Create a specific idea based on the provided concept
+      const idea: ArtworkIdea = {
+        id: uuidv4(),
+        concept: concept,
+        style: style || 'Contemporary',
+        medium: medium || 'Digital',
+        score: 0.8,
+        timestamp: Date.now()
+      };
+      ideas = [idea];
+    } else {
+      // Generate ideas using the AI
+      ideas = await engine.generateArtIdeas(count);
+    }
+    
+    // Create artworks from the ideas
+    const artworks: ArtworkMemory[] = ideas.map(idea => ({
       id: uuidv4(),
       imageUrl: `https://placeholder.com/art/${idea.id}`,
       idea: idea,
       feedback: [],
       created: Date.now()
-    };
-
-    // Add to completed works (simulating the createArtwork functionality)
+    }));
+    
+    // Add to completed works
     const state = engine.getState();
-    state.completedWorks.push(artwork);
+    artworks.forEach(artwork => {
+      state.completedWorks.push(artwork);
+    });
 
-    return artwork;
+    return artworks.length === 1 ? artworks[0] : artworks;
   }
 }; 

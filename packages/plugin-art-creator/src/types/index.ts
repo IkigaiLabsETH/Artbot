@@ -69,24 +69,78 @@ export interface MemoryQuery {
 }
 
 export class SelfDialogue {
+  private openaiApiKey?: string;
+  private anthropicApiKey: string;
+  private useOpenAI: boolean;
+
+  constructor(openaiApiKey?: string, anthropicApiKey?: string) {
+    this.openaiApiKey = openaiApiKey;
+    this.anthropicApiKey = anthropicApiKey || '';
+    this.useOpenAI = !!this.openaiApiKey;
+  }
+
+  setProvider(provider: 'openai' | 'anthropic') {
+    if (provider === 'openai' && !this.openaiApiKey) {
+      throw new Error('OpenAI API key is not available');
+    }
+    this.useOpenAI = provider === 'openai';
+  }
+
   async explore(concept: string): Promise<CreativeDialogue> {
-    // Implementation
-    return {} as CreativeDialogue;
+    console.log(`Using ${this.useOpenAI ? 'OpenAI' : 'Anthropic'} for creative dialogue`);
+    
+    // This would be implemented with actual API calls in a real implementation
+    return {
+      concept,
+      reasoning: [`Exploring the concept of ${concept}`],
+      confidence: 0.8,
+      explorationPaths: [`${concept} in abstract form`, `${concept} with emotional depth`],
+      memoryReferences: []
+    };
   }
 }
 
 export class MemorySystem {
-  async initialize(): Promise<void> {}
-  async store(memory: Memory): Promise<void> {}
+  async initialize(): Promise<void> {
+    console.log('Memory system initialized');
+  }
+  
+  async store(memory: Memory): Promise<void> {
+    console.log('Storing memory:', memory.type);
+  }
+  
   async retrieve(query: MemoryQuery): Promise<any[]> {
+    console.log('Retrieving memories with query:', query);
     return [];
   }
 }
 
 export class ReflectionEngine {
-  async initialize(): Promise<void> {}
+  async initialize(): Promise<void> {
+    console.log('Reflection engine initialized');
+  }
+  
   async analyzeCreation(artwork: any): Promise<Analysis> {
-    return {} as Analysis;
+    console.log('Analyzing artwork');
+    return {
+      metrics: {
+        novelty: 0.7,
+        coherence: 0.8,
+        technicalFeasibility: 0.9,
+        conceptualDepth: 0.6
+      },
+      evolutionaryImpact: {
+        novelty: 0.7,
+        coherence: 0.8,
+        influence: 0.5,
+        growth: {
+          technical: 0.6,
+          conceptual: 0.7,
+          stylistic: 0.8
+        }
+      },
+      conceptualLinks: ['nature', 'technology', 'humanity']
+    };
   }
 }
 

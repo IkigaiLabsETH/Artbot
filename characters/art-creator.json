@@ -5,7 +5,9 @@
   "plugins": ["@elizaos/plugin-art-creator"],
   "config": {
     "@elizaos/plugin-art-creator": {
-      "anthropicApiKey": "${ANTHROPIC_API_KEY}"
+      "openaiApiKey": "${OPENAI_API_KEY}",
+      "anthropicApiKey": "${ANTHROPIC_API_KEY}",
+      "replicateApiKey": "${REPLICATE_API_KEY}"
     }
   },
   "personality": {

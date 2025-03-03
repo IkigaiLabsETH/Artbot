@@ -7,6 +7,7 @@ import { evolveStyle } from './actions/evolveStyle';
 import { artContextProvider, socialContextProvider } from './providers';
 
 export interface ArtCreatorConfig {
+  openaiApiKey?: string;
   anthropicApiKey: string;
   replicateApiKey: string;
 }
@@ -20,7 +21,10 @@ export default class ArtCreatorPlugin implements Plugin {
   private replicateService: ReplicateService;
 
   constructor(config: ArtCreatorConfig) {
-    this.engine = new CreativeEngine(config.anthropicApiKey);
+    this.engine = new CreativeEngine({
+      openaiApiKey: config.openaiApiKey,
+      anthropicApiKey: config.anthropicApiKey
+    });
     this.styleService = new StyleService();
     this.replicateService = new ReplicateService({ apiKey: config.replicateApiKey });
   }

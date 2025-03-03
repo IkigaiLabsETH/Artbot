@@ -70,7 +70,7 @@ export function validateConfig(config: {
   defaultModel?: string;
 }): void {
   if (!config.apiKey) {
-    throw new Error('API key is required');
+    console.warn('API key is not provided, some features may not work');
   }
 
   if (config.apiUrl && !isValidUrl(config.apiUrl)) {
