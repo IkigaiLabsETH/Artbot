@@ -313,7 +313,7 @@ ${styleResult.styleContent}`
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        version: "9936c2def0a71d960f3c302a7d0c1c04f73fe55bee4a8fa45af33e4517c1a3bf",
+        version: "39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b",
         input: {
           prompt: detailedPrompt,
           width: width,
