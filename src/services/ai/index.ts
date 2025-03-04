@@ -103,6 +103,24 @@ export class AIService {
     console.log(`🧠 Calling Anthropic API with model: ${model}`);
     
     try {
+      // Extract system message if present
+      const systemMessage = request.messages.find(msg => msg.role === 'system');
+      
+      // Filter out system messages from the messages array
+      const filteredMessages = request.messages.filter(msg => msg.role !== 'system');
+      
+      const requestBody: any = {
+        model: model,
+        messages: filteredMessages,
+        max_tokens: maxTokens,
+        temperature: temperature
+      };
+      
+      // Add system parameter if a system message was found
+      if (systemMessage) {
+        requestBody.system = systemMessage.content;
+      }
+      
       const response = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: {
@@ -110,12 +128,7 @@ export class AIService {
           'x-api-key': this.anthropicApiKey,
           'anthropic-version': '2023-06-01'
         },
-        body: JSON.stringify({
-          model: model,
-          messages: request.messages,
-          max_tokens: maxTokens,
-          temperature: temperature
-        })
+        body: JSON.stringify(requestBody)
       });
       
       if (!response.ok) {
