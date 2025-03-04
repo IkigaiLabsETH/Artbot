@@ -3,6 +3,7 @@ import { IdeaQueue, CreativeIdea, ExplorationThread } from './IdeaQueue.js';
 import { MemorySystem, MemoryType, Memory } from './memory/index.js';
 import { StyleService } from './style/index.js';
 import { ReplicateService } from './replicate/index.js';
+import { SocialEngagementService, SocialPlatform, FeedbackType, FeedbackSentiment } from './social/index.js';
 
 // Define interfaces for the components we need
 interface CreativeState {
@@ -26,6 +27,8 @@ interface CreativeEngineConfig {
   openaiApiKey?: string;
   replicateService?: ReplicateService;
   baseDir?: string;
+  socialEngagement?: SocialEngagementService;
+  autonomyLevel?: number;
   [key: string]: any;
 }
 
@@ -42,6 +45,9 @@ export class CreativeEngine {
   private styleService: StyleService;
   private ideaQueue: IdeaQueue;
   private memorySystem: MemorySystem;
+  private socialEngagement: SocialEngagementService;
+  private autonomyLevel: number = 0.7; // Default autonomy level
+  private baseDir: string;
 
   constructor(config: CreativeEngineConfig = {}) {
     this.aiService = new AIService(config);
@@ -84,9 +90,20 @@ export class CreativeEngine {
       embeddingDimension: 1536
     });
     
+    // Initialize social engagement service if provided
+    if (config.socialEngagement) {
+      this.socialEngagement = config.socialEngagement;
+    }
+    
+    // Set autonomy level if provided
+    if (config.autonomyLevel !== undefined) {
+      this.autonomyLevel = Math.min(Math.max(config.autonomyLevel, 0.1), 0.9);
+    }
+    
     // Add to state
     this.state.ideaQueue = this.ideaQueue;
     this.state.memories = this.memorySystem;
+    this.baseDir = config.baseDir || process.cwd();
   }
 
   /**
@@ -99,6 +116,17 @@ export class CreativeEngine {
     await this.styleService.initialize();
     await this.ideaQueue.initialize();
     await this.memorySystem.initialize();
+    
+    // Initialize social engagement service if not provided in constructor
+    if (!this.socialEngagement && this.aiService && this.memorySystem) {
+      this.socialEngagement = new SocialEngagementService({
+        baseDir: this.baseDir,
+        aiService: this.aiService,
+        memorySystem: this.memorySystem,
+        autonomyLevel: this.autonomyLevel
+      });
+      await this.socialEngagement.initialize();
+    }
     
     console.log('🧠 Creative Engine initialized');
   }
@@ -718,5 +746,114 @@ export class CreativeEngine {
     }
     
     return elements;
+  }
+
+  /**
+   * Record social feedback for an artwork
+   */
+  async recordFeedback(feedback: {
+    artworkId: string;
+    platform: SocialPlatform | string;
+    type: FeedbackType | string;
+    content?: string;
+    sentiment?: FeedbackSentiment | number;
+    userId?: string;
+    username?: string;
+  }): Promise<void> {
+    if (!this.socialEngagement) {
+      console.warn('Social engagement service not initialized, feedback not recorded');
+      return;
+    }
+    
+    // Convert string values to enum values if needed
+    const processedFeedback = {
+      ...feedback,
+      platform: typeof feedback.platform === 'string' 
+        ? feedback.platform as unknown as SocialPlatform 
+        : feedback.platform,
+      type: typeof feedback.type === 'string'
+        ? feedback.type as unknown as FeedbackType
+        : feedback.type,
+      sentiment: typeof feedback.sentiment === 'number'
+        ? feedback.sentiment as unknown as FeedbackSentiment
+        : feedback.sentiment
+    };
+    
+    await this.socialEngagement.recordFeedback(processedFeedback);
+  }
+
+  /**
+   * Get creative inspiration from social context
+   */
+  async getInspiration(context: { currentStyle?: string; currentThemes?: string[] } = {}): Promise<{
+    inspirationText: string;
+    sourceTrends: any[];
+    audienceInsights: any[];
+    autonomyFactor: number;
+  }> {
+    if (!this.socialEngagement) {
+      return {
+        inspirationText: "Explore your own creative direction.",
+        sourceTrends: [],
+        audienceInsights: [],
+        autonomyFactor: this.autonomyLevel
+      };
+    }
+    
+    return await this.socialEngagement.getCreativeInspiration(context);
+  }
+
+  /**
+   * Generate a social engagement report
+   */
+  generateSocialReport(): Record<string, any> {
+    if (!this.socialEngagement) {
+      return {
+        error: 'Social engagement service not initialized'
+      };
+    }
+    
+    return this.socialEngagement.generateSocialReport();
+  }
+
+  /**
+   * Set the autonomy level for social influence
+   * 0.0 = completely influenced by social feedback
+   * 1.0 = completely autonomous, ignoring social feedback
+   */
+  setAutonomyLevel(level: number): void {
+    this.autonomyLevel = Math.min(Math.max(level, 0.1), 0.9);
+    
+    if (this.socialEngagement) {
+      // Update the social engagement service with the new autonomy level
+      this.socialEngagement = new SocialEngagementService({
+        baseDir: this.baseDir,
+        aiService: this.aiService,
+        memorySystem: this.memorySystem,
+        autonomyLevel: this.autonomyLevel
+      });
+    }
+  }
+
+  /**
+   * Get current cultural trends
+   */
+  getSocialTrends(): any[] {
+    if (!this.socialEngagement) {
+      return [];
+    }
+    
+    return this.socialEngagement.getTrends();
+  }
+
+  /**
+   * Get audience insights
+   */
+  getAudienceInsights(): any[] {
+    if (!this.socialEngagement) {
+      return [];
+    }
+    
+    return this.socialEngagement.getAudienceInsights();
   }
 } 

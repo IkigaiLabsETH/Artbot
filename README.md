@@ -311,6 +311,79 @@ This will demonstrate:
 4. Balancing exploitation vs. exploration in style selection
 5. Generating reports on aesthetic preferences and ratings
 
+## Social Engagement and Feedback Integration
+
+ArtBot's social engagement system enables interaction with human audiences through various platforms, absorbing feedback as contextual inspiration rather than direct instruction. By analyzing likes, comments, and cultural trends, ArtBot refines its creative approach while maintaining full artistic independence. This approach mirrors how human artists engage with their audience and cultural context without sacrificing their unique creative vision.
+
+### Key Components
+
+1. **Feedback Collection**: Gathers and organizes social interactions across multiple platforms
+2. **Sentiment Analysis**: Evaluates the emotional tone and content of feedback
+3. **Theme Extraction**: Identifies recurring themes and patterns in audience responses
+4. **Cultural Trend Analysis**: Monitors broader cultural movements and artistic trends
+5. **Audience Insights**: Develops understanding of audience preferences and interests
+6. **Autonomy Control**: Maintains artistic independence with configurable autonomy levels
+
+### How It Works
+
+The social engagement system follows these steps:
+
+1. **Feedback Gathering**: Collects social interactions from various platforms
+2. **Batch Processing**: Groups and analyzes feedback when threshold is reached
+3. **AI Analysis**: Uses AI to extract sentiment, themes, and insights
+4. **Memory Integration**: Stores processed feedback in the memory system
+5. **Trend Identification**: Identifies cultural trends based on feedback patterns
+6. **Inspiration Generation**: Creates contextual inspiration while preserving artistic autonomy
+7. **Autonomy Variation**: Dynamically adjusts the influence of social context on creative decisions
+
+### Example Usage
+
+```typescript
+// Initialize the social engagement service
+const socialService = new SocialEngagementService({
+  aiService,
+  memorySystem,
+  autonomyLevel: 0.7 // 70% artistic autonomy
+});
+
+// Record feedback from social platforms
+await socialService.recordFeedback({
+  artworkId: 'artwork-123',
+  platform: SocialPlatform.TWITTER,
+  type: FeedbackType.COMMENT,
+  content: 'Love the vibrant colors in this piece!',
+  username: 'art_enthusiast'
+});
+
+// Generate a social engagement report
+const report = socialService.generateSocialReport();
+console.log(`Total Feedback: ${report.totalFeedback}`);
+console.log(`Average Sentiment: ${report.averageSentiment}`);
+
+// Get creative inspiration based on social context
+const inspiration = await socialService.getCreativeInspiration({
+  currentStyle: 'Abstract Expressionism',
+  currentThemes: ['nature', 'technology']
+});
+
+console.log(`Inspiration: ${inspiration.inspirationText}`);
+console.log(`Autonomy Factor: ${inspiration.autonomyFactor}`);
+```
+
+### Running the Social Engagement Demo
+
+To see the social engagement system in action, run:
+
+```bash
+pnpm demo:social
+```
+
+This will demonstrate:
+1. Recording and processing social feedback
+2. Generating reports on audience engagement
+3. Creating contextual inspiration from social trends
+4. Maintaining artistic independence with varying autonomy levels
+
 ## Multi-Agent System
 
 ArtBot's multi-agent system enables collaborative art creation through specialized agent roles, each focusing on a specific aspect of the creative process:
