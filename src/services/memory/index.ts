@@ -486,13 +486,26 @@ export class MemorySystem {
   /**
    * Generate a random embedding (for testing/fallback)
    */
-  private generateRandomEmbedding(seed?: string): number[] {
+  private generateRandomEmbedding(seed?: string | any): number[] {
     const embedding: number[] = [];
     let seedValue = 1;
     
     if (seed) {
-      // Simple hash function for the seed string
-      seedValue = seed.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      if (typeof seed === 'string') {
+        // Simple hash function for the seed string
+        seedValue = seed.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      } else if (typeof seed === 'object') {
+        // For objects, use a stringified version
+        try {
+          const seedStr = JSON.stringify(seed);
+          seedValue = seedStr.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+        } catch (error) {
+          console.warn('Could not stringify seed object, using default seed value');
+        }
+      } else if (typeof seed === 'number') {
+        // For numbers, use the number directly
+        seedValue = seed;
+      }
     }
     
     // Generate pseudo-random values based on seed

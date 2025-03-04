@@ -8,18 +8,18 @@ export class ReplicateService {
   private apiKey: string;
   private baseUrl: string = 'https://api.replicate.com/v1';
   private defaultModel: string;
-  private imageWidth: number;
-  private imageHeight: number;
-  private numInferenceSteps: number;
-  private guidanceScale: number;
+  private defaultWidth: number;
+  private defaultHeight: number;
+  private defaultNumInferenceSteps: number;
+  private defaultGuidanceScale: number;
   
   constructor(config: Record<string, any> = {}) {
     this.apiKey = config.apiKey || process.env.REPLICATE_API_KEY || '';
-    this.defaultModel = process.env.DEFAULT_IMAGE_MODEL || 'adirik/flux-cinestill:9936c2def0a71d960f3c302a7d0c1c04f73fe55bee4a8fa45af33e4517c1a3bf';
-    this.imageWidth = parseInt(process.env.IMAGE_WIDTH || '768', 10);
-    this.imageHeight = parseInt(process.env.IMAGE_HEIGHT || '768', 10);
-    this.numInferenceSteps = parseInt(process.env.NUM_INFERENCE_STEPS || '28', 10);
-    this.guidanceScale = parseFloat(process.env.GUIDANCE_SCALE || '3.0');
+    this.defaultModel = config.defaultModel || process.env.DEFAULT_IMAGE_MODEL || 'adirik/flux-cinestill';
+    this.defaultWidth = config.defaultWidth || parseInt(process.env.IMAGE_WIDTH || '1024', 10);
+    this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '1024', 10);
+    this.defaultNumInferenceSteps = config.defaultNumInferenceSteps || parseInt(process.env.NUM_INFERENCE_STEPS || '28', 10);
+    this.defaultGuidanceScale = config.defaultGuidanceScale || parseFloat(process.env.GUIDANCE_SCALE || '3.0');
   }
   
   async initialize(): Promise<void> {
@@ -28,9 +28,9 @@ export class ReplicateService {
     } else {
       console.log(`✅ Replicate API key found: ${this.apiKey.substring(0, 5)}...`);
       console.log(`🖼️ Default image model: ${this.defaultModel}`);
-      console.log(`📐 Image dimensions: ${this.imageWidth}x${this.imageHeight}`);
-      console.log(`🔄 Inference steps: ${this.numInferenceSteps}`);
-      console.log(`🎯 Guidance scale: ${this.guidanceScale}`);
+      console.log(`📐 Image dimensions: ${this.defaultWidth}x${this.defaultHeight}`);
+      console.log(`🔄 Inference steps: ${this.defaultNumInferenceSteps}`);
+      console.log(`🎯 Guidance scale: ${this.defaultGuidanceScale}`);
     }
   }
   
@@ -58,10 +58,10 @@ export class ReplicateService {
       
       // If this is the FLUX model, add default parameters if not provided
       if (model.includes('flux-cinestill') || model.includes('adirik/flux')) {
-        input.width = input.width || this.imageWidth;
-        input.height = input.height || this.imageHeight;
-        input.num_inference_steps = input.num_inference_steps || this.numInferenceSteps;
-        input.guidance_scale = input.guidance_scale || this.guidanceScale;
+        input.width = input.width || this.defaultWidth;
+        input.height = input.height || this.defaultHeight;
+        input.num_inference_steps = input.num_inference_steps || this.defaultNumInferenceSteps;
+        input.guidance_scale = input.guidance_scale || this.defaultGuidanceScale;
         input.output_format = input.output_format || "png";
         
         // Ensure the prompt has the FLUX trigger word
@@ -78,17 +78,21 @@ export class ReplicateService {
             input.prompt = `${input.prompt}, ${keywordsToAdd.join(', ')}`;
           }
         }
+        
+        // Use a simpler model
+        model = 'stability-ai/stable-diffusion';
+        console.log(`⚠️ Using simpler model: ${model}`);
       }
       // If this is an SDXL model, add default parameters if not provided
       else if (model.includes('stability-ai') || model.includes('sdxl')) {
-        input.width = input.width || this.imageWidth;
-        input.height = input.height || this.imageHeight;
+        input.width = input.width || this.defaultWidth;
+        input.height = input.height || this.defaultHeight;
         input.num_outputs = input.num_outputs || 1;
       }
       
       console.log(`🔄 Running prediction on model: ${model}`);
       console.log(`📝 Input: ${JSON.stringify(input, null, 2)}`);
-      
+
       // Make the actual API call to Replicate
       const response = await fetch(`${this.baseUrl}/predictions`, {
         method: 'POST',
@@ -218,32 +222,94 @@ export class ReplicateService {
    * Generate an image using the default model
    */
   async generateImage(prompt: string, options: Record<string, any> = {}): Promise<string | null> {
-    // For FLUX model, enhance the prompt with conceptually rich elements if not already provided
-    if (this.defaultModel.includes('flux-cinestill') || this.defaultModel.includes('adirik/flux')) {
-      if (!prompt.includes('CNSTLL')) {
-        prompt = `CNSTLL ${prompt}`;
+    try {
+      console.log(`🎨 Using model for image generation: ${this.defaultModel}`);
+      
+      // For FLUX model, enhance the prompt with conceptually rich elements if not already provided
+      if (this.defaultModel.includes('flux-cinestill') || this.defaultModel.includes('adirik/flux')) {
+        if (!prompt.includes('CNSTLL')) {
+          prompt = `CNSTLL ${prompt}`;
+        }
+        
+        // Add FLUX-specific keywords if they're not already present
+        const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
+        let keywordsToAdd = fluxKeywords.filter(keyword => !prompt.toLowerCase().includes(keyword.toLowerCase()));
+        
+        if (keywordsToAdd.length > 0) {
+          prompt = `${prompt}, ${keywordsToAdd.join(', ')}`;
+        }
       }
       
-      // Add FLUX-specific keywords if they're not already present
-      const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
-      let keywordsToAdd = fluxKeywords.filter(keyword => !prompt.toLowerCase().includes(keyword.toLowerCase()));
+      // Prepare input for the model
+      const input: Record<string, any> = {
+        prompt: prompt,
+        ...options
+      };
       
-      if (keywordsToAdd.length > 0) {
-        prompt = `${prompt}, ${keywordsToAdd.join(', ')}`;
+      // Run the prediction
+      const prediction = await this.runPrediction(this.defaultModel, input);
+      
+      if (prediction.status === 'success' && prediction.output) {
+        // For models that return an array of images, return the first one
+        if (Array.isArray(prediction.output)) {
+          return prediction.output[0];
+        }
+        // For models that return an object with urls, return the first url
+        else if (typeof prediction.output === 'object' && prediction.output !== null) {
+          return Object.values(prediction.output)[0] as string;
+        }
+        // Otherwise return the output directly
+        return prediction.output as string;
+      } else {
+        console.log(`⚠️ Replicate API failed, falling back to OpenAI DALL-E`);
+        return this.fallbackToDALLE(prompt, options);
       }
+    } catch (error) {
+      console.error(`❌ Error generating image: ${error}`);
+      console.log(`⚠️ Replicate API failed, falling back to OpenAI DALL-E`);
+      return this.fallbackToDALLE(prompt, options);
     }
-    
-    const input = {
-      prompt: prompt,
-      ...options
-    };
-    
-    const prediction = await this.runPrediction(this.defaultModel, input);
-    
-    if (prediction.status === 'success' && prediction.output && Array.isArray(prediction.output)) {
-      return prediction.output[0]; // Return the first image URL
+  }
+
+  private async fallbackToDALLE(prompt: string, options: Record<string, any> = {}): Promise<string | null> {
+    try {
+      console.log(`🎨 Falling back to OpenAI DALL-E for image generation`);
+      
+      // Check if OpenAI API key is available
+      const openaiApiKey = process.env.OPENAI_API_KEY;
+      if (!openaiApiKey) {
+        throw new Error('OpenAI API key not provided for fallback');
+      }
+      
+      // Prepare the request to OpenAI API
+      const response = await fetch('https://api.openai.com/v1/images/generations', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${openaiApiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: options.dalle_model || process.env.IMAGE_OPENAI_MODEL || 'dall-e-3',
+          prompt: prompt,
+          n: 1,
+          size: `${options.width || this.defaultWidth}x${options.height || this.defaultHeight}`,
+          response_format: 'url'
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`OpenAI API error: ${JSON.stringify(errorData)}`);
+      }
+      
+      const data = await response.json();
+      console.log(`✅ DALL-E image generated successfully`);
+      
+      // Return the image URL
+      return data.data[0].url;
+    } catch (error) {
+      console.error(`❌ Error in DALL-E fallback: ${error}`);
+      return null;
     }
-    
-    return null;
   }
 } 
