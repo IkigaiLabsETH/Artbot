@@ -1,0 +1,26 @@
+{
+  "project": {
+    "title": "Bowler-hatted men raining from cloudless sky.",
+    "description": "Create an artistic interpretation of the concept: \"Bowler-hatted men raining from cloudless sky.\"",
+    "requirements": [
+      "Create a visually striking image that captures the essence of the concept",
+      "Use cinematic lighting and composition",
+      "Incorporate rich visual metaphors and symbolism",
+      "Balance abstract and recognizable elements",
+      "Evoke an emotional response in the viewer"
+    ],
+    "useFlux": true,
+    "outputFilename": "flux-bowler-hatted-men-raining-from-cloudless-sky."
+  },
+  "style": {},
+  "prompt": "CNSTLL Surreal night-scape beneath obsidian heavens, bowler-hatted men cascading from a cloudless void, their silhouettes stark against city lights and neon signs, bodies tumbling in eerie stillness, 4k cinestill 800t grain, frozen moments captured in time-lapse streaks of urban melancholy., film grain, night time",
+  "creativeProcess": "I envisioned a dreamlike, almost nightmarish scene where the ordinary is disrupted by the extraordinary. The bowler hats evoke a sense of the mundane and the business-like, while their impossible descent from an empty sky subverts reality. The night setting, with its neon glow and time-lapse effects, creates an atmosphere of urban alienation and detachment. The men's stillness amid their surreal plummet implies a haunting metaphor - are they falling victims, or have they transcended the bounds of gravity and reason? Their shadows against the city lights become spectral presences, at once grounding the scene in a familiar urban landscape while introducing an uncanny, almost existential disconnect. The overall image aims to merge the mundane and the metaphysical, the familiar and the bizarre, inviting the viewer to ponder the precarious balance between order and chaos in the modern world.",
+  "parameters": {
+    "width": 768,
+    "height": 768,
+    "numInferenceSteps": 28,
+    "guidanceScale": 3
+  },
+  "imageUrl": "https://replicate.delivery/xezq/eVUfSjsfw7Ezpoy7bLhMaaV5Yp8Ikn9qK2SlqT5mCfJW9JVRB/tmpe9v065_n.jpg",
+  "timestamp": "2025-03-04T21:51:19.478Z"
+}

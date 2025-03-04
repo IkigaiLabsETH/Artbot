@@ -169,8 +169,8 @@ async function generateArt(concept: string) {
           category = ConceptCategory[categoryKey as keyof typeof ConceptCategory];
           console.log(`\n🎬 Generating a ${category} concept...`);
         } else {
-          console.log(`\n⚠️ Unknown category: "${categoryArg}". Using default cinematic category.`);
-          category = ConceptCategory.CINEMATIC;
+          console.log(`\n⚠️ Unknown category: "${categoryArg}". Using MAGRITTE_SURREALISM category.`);
+          category = ConceptCategory.MAGRITTE_SURREALISM;
         }
       } else {
         // If no category specified, use MAGRITTE_SURREALISM as the default
@@ -205,6 +205,12 @@ async function generateArt(concept: string) {
     const cryptoKeywords = ['bitcoin', 'crypto', 'blockchain', 'nft', 'satoshi', 'ethereum', 'web3', 'token', 'fidenza', 'ringers', 'meridian', 'xcopy', 'beeple'];
     const isCryptoRelated = cryptoKeywords.some(keyword => artConcept.toLowerCase().includes(keyword));
     
+    // Determine if we should use Magritte style
+    const useMagritteStyle = categoryArg === 'magritte_surrealism' || 
+                            (!categoryArg && !isCryptoRelated) || 
+                            artConcept.toLowerCase().includes('magritte') ||
+                            artConcept.toLowerCase().includes('surreal');
+    
     // Create a project for the multi-agent system
     const project = {
       title: artConcept,
@@ -215,20 +221,47 @@ async function generateArt(concept: string) {
         "Use cinematic lighting and composition",
         "Incorporate rich visual metaphors and symbolism",
         isCryptoRelated ? "Include crypto-native visual elements and aesthetics" : "Balance abstract and recognizable elements",
-        "Evoke an emotional response in the viewer"
+        useMagritteStyle ? "Use René Magritte's surrealist style with clean compositions and philosophical questioning" : "Evoke an emotional response in the viewer"
       ],
       outputFilename: `flux-${artConcept.replace(/\s+/g, '-').toLowerCase()}`,
       // Add art direction to the project
       artDirection: {
-        styleEmphasis: artDirection.styleEmphasis,
+        styleEmphasis: [
+          ...(useMagritteStyle ? ["Magritte surrealism", "surreal juxtaposition"] : []),
+          ...(artDirection.styleEmphasis || [])
+        ],
         visualElements: [
+          ...(useMagritteStyle ? [
+            "bowler hats", 
+            "floating objects", 
+            "clouds", 
+            "blue skies", 
+            "impossible scenes", 
+            "ordinary objects in extraordinary contexts"
+          ] : []),
           ...(artDirection.visualElements || []),
           ...(isCryptoRelated ? ['blockchain visualization', 'digital currency symbols', 'cryptographic elements'] : [])
         ],
-        colorPalette: artDirection.colorPalette,
-        compositionGuidelines: artDirection.compositionGuidelines,
-        moodAndTone: artDirection.moodAndTone,
-        references: artDirection.references,
+        colorPalette: [
+          ...(useMagritteStyle ? ["Magritte blues", "soft greens", "earthy browns"] : []),
+          ...(artDirection.colorPalette || [])
+        ],
+        compositionGuidelines: [
+          ...(useMagritteStyle ? ["surreal scale relationships", "clean compositions with clear subjects"] : []),
+          ...(artDirection.compositionGuidelines || [])
+        ],
+        moodAndTone: useMagritteStyle ? 
+          "dreamlike and contemplative with a sense of mystery and philosophical questioning" : 
+          artDirection.moodAndTone,
+        references: [
+          ...(useMagritteStyle ? [
+            "René Magritte's 'The Son of Man'",
+            "René Magritte's 'The Empire of Light'",
+            "René Magritte's 'The Treachery of Images'",
+            "René Magritte's 'Golconda'"
+          ] : []),
+          ...(artDirection.references || [])
+        ],
         avoidElements: artDirection.avoidElements
       }
     };

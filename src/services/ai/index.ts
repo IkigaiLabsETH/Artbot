@@ -65,30 +65,35 @@ export class AIService {
    * Get a completion from the AI service
    */
   async getCompletion(request: AICompletionRequest): Promise<AICompletionResponse> {
-    // Try Anthropic first if available
-    if (this.isAnthropicAvailable) {
+    // Check if we should use OpenAI as the primary provider
+    const useOpenAIPrimary = process.env.USE_OPENAI_PRIMARY === 'true';
+    
+    if (useOpenAIPrimary && this.isOpenAIAvailable) {
+      try {
+        return await this.getOpenAICompletion(request);
+      } catch (error) {
+        console.warn('⚠️ OpenAI API error:', error);
+        if (this.isAnthropicAvailable) {
+          console.log('🔄 Falling back to Anthropic');
+          return await this.getAnthropicCompletion(request);
+        }
+        throw error;
+      }
+    } else if (this.isAnthropicAvailable) {
       try {
         return await this.getAnthropicCompletion(request);
       } catch (error) {
         console.warn('⚠️ Anthropic API error:', error);
-        
-        // If OpenAI is available, try it as fallback
         if (this.isOpenAIAvailable) {
           console.log('🔄 Falling back to OpenAI');
           return await this.getOpenAICompletion(request);
         }
-        
-        // If no fallback is available, throw the error
         throw error;
       }
-    } 
-    // If Anthropic is not available but OpenAI is, use OpenAI
-    else if (this.isOpenAIAvailable) {
+    } else if (this.isOpenAIAvailable) {
       return await this.getOpenAICompletion(request);
-    } 
-    // If no providers are available, throw an error
-    else {
-      throw new Error('No AI providers available. Please provide either an Anthropic or OpenAI API key.');
+    } else {
+      throw new Error('No AI provider available. Please provide either an Anthropic or OpenAI API key in your .env file.');
     }
   }
 
@@ -102,53 +107,83 @@ export class AIService {
     
     console.log(`🧠 Calling Anthropic API with model: ${model}`);
     
-    try {
-      // Extract system message if present
-      const systemMessage = request.messages.find(msg => msg.role === 'system');
-      
-      // Filter out system messages from the messages array
-      const filteredMessages = request.messages.filter(msg => msg.role !== 'system');
-      
-      const requestBody: any = {
-        model: model,
-        messages: filteredMessages,
-        max_tokens: maxTokens,
-        temperature: temperature
-      };
-      
-      // Add system parameter if a system message was found
-      if (systemMessage) {
-        requestBody.system = systemMessage.content;
-      }
-      
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': this.anthropicApiKey,
-          'anthropic-version': '2023-06-01'
-        },
-        body: JSON.stringify(requestBody)
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(`Anthropic API error: ${JSON.stringify(errorData)}`);
-      }
-      
-      const data = await response.json();
-      
-      return {
-        id: data.id,
-        model: data.model,
-        content: data.content[0].text,
-        provider: 'anthropic',
-        created: new Date(data.created_at)
-      };
-    } catch (error) {
-      console.error('Error calling Anthropic API:', error);
-      throw error;
+    // Extract system message if present
+    const systemMessage = request.messages.find(msg => msg.role === 'system');
+    
+    // Filter out system messages from the messages array
+    const filteredMessages = request.messages.filter(msg => msg.role !== 'system');
+    
+    const requestBody: any = {
+      model: model,
+      messages: filteredMessages,
+      max_tokens: maxTokens,
+      temperature: temperature
+    };
+    
+    // Add system parameter if a system message was found
+    if (systemMessage) {
+      requestBody.system = systemMessage.content;
     }
+    
+    // Add retry logic with exponential backoff
+    const maxRetries = 3;
+    let retryCount = 0;
+    let lastError;
+
+    while (retryCount < maxRetries) {
+      try {
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': this.anthropicApiKey,
+            'anthropic-version': '2023-06-01'
+          },
+          body: JSON.stringify(requestBody)
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          
+          // Check if it's an overloaded error
+          if (errorData?.error?.type === 'overloaded_error') {
+            retryCount++;
+            const waitTime = Math.pow(2, retryCount) * 1000; // Exponential backoff: 2s, 4s, 8s
+            console.log(`⏳ Anthropic API overloaded. Retrying in ${waitTime/1000} seconds... (Attempt ${retryCount}/${maxRetries})`);
+            await new Promise(resolve => setTimeout(resolve, waitTime));
+            continue;
+          }
+          
+          throw new Error(`Anthropic API error: ${JSON.stringify(errorData)}`);
+        }
+        
+        const data = await response.json();
+        
+        return {
+          id: data.id,
+          model: data.model,
+          content: data.content[0].text,
+          provider: 'anthropic',
+          created: new Date(data.created_at)
+        };
+      } catch (error) {
+        lastError = error;
+        
+        // If it's not an overloaded error or we've exhausted retries, break the loop
+        if (!error.message?.includes('overloaded_error') || retryCount >= maxRetries - 1) {
+          break;
+        }
+        
+        retryCount++;
+        const waitTime = Math.pow(2, retryCount) * 1000;
+        console.log(`⏳ Error with Anthropic API. Retrying in ${waitTime/1000} seconds... (Attempt ${retryCount}/${maxRetries})`);
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+      }
+    }
+
+    // If we've exhausted retries, log the error and throw it
+    console.error('Error calling Anthropic API:', lastError);
+    throw lastError;
   }
 
   /**

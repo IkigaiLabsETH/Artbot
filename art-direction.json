@@ -1,18 +1,29 @@
 {
   "styleEmphasis": [
+    "Magritte surrealism",
     "cinematic",
     "dramatic lighting",
     "film grain",
     "high contrast",
-    "atmospheric"
+    "atmospheric",
+    "surreal juxtaposition"
   ],
   "visualElements": [
+    "bowler hats",
+    "floating objects",
+    "clouds",
+    "blue skies",
     "reflective surfaces",
-    "dynamic shadows",
-    "depth of field",
-    "environmental storytelling"
+    "impossible scenes",
+    "ordinary objects in extraordinary contexts",
+    "visual paradoxes",
+    "windows and frames",
+    "silhouettes"
   ],
   "colorPalette": [
+    "Magritte blues",
+    "soft greens",
+    "earthy browns",
     "rich blues",
     "deep reds",
     "golden highlights",
@@ -24,10 +35,16 @@
     "leading lines",
     "depth of field",
     "framing elements",
-    "balanced asymmetry"
+    "balanced asymmetry",
+    "surreal scale relationships",
+    "clean compositions with clear subjects"
   ],
-  "moodAndTone": "atmospheric and evocative with a sense of mystery",
+  "moodAndTone": "dreamlike and contemplative with a sense of mystery and philosophical questioning",
   "references": [
+    "René Magritte's 'The Son of Man'",
+    "René Magritte's 'The Empire of Light'",
+    "René Magritte's 'The Treachery of Images'",
+    "René Magritte's 'Golconda'",
     "Roger Deakins cinematography",
     "Gregory Crewdson photography",
     "Blade Runner 2049 visual style"
@@ -37,6 +54,8 @@
     "watermarks",
     "distorted faces",
     "overly saturated colors",
-    "digital artifacts"
+    "digital artifacts",
+    "abstract expressionism",
+    "chaotic compositions"
   ]
 } 
