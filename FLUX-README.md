@@ -7,6 +7,7 @@ This integration allows ArtBot to generate images using the FLUX model from Repl
 - Generate images using the FLUX model via Replicate's API
 - Create conceptually rich, evocative prompts with metaphorical depth
 - **Automatic cinematic concept generation** using AI
+- **Multiple concept categories** for diverse artistic styles
 - Automatically enhance prompts with FLUX-specific trigger words and keywords
 - Download generated images to your local machine
 - Save detailed metadata including prompts and creative process explanations
@@ -43,23 +44,50 @@ This integration allows ArtBot to generate images using the FLUX model from Repl
 The easiest way to generate images is to use the provided shell script:
 
 ```bash
-./run-flux-art-generator.sh "your concept here"
+./run-flux-art-generator.sh "your concept here" [category]
 ```
 
 For example:
 ```bash
 ./run-flux-art-generator.sh "abandoned cyberpunk arcade"
+./run-flux-art-generator.sh "misty harbor at dawn" nature
+./run-flux-art-generator.sh "" cyberpunk
 ```
 
 ### Automatic Concept Generation
 
-If no concept is provided, the system will automatically generate a random cinematic concept using AI:
+If no concept is provided, the system will automatically generate a random concept using AI:
 
 ```bash
 ./run-flux-art-generator.sh
 ```
 
-Each time you run the script without a concept, it will generate a unique cinematic concept, ensuring variety and creativity in your generated images.
+Each time you run the script without a concept, it will generate a unique concept, ensuring variety and creativity in your generated images.
+
+### Concept Categories
+
+The system supports multiple concept categories to generate diverse artistic styles:
+
+| Category | Description |
+|----------|-------------|
+| cinematic | Film-like scenes with dramatic lighting and composition |
+| surreal | Dreamlike, unexpected concept combinations |
+| cyberpunk | High-tech, dystopian urban environments |
+| nature | Beautiful and dramatic natural environments |
+| urban | City life and architecture |
+| abstract | Non-representational visual concepts |
+| nostalgic | Emotional connections to the past |
+| futuristic | Advanced technological and social developments |
+| fantasy | Magical and mythical scenes |
+| dystopian | Societies and environments in decline |
+
+You can specify a category as the second argument:
+
+```bash
+./run-flux-art-generator.sh "" fantasy
+```
+
+If no category is specified, a random category will be used for variety.
 
 ### Prompt Philosophy
 

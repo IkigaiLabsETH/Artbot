@@ -50,15 +50,29 @@ fi
 # Display usage if requested
 if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
   echo -e "${MAGENTA}Usage:${NC}"
-  echo -e "  ./run-flux-art-generator.sh [concept]"
+  echo -e "  ./run-flux-art-generator.sh [concept] [category]"
   echo ""
   echo -e "${MAGENTA}Examples:${NC}"
   echo -e "  ./run-flux-art-generator.sh \"abandoned cyberpunk arcade\""
-  echo -e "  ./run-flux-art-generator.sh \"misty harbor at dawn\""
+  echo -e "  ./run-flux-art-generator.sh \"misty harbor at dawn\" nature"
+  echo -e "  ./run-flux-art-generator.sh \"\" cyberpunk"
+  echo ""
+  echo -e "${MAGENTA}Available Categories:${NC}"
+  echo -e "  cinematic   - Film-like scenes with dramatic lighting and composition"
+  echo -e "  surreal     - Dreamlike, unexpected concept combinations"
+  echo -e "  cyberpunk   - High-tech, dystopian urban environments"
+  echo -e "  nature      - Beautiful and dramatic natural environments"
+  echo -e "  urban       - City life and architecture"
+  echo -e "  abstract    - Non-representational visual concepts"
+  echo -e "  nostalgic   - Emotional connections to the past"
+  echo -e "  futuristic  - Advanced technological and social developments"
+  echo -e "  fantasy     - Magical and mythical scenes"
+  echo -e "  dystopian   - Societies and environments in decline"
   echo ""
   echo -e "${MAGENTA}Note:${NC}"
   echo -e "  If no concept is provided, the system will automatically generate a random"
-  echo -e "  cinematic concept using AI. Each run will produce a unique concept."
+  echo -e "  concept using AI. If no category is specified, a random category will be used."
+  echo -e "  Each run will produce a unique concept."
   echo ""
   echo -e "${MAGENTA}Output:${NC}"
   echo -e "  The generator creates several files in the output directory:"
@@ -82,9 +96,17 @@ fi
 # Run the FLUX art generator
 echo -e "${GREEN}Starting FLUX art generator...${NC}"
 if [ -z "$1" ]; then
-  echo -e "${YELLOW}No concept provided. The system will generate a random cinematic concept.${NC}"
+  if [ -z "$2" ]; then
+    echo -e "${YELLOW}No concept or category provided. The system will generate a random concept with a random category.${NC}"
+  else
+    echo -e "${YELLOW}No concept provided. The system will generate a random concept with category: $2${NC}"
+  fi
 else
-  echo -e "${YELLOW}Using provided concept: \"$1\"${NC}"
+  if [ -z "$2" ]; then
+    echo -e "${YELLOW}Using provided concept: \"$1\"${NC}"
+  else
+    echo -e "${YELLOW}Using provided concept: \"$1\" with category: $2${NC}"
+  fi
 fi
 echo -e "${YELLOW}This will generate a conceptually rich prompt and create an image using FLUX${NC}"
 echo -e "${YELLOW}The process may take a minute or two to complete${NC}"

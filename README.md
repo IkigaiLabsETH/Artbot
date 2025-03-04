@@ -855,3 +855,19 @@ We welcome contributions! Here's how you can help:
 - Add comments for complex logic
 - Update documentation for changes
 - Add tests for new features
+
+### Concept Generator
+
+We've added a complementary tool called the ArtBot Concept Generator that helps with generating creative concept ideas. This tool operates independently from the main Eliza system and can be used to generate inspiration for your art projects.
+
+To use the concept generator:
+
+```bash
+# Navigate to the concept generator directory
+cd concept-generator
+
+# Run the concept generator
+./run-concept-generator.sh [category] [count]
+```
+
+For more information, see the [Concept Generator README](concept-generator/CONCEPT-GENERATOR-README.md).

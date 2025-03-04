@@ -8,7 +8,7 @@ import { AIService } from './services/ai/index.js';
 import { MemorySystem, MemoryType } from './services/memory/index.js';
 import { StyleService } from './services/style/index.js';
 import { MultiAgentSystem } from './services/multiagent/index.js';
-import { generateCinematicConcept } from './services/ai/conceptGenerator.js';
+import { generateCinematicConcept, generateMultipleConcepts, ConceptCategory } from './services/ai/conceptGenerator.js';
 
 // Load environment variables
 dotenv.config();
@@ -25,6 +25,8 @@ if (!fs.existsSync(outputDir)) {
 
 // Get concept from command line arguments
 const concept = process.argv[2];
+// Get category from command line arguments (if provided)
+const categoryArg = process.argv[3];
 
 async function generateArt(concept: string) {
   try {
@@ -97,9 +99,36 @@ async function generateArt(concept: string) {
     
     // If no concept is provided via command line, generate a random cinematic concept
     let artConcept = concept;
+    
     if (!artConcept) {
-      console.log('\n🎬 Generating a cinematic concept...');
-      artConcept = await generateCinematicConcept(aiService, { temperature: 0.9 });
+      // Determine which category to use
+      let category: ConceptCategory | undefined;
+      
+      if (categoryArg) {
+        // Try to match the category argument to a valid category
+        const categoryKey = Object.keys(ConceptCategory).find(
+          key => key.toLowerCase() === categoryArg.toLowerCase()
+        );
+        
+        if (categoryKey) {
+          category = ConceptCategory[categoryKey as keyof typeof ConceptCategory];
+          console.log(`\n🎬 Generating a ${category} concept...`);
+        } else {
+          console.log(`\n⚠️ Unknown category: "${categoryArg}". Using default cinematic category.`);
+          category = ConceptCategory.CINEMATIC;
+        }
+      } else {
+        // If no category specified, use a random category for variety
+        const categories = Object.values(ConceptCategory);
+        category = categories[Math.floor(Math.random() * categories.length)];
+        console.log(`\n🎬 Generating a ${category} concept...`);
+      }
+      
+      // Generate the concept with the selected category
+      artConcept = await generateCinematicConcept(aiService, { 
+        temperature: 0.9,
+        category
+      });
     }
     
     console.log(`\n💡 Using concept: "${artConcept}"`);

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import { AIService } from './services/ai/index.js';
-import { generateCinematicConcept } from './services/ai/conceptGenerator.js';
+import { generateCinematicConcept, generateMultipleConcepts, ConceptCategory } from './services/ai/conceptGenerator.js';
 
 // Load environment variables
 dotenv.config();
@@ -104,10 +104,40 @@ async function generateArtWithFlux() {
     
     // Get concept from command line arguments or generate a new one
     let concept = process.argv[2];
+    // Get category from command line arguments (if provided)
+    const categoryArg = process.argv[3];
+    
     if (!concept) {
-      console.log('🎬 Generating a cinematic concept...');
-      concept = await generateCinematicConcept(aiService, { temperature: 0.9 });
+      // Determine which category to use
+      let category: ConceptCategory | undefined;
+      
+      if (categoryArg) {
+        // Try to match the category argument to a valid category
+        const categoryKey = Object.keys(ConceptCategory).find(
+          key => key.toLowerCase() === categoryArg.toLowerCase()
+        );
+        
+        if (categoryKey) {
+          category = ConceptCategory[categoryKey as keyof typeof ConceptCategory];
+          console.log(`🎬 Generating a ${category} concept...`);
+        } else {
+          console.log(`⚠️ Unknown category: "${categoryArg}". Using default cinematic category.`);
+          category = ConceptCategory.CINEMATIC;
+        }
+      } else {
+        // If no category specified, use a random category for variety
+        const categories = Object.values(ConceptCategory);
+        category = categories[Math.floor(Math.random() * categories.length)];
+        console.log(`🎬 Generating a ${category} concept...`);
+      }
+      
+      // Generate the concept with the selected category
+      concept = await generateCinematicConcept(aiService, { 
+        temperature: 0.9,
+        category
+      });
     }
+    
     console.log(`💡 Using concept: "${concept}"\n`);
     
     // Default image settings for FLUX
@@ -262,6 +292,7 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
     const metadataPath = path.join(outputDir, `flux-${concept.replace(/\s+/g, '-').toLowerCase()}-metadata.json`);
     const metadata = {
       concept: concept,
+      category: categoryArg || 'auto-generated',
       prompt: detailedPrompt,
       creativeProcess: creativeProcess,
       imageUrl: imageUrl,
@@ -274,6 +305,7 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
     
     return {
       concept,
+      category: categoryArg || 'auto-generated',
       prompt: detailedPrompt,
       creativeProcess,
       imageUrl

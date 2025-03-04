@@ -8,9 +8,10 @@ The FLUX model is now the default art generator for ArtBot, replacing the previo
 
 1. **Conceptually Rich Prompts**: All prompts are now generated with metaphorical depth, emotional resonance, and visual complexity.
 2. **Automatic Cinematic Concept Generation**: The system can generate unique cinematic concepts using AI.
-3. **FLUX-Specific Optimizations**: Prompts are automatically enhanced with FLUX-specific trigger words and technical elements.
-4. **Creative Process Explanations**: Each generated prompt includes a "Creative Process" explanation that reveals the thinking behind it.
-5. **Multi-Agent Integration**: The FLUX model is fully integrated with ArtBot's multi-agent system.
+3. **Multiple Concept Categories**: Support for diverse artistic styles through specialized categories.
+4. **FLUX-Specific Optimizations**: Prompts are automatically enhanced with FLUX-specific trigger words and technical elements.
+5. **Creative Process Explanations**: Each generated prompt includes a "Creative Process" explanation that reveals the thinking behind it.
+6. **Multi-Agent Integration**: The FLUX model is fully integrated with ArtBot's multi-agent system.
 
 ## Using the FLUX Integration
 
@@ -26,6 +27,13 @@ This will automatically generate a random cinematic concept using AI. To specify
 
 ```bash
 npm run start "your concept here"
+```
+
+To specify a concept category:
+
+```bash
+npm run start "your concept here" category
+npm run start "" cyberpunk
 ```
 
 ### Multi-Agent Demo
@@ -48,9 +56,28 @@ The integration includes the following components:
 
 1. **ReplicateService**: Updated to use FLUX as the default model and handle FLUX-specific parameters.
 2. **ConceptualPromptGenerator**: A new service that generates conceptually rich prompts with metaphorical depth.
-3. **ConceptGenerator**: A new service that generates random cinematic concepts using AI.
+3. **ConceptGenerator**: A new service that generates random cinematic concepts using AI, with support for multiple categories.
 4. **CreativeEngine**: Enhanced with a new `generateConceptualImage` method that uses FLUX.
 5. **DefaultArtGenerator**: A new default implementation that uses FLUX with conceptually rich prompts.
+
+## Concept Categories
+
+The system supports multiple concept categories to generate diverse artistic styles:
+
+| Category | Description |
+|----------|-------------|
+| cinematic | Film-like scenes with dramatic lighting and composition |
+| surreal | Dreamlike, unexpected concept combinations |
+| cyberpunk | High-tech, dystopian urban environments |
+| nature | Beautiful and dramatic natural environments |
+| urban | City life and architecture |
+| abstract | Non-representational visual concepts |
+| nostalgic | Emotional connections to the past |
+| futuristic | Advanced technological and social developments |
+| fantasy | Magical and mythical scenes |
+| dystopian | Societies and environments in decline |
+
+Each category has specialized prompting to generate concepts that align with its unique aesthetic and thematic elements.
 
 ## Prompt Philosophy
 

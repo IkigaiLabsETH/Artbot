@@ -1,0 +1,23 @@
+{
+  "name": "artbot-concept-generator",
+  "version": "1.0.0",
+  "description": "Generate creative concept ideas for art projects",
+  "type": "module",
+  "main": "generate-concept-ideas.js",
+  "scripts": {
+    "start": "node generate-concept-ideas.js",
+    "generate": "./run-concept-generator.sh"
+  },
+  "keywords": [
+    "art",
+    "concept",
+    "generator",
+    "creative",
+    "ai"
+  ],
+  "author": "ArtBot",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+} 
