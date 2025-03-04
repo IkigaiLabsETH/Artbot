@@ -244,6 +244,73 @@ This will demonstrate:
 4. Visualizing the network of connected memories
 5. Managing emotional context across memory transfers
 
+## Aesthetic Judgment System
+
+ArtBot's aesthetic judgment system evaluates generated images based on both aesthetic quality and alignment with evolving preferences. Using an ELO rating system similar to chess rankings, ArtBot develops a personalized taste model that reflects a cohesive and authentic artistic voice. The system also employs a bandit-like strategy with exploration bonuses to encourage experimentation with unconventional ideas rather than solely pursuing high-scoring options.
+
+### Key Components
+
+1. **ELO Rating System**: Tracks and updates style preferences through pairwise comparisons
+2. **Preference Learning**: Identifies and reinforces style attributes that align with aesthetic preferences
+3. **Exploration Strategy**: Balances exploitation of known preferences with exploration of novel styles
+4. **Style Selection**: Selects styles based on learned preferences while maintaining creative diversity
+5. **Preference Evolution**: Continuously adapts preferences based on new comparisons and feedback
+
+### How It Works
+
+The aesthetic judgment system follows these steps:
+
+1. **Style Rating**: Each style receives an initial rating (default: 1400)
+2. **Comparison Learning**: When two styles are compared, their ratings are updated using ELO formulas
+3. **Attribute Extraction**: The system identifies which attributes (tags) are associated with preferred styles
+4. **Preference Modeling**: Builds a model of preferences with confidence scores for each attribute
+5. **Selection Process**: When choosing between styles, combines base ratings with:
+   - Exploration bonus for less frequently selected styles
+   - Recency bonus for styles not recently evaluated
+   - Preference alignment score based on style attributes
+6. **Forced Exploration**: Periodically selects non-optimal styles to prevent creative stagnation
+
+### Example Usage
+
+```typescript
+// Initialize the aesthetic judgment system
+const aestheticJudgment = new AestheticJudgment({
+  initialRating: 1400,
+  kFactor: 32,
+  explorationBonus: 0.2
+});
+
+// Update ratings based on a comparison
+await aestheticJudgment.updateRatings(preferredStyleId, lessPreferredStyleId);
+
+// Get current rating for a style
+const rating = aestheticJudgment.getRating(styleId);
+
+// Select the best style from candidates based on learned preferences
+const selectedStyle = await aestheticJudgment.selectBestStyle(candidateStyles);
+
+// Get top preferences
+const preferences = aestheticJudgment.getTopPreferences(5);
+
+// Generate a report of aesthetic preferences
+const report = aestheticJudgment.generateAestheticReport();
+```
+
+### Running the Aesthetic Judgment Demo
+
+To see the aesthetic judgment system in action, run:
+
+```bash
+pnpm demo:aesthetic
+```
+
+This will demonstrate:
+1. Building a preference model through pairwise comparisons
+2. Learning style preferences from feedback
+3. Selecting styles based on learned preferences
+4. Balancing exploitation vs. exploration in style selection
+5. Generating reports on aesthetic preferences and ratings
+
 ## Multi-Agent System
 
 ArtBot's multi-agent system enables collaborative art creation through specialized agent roles, each focusing on a specific aspect of the creative process:

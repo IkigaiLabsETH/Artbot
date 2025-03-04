@@ -2,6 +2,7 @@ import { Style } from '../../types.js';
 import { StyleMixer } from './mixer.js';
 import { StyleAnalyzer, StyleAnalysis, StyleMetrics } from './analyzer.js';
 import { ReplicateService, ModelPrediction } from '../replicate/index.js';
+import { AestheticJudgment } from './aesthetic.js';
 import { v4 as uuidv4 } from 'uuid';
 import * as fs from 'fs/promises';
 import * as path from 'path';
@@ -20,6 +21,7 @@ export class StyleService {
   private mixer: StyleMixer;
   private analyzer: StyleAnalyzer;
   private replicateService: ReplicateService;
+  private aestheticJudgment: AestheticJudgment;
   private styles: Map<string, Style> = new Map();
   private stylesDir: string;
 
@@ -27,12 +29,14 @@ export class StyleService {
     this.mixer = new StyleMixer(config);
     this.analyzer = new StyleAnalyzer();
     this.replicateService = new ReplicateService(config);
+    this.aestheticJudgment = new AestheticJudgment({ baseDir });
     this.stylesDir = path.join(baseDir, '.artbot', 'styles');
   }
 
   async initialize(): Promise<void> {
     // Initialize dependencies
     await this.replicateService.initialize();
+    await this.aestheticJudgment.initialize();
     
     // Create styles directory if it doesn't exist
     try {
@@ -85,7 +89,7 @@ export class StyleService {
   }
 
   /**
-   * Select the best variation from a set of variations
+   * Select the best variation from a set of variations using aesthetic judgment
    */
   async selectBestVariation(
     variations: ExtendedModelPrediction[],
@@ -93,46 +97,72 @@ export class StyleService {
     preserveTraits: string[] = []
   ): Promise<Style> {
     // Convert predictions to styles
-    const styles = variations.map(prediction => ({
-      id: uuidv4(),
-      name: `Variation ${uuidv4().slice(0, 8)}`,
-      creator: 'ArtBot',
-      parameters: prediction.parameters || {},
-      version: 1,
-      created: new Date(),
-      modified: new Date(),
-      isPublic: false,
-      tags: []
-    }));
-    
-    // Score each style
-    const scores = await Promise.all(styles.map(async style => {
+    const styles = await Promise.all(variations.map(async prediction => {
+      const style = {
+        id: uuidv4(),
+        name: `Variation ${uuidv4().slice(0, 8)}`,
+        creator: 'ArtBot',
+        parameters: prediction.parameters || {},
+        version: 1,
+        created: new Date(),
+        modified: new Date(),
+        isPublic: false,
+        tags: []
+      };
+      
+      // Analyze the style to extract tags
       const styleAnalysis = await this.analyzer.analyzeStyle(style) as ExtendedStyleAnalysis;
       
-      // Calculate base score
-      let score = (
-        styleAnalysis.metrics.coherence * 0.3 +
-        styleAnalysis.metrics.stability * 0.3 +
-        styleAnalysis.metrics.compatibility * 0.4
-      );
-      
-      // Bonus for preserving traits
-      if (preserveTraits.length > 0) {
-        const preservedTraitScore = preserveTraits.reduce((acc, trait) => {
-          // Check if trait is preserved in the style
-          const isPreserved = styleAnalysis.traits?.includes(trait) || false;
-          return acc + (isPreserved ? 0.1 : 0);
-        }, 0);
-        
-        score += preservedTraitScore;
+      // Add traits as tags
+      if (styleAnalysis.traits) {
+        style.tags = [...styleAnalysis.traits];
       }
       
-      return { style, score };
+      // Add preserved traits as tags if they're not already included
+      for (const trait of preserveTraits) {
+        if (!style.tags.includes(trait)) {
+          style.tags.push(trait);
+        }
+      }
+      
+      return style;
     }));
     
-    // Return the style with the highest score
-    scores.sort((a, b) => b.score - a.score);
-    return scores[0].style;
+    // Use aesthetic judgment to select the best style
+    const selectedStyle = await this.aestheticJudgment.selectBestStyle(styles);
+    
+    // Save the selected style
+    await this.saveStyle(selectedStyle);
+    
+    return selectedStyle;
+  }
+
+  /**
+   * Record a preference between two styles
+   */
+  async recordStylePreference(preferredStyleId: string, lessPreferredStyleId: string): Promise<void> {
+    await this.aestheticJudgment.updateRatings(preferredStyleId, lessPreferredStyleId);
+  }
+
+  /**
+   * Get the rating for a style
+   */
+  getStyleRating(styleId: string): number {
+    return this.aestheticJudgment.getRating(styleId);
+  }
+
+  /**
+   * Get top style preferences
+   */
+  getStylePreferences(limit: number = 10): any[] {
+    return this.aestheticJudgment.getTopPreferences(limit);
+  }
+
+  /**
+   * Generate an aesthetic report
+   */
+  generateAestheticReport(): Record<string, any> {
+    return this.aestheticJudgment.generateAestheticReport();
   }
 
   /**
@@ -158,5 +188,12 @@ export class StyleService {
     variationStrength: number = 0.2
   ): Promise<Style[]> {
     return this.mixer.createVariations(style, count, variationStrength);
+  }
+
+  /**
+   * Select the best style from a set of candidates using aesthetic judgment
+   */
+  async selectBestStyle(candidates: Style[]): Promise<Style> {
+    return this.aestheticJudgment.selectBestStyle(candidates);
   }
 } 

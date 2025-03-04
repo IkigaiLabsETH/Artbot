@@ -17,6 +17,7 @@
     "demo:idea-queue": "node dist/demo-idea-queue.js",
     "demo:memory": "node dist/demo-memory.js",
     "demo:collaborative": "node dist/demo-collaborative-memory.js",
+    "demo:aesthetic": "node dist/demo-aesthetic.js",
     "test:multiagent": "node test-multiagent.js",
     "monitor:performance": "node monitor-multiagent-performance.js",
     "report:performance": "./monitor-multiagent-performance.sh",
