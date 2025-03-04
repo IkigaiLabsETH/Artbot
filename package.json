@@ -10,7 +10,8 @@
     "test": "jest",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
-    "init": "ts-node src/scripts/init.ts"
+    "init": "ts-node src/scripts/init.ts",
+    "demo:multiagent": "ts-node src/demo-multiagent.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.18.0",
