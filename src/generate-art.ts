@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { ReplicateService } from './services/replicate/index.js';
 import { AIService } from './services/ai/index.js';
 
 // Get the directory name
@@ -22,24 +21,21 @@ async function generateArt() {
     console.log('------------------------');
     
     // Initialize services
-    const replicateApiKey = process.env.REPLICATE_API_KEY;
     const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
     const openaiApiKey = process.env.OPENAI_API_KEY;
     
-    if (!replicateApiKey) {
-      throw new Error('REPLICATE_API_KEY is required');
+    if (!openaiApiKey) {
+      throw new Error('OPENAI_API_KEY is required for image generation');
     }
     
     if (!anthropicApiKey && !openaiApiKey) {
-      throw new Error('Either ANTHROPIC_API_KEY or OPENAI_API_KEY is required');
+      throw new Error('Either ANTHROPIC_API_KEY or OPENAI_API_KEY is required for prompt generation');
     }
     
     console.log('API Keys found:');
-    console.log(`- Replicate: ${replicateApiKey ? 'Yes' : 'No'}`);
     console.log(`- Anthropic: ${anthropicApiKey ? 'Yes' : 'No'}`);
     console.log(`- OpenAI: ${openaiApiKey ? 'Yes' : 'No'}`);
     
-    const replicateService = new ReplicateService({ apiKey: replicateApiKey });
     const aiService = new AIService({
       anthropicApiKey,
       openaiApiKey,
@@ -77,37 +73,37 @@ async function generateArt() {
     const detailedPrompt = promptResponse.content;
     console.log(`✅ Generated prompt: ${detailedPrompt}\n`);
     
-    // Generate image
-    console.log('🖼️ Generating image...');
+    // Generate image using OpenAI's DALL-E 3
+    console.log('🖼️ Generating image with DALL-E 3...');
     
-    // Use the default model from the ReplicateService
-    // This will use 'stability-ai/sdxl' which is set as the default in the service
-    
-    const input = {
-      prompt: detailedPrompt,
-      width: width,
-      height: height,
-      num_outputs: 1,
-      guidance_scale: 7.5,
-      num_inference_steps: 50,
-      negative_prompt: "low quality, blurry, distorted, deformed, ugly, poor composition"
-    };
-    
-    console.log(`📝 Input: ${JSON.stringify(input, null, 2)}`);
-    
-    // Use the generateImage method which uses the default model
-    const imageUrl = await replicateService.generateImage(detailedPrompt, {
-      width: width,
-      height: height,
-      num_inference_steps: 50,
-      guidance_scale: 7.5,
-      negative_prompt: "low quality, blurry, distorted, deformed, ugly, poor composition"
+    // Make a direct API call to OpenAI
+    const response = await fetch('https://api.openai.com/v1/images/generations', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${openaiApiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: "dall-e-3",
+        prompt: detailedPrompt,
+        n: 1,
+        size: "1024x1024",
+        quality: "standard"
+      })
     });
     
-    if (!imageUrl) {
-      throw new Error('Failed to generate image');
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`OpenAI API error: ${JSON.stringify(errorData)}`);
     }
     
+    const data = await response.json();
+    
+    if (!data.data || !data.data[0] || !data.data[0].url) {
+      throw new Error('Failed to generate image: No URL returned');
+    }
+    
+    const imageUrl = data.data[0].url;
     console.log(`✅ Image generated: ${imageUrl}`);
     
     // Save the image URL to a file

@@ -16,24 +16,18 @@ else
 fi
 
 # Check for required API keys
-if [ -z "$REPLICATE_API_KEY" ]; then
-  echo "❌ Error: REPLICATE_API_KEY environment variable is required"
+if [ -z "$OPENAI_API_KEY" ]; then
+  echo "❌ Error: OPENAI_API_KEY environment variable is required for image generation"
   exit 1
 fi
 
 if [ -z "$ANTHROPIC_API_KEY" ] && [ -z "$OPENAI_API_KEY" ]; then
-  echo "❌ Error: Either ANTHROPIC_API_KEY or OPENAI_API_KEY environment variable is required"
+  echo "❌ Error: Either ANTHROPIC_API_KEY or OPENAI_API_KEY environment variable is required for prompt generation"
   exit 1
 fi
 
 # Print API key status
 echo "✅ API Keys found:"
-if [ -n "$REPLICATE_API_KEY" ]; then
-  echo "  - Replicate: Yes"
-else
-  echo "  - Replicate: No"
-fi
-
 if [ -n "$ANTHROPIC_API_KEY" ]; then
   echo "  - Anthropic: Yes"
 else
