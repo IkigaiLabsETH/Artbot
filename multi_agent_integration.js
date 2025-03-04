@@ -6,6 +6,7 @@
  */
 
 const artDirectionLoader = require('./art_direction_loader');
+const { initializeAestheticJudgmentSystem } = require('./aesthetic_judgment_system');
 
 /**
  * Director Agent - Coordinates the creative process
@@ -16,6 +17,10 @@ class DirectorAgent {
     this.stylistAgent = new StylistAgent();
     this.refinerAgent = new RefinerAgent();
     this.criticAgent = new CriticAgent();
+    
+    // Initialize the aesthetic judgment system
+    console.log('Director: Initializing the aesthetic judgment system');
+    this.aestheticJudgmentSystem = initializeAestheticJudgmentSystem();
   }
 
   /**
@@ -44,7 +49,7 @@ class DirectorAgent {
     console.log('Director: Refinement complete');
     
     // Step 4: Critique - Evaluate the artwork and provide feedback
-    const critiqueResult = await this.criticAgent.evaluateArtwork(refinementResult, artDirection);
+    const critiqueResult = await this.criticAgent.evaluateArtwork(refinementResult, artDirection, this.aestheticJudgmentSystem);
     console.log('Director: Critique complete');
     
     // Return the final result
@@ -52,7 +57,9 @@ class DirectorAgent {
       prompt: refinementResult.finalPrompt,
       negativePrompt: refinementResult.finalNegativePrompt,
       parameters: refinementResult.finalParameters,
-      feedback: critiqueResult.feedback
+      feedback: critiqueResult.feedback,
+      scores: critiqueResult.scores,
+      overallScore: critiqueResult.overallScore
     };
   }
 }
@@ -198,27 +205,24 @@ class CriticAgent {
    * 
    * @param {Object} refinementResult - The result from the Refiner
    * @param {Object} artDirection - The art direction data
+   * @param {Object} aestheticJudgmentSystem - The aesthetic judgment system
    * @returns {Object} The critique result
    */
-  async evaluateArtwork(refinementResult, artDirection) {
+  async evaluateArtwork(refinementResult, artDirection, aestheticJudgmentSystem) {
     console.log('Critic: Evaluating artwork');
     
-    // Extract key elements from art direction for evaluation
-    const { styleEmphasis, visualElements, references } = artDirection;
+    // Use the aesthetic judgment system for evaluation
+    const evaluationResult = aestheticJudgmentSystem.evaluateArtwork(refinementResult, artDirection);
     
-    // Simulate artwork evaluation
-    const feedback = {
-      styleAdherence: "The artwork successfully incorporates the painterly quality and visible brushstrokes characteristic of Magritte's oil painting technique.",
-      visualElementsPresence: `The artwork effectively includes the requested visual elements: ${refinementResult.stylingResult.ideationResult.selectedElements.join(', ')}.`,
-      compositionQuality: "The composition is well-balanced and follows traditional painting principles.",
-      overallImpression: "The artwork successfully captures the essence of Magritte's surrealism while incorporating the user's requested elements.",
-      references: `The artwork shows influences from ${references[0]}.`,
-      improvementSuggestions: "Consider adjusting the color balance to better emphasize the focal elements."
-    };
+    console.log('Critic: Evaluation complete');
+    console.log(`Critic: Overall score: ${evaluationResult.overallScore.toFixed(2)}`);
     
     // Return critique result
     return {
-      feedback: feedback,
+      feedback: evaluationResult.feedback,
+      improvementSuggestions: evaluationResult.improvementSuggestions,
+      scores: evaluationResult.scores,
+      overallScore: evaluationResult.overallScore,
       refinementResult: refinementResult
     };
   }
@@ -240,7 +244,22 @@ async function runMultiAgentExample() {
   console.log('Prompt:', result1.prompt);
   console.log('Negative Prompt:', result1.negativePrompt);
   console.log('Parameters:', JSON.stringify(result1.parameters, null, 2));
-  console.log('Feedback:', result1.feedback.overallImpression);
+  
+  // Display complete feedback from Critic Agent
+  console.log('\nCritic Agent Feedback:');
+  console.log('Style Adherence:', result1.feedback.styleAdherence);
+  console.log('Visual Elements:', result1.feedback.visualElementsPresence);
+  console.log('Composition Quality:', result1.feedback.compositionQuality);
+  console.log('Overall Impression:', result1.feedback.overallImpression);
+  console.log('References:', result1.feedback.references);
+  console.log('Improvement Suggestions:', result1.improvementSuggestions);
+  
+  // Display scores
+  console.log('\nEvaluation Scores:');
+  for (const criterion in result1.scores) {
+    console.log(`${criterion}: ${result1.scores[criterion].toFixed(2)}`);
+  }
+  console.log(`Overall Score: ${result1.overallScore.toFixed(2)}`);
   
   // Example 2: Empire of Light category
   console.log('\nExample 2: Empire of Light Category');
@@ -249,7 +268,22 @@ async function runMultiAgentExample() {
   console.log('Prompt:', result2.prompt);
   console.log('Negative Prompt:', result2.negativePrompt);
   console.log('Parameters:', JSON.stringify(result2.parameters, null, 2));
-  console.log('Feedback:', result2.feedback.overallImpression);
+  
+  // Display complete feedback from Critic Agent
+  console.log('\nCritic Agent Feedback:');
+  console.log('Style Adherence:', result2.feedback.styleAdherence);
+  console.log('Visual Elements:', result2.feedback.visualElementsPresence);
+  console.log('Composition Quality:', result2.feedback.compositionQuality);
+  console.log('Overall Impression:', result2.feedback.overallImpression);
+  console.log('References:', result2.feedback.references);
+  console.log('Improvement Suggestions:', result2.improvementSuggestions);
+  
+  // Display scores
+  console.log('\nEvaluation Scores:');
+  for (const criterion in result2.scores) {
+    console.log(`${criterion}: ${result2.scores[criterion].toFixed(2)}`);
+  }
+  console.log(`Overall Score: ${result2.overallScore.toFixed(2)}`);
 }
 
 // Run the multi-agent example
