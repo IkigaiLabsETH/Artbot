@@ -222,7 +222,7 @@ Include both the prompt itself and a brief creative process explanation.`
       fs.writeFileSync(promptFilePath, `Prompt: ${detailedPrompt}\n\nCreative Process: ${creativeProcess}`);
       
       // Generate image using FLUX model on Replicate
-      console.log('Generating image with FLUX...');
+      console.log(`Generating image with model: ${this.replicateService.getDefaultModel()}...`);
       
       // Get parameters from context
       const { width, height, numInferenceSteps, guidanceScale, outputFormat } = this.state.context.fluxParameters;
@@ -232,8 +232,9 @@ Include both the prompt itself and a brief creative process explanation.`
       let imageResult;
       
       try {
+        // Use the default model from ReplicateService instead of hardcoding
         imageResult = await this.replicateService.runPrediction(
-          "stability-ai/stable-diffusion",
+          undefined, // This will use the defaultModel from ReplicateService
           {
             prompt: detailedPrompt,
             width,

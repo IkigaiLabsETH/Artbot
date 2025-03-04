@@ -40,6 +40,13 @@ export class ReplicateService {
   }
   
   /**
+   * Get the default model
+   */
+  getDefaultModel(): string {
+    return this.defaultModel;
+  }
+  
+  /**
    * Run a prediction on a model
    */
   async runPrediction(
@@ -397,12 +404,5 @@ export class ReplicateService {
       console.error(`❌ Error in DALL-E fallback: ${error}`);
       return null;
     }
-  }
-
-  /**
-   * Get the default model
-   */
-  getDefaultModel(): string {
-    return this.defaultModel;
   }
 } 

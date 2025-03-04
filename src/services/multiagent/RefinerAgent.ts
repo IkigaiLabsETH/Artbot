@@ -196,10 +196,11 @@ export class RefinerAgent extends BaseAgent {
       };
       
       console.log('🎨 Generating image with options:', imageOptions);
+      console.log(`🖼️ Using model: ${this.replicateService.getDefaultModel()}`);
       
       // Call Replicate to generate the image
       const prediction = await this.replicateService.runPrediction(
-        process.env.DEFAULT_IMAGE_MODEL || 'stability-ai/sdxl',
+        undefined, // This will use the defaultModel from ReplicateService
         imageOptions
       );
       
