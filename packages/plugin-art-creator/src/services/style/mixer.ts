@@ -1,4 +1,4 @@
-import { Style } from '../../types/index.js';
+import { Style } from '../../types/social/index.js';
 
 interface StyleMixerConfig {
   interpolationSteps: number;
@@ -67,6 +67,7 @@ export class StyleMixer {
     // Create mixed style
     return {
       name: `Mixed Style (${styles.length} sources)`,
+      description: `A style created by mixing ${styles.length} different styles`,
       creator: 'StyleMixer',
       parameters: mixedParams,
       version: 1,
@@ -102,6 +103,7 @@ export class StyleMixer {
     return {
       ...style,
       name: `${style.name} (Variation)`,
+      description: style.description ? `Variation of "${style.description}"` : `A variation of the "${style.name}" style`,
       parameters: variation,
       version: style.version + 1,
       modified: new Date()
@@ -130,6 +132,7 @@ export class StyleMixer {
 
     return {
       name: `Interpolated Style (${Math.round(t * 100)}%)`,
+      description: `Interpolation between styles at ${Math.round(t * 100)}%`,
       creator: 'StyleMixer',
       parameters: params,
       version: 1,

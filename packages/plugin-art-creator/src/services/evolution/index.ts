@@ -270,6 +270,7 @@ export class StyleEvolutionService extends Service {
     const newStyle: Style = {
       id: uuidv4(),
       name: `Evolved Style Gen ${this.currentGeneration + 1}`,
+      description: `Evolved style created from generation ${this.currentGeneration + 1}`,
       creator: 'ArtBot',
       parameters: {},
       version: 1,

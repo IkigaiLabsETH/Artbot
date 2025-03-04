@@ -5,7 +5,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import * as tf from '@tensorflow/tfjs-node';
 import { KMeans } from 'ml-kmeans';
-import { Service } from '@elizaos/core';
+import { Service, ServiceType, IAgentRuntime } from '@elizaos/core';
 
 interface ImageCluster {
   id: string;
@@ -61,13 +61,15 @@ export class ImageService extends Service {
   private modelPath: string;
   private featureExtractor: tf.LayersModel | null = null;
   private styleEvolution: Map<string, StyleEvolution> = new Map();
+  private agentRuntime: IAgentRuntime;
 
-  constructor(baseDir: string) {
+  constructor(baseDir: string, agentRuntime: IAgentRuntime) {
     super();
     this.baseDir = baseDir;
     this.dataDir = path.join(baseDir, 'image_data');
     this.modelPath = path.join(baseDir, 'models');
     this.clusters = [];
+    this.agentRuntime = agentRuntime;
     this.initializeSystem();
   }
 
@@ -312,8 +314,52 @@ Style reference:
   }
 
   private async generateWithStyleCondition(prompt: string, cluster: ImageCluster): Promise<string> {
-    // TODO: Implement actual image generation with style conditioning
-    return `https://placeholder.com/art/${uuidv4()}`;
+    try {
+      // Get the Replicate service from the agent runtime
+      const replicateService = this.agentRuntime.getService('replicate' as ServiceType);
+      
+      if (!replicateService) {
+        console.warn('Replicate service not found, using placeholder image');
+        return `https://placeholder.com/art/${uuidv4()}`;
+      }
+      
+      // Prepare style-specific parameters
+      const styleParams = {
+        // Use cluster metadata to influence the image generation
+        negative_prompt: "low quality, blurry, distorted",
+        num_inference_steps: 30,
+        guidance_scale: 7.5,
+        // Use dominant colors from the style
+        color_adjust: cluster.metadata.dominantColors.join(', ')
+      };
+      
+      console.log(`🎨 Generating image with style: ${cluster.style}`);
+      console.log(`📝 Enhanced prompt: ${prompt}`);
+      
+      // Create a temporary Style object to use with generateFromStyle
+      const tempStyle = {
+        name: cluster.style,
+        description: prompt,
+        parameters: styleParams
+      };
+      
+      // Call the Replicate service to generate the image using the correct method
+      const prediction = await (replicateService as any).generateFromStyle(tempStyle, prompt);
+      
+      if (!prediction || !prediction.output) {
+        console.warn('Failed to generate image, using placeholder');
+        return `https://placeholder.com/art/${uuidv4()}`;
+      }
+      
+      // Extract the image URL from the prediction output
+      const imageUrl = Array.isArray(prediction.output) ? prediction.output[0] : prediction.output;
+      
+      console.log(`✅ Image generated: ${imageUrl}`);
+      return imageUrl;
+    } catch (error) {
+      console.error(`Error generating image: ${error}`);
+      return `https://placeholder.com/art/${uuidv4()}`;
+    }
   }
 
   async processAndClusterImages(style: string, imageUrls: string[]): Promise<ImageCluster> {

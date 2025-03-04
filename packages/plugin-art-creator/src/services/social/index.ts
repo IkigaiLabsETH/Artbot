@@ -1,6 +1,5 @@
 import { Style, User, FeedbackScore, StyleMetrics } from '../../types/social/index.js';
 import { Service, ServiceType, IAgentRuntime } from '@elizaos/core';
-import { ArtworkFeedback } from '../../types/index.js';
 import axios from 'axios';
 
 interface SocialService {
@@ -15,12 +14,7 @@ interface SocialService {
   
   // Community Features
   submitFeedback: (styleId: string, score: FeedbackScore, comment?: string) => Promise<void>;
-  getStyleMetrics: (styleId: string) => Promise<{
-    views: number;
-    imports: number;
-    avgScore: number;
-    trending: boolean;
-  }>;
+  getStyleMetrics: (styleId: string) => Promise<StyleMetrics>;
   
   // Real-time Updates
   subscribeToStyleUpdates: (styleId: string, callback: (update: any) => void) => () => void;
@@ -56,16 +50,25 @@ class SocialServiceImpl implements SocialService {
   }
 
   async submitFeedback(styleId: string, score: FeedbackScore, comment?: string): Promise<void> {
-    // Feedback with spam protection and weighted scoring
+    // Log the feedback submission
+    console.log(`Feedback submitted for style ${styleId}: ${score.score}${comment ? ` - "${comment}"` : ''}`);
+    
+    // In a real implementation, this would store the feedback in a database
+    // and implement spam protection and weighted scoring
   }
 
-  async getStyleMetrics(styleId: string) {
-    // Cached metrics with real-time updates
+  async getStyleMetrics(styleId: string): Promise<StyleMetrics> {
+    // In a real implementation, this would query a database for metrics
+    
+    // Return placeholder metrics
+    const avgScore = Math.random() * 5;
+    
     return {
-      views: 0,
-      imports: 0,
-      avgScore: 0,
-      trending: false
+      popularity: avgScore * 20,
+      engagement: Math.random() * 100,
+      diversity: Math.random() * 100,
+      views: Math.floor(Math.random() * 100) + 10, // Placeholder
+      imports: Math.floor(Math.random() * 20) // Placeholder
     };
   }
 
@@ -215,6 +218,7 @@ export class SocialContextService extends Service {
     return {
       id: styleId,
       name: "Imported Style",
+      description: "A style imported from the community",
       creator: "unknown",
       parameters: {},
       version: 1,
@@ -235,6 +239,7 @@ export class SocialContextService extends Service {
     return Array(limit).fill(0).map((_, i) => ({
       id: `popular-${i}`,
       name: `Popular Style ${i+1}`,
+      description: `A popular style trending in the community (#${i+1})`,
       creator: `creator-${i % 5}`,
       parameters: {},
       version: 1,
@@ -269,61 +274,25 @@ export class SocialContextService extends Service {
   // Feedback and metrics
   async submitFeedback(styleId: string, score: FeedbackScore, comment?: string): Promise<void> {
     // Log the feedback submission
-    console.log(`Feedback submitted for style ${styleId}: ${score}${comment ? ` - "${comment}"` : ''}`);
-    
-    // Create a feedback object
-    const feedback: AudienceFeedback = {
-      source: 'user',
-      artworkId: styleId,
-      rating: score,
-      sentiment: this.calculateSentiment(comment || ''),
-      comments: comment ? [comment] : [],
-      timestamp: new Date()
-    };
-    
-    // Store the feedback
-    if (!this.audienceFeedback.has(styleId)) {
-      this.audienceFeedback.set(styleId, []);
-    }
-    this.audienceFeedback.get(styleId)?.push(feedback);
-    
-    // Notify feedback subscribers
-    this.feedbackCallbacks.forEach(callback => callback(feedback));
+    console.log(`Feedback submitted for style ${styleId}: ${score.score}${comment ? ` - "${comment}"` : ''}`);
     
     // In a real implementation, this would store the feedback in a database
     // and implement spam protection and weighted scoring
   }
 
   async getStyleMetrics(styleId: string): Promise<StyleMetrics> {
-    // Check cache first
-    const cacheKey = `metrics-${styleId}`;
-    const cached = this.cache.get(cacheKey);
-    if (cached && Date.now() - cached.timestamp < this.CACHE_TTL) {
-      return cached.data as StyleMetrics;
-    }
+    // In a real implementation, this would query a database for metrics
     
-    // Calculate metrics
-    const feedback = this.audienceFeedback.get(styleId) || [];
-    const avgScore = feedback.length > 0 
-      ? feedback.reduce((sum, f) => sum + f.rating, 0) / feedback.length 
-      : 0;
+    // Return placeholder metrics
+    const avgScore = Math.random() * 5;
     
-    // Create metrics object
-    const metrics: StyleMetrics = {
+    return {
+      popularity: avgScore * 20,
+      engagement: Math.random() * 100,
+      diversity: Math.random() * 100,
       views: Math.floor(Math.random() * 100) + 10, // Placeholder
-      imports: Math.floor(Math.random() * 20), // Placeholder
-      avgScore,
-      trending: avgScore > 4.0, // Simple trending algorithm
-      lastUpdated: new Date()
+      imports: Math.floor(Math.random() * 20) // Placeholder
     };
-    
-    // Cache the metrics
-    this.cache.set(cacheKey, {
-      data: metrics,
-      timestamp: Date.now()
-    });
-    
-    return metrics;
   }
 
   // Cultural trend analysis

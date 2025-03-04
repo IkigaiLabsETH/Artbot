@@ -1,5 +1,5 @@
 import { Service, ServiceType } from '@elizaos/core';
-import { Style } from '../../types/index.js';
+import { Style } from '../../types/social/index.js';
 import { StyleMixer } from './mixer.js';
 import { StyleAnalyzer, StyleAnalysis, StyleMetrics } from './analyzer.js';
 import { ReplicateService, ModelPrediction } from '../replicate/index.js';
@@ -499,6 +499,54 @@ export class StyleService extends Service {
     // Sort by score and return top styles
     scoredStyles.sort((a, b) => b.score - a.score);
     return scoredStyles.slice(0, count).map(s => s.style);
+  }
+
+  async findOptimalStyle(baseStyles: Style[], preserveTraits: string[] = []): Promise<Style> {
+    // Generate variations of each style
+    const styles = baseStyles.flatMap(style => [
+      style,
+      ...Array(3).fill(0).map(() => ({
+        id: `${style.id}-variation-${Math.random().toString(36).substring(2, 9)}`,
+        name: `${style.name} Variation`,
+        description: `A variation of the ${style.name} style`,
+        creator: style.creator,
+        parameters: { ...style.parameters },
+        version: style.version,
+        created: new Date(),
+        modified: new Date(),
+        isPublic: false,
+        tags: []
+      }))
+    ]);
+    
+    // Score each style
+    const scores = await Promise.all(styles.map(async style => {
+      const styleAnalysis = await this.analyzeStyle(style);
+      
+      // Calculate base score
+      let score = (
+        styleAnalysis.metrics.coherence * 0.3 +
+        styleAnalysis.metrics.stability * 0.3 +
+        styleAnalysis.metrics.compatibility * 0.4
+      );
+      
+      // Bonus for preserving traits
+      if (preserveTraits.length > 0) {
+        const preservedTraitScore = preserveTraits.reduce((acc, trait) => {
+          // Check if trait is preserved in the style
+          const isPreserved = styleAnalysis.traits.includes(trait);
+          return acc + (isPreserved ? 0.1 : 0);
+        }, 0);
+        
+        score += preservedTraitScore;
+      }
+      
+      return { style, score };
+    }));
+    
+    // Return the style with the highest score
+    scores.sort((a, b) => b.score - a.score);
+    return scores[0].style;
   }
 }
 
