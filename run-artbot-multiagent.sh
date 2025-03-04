@@ -106,7 +106,7 @@ echo -e "${GREEN}TypeScript build successful.${NC}"
 echo ""
 
 # Create a temporary file for the ArtBot script
-TEMP_FILE=$(mktemp)
+TEMP_FILE=$(mktemp).mjs
 echo "import { ArtBotMultiAgentSystem } from './dist/artbot-multiagent-system.js';" > $TEMP_FILE
 echo "" >> $TEMP_FILE
 echo "async function runArtBot() {" >> $TEMP_FILE
@@ -142,7 +142,7 @@ echo -e "${BLUE}Description: ${PROJECT_DESCRIPTION}${NC}"
 echo -e "${YELLOW}This process may take several minutes to complete.${NC}"
 echo ""
 
-node --input-type=module $TEMP_FILE
+node $TEMP_FILE
 
 # Clean up
 rm $TEMP_FILE
