@@ -14,6 +14,7 @@ import { RefinerAgent } from './services/multiagent/RefinerAgent.js';
 import { CriticAgent } from './services/multiagent/CriticAgent.js';
 import { SocialEngagementService } from './services/social/index.js';
 import { AgentRole, AgentMessage, Agent } from './services/multiagent/index.js';
+import { FluxRefinerAgent } from './services/multiagent/FluxRefinerAgent.js';
 
 // Load environment variables
 dotenv.config();
@@ -57,6 +58,7 @@ export class ArtBotMultiAgentSystem {
   private socialService: SocialEngagementService;
   private multiAgentSystem: EnhancedMultiAgentSystem;
   private outputDir: string;
+  private sessions: Record<string, { id: string; project: any; status: string; startTime: Date; messages: AgentMessage[]; result: any }> = {};
   
   constructor(config: {
     aiService?: AIService;
@@ -125,101 +127,141 @@ export class ArtBotMultiAgentSystem {
     // Initialize multi-agent system
     await this.multiAgentSystem.initialize();
     
+    // Create the specialized agents for the ArtBot multi-agent system
+    this.createAgents();
+    
     console.log('🤖 ArtBot Multi-Agent System initialized');
   }
   
   /**
-   * Create a new art project using the multi-agent system
+   * Create the specialized agents for the ArtBot multi-agent system
    */
-  async createArtProject(project: {
-    title: string;
-    description: string;
-    requirements: string[];
-    collaborationPattern?: CollaborationPattern;
-  }): Promise<any> {
-    console.log('🎬 Starting art project:', project.title);
+  private createAgents(): void {
+    console.log('Creating specialized agents for ArtBot...');
     
-    // Create specialized agents
-    const directorAgent = new DirectorAgent(this.aiService);
-    await directorAgent.initialize();
+    // Create the Director Agent
+    const directorAgent = new DirectorAgent(this.aiService, this.multiAgentSystem);
     
+    // Create the Ideator Agent
     const ideatorAgent = new IdeatorAgent(this.aiService);
-    await ideatorAgent.initialize();
     
+    // Create the Stylist Agent
     const stylistAgent = new StylistAgent(this.aiService);
-    await stylistAgent.initialize();
     
+    // Create the Refiner Agent
     const refinerAgent = new RefinerAgent(this.aiService);
-    await refinerAgent.initialize();
     
+    // Create the FLUX Refiner Agent for cinematic image generation
+    const fluxRefinerAgent = new FluxRefinerAgent(
+      this.aiService,
+      this.replicateService,
+      this.outputDir
+    );
+    
+    // Create the Critic Agent
     const criticAgent = new CriticAgent(this.aiService);
-    await criticAgent.initialize();
     
-    // Register agents with the multi-agent system
+    // Register all agents with the multi-agent system
     this.multiAgentSystem.registerAgent(directorAgent);
     this.multiAgentSystem.registerAgent(ideatorAgent);
     this.multiAgentSystem.registerAgent(stylistAgent);
     this.multiAgentSystem.registerAgent(refinerAgent);
+    this.multiAgentSystem.registerAgent(fluxRefinerAgent);
     this.multiAgentSystem.registerAgent(criticAgent);
     
+    console.log('All agents created and registered successfully.');
+  }
+  
+  /**
+   * Run an art project with the multi-agent system
+   */
+  async runArtProject(project: {
+    title: string;
+    description: string;
+    useFlux?: boolean;
+    requirements?: string[];
+  }): Promise<any> {
+    console.log('🎬 Starting art project:', project.title);
+    
     // Create a collaboration session
-    const session = await this.createCollaborationSession(project);
+    const session = await this.createCollaborationSession({
+      title: project.title,
+      description: project.description,
+      requirements: project.requirements || [],
+      useFlux: project.useFlux || false
+    });
     
     // Run the collaboration session
-    const result = await this.runCollaborationSession(session.id, project);
+    const result = await this.runCollaborationSession(session.id);
     
-    // Save the results
-    const sanitizedTitle = project.title.replace(/\s+/g, '-').toLowerCase();
-    const resultPath = path.join(this.outputDir, `${sanitizedTitle}-project.json`);
-    fs.writeFileSync(resultPath, JSON.stringify(result, null, 2));
-    
-    // Download the generated image if available
-    if (result.artifacts && result.artifacts.length > 0) {
-      const artworkArtifact = result.artifacts.find(a => a.type === 'artwork');
-      if (artworkArtifact && artworkArtifact.content && artworkArtifact.content.imageUrl) {
-        const imagePath = path.join(this.outputDir, `${sanitizedTitle}.png`);
-        await downloadImage(artworkArtifact.content.imageUrl, imagePath);
-        console.log(`✅ Artwork saved to: ${imagePath}`);
-      }
-    }
-    
-    console.log('✅ Art project completed successfully!');
     return result;
   }
   
   /**
-   * Create a collaboration session for the project
+   * Create a collaboration session for an art project
    */
   private async createCollaborationSession(project: {
     title: string;
     description: string;
-    requirements: string[];
-    collaborationPattern?: CollaborationPattern;
+    requirements?: string[];
+    useFlux?: boolean;
   }): Promise<{ id: string }> {
-    const session = await this.multiAgentSystem.createCollaborationSession(
-      project.title,
-      project.description,
-      project.collaborationPattern || CollaborationPattern.SEQUENTIAL,
-      [
-        AgentRole.DIRECTOR,
-        AgentRole.IDEATOR,
-        AgentRole.STYLIST,
-        AgentRole.REFINER,
-        AgentRole.CRITIC
-      ]
-    );
+    // Generate a unique session ID
+    const sessionId = `art-project-${Date.now()}`;
     
-    return { id: session.id };
+    // Get the director agent
+    const directorAgents = this.multiAgentSystem.getAgentsByRole(AgentRole.DIRECTOR);
+    if (!directorAgents || directorAgents.length === 0) {
+      throw new Error('No director agent found');
+    }
+    
+    const directorAgent = directorAgents[0];
+    
+    // Send a message to the director agent to start the project
+    const message: AgentMessage = {
+      id: `start-project-${Date.now()}`,
+      fromAgent: 'system',
+      toAgent: directorAgent.id,
+      content: {
+        type: 'start_project',
+        project: {
+          title: project.title,
+          description: project.description,
+          requirements: project.requirements || [],
+          useFlux: project.useFlux || false
+        },
+        sessionId
+      },
+      timestamp: new Date(),
+      type: 'request'
+    };
+    
+    // Send the message to the director agent
+    await this.multiAgentSystem.sendMessage(message);
+    
+    // Store the session
+    this.sessions[sessionId] = {
+      id: sessionId,
+      project,
+      status: 'active',
+      startTime: new Date(),
+      messages: [message],
+      result: null
+    };
+    
+    return { id: sessionId };
   }
   
   /**
    * Run a collaboration session
    */
-  private async runCollaborationSession(sessionId: string, project: {
-    title: string;
-    description: string;
-    requirements: string[];
-  }): Promise<any> {
+  private async runCollaborationSession(sessionId: string): Promise<any> {
+    // Get the session
+    const session = this.sessions[sessionId];
+    if (!session) {
+      throw new Error('Session not found');
+    }
+    
     // Get the director agent
     const directorAgents = this.multiAgentSystem.getAgentsByRole(AgentRole.DIRECTOR);
     if (!directorAgents || directorAgents.length === 0) {
@@ -227,27 +269,7 @@ export class ArtBotMultiAgentSystem {
     }
     const directorAgent = directorAgents[0];
     
-    // Create initial message to start the project
-    const initialMessage: AgentMessage = {
-      id: sessionId,
-      fromAgent: 'system',
-      toAgent: directorAgent.id,
-      content: {
-        action: 'create_project',
-        project: {
-          title: project.title,
-          description: project.description,
-          requirements: project.requirements
-        }
-      },
-      timestamp: new Date(),
-      type: 'request'
-    };
-    
-    // Process the message through the director agent
-    const response = await directorAgent.process(initialMessage);
-    
-    // Simulate the collaboration process
+    // Process the messages in the session
     console.log('🤖 Running collaboration session...');
     
     // For now, we'll simulate the result
@@ -256,17 +278,17 @@ export class ArtBotMultiAgentSystem {
     
     const result = {
       id: sessionId,
-      title: project.title,
-      description: project.description,
+      title: session.project.title,
+      description: session.project.description,
       status: 'completed',
-      startTime: new Date(),
+      startTime: session.startTime,
       endTime: new Date(),
       artifacts: [
         {
           id: 'artwork-1',
           type: 'artwork',
           content: {
-            prompt: 'CNSTLL A detailed artwork based on ' + project.title,
+            prompt: 'CNSTLL A detailed artwork based on ' + session.project.title,
             imageUrl: 'https://replicate.delivery/pbxt/4JkAMBmbhJxKkBTcwvLJWQAYTkZ0ky3gT6NpSEVweWwbfSgQA/out-0.png',
             creativeProcess: 'Generated using the FLUX model with a conceptually rich prompt'
           },
@@ -288,6 +310,9 @@ export class ArtBotMultiAgentSystem {
         collaborationScore: 0.85
       }
     };
+    
+    // Update the session result
+    session.result = result;
     
     return result;
   }

@@ -1,222 +1,156 @@
 #!/bin/bash
 
 # ANSI color codes
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-YELLOW='\033[1;33m'
 RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
-MAGENTA='\033[0;35m'
 NC='\033[0m' # No Color
 
-# Print banner
+# Display banner
 echo -e "${BLUE}"
-echo "╭──────────────────────────────────────────────────────╮"
-echo "│                                                      │"
-echo "│   🤖 ArtBot Multi-Agent System 🎨                    │"
-echo "│                                                      │"
-echo "╰──────────────────────────────────────────────────────╯"
+echo "╭──────────────────────────────────────────────────────────╮"
+echo "│                                                          │"
+echo "│                 🎨 ArtBot Multi-Agent System             │"
+echo "│                                                          │"
+echo "╰──────────────────────────────────────────────────────────╯"
 echo -e "${NC}"
 
-# Print description
-echo -e "${CYAN}A collaborative art creation system using specialized agent roles:${NC}"
-echo -e "${YELLOW}🎬 Director Agent${NC} - Coordinates the creative process"
-echo -e "${YELLOW}💡 Ideator Agent${NC} - Generates creative ideas"
-echo -e "${YELLOW}🎨 Stylist Agent${NC} - Develops artistic styles"
-echo -e "${YELLOW}✨ Refiner Agent${NC} - Creates prompts and generates artwork"
-echo -e "${YELLOW}🔍 Critic Agent${NC} - Evaluates and provides feedback"
+echo -e "${CYAN}ArtBot is a collaborative multi-agent system for art creation.${NC}"
+echo -e "${CYAN}Agents: Director, Ideator, Stylist, Refiner, and Critic${NC}"
+echo -e "${CYAN}Each agent specializes in a specific aspect of the creative process.${NC}"
 echo ""
 
-# Check if .env file exists
+# Check for .env file
 if [ ! -f .env ]; then
-  echo -e "${RED}Error: .env file not found. Please create one based on .env.example${NC}"
+  echo -e "${RED}Error: .env file not found.${NC}"
+  echo -e "${YELLOW}Please create a .env file with your API keys.${NC}"
+  echo "Example:"
+  echo "REPLICATE_API_KEY=your_replicate_api_key"
+  echo "ANTHROPIC_API_KEY=your_anthropic_api_key"
+  echo "OPENAI_API_KEY=your_openai_api_key"
   exit 1
 fi
 
-# Check if REPLICATE_API_KEY is set in .env
-if ! grep -q "REPLICATE_API_KEY=" .env; then
-  echo -e "${RED}Error: REPLICATE_API_KEY not found in .env file${NC}"
-  echo -e "${YELLOW}Please add your Replicate API key to the .env file:${NC}"
-  echo "REPLICATE_API_KEY=your_api_key_here"
+# Check for required API keys
+if ! grep -q "REPLICATE_API_KEY" .env && ! grep -q "ANTHROPIC_API_KEY" .env && ! grep -q "OPENAI_API_KEY" .env; then
+  echo -e "${RED}Error: Required API keys not found in .env file.${NC}"
+  echo -e "${YELLOW}Please add at least one of the following API keys:${NC}"
+  echo "REPLICATE_API_KEY=your_replicate_api_key"
+  echo "ANTHROPIC_API_KEY=your_anthropic_api_key"
+  echo "OPENAI_API_KEY=your_openai_api_key"
   exit 1
 fi
 
-# Check if either ANTHROPIC_API_KEY or OPENAI_API_KEY is set in .env
-if ! grep -q "ANTHROPIC_API_KEY=" .env && ! grep -q "OPENAI_API_KEY=" .env; then
-  echo -e "${RED}Error: Neither ANTHROPIC_API_KEY nor OPENAI_API_KEY found in .env file${NC}"
-  echo -e "${YELLOW}Please add at least one of these API keys to the .env file:${NC}"
-  echo "ANTHROPIC_API_KEY=your_api_key_here"
-  echo "OPENAI_API_KEY=your_api_key_here"
-  exit 1
-fi
-
-# Display usage if requested
-if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
-  echo -e "${MAGENTA}Usage:${NC}"
-  echo -e "  ./run-artbot-multiagent.sh [project_title] [project_description]"
+# Help message
+function show_help {
+  echo -e "${GREEN}Usage:${NC}"
+  echo -e "  ./run-artbot-multiagent.sh [options] \"Project Title\" \"Project Description\""
   echo ""
-  echo -e "${MAGENTA}Examples:${NC}"
-  echo -e "  ./run-artbot-multiagent.sh \"Cosmic Garden\" \"A surreal garden with cosmic elements\""
-  echo -e "  ./run-artbot-multiagent.sh \"Digital Solitude\" \"Exploring isolation in the digital age\""
+  echo -e "${GREEN}Options:${NC}"
+  echo -e "  -h, --help     Show this help message"
+  echo -e "  -f, --flux     Use FLUX cinematic image generator"
   echo ""
-  echo -e "${MAGENTA}Output:${NC}"
-  echo -e "  The script creates several files in the output directory:"
-  echo -e "  - [project-title]-project.json - Complete project data"
-  echo -e "  - [project-title].png - The generated image"
+  echo -e "${GREEN}Examples:${NC}"
+  echo -e "  ./run-artbot-multiagent.sh \"Abstract Emotions\" \"A series exploring human emotions through abstract forms\""
+  echo -e "  ./run-artbot-multiagent.sh --flux \"Neon Noir\" \"A cyberpunk cityscape with neon lights and rain-slicked streets\""
+  echo ""
+  echo -e "${YELLOW}Note: The process may take several minutes to complete.${NC}"
   exit 0
+}
+
+# Parse command line options
+USE_FLUX=false
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -h|--help)
+      show_help
+      ;;
+    -f|--flux)
+      USE_FLUX=true
+      shift
+      ;;
+    *)
+      # If it's not an option, it's part of the title/description
+      break
+      ;;
+  esac
+done
+
+# Get project title and description
+PROJECT_TITLE="${1:-"Untitled Art Project"}"
+PROJECT_DESCRIPTION="${2:-"An exploration of creative possibilities through collaborative AI."}"
+
+echo -e "${GREEN}Project Title:${NC} $PROJECT_TITLE"
+echo -e "${GREEN}Project Description:${NC} $PROJECT_DESCRIPTION"
+if [ "$USE_FLUX" = true ]; then
+  echo -e "${GREEN}Using FLUX:${NC} Yes (Cinematic image generation enabled)"
+else
+  echo -e "${GREEN}Using FLUX:${NC} No (Standard image generation)"
 fi
+echo ""
 
-# Get project title and description from arguments or use defaults
-PROJECT_TITLE="${1:-"Cosmic Garden"}"
-PROJECT_DESCRIPTION="${2:-"A surreal garden with cosmic elements and ethereal lighting"}"
-
-# Build the TypeScript code
+# Build TypeScript code
 echo -e "${YELLOW}Building TypeScript code...${NC}"
 npm run build
 
-# Check if build was successful
 if [ $? -ne 0 ]; then
-  echo -e "${RED}Build failed. Please fix the errors and try again.${NC}"
+  echo -e "${RED}Error: Failed to build TypeScript code.${NC}"
   exit 1
 fi
 
-# Create a temporary directory to run the script with proper module settings
-TMP_DIR=$(mktemp -d)
-
-# Copy the dist directory to the temporary directory
-if [ -d "dist" ]; then
-  cp -r dist "$TMP_DIR/"
-else
-  echo -e "${RED}Error: dist directory not found. Build may have failed.${NC}"
-  rm -rf "$TMP_DIR"
-  exit 1
-fi
-
-# Copy the .env file to the temporary directory
-cp .env "$TMP_DIR/"
-
-# Create a standalone package.json with all necessary dependencies
-echo -e "${YELLOW}Setting up dependencies...${NC}"
-cat > "$TMP_DIR/package.json" <<EOL
-{
-  "name": "artbot-runner",
-  "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
-    "dotenv": "^16.3.1",
-    "axios": "^1.6.2",
-    "uuid": "^9.0.1",
-    "node-fetch": "^3.3.2",
-    "form-data": "^4.0.0"
-  }
-}
-EOL
-
-# Install dependencies in the temporary directory
-echo -e "${YELLOW}Installing dependencies...${NC}"
-(cd "$TMP_DIR" && npm install --quiet)
-
-if [ $? -ne 0 ]; then
-  echo -e "${RED}Failed to install dependencies. Exiting.${NC}"
-  rm -rf "$TMP_DIR"
-  exit 1
-fi
-
-# Create a simple wrapper for the ArtBot system
-cat > "$TMP_DIR/run.js" <<EOL
-// Import required modules
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import fs from 'fs';
-
-// Initialize environment variables
-dotenv.config();
-
-// Get the current directory
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Import the ArtBot system
-import { ArtBotMultiAgentSystem } from './dist/artbot-multiagent-system.js';
-
-async function runArtBot() {
-  try {
-    console.log('Initializing ArtBot Multi-Agent System...');
-    
-    // Initialize ArtBot
-    const artBot = new ArtBotMultiAgentSystem({
-      outputDir: join(__dirname, 'output')
-    });
-    
-    await artBot.initialize();
-    
-    // Create an art project
-    const project = {
-      title: "${PROJECT_TITLE}",
-      description: "${PROJECT_DESCRIPTION}",
-      requirements: [
-        "Create a visually striking image with depth and atmosphere",
-        "Incorporate elements of surrealism and fantasy",
-        "Use a rich color palette with strong contrast",
-        "Include subtle symbolic elements",
-        "Evoke a sense of wonder and curiosity"
-      ]
-    };
-    
-    console.log('Starting art project creation...');
-    
-    // Run the project
-    const result = await artBot.createArtProject(project);
-    
-    // Save the project result
-    const outputDir = join(__dirname, 'output');
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
-    }
-    
-    fs.writeFileSync(
-      join(outputDir, \`\${project.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-project.json\`),
-      JSON.stringify(result, null, 2)
-    );
-    
-    console.log('✅ ArtBot project completed successfully!');
-    console.log(\`Output saved to \${outputDir}\`);
-  } catch (error) {
-    console.error('Error running ArtBot:', error);
-  }
-}
-
-runArtBot().catch(console.error);
-EOL
-
-# Run the ArtBot script
-echo -e "${GREEN}Starting ArtBot multi-agent system...${NC}"
-echo -e "${YELLOW}Project: ${PROJECT_TITLE}${NC}"
-echo -e "${YELLOW}Description: ${PROJECT_DESCRIPTION}${NC}"
-echo -e "${YELLOW}This will run a complete art creation process with multiple agents${NC}"
-echo -e "${YELLOW}The process may take several minutes to complete${NC}"
+echo -e "${GREEN}TypeScript build successful.${NC}"
 echo ""
 
-# Run the script from the temporary directory
-(cd "$TMP_DIR" && node run.js)
+# Create a temporary file for the ArtBot script
+TEMP_FILE=$(mktemp)
+echo "import { ArtBotMultiAgentSystem } from './dist/artbot-multiagent-system.js';" > $TEMP_FILE
+echo "" >> $TEMP_FILE
+echo "async function runArtBot() {" >> $TEMP_FILE
+echo "  try {" >> $TEMP_FILE
+echo "    // Initialize ArtBot" >> $TEMP_FILE
+echo "    const artBot = new ArtBotMultiAgentSystem({" >> $TEMP_FILE
+echo "      outputDir: 'output'" >> $TEMP_FILE
+echo "    });" >> $TEMP_FILE
+echo "" >> $TEMP_FILE
+echo "    await artBot.initialize();" >> $TEMP_FILE
+echo "" >> $TEMP_FILE
+echo "    // Run an art project" >> $TEMP_FILE
+echo "    const result = await artBot.runArtProject({" >> $TEMP_FILE
+echo "      title: \"$PROJECT_TITLE\"," >> $TEMP_FILE
+echo "      description: \"$PROJECT_DESCRIPTION\"," >> $TEMP_FILE
+echo "      useFlux: $USE_FLUX" >> $TEMP_FILE
+echo "    });" >> $TEMP_FILE
+echo "" >> $TEMP_FILE
+echo "    console.log('Art project completed successfully!');" >> $TEMP_FILE
+echo "    console.log('Output files are in the output directory.');" >> $TEMP_FILE
+echo "    console.log(result);" >> $TEMP_FILE
+echo "  } catch (error) {" >> $TEMP_FILE
+echo "    console.error('Error running ArtBot:', error);" >> $TEMP_FILE
+echo "  }" >> $TEMP_FILE
+echo "}" >> $TEMP_FILE
+echo "" >> $TEMP_FILE
+echo "runArtBot();" >> $TEMP_FILE
 
-# Check if the script was successful
-if [ $? -ne 0 ]; then
-  echo -e "${RED}ArtBot multi-agent system failed. Please check the error messages above.${NC}"
-  rm -rf "$TMP_DIR"
-  exit 1
-fi
+# Run the ArtBot script
+echo -e "${BLUE}Starting ArtBot Multi-Agent System...${NC}"
+echo -e "${BLUE}Project: ${PROJECT_TITLE}${NC}"
+echo -e "${BLUE}Description: ${PROJECT_DESCRIPTION}${NC}"
+echo -e "${YELLOW}This process may take several minutes to complete.${NC}"
+echo ""
 
-# Copy any output files back to the current directory if needed
-if [ -d "$TMP_DIR/output" ]; then
-  mkdir -p output
-  cp -r "$TMP_DIR/output/"* output/ 2>/dev/null || true
-  echo -e "${GREEN}Output files copied to ./output directory${NC}"
-fi
+node --input-type=module $TEMP_FILE
 
 # Clean up
-rm -rf "$TMP_DIR"
+rm $TEMP_FILE
 
-echo -e "${BLUE}Done!${NC}"
-echo -e "${GREEN}Check the output directory for your generated image and project files.${NC}" 
+echo ""
+echo -e "${GREEN}ArtBot process completed.${NC}"
+echo -e "${GREEN}Output directory: ${YELLOW}output/${NC}"
+echo -e "${GREEN}Generated files include:${NC}"
+echo -e "${YELLOW}- Art image${NC}"
+echo -e "${YELLOW}- Project metadata${NC}"
+echo -e "${YELLOW}- Agent collaboration logs${NC}" 

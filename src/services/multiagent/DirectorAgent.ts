@@ -1,10 +1,13 @@
-import { BaseAgent, AgentRole, AgentMessage } from './index.js';
+import { BaseAgent, AgentRole, AgentMessage, MultiAgentSystem } from './index.js';
 import { AIService, AIMessage } from '../ai/index.js';
 
 // Director agent is responsible for coordinating the creative process
 export class DirectorAgent extends BaseAgent {
-  constructor(aiService: AIService) {
+  private multiAgentSystem: MultiAgentSystem;
+
+  constructor(aiService: AIService, multiAgentSystem: MultiAgentSystem) {
     super(AgentRole.DIRECTOR, aiService);
+    this.multiAgentSystem = multiAgentSystem;
     this.state.context = {
       currentProject: null,
       projectStage: 'planning',
@@ -19,77 +22,61 @@ export class DirectorAgent extends BaseAgent {
   }
 
   async process(message: AgentMessage): Promise<AgentMessage | null> {
-    // Add message to memory
-    this.addToMemory(message);
+    console.log(`DirectorAgent ${this.id} processing message from ${message.fromAgent}`);
     
-    // Update state based on message
-    this.state.status = 'working';
-    
-    try {
-      switch (message.type) {
-        case 'request':
-          return await this.handleRequest(message);
-        case 'response':
-          return await this.handleResponse(message);
-        case 'update':
-          return await this.handleUpdate(message);
-        case 'feedback':
-          return await this.handleFeedback(message);
-        default:
-          return null;
+    // Parse the message content
+    let content: any;
+    if (typeof message.content === 'string') {
+      try {
+        content = JSON.parse(message.content);
+      } catch (e) {
+        content = { text: message.content };
       }
-    } finally {
-      this.state.status = 'idle';
+    } else {
+      content = message.content;
     }
-  }
-  
-  private async handleRequest(message: AgentMessage): Promise<AgentMessage | null> {
-    const { content } = message;
     
-    // Handle project creation request
-    if (content.action === 'create_project') {
-      // Create a new project
-      const project = {
-        id: content.id || `project-${Date.now()}`,
-        title: content.title || 'Untitled Project',
-        description: content.description || '',
-        requirements: content.requirements || [],
-        createdAt: new Date(),
-        status: 'planning'
-      };
-      
-      // Update context
-      this.state.context.currentProject = project;
-      this.state.context.projectStage = 'planning';
-      
-      // Create tasks for other agents
-      const ideationTask = {
-        id: `task-ideation-${Date.now()}`,
-        type: 'ideation',
-        description: `Generate creative ideas for project: ${project.title}`,
-        requirements: project.requirements,
-        status: 'pending'
-      };
-      
-      this.state.context.assignedTasks[ideationTask.id] = ideationTask;
-      
-      // Send task to Ideator agent
-      return this.createMessage(
-        null, // broadcast to all
-        {
-          action: 'assign_task',
-          task: ideationTask,
-          targetRole: AgentRole.IDEATOR,
-          project
-        },
-        'request'
-      );
+    // Handle different message types
+    if (content.type === 'start_project' || content.action === 'create_project') {
+      return this.handleStartProject(message, content);
+    } else if (message.type === 'response') {
+      return this.handleAgentResponse(message);
     }
     
     return null;
   }
-  
-  private async handleResponse(message: AgentMessage): Promise<AgentMessage | null> {
+
+  private async handleStartProject(message: AgentMessage, content: any): Promise<AgentMessage | null> {
+    console.log(`DirectorAgent ${this.id} starting project: ${content.project.title}`);
+    
+    // Store the project in the agent's context
+    this.state.context.currentProject = content.project;
+    this.state.context.sessionId = content.sessionId || `session-${Date.now()}`;
+    this.state.context.projectStage = 'planning';
+    this.state.context.useFlux = content.project.useFlux || false;
+    
+    // Log the project details
+    console.log(`Project: ${content.project.title}`);
+    console.log(`Description: ${content.project.description}`);
+    console.log(`Using FLUX: ${this.state.context.useFlux ? 'Yes' : 'No'}`);
+    
+    // Create a response message
+    const response: AgentMessage = {
+      id: `${this.id}-response-${Date.now()}`,
+      fromAgent: this.id,
+      toAgent: message.fromAgent,
+      content: `Project "${content.project.title}" started. I'll coordinate the creative process.`,
+      timestamp: new Date(),
+      type: 'response'
+    };
+    
+    // Start the ideation phase
+    setTimeout(() => this.startIdeationPhase(), 1000);
+    
+    return response;
+  }
+
+  private async handleAgentResponse(message: AgentMessage): Promise<AgentMessage | null> {
     const { content } = message;
     
     // Handle task completion
@@ -232,5 +219,104 @@ export class DirectorAgent extends BaseAgent {
     }
     
     return results;
+  }
+
+  private async startIdeationPhase(): Promise<void> {
+    console.log(`DirectorAgent ${this.id} starting ideation phase`);
+    
+    // Update the project stage
+    this.state.context.projectStage = 'ideation';
+    
+    // Create ideation task
+    const ideationTask = {
+      id: `task-ideation-${Date.now()}`,
+      type: 'ideation',
+      description: `Generate ideas for project: ${this.state.context.currentProject.title}`,
+      status: 'pending'
+    };
+    
+    this.state.context.assignedTasks = this.state.context.assignedTasks || {};
+    this.state.context.assignedTasks[ideationTask.id] = ideationTask;
+    
+    // Send task to Ideator agent
+    const message = this.createMessage(
+      null, // broadcast to all
+      {
+        action: 'assign_task',
+        task: ideationTask,
+        targetRole: AgentRole.IDEATOR,
+        project: this.state.context.currentProject
+      },
+      'request'
+    );
+    
+    // Send the message using the multiAgentSystem
+    this.multiAgentSystem.sendMessage(message);
+  }
+
+  private async startRefinementPhase(): Promise<void> {
+    console.log(`DirectorAgent ${this.id} starting refinement phase`);
+    
+    // Update the project stage
+    this.state.context.projectStage = 'refinement';
+    
+    // Get the style from the context
+    const style = this.state.context.selectedStyle;
+    if (!style) {
+      console.error('No style selected for refinement phase');
+      return;
+    }
+    
+    // Determine which refiner agent to use based on the useFlux flag
+    const refinerRole = this.state.context.useFlux ? 'flux_refiner' : AgentRole.REFINER;
+    console.log(`Using refiner role: ${refinerRole}`);
+    
+    // Find the appropriate refiner agent
+    let refinerAgents;
+    if (refinerRole === 'flux_refiner') {
+      // For FLUX, we need to find the FluxRefinerAgent specifically
+      // This is a bit of a hack since we don't have a specific role for it
+      refinerAgents = Array.from(this.multiAgentSystem.getAgentsByRole(AgentRole.REFINER)).filter(
+        agent => agent.constructor.name === 'FluxRefinerAgent'
+      );
+    } else {
+      // For standard refinement, use the REFINER role
+      refinerAgents = this.multiAgentSystem.getAgentsByRole(AgentRole.REFINER);
+    }
+    
+    if (!refinerAgents || refinerAgents.length === 0) {
+      console.error(`No ${refinerRole} agent found`);
+      return;
+    }
+    
+    const refinerAgent = refinerAgents[0];
+    console.log(`Selected refiner agent: ${refinerAgent.id}`);
+    
+    // Create a task assignment message
+    const message: AgentMessage = {
+      id: `${this.id}-refine-task-${Date.now()}`,
+      fromAgent: this.id,
+      toAgent: refinerAgent.id,
+      content: JSON.stringify({
+        task_assignment: 'refine_artwork',
+        refine_artwork: true,
+        project: this.state.context.currentProject,
+        style: style,
+        sessionId: this.state.context.sessionId
+      }),
+      timestamp: new Date(),
+      type: 'request'
+    };
+    
+    // Send the message to the refiner agent
+    this.multiAgentSystem.sendMessage(message);
+    
+    // Store the task assignment
+    this.state.context.assignedTasks[refinerAgent.id] = {
+      task: 'refine_artwork',
+      assignedAt: new Date()
+    };
+    
+    console.log(`Refinement task assigned to ${refinerAgent.id}`);
   }
 } 
