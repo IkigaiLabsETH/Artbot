@@ -4,6 +4,11 @@ import fetch from 'node-fetch';
 
 export { ModelPrediction };
 
+// Define the base model without version hash - let Replicate choose the latest available version
+const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
+// Define a fallback model that should be publicly accessible
+const FALLBACK_MODEL = 'minimax/image-01';
+
 export class ReplicateService {
   private apiKey: string;
   private baseUrl: string = 'https://api.replicate.com/v1';
@@ -15,7 +20,7 @@ export class ReplicateService {
   
   constructor(config: Record<string, any> = {}) {
     this.apiKey = config.apiKey || process.env.REPLICATE_API_KEY || '';
-    this.defaultModel = config.defaultModel || process.env.DEFAULT_IMAGE_MODEL || 'adirik/flux-cinestill';
+    this.defaultModel = config.defaultModel || process.env.DEFAULT_IMAGE_MODEL || FLUX_MODEL_BASE;
     this.defaultWidth = config.defaultWidth || parseInt(process.env.IMAGE_WIDTH || '1024', 10);
     this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '1024', 10);
     this.defaultNumInferenceSteps = config.defaultNumInferenceSteps || parseInt(process.env.NUM_INFERENCE_STEPS || '28', 10);
@@ -56,8 +61,11 @@ export class ReplicateService {
         throw new Error('Replicate API key not provided');
       }
       
+      // Check if this is a FLUX model
+      const isFluxModel = model.includes('flux-cinestill') || model.includes('adirik/flux');
+      
       // If this is the FLUX model, add default parameters if not provided
-      if (model.includes('flux-cinestill') || model.includes('adirik/flux')) {
+      if (isFluxModel) {
         input.width = input.width || this.defaultWidth;
         input.height = input.height || this.defaultHeight;
         input.num_inference_steps = input.num_inference_steps || this.defaultNumInferenceSteps;
@@ -78,10 +86,18 @@ export class ReplicateService {
             input.prompt = `${input.prompt}, ${keywordsToAdd.join(', ')}`;
           }
         }
-        
-        // Use a simpler model
-        model = 'stability-ai/stable-diffusion';
-        console.log(`⚠️ Using simpler model: ${model}`);
+      }
+      // If this is the minimax model, adjust parameters accordingly
+      else if (model.includes('minimax/image')) {
+        // Minimax model typically uses these parameters
+        input.width = input.width || this.defaultWidth;
+        input.height = input.height || this.defaultHeight;
+        // Remove any FLUX-specific parameters that might not be compatible
+        delete input.num_inference_steps;
+        delete input.guidance_scale;
+        // Ensure we have the right parameters for minimax
+        input.prompt = input.prompt || '';
+        input.negative_prompt = input.negative_prompt || '';
       }
       // If this is an SDXL model, add default parameters if not provided
       else if (model.includes('stability-ai') || model.includes('sdxl')) {
@@ -101,14 +117,33 @@ export class ReplicateService {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          version: model,
+          // Use the model name without version hash to get the latest version
+          version: model.includes(':') ? model : `${model}`,
           input: input
         })
       });
       
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(`Replicate API error: ${JSON.stringify(errorData)}`);
+        console.log(`⚠️ Replicate API error: ${JSON.stringify(errorData)}`);
+        
+        // If the model is not found or not permitted, try the minimax fallback model
+        if (errorData.status === 422) {
+          if (model !== FALLBACK_MODEL) {
+            console.log(`⚠️ Trying fallback to minimax/image-01 model`);
+            return this.runPrediction(FALLBACK_MODEL, {
+              prompt: input.prompt,
+              width: input.width,
+              height: input.height
+            });
+          } else {
+            // If we're already using the fallback model and still getting errors,
+            // throw the error to trigger the DALL-E fallback
+            throw new Error(`Replicate API error: ${JSON.stringify(errorData)}`);
+          }
+        } else {
+          throw new Error(`Replicate API error: ${JSON.stringify(errorData)}`);
+        }
       }
       
       const data = await response.json();
@@ -225,8 +260,11 @@ export class ReplicateService {
     try {
       console.log(`🎨 Using model for image generation: ${this.defaultModel}`);
       
+      // Check if this is a FLUX model
+      const isFluxModel = this.defaultModel.includes('flux-cinestill') || this.defaultModel.includes('adirik/flux');
+      
       // For FLUX model, enhance the prompt with conceptually rich elements if not already provided
-      if (this.defaultModel.includes('flux-cinestill') || this.defaultModel.includes('adirik/flux')) {
+      if (isFluxModel) {
         if (!prompt.includes('CNSTLL')) {
           prompt = `CNSTLL ${prompt}`;
         }
@@ -249,25 +287,42 @@ export class ReplicateService {
       // Run the prediction
       const prediction = await this.runPrediction(this.defaultModel, input);
       
-      if (prediction.status === 'success' && prediction.output) {
-        // For models that return an array of images, return the first one
-        if (Array.isArray(prediction.output)) {
-          return prediction.output[0];
-        }
-        // For models that return an object with urls, return the first url
-        else if (typeof prediction.output === 'object' && prediction.output !== null) {
-          return Object.values(prediction.output)[0] as string;
-        }
-        // Otherwise return the output directly
-        return prediction.output as string;
-      } else {
-        console.log(`⚠️ Replicate API failed, falling back to OpenAI DALL-E`);
-        return this.fallbackToDALLE(prompt, options);
+      // If the prediction failed, try falling back to DALL-E
+      if (prediction.status === 'failed' || !prediction.output) {
+        console.log('⚠️ Replicate API failed, falling back to OpenAI DALL-E');
+        return await this.fallbackToDALLE(prompt, options);
       }
+      
+      // Get the image URL from the prediction output
+      let imageUrl: string | null = null;
+      
+      if (Array.isArray(prediction.output)) {
+        imageUrl = prediction.output[0];
+      } else if (typeof prediction.output === 'string') {
+        imageUrl = prediction.output;
+      } else if (prediction.output && typeof prediction.output === 'object') {
+        // Try to find an image URL in the output object
+        const possibleImageKeys = ['image', 'images', 'url', 'urls', 'output'];
+        
+        for (const key of possibleImageKeys) {
+          if (prediction.output[key]) {
+            if (Array.isArray(prediction.output[key])) {
+              imageUrl = prediction.output[key][0];
+            } else {
+              imageUrl = prediction.output[key];
+            }
+            break;
+          }
+        }
+      }
+      
+      return imageUrl;
     } catch (error) {
-      console.error(`❌ Error generating image: ${error}`);
-      console.log(`⚠️ Replicate API failed, falling back to OpenAI DALL-E`);
-      return this.fallbackToDALLE(prompt, options);
+      console.error(`Error generating image: ${error}`);
+      
+      // Try falling back to DALL-E
+      console.log('🎨 Falling back to OpenAI DALL-E for image generation');
+      return await this.fallbackToDALLE(prompt, options);
     }
   }
 

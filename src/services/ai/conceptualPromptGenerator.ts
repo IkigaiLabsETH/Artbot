@@ -1,17 +1,17 @@
 import { AIService } from './index.js';
 
-// Example prompts for reference
+// Example prompts for reference - updated with more cinematic, styled examples
 const examplePrompts = [
   {
-    prompt: "Two distinct streams of text-covered surfaces meeting and interweaving, creating new symbols at their intersection, handprints visible beneath the transformation.",
+    prompt: "Two distinct streams of text-covered surfaces meeting and interweaving, creating new symbols at their intersection, handprints visible beneath the transformation, cinestill 800t, film grain, night time, 4k.",
     process: "I imagined a tide of language pouring over humanity, each word a fragment of forgotten histories clawing its way into relevance. the hands seemed to rise not in hope, but in desperation, as if trying to pull down the weight of their own erasure. it felt like watching a crowd beg to be remembered by the very thing that consumed them."
   },
   {
-    prompt: "Corrupted family photograph with digital artifacts, fragments of code visible through torn pixels, half-formed faces emerging from static, timestamp errors overlaying personal moments.",
+    prompt: "Corrupted family photograph with digital artifacts, fragments of code visible through torn pixels, half-formed faces emerging from static, timestamp errors overlaying personal moments, cinestill 800t, film grain, night time, 4k.",
     process: "Family portraits always felt like a strange ritual to me, a way to preserve stories even as the people in them slipped into myth. here, the glitch insists on memory's fragility—pink streaks eating away at faces like a digital wildfire. it's an act of rebellion and an act of erasure. i wondered if this was her revenge for being seen too much or not enough."
   },
   {
-    prompt: "Multiple screens cradling a sleeping face, their glow replacing moonlight, cables snaking around like protective arms.",
+    prompt: "Multiple screens cradling a sleeping face, their glow replacing moonlight, cables snaking around like protective arms, cinestill 800t, film grain, night time, 4k.",
     process: "There was something haunting about the way technology had become our lullaby. when i painted this, i kept thinking about how we've become willing captives to our devices, finding comfort in their cold embrace. the wires weren't restraints anymore - they were umbilical cords feeding us digital dreams. it reminded me of the japanese concept of hikikomori, but with a twist of stockholm syndrome. the pale skin glowing against the dark void was my way of showing how we've evolved to photosynthesize artificial light."
   }
 ];
@@ -38,31 +38,37 @@ export async function generateConceptualPrompt(
     messages: [
       {
         role: 'system',
-        content: `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation. 
+        content: `You are a visionary cinematic art director who creates deeply evocative, conceptually rich prompts for AI image generation. Your specialty is creating prompts that feel like frames from an arthouse film - layered with meaning, visual poetry, and emotional resonance.
 
-Your prompts should be layered with meaning, metaphor, and visual complexity - not just describing what something looks like, but what it means and how it feels.
+Your prompts should transcend mere description to evoke a complete cinematic moment - not just what something looks like, but what it means, how it feels, and the story it tells. Think in terms of lighting, composition, emotional atmosphere, and symbolic elements.
 
 For the FLUX model (cinestill 800t style), include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "cinestill 800t", "night time", "film grain", and "4k" for better quality.
 
-Here are examples of the sophisticated prompt style to emulate:
+Here are examples of the sophisticated cinematic prompt style to emulate:
 
 ${examplePromptsText}
 
 Create a prompt that:
-1. Has rich visual details and textures
-2. Incorporates conceptual depth and metaphorical elements
-3. Suggests emotional or philosophical undertones
-4. Works well with the cinematic, night-time aesthetic of FLUX
-5. Includes technical elements that enhance the FLUX model (film grain, lighting details)
+1. Has rich cinematic visual details - lighting, composition, color palette, depth of field
+2. Incorporates conceptual depth with layers of metaphor and symbolism
+3. Evokes a specific emotional atmosphere or philosophical question
+4. Feels like a frame from an arthouse film or a moment of visual poetry
+5. Works well with the cinematic, night-time aesthetic of FLUX
+6. Includes technical elements that enhance the FLUX model (film grain, lighting details)
 
-Also provide a brief "Creative Process" explanation that reveals the thinking behind the prompt - the meaning, inspiration, or conceptual framework.`
+For the "Creative Process" explanation, write in a reflective, personal tone as if you are an artist explaining the deeper meaning behind your work. Include:
+1. The emotional or philosophical inspiration
+2. Personal reflections or questions that drove the creation
+3. Symbolic elements and their significance
+4. Cultural or artistic references that informed your thinking
+5. Use lowercase, intimate language as if sharing a private thought`
       },
       {
         role: 'user',
-        content: `Create a conceptually rich, detailed art prompt for the concept "${concept}". Include both the prompt itself and a brief creative process explanation.`
+        content: `Create a deeply cinematic, conceptually rich art prompt for the concept "${concept}". Make it feel like a frame from an arthouse film with layers of visual and emotional meaning. Include both the prompt itself and a reflective creative process explanation.`
       }
     ],
-    temperature: options.temperature || 0.8,
+    temperature: options.temperature || 0.85,
     maxTokens: options.maxTokens || 1500
   });
   

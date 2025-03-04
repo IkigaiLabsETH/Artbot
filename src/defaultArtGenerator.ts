@@ -28,6 +28,11 @@ const concept = process.argv[2];
 // Get category from command line arguments (if provided)
 const categoryArg = process.argv[3];
 
+// Define the base model without version hash
+const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
+// Define a fallback model that should be publicly accessible
+const MINIMAX_MODEL = 'minimax/image-01';
+
 async function generateArt(concept: string) {
   try {
     // Check for API keys
@@ -50,10 +55,10 @@ async function generateArt(concept: string) {
     
     await aiService.initialize();
     
-    // Initialize the ReplicateService with FLUX as the default model
+    // Initialize the ReplicateService with minimax as the default model
     const replicateService = new ReplicateService({
       apiKey: replicateApiKey,
-      defaultModel: process.env.DEFAULT_IMAGE_MODEL || 'adirik/flux-cinestill',
+      defaultModel: process.env.DEFAULT_IMAGE_MODEL || MINIMAX_MODEL,
       defaultWidth: parseInt(process.env.IMAGE_WIDTH || '1024', 10),
       defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '1024', 10),
       defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '28', 10),
