@@ -107,7 +107,8 @@ echo ""
 
 # Create a temporary file for the ArtBot script
 TEMP_FILE=$(mktemp).mjs
-echo "import { ArtBotMultiAgentSystem } from './dist/artbot-multiagent-system.js';" > $TEMP_FILE
+CURRENT_DIR=$(pwd)
+echo "import { ArtBotMultiAgentSystem } from '${CURRENT_DIR}/dist/artbot-multiagent-system.js';" > $TEMP_FILE
 echo "" >> $TEMP_FILE
 echo "async function runArtBot() {" >> $TEMP_FILE
 echo "  try {" >> $TEMP_FILE
