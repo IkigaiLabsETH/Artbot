@@ -29,7 +29,8 @@ Our approach is built on three core principles:
 - **Memory System**: Sophisticated storage and retrieval of artistic experiences
 - **Multi-Agent System**: Collaborative creation through specialized agent roles
 - **Social Context**: Integration with cultural trends and audience feedback
-- **Real Image Generation**: Integration with Replicate API for actual image creation
+- **Multi-Threaded Idea Exploration**: Parallel exploration of multiple creative directions
+- **Real Image Generation**: Integration with Replicate API for actual artwork creation
 
 ## System Architecture
 
@@ -44,56 +45,92 @@ Our approach is built on three core principles:
               ┌──────┴──────────┐            ┌───────┴───────┐
               │  Memory System  │            │ Thread Manager │
               └─────────────────┘            └───────────────┘
-                                                     ↑
-                                                     │
-                                            ┌────────┴────────┐
-                                            │  Multi-Agent    │
-                                            │     System      │
+                      ↑                               ↑
+                      │                               │
+              ┌───────┴───────┐             ┌────────┴────────┐
+              │  Idea Queue   │             │  Multi-Agent    │
+              └───────────────┘             │     System      │
                                             └─────────────────┘
+```
+
+## Multi-Threaded Idea Exploration
+
+ArtBot's multi-threaded idea exploration system enables the parallel exploration of multiple creative directions, similar to how human artists might explore several concepts simultaneously. This approach allows for a more diverse and rich creative process.
+
+### Key Components
+
+1. **Idea Queue**: Manages a collection of creative ideas and their exploration threads
+2. **Exploration Threads**: Different creative directions for each idea
+3. **Thread Management**: Controls which threads are active and their execution
+4. **Concept Generation**: Creates detailed conceptual frameworks for each thread
+5. **Style Development**: Develops unique visual styles based on concepts
+6. **Image Generation**: Produces actual artwork based on concepts and styles
+
+### How It Works
+
+The multi-threaded exploration system follows these steps:
+
+1. **Idea Generation**: Creative ideas are added to the queue
+2. **Thread Creation**: Multiple exploration threads are created for each idea
+3. **Parallel Processing**: Several threads are explored simultaneously
+4. **Concept Development**: Each thread generates a unique concept
+5. **Style Evolution**: Visual styles are developed based on concepts
+6. **Image Creation**: Artwork is generated for each thread
+7. **Evaluation**: Results are evaluated and feedback is incorporated
+
+### Example Workflow
+
+```
+Idea: "Cosmic Garden"
+├── Thread: "Initial exploration"
+│   ├── Concept: Cosmic elements intertwined with botanical imagery
+│   ├── Style: Vibrant colors with ethereal textures
+│   └── Image: [Generated artwork]
+├── Thread: "Microscopic Perspective"
+│   ├── Concept: Cosmic garden elements at microscopic level
+│   ├── Style: Detailed micro-textures with cosmic color palette
+│   └── Image: [Generated artwork]
+└── Thread: "Night vs Day"
+    ├── Concept: Contrasting cosmic garden in different lighting
+    ├── Style: Dramatic light/shadow play with celestial elements
+    └── Image: [Generated artwork]
 ```
 
 ## Multi-Agent System
 
 ArtBot's multi-agent system enables collaborative art creation through specialized agent roles, each focusing on a specific aspect of the creative process:
 
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    MultiAgentSystem                         │
+│                                                             │
+│  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐      │
+│  │Director │   │Ideator  │   │Stylist  │   │Refiner  │      │
+│  │Agent    │<->│Agent    │<->│Agent    │<->│Agent    │<->┐  │
+│  └─────────┘   └─────────┘   └─────────┘   └─────────┘   │  │
+│       ^                                                   │  │
+│       │                                                   │  │
+│       v                                                   v  │
+│  ┌─────────┐                                         ┌─────────┐
+│  │Message  │                                         │Critic   │
+│  │Queue    │<----------------------------------------│Agent    │
+│  └─────────┘                                         └─────────┘
+└─────────────────────────────────────────────────────────────┘
+```
+
 ### Agent Roles
 
 1. **Director Agent**: Coordinates the creative process and manages workflow
-   - Handles project creation and stage transitions
-   - Assigns tasks to specialized agents
-   - Collects and integrates results
-
 2. **Ideator Agent**: Generates creative ideas based on project requirements
-   - Produces diverse and novel artistic concepts
-   - Structures ideas with clear elements and emotional impact
-
 3. **Stylist Agent**: Develops artistic styles based on generated ideas
-   - Creates cohesive visual styles from conceptual ideas
-   - Defines color palettes, textures, and composition approaches
-
 4. **Refiner Agent**: Refines and improves artwork based on selected styles
-   - Transforms style specifications into detailed artwork
-   - Generates actual images using AI image generation models
-
 5. **Critic Agent**: Evaluates and provides feedback on artwork
-   - Performs multi-criteria evaluation
-   - Identifies strengths and areas for improvement
-
-### Workflow Process
-
-The agents collaborate through a sequential workflow:
-
-1. **Planning Stage**: Director assigns ideation task to Ideator
-2. **Styling Stage**: Director passes ideation results to Stylist
-3. **Refinement Stage**: Director passes style results to Refiner
-4. **Critique Stage**: Director passes refined artwork to Critic
-5. **Completion**: Director collects all results and completes the project
 
 ## Setup for Real Image Generation
 
-To use ArtBot with real image generation capabilities, you need to set up the necessary API keys:
+To use ArtBot with real image generation capabilities, you'll need to set up the necessary API keys:
 
-1. **Create a `.env` file** in the root directory with the following content:
+1. Create a `.env` file in the root directory with the following content:
 
 ```env
 # API Keys
@@ -115,28 +152,26 @@ EXPLORATION_RATE=0.3
 MUTATION_RATE=0.2
 ```
 
-2. **Get API Keys**:
-   - [Anthropic API Key](https://console.anthropic.com/) - For text generation
-   - [OpenAI API Key](https://platform.openai.com/) - For fallback text generation
-   - [Replicate API Key](https://replicate.com/) - For image generation
+2. Obtain API keys from:
+   - [Anthropic](https://www.anthropic.com/) for Claude AI
+   - [OpenAI](https://platform.openai.com/) for GPT models
+   - [Replicate](https://replicate.com/) for image generation
 
-3. **Install Dependencies**:
-
+3. Install dependencies:
 ```bash
 pnpm install
 ```
 
-4. **Build the Project**:
-
+4. Build the project:
 ```bash
 pnpm build
 ```
 
-## Running ArtBot
+## Running the Demos
 
 ### Multi-Agent Demo
 
-Run the multi-agent demo to see the complete creative workflow in action:
+Run the multi-agent demo to see the collaborative creation process:
 
 ```bash
 pnpm demo:multiagent
@@ -150,21 +185,39 @@ This will:
 5. Generate actual artwork using Replicate
 6. Provide a critique of the artwork
 
-The generated image URL will be displayed in the console. Copy and paste it into your browser to view the artwork.
+The generated image URL will be displayed in the console for viewing.
 
-### Customizing the Project
+### Idea Queue Demo
+
+Run the idea queue demo to see the multi-threaded exploration system:
+
+```bash
+pnpm demo:idea-queue
+```
+
+This will:
+1. Initialize the idea queue
+2. Add several creative ideas
+3. Create multiple exploration threads for each idea
+4. Process threads in parallel
+5. Generate concepts and styles for each thread
+6. Display the results of the exploration
+
+## Customizing Projects
 
 You can customize the project by editing the `src/demo-multiagent.ts` file:
 
 ```typescript
-// Create a new project
-const projectTitle = "Your Project Title";
-const projectDescription = "Your project description";
-const projectRequirements = [
-  "Requirement 1",
-  "Requirement 2",
-  "Requirement 3"
-];
+// Set your project title and description
+const project = {
+  title: "Your Project Title",
+  description: "Your project description",
+  requirements: [
+    "Requirement 1",
+    "Requirement 2",
+    "Requirement 3"
+  ]
+};
 ```
 
 After making changes, rebuild the project:
@@ -175,7 +228,7 @@ pnpm build
 
 ## Advanced Configuration
 
-### Image Generation Models
+### Changing Image Generation Model
 
 You can change the image generation model in the `.env` file:
 
@@ -183,18 +236,18 @@ You can change the image generation model in the `.env` file:
 DEFAULT_IMAGE_MODEL=stability-ai/sdxl
 ```
 
-Other recommended models:
+Other options include:
 - `stability-ai/stable-diffusion-xl-base-1.0`
-- `runwayml/stable-diffusion-v1-5`
+- `stability-ai/stable-diffusion-2-1`
 - `midjourney/midjourney-v4`
 
 ### Adjusting Creative Parameters
 
-Fine-tune the creative behavior by adjusting these parameters in the `.env` file:
+You can adjust the creative parameters in the `.env` file:
 
 ```env
-EXPLORATION_RATE=0.3  # Higher values encourage more diverse ideas
-MUTATION_RATE=0.2     # Higher values create more variation in styles
+EXPLORATION_RATE=0.3  # Controls how much the system explores new ideas
+MUTATION_RATE=0.2     # Controls how much variation is introduced in style evolution
 ```
 
 ## Contributing
@@ -214,7 +267,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - Inspired by autonomous AI artists like Botto and Keke
-- Built with Node.js, TypeScript, and modern AI APIs
+- Built with Claude 3.5 Sonnet and Stable Diffusion
 - Special thanks to the AI art community
 
 ## Philosophy

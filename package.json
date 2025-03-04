@@ -14,6 +14,7 @@
     "format": "prettier --write \"**/*.ts\"",
     "init": "ts-node src/scripts/init.ts",
     "demo:multiagent": "node dist/demo-multiagent.js",
+    "demo:idea-queue": "node dist/demo-idea-queue.js",
     "test:multiagent": "node test-multiagent.js",
     "monitor:performance": "node monitor-multiagent-performance.js",
     "report:performance": "./monitor-multiagent-performance.sh",
