@@ -1,4 +1,4 @@
-import { Service, ServiceType } from '@elizaos/core';
+import { Service, ServiceType, UUID } from '@elizaos/core';
 import { 
   ArtworkIdea,
   ArtworkMemory,
@@ -9,6 +9,7 @@ import {
   Analysis,
   CreativeDialogue
 } from '../types/index';
+import { ArtMemoryService } from './memory';
 import { v4 as uuidv4 } from 'uuid';
 import * as path from 'path';
 
@@ -21,10 +22,12 @@ export class CreativeEngine extends Service {
   private state: CreativeState;
   private selfDialogue: SelfDialogue;
   private memorySystem: MemorySystem;
+  private artMemoryService: ArtMemoryService | null = null;
   private reflectionEngine: ReflectionEngine;
   private openaiApiKey?: string;
   private anthropicApiKey: string;
   private useOpenAI: boolean;
+  private runtime: any;
   
   constructor(config: CreativeEngineConfig, baseDir: string = process.cwd()) {
     super();
@@ -59,7 +62,9 @@ export class CreativeEngine extends Service {
     return ServiceType.TEXT_GENERATION;
   }
 
-  async initialize(): Promise<void> {
+  async initialize(runtime: any): Promise<void> {
+    this.runtime = runtime;
+    
     // Try to use OpenAI if available
     this.useOpenAIIfAvailable();
     
@@ -74,10 +79,84 @@ export class CreativeEngine extends Service {
     
     console.log(`CreativeEngine initialized with provider: ${this.getProvider()}`);
     
-    await Promise.all([
-      this.memorySystem.initialize(),
-      this.reflectionEngine.initialize()
-    ]);
+    // Initialize the memory system
+    await this.memorySystem.initialize();
+    await this.reflectionEngine.initialize();
+    
+    // Initialize the art memory service
+    this.artMemoryService = new ArtMemoryService({
+      tableName: 'art_memories'
+    });
+    await this.artMemoryService.initialize(runtime);
+    
+    // Load completed works from persistent storage
+    await this.loadCompletedWorks();
+  }
+
+  /**
+   * Load completed works from persistent storage
+   */
+  private async loadCompletedWorks(): Promise<void> {
+    if (!this.artMemoryService || !this.runtime) {
+      return;
+    }
+    
+    try {
+      // Get the current room ID
+      const roomId = this.runtime.character?.id || 'default-room' as UUID;
+      
+      // Load recent artworks
+      const artworks = await this.artMemoryService.getRecentArtworks(roomId, 20);
+      
+      if (artworks && artworks.length > 0) {
+        console.log(`Loaded ${artworks.length} artworks from persistent storage`);
+        this.state.completedWorks = artworks;
+      }
+    } catch (error) {
+      console.error('Failed to load completed works:', error);
+    }
+  }
+
+  /**
+   * Save an artwork to persistent storage
+   */
+  async saveArtwork(artwork: ArtworkMemory): Promise<void> {
+    if (!this.artMemoryService || !this.runtime) {
+      return;
+    }
+    
+    try {
+      // Get the current room and user IDs
+      const roomId = this.runtime.character?.id || 'default-room' as UUID;
+      const userId = this.runtime.agentId || 'default-user' as UUID;
+      
+      // Store the artwork
+      await this.artMemoryService.storeArtwork(artwork, roomId, userId);
+      console.log(`Saved artwork ${artwork.id} to persistent storage`);
+    } catch (error) {
+      console.error('Failed to save artwork:', error);
+    }
+  }
+
+  /**
+   * Find similar artworks based on a concept
+   */
+  async findSimilarArtworks(concept: string, count: number = 5): Promise<ArtworkMemory[]> {
+    if (!this.artMemoryService || !this.runtime) {
+      return [];
+    }
+    
+    try {
+      // Get the current room and user IDs
+      const roomId = this.runtime.character?.id || 'default-room' as UUID;
+      const userId = this.runtime.agentId || 'default-user' as UUID;
+      
+      // Find similar artworks
+      return await this.artMemoryService.findSimilarArtworks(concept, roomId, userId, count);
+    } catch (error) {
+      console.error('Failed to find similar artworks:', error);
+      return [];
+    }
   }
 
   /**
@@ -92,6 +171,30 @@ export class CreativeEngine extends Service {
    */
   getRecentWorks(count: number = 5): ArtworkMemory[] {
     return this.state.completedWorks.slice(-count);
+  }
+
+  /**
+   * Add a completed work to the state
+   */
+  addCompletedWork(artwork: ArtworkMemory): void {
+    this.state.completedWorks.push(artwork);
+    
+    // Save to persistent storage
+    this.saveArtwork(artwork);
+    
+    // Update style preferences based on the new artwork
+    this.updateStylePreferences(artwork.idea.style);
+  }
+
+  /**
+   * Update style preferences based on a style
+   */
+  private updateStylePreferences(style: string): void {
+    if (!this.state.stylePreferences[style]) {
+      this.state.stylePreferences[style] = 0;
+    }
+    
+    this.state.stylePreferences[style] += 1;
   }
 
   /**

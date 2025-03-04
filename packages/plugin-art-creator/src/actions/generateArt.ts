@@ -61,6 +61,14 @@ export const generateArt = {
     
     for (const idea of ideas) {
       try {
+        // Check if we have similar artworks already
+        const similarArtworks = await engine.findSimilarArtworks(idea.concept, 3);
+        
+        // Log if we found similar artworks
+        if (similarArtworks.length > 0) {
+          console.log(`Found ${similarArtworks.length} similar artworks to "${idea.concept}"`);
+        }
+        
         // Generate an enhanced prompt using our prompt engineering utilities
         const enhancedPrompt = enhancePrompt(idea);
         const negativePrompt = generateNegativePrompt();
@@ -116,25 +124,27 @@ export const generateArt = {
           created: Date.now()
         };
         
+        // Add to completed works using the new method
+        engine.addCompletedWork(artwork);
+        
         artworks.push(artwork);
       } catch (error) {
         console.error(`Error generating image for idea ${idea.id}:`, error);
         // Add with placeholder on error
-        artworks.push({
+        const artwork = {
           id: uuidv4(),
           imageUrl: `https://placeholder.com/art/${idea.id}`,
           idea: idea,
           feedback: [],
           created: Date.now()
-        });
+        };
+        
+        // Add to completed works using the new method
+        engine.addCompletedWork(artwork);
+        
+        artworks.push(artwork);
       }
     }
-    
-    // Add to completed works
-    const state = engine.getState();
-    artworks.forEach(artwork => {
-      state.completedWorks.push(artwork);
-    });
 
     return artworks.length === 1 ? artworks[0] : artworks;
   }
