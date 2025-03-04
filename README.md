@@ -43,7 +43,83 @@ Our approach is built on three core principles:
               ┌──────┴──────────┐            ┌───────┴───────┐
               │  Memory System  │            │ Thread Manager │
               └─────────────────┘            └───────────────┘
+                                                     ↑
+                                                     │
+                                            ┌────────┴────────┐
+                                            │  Multi-Agent    │
+                                            │     System      │
+                                            └─────────────────┘
 ```
+
+## Multi-Agent System
+
+ArtBot's multi-agent system enables collaborative art creation through specialized agent roles, each focusing on a specific aspect of the creative process:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    MultiAgentSystem                         │
+│                                                             │
+│  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐      │
+│  │Director │   │Ideator  │   │Stylist  │   │Refiner  │      │
+│  │Agent    │<->│Agent    │<->│Agent    │<->│Agent    │<->┐  │
+│  └─────────┘   └─────────┘   └─────────┘   └─────────┘   │  │
+│       ^                                                   │  │
+│       │                                                   │  │
+│       v                                                   v  │
+│  ┌─────────┐                                         ┌─────────┐
+│  │Message  │                                         │Critic   │
+│  │Queue    │<----------------------------------------│Agent    │
+│  └─────────┘                                         └─────────┘
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Agent Roles
+
+1. **Director Agent**: Coordinates the creative process and manages workflow
+   - Handles project creation and stage transitions
+   - Assigns tasks to specialized agents
+   - Collects and integrates results
+
+2. **Ideator Agent**: Generates creative ideas based on project requirements
+   - Produces diverse and novel artistic concepts
+   - Structures ideas with clear elements and emotional impact
+
+3. **Stylist Agent**: Develops artistic styles based on generated ideas
+   - Creates cohesive visual styles from conceptual ideas
+   - Defines color palettes, textures, and composition approaches
+
+4. **Refiner Agent**: Refines and improves artwork based on selected styles
+   - Transforms style specifications into detailed artwork
+   - Enhances visual coherence and impact
+
+5. **Critic Agent**: Evaluates and provides feedback on artwork
+   - Performs multi-criteria evaluation
+   - Identifies strengths and areas for improvement
+
+### Workflow Process
+
+The agents collaborate through a sequential workflow:
+
+1. **Planning Stage**: Director assigns ideation task to Ideator
+2. **Styling Stage**: Director passes ideation results to Stylist
+3. **Refinement Stage**: Director passes style results to Refiner
+4. **Critique Stage**: Director passes refined artwork to Critic
+5. **Completion**: Director collects all results and completes the project
+
+### Try the Multi-Agent Demo
+
+```bash
+# Using npm script
+npm run demo:multiagent
+
+# Using shell script
+./run-multiagent-demo.sh
+```
+
+For detailed documentation on the multi-agent system, see:
+- [Technical Documentation](./docs/multiagent-system.md)
+- [User Guide](./docs/multiagent-user-guide.md)
+- [API Reference](./docs/multiagent-api-reference.md)
 
 ## Installation
 
@@ -74,6 +150,7 @@ STORAGE_PATH=.artbot
 2. **Style Service**: Handles style evolution and mixing using advanced machine learning
 3. **Memory System**: Maintains artistic context and enables learning from past experiences
 4. **Social Context**: Integrates cultural awareness and audience feedback
+5. **Multi-Agent System**: Enables collaborative creation through specialized agent roles
 
 ## Development
 

@@ -30,8 +30,10 @@ git add src/demo-multiagent.ts
 git add run-multiagent-demo.sh
 git add docs/multiagent-system.md
 git add docs/multiagent-user-guide.md
+git add docs/multiagent-api-reference.md
 git add CHANGELOG-MULTIAGENT.md
 git add package.json
+git add README.md
 
 # Show the staged changes
 echo "The following changes will be committed:"
@@ -48,7 +50,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 - Specialized agent roles (Director, Ideator, Stylist, Refiner, Critic)
 - Collaborative workflow for art creation
 - Demo script and execution tools
-- Comprehensive documentation"
+- Comprehensive documentation
+- Updated README with multi-agent system details"
 
   # Push the changes
   echo "Pushing changes to remote repository..."
