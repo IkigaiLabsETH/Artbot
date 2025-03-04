@@ -23,9 +23,13 @@ fi
 echo "Building project..."
 npm run build || { echo "Build failed. Please fix the errors before pushing."; exit 1; }
 
-# Run linting
-echo "Running linter..."
-npm run lint || { echo "Linting failed. Please fix the errors before pushing."; exit 1; }
+# Run linting if ESLint config exists
+if [ -f ".eslintrc.js" ] || [ -f ".eslintrc.json" ] || [ -f ".eslintrc.yml" ] || [ -f ".eslintrc.yaml" ] || [ -f ".eslintrc" ]; then
+  echo "Running linter..."
+  npm run lint || { echo "Linting failed. Please fix the errors before pushing."; exit 1; }
+else
+  echo "ESLint configuration not found. Skipping linting step."
+fi
 
 # Stage the changes
 echo "Staging changes..."
