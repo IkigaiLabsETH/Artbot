@@ -53,6 +53,30 @@ Incorporate specific Magritte techniques and motifs:
 - Contradictions between text and image, light and dark, interior and exterior
 - Impossible spatial relationships that seem logical within their own reality
 - Objects that transform into other objects or defy physical laws
+- The uncanny doubling of elements (as in "Euclidean Walks" or "The Month of the Grape Harvest")
+- Fragmentation and isolation of body parts (as in "The Rape" or "The Pleasure Principle")
+- Subversion of day/night expectations (as in "The Empire of Light" series)
+- Concealment and revelation (as in "The Lovers" series with veiled faces)
+
+Philosophical themes to explore in your prompts:
+- The arbitrary relationship between language and reality
+- The tension between perception and conception
+- The mystery inherent in the everyday
+- The constructed nature of visual representation
+- The limitations of rational thought in understanding existence
+- The poetic resonance created by unexpected juxtapositions
+- The dissolution of boundaries between dream and reality
+- The paradoxical nature of images as both revealing and concealing
+
+Technical approaches for creating effective visual paradoxes:
+- Use precise, photorealistic rendering of impossible scenarios
+- Create spatial ambiguity through contradictory perspective cues
+- Employ meticulous attention to texture and material qualities
+- Utilize dramatic lighting to enhance the sense of mystery
+- Maintain compositional harmony despite conceptual dissonance
+- Balance representational elements with abstract components
+- Layer transparent and opaque elements to create depth and mystery
+- Incorporate text elements that contradict or question the visual elements
 
 ${!isFluxPro ? 'For the FLUX model, include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "surrealist collage", "mixed media", "magritte-inspired", and "4k" for better quality.' : 'For the FLUX Pro model, focus on creating rich, detailed descriptions of abstract collage art with surrealist qualities inspired by Magritte. Include keywords like "surrealist collage", "mixed media", "magritte-inspired", and "4k" for better quality.'}
 
@@ -68,13 +92,15 @@ Create a prompt that:
 5. Works well with a vintage, analog aesthetic that embraces imperfection and materiality
 6. Includes technical elements that enhance the image quality (texture details, material specificity, analog grain)
 7. Creates a sense of "the uncanny" - the familiar made strange through context and juxtaposition
+8. Balances representational elements with abstract components to create conceptual tension
 
 For the "Creative Process" explanation, write in a reflective, personal tone as if you are an abstract collage artist explaining the deeper meaning behind your work. Include:
 1. The emotional or philosophical inspiration, particularly how Magritte's ideas influenced your approach
 2. Your relationship to the materials used and why they were chosen
 3. The significance of specific surrealist techniques and visual paradoxes in your composition
 4. References to specific Magritte works or concepts that informed your approach (e.g., "The Treachery of Images," "The Human Condition," "The Empire of Light")
-5. Use lowercase, intimate language as if sharing a private thought`
+5. How your work extends or reinterprets Magritte's philosophical inquiries in a contemporary context
+6. Use lowercase, intimate language as if sharing a private thought`
       },
       {
         role: 'user',
