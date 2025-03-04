@@ -260,28 +260,28 @@ export class DirectorAgent extends BaseAgent {
     // Update the project stage
     this.state.context.projectStage = 'refinement';
     
-    // Get the style from the context
+    // Get the selected style from the previous phase
     const style = this.state.context.selectedStyle;
-    if (!style) {
-      console.error('No style selected for refinement phase');
-      return;
-    }
+    console.log(`Selected style: ${JSON.stringify(style)}`);
     
-    // Determine which refiner agent to use based on the useFlux flag
-    const refinerRole = this.state.context.useFlux ? 'flux_refiner' : AgentRole.REFINER;
-    console.log(`Using refiner role: ${refinerRole}`);
-    
-    // Find the appropriate refiner agent
+    // Determine the refiner agent to use based on the useFlux flag
     let refinerAgents;
-    if (refinerRole === 'flux_refiner') {
-      // For FLUX, we need to find the FluxRefinerAgent specifically
-      // This is a bit of a hack since we don't have a specific role for it
+    let refinerRole;
+    
+    if (this.state.context.useFlux) {
+      console.log('Using FLUX refiner agent');
+      refinerRole = 'flux_refiner';
+      // Find the FluxRefinerAgent by its constructor name
       refinerAgents = Array.from(this.multiAgentSystem.getAgentsByRole(AgentRole.REFINER)).filter(
         agent => agent.constructor.name === 'FluxRefinerAgent'
       );
+      console.log(`Found ${refinerAgents.length} FLUX refiner agents`);
     } else {
       // For standard refinement, use the REFINER role
+      console.log('Using standard refiner agent');
+      refinerRole = AgentRole.REFINER;
       refinerAgents = this.multiAgentSystem.getAgentsByRole(AgentRole.REFINER);
+      console.log(`Found ${refinerAgents.length} standard refiner agents`);
     }
     
     if (!refinerAgents || refinerAgents.length === 0) {
@@ -302,11 +302,15 @@ export class DirectorAgent extends BaseAgent {
         refine_artwork: true,
         project: this.state.context.currentProject,
         style: style,
-        sessionId: this.state.context.sessionId
+        sessionId: this.state.context.sessionId,
+        outputFilename: this.state.context.currentProject.outputFilename
       }),
       timestamp: new Date(),
       type: 'request'
     };
+    
+    console.log(`Sending refinement task to ${refinerAgent.id}`);
+    console.log(`Message content: ${typeof message.content === 'string' ? message.content : JSON.stringify(message.content)}`);
     
     // Send the message to the refiner agent
     this.multiAgentSystem.sendMessage(message);

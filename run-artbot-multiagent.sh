@@ -52,6 +52,8 @@ function show_help {
   echo -e "${GREEN}Options:${NC}"
   echo -e "  -h, --help     Show this help message"
   echo -e "  -f, --flux     Use FLUX cinematic image generator"
+  echo -e "  -t, --title    Set the project title"
+  echo -e "  -d, --description Set the project description"
   echo ""
   echo -e "${GREEN}Examples:${NC}"
   echo -e "  ./run-artbot-multiagent.sh \"Abstract Emotions\" \"A series exploring human emotions through abstract forms\""
@@ -61,28 +63,48 @@ function show_help {
   exit 0
 }
 
-# Parse command line options
+# Parse command line arguments
 USE_FLUX=false
+PROJECT_TITLE="Untitled Art Project"
+PROJECT_DESCRIPTION="An artistic exploration"
 
 while [[ $# -gt 0 ]]; do
   case $1 in
     -h|--help)
       show_help
+      exit 0
       ;;
     -f|--flux)
       USE_FLUX=true
       shift
       ;;
+    -t|--title)
+      if [[ -n "$2" && "$2" != -* ]]; then
+        PROJECT_TITLE="$2"
+        shift 2
+      else
+        echo -e "${RED}Error: Argument for $1 is missing${NC}" >&2
+        show_help
+        exit 1
+      fi
+      ;;
+    -d|--description)
+      if [[ -n "$2" && "$2" != -* ]]; then
+        PROJECT_DESCRIPTION="$2"
+        shift 2
+      else
+        echo -e "${RED}Error: Argument for $1 is missing${NC}" >&2
+        show_help
+        exit 1
+      fi
+      ;;
     *)
-      # If it's not an option, it's part of the title/description
-      break
+      echo -e "${RED}Error: Unknown option $1${NC}" >&2
+      show_help
+      exit 1
       ;;
   esac
 done
-
-# Get project title and description
-PROJECT_TITLE="${1:-"Untitled Art Project"}"
-PROJECT_DESCRIPTION="${2:-"An exploration of creative possibilities through collaborative AI."}"
 
 echo -e "${GREEN}Project Title:${NC} $PROJECT_TITLE"
 echo -e "${GREEN}Project Description:${NC} $PROJECT_DESCRIPTION"
@@ -108,13 +130,21 @@ echo ""
 # Create a temporary file for the ArtBot script
 TEMP_FILE=$(mktemp).mjs
 CURRENT_DIR=$(pwd)
+# Create a sanitized project title for filenames
+SANITIZED_TITLE=$(echo "$PROJECT_TITLE" | tr -cd '[:alnum:][:space:]' | tr '[:space:]' '-' | tr '[:upper:]' '[:lower:]')
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+OUTPUT_FILENAME="${SANITIZED_TITLE}_${TIMESTAMP}"
+
 echo "import { ArtBotMultiAgentSystem } from '${CURRENT_DIR}/dist/artbot-multiagent-system.js';" > $TEMP_FILE
 echo "" >> $TEMP_FILE
 echo "async function runArtBot() {" >> $TEMP_FILE
 echo "  try {" >> $TEMP_FILE
 echo "    // Initialize ArtBot" >> $TEMP_FILE
+echo "    console.log('Current directory:', process.cwd());" >> $TEMP_FILE
+echo "    const outputDir = '${CURRENT_DIR}/output';" >> $TEMP_FILE
+echo "    console.log('Output directory:', outputDir);" >> $TEMP_FILE
 echo "    const artBot = new ArtBotMultiAgentSystem({" >> $TEMP_FILE
-echo "      outputDir: 'output'" >> $TEMP_FILE
+echo "      outputDir: outputDir" >> $TEMP_FILE
 echo "    });" >> $TEMP_FILE
 echo "" >> $TEMP_FILE
 echo "    await artBot.initialize();" >> $TEMP_FILE
@@ -123,7 +153,8 @@ echo "    // Run an art project" >> $TEMP_FILE
 echo "    const result = await artBot.runArtProject({" >> $TEMP_FILE
 echo "      title: \"$PROJECT_TITLE\"," >> $TEMP_FILE
 echo "      description: \"$PROJECT_DESCRIPTION\"," >> $TEMP_FILE
-echo "      useFlux: $USE_FLUX" >> $TEMP_FILE
+echo "      useFlux: $USE_FLUX," >> $TEMP_FILE
+echo "      outputFilename: \"$OUTPUT_FILENAME\"" >> $TEMP_FILE
 echo "    });" >> $TEMP_FILE
 echo "" >> $TEMP_FILE
 echo "    console.log('Art project completed successfully!');" >> $TEMP_FILE
@@ -154,4 +185,37 @@ echo -e "${GREEN}Output directory: ${YELLOW}output/${NC}"
 echo -e "${GREEN}Generated files include:${NC}"
 echo -e "${YELLOW}- Art image${NC}"
 echo -e "${YELLOW}- Project metadata${NC}"
-echo -e "${YELLOW}- Agent collaboration logs${NC}" 
+echo -e "${YELLOW}- Agent collaboration logs${NC}"
+
+# Find and display the most recent image file
+if [ -d "output" ]; then
+  # Find the most recently modified image file
+  LATEST_IMAGE=$(find output -type f -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" | sort -r | head -n 1)
+  
+  if [ -n "$LATEST_IMAGE" ]; then
+    echo ""
+    echo -e "${GREEN}Latest generated artwork:${NC}"
+    echo -e "${YELLOW}$LATEST_IMAGE${NC}"
+    
+    # Try to open the image file with the default application
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      # macOS
+      open "$LATEST_IMAGE" 2>/dev/null || echo -e "${YELLOW}Image file created but could not be opened automatically.${NC}"
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      # Linux
+      xdg-open "$LATEST_IMAGE" 2>/dev/null || echo -e "${YELLOW}Image file created but could not be opened automatically.${NC}"
+    else
+      echo -e "${YELLOW}Image file created. Please open it manually.${NC}"
+    fi
+  else
+    echo ""
+    echo -e "${YELLOW}No image files found in the output directory.${NC}"
+    echo -e "${YELLOW}This might be because:${NC}"
+    echo -e "${YELLOW}1. The image generation process failed${NC}"
+    echo -e "${YELLOW}2. The image is still being generated${NC}"
+    echo -e "${YELLOW}3. The image was saved with a different extension${NC}"
+  fi
+else
+  echo ""
+  echo -e "${YELLOW}Output directory not found. No artwork was generated.${NC}"
+fi 

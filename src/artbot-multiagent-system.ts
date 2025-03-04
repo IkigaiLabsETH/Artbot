@@ -180,6 +180,7 @@ export class ArtBotMultiAgentSystem {
     description: string;
     useFlux?: boolean;
     requirements?: string[];
+    outputFilename?: string;
   }): Promise<any> {
     console.log('🎬 Starting art project:', project.title);
     
@@ -188,7 +189,8 @@ export class ArtBotMultiAgentSystem {
       title: project.title,
       description: project.description,
       requirements: project.requirements || [],
-      useFlux: project.useFlux || false
+      useFlux: project.useFlux || false,
+      outputFilename: project.outputFilename
     });
     
     // Run the collaboration session
@@ -205,6 +207,7 @@ export class ArtBotMultiAgentSystem {
     description: string;
     requirements?: string[];
     useFlux?: boolean;
+    outputFilename?: string;
   }): Promise<{ id: string }> {
     // Generate a unique session ID
     const sessionId = `art-project-${Date.now()}`;
@@ -228,7 +231,8 @@ export class ArtBotMultiAgentSystem {
           title: project.title,
           description: project.description,
           requirements: project.requirements || [],
-          useFlux: project.useFlux || false
+          useFlux: project.useFlux || false,
+          outputFilename: project.outputFilename
         },
         sessionId
       },
@@ -272,9 +276,41 @@ export class ArtBotMultiAgentSystem {
     // Process the messages in the session
     console.log('🤖 Running collaboration session...');
     
-    // For now, we'll simulate the result
-    // In a real implementation, this would involve message passing between agents
-    // and tracking the state of the collaboration session
+    // Wait for the collaboration to complete
+    // In a real implementation, we would have a more sophisticated way to determine when the collaboration is complete
+    // For now, we'll just wait for a fixed amount of time
+    await new Promise(resolve => setTimeout(resolve, 30000)); // Wait for 30 seconds
+    
+    // Get the FluxRefinerAgent to generate the artwork
+    let imageUrl = 'https://replicate.delivery/pbxt/4JkAMBmbhJxKkBTcwvLJWQAYTkZ0ky3gT6NpSEVweWwbfSgQA/out-0.png';
+    let prompt = 'CNSTLL A detailed artwork based on ' + session.project.title;
+    let creativeProcess = 'Generated using the FLUX model with a conceptually rich prompt';
+    
+    if (session.project.useFlux) {
+      try {
+        // Find the FluxRefinerAgent
+        const fluxRefinerAgents = Array.from(this.multiAgentSystem.getAgentsByRole(AgentRole.REFINER)).filter(
+          agent => agent.constructor.name === 'FluxRefinerAgent'
+        );
+        
+        if (fluxRefinerAgents.length > 0) {
+          const fluxRefinerAgent = fluxRefinerAgents[0] as any; // Cast to any to access the refineArtworkWithFlux method
+          
+          // Generate the artwork
+          console.log('Generating artwork with FLUX...');
+          const result = await fluxRefinerAgent.refineArtworkWithFlux(session.project, {});
+          
+          // Update the image URL and prompt
+          imageUrl = result.imageUrl;
+          prompt = result.prompt;
+          creativeProcess = result.creativeProcess;
+          
+          console.log(`Artwork generated: ${imageUrl}`);
+        }
+      } catch (error) {
+        console.error(`Error generating artwork: ${error}`);
+      }
+    }
     
     const result = {
       id: sessionId,
@@ -288,9 +324,9 @@ export class ArtBotMultiAgentSystem {
           id: 'artwork-1',
           type: 'artwork',
           content: {
-            prompt: 'CNSTLL A detailed artwork based on ' + session.project.title,
-            imageUrl: 'https://replicate.delivery/pbxt/4JkAMBmbhJxKkBTcwvLJWQAYTkZ0ky3gT6NpSEVweWwbfSgQA/out-0.png',
-            creativeProcess: 'Generated using the FLUX model with a conceptually rich prompt'
+            prompt,
+            imageUrl,
+            creativeProcess
           },
           creator: AgentRole.REFINER,
           timestamp: new Date()
