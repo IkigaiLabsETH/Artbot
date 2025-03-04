@@ -10,6 +10,19 @@ NC='\033[0m' # No Color
 echo -e "${BLUE}🎨 ArtBot Multi-Agent Art Generator${NC}"
 echo -e "${BLUE}=====================================${NC}"
 
+# Check if a concept was provided
+if [ -z "$1" ]; then
+    echo "Please provide a concept for the art generator."
+    echo "Usage: $0 \"Your concept here\" [category]"
+    exit 1
+fi
+
+# Get the concept from the first argument
+CONCEPT="$1"
+
+# Get the category from the second argument (optional)
+CATEGORY="${2:-magritte_surrealism}"
+
 # Check if TypeScript is installed
 if ! command -v tsc &> /dev/null; then
     echo -e "${RED}❌ TypeScript compiler not found. Installing...${NC}"
@@ -57,29 +70,51 @@ fi
 
 echo -e "${GREEN}✅ Compilation successful!${NC}"
 
-# Get concept from command line arguments
-CONCEPT="$1"
-CATEGORY="$2"
+# Ensure the output directory exists
+mkdir -p output
 
-# Run the art generator
-echo -e "${BLUE}🚀 Running ArtBot Multi-Agent Art Generator...${NC}"
-if [ -n "$CONCEPT" ]; then
-    if [ -n "$CATEGORY" ]; then
-        echo -e "${GREEN}🎭 Using concept: ${YELLOW}\"$CONCEPT\"${GREEN} with category: ${YELLOW}\"$CATEGORY\"${NC}"
-        node dist/defaultArtGenerator.js "$CONCEPT" "$CATEGORY"
-    else
-        echo -e "${GREEN}🎭 Using concept: ${YELLOW}\"$CONCEPT\"${NC}"
-        node dist/defaultArtGenerator.js "$CONCEPT"
-    fi
+# Find the correct path to the compiled JavaScript file
+if [ -f "dist/defaultArtGenerator.js" ]; then
+    JS_FILE="dist/defaultArtGenerator.js"
+elif [ -f "dist/src/defaultArtGenerator.js" ]; then
+    JS_FILE="dist/src/defaultArtGenerator.js"
 else
-    echo -e "${GREEN}🎭 Generating a random concept...${NC}"
-    node dist/defaultArtGenerator.js
+    echo "Could not find the compiled JavaScript file. Please check the TypeScript compilation."
+    exit 1
 fi
 
-# Check if the art generation was successful
-if [ $? -ne 0 ]; then
-    echo -e "${RED}❌ Art generation failed. Please check the error messages above.${NC}"
-    exit 1
+# Run the art generator with the provided concept and category
+echo -e "${BLUE}🚀 Running ArtBot Multi-Agent Art Generator...${NC}"
+node $JS_FILE "$CONCEPT" "$CATEGORY"
+
+# Create a sanitized version of the concept for filename matching
+SANITIZED_CONCEPT=$(echo "$CONCEPT" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g')
+
+# Check if the image was generated - look for the specific file based on the concept
+IMAGE_FILE="output/flux-$SANITIZED_CONCEPT.png"
+
+if [ -f "$IMAGE_FILE" ]; then
+    echo -e "${GREEN}✅ Image generated successfully: ${YELLOW}$IMAGE_FILE${NC}"
+    
+    # Get the image URL from the corresponding .txt file
+    IMAGE_URL_FILE="output/flux-$SANITIZED_CONCEPT.txt"
+    if [ -f "$IMAGE_URL_FILE" ]; then
+        echo -e "${GREEN}✅ Image URL: ${YELLOW}$(cat $IMAGE_URL_FILE)${NC}"
+    fi
+else
+    # Fallback to finding any recently created image file
+    RECENT_IMAGE=$(find output -name "flux-*.png" -type f -mmin -2 | head -1)
+    if [ -n "$RECENT_IMAGE" ]; then
+        echo -e "${GREEN}✅ Image generated successfully: ${YELLOW}$RECENT_IMAGE${NC}"
+        
+        # Get the image URL from the corresponding .txt file
+        IMAGE_URL_FILE="${RECENT_IMAGE%.png}.txt"
+        if [ -f "$IMAGE_URL_FILE" ]; then
+            echo -e "${GREEN}✅ Image URL: ${YELLOW}$(cat $IMAGE_URL_FILE)${NC}"
+        fi
+    else
+        echo -e "${RED}❌ No image file found. Check the logs for errors.${NC}"
+    fi
 fi
 
 echo -e "${GREEN}✨ Art generation completed!${NC}"

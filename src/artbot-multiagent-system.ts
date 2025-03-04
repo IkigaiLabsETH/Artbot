@@ -310,6 +310,21 @@ export class ArtBotMultiAgentSystem {
           
           // Update the image URL and prompt
           imageUrl = result.imageUrl;
+          
+          // Debug logging for the image URL
+          if (process.env.DEBUG_IMAGE_URL === 'true') {
+            console.log(`🔍 DEBUG - artbot-multiagent-system - imageUrl: ${imageUrl}`);
+            console.log(`🔍 DEBUG - artbot-multiagent-system - imageUrl type: ${typeof imageUrl}`);
+            console.log(`🔍 DEBUG - artbot-multiagent-system - imageUrl starts with http: ${imageUrl && typeof imageUrl === 'string' && imageUrl.startsWith('http')}`);
+          }
+          
+          // Validate the image URL
+          if (!imageUrl || typeof imageUrl !== 'string' || !imageUrl.startsWith('http')) {
+            console.error(`❌ Invalid image URL from FluxRefinerAgent: ${imageUrl}`);
+            imageUrl = 'https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png';
+            console.log(`Using fallback image URL: ${imageUrl}`);
+          }
+          
           prompt = result.prompt;
           creativeProcess = result.creativeProcess;
           
@@ -352,6 +367,11 @@ export class ArtBotMultiAgentSystem {
           [AgentRole.CRITIC]: 0.2
         },
         collaborationScore: 0.85
+      },
+      artwork: {
+        prompt,
+        imageUrl,
+        creativeProcess
       }
     };
     

@@ -1,0 +1,26 @@
+{
+  "project": {
+    "title": "Raining men obscured by umbrellas.",
+    "description": "Create an artistic interpretation of the concept: \"Raining men obscured by umbrellas.\"",
+    "requirements": [
+      "Create a visually striking image that captures the essence of the concept",
+      "Use cinematic lighting and composition",
+      "Incorporate rich visual metaphors and symbolism",
+      "Balance abstract and recognizable elements",
+      "Use René Magritte's surrealist style with clean compositions and philosophical questioning"
+    ],
+    "useFlux": true,
+    "outputFilename": "flux-raining-men-obscured-by-umbrellas."
+  },
+  "style": {},
+  "prompt": "CNSTLL Downpour of businessmen in charcoal suits cascading from thunderous night skies, silhouettes distorted by rain-splattered umbrellas held tightly against the deluge, neon city lights refracting through puddles and fractured reflections on slick pavement, cinestill 800t grain and 4k resolution enhancing mood., film grain, night time",
+  "creativeProcess": "The prompt conjures a surreal, cinematic vision of the relentless grind of corporate life. The \"downpour of businessmen\" subverts the classic metaphor, making it literal as faceless corporate drones plummet like raindrops against the gritty neon backdrop. The umbrellas offer only temporary, feeble shelter - their distorted silhouettes suggesting the futile struggle to maintain individuality. \n\nThe fractured reflections in rain-soaked streets mirror the fragmented identities and distorted realities of those trapped in this dehumanizing cycle. The noir aesthetic of dark suits, hard rain, and lurid city lights creates a mood of existential unease. Through visual metaphor, it ponders whether we've become mere droplets in the churning storm of late-stage capitalism.",
+  "parameters": {
+    "width": 768,
+    "height": 768,
+    "numInferenceSteps": 28,
+    "guidanceScale": 3
+  },
+  "imageUrl": "h",
+  "timestamp": "2025-03-04T22:14:07.355Z"
+}

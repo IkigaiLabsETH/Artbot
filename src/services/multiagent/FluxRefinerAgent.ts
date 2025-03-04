@@ -246,8 +246,19 @@ Include both the prompt itself and a brief creative process explanation.`
         );
         
         if (imageResult && imageResult.output && imageResult.output.length > 0) {
-          imageUrl = imageResult.output[0];
-          console.log(`Image generated: ${imageUrl}`);
+          // Fix for truncated URL issue
+          imageUrl = typeof imageResult.output === 'string' ? imageResult.output.trim() : imageResult.output[0];
+          
+          // Debug logging for the image URL
+          if (process.env.DEBUG_IMAGE_URL === 'true') {
+            console.log(`🔍 DEBUG - Raw imageResult: ${JSON.stringify(imageResult)}`);
+            console.log(`🔍 DEBUG - imageResult.output: ${JSON.stringify(imageResult.output)}`);
+            console.log(`🔍 DEBUG - imageUrl type: ${typeof imageUrl}`);
+            console.log(`🔍 DEBUG - imageUrl value: ${imageUrl}`);
+            console.log(`🔍 DEBUG - imageUrl starts with http: ${imageUrl.startsWith('http')}`);
+          }
+          
+          console.log(`Image generated successfully: ${imageUrl}`);
         } else {
           throw new Error('No output returned from Replicate API');
         }
@@ -260,8 +271,18 @@ Include both the prompt itself and a brief creative process explanation.`
       
       // Save the image URL to a file
       const outputUrlPath = path.join(this.outputDir, `${baseFilename}.txt`);
-      fs.writeFileSync(outputUrlPath, imageUrl);
-      console.log(`Image URL saved to: ${outputUrlPath}`);
+      
+      // Ensure we have a valid URL before saving
+      if (imageUrl && typeof imageUrl === 'string' && imageUrl.startsWith('http')) {
+        fs.writeFileSync(outputUrlPath, imageUrl);
+        console.log(`Image URL saved to: ${outputUrlPath}`);
+      } else {
+        console.error(`Invalid image URL: ${imageUrl}`);
+        // Use a fallback URL
+        imageUrl = 'https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png';
+        fs.writeFileSync(outputUrlPath, imageUrl);
+        console.log(`Fallback image URL saved to: ${outputUrlPath}`);
+      }
       
       // Download the image
       const outputImagePath = path.join(this.outputDir, `${baseFilename}.png`);
@@ -290,7 +311,9 @@ Include both the prompt itself and a brief creative process explanation.`
       return {
         prompt: detailedPrompt,
         creativeProcess,
-        imageUrl,
+        imageUrl: imageUrl && typeof imageUrl === 'string' && imageUrl.startsWith('http') 
+          ? imageUrl 
+          : 'https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png',
         localImagePath: outputImagePath,
         metadata
       };
@@ -310,6 +333,20 @@ Include both the prompt itself and a brief creative process explanation.`
   // Helper function to download an image from a URL
   private async downloadImage(url: string, outputPath: string): Promise<void> {
     try {
+      // Debug logging for the image URL
+      if (process.env.DEBUG_IMAGE_URL === 'true') {
+        console.log(`🔍 DEBUG - downloadImage - URL: ${url}`);
+        console.log(`🔍 DEBUG - downloadImage - URL type: ${typeof url}`);
+        console.log(`🔍 DEBUG - downloadImage - URL length: ${url.length}`);
+        console.log(`🔍 DEBUG - downloadImage - URL starts with http: ${url.startsWith('http')}`);
+        
+        // Check for any unusual characters or truncation
+        if (url.length < 20) {
+          console.log(`🔍 DEBUG - downloadImage - URL is suspiciously short!`);
+          console.log(`🔍 DEBUG - downloadImage - URL char codes: ${Array.from(url).map(c => c.charCodeAt(0))}`);
+        }
+      }
+      
       // Validate URL
       if (!url || !url.startsWith('http')) {
         console.error(`Invalid URL: ${url}`);

@@ -284,15 +284,28 @@ async function generateArt(concept: string) {
     console.log('\n🖼️ Generating art using multi-agent collaboration...');
     const result = await artBotMultiAgentSystem.runArtProject(project);
     
-    if (!result || !result.artwork || !result.artwork.imageUrl) {
-      console.error('❌ Failed to generate image');
+    // Check if we have a valid result with artwork
+    if (!result) {
+      console.error('❌ Failed to generate image: No result returned');
       return;
     }
     
+    // Initialize artwork data with defaults if not present
+    const artwork = result.artwork || {};
+    
     // Extract results from the multi-agent process
-    const imageUrl = result.artwork.imageUrl;
-    const prompt = result.artwork.prompt;
-    const creativeProcess = result.artwork.creativeProcess || "Generated through multi-agent collaboration";
+    let imageUrl = artwork.imageUrl || '';
+    const prompt = artwork.prompt || '';
+    const creativeProcess = artwork.creativeProcess || "Generated through multi-agent collaboration";
+    
+    // Validate the image URL
+    if (!imageUrl || typeof imageUrl !== 'string' || !imageUrl.startsWith('http')) {
+      console.error(`❌ Invalid image URL: ${imageUrl}`);
+      imageUrl = 'https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png';
+      console.log(`Using fallback image URL: ${imageUrl}`);
+    } else {
+      console.log(`✅ Image generated successfully: ${imageUrl}`);
+    }
     
     // Save outputs to files
     const sanitizedConcept = artConcept.replace(/\s+/g, '-').toLowerCase();

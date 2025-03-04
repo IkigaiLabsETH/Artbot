@@ -195,7 +195,27 @@ export class ReplicateService {
       prediction.output = result.output;
       
       console.log(`✅ Prediction completed: ${prediction.id}`);
-      console.log(`🖼️ Output: ${JSON.stringify(prediction.output, null, 2)}`);
+      
+      // Debug logging for the image URL
+      if (process.env.DEBUG_REPLICATE === 'true') {
+        console.log(`🔍 DEBUG - Raw output: ${JSON.stringify(result.output)}`);
+        console.log(`🔍 DEBUG - Output type: ${typeof result.output}`);
+        
+        if (Array.isArray(result.output)) {
+          console.log(`🔍 DEBUG - Output is an array with ${result.output.length} items`);
+          result.output.forEach((item, index) => {
+            console.log(`🔍 DEBUG - Output[${index}]: ${item}`);
+            console.log(`🔍 DEBUG - Output[${index}] type: ${typeof item}`);
+          });
+        }
+      }
+      
+      // Log the output URL properly
+      if (Array.isArray(prediction.output) && prediction.output.length > 0) {
+        console.log(`🖼️ Output URL: ${prediction.output[0]}`);
+      } else {
+        console.log(`🖼️ Output: ${JSON.stringify(prediction.output)}`);
+      }
       
       return prediction;
     } catch (error) {
