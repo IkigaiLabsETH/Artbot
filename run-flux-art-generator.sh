@@ -5,6 +5,8 @@ GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 RED='\033[0;31m'
+CYAN='\033[0;36m'
+MAGENTA='\033[0;35m'
 NC='\033[0m' # No Color
 
 # Print banner
@@ -15,6 +17,12 @@ echo "│   🎨 ArtBot FLUX Image Generator 🎨     │"
 echo "│                                          │"
 echo "╰──────────────────────────────────────────╯"
 echo -e "${NC}"
+
+# Print description
+echo -e "${CYAN}Generate conceptually rich, cinematic images using the FLUX model${NC}"
+echo -e "${CYAN}Creates images with film-like quality and night-time aesthetics${NC}"
+echo -e "${CYAN}Powered by Replicate's adirik/flux-cinestill model${NC}"
+echo ""
 
 # Check if .env file exists
 if [ ! -f .env ]; then
@@ -39,6 +47,24 @@ if ! grep -q "ANTHROPIC_API_KEY=" .env && ! grep -q "OPENAI_API_KEY=" .env; then
   exit 1
 fi
 
+# Display usage if requested
+if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
+  echo -e "${MAGENTA}Usage:${NC}"
+  echo -e "  ./run-flux-art-generator.sh [concept]"
+  echo ""
+  echo -e "${MAGENTA}Examples:${NC}"
+  echo -e "  ./run-flux-art-generator.sh \"cosmic garden at night\""
+  echo -e "  ./run-flux-art-generator.sh \"abandoned cyberpunk arcade\""
+  echo ""
+  echo -e "${MAGENTA}Output:${NC}"
+  echo -e "  The generator creates several files in the output directory:"
+  echo -e "  - flux-[concept].png - The generated image"
+  echo -e "  - flux-[concept].txt - The image URL"
+  echo -e "  - flux-[concept]-prompt.txt - The prompt and creative process"
+  echo -e "  - flux-[concept]-metadata.json - Complete metadata"
+  exit 0
+fi
+
 # Build the TypeScript code
 echo -e "${YELLOW}Building TypeScript code...${NC}"
 npm run build
@@ -51,6 +77,17 @@ fi
 
 # Run the FLUX art generator
 echo -e "${GREEN}Starting FLUX art generator...${NC}"
+echo -e "${YELLOW}This will generate a conceptually rich prompt and create an image using FLUX${NC}"
+echo -e "${YELLOW}The process may take a minute or two to complete${NC}"
+echo ""
+
 node dist/generate-art-flux.js "$@"
 
-echo -e "${BLUE}Done!${NC}" 
+# Check if the generation was successful
+if [ $? -ne 0 ]; then
+  echo -e "${RED}Image generation failed. Please check the error messages above.${NC}"
+  exit 1
+fi
+
+echo -e "${BLUE}Done!${NC}"
+echo -e "${GREEN}Check the output directory for your generated image and prompt files.${NC}" 

@@ -19,6 +19,8 @@
     "demo:collaborative": "node dist/demo-collaborative-memory.js",
     "demo:aesthetic": "node dist/demo-aesthetic.js",
     "demo:social": "node dist/demo-social.js",
+    "demo:flux": "node dist/generate-art-flux.js",
+    "demo:flux-multiagent": "node dist/demo-flux-multiagent.js",
     "test:multiagent": "node test-multiagent.js",
     "monitor:performance": "node monitor-multiagent-performance.js",
     "report:performance": "./monitor-multiagent-performance.sh",

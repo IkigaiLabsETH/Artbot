@@ -5,8 +5,10 @@ This integration allows ArtBot to generate images using the FLUX model from Repl
 ## Features
 
 - Generate images using the FLUX model via Replicate's API
+- Create conceptually rich, evocative prompts with metaphorical depth
 - Automatically enhance prompts with FLUX-specific trigger words and keywords
 - Download generated images to your local machine
+- Save detailed metadata including prompts and creative process explanations
 - Customizable image parameters (width, height, inference steps, guidance scale)
 
 ## Prerequisites
@@ -49,6 +51,34 @@ For example:
 ```
 
 If no concept is provided, it will use the default concept "cosmic garden at night".
+
+### Prompt Philosophy
+
+The FLUX integration uses a sophisticated prompt generation approach that creates conceptually rich, evocative prompts with:
+
+1. **Visual Complexity** - Detailed descriptions of textures, lighting, and composition
+2. **Conceptual Depth** - Metaphorical elements and layered meanings
+3. **Emotional Resonance** - Philosophical or emotional undertones that give the image impact
+4. **Technical Enhancement** - FLUX-specific elements like film grain and cinematic lighting
+
+Each generated prompt is accompanied by a "Creative Process" explanation that reveals the thinking behind the prompt - the meaning, inspiration, or conceptual framework.
+
+### Example Prompt Style
+
+```
+Prompt: Two distinct streams of text-covered surfaces meeting and interweaving, creating new symbols at their intersection, handprints visible beneath the transformation.
+
+Creative Process: I imagined a tide of language pouring over humanity, each word a fragment of forgotten histories clawing its way into relevance. the hands seemed to rise not in hope, but in desperation, as if trying to pull down the weight of their own erasure. it felt like watching a crowd beg to be remembered by the very thing that consumed them.
+```
+
+### Output Files
+
+The generator creates several files in the `output` directory:
+
+- `flux-[concept].png` - The generated image
+- `flux-[concept].txt` - The image URL
+- `flux-[concept]-prompt.txt` - The prompt and creative process
+- `flux-[concept]-metadata.json` - Complete metadata including parameters and timestamps
 
 ### API Parameters
 
