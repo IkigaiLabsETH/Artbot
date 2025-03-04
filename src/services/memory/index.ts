@@ -412,26 +412,52 @@ export class MemorySystem {
   }
 
   /**
-   * Generate embedding for visual content using CLIP-like functionality
+   * Generate embedding for visual content
    */
   private async generateVisualEmbedding(imageUrl: string | any): Promise<number[]> {
     try {
-      // If we have a real API key, we could use Replicate's CLIP model
-      // For now, we'll use a mock implementation
+      // Extract the actual URL if imageUrl is an object
+      let actualImageUrl: string;
+      
+      if (typeof imageUrl === 'string') {
+        actualImageUrl = imageUrl;
+      } else if (typeof imageUrl === 'object' && imageUrl !== null) {
+        // Try to extract URL from common image object properties
+        if (imageUrl.url) {
+          actualImageUrl = imageUrl.url;
+        } else if (imageUrl.imageUrl) {
+          actualImageUrl = imageUrl.imageUrl;
+        } else if (imageUrl.image && typeof imageUrl.image === 'string') {
+          actualImageUrl = imageUrl.image;
+        } else {
+          // If we can't find a URL, use a consistent seed based on the object
+          console.warn('Could not extract image URL from object, using fallback embedding');
+          return this.generateRandomEmbedding(JSON.stringify(imageUrl));
+        }
+      } else {
+        // For any other type, use fallback
+        console.warn('Invalid image input type, using fallback embedding');
+        return this.generateRandomEmbedding(String(imageUrl));
+      }
+      
+      // For now, we'll skip the Replicate API call and use our deterministic
+      // random embedding generator with the image URL as a seed
+      // This ensures that the same image URL always gets the same embedding
+      return this.generateRandomEmbedding(actualImageUrl);
+      
+      /* Commented out due to API issues
       if (this.replicateService && process.env.REPLICATE_API_KEY) {
         // Use Replicate's CLIP model to generate embedding
         const prediction = await this.replicateService.runPrediction(
           'openai/clip-vit-base-patch32',
-          { image: imageUrl }
+          { image: actualImageUrl }
         );
         
         if (prediction.output && Array.isArray(prediction.output)) {
           return prediction.output as number[];
         }
       }
-      
-      // Fallback to random embedding with seed based on image URL
-      return this.generateRandomEmbedding(imageUrl);
+      */
     } catch (error) {
       console.error('Error generating visual embedding:', error);
       // Use a consistent seed for the same input to ensure reproducibility
@@ -461,31 +487,9 @@ export class MemorySystem {
    */
   private async generateTextEmbedding(text: string): Promise<number[]> {
     try {
-      // If we have a real API key, we could use OpenAI's embedding API
-      // For now, we'll use a mock implementation
-      if (this.aiService) {
-        // Use AI service to generate embedding
-        const request = {
-          messages: [{ role: 'user' as 'user' | 'assistant' | 'system', content: text }],
-          model: 'text-embedding-ada-002'
-        };
-        
-        const response = await this.aiService.getCompletion(request);
-        
-        // Parse the response as if it contained embeddings
-        if (response && response.content) {
-          try {
-            const parsed = JSON.parse(response.content);
-            if (Array.isArray(parsed)) {
-              return parsed;
-            }
-          } catch (e) {
-            // Not valid JSON, continue to fallback
-          }
-        }
-      }
-      
-      // Fallback to random embedding with seed based on text
+      // For simplicity and to avoid API format issues, we'll use our deterministic
+      // random embedding generator with the text as a seed
+      // This ensures that the same text always gets the same embedding
       return this.generateRandomEmbedding(text);
     } catch (error) {
       console.error('Error generating text embedding:', error);
