@@ -1,6 +1,8 @@
 import { Action, ServiceType } from '@elizaos/core';
 import { CreativeEngine } from '../services/CreativeEngine';
+import { ReplicateService } from '../services/replicate';
 import { ArtworkIdea, ArtworkMemory } from '../types';
+import { enhancePrompt, generateNegativePrompt } from '../utils';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface GenerateArtParams {
@@ -9,16 +11,23 @@ export interface GenerateArtParams {
   medium?: string;
   explorationRate?: number;
   count?: number;
+  model?: string;
 }
 
 export const generateArt = {
   name: 'generate-art',
   description: 'Generate artwork using autonomous creative processes',
   
-  async execute({ concept, style, medium, explorationRate, count = 1 }, { runtime }) {
+  async execute({ concept, style, medium, explorationRate, count = 1, model }, { runtime }) {
     const engine = await runtime.getService(
       ServiceType.TEXT_GENERATION,
       CreativeEngine
+    );
+    
+    // Get the ReplicateService for image generation
+    const replicateService = await runtime.getService(
+      ServiceType.TEXT_GENERATION,
+      ReplicateService
     );
     
     // Log the provider being used
@@ -47,14 +56,79 @@ export const generateArt = {
       ideas = await engine.generateArtIdeas(count);
     }
     
-    // Create artworks from the ideas
-    const artworks: ArtworkMemory[] = ideas.map(idea => ({
-      id: uuidv4(),
-      imageUrl: `https://placeholder.com/art/${idea.id}`,
-      idea: idea,
-      feedback: [],
-      created: Date.now()
-    }));
+    // Create artworks from the ideas with actual image generation
+    const artworks: ArtworkMemory[] = [];
+    
+    for (const idea of ideas) {
+      try {
+        // Generate an enhanced prompt using our prompt engineering utilities
+        const enhancedPrompt = enhancePrompt(idea);
+        const negativePrompt = generateNegativePrompt();
+        
+        console.log(`Generating image with prompt: ${enhancedPrompt}`);
+        
+        // Generate the image using Replicate
+        const styleObj = {
+          name: idea.style,
+          parameters: {
+            prompt: enhancedPrompt,
+            negative_prompt: negativePrompt,
+            guidance: 7.5,
+            steps: 30
+          }
+        };
+        
+        const prediction = await replicateService.generateFromStyle(
+          styleObj, 
+          enhancedPrompt,
+          model || undefined
+        );
+        
+        // Get the image URL from the prediction output
+        let imageUrl = '';
+        if (prediction.status === 'succeeded' && prediction.output) {
+          // Handle different output formats
+          if (Array.isArray(prediction.output)) {
+            imageUrl = prediction.output[0];
+          } else if (typeof prediction.output === 'string') {
+            imageUrl = prediction.output;
+          } else if (prediction.output.image) {
+            imageUrl = prediction.output.image;
+          }
+        }
+        
+        // If image generation failed, use a placeholder
+        if (!imageUrl) {
+          console.warn(`Image generation failed for idea: ${idea.id}. Using placeholder.`);
+          imageUrl = `https://placeholder.com/art/${idea.id}`;
+        }
+        
+        // Create the artwork memory
+        const artwork: ArtworkMemory = {
+          id: uuidv4(),
+          imageUrl: imageUrl,
+          idea: {
+            ...idea,
+            // Store the enhanced prompt in the idea for reference
+            concept: enhancedPrompt
+          },
+          feedback: [],
+          created: Date.now()
+        };
+        
+        artworks.push(artwork);
+      } catch (error) {
+        console.error(`Error generating image for idea ${idea.id}:`, error);
+        // Add with placeholder on error
+        artworks.push({
+          id: uuidv4(),
+          imageUrl: `https://placeholder.com/art/${idea.id}`,
+          idea: idea,
+          feedback: [],
+          created: Date.now()
+        });
+      }
+    }
     
     // Add to completed works
     const state = engine.getState();

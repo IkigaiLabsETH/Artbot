@@ -144,7 +144,84 @@ export class ReplicateService extends Service {
   }
 
   async runPrediction(modelId: string, input: any): Promise<ModelPrediction> {
-    // Implementation
-    return {} as ModelPrediction;
+    if (!this.config.apiKey) {
+      throw new Error('Replicate API key is required');
+    }
+
+    const modelHandler = this.getModelHandler(modelId);
+    const version = modelHandler.getVersion();
+    
+    try {
+      // Create prediction
+      const createResponse = await fetch(`${this.config.apiUrl}/predictions`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Token ${this.config.apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          version,
+          input
+        })
+      });
+
+      if (!createResponse.ok) {
+        const errorData = await createResponse.json();
+        throw new Error(`Failed to create prediction: ${JSON.stringify(errorData)}`);
+      }
+
+      const prediction = await createResponse.json();
+      let status = prediction.status;
+      let predictionId = prediction.id;
+
+      // Poll for completion
+      while (status === 'starting' || status === 'processing') {
+        // Wait before polling again
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        const statusResponse = await fetch(`${this.config.apiUrl}/predictions/${predictionId}`, {
+          headers: {
+            'Authorization': `Token ${this.config.apiKey}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!statusResponse.ok) {
+          throw new Error(`Failed to check prediction status: ${statusResponse.statusText}`);
+        }
+
+        const updatedPrediction = await statusResponse.json();
+        status = updatedPrediction.status;
+        
+        if (status === 'succeeded') {
+          return {
+            id: predictionId,
+            status,
+            output: updatedPrediction.output
+          };
+        } else if (status === 'failed' || status === 'canceled') {
+          return {
+            id: predictionId,
+            status,
+            output: null,
+            error: updatedPrediction.error || 'Prediction failed'
+          };
+        }
+      }
+
+      return {
+        id: predictionId,
+        status,
+        output: prediction.output
+      };
+    } catch (error) {
+      console.error('Error running prediction:', error);
+      return {
+        id: '',
+        status: 'failed',
+        output: null,
+        error: error.message || 'Unknown error'
+      };
+    }
   }
 } 
