@@ -32,14 +32,14 @@ async function runDemo() {
   await system.initialize();
   console.log('✅ All agents initialized successfully');
   
-  // Create a project
-  const projectTitle = 'Cosmic Dreams';
-  const projectDescription = 'An exploration of the intersection between cosmic phenomena and human consciousness';
+  // Create a new project
+  const projectTitle = "Evolving Diffusion";
+  const projectDescription = "An exploration of diffusion-based generative art that dynamically evolves its style, inspired by systems that gather and cluster visual elements to create distinct and evolving artistic expressions";
   const projectRequirements = [
-    'Include celestial elements',
-    'Evoke a sense of wonder and contemplation',
-    'Balance abstract and recognizable forms',
-    'Use a harmonious color palette'
+    "Incorporate elements of diffusion-based generative techniques",
+    "Suggest a visual style that appears to evolve and adapt",
+    "Balance abstract and recognizable forms",
+    "Create a sense of emergent complexity from simple elements"
   ];
   
   console.log(`\n🎨 Creating new project: "${projectTitle}"`);
