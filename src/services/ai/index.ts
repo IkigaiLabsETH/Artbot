@@ -200,4 +200,160 @@ export class AIService {
     
     return modelMap[anthropicModel] || 'gpt-4';
   }
+
+  /**
+   * Generate text based on a prompt
+   * @param prompt The prompt to generate text from
+   * @param options Optional configuration for the generation
+   * @returns The generated text
+   */
+  async generateText(
+    prompt: string,
+    options: {
+      model?: string;
+      temperature?: number;
+      maxTokens?: number;
+      systemPrompt?: string;
+    } = {}
+  ): Promise<string> {
+    // Construct messages array
+    const messages: AIMessage[] = [];
+    
+    // Add system prompt if provided
+    if (options.systemPrompt) {
+      messages.push({
+        role: 'system',
+        content: options.systemPrompt
+      });
+    } else {
+      // Default system prompt for creative tasks
+      messages.push({
+        role: 'system',
+        content: 'You are a creative AI assistant with expertise in art, design, and creative writing. Provide thoughtful, original, and detailed responses.'
+      });
+    }
+    
+    // Add user prompt
+    messages.push({
+      role: 'user',
+      content: prompt
+    });
+    
+    // Get completion
+    const response = await this.getCompletion({
+      messages,
+      model: options.model,
+      temperature: options.temperature,
+      maxTokens: options.maxTokens
+    });
+    
+    return response.content;
+  }
+
+  /**
+   * Generate a creative exploration of a concept
+   * @param concept The concept to explore
+   * @param options Optional configuration for the generation
+   * @returns The generated exploration
+   */
+  async generateCreativeExploration(
+    concept: string,
+    options: {
+      depth?: 'brief' | 'moderate' | 'deep';
+      perspective?: 'analytical' | 'emotional' | 'visual' | 'philosophical';
+      constraints?: string[];
+      model?: string;
+      temperature?: number;
+    } = {}
+  ): Promise<string> {
+    // Set defaults
+    const depth = options.depth || 'moderate';
+    const perspective = options.perspective || 'visual';
+    const constraints = options.constraints || [];
+    const temperature = options.temperature || 0.8; // Higher temperature for creative tasks
+    
+    // Determine token count based on depth
+    const tokenMap = {
+      'brief': 500,
+      'moderate': 1000,
+      'deep': 2000
+    };
+    
+    // Construct system prompt
+    const systemPrompt = `You are a creative AI with expertise in artistic exploration. 
+    Explore concepts with originality and depth, focusing on ${perspective} aspects.
+    Generate a ${depth} exploration of the provided concept.
+    ${constraints.length > 0 ? `Consider these constraints: ${constraints.join(', ')}` : ''}`;
+    
+    // Generate the exploration
+    return this.generateText(
+      `Explore the concept of "${concept}" in a creative and original way. 
+      Provide insights, connections, and possibilities that might not be immediately obvious.`,
+      {
+        systemPrompt,
+        temperature,
+        maxTokens: tokenMap[depth],
+        model: options.model
+      }
+    );
+  }
+
+  /**
+   * Generate a reflection on creative work
+   * @param work The creative work to reflect on
+   * @param options Optional configuration for the generation
+   * @returns The generated reflection
+   */
+  async generateReflection(
+    work: {
+      title: string;
+      description: string;
+      medium?: string;
+      context?: string;
+    },
+    options: {
+      focusAreas?: Array<'technique' | 'meaning' | 'emotion' | 'context' | 'evolution'>;
+      model?: string;
+      temperature?: number;
+    } = {}
+  ): Promise<string> {
+    // Set defaults
+    const focusAreas = options.focusAreas || ['technique', 'meaning', 'emotion'];
+    const temperature = options.temperature || 0.7;
+    
+    // Construct system prompt
+    const systemPrompt = `You are a thoughtful AI with expertise in artistic reflection.
+    Reflect on creative work with insight and nuance.
+    Focus on these aspects: ${focusAreas.join(', ')}.
+    Provide a balanced reflection that considers both strengths and areas for growth.`;
+    
+    // Construct the prompt
+    const prompt = `
+    Reflect on the following creative work:
+    
+    Title: ${work.title}
+    Description: ${work.description}
+    ${work.medium ? `Medium: ${work.medium}` : ''}
+    ${work.context ? `Context: ${work.context}` : ''}
+    
+    Consider:
+    ${focusAreas.includes('technique') ? '- The technical aspects and execution' : ''}
+    ${focusAreas.includes('meaning') ? '- The meaning and themes explored' : ''}
+    ${focusAreas.includes('emotion') ? '- The emotional impact and resonance' : ''}
+    ${focusAreas.includes('context') ? '- The context and cultural relevance' : ''}
+    ${focusAreas.includes('evolution') ? '- How this work represents evolution or growth' : ''}
+    
+    Provide a thoughtful reflection that could help deepen understanding of this work.
+    `;
+    
+    // Generate the reflection
+    return this.generateText(
+      prompt,
+      {
+        systemPrompt,
+        temperature,
+        model: options.model
+      }
+    );
+  }
 } 

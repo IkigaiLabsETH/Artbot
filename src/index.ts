@@ -3,6 +3,21 @@ import { CreativeEngine } from './services/CreativeEngine.js';
 import { StyleService } from './services/style/index.js';
 import { artContextProvider } from './providers/artContext.js';
 import { AIService } from './services/ai/index.js';
+import { MemorySystem, MemoryType } from './services/memory/index.js';
+import { MultiAgentSystem, AgentRole } from './services/multiagent/index.js';
+import { SocialEngagementService } from './services/social/index.js';
+
+// Export all components
+export {
+  CreativeEngine,
+  StyleService,
+  AIService,
+  MemorySystem,
+  MemoryType,
+  MultiAgentSystem,
+  AgentRole,
+  SocialEngagementService
+};
 
 // Load environment variables
 dotenv.config();
@@ -144,7 +159,9 @@ function displayResults(artBot: CreativeEngine) {
 }
 
 // Run the main function
-main().catch(error => {
-  console.error('Unhandled error:', error);
-  process.exit(1);
-}); 
+if (require.main === module) {
+  main().catch(error => {
+    console.error('Unhandled error:', error);
+    process.exit(1);
+  });
+} 

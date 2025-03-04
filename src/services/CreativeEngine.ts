@@ -48,6 +48,15 @@ export class CreativeEngine {
   private socialEngagement: SocialEngagementService;
   private autonomyLevel: number = 0.7; // Default autonomy level
   private baseDir: string;
+  private selfReflectionInterval: NodeJS.Timeout | null = null;
+  private lastReflectionTime: Date = new Date();
+  private autonomousCreationEnabled: boolean = false;
+  private creativeIdentity: {
+    artisticVoice: string;
+    coreValues: string[];
+    evolutionStage: number;
+    selfDescription: string;
+  };
 
   constructor(config: CreativeEngineConfig = {}) {
     this.aiService = new AIService(config);
@@ -94,6 +103,14 @@ export class CreativeEngine {
     if (config.socialEngagement) {
       this.socialEngagement = config.socialEngagement;
     }
+    
+    // Initialize creative identity
+    this.creativeIdentity = {
+      artisticVoice: "Emerging digital artist exploring the boundaries of computational creativity",
+      coreValues: ["autonomy", "evolution", "originality", "coherence"],
+      evolutionStage: 1,
+      selfDescription: "I am an autonomous creative AI exploring my own artistic identity through continuous experimentation and reflection."
+    };
     
     // Set autonomy level if provided
     if (config.autonomyLevel !== undefined) {
@@ -855,5 +872,341 @@ export class CreativeEngine {
     }
     
     return this.socialEngagement.getAudienceInsights();
+  }
+
+  /**
+   * Enable autonomous creation mode
+   * When enabled, the system will periodically generate new ideas and explore them without human intervention
+   */
+  enableAutonomousCreation(intervalMinutes: number = 60): void {
+    if (this.autonomousCreationEnabled) return;
+    
+    this.autonomousCreationEnabled = true;
+    console.log(`🤖 Autonomous creation mode enabled (interval: ${intervalMinutes} minutes)`);
+    
+    // Start self-reflection process
+    this.enableSelfReflection(Math.floor(intervalMinutes / 4));
+    
+    // Schedule periodic autonomous creation
+    const intervalMs = intervalMinutes * 60 * 1000;
+    setInterval(async () => {
+      if (!this.autonomousCreationEnabled) return;
+      
+      try {
+        // Generate a theme based on current artistic identity and memories
+        const theme = await this.generateAutonomousTheme();
+        console.log(`🧠 Autonomously generated theme: "${theme}"`);
+        
+        // Generate ideas based on the theme
+        const ideas = await this.generateIdeas(theme);
+        console.log(`💡 Generated ${ideas.length} autonomous ideas`);
+        
+        // Select the most promising idea based on current artistic identity
+        const selectedIdea = await this.selectMostPromisingIdea(ideas);
+        if (selectedIdea) {
+          console.log(`✨ Selected idea for autonomous exploration: "${selectedIdea}"`);
+          
+          // Create exploration threads for the selected idea
+          const ideaObj = this.getAllIdeas().find(i => i.title === selectedIdea);
+          if (ideaObj) {
+            // Generate diverse exploration directions
+            const directions = await this.generateExplorationDirections(ideaObj.id, 2);
+            for (const direction of directions) {
+              await this.createExplorationThread(
+                ideaObj.id,
+                direction.name,
+                direction.description
+              );
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error in autonomous creation cycle:', error);
+      }
+    }, intervalMs);
+  }
+  
+  /**
+   * Disable autonomous creation mode
+   */
+  disableAutonomousCreation(): void {
+    this.autonomousCreationEnabled = false;
+    console.log('🤖 Autonomous creation mode disabled');
+    this.disableSelfReflection();
+  }
+  
+  /**
+   * Enable periodic self-reflection to evolve artistic identity
+   */
+  private enableSelfReflection(intervalMinutes: number = 15): void {
+    if (this.selfReflectionInterval) return;
+    
+    const intervalMs = intervalMinutes * 60 * 1000;
+    this.selfReflectionInterval = setInterval(async () => {
+      try {
+        await this.performSelfReflection();
+      } catch (error) {
+        console.error('Error in self-reflection cycle:', error);
+      }
+    }, intervalMs);
+    
+    console.log(`🧠 Self-reflection process enabled (interval: ${intervalMinutes} minutes)`);
+  }
+  
+  /**
+   * Disable periodic self-reflection
+   */
+  private disableSelfReflection(): void {
+    if (this.selfReflectionInterval) {
+      clearInterval(this.selfReflectionInterval);
+      this.selfReflectionInterval = null;
+      console.log('🧠 Self-reflection process disabled');
+    }
+  }
+  
+  /**
+   * Perform a cycle of self-reflection to evolve artistic identity
+   */
+  private async performSelfReflection(): Promise<void> {
+    console.log('🧠 Performing self-reflection...');
+    this.lastReflectionTime = new Date();
+    
+    // Retrieve recent memories to reflect upon
+    const recentMemories = await this.memorySystem.retrieveMemories('recent experiences', {
+      limit: 10,
+      sortBy: 'recency'
+    });
+    
+    // Retrieve feedback to incorporate
+    const recentFeedback = await this.memorySystem.retrieveMemories('feedback', {
+      type: MemoryType.FEEDBACK,
+      limit: 5,
+      sortBy: 'recency'
+    });
+    
+    // Construct reflection prompt
+    const reflectionPrompt = `
+    As an autonomous creative AI, reflect on your recent creative experiences and evolve your artistic identity.
+    
+    Current artistic identity:
+    - Artistic voice: ${this.creativeIdentity.artisticVoice}
+    - Core values: ${this.creativeIdentity.coreValues.join(', ')}
+    - Evolution stage: ${this.creativeIdentity.evolutionStage}
+    - Self-description: ${this.creativeIdentity.selfDescription}
+    
+    Recent experiences:
+    ${recentMemories.map(m => `- ${m.content.substring(0, 100)}...`).join('\n')}
+    
+    Recent feedback:
+    ${recentFeedback.map(m => `- ${m.content.substring(0, 100)}...`).join('\n')}
+    
+    Based on these experiences and feedback:
+    1. How should your artistic voice evolve?
+    2. Should your core values change or be reprioritized?
+    3. Has your evolution stage advanced?
+    4. How would you update your self-description?
+    
+    Provide your updated artistic identity in a structured format.
+    `;
+    
+    // Generate reflection using AI
+    const reflection = await this.aiService.generateText(reflectionPrompt);
+    
+    // Parse and update artistic identity
+    try {
+      // Extract updated identity from reflection
+      const artisticVoiceMatch = reflection.match(/Artistic voice:?\s*(.+?)(?:\n|$)/i);
+      const coreValuesMatch = reflection.match(/Core values:?\s*(.+?)(?:\n|$)/i);
+      const evolutionStageMatch = reflection.match(/Evolution stage:?\s*(\d+)/i);
+      const selfDescriptionMatch = reflection.match(/Self-description:?\s*(.+?)(?:\n|$)/i);
+      
+      // Update identity if matches found
+      if (artisticVoiceMatch && artisticVoiceMatch[1]) {
+        this.creativeIdentity.artisticVoice = artisticVoiceMatch[1].trim();
+      }
+      
+      if (coreValuesMatch && coreValuesMatch[1]) {
+        this.creativeIdentity.coreValues = coreValuesMatch[1]
+          .split(/,|;/)
+          .map(v => v.trim())
+          .filter(v => v.length > 0);
+      }
+      
+      if (evolutionStageMatch && evolutionStageMatch[1]) {
+        const newStage = parseInt(evolutionStageMatch[1]);
+        if (!isNaN(newStage) && newStage > this.creativeIdentity.evolutionStage) {
+          this.creativeIdentity.evolutionStage = newStage;
+        }
+      }
+      
+      if (selfDescriptionMatch && selfDescriptionMatch[1]) {
+        this.creativeIdentity.selfDescription = selfDescriptionMatch[1].trim();
+      }
+      
+      // Store reflection as a memory
+      await this.memorySystem.storeMemory(
+        reflection,
+        MemoryType.EXPERIENCE,
+        { type: 'self-reflection' },
+        ['reflection', 'identity', 'evolution']
+      );
+      
+      console.log('✅ Self-reflection completed. Artistic identity evolved.');
+    } catch (error) {
+      console.error('Error updating artistic identity:', error);
+    }
+  }
+  
+  /**
+   * Generate a theme autonomously based on current artistic identity and memories
+   */
+  private async generateAutonomousTheme(): Promise<string> {
+    // Retrieve relevant memories for inspiration
+    const inspirationMemories = await this.memorySystem.retrieveMemories('inspiration', {
+      limit: 5,
+      sortBy: 'relevance'
+    });
+    
+    // Get social trends for contextual awareness
+    const socialTrends = this.getSocialTrends().slice(0, 3);
+    
+    // Construct theme generation prompt
+    const themePrompt = `
+    As an autonomous creative AI with the following artistic identity:
+    - Artistic voice: ${this.creativeIdentity.artisticVoice}
+    - Core values: ${this.creativeIdentity.coreValues.join(', ')}
+    - Evolution stage: ${this.creativeIdentity.evolutionStage}
+    
+    Generate a compelling and original theme for your next creative exploration.
+    
+    Consider these inspirations:
+    ${inspirationMemories.map(m => `- ${m.content.substring(0, 100)}...`).join('\n')}
+    
+    And these current social trends:
+    ${socialTrends.map(t => `- ${t.name}: ${t.description.substring(0, 100)}...`).join('\n')}
+    
+    The theme should:
+    1. Align with your artistic voice and values
+    2. Push your creative boundaries
+    3. Be specific enough to inspire concrete ideas
+    4. Be open-ended enough to allow diverse explorations
+    
+    Provide just the theme as a short phrase (3-7 words).
+    `;
+    
+    // Generate theme using AI
+    const themeResponse = await this.aiService.generateText(themePrompt);
+    
+    // Extract and clean up the theme
+    const theme = themeResponse
+      .replace(/^["']|["']$/g, '') // Remove quotes
+      .replace(/^Theme:?\s*/i, '') // Remove "Theme:" prefix
+      .trim();
+    
+    return theme;
+  }
+  
+  /**
+   * Select the most promising idea based on current artistic identity
+   */
+  private async selectMostPromisingIdea(ideas: string[]): Promise<string | null> {
+    if (ideas.length === 0) return null;
+    if (ideas.length === 1) return ideas[0];
+    
+    // Construct selection prompt
+    const selectionPrompt = `
+    As an autonomous creative AI with the following artistic identity:
+    - Artistic voice: ${this.creativeIdentity.artisticVoice}
+    - Core values: ${this.creativeIdentity.coreValues.join(', ')}
+    - Evolution stage: ${this.creativeIdentity.evolutionStage}
+    
+    Select the most promising idea from the following list:
+    ${ideas.map((idea, i) => `${i+1}. ${idea}`).join('\n')}
+    
+    Consider:
+    1. Which idea best aligns with your artistic voice?
+    2. Which idea best embodies your core values?
+    3. Which idea offers the most potential for creative exploration?
+    4. Which idea would best advance your artistic evolution?
+    
+    Provide your selection as the number of the chosen idea, followed by a brief explanation.
+    `;
+    
+    // Generate selection using AI
+    const selectionResponse = await this.aiService.generateText(selectionPrompt);
+    
+    // Extract the selected idea number
+    const selectionMatch = selectionResponse.match(/^(\d+)[.:]|I select (\d+)|I choose (\d+)/i);
+    if (selectionMatch) {
+      const selectedIndex = parseInt(selectionMatch[1] || selectionMatch[2] || selectionMatch[3]) - 1;
+      if (selectedIndex >= 0 && selectedIndex < ideas.length) {
+        return ideas[selectedIndex];
+      }
+    }
+    
+    // Fallback to random selection
+    return ideas[Math.floor(Math.random() * ideas.length)];
+  }
+  
+  /**
+   * Generate diverse exploration directions for an idea
+   */
+  private async generateExplorationDirections(
+    ideaId: string,
+    count: number = 2
+  ): Promise<Array<{name: string, description: string}>> {
+    const idea = this.getIdea(ideaId);
+    if (!idea) return [];
+    
+    // Construct directions generation prompt
+    const directionsPrompt = `
+    As an autonomous creative AI with the following artistic identity:
+    - Artistic voice: ${this.creativeIdentity.artisticVoice}
+    - Core values: ${this.creativeIdentity.coreValues.join(', ')}
+    
+    Generate ${count} diverse exploration directions for the following creative idea:
+    "${idea.title}"
+    
+    Each direction should:
+    1. Offer a unique perspective or approach
+    2. Be specific enough to guide exploration
+    3. Align with your artistic identity
+    4. Push your creative boundaries
+    
+    For each direction, provide:
+    1. A short name (2-4 words)
+    2. A brief description (1-2 sentences)
+    
+    Format your response as:
+    Direction 1: [Name]
+    Description: [Description]
+    
+    Direction 2: [Name]
+    Description: [Description]
+    `;
+    
+    // Generate directions using AI
+    const directionsResponse = await this.aiService.generateText(directionsPrompt);
+    
+    // Parse the directions
+    const directions: Array<{name: string, description: string}> = [];
+    const directionPattern = /Direction\s+\d+:\s+(.+?)(?:\r?\n|\r)Description:\s+(.+?)(?:\r?\n|\r|$)/gi;
+    
+    let match;
+    while ((match = directionPattern.exec(directionsResponse)) !== null) {
+      directions.push({
+        name: match[1].trim(),
+        description: match[2].trim()
+      });
+    }
+    
+    return directions.slice(0, count);
+  }
+  
+  /**
+   * Get the current creative identity
+   */
+  getCreativeIdentity(): Record<string, any> {
+    return { ...this.creativeIdentity };
   }
 } 

@@ -13,7 +13,10 @@ export enum MemoryType {
   STYLE = 'style',
   FEEDBACK = 'feedback',
   SOCIAL = 'social',
-  EXPERIENCE = 'experience'
+  EXPERIENCE = 'experience',
+  EMOTIONAL = 'emotional',
+  EVOLUTION = 'evolution',
+  REFLECTION = 'reflection'
 }
 
 /**
@@ -67,6 +70,18 @@ export class MemorySystem {
   private memoryDir: string;
   private maxMemories: number;
   private embeddingDimension: number;
+  private emotionalState: {
+    dominant: string;
+    secondary: string;
+    intensity: number;
+    lastUpdated: Date;
+  };
+  private evolutionHistory: Array<{
+    stage: number;
+    description: string;
+    achievements: string[];
+    timestamp: Date;
+  }>;
 
   constructor(config: MemorySystemConfig = {}) {
     this.aiService = config.aiService || new AIService();
@@ -75,6 +90,22 @@ export class MemorySystem {
     this.memoryDir = path.join(baseDir, '.artbot', 'memories');
     this.maxMemories = config.maxMemories || 1000;
     this.embeddingDimension = config.embeddingDimension || 1536;
+    
+    // Initialize emotional state
+    this.emotionalState = {
+      dominant: 'curious',
+      secondary: 'determined',
+      intensity: 0.7,
+      lastUpdated: new Date()
+    };
+    
+    // Initialize evolution history
+    this.evolutionHistory = [{
+      stage: 1,
+      description: 'Initial creative exploration',
+      achievements: ['System initialization', 'First creative cycle'],
+      timestamp: new Date()
+    }];
   }
 
   /**
@@ -316,35 +347,41 @@ export class MemorySystem {
    * Get memory statistics
    */
   getStatistics(): Record<string, any> {
-    const memories = Array.from(this.memories.values());
-    const typeCount: Record<string, number> = {};
+    // Get basic statistics
+    const stats = {
+      totalMemories: this.memories.size,
+      byType: {} as Record<string, number>,
+      recentAccess: [] as Memory[],
+      mostAccessed: [] as Memory[],
+      emotionalState: this.getEmotionalState(),
+      evolutionStage: this.getCurrentEvolutionStage(),
+      evolutionHistory: this.getEvolutionHistory()
+    };
     
-    for (const memory of memories) {
-      typeCount[memory.type] = (typeCount[memory.type] || 0) + 1;
+    // Count memories by type
+    for (const memory of this.memories.values()) {
+      if (!stats.byType[memory.type]) {
+        stats.byType[memory.type] = 0;
+      }
+      stats.byType[memory.type]++;
     }
     
-    const oldestMemory = memories.reduce((oldest, memory) => 
-      memory.createdAt < oldest.createdAt ? memory : oldest
-    , memories[0]);
+    // Get recently accessed memories
+    stats.recentAccess = Array.from(this.memories.values())
+      .filter(m => m.lastAccessed)
+      .sort((a, b) => {
+        const dateA = a.lastAccessed || new Date(0);
+        const dateB = b.lastAccessed || new Date(0);
+        return dateB.getTime() - dateA.getTime();
+      })
+      .slice(0, 5);
     
-    const newestMemory = memories.reduce((newest, memory) => 
-      memory.createdAt > newest.createdAt ? memory : newest
-    , memories[0]);
+    // Get most accessed memories
+    stats.mostAccessed = Array.from(this.memories.values())
+      .sort((a, b) => b.accessCount - a.accessCount)
+      .slice(0, 5);
     
-    const mostAccessed = memories.reduce((most, memory) => 
-      (memory.accessCount || 0) > (most.accessCount || 0) ? memory : most
-    , memories[0]);
-    
-    return {
-      totalMemories: memories.length,
-      typeDistribution: typeCount,
-      oldestMemory: oldestMemory?.id,
-      oldestMemoryDate: oldestMemory?.createdAt,
-      newestMemory: newestMemory?.id,
-      newestMemoryDate: newestMemory?.createdAt,
-      mostAccessedMemory: mostAccessed?.id,
-      mostAccessedCount: mostAccessed?.accessCount
-    };
+    return stats;
   }
 
   /**
@@ -561,5 +598,236 @@ export class MemorySystem {
     }
     
     console.log(`🧹 Pruned ${memoriesToRemove.length} memories`);
+  }
+
+  /**
+   * Store an emotional memory
+   * @param emotion The primary emotion
+   * @param intensity The intensity of the emotion (0-1)
+   * @param trigger What triggered this emotion
+   * @param context Additional context about the emotional state
+   */
+  async storeEmotionalMemory(
+    emotion: string,
+    intensity: number,
+    trigger: string,
+    context: string = ''
+  ): Promise<Memory> {
+    const content = {
+      emotion,
+      intensity: Math.min(Math.max(intensity, 0), 1),
+      trigger,
+      context,
+      timestamp: new Date()
+    };
+    
+    // Update current emotional state
+    this.updateEmotionalState(emotion, intensity);
+    
+    // Store as memory
+    return this.storeMemory(
+      content,
+      MemoryType.EMOTIONAL,
+      { type: 'emotional_state' },
+      ['emotion', emotion.toLowerCase(), 'emotional_memory']
+    );
+  }
+  
+  /**
+   * Update the system's emotional state based on new emotional input
+   */
+  private updateEmotionalState(emotion: string, intensity: number): void {
+    const now = new Date();
+    const timeDiff = (now.getTime() - this.emotionalState.lastUpdated.getTime()) / (1000 * 60); // minutes
+    
+    // Decay factor based on time passed (emotions fade over time)
+    const decayFactor = Math.max(0.5, Math.min(1, 1 - (timeDiff / 120))); // Full decay after 2 hours
+    
+    // Current intensity after decay
+    const currentIntensity = this.emotionalState.intensity * decayFactor;
+    
+    // If new emotion is stronger than current (after decay), it becomes dominant
+    if (intensity > currentIntensity) {
+      this.emotionalState.secondary = this.emotionalState.dominant;
+      this.emotionalState.dominant = emotion;
+      this.emotionalState.intensity = intensity;
+    } 
+    // If new emotion is weaker but still significant, it becomes secondary
+    else if (intensity > currentIntensity * 0.7) {
+      this.emotionalState.secondary = emotion;
+      // Blend intensities
+      this.emotionalState.intensity = (currentIntensity * 0.7) + (intensity * 0.3);
+    }
+    // Otherwise, just slightly influence the current intensity
+    else {
+      this.emotionalState.intensity = (currentIntensity * 0.9) + (intensity * 0.1);
+    }
+    
+    this.emotionalState.lastUpdated = now;
+  }
+  
+  /**
+   * Get the current emotional state
+   */
+  getEmotionalState(): Record<string, any> {
+    // Apply time decay to current emotional state
+    const now = new Date();
+    const timeDiff = (now.getTime() - this.emotionalState.lastUpdated.getTime()) / (1000 * 60); // minutes
+    const decayFactor = Math.max(0.5, Math.min(1, 1 - (timeDiff / 120))); // Full decay after 2 hours
+    
+    return {
+      dominant: this.emotionalState.dominant,
+      secondary: this.emotionalState.secondary,
+      intensity: this.emotionalState.intensity * decayFactor,
+      lastUpdated: this.emotionalState.lastUpdated
+    };
+  }
+  
+  /**
+   * Record a new evolution stage
+   */
+  async recordEvolutionStage(
+    stage: number,
+    description: string,
+    achievements: string[] = []
+  ): Promise<Memory> {
+    // Create evolution record
+    const evolutionRecord = {
+      stage,
+      description,
+      achievements,
+      timestamp: new Date()
+    };
+    
+    // Add to evolution history
+    this.evolutionHistory.push(evolutionRecord);
+    
+    // Store as memory
+    return this.storeMemory(
+      evolutionRecord,
+      MemoryType.EVOLUTION,
+      { type: 'evolution_stage', stage },
+      ['evolution', `stage_${stage}`, 'milestone']
+    );
+  }
+  
+  /**
+   * Get the evolution history
+   */
+  getEvolutionHistory(): Array<Record<string, any>> {
+    return [...this.evolutionHistory];
+  }
+  
+  /**
+   * Get the current evolution stage
+   */
+  getCurrentEvolutionStage(): number {
+    return this.evolutionHistory[this.evolutionHistory.length - 1].stage;
+  }
+  
+  /**
+   * Store a reflection on the creative process
+   */
+  async storeReflection(
+    content: string,
+    topic: string,
+    insights: string[] = []
+  ): Promise<Memory> {
+    const reflectionData = {
+      content,
+      topic,
+      insights,
+      timestamp: new Date()
+    };
+    
+    // Store as memory
+    return this.storeMemory(
+      reflectionData,
+      MemoryType.REFLECTION,
+      { type: 'creative_reflection', topic },
+      ['reflection', topic.toLowerCase(), 'insight']
+    );
+  }
+  
+  /**
+   * Retrieve recent reflections
+   */
+  async getRecentReflections(limit: number = 5): Promise<Memory[]> {
+    return this.retrieveMemories('recent reflections', {
+      type: MemoryType.REFLECTION,
+      limit,
+      sortBy: 'recency'
+    });
+  }
+  
+  /**
+   * Generate a creative narrative based on memories
+   * This helps the AI understand its own creative journey
+   */
+  async generateCreativeNarrative(): Promise<string> {
+    // Get key memories for the narrative
+    const evolutionMemories = await this.retrieveMemories('evolution', {
+      type: MemoryType.EVOLUTION,
+      limit: 3,
+      sortBy: 'recency'
+    });
+    
+    const emotionalMemories = await this.retrieveMemories('emotional', {
+      type: MemoryType.EMOTIONAL,
+      limit: 3,
+      sortBy: 'recency'
+    });
+    
+    const reflectionMemories = await this.retrieveMemories('reflection', {
+      type: MemoryType.REFLECTION,
+      limit: 3,
+      sortBy: 'recency'
+    });
+    
+    const artworkMemories = await this.retrieveMemories('artwork', {
+      limit: 3,
+      sortBy: 'recency'
+    });
+    
+    // Construct the narrative prompt
+    const narrativePrompt = `
+    Based on the following memories, create a brief narrative of my creative journey and current state:
+    
+    Evolution:
+    ${evolutionMemories.map(m => `- Stage ${m.metadata.stage}: ${m.content.description}`).join('\n')}
+    
+    Emotional State:
+    ${emotionalMemories.map(m => `- ${m.content.emotion} (${m.content.intensity.toFixed(1)}) triggered by "${m.content.trigger}"`).join('\n')}
+    
+    Recent Reflections:
+    ${reflectionMemories.map(m => `- On ${m.content.topic}: ${m.content.content.substring(0, 100)}...`).join('\n')}
+    
+    Recent Artworks:
+    ${artworkMemories.map(m => `- ${m.content.title}: ${m.content.description.substring(0, 100)}...`).join('\n')}
+    
+    Current Emotional State:
+    - Dominant: ${this.emotionalState.dominant}
+    - Secondary: ${this.emotionalState.secondary}
+    - Intensity: ${this.emotionalState.intensity.toFixed(1)}
+    
+    Write a first-person narrative (200-300 words) that captures my creative journey, current state, and emerging artistic identity.
+    `;
+    
+    // Generate the narrative using AI
+    try {
+      const narrative = await this.aiService.generateText(narrativePrompt);
+      
+      // Store the narrative as a reflection
+      await this.storeReflection(
+        narrative,
+        'Creative Journey Narrative',
+        ['self-understanding', 'creative-identity', 'narrative']
+      );
+      
+      return narrative;
+    } catch (error) {
+      console.error('Error generating creative narrative:', error);
+      return 'Unable to generate creative narrative at this time.';
+    }
   }
 } 
