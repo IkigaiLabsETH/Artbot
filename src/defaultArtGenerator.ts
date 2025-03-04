@@ -25,24 +25,78 @@ interface ArtDirection {
   avoidElements?: string[];       // Elements to avoid
 }
 
-// Default art direction that can be overridden via environment variables or parameters
+// Default art direction that can be overridden by environment variables or parameters
 const defaultArtDirection: ArtDirection = {
-  styleEmphasis: process.env.ART_STYLE_EMPHASIS ? 
-    process.env.ART_STYLE_EMPHASIS.split(',') : 
-    ['cinematic', 'dramatic lighting', 'film grain'],
-  colorPalette: process.env.ART_COLOR_PALETTE ? 
-    process.env.ART_COLOR_PALETTE.split(',') : 
-    ['rich blues', 'deep reds', 'golden highlights', 'shadow detail'],
-  compositionGuidelines: process.env.ART_COMPOSITION ? 
-    process.env.ART_COMPOSITION.split(',') : 
-    ['rule of thirds', 'leading lines', 'depth of field'],
-  moodAndTone: process.env.ART_MOOD || 'atmospheric and evocative',
-  references: process.env.ART_REFERENCES ? 
-    process.env.ART_REFERENCES.split(',') : 
-    [],
-  avoidElements: process.env.ART_AVOID ? 
-    process.env.ART_AVOID.split(',') : 
-    ['text', 'watermarks', 'distorted faces']
+  styleEmphasis: [
+    "Magritte surrealism",
+    "oil painting technique",
+    "visible brushstrokes",
+    "canvas texture",
+    "painterly quality",
+    "traditional painting style",
+    "fine art",
+    "non-photorealistic",
+    "high contrast",
+    "atmospheric",
+    "surreal juxtaposition"
+  ],
+  visualElements: [
+    "bowler hats",
+    "floating objects",
+    "clouds",
+    "blue skies",
+    "reflective surfaces",
+    "impossible scenes",
+    "ordinary objects in extraordinary contexts",
+    "visual paradoxes",
+    "windows and frames",
+    "silhouettes"
+  ],
+  colorPalette: [
+    "Magritte blues",
+    "soft greens",
+    "earthy browns",
+    "rich blues",
+    "deep reds",
+    "golden highlights",
+    "shadow detail",
+    "selective saturation",
+    "oil paint color mixing",
+    "limited palette typical of Magritte's work"
+  ],
+  compositionGuidelines: [
+    "rule of thirds",
+    "leading lines",
+    "depth of field",
+    "framing elements",
+    "balanced asymmetry",
+    "surreal scale relationships",
+    "clean compositions with clear subjects",
+    "canvas-like proportions",
+    "traditional painting composition"
+  ],
+  moodAndTone: "dreamlike and contemplative with a sense of mystery and philosophical questioning, rendered with the texture and quality of oil paint on canvas",
+  references: [
+    "René Magritte's 'The Son of Man'",
+    "René Magritte's 'The Empire of Light'",
+    "René Magritte's 'The Treachery of Images'",
+    "René Magritte's 'Golconda'",
+    "René Magritte's oil painting techniques",
+    "Traditional Belgian surrealist painting style"
+  ],
+  avoidElements: [
+    "text",
+    "watermarks",
+    "distorted faces",
+    "overly saturated colors",
+    "digital artifacts",
+    "abstract expressionism",
+    "chaotic compositions",
+    "photorealistic rendering",
+    "digital art aesthetics",
+    "3D rendering look",
+    "photography-like lighting"
+  ]
 };
 
 // Function to load art direction from a JSON file if it exists
@@ -207,9 +261,65 @@ async function generateArt(concept: string) {
     
     // Determine if we should use Magritte style
     const useMagritteStyle = categoryArg === 'magritte_surrealism' || 
-                            (!categoryArg && !isCryptoRelated) || 
-                            artConcept.toLowerCase().includes('magritte') ||
-                            artConcept.toLowerCase().includes('surreal');
+                            (categoryArg === undefined && !isCryptoRelated && 
+                             (artConcept.toLowerCase().includes('magritte') ||
+                              artConcept.toLowerCase().includes('surreal')));
+                              
+    // Determine if we should use Impressionist style
+    const useImpressionistStyle = categoryArg === 'impressionist';
+    
+    // Create a category-specific art direction
+    let categoryArtDirection: ArtDirection = { ...artDirection };
+    
+    if (useImpressionistStyle) {
+      // Override with impressionist-specific art direction
+      categoryArtDirection = {
+        styleEmphasis: ["Impressionist style", ...(artDirection.styleEmphasis?.filter(style => 
+          !style.toLowerCase().includes('magritte') && 
+          !style.toLowerCase().includes('surreal')) || [])],
+        visualElements: ["visible brushstrokes", "emphasis on light", "everyday subject matter", 
+          ...(artDirection.visualElements?.filter(element => 
+            !["bowler hats", "floating objects", "impossible scenes", 
+             "ordinary objects in extraordinary contexts"].includes(element)) || [])],
+        colorPalette: ["light colors", "visible brushstrokes", 
+          ...(artDirection.colorPalette?.filter(color => !color.toLowerCase().includes('magritte')) || [])],
+        compositionGuidelines: ["visible brushstrokes", "emphasis on light", "everyday subject matter", 
+          ...(artDirection.compositionGuidelines?.filter(guideline => 
+            !guideline.toLowerCase().includes('surreal')) || [])],
+        moodAndTone: "light and airy with a focus on capturing fleeting moments and natural light",
+        references: ["Claude Monet's 'Waterlilies'", "Pierre-Auguste Renoir's 'Luncheon of the Boating Party'",
+          ...(artDirection.references?.filter(ref => !ref.toLowerCase().includes('magritte')) || [])],
+        avoidElements: [...(artDirection.avoidElements || []), "surreal elements", "impossible scenes"]
+      };
+    } else if (useMagritteStyle) {
+      // Use Magritte-specific art direction
+      categoryArtDirection = {
+        styleEmphasis: ["Magritte surrealism", "surreal juxtaposition", 
+          ...(artDirection.styleEmphasis?.filter(style => !style.toLowerCase().includes('impressionist')) || [])],
+        visualElements: ["bowler hats", "floating objects", "clouds", "blue skies", 
+          "impossible scenes", "ordinary objects in extraordinary contexts",
+          ...(artDirection.visualElements?.filter(element => 
+            !["visible brushstrokes", "emphasis on light", "everyday subject matter"].includes(element)) || [])],
+        colorPalette: ["Magritte blues", "soft greens", "earthy browns", 
+          ...(artDirection.colorPalette?.filter(color => !color.toLowerCase().includes('impressionist')) || [])],
+        compositionGuidelines: ["surreal scale relationships", "clean compositions with clear subjects", 
+          ...(artDirection.compositionGuidelines?.filter(guideline => 
+            !guideline.toLowerCase().includes('impressionist')) || [])],
+        moodAndTone: "dreamlike and contemplative with a sense of mystery and philosophical questioning",
+        references: ["René Magritte's 'The Son of Man'", "René Magritte's 'The Empire of Light'", 
+          "René Magritte's 'The Treachery of Images'", "René Magritte's 'Golconda'",
+          ...(artDirection.references?.filter(ref => 
+            !ref.toLowerCase().includes('monet') && 
+            !ref.toLowerCase().includes('renoir')) || [])],
+        avoidElements: [...(artDirection.avoidElements || []), "visible brushstrokes", "impressionist elements"]
+      };
+    } else if (isCryptoRelated) {
+      // Add crypto-specific elements
+      categoryArtDirection.visualElements = [
+        ...(categoryArtDirection.visualElements || []),
+        'blockchain visualization', 'digital currency symbols', 'cryptographic elements'
+      ];
+    }
     
     // Create a project for the multi-agent system
     const project = {
@@ -221,49 +331,13 @@ async function generateArt(concept: string) {
         "Use cinematic lighting and composition",
         "Incorporate rich visual metaphors and symbolism",
         isCryptoRelated ? "Include crypto-native visual elements and aesthetics" : "Balance abstract and recognizable elements",
-        useMagritteStyle ? "Use René Magritte's surrealist style with clean compositions and philosophical questioning" : "Evoke an emotional response in the viewer"
+        useMagritteStyle ? "Use René Magritte's surrealist style with clean compositions and philosophical questioning" : 
+        useImpressionistStyle ? "Use Impressionist style with visible brushstrokes, emphasis on light, and everyday subject matter" : 
+        "Evoke an emotional response in the viewer"
       ],
       outputFilename: `flux-${artConcept.replace(/\s+/g, '-').toLowerCase()}`,
-      // Add art direction to the project
-      artDirection: {
-        styleEmphasis: [
-          ...(useMagritteStyle ? ["Magritte surrealism", "surreal juxtaposition"] : []),
-          ...(artDirection.styleEmphasis || [])
-        ],
-        visualElements: [
-          ...(useMagritteStyle ? [
-            "bowler hats", 
-            "floating objects", 
-            "clouds", 
-            "blue skies", 
-            "impossible scenes", 
-            "ordinary objects in extraordinary contexts"
-          ] : []),
-          ...(artDirection.visualElements || []),
-          ...(isCryptoRelated ? ['blockchain visualization', 'digital currency symbols', 'cryptographic elements'] : [])
-        ],
-        colorPalette: [
-          ...(useMagritteStyle ? ["Magritte blues", "soft greens", "earthy browns"] : []),
-          ...(artDirection.colorPalette || [])
-        ],
-        compositionGuidelines: [
-          ...(useMagritteStyle ? ["surreal scale relationships", "clean compositions with clear subjects"] : []),
-          ...(artDirection.compositionGuidelines || [])
-        ],
-        moodAndTone: useMagritteStyle ? 
-          "dreamlike and contemplative with a sense of mystery and philosophical questioning" : 
-          artDirection.moodAndTone,
-        references: [
-          ...(useMagritteStyle ? [
-            "René Magritte's 'The Son of Man'",
-            "René Magritte's 'The Empire of Light'",
-            "René Magritte's 'The Treachery of Images'",
-            "René Magritte's 'Golconda'"
-          ] : []),
-          ...(artDirection.references || [])
-        ],
-        avoidElements: artDirection.avoidElements
-      }
+      // Add the category-specific art direction to the project
+      artDirection: categoryArtDirection
     };
     
     // Log art direction being used

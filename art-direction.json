@@ -1,9 +1,13 @@
 {
   "styleEmphasis": [
     "Magritte surrealism",
-    "cinematic",
-    "dramatic lighting",
-    "film grain",
+    "oil painting technique",
+    "visible brushstrokes",
+    "canvas texture",
+    "painterly quality",
+    "traditional painting style",
+    "fine art",
+    "non-photorealistic",
     "high contrast",
     "atmospheric",
     "surreal juxtaposition"
@@ -28,7 +32,9 @@
     "deep reds",
     "golden highlights",
     "shadow detail",
-    "selective saturation"
+    "selective saturation",
+    "oil paint color mixing",
+    "limited palette typical of Magritte's work"
   ],
   "compositionGuidelines": [
     "rule of thirds",
@@ -37,17 +43,18 @@
     "framing elements",
     "balanced asymmetry",
     "surreal scale relationships",
-    "clean compositions with clear subjects"
+    "clean compositions with clear subjects",
+    "canvas-like proportions",
+    "traditional painting composition"
   ],
-  "moodAndTone": "dreamlike and contemplative with a sense of mystery and philosophical questioning",
+  "moodAndTone": "dreamlike and contemplative with a sense of mystery and philosophical questioning, rendered with the texture and quality of oil paint on canvas",
   "references": [
     "René Magritte's 'The Son of Man'",
     "René Magritte's 'The Empire of Light'",
     "René Magritte's 'The Treachery of Images'",
     "René Magritte's 'Golconda'",
-    "Roger Deakins cinematography",
-    "Gregory Crewdson photography",
-    "Blade Runner 2049 visual style"
+    "René Magritte's oil painting techniques",
+    "Traditional Belgian surrealist painting style"
   ],
   "avoidElements": [
     "text",
@@ -56,6 +63,10 @@
     "overly saturated colors",
     "digital artifacts",
     "abstract expressionism",
-    "chaotic compositions"
+    "chaotic compositions",
+    "photorealistic rendering",
+    "digital art aesthetics",
+    "3D rendering look",
+    "photography-like lighting"
   ]
 } 

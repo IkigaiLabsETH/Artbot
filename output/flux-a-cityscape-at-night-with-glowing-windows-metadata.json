@@ -1,0 +1,90 @@
+{
+  "concept": "A cityscape at night with glowing windows",
+  "prompt": "CNSTLL Urban tapestry of glimmering insomnia: jagged skyline etched in neon and twinkling windows, each a solitary soul framed against the infinite night. Smoky 4k cinestill grain swirls between skyscrapers like dreams leaking into wakefulness. Tarnished art deco gargoyles keep solemn vigil over the city's restless heartbeat., cinestill 800t, film grain, night time",
+  "creativeProcess": "I envisioned the city at night as a living tapestry, woven from thousands of individual lives and stories. The glowing windows represent the solitary struggles, passions and regrets burning in each soul, tiny flickering flames against the void. The swirling cinestill grain evokes the hazy line between dreams and reality in those late night hours. And the tarnished art deco gargoyles are impassive witnesses, ancient gatekeepers to this modern cathedral of insomnia and yearning. It's a love letter to the dreamers and insomniacs, those who find inspiration or torment in the night's endless possibilities.",
+  "imageUrl": "https://replicate.delivery/xezq/WuuIjkdqD54cD5e1dBglbnvUWbv3jiADqomRuKZZ9wzilpKKA/tmpod0r_jhy.png",
+  "timestamp": "2025-03-04T22:37:57.703Z",
+  "isCryptoNative": false,
+  "multiAgentCollaboration": true,
+  "artDirection": {
+    "styleEmphasis": [
+      "Magritte surrealism",
+      "surreal juxtaposition",
+      "Magritte surrealism",
+      "cinematic",
+      "dramatic lighting",
+      "film grain",
+      "high contrast",
+      "atmospheric",
+      "surreal juxtaposition"
+    ],
+    "visualElements": [
+      "bowler hats",
+      "floating objects",
+      "clouds",
+      "blue skies",
+      "impossible scenes",
+      "ordinary objects in extraordinary contexts",
+      "bowler hats",
+      "floating objects",
+      "clouds",
+      "blue skies",
+      "reflective surfaces",
+      "impossible scenes",
+      "ordinary objects in extraordinary contexts",
+      "visual paradoxes",
+      "windows and frames",
+      "silhouettes"
+    ],
+    "colorPalette": [
+      "Magritte blues",
+      "soft greens",
+      "earthy browns",
+      "Magritte blues",
+      "soft greens",
+      "earthy browns",
+      "rich blues",
+      "deep reds",
+      "golden highlights",
+      "shadow detail",
+      "selective saturation"
+    ],
+    "compositionGuidelines": [
+      "surreal scale relationships",
+      "clean compositions with clear subjects",
+      "rule of thirds",
+      "leading lines",
+      "depth of field",
+      "framing elements",
+      "balanced asymmetry",
+      "surreal scale relationships",
+      "clean compositions with clear subjects"
+    ],
+    "moodAndTone": "dreamlike and contemplative with a sense of mystery and philosophical questioning",
+    "references": [
+      "René Magritte's 'The Son of Man'",
+      "René Magritte's 'The Empire of Light'",
+      "René Magritte's 'The Treachery of Images'",
+      "René Magritte's 'Golconda'",
+      "René Magritte's 'The Son of Man'",
+      "René Magritte's 'The Empire of Light'",
+      "René Magritte's 'The Treachery of Images'",
+      "René Magritte's 'Golconda'",
+      "Roger Deakins cinematography",
+      "Gregory Crewdson photography",
+      "Blade Runner 2049 visual style"
+    ],
+    "avoidElements": [
+      "text",
+      "watermarks",
+      "distorted faces",
+      "overly saturated colors",
+      "digital artifacts",
+      "abstract expressionism",
+      "chaotic compositions",
+      "visible brushstrokes",
+      "impressionist elements"
+    ]
+  },
+  "critique": null
+}

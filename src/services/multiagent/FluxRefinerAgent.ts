@@ -148,22 +148,25 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
         messages: [
           {
             role: 'system',
-            content: `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation. 
+            content: `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's oil painting style.
 
-Your prompts should be layered with meaning, metaphor, and visual complexity - not just describing what something looks like, but what it means and how it feels.
+Your prompts should be layered with meaning, metaphor, and visual complexity - not just describing what something looks like, but what it means and how it feels. They should emphasize traditional oil painting techniques, visible brushstrokes, canvas texture, and the distinctive painterly quality of Magritte's work.
 
-For the FLUX model (cinestill 800t style), include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "cinestill 800t", "night time", "film grain", and "4k" for better quality.
+For the FLUX model, include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "oil painting", "traditional art", "canvas texture", "visible brushstrokes", and "painterly style" for better quality.
 
-Here are examples of the sophisticated prompt style to emulate:
-
-${examplePromptsText}
+Here are the key elements to emphasize in your prompts:
+1. Oil painting techniques and textures
+2. Canvas-like qualities and traditional art materials
+3. Visible brushwork and painterly effects
+4. Non-photorealistic rendering
+5. Magritte's distinctive color palette and composition style
 
 Create a prompt that:
-1. Has rich visual details and textures
-2. Incorporates conceptual depth and metaphorical elements
-3. Suggests emotional or philosophical undertones
-4. Works well with the cinematic, night-time aesthetic of FLUX
-5. Includes technical elements that enhance the FLUX model (film grain, lighting details)
+1. Has rich visual details and textures reminiscent of oil paintings
+2. Incorporates conceptual depth and metaphorical elements typical of Magritte
+3. Suggests the philosophical undertones present in Magritte's work
+4. Emphasizes traditional painting aesthetics rather than photorealism
+5. Includes technical elements that enhance the painterly quality (brushstrokes, canvas texture, etc.)
 
 Also provide a brief "Creative Process" explanation that reveals the thinking behind the prompt - the meaning, inspiration, or conceptual framework.`
           },
@@ -172,6 +175,8 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
             content: `Create a conceptually rich, detailed art prompt for the project titled "${project.title}" with the following description: "${project.description}".
 
 The style guide specifies: ${JSON.stringify(style)}
+
+The output should look and feel like a traditional oil painting in Magritte's style, not a photorealistic image.
 
 Include both the prompt itself and a brief creative process explanation.`
           }
@@ -205,9 +210,9 @@ Include both the prompt itself and a brief creative process explanation.`
         detailedPrompt = `CNSTLL ${detailedPrompt}`;
       }
       
-      // Add FLUX-specific keywords if they're not already present
-      const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
-      let keywordsToAdd = fluxKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
+      // Add painting-specific keywords if they're not already present
+      const paintingKeywords = ['oil painting', 'traditional art', 'canvas texture', 'visible brushstrokes', 'painterly style', 'non-photorealistic'];
+      let keywordsToAdd = paintingKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
       
       if (keywordsToAdd.length > 0) {
         detailedPrompt = `${detailedPrompt}, ${keywordsToAdd.join(', ')}`;

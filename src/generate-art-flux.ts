@@ -121,13 +121,15 @@ async function generateArtWithFlux() {
           category = ConceptCategory[categoryKey as keyof typeof ConceptCategory];
           console.log(`🎬 Generating a ${category} concept...`);
         } else {
-          console.log(`⚠️ Unknown category: "${categoryArg}". Using default cinematic category.`);
-          category = ConceptCategory.CINEMATIC;
+          console.log(`⚠️ Unknown category: "${categoryArg}". Using MAGRITTE_SURREALISM as default.`);
+          category = ConceptCategory.MAGRITTE_SURREALISM;
         }
       } else {
-        // If no category specified, use a random category for variety
-        const categories = Object.values(ConceptCategory);
-        category = categories[Math.floor(Math.random() * categories.length)];
+        // If no category specified, use a random Magritte category for variety
+        const categories = Object.values(ConceptCategory).filter(cat => 
+          typeof cat === 'string' && cat.toString().startsWith('magritte_')
+        );
+        category = categories[Math.floor(Math.random() * categories.length)] as ConceptCategory;
         console.log(`🎬 Generating a ${category} concept...`);
       }
       

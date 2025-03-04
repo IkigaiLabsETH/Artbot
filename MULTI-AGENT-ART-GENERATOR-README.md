@@ -1,184 +1,131 @@
 # ArtBot Multi-Agent Art Generator
 
-```
-    ╭──────────────────────╮
-    │       ARTBOT         │
-    │    ┌──────────┐     │
-    │    │ 🎨 AI    │     │
-    │    └──────────┘     │
-    │  Creative Partner    │
-    ╰──────────────────────╯
-```
-
 ## Overview
 
-The ArtBot Multi-Agent Art Generator is a sophisticated system that uses a collaborative multi-agent approach to create unique, conceptually rich artwork. Drawing inspiration from René Magritte's surrealist style, the system generates evocative images with philosophical depth and visual intrigue.
+The ArtBot Multi-Agent Art Generator is a sophisticated system that uses a collaborative multi-agent approach to generate artistic images based on textual concepts. The system leverages multiple specialized AI agents, each responsible for a different aspect of the creative process, to produce high-quality artwork.
 
 ## How It Works
 
-The art generation process involves multiple specialized AI agents working together:
+The art generation process involves several specialized agents working together:
 
-1. **Director Agent**: Coordinates the creative process and manages workflow
-2. **Ideator Agent**: Generates creative ideas based on the concept
-3. **Stylist Agent**: Develops artistic styles based on the generated ideas
-4. **Refiner Agent**: Creates the final artwork using the FLUX image generation model
-5. **Critic Agent**: Evaluates and provides feedback on the artwork
+1. **Director Agent**: Coordinates the creative process and manages the workflow
+2. **Ideator Agent**: Generates creative ideas based on the provided concept
+3. **Stylist Agent**: Develops artistic styles for the concept
+4. **Refiner Agent**: Creates the final artwork using image generation models
+5. **Critic Agent**: Provides evaluation and feedback on the generated artwork
 
 ## Prerequisites
 
-Before using the Multi-Agent Art Generator, ensure you have:
-
-- Node.js 23+ installed
-- TypeScript installed (`npm install -g typescript`)
-- API keys for:
-  - Anthropic Claude or OpenAI (for AI reasoning)
-  - Replicate (for image generation)
+- Node.js (v23+ recommended)
+- TypeScript
+- Replicate API key (for image generation)
+- Anthropic API key or OpenAI API key (for agent intelligence)
 
 ## Setup
 
-1. Create a `.env` file in the root directory with your API keys:
-
-```env
-# API Keys
-ANTHROPIC_API_KEY=your_anthropic_api_key
-OPENAI_API_KEY=your_openai_api_key
-REPLICATE_API_KEY=your_replicate_api_key
-
-# Storage
-STORAGE_PATH=.artbot
-
-# Image Generation
-DEFAULT_IMAGE_MODEL=black-forest-labs/flux-1.1-pro
-IMAGE_WIDTH=1024
-IMAGE_HEIGHT=1024
-```
-
-2. Install dependencies:
-```bash
-pnpm install
-```
+1. Clone the repository
+2. Create a `.env` file with your API keys:
+   ```
+   ANTHROPIC_API_KEY=your_anthropic_api_key
+   OPENAI_API_KEY=your_openai_api_key
+   REPLICATE_API_KEY=your_replicate_api_key
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
+4. Compile the TypeScript code:
+   ```
+   tsc
+   ```
 
 ## Running the Art Generator
 
-We provide two scripts for running the art generator:
-
-### Standard Version (Anthropic Primary)
+Use the provided script to run the art generator:
 
 ```bash
-./run-multiagent-art-generator.sh "Your concept here"
+./run-multiagent-art-generator.sh "Your concept here" [category]
 ```
 
-This script uses Anthropic Claude as the primary AI provider with retry logic for handling API overload errors.
-
-### OpenAI Primary Version
-
+For example:
 ```bash
-./run-multiagent-art-generator-openai.sh "Your concept here"
+./run-multiagent-art-generator.sh "A tranquil lake at sunset with mountains in the background" impressionist
 ```
 
-This script uses OpenAI as the primary AI provider, which can be useful when Anthropic's API is experiencing high demand.
+### Available Categories
 
-### Optional Category Parameter
+The art generator supports the following artistic categories:
 
-You can specify an art category as a second parameter:
+- `magritte_surrealism` (default): René Magritte's surrealist style with clean compositions and philosophical questioning
+- `impressionist`: Impressionist style with visible brushstrokes, emphasis on light, and everyday subject matter
+- `cinematic`: Cinematic style with dramatic lighting and composition
+- `surreal`: General surrealist style with dreamlike and fantastical elements
+- `cyberpunk`: Futuristic cyberpunk aesthetic with neon lights and high-tech elements
+- `nature`: Natural landscapes and scenes with emphasis on organic elements
+- `urban`: Urban environments and cityscapes
+- `abstract`: Abstract art with non-representational elements
+- `nostalgic`: Nostalgic scenes with a sense of memory and emotion
+- `futuristic`: Forward-looking scenes with advanced technology
+- `fantasy`: Fantasy worlds and mythical elements
+- `dystopian`: Dark and gritty dystopian environments
+- `crypto_art`: Crypto-native visual elements and aesthetics
 
-```bash
-./run-multiagent-art-generator.sh "Your concept here" "magritte_surrealism"
-```
-
-Available categories include:
-- `magritte_surrealism` (default)
-- `crypto_art`
-- `cyberpunk`
-- `solarpunk`
-- `cosmic_horror`
+Each category applies specific art direction elements to guide the generation process, including style emphasis, visual elements, color palette, composition guidelines, mood and tone, references, and elements to avoid.
 
 ## Customizing Art Direction
 
-You can customize the art direction by editing the `art-direction.json` file in the root directory. This file contains specifications for:
+You can customize the art direction by creating an `art-direction.json` file in the root directory. This file allows you to specify various aspects of the artistic style:
 
-- **Style Emphasis**: Specific styles to emphasize
-- **Visual Elements**: Required visual elements
-- **Color Palette**: Specific color palette to use
-- **Composition Guidelines**: Guidelines for composition
-- **Mood and Tone**: Overall mood and tone
-- **References**: Reference artists or works
-- **Avoid Elements**: Elements to avoid
-
-Example:
 ```json
 {
-  "styleEmphasis": [
-    "Magritte surrealism",
-    "cinematic",
-    "dramatic lighting"
-  ],
-  "visualElements": [
-    "bowler hats",
-    "floating objects",
-    "clouds"
-  ],
-  "colorPalette": [
-    "Magritte blues",
-    "soft greens",
-    "earthy browns"
-  ],
-  "compositionGuidelines": [
-    "rule of thirds",
-    "surreal scale relationships"
-  ],
-  "moodAndTone": "dreamlike and contemplative",
-  "references": [
-    "René Magritte's 'The Son of Man'"
-  ],
-  "avoidElements": [
-    "text",
-    "watermarks"
-  ]
+  "styleEmphasis": ["cinematic", "dramatic lighting", "film grain"],
+  "visualElements": ["reflective surfaces", "visual paradoxes", "windows and frames"],
+  "colorPalette": ["rich blues", "deep reds", "golden highlights"],
+  "compositionGuidelines": ["rule of thirds", "leading lines", "depth of field"],
+  "moodAndTone": "dreamlike and contemplative with a sense of mystery",
+  "references": ["Roger Deakins cinematography", "Gregory Crewdson photography"],
+  "avoidElements": ["text", "watermarks", "distorted faces"]
 }
 ```
 
+The system will merge your custom art direction with the category-specific art direction, with category-specific elements taking precedence.
+
 ## Output
 
-The art generator creates several files in the `output` directory:
+The art generator produces several output files:
 
-- **Image URL**: A text file containing the URL to view the generated image
-- **Prompt**: The detailed prompt used to generate the image
-- **Metadata**: A JSON file containing information about the generation process
-- **Image File**: The downloaded image (if available)
+- `output/flux-[concept].png`: The generated image
+- `output/flux-[concept].txt`: The URL to the generated image
+- `output/flux-[concept]-prompt.txt`: The prompt used to generate the image
+- `output/flux-[concept]-metadata.json`: Metadata about the generated image
 
 ## Troubleshooting
 
-### API Overload Errors
+### API Key Issues
 
-If you encounter "overloaded" errors from the Anthropic API:
+If you encounter issues with API keys, make sure they are correctly set in your `.env` file or as environment variables.
 
-1. Try using the OpenAI primary script: `./run-multiagent-art-generator-openai.sh`
-2. Wait a few minutes and try again
-3. Check that your API keys are valid and have sufficient quota
+### Image Generation Failures
 
-### Image Generation Issues
+If the image generation fails, check the following:
+- Ensure your Replicate API key is valid and has sufficient credits
+- Check your internet connection
+- Try a different concept or category
 
-If the image generation fails:
+### API Overload
 
-1. Verify your Replicate API key is valid
-2. Check that the DEFAULT_IMAGE_MODEL in your .env file is available on Replicate
-3. Try a different concept or art direction
+If you receive errors about API rate limits or overload:
+- Wait a few minutes before trying again
+- Consider using a different API key
+- Reduce the frequency of requests
 
 ## Advanced Configuration
 
-You can modify the following files for advanced customization:
+Advanced users can modify the source code to customize the art generation process further:
 
-- `src/defaultArtGenerator.ts`: Main art generation logic
-- `src/services/multiagent/FluxRefinerAgent.ts`: Image generation agent
-- `src/services/ai/index.ts`: AI service configuration
-- `src/services/replicate/index.ts`: Image model configuration
-
-After making changes, rebuild the project:
-
-```bash
-pnpm build
-```
+- `src/defaultArtGenerator.ts`: Main entry point for the art generator
+- `src/services/ai/conceptGenerator.ts`: Handles concept generation and categories
+- `src/artbot-multiagent-system.ts`: Implements the multi-agent collaboration system
 
 ## License
 
