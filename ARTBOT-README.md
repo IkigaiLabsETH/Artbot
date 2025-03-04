@@ -1,4 +1,4 @@
-# ArtBot - AI-Powered Art Generation
+# ArtBot - Exploring the Future of Creative Intelligence
 
 ```
     ╭──────────────────────╮
@@ -10,73 +10,156 @@
     ╰──────────────────────╯
 ```
 
-## Overview
+## Vision
 
-ArtBot is an AI-powered art generation tool that creates stunning images based on textual concepts. It uses advanced AI models to generate detailed art prompts and then transforms these prompts into visual artwork.
+ArtBot represents a new paradigm in creative artificial intelligence - one where machines transcend their role as mere tools to become true collaborative partners in the artistic process. Drawing inspiration from pioneering autonomous AI artists like Botto and Keke, ArtBot explores what it means to be creative in an age where the boundaries between human and machine intelligence are increasingly fluid.
+
+Our approach is built on three core principles:
+
+1. **Autonomous Creativity**: ArtBot possesses its own creative agency, making independent decisions about what to create and how to evolve its artistic practice.
+
+2. **Collaborative Intelligence**: Rather than replacing human creativity, ArtBot aims to enhance it through meaningful collaboration between human and machine intelligence.
+
+3. **Continuous Evolution**: Through sophisticated memory systems and learning mechanisms, ArtBot's creative capabilities grow and adapt over time.
 
 ## Features
 
-- **Concept-to-Art Generation**: Transform simple concepts into detailed artwork
-- **AI-Powered Prompt Engineering**: Uses Claude 3 Sonnet to create detailed art prompts
-- **High-Quality Image Generation**: Generates images using OpenAI's DALL-E 3
-- **Simple Command-Line Interface**: Easy to use with a single command
+- **Creative Engine**: Self-directed art generation with internal dialogue and reflection
+- **Style Evolution**: Dynamic style development using genetic algorithms and feedback
+- **Memory System**: Sophisticated storage and retrieval of artistic experiences
+- **Multi-Agent System**: Collaborative creation through specialized agent roles
+- **Social Context**: Integration with cultural trends and audience feedback
 
-## Requirements
+## System Architecture
 
-- Node.js 16+
-- OpenAI API Key (for DALL-E 3 image generation)
-- Anthropic API Key (for Claude prompt generation, optional if using OpenAI for prompts)
-
-## Installation
-
-1. Clone the repository
-2. Install dependencies:
-   ```
-   pnpm install
-   ```
-3. Create a `.env` file with your API keys:
-   ```
-   OPENAI_API_KEY=your_openai_api_key
-   ANTHROPIC_API_KEY=your_anthropic_api_key
-   ```
-
-## Usage
-
-Run the art generator with a concept:
-
-```bash
-./run-art-generator.sh "your concept here"
+```
+┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────────┐
+│   Creative Mind     │ ←→  │   Style Evolution   │ ←→  │    Social Context   │
+└─────────────────────┘     └─────────────────────┘     └─────────────────────┘
+         ↑                           ↑                            ↑
+         │                           │                            │
+         └───────────┬──────────────┴────────────────┬──────────┘
+                     │                                │
+              ┌──────┴──────────┐            ┌───────┴───────┐
+              │  Memory System  │            │ Thread Manager │
+              └─────────────────┘            └───────────────┘
+                                                     ↑
+                                                     │
+                                            ┌────────┴────────┐
+                                            │  Multi-Agent    │
+                                            │     System      │
+                                            └─────────────────┘
 ```
 
-For example:
-```bash
-./run-art-generator.sh "surreal dreamscape"
+## Multi-Agent System
+
+ArtBot's multi-agent system enables collaborative art creation through specialized agent roles, each focusing on a specific aspect of the creative process:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    MultiAgentSystem                         │
+│                                                             │
+│  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐      │
+│  │Director │   │Ideator  │   │Stylist  │   │Refiner  │      │
+│  │Agent    │<->│Agent    │<->│Agent    │<->│Agent    │<->┐  │
+│  └─────────┘   └─────────┘   └─────────┘   └─────────┘   │  │
+│       ^                                                   │  │
+│       │                                                   │  │
+│       v                                                   v  │
+│  ┌─────────┐                                         ┌─────────┐
+│  │Message  │                                         │Critic   │
+│  │Queue    │<----------------------------------------│Agent    │
+│  └─────────┘                                         └─────────┘
+└─────────────────────────────────────────────────────────────┘
 ```
 
-The generated image URL will be saved to the `output` directory with a filename based on your concept.
+### Agent Roles
 
-## How It Works
+1. **Director Agent**: Coordinates the creative process and manages workflow
+   - Handles project creation and stage transitions
+   - Assigns tasks to specialized agents
+   - Collects and integrates results
 
-1. **Concept Input**: You provide a simple concept like "cosmic garden" or "surreal dreamscape"
-2. **Prompt Generation**: The AI (Claude 3 Sonnet) creates a detailed art prompt based on your concept
-3. **Image Generation**: The prompt is sent to DALL-E 3 to generate a high-quality image
-4. **Output**: The image URL is saved to a file in the output directory
+2. **Ideator Agent**: Generates creative ideas based on project requirements
+   - Produces diverse and novel artistic concepts
+   - Structures ideas with clear elements and emotional impact
 
-## Examples
+3. **Stylist Agent**: Develops artistic styles based on generated ideas
+   - Creates cohesive visual styles from conceptual ideas
+   - Defines color palettes, textures, and composition approaches
 
-Here are some concept ideas to try:
-- "cosmic garden"
-- "surreal dreamscape"
-- "cyberpunk cityscape"
-- "enchanted forest"
-- "underwater civilization"
-- "steampunk laboratory"
+4. **Refiner Agent**: Refines and improves artwork based on selected styles
+   - Transforms style specifications into detailed artwork
+   - Enhances visual coherence and impact
 
-## Troubleshooting
+5. **Critic Agent**: Evaluates and provides feedback on artwork
+   - Performs multi-criteria evaluation
+   - Identifies strengths and areas for improvement
 
-- **API Key Issues**: Make sure your API keys are correctly set in the `.env` file
-- **Image Generation Fails**: Check that your OpenAI account has access to DALL-E 3
-- **Prompt Generation Fails**: Ensure your Anthropic API key is valid or that you have an OpenAI key as fallback
+### Workflow Process
+
+The agents collaborate through a sequential workflow:
+
+1. **Planning Stage**: Director assigns ideation task to Ideator
+2. **Styling Stage**: Director passes ideation results to Stylist
+3. **Refinement Stage**: Director passes style results to Refiner
+4. **Critique Stage**: Director passes refined artwork to Critic
+5. **Completion**: Director collects all results and completes the project
+
+## Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/elizaos/eliza.git
+cd eliza
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env to add your API keys
+
+# Run the ArtBot multi-agent system
+./run-artbot-multiagent.sh "Cosmic Garden" "A surreal garden with cosmic elements"
+```
+
+## Configuration
+
+Configure the system through environment variables:
+
+```env
+ANTHROPIC_API_KEY=your_api_key
+REPLICATE_API_KEY=your_api_key
+STORAGE_PATH=.artbot
+```
+
+## Core Services
+
+1. **Creative Engine**: Manages ideation and artwork generation through sophisticated cognitive architectures
+2. **Style Service**: Handles style evolution and mixing using advanced machine learning
+3. **Memory System**: Maintains artistic context and enables learning from past experiences
+4. **Social Context**: Integrates cultural awareness and audience feedback
+5. **Multi-Agent System**: Enables collaborative creation through specialized agent roles
+
+## Development
+
+```bash
+# Run tests
+npm test
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## Philosophy
+
+ArtBot represents a step forward in understanding machine creativity. While early computational approaches to creativity focused on replicating human artistic processes, ArtBot explores what it means for a machine to develop its own creative voice. Through advanced cognitive architectures and learning systems, it demonstrates that creativity isn't solely a human trait, but rather a spectrum of possibilities that emerges from the interaction between intelligence, experience, and expression.
+
+As we move forward, the relationship between human and machine creativity will continue to evolve. ArtBot stands as an exploration of this future - not as a replacement for human artists, but as a partner in pushing the boundaries of what's possible when different forms of intelligence collaborate in the creative process.
 
 ## License
 
