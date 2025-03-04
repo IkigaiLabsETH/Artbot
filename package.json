@@ -13,7 +13,7 @@
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.ts\"",
     "init": "ts-node src/scripts/init.ts",
-    "demo:multiagent": "ts-node src/demo-multiagent.ts",
+    "demo:multiagent": "node dist/demo-multiagent.js",
     "test:multiagent": "node test-multiagent.js",
     "monitor:performance": "node monitor-multiagent-performance.js",
     "report:performance": "./monitor-multiagent-performance.sh",
