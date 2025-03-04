@@ -6,7 +6,7 @@ import { StyleEvolutionService } from './services/evolution/index.js';
 import { SocialContextService } from './services/social/index.js';
 import { generateArt } from './actions/generateArt.js';
 import { evolveStyle } from './actions/evolveStyle.js';
-import { artContextProvider, socialContextProvider } from './providers.js';
+import { artContextProvider, socialContextProvider } from './providers/index.js';
 
 export interface ArtCreatorConfig {
   openaiApiKey?: string;
