@@ -2,6 +2,7 @@ import { Plugin, ServiceType } from '@elizaos/core';
 import { CreativeEngine } from './services/CreativeEngine';
 import { StyleService } from './services/style';
 import { ReplicateService } from './services/replicate';
+import { StyleEvolutionService } from './services/evolution';
 import { generateArt } from './actions/generateArt';
 import { evolveStyle } from './actions/evolveStyle';
 import { artContextProvider, socialContextProvider } from './providers';
@@ -19,6 +20,7 @@ export default class ArtCreatorPlugin implements Plugin {
   private engine: CreativeEngine;
   private styleService: StyleService;
   private replicateService: ReplicateService;
+  private evolutionService: StyleEvolutionService;
   private runtime: any;
 
   constructor(config: ArtCreatorConfig) {
@@ -28,6 +30,7 @@ export default class ArtCreatorPlugin implements Plugin {
     });
     this.styleService = new StyleService();
     this.replicateService = new ReplicateService({ apiKey: config.replicateApiKey });
+    this.evolutionService = new StyleEvolutionService();
   }
 
   async onStart(runtime: any): Promise<void> {
@@ -38,6 +41,10 @@ export default class ArtCreatorPlugin implements Plugin {
     await this.engine.initialize(runtime);
     await this.styleService.initialize();
     await this.replicateService.initialize();
+    await this.evolutionService.initialize(runtime);
+    
+    // Set the style service for the evolution service
+    this.evolutionService.setStyleService(this.styleService);
   }
 
   getServices() {
@@ -45,7 +52,8 @@ export default class ArtCreatorPlugin implements Plugin {
       [ServiceType.TEXT_GENERATION]: [
         this.engine,
         this.styleService,
-        this.replicateService
+        this.replicateService,
+        this.evolutionService
       ]
     };
   }
