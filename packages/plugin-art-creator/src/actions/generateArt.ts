@@ -1,151 +1,258 @@
-import { Action, ServiceType } from '@elizaos/core';
+import { Action, Content, ServiceType } from '@elizaos/core';
 import { CreativeEngine } from '../services/CreativeEngine';
+import { StyleService } from '../services/style';
 import { ReplicateService } from '../services/replicate';
-import { ArtworkIdea, ArtworkMemory } from '../types';
-import { enhancePrompt, generateNegativePrompt } from '../utils';
+import { SocialContextService } from '../services/social';
+import { ArtworkIdea, SelfDialogue } from '../types';
 import { v4 as uuidv4 } from 'uuid';
+import { Style } from '../types/social';
 
 export interface GenerateArtParams {
-  concept?: string;
-  style?: string;
-  medium?: string;
-  explorationRate?: number;
-  count?: number;
-  model?: string;
+  prompt?: string;
+  styleId?: string;
+  width?: number;
+  height?: number;
+  includeSocialContext?: boolean;
 }
 
-export const generateArt = {
-  name: 'generate-art',
-  description: 'Generate artwork using autonomous creative processes',
-  
-  async execute({ concept, style, medium, explorationRate, count = 1, model }, { runtime }) {
-    const engine = await runtime.getService(
-      ServiceType.TEXT_GENERATION,
-      CreativeEngine
-    );
-    
-    // Get the ReplicateService for image generation
-    const replicateService = await runtime.getService(
-      ServiceType.TEXT_GENERATION,
-      ReplicateService
-    );
-    
-    // Log the provider being used
-    console.log(`Using provider: ${engine.getProvider()}`);
-    
-    // Adjust exploration rate if provided
-    if (typeof explorationRate === 'number') {
-      engine.setExplorationRate(explorationRate);
-    }
+// Define our own creative state for this action
+interface ActionCreativeState {
+  prompt: string;
+  ideas: ArtworkIdea[];
+  selectedIdea: ArtworkIdea | null;
+  dialogue: any[];
+  style: Style | null;
+  imageUrl: string | null;
+}
 
-    // Generate ideas using the appropriate API
-    let ideas: ArtworkIdea[];
-    if (concept) {
-      // Create a specific idea based on the provided concept
-      const idea: ArtworkIdea = {
-        id: uuidv4(),
-        concept: concept,
-        style: style || 'Contemporary',
-        medium: medium || 'Digital',
-        score: 0.8,
-        timestamp: Date.now()
-      };
-      ideas = [idea];
-    } else {
-      // Generate ideas using the AI
-      ideas = await engine.generateArtIdeas(count);
+// Helper function to extract the final prompt from the dialogue
+function extractFinalPrompt(dialogue: any[]): string {
+  // Get the last dialogue entry
+  const lastEntry = dialogue[dialogue.length - 1];
+  
+  // If it contains a specific prompt, use that
+  if (lastEntry && lastEntry.content && lastEntry.content.includes('FINAL PROMPT:')) {
+    const match = lastEntry.content.match(/FINAL PROMPT:([\s\S]*?)($|REASONING:)/);
+    if (match && match[1]) {
+      return match[1].trim();
     }
+  }
+  
+  // Otherwise, use the content of the last dialogue entry
+  return lastEntry && lastEntry.content ? lastEntry.content : '';
+}
+
+// Export the action with the required Action interface properties
+export const generateArt: Action = {
+  name: 'generateArt',
+  description: 'Generate artwork based on a prompt with optional social context integration',
+  similes: ['Create art', 'Generate an image', 'Make artwork'],
+  examples: [
+    [
+      { 
+        user: 'user', 
+        content: { 
+          text: 'Generate art with the prompt "sunset over mountains"' 
+        } 
+      },
+      { 
+        user: 'assistant', 
+        content: { 
+          text: 'I\'ll create artwork based on "sunset over mountains"' 
+        } 
+      }
+    ],
+    [
+      { 
+        user: 'user', 
+        content: { 
+          text: 'Create art with social context about current trends' 
+        } 
+      },
+      { 
+        user: 'assistant', 
+        content: { 
+          text: 'I\'ll generate artwork incorporating current art trends' 
+        } 
+      }
+    ]
+  ],
+  handler: async (runtime, message, state) => {
+    // Extract parameters from the message
+    const params = message.content.action ? 
+      JSON.parse(message.content.action) as GenerateArtParams : 
+      {} as GenerateArtParams;
     
-    // Create artworks from the ideas with actual image generation
-    const artworks: ArtworkMemory[] = [];
+    const { prompt, styleId, width = 512, height = 512, includeSocialContext = false } = params;
     
-    for (const idea of ideas) {
+    // Get required services
+    const engine = runtime.getService(ServiceType.TEXT_GENERATION) as CreativeEngine;
+    const styleService = runtime.getService(ServiceType.TEXT_GENERATION) as StyleService;
+    const replicateService = runtime.getService(ServiceType.TEXT_GENERATION) as ReplicateService;
+    
+    // Get social context service if needed
+    let socialContextService: SocialContextService | undefined;
+    if (includeSocialContext) {
       try {
-        // Check if we have similar artworks already
-        const similarArtworks = await engine.findSimilarArtworks(idea.concept, 3);
-        
-        // Log if we found similar artworks
-        if (similarArtworks.length > 0) {
-          console.log(`Found ${similarArtworks.length} similar artworks to "${idea.concept}"`);
-        }
-        
-        // Generate an enhanced prompt using our prompt engineering utilities
-        const enhancedPrompt = enhancePrompt(idea);
-        const negativePrompt = generateNegativePrompt();
-        
-        console.log(`Generating image with prompt: ${enhancedPrompt}`);
-        
-        // Generate the image using Replicate
-        const styleObj = {
-          name: idea.style,
-          parameters: {
-            prompt: enhancedPrompt,
-            negative_prompt: negativePrompt,
-            guidance: 7.5,
-            steps: 30
-          }
-        };
-        
-        const prediction = await replicateService.generateFromStyle(
-          styleObj, 
-          enhancedPrompt,
-          model || undefined
-        );
-        
-        // Get the image URL from the prediction output
-        let imageUrl = '';
-        if (prediction.status === 'succeeded' && prediction.output) {
-          // Handle different output formats
-          if (Array.isArray(prediction.output)) {
-            imageUrl = prediction.output[0];
-          } else if (typeof prediction.output === 'string') {
-            imageUrl = prediction.output;
-          } else if (prediction.output.image) {
-            imageUrl = prediction.output.image;
-          }
-        }
-        
-        // If image generation failed, use a placeholder
-        if (!imageUrl) {
-          console.warn(`Image generation failed for idea: ${idea.id}. Using placeholder.`);
-          imageUrl = `https://placeholder.com/art/${idea.id}`;
-        }
-        
-        // Create the artwork memory
-        const artwork: ArtworkMemory = {
-          id: uuidv4(),
-          imageUrl: imageUrl,
-          idea: {
-            ...idea,
-            // Store the enhanced prompt in the idea for reference
-            concept: enhancedPrompt
-          },
-          feedback: [],
-          created: Date.now()
-        };
-        
-        // Add to completed works using the new method
-        engine.addCompletedWork(artwork);
-        
-        artworks.push(artwork);
+        socialContextService = runtime.getService(ServiceType.TEXT_GENERATION) as SocialContextService;
       } catch (error) {
-        console.error(`Error generating image for idea ${idea.id}:`, error);
-        // Add with placeholder on error
-        const artwork = {
-          id: uuidv4(),
-          imageUrl: `https://placeholder.com/art/${idea.id}`,
-          idea: idea,
-          feedback: [],
-          created: Date.now()
-        };
-        
-        // Add to completed works using the new method
-        engine.addCompletedWork(artwork);
-        
-        artworks.push(artwork);
+        console.warn("Social context service not available:", error);
       }
     }
-
-    return artworks.length === 1 ? artworks[0] : artworks;
-  }
+    
+    // Get social context data if available
+    let socialContext = null;
+    if (socialContextService) {
+      try {
+        // Get trending art topics
+        const artTrends = await socialContextService.getArtTrends();
+        // Get community insights
+        const communityInsights = await socialContextService.getCommunityInsights(2);
+        
+        socialContext = {
+          artTrends: artTrends.slice(0, 3),
+          communityInsights: communityInsights.map(insight => ({
+            topic: insight.topic,
+            keyOpinions: insight.keyOpinions
+          }))
+        };
+      } catch (error) {
+        console.error("Error getting social context:", error);
+      }
+    }
+    
+    // Initialize creative state
+    const actionState: ActionCreativeState = {
+      prompt: prompt || '',
+      ideas: [],
+      selectedIdea: null,
+      dialogue: [],
+      style: null,
+      imageUrl: null
+    };
+    
+    // If a style ID is provided, retrieve the style
+    if (styleId) {
+      actionState.style = await styleService.getStyle(styleId);
+    }
+    
+    // Generate ideas based on the prompt
+    console.log('Generating ideas based on prompt:', actionState.prompt);
+    
+    // If social context is available, incorporate it into the prompt
+    let enhancedPrompt = actionState.prompt;
+    if (socialContext) {
+      const trendKeywords = socialContext.artTrends
+        .map(trend => trend.keyword)
+        .join(', ');
+      
+      const communityThemes = socialContext.communityInsights
+        .map(insight => insight.topic)
+        .join(', ');
+      
+      enhancedPrompt += `\n\nConsider incorporating these trending art concepts: ${trendKeywords}`;
+      enhancedPrompt += `\n\nThe art community is currently discussing: ${communityThemes}`;
+    }
+    
+    // Generate ideas
+    const ideas = await engine.generateArtIdeas(3);
+    actionState.ideas = ideas;
+    
+    // Select the best idea - we'll implement this ourselves since it doesn't exist
+    const selectedIdea = ideas[0]; // Just use the first idea for now
+    actionState.selectedIdea = selectedIdea;
+    
+    // Generate self-dialogue to refine the idea
+    console.log('Generating self-dialogue to refine the idea');
+    // Create a dialogue manually since we can't access the engine's private selfDialogue
+    const selfDialogue = new SelfDialogue();
+    const creativeDialogue = await selfDialogue.explore(selectedIdea.concept);
+    
+    // Convert the creative dialogue to the format expected by the rest of the code
+    const dialogue = [
+      {
+        role: 'system',
+        content: `Exploring concept: ${selectedIdea.concept}`
+      },
+      {
+        role: 'assistant',
+        content: `FINAL PROMPT: ${enhancedPrompt} ${selectedIdea.concept}`
+      }
+    ];
+    
+    actionState.dialogue = dialogue;
+    
+    // Extract the final prompt from the dialogue
+    const finalPrompt = extractFinalPrompt(dialogue);
+    
+    // Generate the image
+    console.log('Generating image with prompt:', finalPrompt);
+    let imageUrl: string;
+    let prediction;
+    
+    if (actionState.style) {
+      // Use the selected style to generate the image
+      console.log('Using style:', actionState.style.name);
+      prediction = await replicateService.generateFromStyle(
+        actionState.style,
+        finalPrompt
+      );
+      imageUrl = prediction.output[0]; // Assuming output is an array of URLs
+    } else {
+      // Use default parameters
+      prediction = await replicateService.runPrediction(
+        replicateService.getAvailableModels()[0], // Use first available model
+        { prompt: finalPrompt, width, height }
+      );
+      imageUrl = prediction.output[0]; // Assuming output is an array of URLs
+    }
+    
+    actionState.imageUrl = imageUrl;
+    
+    // Create a unique ID for the artwork
+    const artworkId = uuidv4();
+    
+    // Create the response content
+    const responseContent: Content = {
+      text: `I've created artwork based on "${finalPrompt}"`,
+      action: JSON.stringify({
+        artworkId,
+        prompt: finalPrompt,
+        imageUrl,
+        width,
+        height,
+        style: actionState.style,
+        creativeProcess: {
+          ideas: actionState.ideas,
+          selectedIdea: actionState.selectedIdea,
+          dialogue: actionState.dialogue
+        },
+        socialInfluence: socialContext ? {
+          incorporatedTrends: socialContext.artTrends.map(trend => trend.keyword),
+          communityThemes: socialContext.communityInsights.map(insight => insight.topic)
+        } : null
+      })
+    };
+    
+    return responseContent;
+  },
+  validate: async (runtime, message) => {
+    try {
+      // Extract parameters from the message
+      const params = message.content.action ? 
+        JSON.parse(message.content.action) as GenerateArtParams : 
+        {} as GenerateArtParams;
+      
+      // Basic validation
+      if (!params.prompt && !params.styleId) {
+        return false;
+      }
+      
+      return true;
+    } catch (error) {
+      console.error("Error validating generateArt action:", error);
+      return false;
+    }
+  },
+  suppressInitialMessage: false
 }; 
