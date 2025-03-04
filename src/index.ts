@@ -6,6 +6,8 @@ import { AIService } from './services/ai/index.js';
 import { MemorySystem, MemoryType } from './services/memory/index.js';
 import { MultiAgentSystem, AgentRole } from './services/multiagent/index.js';
 import { SocialEngagementService } from './services/social/index.js';
+import { ReplicateService } from './services/replicate/index.js';
+import { generateArt } from './defaultArtGenerator.js';
 
 // Export all components
 export {
@@ -16,7 +18,9 @@ export {
   MemoryType,
   MultiAgentSystem,
   AgentRole,
-  SocialEngagementService
+  SocialEngagementService,
+  ReplicateService,
+  generateArt
 };
 
 // Load environment variables
@@ -31,9 +35,14 @@ async function main() {
 
   try {
     // Initialize services
+    const replicateService = new ReplicateService({
+      apiKey: process.env.REPLICATE_API_KEY
+    });
+    
     const artBot = new CreativeEngine({
       anthropicApiKey: process.env.ANTHROPIC_API_KEY,
-      openaiApiKey: process.env.OPENAI_API_KEY
+      openaiApiKey: process.env.OPENAI_API_KEY,
+      replicateService
     });
     
     await artBot.initialize();
@@ -55,6 +64,16 @@ async function main() {
     const ideas = await artBot.generateIdeas('cosmic garden');
     console.log('✅ Generated ideas:');
     ideas.forEach(idea => console.log(`  - ${idea}`));
+
+    // Generate a conceptual image with FLUX
+    console.log('\n🖼️ Generating conceptual image with FLUX...');
+    const result = await artBot.generateConceptualImage('cosmic garden');
+    if (result.imageUrl) {
+      console.log('✅ Generated conceptual image:');
+      console.log(`  - URL: ${result.imageUrl}`);
+      console.log(`  - Prompt: ${result.prompt.substring(0, 100)}...`);
+      console.log(`  - Creative Process: ${result.creativeProcess.substring(0, 100)}...`);
+    }
 
     // Display idea queue statistics
     console.log('\n📊 Idea Queue Statistics:');
@@ -102,6 +121,16 @@ async function main() {
       console.log('✅ Generated more ideas:');
       moreIdeas.forEach(idea => console.log(`  - ${idea}`));
       
+      // Generate another conceptual image with FLUX
+      console.log('\n🖼️ Generating another conceptual image with FLUX...');
+      const anotherResult = await artBot.generateConceptualImage('digital dreamscape');
+      if (anotherResult.imageUrl) {
+        console.log('✅ Generated conceptual image:');
+        console.log(`  - URL: ${anotherResult.imageUrl}`);
+        console.log(`  - Prompt: ${anotherResult.prompt.substring(0, 100)}...`);
+        console.log(`  - Creative Process: ${anotherResult.creativeProcess.substring(0, 100)}...`);
+      }
+      
       // Display updated statistics
       console.log('\n📊 Updated Idea Queue Statistics:');
       console.log(JSON.stringify(artBot.getIdeaQueueStatistics(), null, 2));
@@ -113,6 +142,16 @@ async function main() {
       const evenMoreIdeas = await artBot.generateIdeas('urban jungle');
       console.log('✅ Generated even more ideas:');
       evenMoreIdeas.forEach(idea => console.log(`  - ${idea}`));
+      
+      // Generate a third conceptual image with FLUX
+      console.log('\n🖼️ Generating a third conceptual image with FLUX...');
+      const thirdResult = await artBot.generateConceptualImage('urban jungle');
+      if (thirdResult.imageUrl) {
+        console.log('✅ Generated conceptual image:');
+        console.log(`  - URL: ${thirdResult.imageUrl}`);
+        console.log(`  - Prompt: ${thirdResult.prompt.substring(0, 100)}...`);
+        console.log(`  - Creative Process: ${thirdResult.creativeProcess.substring(0, 100)}...`);
+      }
       
       // Display updated statistics
       console.log('\n📊 Updated Idea Queue Statistics:');

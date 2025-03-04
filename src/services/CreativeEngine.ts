@@ -1,4 +1,5 @@
 import { AIService, AIMessage } from './ai/index.js';
+import { generateConceptualPrompt } from './ai/conceptualPromptGenerator.js';
 import { IdeaQueue, CreativeIdea, ExplorationThread } from './IdeaQueue.js';
 import { MemorySystem, MemoryType, Memory } from './memory/index.js';
 import { StyleService } from './style/index.js';
@@ -57,6 +58,7 @@ export class CreativeEngine {
     evolutionStage: number;
     selfDescription: string;
   };
+  private replicateService: ReplicateService;
 
   constructor(config: CreativeEngineConfig = {}) {
     this.aiService = new AIService(config);
@@ -83,6 +85,11 @@ export class CreativeEngine {
       }
     };
     
+    // Initialize replicate service
+    this.replicateService = config.replicateService || new ReplicateService({
+      apiKey: process.env.REPLICATE_API_KEY
+    });
+    
     // Initialize idea queue
     this.ideaQueue = new IdeaQueue({
       aiService: this.aiService,
@@ -94,7 +101,7 @@ export class CreativeEngine {
     // Initialize memory system
     this.memorySystem = new MemorySystem({
       aiService: this.aiService,
-      replicateService: config.replicateService,
+      replicateService: this.replicateService,
       maxMemories: 1000,
       embeddingDimension: 1536
     });
@@ -1208,5 +1215,51 @@ export class CreativeEngine {
    */
   getCreativeIdentity(): Record<string, any> {
     return { ...this.creativeIdentity };
+  }
+
+  // Add a new method for generating conceptually rich images
+  async generateConceptualImage(concept: string, options: Record<string, any> = {}): Promise<{
+    imageUrl: string | null;
+    prompt: string;
+    creativeProcess: string;
+  }> {
+    try {
+      // Generate a conceptually rich prompt
+      const { prompt, creativeProcess } = await generateConceptualPrompt(this.aiService, concept);
+      
+      // Generate the image using the FLUX model
+      const imageUrl = await this.replicateService.generateImage(prompt, options);
+      
+      // Store the result in memory
+      if (imageUrl) {
+        await this.storeMemory(
+          {
+            concept,
+            prompt,
+            creativeProcess,
+            imageUrl
+          },
+          MemoryType.VISUAL,
+          {
+            type: 'conceptual-image',
+            timestamp: new Date().toISOString()
+          },
+          ['conceptual', 'flux', concept]
+        );
+      }
+      
+      return {
+        imageUrl,
+        prompt,
+        creativeProcess
+      };
+    } catch (error) {
+      console.error(`Error generating conceptual image: ${error}`);
+      return {
+        imageUrl: null,
+        prompt: '',
+        creativeProcess: ''
+      };
+    }
   }
 } 

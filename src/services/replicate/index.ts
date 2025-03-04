@@ -10,12 +10,16 @@ export class ReplicateService {
   private defaultModel: string;
   private imageWidth: number;
   private imageHeight: number;
+  private numInferenceSteps: number;
+  private guidanceScale: number;
   
   constructor(config: Record<string, any> = {}) {
     this.apiKey = config.apiKey || process.env.REPLICATE_API_KEY || '';
-    this.defaultModel = process.env.DEFAULT_IMAGE_MODEL || 'stability-ai/sdxl';
-    this.imageWidth = parseInt(process.env.IMAGE_WIDTH || '1024', 10);
-    this.imageHeight = parseInt(process.env.IMAGE_HEIGHT || '1024', 10);
+    this.defaultModel = process.env.DEFAULT_IMAGE_MODEL || 'adirik/flux-cinestill:9936c2def0a71d960f3c302a7d0c1c04f73fe55bee4a8fa45af33e4517c1a3bf';
+    this.imageWidth = parseInt(process.env.IMAGE_WIDTH || '768', 10);
+    this.imageHeight = parseInt(process.env.IMAGE_HEIGHT || '768', 10);
+    this.numInferenceSteps = parseInt(process.env.NUM_INFERENCE_STEPS || '28', 10);
+    this.guidanceScale = parseFloat(process.env.GUIDANCE_SCALE || '3.0');
   }
   
   async initialize(): Promise<void> {
@@ -25,6 +29,8 @@ export class ReplicateService {
       console.log(`✅ Replicate API key found: ${this.apiKey.substring(0, 5)}...`);
       console.log(`🖼️ Default image model: ${this.defaultModel}`);
       console.log(`📐 Image dimensions: ${this.imageWidth}x${this.imageHeight}`);
+      console.log(`🔄 Inference steps: ${this.numInferenceSteps}`);
+      console.log(`🎯 Guidance scale: ${this.guidanceScale}`);
     }
   }
   
@@ -50,8 +56,31 @@ export class ReplicateService {
         throw new Error('Replicate API key not provided');
       }
       
-      // If this is an image generation model, add default parameters if not provided
-      if (model.includes('stability-ai') || model.includes('sdxl')) {
+      // If this is the FLUX model, add default parameters if not provided
+      if (model.includes('flux-cinestill') || model.includes('adirik/flux')) {
+        input.width = input.width || this.imageWidth;
+        input.height = input.height || this.imageHeight;
+        input.num_inference_steps = input.num_inference_steps || this.numInferenceSteps;
+        input.guidance_scale = input.guidance_scale || this.guidanceScale;
+        input.output_format = input.output_format || "png";
+        
+        // Ensure the prompt has the FLUX trigger word
+        if (input.prompt && !input.prompt.includes('CNSTLL')) {
+          input.prompt = `CNSTLL ${input.prompt}`;
+        }
+        
+        // Add FLUX-specific keywords if they're not already present
+        if (input.prompt) {
+          const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
+          let keywordsToAdd = fluxKeywords.filter(keyword => !input.prompt.toLowerCase().includes(keyword.toLowerCase()));
+          
+          if (keywordsToAdd.length > 0) {
+            input.prompt = `${input.prompt}, ${keywordsToAdd.join(', ')}`;
+          }
+        }
+      }
+      // If this is an SDXL model, add default parameters if not provided
+      else if (model.includes('stability-ai') || model.includes('sdxl')) {
         input.width = input.width || this.imageWidth;
         input.height = input.height || this.imageHeight;
         input.num_outputs = input.num_outputs || 1;
@@ -189,6 +218,21 @@ export class ReplicateService {
    * Generate an image using the default model
    */
   async generateImage(prompt: string, options: Record<string, any> = {}): Promise<string | null> {
+    // For FLUX model, enhance the prompt with conceptually rich elements if not already provided
+    if (this.defaultModel.includes('flux-cinestill') || this.defaultModel.includes('adirik/flux')) {
+      if (!prompt.includes('CNSTLL')) {
+        prompt = `CNSTLL ${prompt}`;
+      }
+      
+      // Add FLUX-specific keywords if they're not already present
+      const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
+      let keywordsToAdd = fluxKeywords.filter(keyword => !prompt.toLowerCase().includes(keyword.toLowerCase()));
+      
+      if (keywordsToAdd.length > 0) {
+        prompt = `${prompt}, ${keywordsToAdd.join(', ')}`;
+      }
+    }
+    
     const input = {
       prompt: prompt,
       ...options
