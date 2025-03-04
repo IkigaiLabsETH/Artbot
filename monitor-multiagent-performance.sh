@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# Set Node.js version
+# Set Node.js version if nvm is available
 echo "Setting Node.js version..."
-nvm use 23 || { echo "Failed to set Node.js version. Make sure nvm is installed."; exit 1; }
+if command -v nvm &> /dev/null; then
+  nvm use 23 || { echo "Failed to set Node.js version."; exit 1; }
+else
+  echo "nvm not found, using system Node.js version: $(node -v)"
+fi
 
 # Build the project to ensure everything is up-to-date
 echo "Building project..."

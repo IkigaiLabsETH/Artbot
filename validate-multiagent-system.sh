@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# Set Node.js version
+# Set Node.js version if nvm is available
 echo "Setting Node.js version..."
-nvm use 23 || { echo "Failed to set Node.js version. Make sure nvm is installed."; exit 1; }
+if command -v nvm &> /dev/null; then
+  nvm use 23 || { echo "Failed to set Node.js version."; exit 1; }
+else
+  echo "nvm not found, using system Node.js version: $(node -v)"
+fi
 
 # Create output directory
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
@@ -56,10 +60,16 @@ if [ $BUILD_STATUS -ne 0 ]; then
   exit 1
 fi
 
-# Run linting
-append_section "Linting Status" "Running linter to ensure code quality..."
-run_and_capture "npm run lint" "Linting Result" "lint-output.txt"
-LINT_STATUS=$?
+# Run linting if ESLint config exists
+if [ -f ".eslintrc.js" ] || [ -f ".eslintrc.json" ] || [ -f ".eslintrc.yml" ] || [ -f ".eslintrc.yaml" ] || [ -f ".eslintrc" ]; then
+  append_section "Linting Status" "Running linter to ensure code quality..."
+  run_and_capture "npm run lint" "Linting Result" "lint-output.txt"
+  LINT_STATUS=$?
+else
+  append_section "Linting Status" "ESLint configuration not found. Skipping linting step."
+  echo "ESLint configuration not found. Skipping linting step." > "${REPORT_DIR}/lint-output.txt"
+  LINT_STATUS=0
+fi
 
 # Run tests
 append_section "Unit Tests" "Running unit tests..."
@@ -73,7 +83,14 @@ MULTIAGENT_TEST_STATUS=$?
 
 # Run performance monitoring (with timeout to ensure it completes)
 append_section "Performance Monitoring" "Running performance monitoring with a 2-minute timeout..."
-run_and_capture "timeout 120s npm run monitor:performance" "Performance Results" "performance-output.txt"
+# Check if timeout command exists
+if command -v timeout &> /dev/null; then
+  run_and_capture "timeout 120s npm run monitor:performance" "Performance Results" "performance-output.txt"
+else
+  # Fallback for systems without timeout command (like macOS)
+  echo "timeout command not found, running without timeout limit" > "${REPORT_DIR}/performance-output.txt"
+  run_and_capture "npm run monitor:performance" "Performance Results" "performance-output.txt"
+fi
 PERFORMANCE_STATUS=$?
 
 # Check file structure

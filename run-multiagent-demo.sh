@@ -1,15 +1,19 @@
 #!/bin/bash
 
-# Set Node.js version
+# Set Node.js version if nvm is available
 echo "Setting Node.js version..."
-nvm use 23 || { echo "Failed to set Node.js version. Make sure nvm is installed."; exit 1; }
+if command -v nvm &> /dev/null; then
+  nvm use 23 || { echo "Failed to set Node.js version."; exit 1; }
+else
+  echo "nvm not found, using system Node.js version: $(node -v)"
+fi
 
 # Build the project
 echo "Building the project..."
-npx tsc || { echo "TypeScript compilation failed."; exit 1; }
+npm run build || { echo "TypeScript compilation failed."; exit 1; }
 
 # Run the demo
-echo "Running Multi-Agent Art Creation System Demo..."
-node dist/demo-multiagent.js
+echo "Running Multi-Agent System Demo..."
+npm run demo:multiagent
 
 echo "Demo completed!" 
