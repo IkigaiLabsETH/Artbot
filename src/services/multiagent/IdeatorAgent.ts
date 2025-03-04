@@ -1,5 +1,5 @@
-import { BaseAgent, AgentRole, AgentMessage } from './index';
-import { AIService, AIMessage } from '../ai';
+import { BaseAgent, AgentRole, AgentMessage } from './index.js';
+import { AIService, AIMessage } from '../ai/index.js';
 
 // Ideator agent is responsible for generating creative ideas
 export class IdeatorAgent extends BaseAgent {

@@ -1,7 +1,7 @@
-import { Style } from '../../types';
-import { StyleMixer } from './mixer';
-import { StyleAnalyzer, StyleAnalysis, StyleMetrics } from './analyzer';
-import { ReplicateService, ModelPrediction } from '../replicate';
+import { Style } from '../../types.js';
+import { StyleMixer } from './mixer.js';
+import { StyleAnalyzer, StyleAnalysis, StyleMetrics } from './analyzer.js';
+import { ReplicateService, ModelPrediction } from '../replicate/index.js';
 import { v4 as uuidv4 } from 'uuid';
 import * as fs from 'fs/promises';
 import * as path from 'path';

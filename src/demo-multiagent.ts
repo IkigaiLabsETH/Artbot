@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
 import { resolve } from 'path';
-import { createMultiAgentSystem, createProjectMessage } from './services/multiagent/agents';
-import { AIService } from './services/ai';
-import { AgentMessage } from './services/multiagent';
+import { createMultiAgentSystem, createProjectMessage } from './services/multiagent/agents.js';
+import { AIService } from './services/ai/index.js';
+import { AgentMessage } from './services/multiagent/index.js';
 
 // Load environment variables from .env file
 dotenv.config();

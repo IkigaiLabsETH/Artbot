@@ -1,10 +1,10 @@
-import { DirectorAgent } from './DirectorAgent';
-import { IdeatorAgent } from './IdeatorAgent';
-import { StylistAgent } from './StylistAgent';
-import { RefinerAgent } from './RefinerAgent';
-import { CriticAgent } from './CriticAgent';
-import { AgentRole, MultiAgentSystem } from './index';
-import { AIService } from '../ai';
+import { DirectorAgent } from './DirectorAgent.js';
+import { IdeatorAgent } from './IdeatorAgent.js';
+import { StylistAgent } from './StylistAgent.js';
+import { RefinerAgent } from './RefinerAgent.js';
+import { CriticAgent } from './CriticAgent.js';
+import { AgentRole, MultiAgentSystem } from './index.js';
+import { AIService } from '../ai/index.js';
 
 // Export all agent implementations
 export {

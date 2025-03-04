@@ -1,4 +1,4 @@
-import { Style, StyleAnalysis, StyleMetrics } from '../../types';
+import { Style, StyleAnalysis, StyleMetrics } from '../../types.js';
 import { v4 as uuidv4 } from 'uuid';
 
 export { StyleAnalysis, StyleMetrics };

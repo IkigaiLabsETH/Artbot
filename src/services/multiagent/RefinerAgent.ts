@@ -1,5 +1,5 @@
-import { BaseAgent, AgentRole, AgentMessage } from './index';
-import { AIService, AIMessage } from '../ai';
+import { BaseAgent, AgentRole, AgentMessage } from './index.js';
+import { AIService, AIMessage } from '../ai/index.js';
 import { v4 as uuidv4 } from 'uuid';
 
 // Refiner agent is responsible for refining and improving artwork

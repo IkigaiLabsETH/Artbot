@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
-import { CreativeEngine } from './services/CreativeEngine';
-import { StyleService } from './services/style';
-import { artContextProvider } from './providers/artContext';
-import { AIService } from './services/ai';
+import { CreativeEngine } from './services/CreativeEngine.js';
+import { StyleService } from './services/style/index.js';
+import { artContextProvider } from './providers/artContext.js';
+import { AIService } from './services/ai/index.js';
 
 // Load environment variables from .env file
 dotenv.config();

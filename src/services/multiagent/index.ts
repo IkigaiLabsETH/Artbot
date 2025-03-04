@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { AIService, AIMessage } from '../ai';
+import { AIService, AIMessage } from '../ai/index.js';
 
 // Agent role definitions
 export enum AgentRole {

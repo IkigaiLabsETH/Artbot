@@ -1,5 +1,5 @@
-import { CreativeEngine } from '../services/CreativeEngine';
-import { StyleService } from '../services/style';
+import { CreativeEngine } from '../services/CreativeEngine.js';
+import { StyleService } from '../services/style/index.js';
 
 export const artContextProvider = {
   async get() {

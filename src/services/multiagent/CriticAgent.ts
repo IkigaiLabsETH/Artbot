@@ -1,5 +1,5 @@
-import { BaseAgent, AgentRole, AgentMessage } from './index';
-import { AIService, AIMessage } from '../ai';
+import { BaseAgent, AgentRole, AgentMessage } from './index.js';
+import { AIService, AIMessage } from '../ai/index.js';
 
 // Critic agent is responsible for evaluating and providing feedback on artwork
 export class CriticAgent extends BaseAgent {

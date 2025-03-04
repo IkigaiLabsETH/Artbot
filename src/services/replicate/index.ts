@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { ModelPrediction } from '../../types';
+import { ModelPrediction } from '../../types.js';
 import fetch from 'node-fetch';
 
 export { ModelPrediction };

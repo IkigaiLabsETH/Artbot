@@ -1,5 +1,5 @@
-import { BaseAgent, AgentRole, AgentMessage } from './index';
-import { AIService, AIMessage } from '../ai';
+import { BaseAgent, AgentRole, AgentMessage } from './index.js';
+import { AIService, AIMessage } from '../ai/index.js';
 
 // Director agent is responsible for coordinating the creative process
 export class DirectorAgent extends BaseAgent {

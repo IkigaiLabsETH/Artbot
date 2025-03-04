@@ -1,4 +1,4 @@
-import { Style } from '../../types';
+import { Style } from '../../types.js';
 
 export class StyleMixer {
   private config: Record<string, any>;

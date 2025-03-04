@@ -1,4 +1,4 @@
-import { AIService, AIMessage } from './ai';
+import { AIService, AIMessage } from './ai/index.js';
 
 // Define interfaces for the components we need
 interface CreativeState {
