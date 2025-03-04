@@ -1,138 +1,240 @@
 # Multi-Agent System for Collaborative Art Creation
 
-This module implements a multi-agent system for collaborative art creation through specialized agent roles. The system enables autonomous agents to work together to create artwork, with each agent focusing on a specific aspect of the creative process.
+This directory contains the implementation of a multi-agent system designed for collaborative art creation. The system employs specialized agents that work together to create artwork through a structured workflow.
 
-## Architecture
+## Directory Structure
 
-The multi-agent system consists of the following components:
+```
+multiagent/
+├── MultiAgentSystem.ts       # Core system for managing agents and workflow
+├── BaseAgent.ts              # Base class for all agents
+├── AgentMessage.ts           # Message types for agent communication
+├── AgentTypes.ts             # Type definitions for the multi-agent system
+├── agents/                   # Specialized agent implementations
+│   ├── DirectorAgent.ts      # Coordinates the overall creative process
+│   ├── IdeatorAgent.ts       # Generates initial concepts and ideas
+│   ├── StylistAgent.ts       # Applies artistic styles to concepts
+│   ├── RefinerAgent.ts       # Enhances details and coherence
+│   └── CriticAgent.ts        # Evaluates and provides feedback
+└── utils/                    # Utility functions for the multi-agent system
+    ├── WorkflowUtils.ts      # Utilities for workflow management
+    └── MessageUtils.ts       # Utilities for message handling
+```
 
-### Core Components
+## Core Components
 
-- **MultiAgentSystem**: Manages agent registration, message passing, and system state
-- **BaseAgent**: Abstract base class for all agent implementations
-- **AgentMessage**: Interface for messages exchanged between agents
+### MultiAgentSystem
 
-### Agent Roles
+The central coordinator that:
+- Initializes and manages specialized agents
+- Handles message routing between agents
+- Manages the workflow state
+- Tracks project progress
+- Provides status information
 
-1. **Director Agent**: Coordinates the creative process and manages workflow
-2. **Ideator Agent**: Generates creative ideas based on project requirements
-3. **Stylist Agent**: Develops artistic styles based on generated ideas
-4. **Refiner Agent**: Refines and improves artwork based on selected styles
-5. **Critic Agent**: Evaluates and provides feedback on the artwork
+### BaseAgent
 
-### Workflow
+Abstract base class that all specialized agents extend, providing:
+- Common functionality for message handling
+- State management
+- Task processing
+- Error handling
 
-The agents collaborate through a sequential workflow:
+### Agent Message Types
 
-1. **Planning Stage**: Director assigns ideation task to Ideator
-2. **Styling Stage**: Director passes ideation results to Stylist
-3. **Refinement Stage**: Director passes style results to Refiner
-4. **Critique Stage**: Director passes refined artwork to Critic
-5. **Completion**: Director collects all results and completes the project
+The system uses a structured message format for communication:
+- `TASK`: Assigns a task to an agent
+- `RESULT`: Returns the result of a completed task
+- `FEEDBACK`: Provides feedback on a result
+- `STATUS`: Reports agent status
+- `STAGE_CHANGE`: Signals a workflow stage transition
+- `ERROR`: Reports an error condition
+
+## Specialized Agents
+
+### DirectorAgent
+
+The project coordinator that:
+- Initializes the creative process
+- Assigns tasks to other agents
+- Monitors overall progress
+- Makes decisions about workflow transitions
+- Finalizes the artwork
+
+### IdeatorAgent
+
+Responsible for conceptualization:
+- Generates initial concepts based on project requirements
+- Explores creative possibilities
+- Provides conceptual foundation for the artwork
+
+### StylistAgent
+
+Focuses on aesthetic aspects:
+- Applies artistic styles to concepts
+- Ensures visual coherence
+- Enhances aesthetic appeal
+
+### RefinerAgent
+
+Enhances and polishes the artwork:
+- Adds details to styled concepts
+- Improves coherence and consistency
+- Resolves visual issues
+
+### CriticAgent
+
+Provides evaluation and feedback:
+- Assesses artwork quality
+- Identifies areas for improvement
+- Ensures alignment with project requirements
+
+## Workflow Process
+
+The system follows a structured workflow:
+
+1. **Planning Stage**
+   - Director analyzes project requirements
+   - Ideator generates initial concepts
+   - Director evaluates concepts
+
+2. **Styling Stage**
+   - Stylist applies artistic styles to approved concepts
+   - Director reviews styled concepts
+
+3. **Refinement Stage**
+   - Refiner enhances details and coherence
+   - Director reviews refinements
+
+4. **Critique Stage**
+   - Critic evaluates the artwork
+   - Director processes feedback
+   - Agents make adjustments based on feedback
+
+5. **Completion Stage**
+   - Director finalizes the artwork
+   - System marks the project as complete
 
 ## Usage
 
-### Creating a Multi-Agent System
+To use the multi-agent system:
 
 ```typescript
-import { createMultiAgentSystem } from './services/multiagent/agents';
-import { AIService } from './services/ai';
+import { MultiAgentSystem } from './services/multiagent/MultiAgentSystem';
+import { AIService } from './services/ai/AIService';
 
 // Initialize AI service
-const aiService = new AIService({
-  openaiApiKey: process.env.OPENAI_API_KEY,
-  anthropicApiKey: process.env.ANTHROPIC_API_KEY
-});
+const aiService = new AIService();
+await aiService.initialize();
 
 // Create multi-agent system
-const system = createMultiAgentSystem({ aiService });
+const system = new MultiAgentSystem(aiService);
 
-// Initialize the system
-await system.initialize();
-```
+// Define art project
+const project = {
+  name: "Neon Cityscape",
+  theme: "Futuristic urban environment",
+  style: "Cyberpunk with neon lighting",
+  elements: ["Skyscrapers", "Flying vehicles", "Holographic advertisements"],
+  colorPalette: ["#FF00FF", "#00FFFF", "#FFFF00", "#0000FF"]
+};
 
-### Starting a Project
+// Start the project
+await system.startProject(project);
 
-```typescript
-import { createProjectMessage } from './services/multiagent/agents';
-import { AgentMessage } from './services/multiagent';
-
-// Create a project message
-const projectMessage = createProjectMessage(
-  'Project Title',
-  'Project Description',
-  ['Requirement 1', 'Requirement 2']
-) as AgentMessage;
-
-// Send the message to start the creative process
-await system.sendMessage(projectMessage);
-```
-
-### Monitoring the System
-
-```typescript
-// Get the current system state
-const states = system.getSystemState();
-
-// Get agents by role
-const directors = system.getAgentsByRole(AgentRole.DIRECTOR);
+// Monitor progress
+const checkStatus = setInterval(() => {
+  const status = system.getStatus();
+  console.log(`Status: ${status.state}`);
+  
+  if (status.state === 'COMPLETE') {
+    console.log("Project completed!");
+    console.log("Final artwork:", status.result);
+    clearInterval(checkStatus);
+  }
+}, 5000);
 ```
 
 ## Extending the System
 
-### Creating a Custom Agent
+To create a custom agent:
+
+1. Create a new class that extends `BaseAgent`
+2. Implement the required methods:
+   - `initialize()`: Set up agent-specific resources
+   - `processMessage()`: Handle incoming messages
+   - `getStatus()`: Report agent status
 
 ```typescript
-import { BaseAgent, AgentRole, AgentMessage } from './services/multiagent';
+import { BaseAgent } from '../BaseAgent';
+import { AgentMessage, AgentMessageType } from '../AgentMessage';
 
 export class CustomAgent extends BaseAgent {
-  constructor(aiService: AIService) {
-    super(AgentRole.CUSTOM, aiService);
-    this.state.context = {
-      // Custom agent state
-    };
+  constructor(aiService) {
+    super('CUSTOM', aiService);
   }
-
-  async process(message: AgentMessage): Promise<AgentMessage | null> {
-    // Process incoming messages
-    return null;
+  
+  async initialize() {
+    // Agent-specific initialization
+    this.state = 'READY';
+  }
+  
+  async processMessage(message: AgentMessage): Promise<void> {
+    if (message.type === AgentMessageType.TASK) {
+      // Process task
+      const result = await this.performCustomTask(message.content);
+      
+      // Send result back
+      await this.sendMessage({
+        from: this.id,
+        to: message.from,
+        type: AgentMessageType.RESULT,
+        content: result
+      });
+    }
+  }
+  
+  private async performCustomTask(content: any): Promise<any> {
+    // Custom task implementation
+    return { /* result */ };
   }
 }
 ```
 
-## Running the Demo
+## Testing
 
-To run the multi-agent system demo:
+Run the multi-agent system tests:
 
 ```bash
-# Using npm script
-npm run demo:multiagent
-
-# Using shell script
-./run-multiagent-demo.sh
+npm run test:multiagent
 ```
 
-## Implementation Details
+Or use the validation script for comprehensive testing:
 
-### Message Types
+```bash
+./validate-multiagent-system.sh
+```
 
-- **request**: Request an agent to perform a task
-- **response**: Response to a request with task results
-- **update**: Update on agent state or progress
-- **feedback**: Feedback on agent performance or output
+## Performance Monitoring
 
-### Agent State
+Monitor system performance:
 
-Each agent maintains its own state, including:
+```bash
+npm run monitor:performance
+```
 
-- **memory**: History of processed messages
-- **context**: Agent-specific context data
-- **status**: Current agent status ('idle', 'working', 'waiting', 'finished')
+Generate a detailed performance report:
 
-## Future Enhancements
+```bash
+./monitor-multiagent-performance.sh
+```
 
-- **Parallel Processing**: Enable agents to work on multiple tasks simultaneously
-- **Learning Capabilities**: Implement learning mechanisms for agents to improve over time
-- **Dynamic Role Assignment**: Allow agents to dynamically take on different roles based on project needs
-- **External Feedback Integration**: Incorporate feedback from external sources (e.g., human users)
-- **Visualization Tools**: Create tools to visualize agent interactions and system state 
+## Documentation
+
+For more detailed information, refer to:
+
+- [Multi-Agent System Architecture](../../docs/multiagent-system.md)
+- [API Reference](../../docs/multiagent-api-reference.md)
+- [User Guide](../../docs/multiagent-user-guide.md)
+- [Test Plan](../../docs/multiagent-test-plan.md)
+- [Implementation Summary](../../docs/multiagent-implementation-summary.md) 

@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# Set Node.js version
+# Set Node.js version if nvm is available
 echo "Setting Node.js version..."
-nvm use 23 || { echo "Failed to set Node.js version. Make sure nvm is installed."; exit 1; }
+if command -v nvm &> /dev/null; then
+  nvm use 23 || { echo "Failed to set Node.js version."; exit 1; }
+else
+  echo "nvm not found, using system Node.js version: $(node -v)"
+fi
 
 # Ensure the docs directory exists
 mkdir -p docs
@@ -26,12 +30,21 @@ npm run lint || { echo "Linting failed. Please fix the errors before pushing."; 
 # Stage the changes
 echo "Staging changes..."
 git add src/services/multiagent/
+git add src/services/multiagent/README.md
 git add src/demo-multiagent.ts
 git add run-multiagent-demo.sh
+git add test-multiagent.js
+git add test-multiagent.sh
+git add monitor-multiagent-performance.js
+git add monitor-multiagent-performance.sh
+git add validate-multiagent-system.sh
 git add docs/multiagent-system.md
 git add docs/multiagent-user-guide.md
 git add docs/multiagent-api-reference.md
+git add docs/multiagent-test-plan.md
+git add docs/multiagent-implementation-summary.md
 git add CHANGELOG-MULTIAGENT.md
+git add MULTIAGENT-IMPLEMENTATION-COMPLETE.md
 git add package.json
 git add README.md
 
@@ -50,7 +63,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 - Specialized agent roles (Director, Ideator, Stylist, Refiner, Critic)
 - Collaborative workflow for art creation
 - Demo script and execution tools
-- Comprehensive documentation
+- Test scripts for validation
+- Performance monitoring tools
+- System validation tools
+- Comprehensive documentation and test plan
+- Implementation summary
 - Updated README with multi-agent system details"
 
   # Push the changes
