@@ -19,6 +19,7 @@ export default class ArtCreatorPlugin implements Plugin {
   private engine: CreativeEngine;
   private styleService: StyleService;
   private replicateService: ReplicateService;
+  private runtime: any;
 
   constructor(config: ArtCreatorConfig) {
     this.engine = new CreativeEngine({
@@ -29,9 +30,12 @@ export default class ArtCreatorPlugin implements Plugin {
     this.replicateService = new ReplicateService({ apiKey: config.replicateApiKey });
   }
 
-  async onStart(): Promise<void> {
+  async onStart(runtime: any): Promise<void> {
+    // Store the runtime for later use
+    this.runtime = runtime;
+    
     // Initialize services
-    await this.engine.initialize();
+    await this.engine.initialize(runtime);
     await this.styleService.initialize();
     await this.replicateService.initialize();
   }
