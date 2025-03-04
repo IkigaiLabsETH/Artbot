@@ -414,7 +414,7 @@ export class MemorySystem {
   /**
    * Generate embedding for visual content using CLIP-like functionality
    */
-  private async generateVisualEmbedding(imageUrl: string): Promise<number[]> {
+  private async generateVisualEmbedding(imageUrl: string | any): Promise<number[]> {
     try {
       // If we have a real API key, we could use Replicate's CLIP model
       // For now, we'll use a mock implementation
@@ -434,7 +434,25 @@ export class MemorySystem {
       return this.generateRandomEmbedding(imageUrl);
     } catch (error) {
       console.error('Error generating visual embedding:', error);
-      return this.generateRandomEmbedding();
+      // Use a consistent seed for the same input to ensure reproducibility
+      let seed: string | number = 12345;
+      if (typeof imageUrl === 'string') {
+        seed = imageUrl;
+      } else if (typeof imageUrl === 'object' && imageUrl !== null) {
+        try {
+          // For objects, use a stringified version or a property if available
+          if (imageUrl.url) {
+            seed = imageUrl.url;
+          } else if (imageUrl.imageUrl) {
+            seed = imageUrl.imageUrl;
+          } else {
+            seed = JSON.stringify(imageUrl);
+          }
+        } catch (e) {
+          console.warn('Could not extract seed from image object, using default seed');
+        }
+      }
+      return this.generateRandomEmbedding(seed);
     }
   }
 
