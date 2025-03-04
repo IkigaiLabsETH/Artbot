@@ -1,47 +1,60 @@
 #!/bin/bash
 
-# Script to run the Eliza application with the art-creator character
-
-# Ensure we're using the correct Node.js version
-if command -v nvm &> /dev/null; then
-  nvm use 23 || echo "Please install Node.js v23 using nvm"
-else
-  echo "nvm not found. Please ensure you're using Node.js v23"
+# Check if Node.js is installed and version is at least 23
+NODE_VERSION=$(node -v | cut -d 'v' -f 2 | cut -d '.' -f 1)
+if [ -z "$NODE_VERSION" ] || [ "$NODE_VERSION" -lt 23 ]; then
+  echo "Error: Node.js v23 or higher is required."
+  echo "Current version: $(node -v)"
+  echo "Please install Node.js v23 or higher."
+  exit 1
 fi
 
-# Check if the art-creator character exists
-if [ ! -f "./characters/art-creator.json" ]; then
-  echo "Error: art-creator.json not found in the characters directory"
+# Check if the character file exists
+if [ ! -f "characters/art-creator.json" ]; then
+  echo "Error: characters/art-creator.json not found."
+  echo "Please create this file or check its path."
   exit 1
 fi
 
 # Build the plugin-art-creator
 echo "Building plugin-art-creator..."
-cd packages/plugin-art-creator && npm run build && cd ../..
+cd packages/plugin-art-creator
+npm install
+npm run build
+cd ../..
 
-# Ensure the plugin is properly installed in the agent's node_modules
-echo "Installing plugin-art-creator to agent..."
-rm -rf agent/node_modules/@elizaos/plugin-art-creator
+# Create symbolic link for the plugin in agent's node_modules
+echo "Creating symbolic link for plugin-art-creator..."
 mkdir -p agent/node_modules/@elizaos
+rm -rf agent/node_modules/@elizaos/plugin-art-creator
 ln -sf $(pwd)/packages/plugin-art-creator agent/node_modules/@elizaos/plugin-art-creator
-echo "Created symbolic link for plugin-art-creator"
 
-# Set environment variables for API keys if they're not already set
+# Load environment variables from .env file
+if [ -f ".env" ]; then
+  echo "Loading environment variables from .env file..."
+  export $(grep -v '^#' .env | xargs)
+fi
+
+# Check if required environment variables are set
 if [ -z "$OPENAI_API_KEY" ]; then
-  export OPENAI_API_KEY=$(grep OPENAI_API_KEY .env | cut -d '=' -f2)
-  echo "Set OPENAI_API_KEY from .env file"
+  echo "Error: OPENAI_API_KEY is not set."
+  echo "Please set this environment variable in your .env file or export it."
+  exit 1
 fi
 
 if [ -z "$ANTHROPIC_API_KEY" ]; then
-  export ANTHROPIC_API_KEY=$(grep ANTHROPIC_API_KEY .env | cut -d '=' -f2)
-  echo "Set ANTHROPIC_API_KEY from .env file"
+  echo "Error: ANTHROPIC_API_KEY is not set."
+  echo "Please set this environment variable in your .env file or export it."
+  exit 1
 fi
 
 if [ -z "$REPLICATE_API_KEY" ]; then
-  export REPLICATE_API_KEY=$(grep REPLICATE_API_KEY .env | cut -d '=' -f2)
-  echo "Set REPLICATE_API_KEY from .env file"
+  echo "Error: REPLICATE_API_KEY is not set."
+  echo "Please set this environment variable in your .env file or export it."
+  exit 1
 fi
 
 # Run the agent with the art-creator character
-echo "Starting Eliza with the art-creator character..."
-cd agent && npm run dev -- --character="../characters/art-creator.json" 
+echo "Starting Eliza with ArtBot character..."
+cd agent
+npm run start -- --characters="../characters/art-creator.json" 
