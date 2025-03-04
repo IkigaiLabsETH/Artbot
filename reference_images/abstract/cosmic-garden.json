@@ -1,0 +1,32 @@
+{
+  "filename": "cosmic-garden.png",
+  "title": "Cosmic Garden",
+  "artist": "ArtBot Team",
+  "year": "2023",
+  "source": "Original creation",
+  "license": "CC BY-NC-SA 4.0",
+  "categories": ["abstract", "surreal"],
+  "tags": [
+    "cosmic",
+    "garden",
+    "vibrant",
+    "colorful",
+    "abstract",
+    "surreal",
+    "digital",
+    "space",
+    "organic"
+  ],
+  "style_attributes": {
+    "color_palette": ["#6A0DAD", "#FF1493", "#00FFFF", "#FFD700", "#32CD32"],
+    "composition": "Organic flowing forms with cosmic elements in a dreamlike garden setting",
+    "texture": "Smooth with ethereal glow effects and particle details",
+    "mood": "Mystical and otherworldly",
+    "technique": "Digital painting with particle effects and light manipulation"
+  },
+  "prompt_used": "A cosmic garden with vibrant colors, flowing organic forms, and ethereal light effects, blending surreal and abstract elements",
+  "description": "This artwork depicts an otherworldly garden with cosmic elements, featuring vibrant colors and flowing organic forms. It blends surrealism with abstract art to create a mystical, dreamlike environment that evokes a sense of wonder and exploration.",
+  "inspiration_value": "The vibrant color relationships and the balance between organic and cosmic elements make this a valuable reference for projects exploring surreal environments and dreamlike spaces.",
+  "added_date": "2023-12-20",
+  "added_by": "ArtBot Development Team"
+} 

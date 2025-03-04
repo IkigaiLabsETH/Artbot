@@ -1,11 +1,15 @@
 import { BaseAgent, AgentRole, AgentMessage } from './index.js';
 import { AIService, AIMessage } from '../ai/index.js';
 import { v4 as uuidv4 } from 'uuid';
+import { ReferenceImageProvider, ImageMetadata } from './ReferenceImageProvider.js';
 
 // Stylist agent is responsible for developing artistic styles
 export class StylistAgent extends BaseAgent {
-  constructor(aiService: AIService) {
+  private referenceImageProvider: ReferenceImageProvider | null = null;
+  
+  constructor(aiService: AIService, referenceImageProvider?: ReferenceImageProvider) {
     super(AgentRole.STYLIST, aiService);
+    this.referenceImageProvider = referenceImageProvider || null;
     this.state.context = {
       currentTask: null,
       developedStyles: [],
@@ -26,7 +30,12 @@ export class StylistAgent extends BaseAgent {
 
   async initialize(): Promise<void> {
     await super.initialize();
-    // Stylist-specific initialization
+    
+    // Initialize reference image provider if available
+    if (this.referenceImageProvider) {
+      await this.referenceImageProvider.initialize();
+      console.log('StylistAgent: Reference image provider initialized');
+    }
   }
 
   async process(message: AgentMessage): Promise<AgentMessage | null> {
@@ -108,6 +117,65 @@ export class StylistAgent extends BaseAgent {
       return [this.createDefaultStyle()];
     }
     
+    // Get reference images if available
+    let referenceImagesPrompt = '';
+    
+    if (this.referenceImageProvider) {
+      // Extract key terms from ideas and project
+      const keyTerms = ideas.flatMap((idea: any) => 
+        [idea.title, ...(idea.styles || []), ...(idea.elements || [])]
+      ).concat([project.title, project.description]);
+      
+      const combinedText = keyTerms.join(' ');
+      
+      // Get relevant reference images
+      const referenceImages = this.referenceImageProvider.getStyleReferenceImages(combinedText, 3);
+      
+      if (referenceImages.length > 0) {
+        referenceImagesPrompt = `\n\nReference Images for Inspiration:
+${referenceImages.map((img, index) => {
+  let imgInfo = `Reference ${index + 1}: ${img.title || img.filename}`;
+  
+  if (img.description) {
+    imgInfo += `\nDescription: ${img.description}`;
+  }
+  
+  if (img.style_attributes) {
+    const attrs = img.style_attributes;
+    imgInfo += '\nStyle Attributes:';
+    
+    if (attrs.color_palette && attrs.color_palette.length > 0) {
+      imgInfo += `\n- Color Palette: ${attrs.color_palette.join(', ')}`;
+    }
+    
+    if (attrs.composition) {
+      imgInfo += `\n- Composition: ${attrs.composition}`;
+    }
+    
+    if (attrs.texture) {
+      imgInfo += `\n- Texture: ${attrs.texture}`;
+    }
+    
+    if (attrs.mood) {
+      imgInfo += `\n- Mood: ${attrs.mood}`;
+    }
+    
+    if (attrs.technique) {
+      imgInfo += `\n- Technique: ${attrs.technique}`;
+    }
+  }
+  
+  if (img.tags && img.tags.length > 0) {
+    imgInfo += `\nTags: ${img.tags.join(', ')}`;
+  }
+  
+  return imgInfo;
+}).join('\n\n')}
+
+Use these reference images as inspiration for your style development. Incorporate elements from these references that align with the project requirements and ideas.`;
+      }
+    }
+    
     // Use AI service to develop styles based on the ideas
     const messages: AIMessage[] = [
       {
@@ -126,9 +194,10 @@ export class StylistAgent extends BaseAgent {
         Ideas:
         ${ideas.map((idea: any, index: number) => 
           `${index + 1}. ${idea.title}: ${idea.description}
-           Elements: ${idea.elements.join(', ')}
-           Suggested styles: ${idea.styles.join(', ')}`
+           Elements: ${idea.elements ? idea.elements.join(', ') : 'None specified'}
+           Suggested styles: ${idea.styles ? idea.styles.join(', ') : 'None specified'}`
         ).join('\n\n')}
+        ${referenceImagesPrompt}
         
         For each style, provide:
         1. A name

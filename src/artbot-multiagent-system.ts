@@ -15,6 +15,7 @@ import { CriticAgent } from './services/multiagent/CriticAgent.js';
 import { SocialEngagementService } from './services/social/index.js';
 import { AgentRole, AgentMessage, Agent } from './services/multiagent/index.js';
 import { FluxRefinerAgent } from './services/multiagent/FluxRefinerAgent.js';
+import { ReferenceImageProvider } from './services/multiagent/ReferenceImageProvider.js';
 
 // Load environment variables
 dotenv.config();
@@ -58,6 +59,7 @@ export class ArtBotMultiAgentSystem {
   private socialService: SocialEngagementService;
   private multiAgentSystem: EnhancedMultiAgentSystem;
   private outputDir: string;
+  private referenceImageProvider: ReferenceImageProvider;
   private sessions: Record<string, { id: string; project: any; status: string; startTime: Date; messages: AgentMessage[]; result: any }> = {};
   
   constructor(config: {
@@ -67,6 +69,7 @@ export class ArtBotMultiAgentSystem {
     styleService?: StyleService;
     socialService?: SocialEngagementService;
     outputDir?: string;
+    referenceImagesDir?: string;
   } = {}) {
     // Initialize services
     this.aiService = config.aiService || new AIService({
@@ -111,6 +114,8 @@ export class ArtBotMultiAgentSystem {
     // Set output directory
     this.outputDir = config.outputDir || path.join(__dirname, '..', 'output');
     ensureDirectoryExists(this.outputDir);
+
+    this.referenceImageProvider = new ReferenceImageProvider(config.referenceImagesDir || path.join(__dirname, '..', 'reference-images'));
   }
   
   /**
@@ -123,6 +128,9 @@ export class ArtBotMultiAgentSystem {
     await this.memorySystem.initialize();
     await this.styleService.initialize();
     await this.socialService.initialize();
+    
+    // Initialize reference image provider
+    await this.referenceImageProvider.initialize();
     
     // Initialize multi-agent system
     await this.multiAgentSystem.initialize();
@@ -146,7 +154,7 @@ export class ArtBotMultiAgentSystem {
     const ideatorAgent = new IdeatorAgent(this.aiService);
     
     // Create the Stylist Agent
-    const stylistAgent = new StylistAgent(this.aiService);
+    const stylistAgent = new StylistAgent(this.aiService, this.referenceImageProvider);
     
     // Create the Refiner Agent
     const refinerAgent = new RefinerAgent(this.aiService);
@@ -379,6 +387,13 @@ export class ArtBotMultiAgentSystem {
    */
   getSocialEngagementService(): SocialEngagementService {
     return this.socialService;
+  }
+  
+  /**
+   * Get the reference image provider instance
+   */
+  getReferenceImageProvider(): ReferenceImageProvider {
+    return this.referenceImageProvider;
   }
 }
 
