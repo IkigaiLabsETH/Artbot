@@ -1,6 +1,12 @@
-// Use CommonJS require instead of ESM imports
-const dotenv = require('dotenv');
-const path = require('path');
+// @ts-check
+// Use ESM imports instead of CommonJS
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get the current file's directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Load environment variables from .env file
 dotenv.config();
@@ -14,10 +20,10 @@ async function main() {
     console.log('Anthropic API Key:', process.env.ANTHROPIC_API_KEY ? 'Set' : 'Not Set');
     console.log('Replicate API Key:', process.env.REPLICATE_API_KEY ? 'Set' : 'Not Set');
     
-    // Dynamically require the plugin to avoid ESM issues
+    // Dynamically import the plugin to avoid ESM issues
     const pluginPath = path.resolve(__dirname, 'packages/plugin-art-creator/dist/index.js');
     console.log('Loading plugin from:', pluginPath);
-    const { default: ArtCreatorPlugin } = require(pluginPath);
+    const ArtCreatorPlugin = (await import(pluginPath)).default;
     
     // Initialize the plugin
     const plugin = new ArtCreatorPlugin({

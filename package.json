@@ -4,6 +4,7 @@
   "description": "Advanced AI Art Generation System",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "dev": "ts-node src/index.ts",
@@ -14,7 +15,9 @@
     "demo:multiagent": "ts-node src/demo-multiagent.ts",
     "test:multiagent": "node test-multiagent.js",
     "monitor:performance": "node monitor-multiagent-performance.js",
-    "report:performance": "./monitor-multiagent-performance.sh"
+    "report:performance": "./monitor-multiagent-performance.sh",
+    "test:plugin": "node --loader ts-node/esm test-plugin.ts",
+    "test:simple": "node --experimental-modules simple-test.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.18.0",

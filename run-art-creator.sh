@@ -22,9 +22,9 @@ cd packages/plugin-art-creator && npm run build && cd ../..
 # Ensure the plugin is properly installed in the agent's node_modules
 echo "Installing plugin-art-creator to agent..."
 rm -rf agent/node_modules/@elizaos/plugin-art-creator
-mkdir -p agent/node_modules/@elizaos/plugin-art-creator/dist
-cp -r packages/plugin-art-creator/dist/* agent/node_modules/@elizaos/plugin-art-creator/dist/
-cp packages/plugin-art-creator/package.json agent/node_modules/@elizaos/plugin-art-creator/
+mkdir -p agent/node_modules/@elizaos
+ln -sf $(pwd)/packages/plugin-art-creator agent/node_modules/@elizaos/plugin-art-creator
+echo "Created symbolic link for plugin-art-creator"
 
 # Set environment variables for API keys if they're not already set
 if [ -z "$OPENAI_API_KEY" ]; then
