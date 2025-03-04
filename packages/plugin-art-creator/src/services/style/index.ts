@@ -26,6 +26,8 @@ export class StyleService extends Service {
   private replicateService: ReplicateService;
   private styles: Map<string, Style> = new Map();
   private stylesDir: string;
+  private styleLibraries: Map<string, Style[]> = new Map();
+  private styleCategories: Map<string, string[]> = new Map();
 
   static get serviceType(): ServiceType {
     return ServiceType.TEXT_GENERATION;
@@ -360,6 +362,143 @@ export class StyleService extends Service {
     }
 
     return sequence;
+  }
+
+  /**
+   * Create a style library with categorization
+   */
+  async createStyleLibrary(name: string, styles: Style[], categories: string[] = []): Promise<string> {
+    const libraryId = uuidv4();
+    this.styleLibraries.set(libraryId, styles);
+    this.styleCategories.set(libraryId, categories);
+    
+    // Save library metadata
+    try {
+      const libraryDir = path.join(this.stylesDir, 'libraries');
+      await fs.mkdir(libraryDir, { recursive: true });
+      
+      await fs.writeFile(
+        path.join(libraryDir, `${libraryId}.json`),
+        JSON.stringify({
+          id: libraryId,
+          name,
+          styles: styles.map(s => s.id),
+          categories,
+          created: new Date()
+        }, null, 2)
+      );
+    } catch (error) {
+      console.error('Error saving style library:', error);
+    }
+    
+    return libraryId;
+  }
+
+  /**
+   * Get styles by category
+   */
+  async getStylesByCategory(category: string): Promise<Style[]> {
+    const result: Style[] = [];
+    
+    // Search through all libraries
+    for (const [libraryId, categories] of this.styleCategories.entries()) {
+      if (categories.includes(category)) {
+        const libraryStyles = this.styleLibraries.get(libraryId) || [];
+        result.push(...libraryStyles);
+      }
+    }
+    
+    // Also search through individual styles with tags
+    for (const style of this.styles.values()) {
+      if (style.tags && style.tags.includes(category)) {
+        result.push(style);
+      }
+    }
+    
+    return result;
+  }
+
+  /**
+   * Advanced style transfer with fine-grained control
+   */
+  async transferStyleFeatures(
+    sourceStyle: Style,
+    targetStyle: Style,
+    features: Array<{feature: string, weight: number}>
+  ): Promise<Style> {
+    // Create a new style object
+    const newStyle: Style = {
+      ...targetStyle,
+      id: uuidv4(),
+      name: `${sourceStyle.name} × ${targetStyle.name}`,
+      creator: 'ArtBot',
+      parameters: { ...targetStyle.parameters },
+      version: 1,
+      created: new Date(),
+      modified: new Date(),
+      isPublic: false,
+      tags: [...(targetStyle.tags || []), ...(sourceStyle.tags || [])]
+    };
+    
+    // Apply feature transfers with weights
+    for (const {feature, weight} of features) {
+      if (
+        sourceStyle.parameters && 
+        targetStyle.parameters && 
+        feature in sourceStyle.parameters && 
+        feature in targetStyle.parameters
+      ) {
+        const sourceValue = sourceStyle.parameters[feature];
+        const targetValue = targetStyle.parameters[feature];
+        
+        // If both values are numbers, interpolate
+        if (typeof sourceValue === 'number' && typeof targetValue === 'number') {
+          newStyle.parameters![feature] = targetValue * (1 - weight) + sourceValue * weight;
+        } 
+        // If both are strings, use source if weight > 0.5, otherwise target
+        else if (typeof sourceValue === 'string' && typeof targetValue === 'string') {
+          newStyle.parameters![feature] = weight > 0.5 ? sourceValue : targetValue;
+        }
+        // If both are arrays, blend them
+        else if (Array.isArray(sourceValue) && Array.isArray(targetValue)) {
+          newStyle.parameters![feature] = weight > 0.5 ? 
+            [...sourceValue, ...targetValue.slice(0, Math.floor(targetValue.length * (1 - weight)))] :
+            [...targetValue, ...sourceValue.slice(0, Math.floor(sourceValue.length * weight))];
+        }
+      }
+    }
+    
+    return this.saveStyle(newStyle);
+  }
+
+  /**
+   * Get style recommendations based on user preferences
+   */
+  async getStyleRecommendations(
+    userPreferences: Record<string, number>,
+    count: number = 5
+  ): Promise<Style[]> {
+    const styles = Array.from(this.styles.values());
+    
+    // Score each style based on user preferences
+    const scoredStyles = styles.map(style => {
+      let score = 0;
+      
+      // Score based on tags
+      if (style.tags) {
+        for (const tag of style.tags) {
+          if (tag in userPreferences) {
+            score += userPreferences[tag];
+          }
+        }
+      }
+      
+      return { style, score };
+    });
+    
+    // Sort by score and return top styles
+    scoredStyles.sort((a, b) => b.score - a.score);
+    return scoredStyles.slice(0, count).map(s => s.style);
   }
 }
 

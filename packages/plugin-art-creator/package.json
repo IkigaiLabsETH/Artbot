@@ -14,12 +14,13 @@
     "@elizaos/core": "workspace:*",
     "@tensorflow/tfjs-node": "^4.17.0",
     "@types/uuid": "10.0.0",
+    "axios": "^1.8.1",
+    "ml-kmeans": "^6.0.0",
     "node-fetch": "^2.6.1",
+    "onnxruntime-node": "^1.17.0",
     "openai": "^4.28.0",
     "sharp": "^0.32.1",
-    "uuid": "^11.1.0",
-    "onnxruntime-node": "^1.17.0",
-    "ml-kmeans": "^6.0.0"
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",

@@ -3,6 +3,7 @@ import { CreativeEngine } from './services/CreativeEngine';
 import { StyleService } from './services/style';
 import { ReplicateService } from './services/replicate';
 import { StyleEvolutionService } from './services/evolution';
+import { SocialContextService } from './services/social';
 import { generateArt } from './actions/generateArt';
 import { evolveStyle } from './actions/evolveStyle';
 import { artContextProvider, socialContextProvider } from './providers';
@@ -11,6 +12,10 @@ export interface ArtCreatorConfig {
   openaiApiKey?: string;
   anthropicApiKey: string;
   replicateApiKey: string;
+  socialApiConfig?: {
+    trendApiUrl?: string;
+    feedbackApiUrl?: string;
+  };
 }
 
 export default class ArtCreatorPlugin implements Plugin {
@@ -21,6 +26,7 @@ export default class ArtCreatorPlugin implements Plugin {
   private styleService: StyleService;
   private replicateService: ReplicateService;
   private evolutionService: StyleEvolutionService;
+  private socialContextService: SocialContextService;
   private runtime: any;
 
   constructor(config: ArtCreatorConfig) {
@@ -31,6 +37,7 @@ export default class ArtCreatorPlugin implements Plugin {
     this.styleService = new StyleService();
     this.replicateService = new ReplicateService({ apiKey: config.replicateApiKey });
     this.evolutionService = new StyleEvolutionService();
+    this.socialContextService = new SocialContextService(config.socialApiConfig);
   }
 
   async onStart(runtime: any): Promise<void> {
@@ -42,6 +49,7 @@ export default class ArtCreatorPlugin implements Plugin {
     await this.styleService.initialize();
     await this.replicateService.initialize();
     await this.evolutionService.initialize(runtime);
+    await this.socialContextService.initialize(runtime);
     
     // Set the style service for the evolution service
     this.evolutionService.setStyleService(this.styleService);
@@ -53,7 +61,8 @@ export default class ArtCreatorPlugin implements Plugin {
         this.engine,
         this.styleService,
         this.replicateService,
-        this.evolutionService
+        this.evolutionService,
+        this.socialContextService
       ]
     };
   }
