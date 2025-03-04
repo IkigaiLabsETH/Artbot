@@ -1,60 +1,61 @@
-import { ReplicateService } from './services/replicate/index.js';
-import { AIService } from './services/ai/index.js';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import { ReplicateService } from './services/replicate/index.js';
+import { AIService } from './services/ai/index.js';
 
 // Get the directory name
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Helper function to ensure directory exists
+function ensureDirectoryExists(dirPath: string): void {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+    console.log(`Created directory: ${dirPath}`);
+  }
+}
+
 async function generateArt() {
   try {
     console.log('🎨 ArtBot Image Generator');
     console.log('------------------------');
-
+    
     // Initialize services
     const replicateApiKey = process.env.REPLICATE_API_KEY;
+    const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
+    const openaiApiKey = process.env.OPENAI_API_KEY;
+    
     if (!replicateApiKey) {
       throw new Error('REPLICATE_API_KEY is required');
     }
-    const replicateService = new ReplicateService({ apiKey: replicateApiKey });
-    console.log(`✅ Replicate API key found: ${replicateApiKey.substring(0, 5)}...`);
-
-    // Set default model and dimensions
-    const defaultModel = 'stability-ai/sdxl';
-    const width = 1024;
-    const height = 1024;
-    console.log(`🖼️ Default image model: ${defaultModel}`);
-    console.log(`📐 Image dimensions: ${width}x${height}`);
-
-    // Initialize AI service for prompt generation
-    const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
-    const openaiApiKey = process.env.OPENAI_API_KEY;
     
     if (!anthropicApiKey && !openaiApiKey) {
       throw new Error('Either ANTHROPIC_API_KEY or OPENAI_API_KEY is required');
     }
     
-    if (anthropicApiKey) {
-      console.log(`✅ Anthropic API key found: ${anthropicApiKey.substring(0, 5)}...`);
-    }
+    console.log('API Keys found:');
+    console.log(`- Replicate: ${replicateApiKey ? 'Yes' : 'No'}`);
+    console.log(`- Anthropic: ${anthropicApiKey ? 'Yes' : 'No'}`);
+    console.log(`- OpenAI: ${openaiApiKey ? 'Yes' : 'No'}`);
     
-    if (openaiApiKey) {
-      console.log(`✅ OpenAI API key found (fallback): ${openaiApiKey.substring(0, 5)}...`);
-    }
-    
+    const replicateService = new ReplicateService({ apiKey: replicateApiKey });
     const aiService = new AIService({
       anthropicApiKey,
       openaiApiKey,
     });
     
     console.log('✅ Services initialized\n');
-
+    
     // Get concept from command line arguments or use default
     const concept = process.argv[2] || 'cosmic garden';
     console.log(`💡 Using concept: "${concept}"\n`);
-
+    
+    // Default image settings
+    const width = 1024;
+    const height = 1024;
+    console.log(`📐 Image dimensions: ${width}x${height}`);
+    
     // Generate detailed prompt
     console.log('📝 Generating detailed prompt...');
     const promptResponse = await aiService.getCompletion({
@@ -72,46 +73,52 @@ async function generateArt() {
       temperature: 0.7,
       maxTokens: 1000
     });
-
+    
     const detailedPrompt = promptResponse.content;
     console.log(`✅ Generated prompt: ${detailedPrompt}\n`);
-
+    
     // Generate image
     console.log('🖼️ Generating image...');
     
-    // Use the correct model version
-    const modelVersion = "stability-ai/sdxl:7762fd07";
-    console.log(`🔄 Running prediction on model: ${modelVersion}`);
+    // Use the default model from the ReplicateService
+    // This will use 'stability-ai/sdxl' which is set as the default in the service
     
     const input = {
       prompt: detailedPrompt,
-      width,
-      height,
-      num_outputs: 1
+      width: width,
+      height: height,
+      num_outputs: 1,
+      guidance_scale: 7.5,
+      num_inference_steps: 50,
+      negative_prompt: "low quality, blurry, distorted, deformed, ugly, poor composition"
     };
     
     console.log(`📝 Input: ${JSON.stringify(input, null, 2)}`);
     
-    const prediction = await replicateService.runPrediction(modelVersion, input);
+    // Use the generateImage method which uses the default model
+    const imageUrl = await replicateService.generateImage(detailedPrompt, {
+      width: width,
+      height: height,
+      num_inference_steps: 50,
+      guidance_scale: 7.5,
+      negative_prompt: "low quality, blurry, distorted, deformed, ugly, poor composition"
+    });
     
-    if (prediction.status !== 'success' || !prediction.output || prediction.output.length === 0) {
-      throw new Error(`Prediction failed: ${JSON.stringify(prediction)}`);
+    if (!imageUrl) {
+      throw new Error('Failed to generate image');
     }
     
-    const imageUrl = prediction.output[0];
     console.log(`✅ Image generated: ${imageUrl}`);
-
+    
     // Save the image URL to a file
     const outputDir = path.join(__dirname, '..', 'output');
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
-    }
-
-    const filename = concept.replace(/\s+/g, '-').toLowerCase();
+    ensureDirectoryExists(outputDir);
+    
+    const filename = `${concept.replace(/\s+/g, '-').toLowerCase()}`;
     const outputPath = path.join(outputDir, `${filename}.txt`);
     fs.writeFileSync(outputPath, imageUrl);
     console.log(`✅ Image URL saved to: ${outputPath}`);
-
+    
     return imageUrl;
   } catch (error) {
     console.error(`Error generating art: ${error}`);

@@ -1,41 +1,51 @@
 #!/bin/bash
 
+# Set default concept if not provided
+CONCEPT="${1:-cosmic garden}"
+echo "🎨 Running ArtBot with concept: \"$CONCEPT\""
+
 # Check if .env file exists
 if [ -f .env ]; then
-  echo "✅ Found .env file"
+  echo "📝 Loading environment variables from .env file"
+  # Use a safer method to load environment variables
+  set -a
+  source .env
+  set +a
 else
-  echo "❌ .env file not found"
-  exit 1
+  echo "⚠️ No .env file found. Make sure environment variables are set."
 fi
 
-# Set environment variables manually
-export REPLICATE_API_KEY=$(grep REPLICATE_API_KEY .env | cut -d '=' -f2)
-export ANTHROPIC_API_KEY=$(grep ANTHROPIC_API_KEY .env | cut -d '=' -f2)
-export OPENAI_API_KEY=$(grep OPENAI_API_KEY .env | cut -d '=' -f2)
-
-# Check for required environment variables
+# Check for required API keys
 if [ -z "$REPLICATE_API_KEY" ]; then
-  echo "❌ REPLICATE_API_KEY is not set in .env file"
+  echo "❌ Error: REPLICATE_API_KEY environment variable is required"
   exit 1
 fi
 
 if [ -z "$ANTHROPIC_API_KEY" ] && [ -z "$OPENAI_API_KEY" ]; then
-  echo "❌ Either ANTHROPIC_API_KEY or OPENAI_API_KEY must be set in .env file"
+  echo "❌ Error: Either ANTHROPIC_API_KEY or OPENAI_API_KEY environment variable is required"
   exit 1
 fi
 
-# Print environment variables (masked for security)
-echo "✅ REPLICATE_API_KEY: ${REPLICATE_API_KEY:0:5}..."
-if [ ! -z "$ANTHROPIC_API_KEY" ]; then
-  echo "✅ ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:0:5}..."
-fi
-if [ ! -z "$OPENAI_API_KEY" ]; then
-  echo "✅ OPENAI_API_KEY: ${OPENAI_API_KEY:0:5}..."
+# Print API key status
+echo "✅ API Keys found:"
+if [ -n "$REPLICATE_API_KEY" ]; then
+  echo "  - Replicate: Yes"
+else
+  echo "  - Replicate: No"
 fi
 
-# Run the art generator with the provided concept or default to "cosmic garden"
-CONCEPT="${1:-cosmic garden}"
-echo "🚀 Running ArtBot with concept: \"$CONCEPT\""
+if [ -n "$ANTHROPIC_API_KEY" ]; then
+  echo "  - Anthropic: Yes"
+else
+  echo "  - Anthropic: No"
+fi
 
-# Execute the art generator
+if [ -n "$OPENAI_API_KEY" ]; then
+  echo "  - OpenAI: Yes"
+else
+  echo "  - OpenAI: No"
+fi
+
+# Run the art generator
+echo "🚀 Running ArtBot..."
 node dist/generate-art.js "$CONCEPT" 
