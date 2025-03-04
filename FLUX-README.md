@@ -6,6 +6,7 @@ This integration allows ArtBot to generate images using the FLUX model from Repl
 
 - Generate images using the FLUX model via Replicate's API
 - Create conceptually rich, evocative prompts with metaphorical depth
+- **Automatic cinematic concept generation** using AI
 - Automatically enhance prompts with FLUX-specific trigger words and keywords
 - Download generated images to your local machine
 - Save detailed metadata including prompts and creative process explanations
@@ -47,10 +48,18 @@ The easiest way to generate images is to use the provided shell script:
 
 For example:
 ```bash
-./run-flux-art-generator.sh "cosmic garden at night"
+./run-flux-art-generator.sh "abandoned cyberpunk arcade"
 ```
 
-If no concept is provided, it will use the default concept "cosmic garden at night".
+### Automatic Concept Generation
+
+If no concept is provided, the system will automatically generate a random cinematic concept using AI:
+
+```bash
+./run-flux-art-generator.sh
+```
+
+Each time you run the script without a concept, it will generate a unique cinematic concept, ensuring variety and creativity in your generated images.
 
 ### Prompt Philosophy
 
@@ -112,7 +121,7 @@ To integrate FLUX with the multi-agent system:
 
 ## Example Output
 
-Generated images will be saved to the `output` directory with filenames based on the concept, e.g., `flux-cosmic-garden-at-night.png`.
+Generated images will be saved to the `output` directory with filenames based on the concept, e.g., `flux-abandoned-cyberpunk-arcade.png`.
 
 ## Troubleshooting
 

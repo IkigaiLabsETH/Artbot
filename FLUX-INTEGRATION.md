@@ -7,9 +7,10 @@ This document outlines the integration of the FLUX model (`adirik/flux-cinestill
 The FLUX model is now the default art generator for ArtBot, replacing the previous default model. This integration includes:
 
 1. **Conceptually Rich Prompts**: All prompts are now generated with metaphorical depth, emotional resonance, and visual complexity.
-2. **FLUX-Specific Optimizations**: Prompts are automatically enhanced with FLUX-specific trigger words and technical elements.
-3. **Creative Process Explanations**: Each generated prompt includes a "Creative Process" explanation that reveals the thinking behind it.
-4. **Multi-Agent Integration**: The FLUX model is fully integrated with ArtBot's multi-agent system.
+2. **Automatic Cinematic Concept Generation**: The system can generate unique cinematic concepts using AI.
+3. **FLUX-Specific Optimizations**: Prompts are automatically enhanced with FLUX-specific trigger words and technical elements.
+4. **Creative Process Explanations**: Each generated prompt includes a "Creative Process" explanation that reveals the thinking behind it.
+5. **Multi-Agent Integration**: The FLUX model is fully integrated with ArtBot's multi-agent system.
 
 ## Using the FLUX Integration
 
@@ -21,7 +22,7 @@ To generate art with FLUX, simply run:
 npm run start
 ```
 
-This will use the default concept "cosmic garden at night". To specify a different concept:
+This will automatically generate a random cinematic concept using AI. To specify your own concept:
 
 ```bash
 npm run start "your concept here"
@@ -47,8 +48,9 @@ The integration includes the following components:
 
 1. **ReplicateService**: Updated to use FLUX as the default model and handle FLUX-specific parameters.
 2. **ConceptualPromptGenerator**: A new service that generates conceptually rich prompts with metaphorical depth.
-3. **CreativeEngine**: Enhanced with a new `generateConceptualImage` method that uses FLUX.
-4. **DefaultArtGenerator**: A new default implementation that uses FLUX with conceptually rich prompts.
+3. **ConceptGenerator**: A new service that generates random cinematic concepts using AI.
+4. **CreativeEngine**: Enhanced with a new `generateConceptualImage` method that uses FLUX.
+5. **DefaultArtGenerator**: A new default implementation that uses FLUX with conceptually rich prompts.
 
 ## Prompt Philosophy
 

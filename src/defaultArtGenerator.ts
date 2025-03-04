@@ -8,6 +8,7 @@ import { AIService } from './services/ai/index.js';
 import { MemorySystem, MemoryType } from './services/memory/index.js';
 import { StyleService } from './services/style/index.js';
 import { MultiAgentSystem } from './services/multiagent/index.js';
+import { generateCinematicConcept } from './services/ai/conceptGenerator.js';
 
 // Load environment variables
 dotenv.config();
@@ -94,7 +95,13 @@ async function generateArt(concept: string) {
     console.log('🧠 Creative Engine initialized');
     console.log('✅ Services initialized');
     
-    const artConcept = concept || process.argv[2] || 'cosmic garden at night';
+    // If no concept is provided via command line, generate a random cinematic concept
+    let artConcept = concept;
+    if (!artConcept) {
+      console.log('\n🎬 Generating a cinematic concept...');
+      artConcept = await generateCinematicConcept(aiService, { temperature: 0.9 });
+    }
+    
     console.log(`\n💡 Using concept: "${artConcept}"`);
     
     // Generate conceptual image

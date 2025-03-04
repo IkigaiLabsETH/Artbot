@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import { AIService } from './services/ai/index.js';
+import { generateCinematicConcept } from './services/ai/conceptGenerator.js';
 
 // Load environment variables
 dotenv.config();
@@ -101,8 +102,12 @@ async function generateArtWithFlux() {
     
     console.log('✅ Services initialized\n');
     
-    // Get concept from command line arguments or use default
-    const concept = process.argv[2] || 'cosmic garden at night';
+    // Get concept from command line arguments or generate a new one
+    let concept = process.argv[2];
+    if (!concept) {
+      console.log('🎬 Generating a cinematic concept...');
+      concept = await generateCinematicConcept(aiService, { temperature: 0.9 });
+    }
     console.log(`💡 Using concept: "${concept}"\n`);
     
     // Default image settings for FLUX
@@ -253,31 +258,36 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
     const outputImagePath = path.join(outputDir, `flux-${concept.replace(/\s+/g, '-').toLowerCase()}.png`);
     await downloadImage(imageUrl, outputImagePath);
     
-    // Save metadata about the generation
+    // Save metadata
+    const metadataPath = path.join(outputDir, `flux-${concept.replace(/\s+/g, '-').toLowerCase()}-metadata.json`);
     const metadata = {
-      concept,
+      concept: concept,
       prompt: detailedPrompt,
-      creativeProcess,
-      parameters: {
-        width,
-        height,
-        numInferenceSteps,
-        guidanceScale
-      },
-      imageUrl,
+      creativeProcess: creativeProcess,
+      imageUrl: imageUrl,
       timestamp: new Date().toISOString()
     };
-    
-    const metadataPath = path.join(outputDir, `flux-${concept.replace(/\s+/g, '-').toLowerCase()}-metadata.json`);
     fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
     console.log(`✅ Metadata saved to: ${metadataPath}`);
     
-    return imageUrl;
+    console.log('\n✨ Art generation completed successfully!');
+    
+    return {
+      concept,
+      prompt: detailedPrompt,
+      creativeProcess,
+      imageUrl
+    };
   } catch (error) {
-    console.error(`Error generating art with FLUX: ${error}`);
+    console.error('❌ Error:', error);
     throw error;
   }
 }
 
-// Run the function
-generateArtWithFlux().catch(console.error); 
+// Run the function if this file is executed directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+  generateArtWithFlux().catch(console.error);
+}
+
+// Export the function for use in other modules
+export { generateArtWithFlux }; 

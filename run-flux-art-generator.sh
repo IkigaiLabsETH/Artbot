@@ -53,8 +53,12 @@ if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
   echo -e "  ./run-flux-art-generator.sh [concept]"
   echo ""
   echo -e "${MAGENTA}Examples:${NC}"
-  echo -e "  ./run-flux-art-generator.sh \"cosmic garden at night\""
   echo -e "  ./run-flux-art-generator.sh \"abandoned cyberpunk arcade\""
+  echo -e "  ./run-flux-art-generator.sh \"misty harbor at dawn\""
+  echo ""
+  echo -e "${MAGENTA}Note:${NC}"
+  echo -e "  If no concept is provided, the system will automatically generate a random"
+  echo -e "  cinematic concept using AI. Each run will produce a unique concept."
   echo ""
   echo -e "${MAGENTA}Output:${NC}"
   echo -e "  The generator creates several files in the output directory:"
@@ -77,6 +81,11 @@ fi
 
 # Run the FLUX art generator
 echo -e "${GREEN}Starting FLUX art generator...${NC}"
+if [ -z "$1" ]; then
+  echo -e "${YELLOW}No concept provided. The system will generate a random cinematic concept.${NC}"
+else
+  echo -e "${YELLOW}Using provided concept: \"$1\"${NC}"
+fi
 echo -e "${YELLOW}This will generate a conceptually rich prompt and create an image using FLUX${NC}"
 echo -e "${YELLOW}The process may take a minute or two to complete${NC}"
 echo ""
