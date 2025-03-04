@@ -1229,7 +1229,8 @@ export class CreativeEngine {
       
       // Generate a conceptually rich prompt
       const { prompt, creativeProcess } = await generateConceptualPrompt(this.aiService, concept, {
-        useFluxPro: isFluxPro
+        useFluxPro: isFluxPro,
+        cryptoNative: options.cryptoNative || false
       });
       
       // Generate the image using the model
@@ -1247,9 +1248,10 @@ export class CreativeEngine {
           MemoryType.VISUAL,
           {
             type: 'conceptual-image',
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            cryptoNative: options.cryptoNative || false
           },
-          ['conceptual', isFluxPro ? 'flux-pro' : 'flux', concept]
+          ['conceptual', isFluxPro ? 'flux-pro' : 'flux', concept, ...(options.cryptoNative ? ['crypto', 'bitcoin', 'satoshi'] : [])]
         );
       }
       

@@ -123,9 +123,8 @@ async function generateArt(concept: string) {
           category = ConceptCategory.CINEMATIC;
         }
       } else {
-        // If no category specified, use a random category for variety
-        const categories = Object.values(ConceptCategory);
-        category = categories[Math.floor(Math.random() * categories.length)];
+        // If no category specified, use MAGRITTE_SURREALISM as the default
+        category = ConceptCategory.MAGRITTE_SURREALISM;
         console.log(`\n🎬 Generating a ${category} concept...`);
       }
       
@@ -134,13 +133,33 @@ async function generateArt(concept: string) {
         temperature: 0.9,
         category
       });
+    } else {
+      // Check if the provided concept is crypto-related
+      const cryptoKeywords = ['bitcoin', 'crypto', 'blockchain', 'nft', 'satoshi', 'ethereum', 'web3', 'token'];
+      const isCryptoRelated = cryptoKeywords.some(keyword => concept.toLowerCase().includes(keyword));
+      
+      // If crypto-related, use CRYPTO_ART category
+      if (isCryptoRelated && !categoryArg) {
+        console.log(`\n🎬 Detected crypto-related concept, using CRYPTO_ART category...`);
+        const cryptoArtConcept = await generateCinematicConcept(aiService, {
+          temperature: 0.9,
+          category: ConceptCategory.CRYPTO_ART
+        });
+        artConcept = cryptoArtConcept;
+      }
     }
     
     console.log(`\n💡 Using concept: "${artConcept}"`);
     
+    // Check if the concept is crypto-related for the prompt generation
+    const cryptoKeywords = ['bitcoin', 'crypto', 'blockchain', 'nft', 'satoshi', 'ethereum', 'web3', 'token', 'fidenza', 'ringers', 'meridian', 'xcopy', 'beeple'];
+    const isCryptoRelated = cryptoKeywords.some(keyword => artConcept.toLowerCase().includes(keyword));
+    
     // Generate conceptual image
     console.log('\n🖼️ Generating conceptual image...');
-    const result = await creativeEngine.generateConceptualImage(artConcept);
+    const result = await creativeEngine.generateConceptualImage(artConcept, {
+      cryptoNative: isCryptoRelated || categoryArg === 'crypto_art'
+    });
     
     if (!result.imageUrl) {
       console.error('❌ Failed to generate image');
@@ -171,6 +190,7 @@ async function generateArt(concept: string) {
       creativeProcess: result.creativeProcess,
       imageUrl: result.imageUrl,
       timestamp: new Date().toISOString(),
+      isCryptoNative: isCryptoRelated || categoryArg === 'crypto_art'
     };
     
     fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
@@ -185,8 +205,12 @@ async function generateArt(concept: string) {
         imageUrl: result.imageUrl,
       },
       MemoryType.EXPERIENCE,
-      { type: 'artwork', concept: artConcept },
-      ['artwork', 'flux', ...artConcept.split(' ')]
+      { 
+        type: 'artwork', 
+        concept: artConcept,
+        isCryptoNative: isCryptoRelated || categoryArg === 'crypto_art'
+      },
+      ['artwork', 'flux', ...(isCryptoRelated ? ['crypto', 'bitcoin', 'satoshi'] : []), ...artConcept.split(' ')]
     );
     
     console.log('\n✨ Art generation completed successfully!');
