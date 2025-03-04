@@ -1,11 +1,11 @@
 import { Action, Content, ServiceType } from '@elizaos/core';
-import { CreativeEngine } from '../services/CreativeEngine';
-import { StyleService } from '../services/style';
-import { ReplicateService } from '../services/replicate';
-import { SocialContextService } from '../services/social';
-import { ArtworkIdea, SelfDialogue } from '../types';
+import { CreativeEngine } from '../services/CreativeEngine.js';
+import { StyleService } from '../services/style/index.js';
+import { ReplicateService } from '../services/replicate/index.js';
+import { SocialContextService } from '../services/social/index.js';
+import { ArtworkIdea, SelfDialogue } from '../types/index.js';
 import { v4 as uuidv4 } from 'uuid';
-import { Style } from '../types/social';
+import { Style } from '../types/social/index.js';
 
 export interface GenerateArtParams {
   prompt?: string;

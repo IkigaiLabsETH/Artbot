@@ -152,4 +152,4 @@ export interface CreativeDialogue {
   memoryReferences: string[];
 }
 
-export * from './social'; 
+export * from './social/index.js'; 

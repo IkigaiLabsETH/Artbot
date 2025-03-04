@@ -1,4 +1,4 @@
-import { ArtworkIdea } from '../types';
+import { ArtworkIdea } from '../types/index.js';
 
 /**
  * Enhances a basic prompt with artistic details for better image generation

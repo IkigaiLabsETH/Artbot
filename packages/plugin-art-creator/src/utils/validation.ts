@@ -1,4 +1,4 @@
-import { Style, ArtworkIdea } from '../types';
+import { Style, ArtworkIdea } from '../types/index.js';
 
 /**
  * Validate style parameters

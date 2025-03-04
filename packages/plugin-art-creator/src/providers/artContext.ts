@@ -1,7 +1,7 @@
 import { Provider, ServiceType } from '@elizaos/core';
-import { ArtworkMemory, CreativeState } from '../types';
-import { StyleService } from '../services/style';
-import { CreativeEngine } from '../services/CreativeEngine';
+import { ArtworkMemory, CreativeState } from '../types/index.js';
+import { StyleService } from '../services/style/index.js';
+import { CreativeEngine } from '../services/CreativeEngine.js';
 
 export const artContextProvider: Provider = {
   async get(runtime) {

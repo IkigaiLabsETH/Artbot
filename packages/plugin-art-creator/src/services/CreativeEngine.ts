@@ -8,8 +8,8 @@ import {
   SelfDialogue,
   Analysis,
   CreativeDialogue
-} from '../types/index';
-import { ArtMemoryService } from './memory';
+} from '../types/index.js';
+import { ArtMemoryService } from './memory/index.js';
 import { v4 as uuidv4 } from 'uuid';
 import * as path from 'path';
 

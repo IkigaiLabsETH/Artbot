@@ -1,5 +1,5 @@
 import { Service, ServiceType, MemoryManager, UUID, Memory } from '@elizaos/core';
-import { ArtworkMemory, ArtworkIdea } from '../../types';
+import { ArtworkMemory, ArtworkIdea } from '../../types/index.js';
 
 export interface ArtMemoryServiceConfig {
   tableName?: string;

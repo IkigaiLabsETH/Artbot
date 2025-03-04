@@ -1,7 +1,7 @@
 import { Service, ServiceType } from '@elizaos/core';
-import { Style } from '../../types';
-import { ModelHandler, REPLICATE_MODELS } from './models';
-import { validateConfig, interpolateStyles, createStyleVariation, convertOutputToStyle } from '../../utils';
+import { Style } from '../../types/index.js';
+import { ModelHandler, REPLICATE_MODELS } from './models.js';
+import { validateConfig, interpolateStyles, createStyleVariation, convertOutputToStyle } from '../../utils/index.js';
 
 export interface ModelPrediction {
   id: string;

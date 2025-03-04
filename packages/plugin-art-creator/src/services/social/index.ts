@@ -1,6 +1,6 @@
-import { Style, User, FeedbackScore, StyleMetrics } from '../../types/social';
+import { Style, User, FeedbackScore, StyleMetrics } from '../../types/social/index.js';
 import { Service, ServiceType, IAgentRuntime } from '@elizaos/core';
-import { ArtworkFeedback } from '../../types';
+import { ArtworkFeedback } from '../../types/index.js';
 import axios from 'axios';
 
 interface SocialService {

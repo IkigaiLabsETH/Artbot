@@ -1,7 +1,7 @@
 import { Action, ServiceType } from '@elizaos/core';
-import { StyleService } from '../services/style';
-import { StyleEvolutionService, StyleGenome } from '../services/evolution';
-import { Style } from '../types/social';
+import { StyleService } from '../services/style/index.js';
+import { StyleEvolutionService, StyleGenome } from '../services/evolution/index.js';
+import { Style } from '../types/social/index.js';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface EvolveStyleParams {

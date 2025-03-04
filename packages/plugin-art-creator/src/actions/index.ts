@@ -1,2 +1,2 @@
-export * from './generateArt';
-export * from './evolveStyle'; 
+export * from './generateArt.js';
+export * from './evolveStyle.js'; 

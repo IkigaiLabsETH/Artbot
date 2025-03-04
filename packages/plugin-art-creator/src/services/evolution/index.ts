@@ -1,6 +1,6 @@
 import { Service, ServiceType, IAgentRuntime } from '@elizaos/core';
-import { Style } from '../../types/social';
-import { StyleService } from '../style';
+import { Style } from '../../types/social/index.js';
+import { StyleService } from '../style/index.js';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface StyleGene {

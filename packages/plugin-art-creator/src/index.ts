@@ -1,12 +1,12 @@
 import { Plugin, ServiceType } from '@elizaos/core';
-import { CreativeEngine } from './services/CreativeEngine';
-import { StyleService } from './services/style';
-import { ReplicateService } from './services/replicate';
-import { StyleEvolutionService } from './services/evolution';
-import { SocialContextService } from './services/social';
-import { generateArt } from './actions/generateArt';
-import { evolveStyle } from './actions/evolveStyle';
-import { artContextProvider, socialContextProvider } from './providers';
+import { CreativeEngine } from './services/CreativeEngine.js';
+import { StyleService } from './services/style/index.js';
+import { ReplicateService } from './services/replicate/index.js';
+import { StyleEvolutionService } from './services/evolution/index.js';
+import { SocialContextService } from './services/social/index.js';
+import { generateArt } from './actions/generateArt.js';
+import { evolveStyle } from './actions/evolveStyle.js';
+import { artContextProvider, socialContextProvider } from './providers.js';
 
 export interface ArtCreatorConfig {
   openaiApiKey?: string;

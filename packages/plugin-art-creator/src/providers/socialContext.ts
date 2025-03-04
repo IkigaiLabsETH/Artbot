@@ -1,6 +1,6 @@
-import { Provider, ServiceType, Service } from "@elizaos/core";
-import { ArtworkFeedback } from "../types";
-import { SocialContextService, CulturalTrend, AudienceFeedback, CommunityInsight } from "../services/social";
+import { Provider, ServiceType, Service } from '@elizaos/core';
+import { ArtworkFeedback } from '../types/index.js';
+import { SocialContextService, CulturalTrend, AudienceFeedback, CommunityInsight } from '../services/social/index.js';
 
 interface TrendMetrics {
   positiveRatio: number;
@@ -15,7 +15,7 @@ interface FeedbackMetrics {
 }
 
 // Import the singleton instance directly
-import socialContextService from "../services/social";
+import socialContextService from '../services/social/index.js';
 
 export const socialContextProvider: Provider = {
   async get(runtime) {

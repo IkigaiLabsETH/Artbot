@@ -1,4 +1,4 @@
-import { Style } from '../types';
+import { Style } from '../types/index.js';
 
 /**
  * Interpolate between two styles with a given ratio
