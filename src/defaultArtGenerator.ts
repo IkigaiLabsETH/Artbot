@@ -5,6 +5,9 @@ import dotenv from 'dotenv';
 import { CreativeEngine } from './services/CreativeEngine.js';
 import { ReplicateService } from './services/replicate/index.js';
 import { AIService } from './services/ai/index.js';
+import { MemorySystem, MemoryType } from './services/memory/index.js';
+import { StyleService } from './services/style/index.js';
+import { MultiAgentSystem } from './services/multiagent/index.js';
 
 // Load environment variables
 dotenv.config();
@@ -13,123 +16,146 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Helper function to ensure directory exists
-function ensureDirectoryExists(dirPath: string): void {
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-    console.log(`Created directory: ${dirPath}`);
-  }
+// Create output directory if it doesn't exist
+const outputDir = path.join(__dirname, '..', 'output');
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir, { recursive: true });
 }
 
-/**
- * Default art generator using FLUX with conceptually rich prompts
- */
-async function generateArt(concept?: string): Promise<void> {
+// Get concept from command line arguments
+const concept = process.argv[2];
+
+async function generateArt(concept: string) {
   try {
-    console.log('🎨 ArtBot - Generating Art with FLUX');
-    console.log('------------------------------------');
-    
-    // Initialize services
+    // Check for API keys
     const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
     const openaiApiKey = process.env.OPENAI_API_KEY;
     const replicateApiKey = process.env.REPLICATE_API_KEY;
     
-    if (!replicateApiKey) {
-      throw new Error('REPLICATE_API_KEY is required for image generation with FLUX');
-    }
-    
-    if (!anthropicApiKey && !openaiApiKey) {
-      throw new Error('Either ANTHROPIC_API_KEY or OPENAI_API_KEY is required for prompt generation');
-    }
-    
+    console.log('🎨 ArtBot - Generating Art with FLUX');
+    console.log('------------------------------------');
     console.log('API Keys found:');
     console.log(`- Anthropic: ${anthropicApiKey ? 'Yes' : 'No'}`);
     console.log(`- OpenAI: ${openaiApiKey ? 'Yes' : 'No'}`);
     console.log(`- Replicate: ${replicateApiKey ? 'Yes' : 'No'}`);
     
-    // Initialize the ReplicateService with FLUX as the default model
-    const replicateService = new ReplicateService({
-      apiKey: replicateApiKey
-    });
-    
-    // Initialize the AIService
+    // Initialize AI service
     const aiService = new AIService({
       anthropicApiKey,
-      openaiApiKey
-    });
-    
-    // Initialize the CreativeEngine
-    const creativeEngine = new CreativeEngine({
-      anthropicApiKey,
       openaiApiKey,
-      replicateService
     });
     
-    await creativeEngine.initialize();
-    console.log('✅ Services initialized\n');
+    await aiService.initialize();
     
-    // Get concept from command line arguments or use default
+    // Initialize the ReplicateService with FLUX as the default model
+    const replicateService = new ReplicateService({
+      apiKey: replicateApiKey,
+      defaultModel: process.env.DEFAULT_IMAGE_MODEL || 'adirik/flux-cinestill',
+      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '1024', 10),
+      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '1024', 10),
+      defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '28', 10),
+      defaultGuidanceScale: parseFloat(process.env.GUIDANCE_SCALE || '3'),
+    });
+    
+    await replicateService.initialize();
+    
+    // Initialize memory system
+    const memorySystem = new MemorySystem({
+      aiService,
+      replicateService,
+      baseDir: process.env.STORAGE_PATH || '.artbot',
+    });
+    
+    await memorySystem.initialize();
+    console.log(`📚 Loaded ${memorySystem.getMemories().size} memories from storage`);
+    
+    // Initialize style service
+    const styleService = new StyleService({
+      replicateService,
+    }, process.cwd());
+    
+    await styleService.initialize();
+    
+    // Initialize multi-agent system
+    const multiAgentSystem = new MultiAgentSystem({
+      aiService,
+    });
+    
+    await multiAgentSystem.initialize();
+    
+    // Initialize creative engine with all services
+    const creativeEngine = new CreativeEngine({
+      aiService,
+      replicateService,
+      memorySystem,
+      styleService,
+    });
+    
+    console.log('🧠 Creative Engine initialized');
+    console.log('✅ Services initialized');
+    
     const artConcept = concept || process.argv[2] || 'cosmic garden at night';
-    console.log(`💡 Using concept: "${artConcept}"\n`);
+    console.log(`\n💡 Using concept: "${artConcept}"`);
     
     // Generate conceptual image
-    console.log('🖼️ Generating conceptual image...');
+    console.log('\n🖼️ Generating conceptual image...');
     const result = await creativeEngine.generateConceptualImage(artConcept);
     
     if (!result.imageUrl) {
-      throw new Error('Failed to generate image');
+      console.error('❌ Failed to generate image');
+      return;
     }
     
-    console.log(`✅ Generated prompt: ${result.prompt}\n`);
-    console.log(`✅ Creative process: ${result.creativeProcess}\n`);
-    console.log(`✅ Image URL: ${result.imageUrl}\n`);
+    // Save outputs to files
+    const sanitizedConcept = artConcept.replace(/\s+/g, '-').toLowerCase();
+    const promptPath = path.join(outputDir, `flux-${sanitizedConcept}-prompt.txt`);
+    const imagePath = path.join(outputDir, `flux-${sanitizedConcept}.txt`);
+    const metadataPath = path.join(outputDir, `flux-${sanitizedConcept}-metadata.json`);
     
-    // Save the results
-    const outputDir = path.join(__dirname, '..', 'output');
-    ensureDirectoryExists(outputDir);
+    // Save prompt and creative process
+    fs.writeFileSync(
+      promptPath,
+      `Prompt: ${result.prompt}\n\nCreative Process: ${result.creativeProcess}`
+    );
+    console.log(`\n✅ Prompt saved to: ${promptPath}`);
     
-    // Save the prompt and creative process to a file
-    const promptFilename = `flux-${artConcept.replace(/\s+/g, '-').toLowerCase()}-prompt.txt`;
-    const promptFilePath = path.join(outputDir, promptFilename);
-    fs.writeFileSync(promptFilePath, `Prompt: ${result.prompt}\n\nCreative Process: ${result.creativeProcess}`);
-    console.log(`✅ Prompt saved to: ${promptFilePath}\n`);
+    // Save image URL
+    fs.writeFileSync(imagePath, result.imageUrl);
+    console.log(`\n✅ Image URL saved to: ${imagePath}`);
     
-    // Save the image URL to a file
-    const outputUrlPath = path.join(outputDir, `flux-${artConcept.replace(/\s+/g, '-').toLowerCase()}.txt`);
-    fs.writeFileSync(outputUrlPath, result.imageUrl);
-    console.log(`✅ Image URL saved to: ${outputUrlPath}`);
-    
-    // Save metadata about the generation
+    // Save metadata
     const metadata = {
       concept: artConcept,
       prompt: result.prompt,
       creativeProcess: result.creativeProcess,
       imageUrl: result.imageUrl,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
     
-    const metadataPath = path.join(outputDir, `flux-${artConcept.replace(/\s+/g, '-').toLowerCase()}-metadata.json`);
     fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
-    console.log(`✅ Metadata saved to: ${metadataPath}`);
+    console.log(`\n✅ Metadata saved to: ${metadataPath}`);
+    
+    // Store in memory system
+    await memorySystem.storeMemory(
+      {
+        concept: artConcept,
+        prompt: result.prompt,
+        creativeProcess: result.creativeProcess,
+        imageUrl: result.imageUrl,
+      },
+      MemoryType.EXPERIENCE,
+      { type: 'artwork', concept: artConcept },
+      ['artwork', 'flux', ...artConcept.split(' ')]
+    );
     
     console.log('\n✨ Art generation completed successfully!');
-    
-    return;
   } catch (error) {
-    console.error(`Error generating art: ${error}`);
-    throw error;
+    console.error('❌ Error generating art:', error);
   }
 }
 
-// Run the function if this file is executed directly
-if (import.meta.url === import.meta.resolve('./defaultArtGenerator.js') || 
-    import.meta.url.endsWith('/defaultArtGenerator.ts') || 
-    import.meta.url.endsWith('/defaultArtGenerator.js')) {
-  generateArt().catch(error => {
-    console.error('Unhandled error:', error);
-    process.exit(1);
-  });
-}
+// Run the main function
+generateArt(concept).catch(console.error);
 
 // Export the function for use in other modules
 export { generateArt }; 
