@@ -21,7 +21,7 @@ export function createMultiAgentSystem(config: { aiService?: AIService } = {}): 
   const system = new MultiAgentSystem({ aiService });
   
   // Create all agent types
-  const director = new DirectorAgent(aiService);
+  const director = new DirectorAgent(aiService, system);
   const ideator = new IdeatorAgent(aiService);
   const stylist = new StylistAgent(aiService);
   const refiner = new RefinerAgent(aiService);
