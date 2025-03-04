@@ -96,6 +96,83 @@ Idea: "Cosmic Garden"
     └── Image: [Generated artwork]
 ```
 
+## Sophisticated Memory System
+
+ArtBot features a sophisticated memory system that integrates past experiences, social interactions, and external influences into the creative process. Using a CLIP-like approach for visual memory and cosine similarity for textual relevance, ArtBot retrieves and applies past insights to refine current creations, ensuring a continuous evolution of style.
+
+### Key Components
+
+1. **Visual Memory**: Stores and analyzes visual content using CLIP-like embeddings
+2. **Textual Memory**: Captures and retrieves text-based insights using semantic embeddings
+3. **Style Memory**: Records and evolves artistic styles based on feedback
+4. **Feedback Memory**: Stores reactions and evaluations to guide future creations
+5. **Social Memory**: Captures external trends and influences
+6. **Experience Memory**: Records the creative process and outcomes
+
+### Memory Types
+
+```
+enum MemoryType {
+  VISUAL = 'visual',    // Artwork, images, visual references
+  TEXTUAL = 'textual',  // Text descriptions, concepts, ideas
+  STYLE = 'style',      // Artistic styles and techniques
+  FEEDBACK = 'feedback', // User and critic evaluations
+  SOCIAL = 'social',    // Social trends and external influences
+  EXPERIENCE = 'experience' // Creative process insights
+}
+```
+
+### How It Works
+
+The memory system follows these steps:
+
+1. **Memory Storage**: Experiences, artworks, and feedback are stored with embeddings
+2. **Embedding Generation**: CLIP-like embeddings for visual content, semantic embeddings for text
+3. **Similarity Calculation**: Cosine similarity determines relevance between memories
+4. **Memory Retrieval**: Relevant memories are retrieved based on the current context
+5. **Creative Enhancement**: Retrieved memories inform and enhance the creative process
+6. **Style Evolution**: Feedback and experience guide the evolution of artistic style
+7. **Memory Pruning**: Less relevant memories are archived to maintain system efficiency
+
+### Example Usage
+
+```typescript
+// Store a completed artwork in memory
+const memory = await artBot.storeArtwork({
+  title: 'Cosmic Garden',
+  description: 'A vibrant garden with cosmic elements',
+  imageUrl: 'https://example.com/cosmic-garden.jpg',
+  style: {
+    name: 'Ethereal',
+    attributes: ['vibrant', 'cosmic', 'ethereal']
+  },
+  prompt: 'Create a vibrant garden with cosmic elements'
+}, ['garden', 'cosmic']);
+
+// Retrieve similar artworks
+const similarArtworks = await artBot.findSimilarArtworks('cosmic garden');
+
+// Enhance a prompt with memory
+const enhancedPrompt = await artBot.enhancePromptWithMemory('Create a garden');
+
+// Evolve style preferences based on feedback
+await artBot.evolveStylePreferences();
+```
+
+### Running the Memory Demo
+
+To see the memory system in action, run:
+
+```bash
+pnpm demo:memory
+```
+
+This will demonstrate:
+1. Storing and retrieving artworks and styles
+2. Adding and using feedback to evolve preferences
+3. Enhancing prompts with insights from memory
+4. Using memory to guide creative exploration
+
 ## Multi-Agent System
 
 ArtBot's multi-agent system enables collaborative art creation through specialized agent roles, each focusing on a specific aspect of the creative process:

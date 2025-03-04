@@ -1,5 +1,8 @@
 import { AIService, AIMessage } from './ai/index.js';
 import { IdeaQueue, CreativeIdea, ExplorationThread } from './IdeaQueue.js';
+import { MemorySystem, MemoryType, Memory } from './memory/index.js';
+import { StyleService } from './style/index.js';
+import { ReplicateService } from './replicate/index.js';
 
 // Define interfaces for the components we need
 interface CreativeState {
@@ -14,15 +17,20 @@ interface CreativeState {
     diversity: number;
   };
   ideaQueue?: IdeaQueue;
+  memories?: MemorySystem;
+}
+
+// Define interface for CreativeEngine configuration
+interface CreativeEngineConfig {
+  anthropicApiKey?: string;
+  openaiApiKey?: string;
+  replicateService?: ReplicateService;
+  baseDir?: string;
+  [key: string]: any;
 }
 
 // Mock service classes until actual implementations are available
 class ImageService {
-  constructor(config = {}) {}
-  async initialize(): Promise<void> {}
-}
-
-class StyleService {
   constructor(config = {}) {}
   async initialize(): Promise<void> {}
 }
@@ -33,8 +41,9 @@ export class CreativeEngine {
   private imageService: ImageService;
   private styleService: StyleService;
   private ideaQueue: IdeaQueue;
+  private memorySystem: MemorySystem;
 
-  constructor(config = {}) {
+  constructor(config: CreativeEngineConfig = {}) {
     this.aiService = new AIService(config);
     this.imageService = new ImageService(config);
     this.styleService = new StyleService(config);
@@ -50,7 +59,7 @@ export class CreativeEngine {
         { name: 'Impressionist', score: 0.5 },
         { name: 'Digital', score: 0.4 }
       ],
-      explorationRate: 0.3,
+      explorationRate: parseFloat(process.env.EXPLORATION_RATE || '0.3'),
       creativityMetrics: {
         originality: 0.7,
         coherence: 0.8,
@@ -59,28 +68,39 @@ export class CreativeEngine {
       }
     };
     
-    // Create the idea queue
+    // Initialize idea queue
     this.ideaQueue = new IdeaQueue({
-      maxIdeas: 20,
+      aiService: this.aiService,
+      maxIdeas: 10,
       maxThreadsPerIdea: 3,
-      maxActiveThreads: 5,
-      aiService: this.aiService
+      maxActiveThreads: 5
     });
     
-    // Add the idea queue to the state
+    // Initialize memory system
+    this.memorySystem = new MemorySystem({
+      aiService: this.aiService,
+      replicateService: config.replicateService,
+      maxMemories: 1000,
+      embeddingDimension: 1536
+    });
+    
+    // Add to state
     this.state.ideaQueue = this.ideaQueue;
+    this.state.memories = this.memorySystem;
   }
 
   /**
    * Initialize the service and its dependencies
    */
   async initialize(): Promise<void> {
-    await Promise.all([
-      this.aiService.initialize(),
-      this.imageService.initialize(),
-      this.styleService.initialize(),
-      this.ideaQueue.initialize()
-    ]);
+    // Initialize services
+    await this.aiService.initialize();
+    await this.imageService.initialize();
+    await this.styleService.initialize();
+    await this.ideaQueue.initialize();
+    await this.memorySystem.initialize();
+    
+    console.log('🧠 Creative Engine initialized');
   }
 
   /**
@@ -324,5 +344,379 @@ export class CreativeEngine {
    */
   resumeThread(threadId: string): boolean {
     return this.ideaQueue.resumeThread(threadId);
+  }
+
+  /**
+   * Store a memory in the memory system
+   */
+  async storeMemory(
+    content: any,
+    type: MemoryType,
+    metadata: Record<string, any> = {},
+    tags: string[] = []
+  ): Promise<Memory> {
+    return this.memorySystem.storeMemory(content, type, metadata, tags);
+  }
+
+  /**
+   * Retrieve memories based on a query
+   */
+  async retrieveMemories(
+    query: string | number[] | Record<string, any>,
+    options: {
+      type?: MemoryType;
+      tags?: string[];
+      limit?: number;
+      threshold?: number;
+      sortBy?: 'relevance' | 'recency' | 'popularity';
+    } = {}
+  ): Promise<Memory[]> {
+    return this.memorySystem.retrieveMemories(query, options);
+  }
+
+  /**
+   * Store a completed artwork in memory
+   */
+  async storeArtwork(
+    artwork: {
+      title: string;
+      description: string;
+      imageUrl: string;
+      style: Record<string, any>;
+      prompt: string;
+    },
+    tags: string[] = []
+  ): Promise<Memory> {
+    // Store the artwork in memory
+    const memory = await this.memorySystem.storeMemory(
+      artwork,
+      MemoryType.VISUAL,
+      {
+        title: artwork.title,
+        description: artwork.description,
+        prompt: artwork.prompt,
+        createdAt: new Date()
+      },
+      [...tags, 'artwork']
+    );
+    
+    // Also store the style separately
+    await this.memorySystem.storeMemory(
+      artwork.style,
+      MemoryType.STYLE,
+      {
+        title: `Style for ${artwork.title}`,
+        artworkId: memory.id
+      },
+      [...tags, 'style']
+    );
+    
+    // Add to completed works
+    this.state.completedWorks.push({
+      ...artwork,
+      memoryId: memory.id,
+      createdAt: new Date()
+    });
+    
+    // Keep only the last 20 completed works in state
+    if (this.state.completedWorks.length > 20) {
+      this.state.completedWorks.shift();
+    }
+    
+    return memory;
+  }
+
+  /**
+   * Retrieve similar artworks from memory
+   */
+  async findSimilarArtworks(
+    query: string,
+    limit: number = 5
+  ): Promise<Memory[]> {
+    return this.memorySystem.retrieveMemories(
+      query,
+      {
+        type: MemoryType.VISUAL,
+        tags: ['artwork'],
+        limit,
+        threshold: 0.6,
+        sortBy: 'relevance'
+      }
+    );
+  }
+
+  /**
+   * Retrieve styles that match a description
+   */
+  async findMatchingStyles(
+    description: string,
+    limit: number = 3
+  ): Promise<Memory[]> {
+    return this.memorySystem.retrieveMemories(
+      description,
+      {
+        type: MemoryType.STYLE,
+        limit,
+        threshold: 0.5,
+        sortBy: 'relevance'
+      }
+    );
+  }
+
+  /**
+   * Store feedback on an artwork
+   */
+  async storeFeedback(
+    artworkId: string,
+    feedback: string,
+    rating: number,
+    source: 'user' | 'critic' | 'self'
+  ): Promise<Memory> {
+    // Get the artwork memory
+    const memories = await this.memorySystem.retrieveMemories(
+      artworkId,
+      {
+        type: MemoryType.VISUAL,
+        limit: 1
+      }
+    );
+    
+    if (memories.length === 0) {
+      throw new Error(`Artwork with ID ${artworkId} not found`);
+    }
+    
+    const artwork = memories[0];
+    
+    // Store the feedback
+    const feedbackMemory = await this.memorySystem.storeMemory(
+      {
+        feedback,
+        rating,
+        source
+      },
+      MemoryType.FEEDBACK,
+      {
+        artworkId: artwork.id,
+        artworkTitle: artwork.metadata.title
+      },
+      ['feedback', source]
+    );
+    
+    // Update the artwork's metadata to include this feedback
+    await this.memorySystem.updateMemoryMetadata(
+      artwork.id,
+      {
+        feedbackIds: [...(artwork.metadata.feedbackIds || []), feedbackMemory.id],
+        averageRating: this.calculateAverageRating(
+          artwork.metadata.averageRating,
+          artwork.metadata.feedbackCount || 0,
+          rating
+        ),
+        feedbackCount: (artwork.metadata.feedbackCount || 0) + 1
+      }
+    );
+    
+    return feedbackMemory;
+  }
+
+  /**
+   * Calculate a running average
+   */
+  private calculateAverageRating(
+    currentAverage: number = 0,
+    count: number = 0,
+    newRating: number
+  ): number {
+    if (count === 0) {
+      return newRating;
+    }
+    
+    return (currentAverage * count + newRating) / (count + 1);
+  }
+
+  /**
+   * Get memory system statistics
+   */
+  getMemoryStatistics(): Record<string, any> {
+    return this.memorySystem.getStatistics();
+  }
+
+  /**
+   * Use memory to enhance a creative prompt
+   */
+  async enhancePromptWithMemory(prompt: string): Promise<string> {
+    // Retrieve relevant memories
+    const memories = await this.memorySystem.retrieveMemories(
+      prompt,
+      {
+        limit: 5,
+        threshold: 0.6,
+        sortBy: 'relevance'
+      }
+    );
+    
+    if (memories.length === 0) {
+      return prompt;
+    }
+    
+    // Extract insights from memories
+    const insights = memories.map(memory => {
+      switch (memory.type) {
+        case MemoryType.VISUAL:
+          return `Previous artwork "${memory.metadata.title}": ${memory.metadata.description}`;
+        case MemoryType.STYLE:
+          return `Style elements: ${JSON.stringify(memory.content)}`;
+        case MemoryType.FEEDBACK:
+          return `Feedback (${memory.content.rating}/10): ${memory.content.feedback}`;
+        default:
+          return `Memory: ${JSON.stringify(memory.content)}`;
+      }
+    }).join('\n');
+    
+    // Use AI to enhance the prompt with insights
+    const response = await this.aiService.getCompletion({
+      messages: [
+        {
+          role: 'system',
+          content: 'You are a creative assistant that enhances art prompts using insights from past experiences. Incorporate the insights into a rich, detailed prompt that builds upon the original idea.'
+        },
+        {
+          role: 'user',
+          content: `Original prompt: ${prompt}\n\nInsights from past experiences:\n${insights}\n\nEnhanced prompt:`
+        }
+      ]
+    });
+    
+    return response.content;
+  }
+
+  /**
+   * Evolve style preferences based on feedback and memory
+   */
+  async evolveStylePreferences(): Promise<void> {
+    // Get feedback memories
+    const feedbackMemories = await this.memorySystem.retrieveMemories(
+      'feedback',
+      {
+        type: MemoryType.FEEDBACK,
+        limit: 20,
+        sortBy: 'recency'
+      }
+    );
+    
+    if (feedbackMemories.length === 0) {
+      return;
+    }
+    
+    // Get corresponding artworks
+    const artworkIds = [...new Set(feedbackMemories.map(memory => memory.metadata.artworkId))];
+    const artworkMemories: Memory[] = [];
+    
+    for (const id of artworkIds) {
+      const memories = await this.memorySystem.retrieveMemories(
+        id,
+        {
+          type: MemoryType.VISUAL,
+          limit: 1
+        }
+      );
+      
+      if (memories.length > 0) {
+        artworkMemories.push(memories[0]);
+      }
+    }
+    
+    // Get corresponding styles
+    const styleMemories: Memory[] = [];
+    
+    for (const artwork of artworkMemories) {
+      const memories = await this.memorySystem.retrieveMemories(
+        'style',
+        {
+          type: MemoryType.STYLE,
+          metadata: { artworkId: artwork.id },
+          limit: 1
+        }
+      );
+      
+      if (memories.length > 0) {
+        styleMemories.push(memories[0]);
+      }
+    }
+    
+    // Analyze which styles received positive feedback
+    const styleRatings: Record<string, { count: number; totalRating: number }> = {};
+    
+    for (const feedback of feedbackMemories) {
+      const artworkId = feedback.metadata.artworkId;
+      const artwork = artworkMemories.find(memory => memory.id === artworkId);
+      
+      if (!artwork) continue;
+      
+      const style = styleMemories.find(memory => memory.metadata.artworkId === artworkId);
+      
+      if (!style) continue;
+      
+      // Extract style elements
+      const styleElements = this.extractStyleElements(style.content);
+      
+      for (const element of styleElements) {
+        if (!styleRatings[element]) {
+          styleRatings[element] = { count: 0, totalRating: 0 };
+        }
+        
+        styleRatings[element].count += 1;
+        styleRatings[element].totalRating += feedback.content.rating;
+      }
+    }
+    
+    // Calculate average ratings
+    const styleAverages: Array<{ name: string; score: number }> = [];
+    
+    for (const [style, ratings] of Object.entries(styleRatings)) {
+      if (ratings.count > 0) {
+        styleAverages.push({
+          name: style,
+          score: ratings.totalRating / ratings.count / 10 // Normalize to 0-1
+        });
+      }
+    }
+    
+    // Sort by score
+    styleAverages.sort((a, b) => b.score - a.score);
+    
+    // Update style preferences (keep top 5)
+    if (styleAverages.length > 0) {
+      this.state.stylePreferences = styleAverages.slice(0, 5);
+    }
+  }
+
+  /**
+   * Extract style elements from a style object
+   */
+  private extractStyleElements(style: Record<string, any>): string[] {
+    const elements: string[] = [];
+    
+    // Extract style names
+    if (style.name) {
+      elements.push(style.name);
+    }
+    
+    // Extract style categories
+    if (style.category) {
+      elements.push(style.category);
+    }
+    
+    // Extract style attributes
+    if (style.attributes && Array.isArray(style.attributes)) {
+      elements.push(...style.attributes);
+    }
+    
+    // Extract style techniques
+    if (style.techniques && Array.isArray(style.techniques)) {
+      elements.push(...style.techniques);
+    }
+    
+    return elements;
   }
 } 
