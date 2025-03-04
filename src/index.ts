@@ -159,7 +159,11 @@ function displayResults(artBot: CreativeEngine) {
 }
 
 // Run the main function
-if (require.main === module) {
+// In ES modules, we can check if this is the main module by comparing import.meta.url
+// against the resolved path of the current file
+if (import.meta.url === import.meta.resolve('./index.js') || 
+    import.meta.url.endsWith('/index.ts') || 
+    import.meta.url.endsWith('/index.js')) {
   main().catch(error => {
     console.error('Unhandled error:', error);
     process.exit(1);
