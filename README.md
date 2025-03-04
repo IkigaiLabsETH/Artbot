@@ -173,6 +173,77 @@ This will demonstrate:
 3. Enhancing prompts with insights from memory
 4. Using memory to guide creative exploration
 
+## Collaborative Memory System
+
+ArtBot's collaborative memory system enables the sharing and exchange of creative memories between different ArtBot instances, fostering a collective intelligence approach to art creation. This feature allows multiple ArtBots to learn from each other's experiences, styles, and feedback, creating a richer and more diverse creative ecosystem.
+
+### Key Components
+
+1. **Memory Export**: Package and share memories with other ArtBot instances
+2. **Memory Import**: Integrate memories from external sources
+3. **Memory Merging**: Combine memories from multiple sources with deduplication
+4. **Collaborative Creation**: Generate new art by fusing insights from multiple sources
+5. **Emotional Context**: Preserve and transfer emotional dimensions of memories
+
+### How It Works
+
+The collaborative memory system follows these steps:
+
+1. **Memory Selection**: Choose which memories to share based on type, tags, or date
+2. **Export Process**: Package selected memories into a portable format
+3. **Import Process**: Validate and integrate external memories
+4. **Deduplication**: Identify and handle duplicate memories using content hashing
+5. **Memory Fusion**: Generate new creative ideas by combining diverse memory sources
+6. **Style Blending**: Create hybrid styles from multiple artistic influences
+7. **Visualization**: Map connections between memories from different sources
+
+### Example Usage
+
+```typescript
+// Export memories from one ArtBot instance
+const exportPath = await collaborativeMemory.exportMemories(memories, {
+  types: [MemoryType.VISUAL, MemoryType.STYLE],
+  tags: ['abstract', 'geometric'],
+  includeEmbeddings: true
+});
+
+// Import memories to another ArtBot instance
+const importResult = await collaborativeMemory.importMemories(exportPath, {
+  importTags: ['imported', 'external-collection'],
+  validateMemories: true
+});
+
+// Merge memories from multiple sources
+const mergedMemories = collaborativeMemory.mergeMemories([
+  { source: 'ArtBot1', memories: artBot1Memories },
+  { source: 'ArtBot2', memories: artBot2Memories }
+], {
+  deduplicationStrategy: 'keepNewest',
+  preserveSourceInfo: true
+});
+
+// Generate fusion artwork using combined memories
+const fusionPrompt = await creativeEngine.generateText({
+  prompt: `Create art that fuses abstract geometric with organic nature elements`,
+  maxTokens: 300
+});
+```
+
+### Running the Collaborative Memory Demo
+
+To see the collaborative memory system in action, run:
+
+```bash
+pnpm demo:collaborative
+```
+
+This will demonstrate:
+1. Exporting memories from one ArtBot instance
+2. Importing memories to another instance
+3. Creating fusion art that combines different artistic styles
+4. Visualizing the network of connected memories
+5. Managing emotional context across memory transfers
+
 ## Multi-Agent System
 
 ArtBot's multi-agent system enables collaborative art creation through specialized agent roles, each focusing on a specific aspect of the creative process:

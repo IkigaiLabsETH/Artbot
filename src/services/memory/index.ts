@@ -348,6 +348,14 @@ export class MemorySystem {
   }
 
   /**
+   * Get the memories map
+   * This provides direct access to the memories storage
+   */
+  getMemories(): Map<string, Memory> {
+    return this.memories;
+  }
+
+  /**
    * Generate embedding for content based on its type
    */
   private async generateEmbedding(content: any, type: MemoryType): Promise<number[]> {
