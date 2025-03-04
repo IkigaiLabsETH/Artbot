@@ -29,6 +29,7 @@ Our approach is built on three core principles:
 - **Memory System**: Sophisticated storage and retrieval of artistic experiences
 - **Multi-Agent System**: Collaborative creation through specialized agent roles
 - **Social Context**: Integration with cultural trends and audience feedback
+- **Real Image Generation**: Integration with Replicate API for actual image creation
 
 ## System Architecture
 
@@ -55,24 +56,6 @@ Our approach is built on three core principles:
 
 ArtBot's multi-agent system enables collaborative art creation through specialized agent roles, each focusing on a specific aspect of the creative process:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    MultiAgentSystem                         │
-│                                                             │
-│  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐      │
-│  │Director │   │Ideator  │   │Stylist  │   │Refiner  │      │
-│  │Agent    │<->│Agent    │<->│Agent    │<->│Agent    │<->┐  │
-│  └─────────┘   └─────────┘   └─────────┘   └─────────┘   │  │
-│       ^                                                   │  │
-│       │                                                   │  │
-│       v                                                   v  │
-│  ┌─────────┐                                         ┌─────────┐
-│  │Message  │                                         │Critic   │
-│  │Queue    │<----------------------------------------│Agent    │
-│  └─────────┘                                         └─────────┘
-└─────────────────────────────────────────────────────────────┘
-```
-
 ### Agent Roles
 
 1. **Director Agent**: Coordinates the creative process and manages workflow
@@ -90,7 +73,7 @@ ArtBot's multi-agent system enables collaborative art creation through specializ
 
 4. **Refiner Agent**: Refines and improves artwork based on selected styles
    - Transforms style specifications into detailed artwork
-   - Enhances visual coherence and impact
+   - Generates actual images using AI image generation models
 
 5. **Critic Agent**: Evaluates and provides feedback on artwork
    - Performs multi-criteria evaluation
@@ -106,63 +89,112 @@ The agents collaborate through a sequential workflow:
 4. **Critique Stage**: Director passes refined artwork to Critic
 5. **Completion**: Director collects all results and completes the project
 
-### Try the Multi-Agent Demo
+## Setup for Real Image Generation
 
-```bash
-# Using npm script
-npm run demo:multiagent
+To use ArtBot with real image generation capabilities, you need to set up the necessary API keys:
 
-# Using shell script
-./run-multiagent-demo.sh
-```
-
-For detailed documentation on the multi-agent system, see:
-- [Technical Documentation](./docs/multiagent-system.md)
-- [User Guide](./docs/multiagent-user-guide.md)
-- [API Reference](./docs/multiagent-api-reference.md)
-
-## Installation
-
-```bash
-# Install dependencies
-npm install
-
-# Set up environment variables
-cp .env.example .env
-
-# Initialize the system
-npm run init
-```
-
-## Configuration
-
-Configure the system through environment variables:
+1. **Create a `.env` file** in the root directory with the following content:
 
 ```env
-ANTHROPIC_API_KEY=your_api_key
-REPLICATE_API_KEY=your_api_key
+# API Keys
+ANTHROPIC_API_KEY=your_anthropic_api_key
+OPENAI_API_KEY=your_openai_api_key
+REPLICATE_API_KEY=your_replicate_api_key
+
+# Storage
 STORAGE_PATH=.artbot
+
+# Image Generation
+DEFAULT_IMAGE_MODEL=stability-ai/sdxl
+IMAGE_WIDTH=1024
+IMAGE_HEIGHT=1024
+MAX_GENERATIONS=3
+
+# Creative Parameters
+EXPLORATION_RATE=0.3
+MUTATION_RATE=0.2
 ```
 
-## Core Services
+2. **Get API Keys**:
+   - [Anthropic API Key](https://console.anthropic.com/) - For text generation
+   - [OpenAI API Key](https://platform.openai.com/) - For fallback text generation
+   - [Replicate API Key](https://replicate.com/) - For image generation
 
-1. **Creative Engine**: Manages ideation and artwork generation through sophisticated cognitive architectures
-2. **Style Service**: Handles style evolution and mixing using advanced machine learning
-3. **Memory System**: Maintains artistic context and enables learning from past experiences
-4. **Social Context**: Integrates cultural awareness and audience feedback
-5. **Multi-Agent System**: Enables collaborative creation through specialized agent roles
-
-## Development
+3. **Install Dependencies**:
 
 ```bash
-# Run tests
-npm test
+pnpm install
+```
 
-# Start development server
-npm run dev
+4. **Build the Project**:
 
-# Build for production
-npm run build
+```bash
+pnpm build
+```
+
+## Running ArtBot
+
+### Multi-Agent Demo
+
+Run the multi-agent demo to see the complete creative workflow in action:
+
+```bash
+pnpm demo:multiagent
+```
+
+This will:
+1. Initialize all agents
+2. Create a new project
+3. Generate creative ideas
+4. Develop artistic styles
+5. Generate actual artwork using Replicate
+6. Provide a critique of the artwork
+
+The generated image URL will be displayed in the console. Copy and paste it into your browser to view the artwork.
+
+### Customizing the Project
+
+You can customize the project by editing the `src/demo-multiagent.ts` file:
+
+```typescript
+// Create a new project
+const projectTitle = "Your Project Title";
+const projectDescription = "Your project description";
+const projectRequirements = [
+  "Requirement 1",
+  "Requirement 2",
+  "Requirement 3"
+];
+```
+
+After making changes, rebuild the project:
+
+```bash
+pnpm build
+```
+
+## Advanced Configuration
+
+### Image Generation Models
+
+You can change the image generation model in the `.env` file:
+
+```env
+DEFAULT_IMAGE_MODEL=stability-ai/sdxl
+```
+
+Other recommended models:
+- `stability-ai/stable-diffusion-xl-base-1.0`
+- `runwayml/stable-diffusion-v1-5`
+- `midjourney/midjourney-v4`
+
+### Adjusting Creative Parameters
+
+Fine-tune the creative behavior by adjusting these parameters in the `.env` file:
+
+```env
+EXPLORATION_RATE=0.3  # Higher values encourage more diverse ideas
+MUTATION_RATE=0.2     # Higher values create more variation in styles
 ```
 
 ## Contributing
@@ -182,7 +214,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - Inspired by autonomous AI artists like Botto and Keke
-- Built with Claude 3.5 Sonnet and Stable Diffusion
+- Built with Node.js, TypeScript, and modern AI APIs
 - Special thanks to the AI art community
 
 ## Philosophy

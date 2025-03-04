@@ -130,6 +130,16 @@ async function runDemo() {
             console.log('\n🖼️ Refined Artwork:');
             console.log(`Title: ${artwork.title}`);
             console.log(`Description: ${artwork.description}`);
+            
+            // Display the generated image URL if available
+            if (artwork.imageUrl) {
+              console.log(`\n🌟 Generated Image: ${artwork.imageUrl}`);
+              console.log(`\nPrompt used: "${artwork.prompt}"`);
+              console.log(`Negative prompt: "${artwork.negativePrompt}"`);
+            } else {
+              console.log('\n⚠️ No image was generated');
+            }
+            
             console.log(`Visual Elements: ${artwork.visualElements.join(', ')}`);
             console.log('\nComposition:');
             console.log(`- Structure: ${artwork.composition.structure}`);
@@ -179,6 +189,13 @@ async function runDemo() {
           console.log(`Description: ${results.description}`);
           console.log(`Status: ${results.status}`);
           console.log(`Created: ${results.createdAt}`);
+          
+          // Display the final image URL again for convenience
+          const finalArtwork = directorState.completedTasks.find((task: any) => task.type === 'refinement')?.result;
+          if (finalArtwork && finalArtwork.imageUrl) {
+            console.log(`\n🖼️ Final Artwork Image: ${finalArtwork.imageUrl}`);
+            console.log('\nTo view the image, copy and paste the URL into your browser.');
+          }
           
           isComplete = true;
           break;

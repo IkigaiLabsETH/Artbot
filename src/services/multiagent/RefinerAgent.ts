@@ -1,11 +1,15 @@
 import { BaseAgent, AgentRole, AgentMessage } from './index.js';
 import { AIService, AIMessage } from '../ai/index.js';
+import { ReplicateService } from '../replicate/index.js';
 import { v4 as uuidv4 } from 'uuid';
 
 // Refiner agent is responsible for refining and improving artwork
 export class RefinerAgent extends BaseAgent {
+  private replicateService: ReplicateService;
+  
   constructor(aiService: AIService) {
     super(AgentRole.REFINER, aiService);
+    this.replicateService = new ReplicateService();
     this.state.context = {
       currentTask: null,
       refinementHistory: [],
@@ -20,7 +24,9 @@ export class RefinerAgent extends BaseAgent {
 
   async initialize(): Promise<void> {
     await super.initialize();
-    // Refiner-specific initialization
+    // Initialize the Replicate service
+    await this.replicateService.initialize();
+    console.log('🎨 RefinerAgent initialized with Replicate service');
   }
 
   async process(message: AgentMessage): Promise<AgentMessage | null> {
@@ -107,7 +113,7 @@ export class RefinerAgent extends BaseAgent {
       return this.createDefaultArtwork(project);
     }
     
-    // Use AI service to refine artwork based on the style
+    // Use AI service to create a detailed prompt for image generation
     const messages: AIMessage[] = [
       {
         role: 'system',
@@ -121,7 +127,7 @@ export class RefinerAgent extends BaseAgent {
       },
       {
         role: 'user',
-        content: `Refine artwork for the following project using the specified style:
+        content: `Create a detailed prompt for image generation based on the following project and style:
         
         Project: ${project.title} - ${project.description}
         
@@ -133,61 +139,109 @@ export class RefinerAgent extends BaseAgent {
         Texture: ${style.texture || 'None specified'}
         Composition: ${style.composition || 'None specified'}
         
-        Describe the refined artwork in detail, including:
-        1. Title
-        2. Description
-        3. Visual elements
-        4. Composition details
-        5. Color usage
-        6. Texture and materials
-        7. Focal points
-        8. Emotional impact
+        Create a detailed prompt that will be used for a diffusion model to generate an image. The prompt should:
+        1. Be highly detailed and descriptive
+        2. Incorporate the style elements
+        3. Reflect the project requirements
+        4. Include specific visual elements, composition, colors, and textures
+        5. Be optimized for Stable Diffusion XL
         
-        Format your description as a JSON object.`
+        Format your response as a JSON object with the following structure:
+        {
+          "prompt": "The detailed prompt for image generation",
+          "negativePrompt": "Elements to avoid in the generation",
+          "title": "A title for the artwork",
+          "description": "A description of the expected result"
+        }`
       }
     ];
     
     try {
+      // Get the prompt from AI
       const response = await this.aiService.getCompletion({
         messages,
-        temperature: 0.6
+        temperature: 0.7
       });
       
-      // Parse the response to extract refined artwork
-      // In a real implementation, we would parse the JSON response
-      // For now, we'll return a mock refined artwork based on the style
+      // Parse the response to extract the prompt
+      let promptData;
+      try {
+        // Extract JSON from the response
+        const jsonMatch = response.content.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          promptData = JSON.parse(jsonMatch[0]);
+        } else {
+          throw new Error('No JSON found in response');
+        }
+      } catch (parseError) {
+        console.error('Error parsing prompt JSON:', parseError);
+        // Fallback to using the whole response as the prompt
+        promptData = {
+          prompt: response.content,
+          negativePrompt: "blurry, distorted, low quality, ugly, poorly drawn",
+          title: `${style.name} Composition`,
+          description: `Artwork in ${style.name} style for project ${project.title}`
+        };
+      }
       
+      console.log('🖌️ Generated prompt for image:', promptData.prompt);
+      
+      // Generate the image using Replicate
+      const imageOptions = {
+        prompt: promptData.prompt,
+        negative_prompt: promptData.negativePrompt || "blurry, distorted, low quality, ugly, poorly drawn",
+        num_outputs: 1,
+        guidance_scale: 7.5,
+        num_inference_steps: 50
+      };
+      
+      console.log('🎨 Generating image with options:', imageOptions);
+      
+      // Call Replicate to generate the image
+      const prediction = await this.replicateService.runPrediction(
+        process.env.DEFAULT_IMAGE_MODEL || 'stability-ai/sdxl',
+        imageOptions
+      );
+      
+      if (prediction.status !== 'success' || !prediction.output) {
+        throw new Error(`Image generation failed: ${prediction.error || 'Unknown error'}`);
+      }
+      
+      // Get the image URL from the prediction output
+      const imageUrl = Array.isArray(prediction.output) ? prediction.output[0] : prediction.output;
+      
+      console.log('✅ Image generated successfully:', imageUrl);
+      
+      // Return the refined artwork with the generated image
       return {
         id: uuidv4(),
-        title: `${style.name} Composition`,
-        description: `A refined artwork created in the ${style.name} style, featuring harmonious elements and balanced composition.`,
-        visualElements: [
-          ...(style.visualCharacteristics || []),
-          "refined focal points",
-          "balanced negative space",
-          "harmonious proportions"
-        ],
+        title: promptData.title || `${style.name} Composition`,
+        description: promptData.description || `A refined artwork created in the ${style.name} style.`,
+        prompt: promptData.prompt,
+        negativePrompt: promptData.negativePrompt,
+        imageUrl: imageUrl,
+        visualElements: style.visualCharacteristics || [],
         composition: {
           structure: style.composition || "Balanced composition",
-          focalPoints: ["Primary center-right element", "Secondary top-left element"],
-          flow: "Clockwise visual movement",
-          balance: "Asymmetrical but weighted"
+          focalPoints: ["Generated based on prompt"],
+          flow: "Natural visual movement",
+          balance: "Harmonious balance of elements"
         },
         colorUsage: {
-          palette: style.colorPalette || ["#000000", "#FFFFFF"],
-          dominant: style.colorPalette ? style.colorPalette[0] : "#000000",
-          accents: style.colorPalette ? style.colorPalette.slice(-2) : ["#FFFFFF"],
-          transitions: "Smooth gradients between related hues"
+          palette: style.colorPalette || ["Generated based on prompt"],
+          dominant: style.colorPalette ? style.colorPalette[0] : "Generated based on prompt",
+          accents: style.colorPalette ? style.colorPalette.slice(-2) : ["Generated based on prompt"],
+          transitions: "Natural color transitions"
         },
         texture: {
-          type: style.texture || "Smooth surface",
-          details: "Varied brushwork with textural highlights",
-          materials: "Digital medium with simulated physical qualities"
+          type: style.texture || "Generated based on prompt",
+          details: "Details generated based on prompt",
+          materials: "Digital medium with AI-generated qualities"
         },
         emotionalImpact: {
-          primary: "Contemplative wonder",
-          secondary: "Subtle tension",
-          notes: "The artwork evokes a sense of discovery through its balanced yet dynamic composition."
+          primary: "Determined by viewer",
+          secondary: "Determined by viewer",
+          notes: "The artwork evokes emotions based on the generated image and prompt."
         },
         refinementIterations: this.state.context.refinementParameters.iterationCount,
         style: style,
@@ -208,6 +262,9 @@ export class RefinerAgent extends BaseAgent {
       id: uuidv4(),
       title: `${project.title} Artwork`,
       description: "A simple artwork based on the project requirements.",
+      prompt: `Simple artwork for project: ${project.title} - ${project.description}`,
+      negativePrompt: "blurry, distorted, low quality, ugly, poorly drawn",
+      imageUrl: null, // No image generated for default artwork
       visualElements: [
         "basic shapes",
         "simple composition",

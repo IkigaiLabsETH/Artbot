@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import fetch from 'node-fetch';
 
 // Define interfaces for the AI service
 export interface AIServiceConfig {
@@ -39,7 +40,7 @@ export class AIService {
     this.openaiApiKey = config.openaiApiKey || process.env.OPENAI_API_KEY || '';
     this.defaultModel = config.defaultModel || process.env.DEFAULT_MODEL || 'claude-3-sonnet-20240229';
     
-    // For development/testing, consider any non-empty string as valid
+    // Check if API keys are available
     this.isAnthropicAvailable = !!this.anthropicApiKey;
     this.isOpenAIAvailable = !!this.openaiApiKey;
   }
@@ -95,43 +96,92 @@ export class AIService {
    * Get a completion from Anthropic
    */
   private async getAnthropicCompletion(request: AICompletionRequest): Promise<AICompletionResponse> {
-    // In a real implementation, this would call the Anthropic API
-    // For now, we'll simulate a successful response
+    const model = request.model || this.defaultModel;
+    const temperature = request.temperature || 0.7;
+    const maxTokens = request.maxTokens || 4096;
     
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 500));
+    console.log(`🧠 Calling Anthropic API with model: ${model}`);
     
-    // Mock successful response
-    return {
-      id: uuidv4(),
-      model: request.model || this.defaultModel,
-      content: this.mockCompletion(request.messages),
-      provider: 'anthropic',
-      created: new Date()
-    };
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': this.anthropicApiKey,
+          'anthropic-version': '2023-06-01'
+        },
+        body: JSON.stringify({
+          model: model,
+          messages: request.messages,
+          max_tokens: maxTokens,
+          temperature: temperature
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Anthropic API error: ${JSON.stringify(errorData)}`);
+      }
+      
+      const data = await response.json();
+      
+      return {
+        id: data.id,
+        model: data.model,
+        content: data.content[0].text,
+        provider: 'anthropic',
+        created: new Date(data.created_at)
+      };
+    } catch (error) {
+      console.error('Error calling Anthropic API:', error);
+      throw error;
+    }
   }
 
   /**
    * Get a completion from OpenAI
    */
   private async getOpenAICompletion(request: AICompletionRequest): Promise<AICompletionResponse> {
-    // In a real implementation, this would call the OpenAI API
-    // For now, we'll simulate a successful response
-    
     // Map Anthropic model to OpenAI model if needed
     const model = this.mapAnthropicToOpenAIModel(request.model || this.defaultModel);
+    const temperature = request.temperature || 0.7;
+    const maxTokens = request.maxTokens || 4096;
     
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 500));
+    console.log(`🧠 Calling OpenAI API with model: ${model}`);
     
-    // Mock successful response
-    return {
-      id: uuidv4(),
-      model,
-      content: this.mockCompletion(request.messages, 'openai'),
-      provider: 'openai',
-      created: new Date()
-    };
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.openaiApiKey}`
+        },
+        body: JSON.stringify({
+          model: model,
+          messages: request.messages,
+          max_tokens: maxTokens,
+          temperature: temperature
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`OpenAI API error: ${JSON.stringify(errorData)}`);
+      }
+      
+      const data = await response.json();
+      
+      return {
+        id: data.id,
+        model: data.model,
+        content: data.choices[0].message.content,
+        provider: 'openai',
+        created: new Date(data.created)
+      };
+    } catch (error) {
+      console.error('Error calling OpenAI API:', error);
+      throw error;
+    }
   }
 
   /**
@@ -149,31 +199,5 @@ export class AIService {
     };
     
     return modelMap[anthropicModel] || 'gpt-4';
-  }
-
-  /**
-   * Generate a mock completion
-   */
-  private mockCompletion(messages: AIMessage[], provider: 'anthropic' | 'openai' = 'anthropic'): string {
-    // Get the last user message
-    const lastUserMessage = [...messages].reverse().find(m => m.role === 'user');
-    
-    if (!lastUserMessage) {
-      return 'I don\'t have a specific question to respond to. How can I help you?';
-    }
-    
-    // Generate a simple response based on the user's message
-    const userMessage = lastUserMessage.content.toLowerCase();
-    const providerPrefix = provider === 'anthropic' ? '[Anthropic] ' : '[OpenAI] ';
-    
-    if (userMessage.includes('hello') || userMessage.includes('hi')) {
-      return providerPrefix + 'Hello! How can I assist you with your creative project today?';
-    } else if (userMessage.includes('style')) {
-      return providerPrefix + 'I can help you explore different artistic styles. Would you like me to suggest some styles that might work for your project?';
-    } else if (userMessage.includes('generate') || userMessage.includes('create')) {
-      return providerPrefix + 'I\'d be happy to help generate creative ideas. Could you tell me more about what you\'re looking to create?';
-    } else {
-      return providerPrefix + `I understand you're interested in "${lastUserMessage.content}". Let me think about how I can help with that.`;
-    }
   }
 } 
