@@ -83,6 +83,7 @@ fi
 # Create a temporary file for the ArtBot script
 TMP_FILE=$(mktemp)
 cat > "$TMP_FILE" <<EOL
+// Ensure this file is treated as an ES module
 import { ArtBotMultiAgentSystem } from './dist/artbot-multiagent-system.js';
 
 async function runArtBot() {
@@ -116,6 +117,14 @@ async function runArtBot() {
 runArtBot().catch(console.error);
 EOL
 
+# Create a package.json file to specify type=module
+PACKAGE_TMP=$(mktemp)
+cat > "$PACKAGE_TMP" <<EOL
+{
+  "type": "module"
+}
+EOL
+
 # Run the ArtBot script
 echo -e "${GREEN}Starting ArtBot multi-agent system...${NC}"
 echo -e "${YELLOW}Project: ${PROJECT_TITLE}${NC}"
@@ -124,17 +133,23 @@ echo -e "${YELLOW}This will run a complete art creation process with multiple ag
 echo -e "${YELLOW}The process may take several minutes to complete${NC}"
 echo ""
 
-node --input-type=module "$TMP_FILE"
+# Create a temporary directory to run the script with proper module settings
+TMP_DIR=$(mktemp -d)
+cp "$TMP_FILE" "$TMP_DIR/run.js"
+cp "$PACKAGE_TMP" "$TMP_DIR/package.json"
+
+# Run the script from the temporary directory
+(cd "$TMP_DIR" && node run.js)
 
 # Check if the script was successful
 if [ $? -ne 0 ]; then
   echo -e "${RED}ArtBot multi-agent system failed. Please check the error messages above.${NC}"
-  rm "$TMP_FILE"
+  rm -rf "$TMP_DIR" "$TMP_FILE" "$PACKAGE_TMP"
   exit 1
 fi
 
 # Clean up
-rm "$TMP_FILE"
+rm -rf "$TMP_DIR" "$TMP_FILE" "$PACKAGE_TMP"
 
 echo -e "${BLUE}Done!${NC}"
 echo -e "${GREEN}Check the output directory for your generated image and project files.${NC}" 
