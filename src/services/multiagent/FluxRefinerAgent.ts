@@ -253,8 +253,8 @@ Include both the prompt itself and a brief creative process explanation.`
         }
       } catch (error) {
         console.log(`Error calling Replicate API: ${error}, using placeholder image`);
-        // Use a placeholder image URL
-        imageUrl = 'https://placehold.co/768x768/000000/FFFFFF/png?text=Cosmic+Journey';
+        // Use a placeholder image URL - ensure it's a valid absolute URL
+        imageUrl = 'https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png';
         console.log(`Using placeholder image: ${imageUrl}`);
       }
       
@@ -301,7 +301,7 @@ Include both the prompt itself and a brief creative process explanation.`
       return {
         prompt: `CNSTLL ${project.title}, cinestill 800t, film grain, night time, 4k`,
         creativeProcess: "Generated as fallback due to error in refinement process.",
-        imageUrl: "https://replicate.delivery/placeholder.jpg",
+        imageUrl: "https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png",
         error: `${error}`
       };
     }
@@ -309,10 +309,29 @@ Include both the prompt itself and a brief creative process explanation.`
   
   // Helper function to download an image from a URL
   private async downloadImage(url: string, outputPath: string): Promise<void> {
-    const response = await fetch(url);
-    const buffer = await response.buffer();
-    fs.writeFileSync(outputPath, buffer);
-    console.log(`Image downloaded to: ${outputPath}`);
+    try {
+      // Validate URL
+      if (!url || !url.startsWith('http')) {
+        console.error(`Invalid URL: ${url}`);
+        throw new Error('Invalid URL: Only absolute URLs are supported');
+      }
+
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch image: ${response.status} ${response.statusText}`);
+      }
+      
+      const buffer = await response.buffer();
+      fs.writeFileSync(outputPath, buffer);
+      console.log(`Image downloaded to: ${outputPath}`);
+    } catch (error) {
+      console.error(`Error downloading image: ${error.message}`);
+      // Create a simple placeholder image if download fails
+      const placeholderText = 'Image download failed';
+      fs.writeFileSync(outputPath, placeholderText);
+      console.log(`Created placeholder file at: ${outputPath}`);
+    }
   }
 
   getState(): AgentState {
