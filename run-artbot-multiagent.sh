@@ -95,41 +95,60 @@ fi
 # Copy the .env file to the temporary directory
 cp .env "$TMP_DIR/"
 
-# Copy node_modules to the temporary directory
-if [ -d "node_modules" ]; then
-  echo -e "${YELLOW}Copying dependencies...${NC}"
-  cp -r node_modules "$TMP_DIR/"
-else
-  echo -e "${YELLOW}Installing dependencies in temporary directory...${NC}"
-  # Copy package.json and package-lock.json to ensure correct dependencies
-  cp package.json "$TMP_DIR/" 2>/dev/null || true
-  cp package-lock.json "$TMP_DIR/" 2>/dev/null || true
-  cp npm-shrinkwrap.json "$TMP_DIR/" 2>/dev/null || true
-  
-  # Install dependencies in the temporary directory
-  (cd "$TMP_DIR" && npm install --quiet)
-  
-  if [ $? -ne 0 ]; then
-    echo -e "${RED}Failed to install dependencies. Trying minimal install...${NC}"
-    (cd "$TMP_DIR" && npm install --quiet dotenv axios uuid)
-    
-    if [ $? -ne 0 ]; then
-      echo -e "${RED}Failed to install minimal dependencies. Exiting.${NC}"
-      rm -rf "$TMP_DIR"
-      exit 1
-    fi
-  fi
+# Create a standalone package.json with all necessary dependencies
+echo -e "${YELLOW}Setting up dependencies...${NC}"
+cat > "$TMP_DIR/package.json" <<EOL
+{
+  "name": "artbot-runner",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.2",
+    "uuid": "^9.0.1",
+    "node-fetch": "^3.3.2",
+    "form-data": "^4.0.0"
+  }
+}
+EOL
+
+# Install dependencies in the temporary directory
+echo -e "${YELLOW}Installing dependencies...${NC}"
+(cd "$TMP_DIR" && npm install --quiet)
+
+if [ $? -ne 0 ]; then
+  echo -e "${RED}Failed to install dependencies. Exiting.${NC}"
+  rm -rf "$TMP_DIR"
+  exit 1
 fi
 
-# Create a temporary file for the ArtBot script
+# Create a simple wrapper for the ArtBot system
 cat > "$TMP_DIR/run.js" <<EOL
-// Ensure this file is treated as an ES module
+// Import required modules
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import fs from 'fs';
+
+// Initialize environment variables
+dotenv.config();
+
+// Get the current directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Import the ArtBot system
 import { ArtBotMultiAgentSystem } from './dist/artbot-multiagent-system.js';
 
 async function runArtBot() {
   try {
+    console.log('Initializing ArtBot Multi-Agent System...');
+    
     // Initialize ArtBot
-    const artBot = new ArtBotMultiAgentSystem();
+    const artBot = new ArtBotMultiAgentSystem({
+      outputDir: join(__dirname, 'output')
+    });
+    
     await artBot.initialize();
     
     // Create an art project
@@ -145,28 +164,30 @@ async function runArtBot() {
       ]
     };
     
+    console.log('Starting art project creation...');
+    
     // Run the project
-    await artBot.createArtProject(project);
+    const result = await artBot.createArtProject(project);
+    
+    // Save the project result
+    const outputDir = join(__dirname, 'output');
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+    
+    fs.writeFileSync(
+      join(outputDir, \`\${project.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-project.json\`),
+      JSON.stringify(result, null, 2)
+    );
     
     console.log('✅ ArtBot project completed successfully!');
+    console.log(\`Output saved to \${outputDir}\`);
   } catch (error) {
     console.error('Error running ArtBot:', error);
   }
 }
 
 runArtBot().catch(console.error);
-EOL
-
-# Create a package.json file to specify type=module
-cat > "$TMP_DIR/package.json" <<EOL
-{
-  "type": "module",
-  "dependencies": {
-    "dotenv": "^16.0.0",
-    "axios": "^1.0.0",
-    "uuid": "^9.0.0"
-  }
-}
 EOL
 
 # Run the ArtBot script
@@ -191,6 +212,7 @@ fi
 if [ -d "$TMP_DIR/output" ]; then
   mkdir -p output
   cp -r "$TMP_DIR/output/"* output/ 2>/dev/null || true
+  echo -e "${GREEN}Output files copied to ./output directory${NC}"
 fi
 
 # Clean up

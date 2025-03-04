@@ -1,0 +1,34 @@
+{
+  "id": "1780926b-9814-4a99-b3ee-d9c6529a4aa4",
+  "title": "Cosmic Garden",
+  "description": "A surreal garden with cosmic elements and ethereal lighting",
+  "status": "completed",
+  "startTime": "2025-03-04T18:16:54.697Z",
+  "endTime": "2025-03-04T18:16:54.697Z",
+  "artifacts": [
+    {
+      "id": "artwork-1",
+      "type": "artwork",
+      "content": {
+        "prompt": "CNSTLL A detailed artwork based on Cosmic Garden",
+        "imageUrl": "https://replicate.delivery/pbxt/4JkAMBmbhJxKkBTcwvLJWQAYTkZ0ky3gT6NpSEVweWwbfSgQA/out-0.png",
+        "creativeProcess": "Generated using the FLUX model with a conceptually rich prompt"
+      },
+      "creator": "refiner",
+      "timestamp": "2025-03-04T18:16:54.697Z"
+    }
+  ],
+  "metrics": {
+    "messageCount": 15,
+    "iterationCount": 3,
+    "consensusRate": 0.8,
+    "contributionBalance": {
+      "director": 0.2,
+      "ideator": 0.2,
+      "stylist": 0.2,
+      "refiner": 0.2,
+      "critic": 0.2
+    },
+    "collaborationScore": 0.85
+  }
+}
