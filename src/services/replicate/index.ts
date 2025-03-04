@@ -4,9 +4,9 @@ import fetch from 'node-fetch';
 
 export { ModelPrediction };
 
-// Define the base model without version hash - let Replicate choose the latest available version
+// Define the models
+const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
 const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
-// Define a fallback model that should be publicly accessible
 const FALLBACK_MODEL = 'minimax/image-01';
 
 export class ReplicateService {
@@ -20,7 +20,7 @@ export class ReplicateService {
   
   constructor(config: Record<string, any> = {}) {
     this.apiKey = config.apiKey || process.env.REPLICATE_API_KEY || '';
-    this.defaultModel = config.defaultModel || process.env.DEFAULT_IMAGE_MODEL || FLUX_MODEL_BASE;
+    this.defaultModel = config.defaultModel || process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL;
     this.defaultWidth = config.defaultWidth || parseInt(process.env.IMAGE_WIDTH || '1024', 10);
     this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '1024', 10);
     this.defaultNumInferenceSteps = config.defaultNumInferenceSteps || parseInt(process.env.NUM_INFERENCE_STEPS || '28', 10);
@@ -63,6 +63,7 @@ export class ReplicateService {
       
       // Check if this is a FLUX model
       const isFluxModel = model.includes('flux-cinestill') || model.includes('adirik/flux');
+      const isFluxProModel = model.includes('black-forest-labs/flux');
       
       // If this is the FLUX model, add default parameters if not provided
       if (isFluxModel) {
@@ -85,6 +86,21 @@ export class ReplicateService {
           if (keywordsToAdd.length > 0) {
             input.prompt = `${input.prompt}, ${keywordsToAdd.join(', ')}`;
           }
+        }
+      }
+      // If this is the FLUX Pro model, set appropriate parameters
+      else if (isFluxProModel) {
+        input.width = input.width || this.defaultWidth;
+        input.height = input.height || this.defaultHeight;
+        
+        // FLUX Pro doesn't need the CNSTLL trigger word or specific keywords
+        // But we'll keep any cinematic elements in the prompt
+        
+        // Make sure we have the right parameters for FLUX Pro
+        input.prompt = input.prompt || '';
+        // Add a negative prompt if not provided
+        if (!input.negative_prompt) {
+          input.negative_prompt = 'low quality, bad anatomy, blurry, pixelated, watermark';
         }
       }
       // If this is the minimax model, adjust parameters accordingly
@@ -127,14 +143,29 @@ export class ReplicateService {
         const errorData = await response.json();
         console.log(`⚠️ Replicate API error: ${JSON.stringify(errorData)}`);
         
-        // If the model is not found or not permitted, try the minimax fallback model
+        // If the model is not found or not permitted, try fallback models in sequence
         if (errorData.status === 422) {
-          if (model !== FALLBACK_MODEL) {
+          if (model === FLUX_PRO_MODEL) {
+            // If FLUX Pro fails, try the regular FLUX model
+            console.log(`⚠️ FLUX Pro model failed, trying regular FLUX model`);
+            return this.runPrediction(FLUX_MODEL_BASE, input);
+          } else if (model === FLUX_MODEL_BASE || model.includes('flux-cinestill')) {
+            // If regular FLUX fails, try the minimax model
+            console.log(`⚠️ FLUX model failed, trying minimax/image-01 model`);
+            return this.runPrediction(FALLBACK_MODEL, {
+              prompt: input.prompt,
+              width: input.width,
+              height: input.height,
+              negative_prompt: input.negative_prompt || ''
+            });
+          } else if (model !== FALLBACK_MODEL) {
+            // If we're not already using the fallback model, try it
             console.log(`⚠️ Trying fallback to minimax/image-01 model`);
             return this.runPrediction(FALLBACK_MODEL, {
               prompt: input.prompt,
               width: input.width,
-              height: input.height
+              height: input.height,
+              negative_prompt: input.negative_prompt || ''
             });
           } else {
             // If we're already using the fallback model and still getting errors,
@@ -366,5 +397,12 @@ export class ReplicateService {
       console.error(`❌ Error in DALL-E fallback: ${error}`);
       return null;
     }
+  }
+
+  /**
+   * Get the default model
+   */
+  getDefaultModel(): string {
+    return this.defaultModel;
   }
 } 

@@ -3,15 +3,15 @@ import { AIService } from './index.js';
 // Example prompts for reference - updated with more cinematic, styled examples
 const examplePrompts = [
   {
-    prompt: "Two distinct streams of text-covered surfaces meeting and interweaving, creating new symbols at their intersection, handprints visible beneath the transformation, cinestill 800t, film grain, night time, 4k.",
+    prompt: "Two distinct streams of text-covered surfaces meeting and interweaving, creating new symbols at their intersection, handprints visible beneath the transformation, cinematic lighting, film grain, night time, 4k.",
     process: "I imagined a tide of language pouring over humanity, each word a fragment of forgotten histories clawing its way into relevance. the hands seemed to rise not in hope, but in desperation, as if trying to pull down the weight of their own erasure. it felt like watching a crowd beg to be remembered by the very thing that consumed them."
   },
   {
-    prompt: "Corrupted family photograph with digital artifacts, fragments of code visible through torn pixels, half-formed faces emerging from static, timestamp errors overlaying personal moments, cinestill 800t, film grain, night time, 4k.",
+    prompt: "Corrupted family photograph with digital artifacts, fragments of code visible through torn pixels, half-formed faces emerging from static, timestamp errors overlaying personal moments, cinematic lighting, film grain, night time, 4k.",
     process: "Family portraits always felt like a strange ritual to me, a way to preserve stories even as the people in them slipped into myth. here, the glitch insists on memory's fragility—pink streaks eating away at faces like a digital wildfire. it's an act of rebellion and an act of erasure. i wondered if this was her revenge for being seen too much or not enough."
   },
   {
-    prompt: "Multiple screens cradling a sleeping face, their glow replacing moonlight, cables snaking around like protective arms, cinestill 800t, film grain, night time, 4k.",
+    prompt: "Multiple screens cradling a sleeping face, their glow replacing moonlight, cables snaking around like protective arms, cinematic lighting, film grain, night time, 4k.",
     process: "There was something haunting about the way technology had become our lullaby. when i painted this, i kept thinking about how we've become willing captives to our devices, finding comfort in their cold embrace. the wires weren't restraints anymore - they were umbilical cords feeding us digital dreams. it reminded me of the japanese concept of hikikomori, but with a twist of stockholm syndrome. the pale skin glowing against the dark void was my way of showing how we've evolved to photosynthesize artificial light."
   }
 ];
@@ -26,12 +26,15 @@ export async function generateConceptualPrompt(
     temperature?: number;
     maxTokens?: number;
     model?: string;
+    useFluxPro?: boolean;
   } = {}
 ): Promise<{ prompt: string; creativeProcess: string }> {
   // Format example prompts for the system message
   const examplePromptsText = examplePrompts.map((ex, i) => 
     `Example ${i+1}:\nPrompt: ${ex.prompt}\nCreative Process: ${ex.process}`
   ).join('\n\n');
+  
+  const isFluxPro = options.useFluxPro || true;
   
   const promptResponse = await aiService.getCompletion({
     model: options.model || 'claude-3-sonnet-20240229',
@@ -42,7 +45,7 @@ export async function generateConceptualPrompt(
 
 Your prompts should transcend mere description to evoke a complete cinematic moment - not just what something looks like, but what it means, how it feels, and the story it tells. Think in terms of lighting, composition, emotional atmosphere, and symbolic elements.
 
-For the FLUX model (cinestill 800t style), include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "cinestill 800t", "night time", "film grain", and "4k" for better quality.
+${!isFluxPro ? 'For the FLUX model (cinestill 800t style), include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "cinestill 800t", "night time", "film grain", and "4k" for better quality.' : 'For the FLUX Pro model, focus on creating rich, detailed descriptions with cinematic qualities. Include keywords like "cinematic lighting", "film grain", "night time", and "4k" for better quality.'}
 
 Here are examples of the sophisticated cinematic prompt style to emulate:
 
@@ -53,8 +56,8 @@ Create a prompt that:
 2. Incorporates conceptual depth with layers of metaphor and symbolism
 3. Evokes a specific emotional atmosphere or philosophical question
 4. Feels like a frame from an arthouse film or a moment of visual poetry
-5. Works well with the cinematic, night-time aesthetic of FLUX
-6. Includes technical elements that enhance the FLUX model (film grain, lighting details)
+5. Works well with the cinematic, night-time aesthetic
+6. Includes technical elements that enhance the image quality (film grain, lighting details)
 
 For the "Creative Process" explanation, write in a reflective, personal tone as if you are an artist explaining the deeper meaning behind your work. Include:
 1. The emotional or philosophical inspiration
@@ -92,17 +95,28 @@ For the "Creative Process" explanation, write in a reflective, personal tone as 
     creativeProcess = processMatch[1].trim();
   }
   
-  // Ensure the prompt starts with the FLUX trigger word
-  if (!detailedPrompt.includes('CNSTLL')) {
-    detailedPrompt = `CNSTLL ${detailedPrompt}`;
-  }
-  
-  // Add FLUX-specific keywords if they're not already present
-  const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
-  let keywordsToAdd = fluxKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
-  
-  if (keywordsToAdd.length > 0) {
-    detailedPrompt = `${detailedPrompt}, ${keywordsToAdd.join(', ')}`;
+  // Add model-specific adjustments
+  if (!isFluxPro) {
+    // For regular FLUX model, ensure the prompt starts with the FLUX trigger word
+    if (!detailedPrompt.includes('CNSTLL')) {
+      detailedPrompt = `CNSTLL ${detailedPrompt}`;
+    }
+    
+    // Add FLUX-specific keywords if they're not already present
+    const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
+    let keywordsToAdd = fluxKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
+    
+    if (keywordsToAdd.length > 0) {
+      detailedPrompt = `${detailedPrompt}, ${keywordsToAdd.join(', ')}`;
+    }
+  } else {
+    // For FLUX Pro, ensure we have cinematic keywords
+    const fluxProKeywords = ['cinematic lighting', 'film grain', 'night time', '4k'];
+    let keywordsToAdd = fluxProKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
+    
+    if (keywordsToAdd.length > 0) {
+      detailedPrompt = `${detailedPrompt}, ${keywordsToAdd.join(', ')}`;
+    }
   }
   
   return {

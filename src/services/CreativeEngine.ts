@@ -1224,10 +1224,15 @@ export class CreativeEngine {
     creativeProcess: string;
   }> {
     try {
-      // Generate a conceptually rich prompt
-      const { prompt, creativeProcess } = await generateConceptualPrompt(this.aiService, concept);
+      // Check if we're using FLUX Pro
+      const isFluxPro = this.replicateService.getDefaultModel().includes('black-forest-labs/flux');
       
-      // Generate the image using the FLUX model
+      // Generate a conceptually rich prompt
+      const { prompt, creativeProcess } = await generateConceptualPrompt(this.aiService, concept, {
+        useFluxPro: isFluxPro
+      });
+      
+      // Generate the image using the model
       const imageUrl = await this.replicateService.generateImage(prompt, options);
       
       // Store the result in memory
@@ -1244,7 +1249,7 @@ export class CreativeEngine {
             type: 'conceptual-image',
             timestamp: new Date().toISOString()
           },
-          ['conceptual', 'flux', concept]
+          ['conceptual', isFluxPro ? 'flux-pro' : 'flux', concept]
         );
       }
       

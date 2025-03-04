@@ -28,9 +28,9 @@ const concept = process.argv[2];
 // Get category from command line arguments (if provided)
 const categoryArg = process.argv[3];
 
-// Define the base model without version hash
+// Define the models
+const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
 const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
-// Define a fallback model that should be publicly accessible
 const MINIMAX_MODEL = 'minimax/image-01';
 
 async function generateArt(concept: string) {
@@ -40,7 +40,7 @@ async function generateArt(concept: string) {
     const openaiApiKey = process.env.OPENAI_API_KEY;
     const replicateApiKey = process.env.REPLICATE_API_KEY;
     
-    console.log('🎨 ArtBot - Generating Art with FLUX');
+    console.log('🎨 ArtBot - Generating Art with FLUX Pro');
     console.log('------------------------------------');
     console.log('API Keys found:');
     console.log(`- Anthropic: ${anthropicApiKey ? 'Yes' : 'No'}`);
@@ -55,10 +55,10 @@ async function generateArt(concept: string) {
     
     await aiService.initialize();
     
-    // Initialize the ReplicateService with minimax as the default model
+    // Initialize the ReplicateService with FLUX Pro as the default model
     const replicateService = new ReplicateService({
       apiKey: replicateApiKey,
-      defaultModel: process.env.DEFAULT_IMAGE_MODEL || MINIMAX_MODEL,
+      defaultModel: process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL,
       defaultWidth: parseInt(process.env.IMAGE_WIDTH || '1024', 10),
       defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '1024', 10),
       defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '28', 10),
