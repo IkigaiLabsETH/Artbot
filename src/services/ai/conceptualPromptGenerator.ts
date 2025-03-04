@@ -1,18 +1,18 @@
 import { AIService } from './index.js';
 
-// Example prompts for reference - updated with more cinematic, styled examples
+// Example prompts for reference - updated with abstract art and painting style examples
 const examplePrompts = [
   {
-    prompt: "Two distinct streams of text-covered surfaces meeting and interweaving, creating new symbols at their intersection, handprints visible beneath the transformation, cinematic lighting, film grain, night time, 4k.",
-    process: "I imagined a tide of language pouring over humanity, each word a fragment of forgotten histories clawing its way into relevance. the hands seemed to rise not in hope, but in desperation, as if trying to pull down the weight of their own erasure. it felt like watching a crowd beg to be remembered by the very thing that consumed them."
+    prompt: "Abstract expressionist composition with bold brushstrokes in vibrant primary colors, layered textures revealing emotional depth, gestural movement suggesting inner turmoil, paint splatters and drips creating dynamic tension, cinematic lighting, film grain, 4k.",
+    process: "i wanted to capture that raw emotional state where words fail but color speaks. the violent red strokes against cooler blues felt like the perfect tension between rage and melancholy. there's something so honest about allowing the paint to drip and splatter—letting the medium itself participate in the creative act. i was thinking of pollock's physical approach to painting, but wanted to infuse it with rothko's emotional weight. the layers became a metaphor for how we carry our histories beneath the surface, occasionally breaking through in moments of vulnerability."
   },
   {
-    prompt: "Corrupted family photograph with digital artifacts, fragments of code visible through torn pixels, half-formed faces emerging from static, timestamp errors overlaying personal moments, cinematic lighting, film grain, night time, 4k.",
-    process: "Family portraits always felt like a strange ritual to me, a way to preserve stories even as the people in them slipped into myth. here, the glitch insists on memory's fragility—pink streaks eating away at faces like a digital wildfire. it's an act of rebellion and an act of erasure. i wondered if this was her revenge for being seen too much or not enough."
+    prompt: "Geometric abstraction with intersecting planes of muted earth tones, transparent layers revealing underlying composition, precise hard-edge forms contrasting with organic textural elements, subtle impasto technique visible in highlights, cinematic lighting, painterly texture, 4k.",
+    process: "this piece emerged from my fascination with the tension between order and chaos. the geometric precision represents our human desire to impose structure on the world, while the organic textures acknowledge the natural forces that always find ways to disrupt our careful plans. i built up the surface slowly, allowing earlier layers to show through like memories or forgotten intentions. the earth tones ground the work in something primal and ancient—colors pulled from clay, soil, and stone rather than the synthetic world. there's a conversation happening between the shapes that feels like a silent dialogue about boundaries and connection."
   },
   {
-    prompt: "Multiple screens cradling a sleeping face, their glow replacing moonlight, cables snaking around like protective arms, cinematic lighting, film grain, night time, 4k.",
-    process: "There was something haunting about the way technology had become our lullaby. when i painted this, i kept thinking about how we've become willing captives to our devices, finding comfort in their cold embrace. the wires weren't restraints anymore - they were umbilical cords feeding us digital dreams. it reminded me of the japanese concept of hikikomori, but with a twist of stockholm syndrome. the pale skin glowing against the dark void was my way of showing how we've evolved to photosynthesize artificial light."
+    prompt: "Color field painting with luminous gradients shifting between deep indigo and burnt sienna, subtle textural variations created by palette knife technique, minimalist composition with horizon-like division, atmospheric depth suggesting infinite space, cinematic lighting, painterly quality, 4k.",
+    process: "i've always been drawn to that liminal space between representation and pure abstraction—the point where a color field begins to evoke a landscape without explicitly becoming one. working with these warm and cool tones, i found myself thinking about those moments at dusk when the sky holds multiple realities simultaneously. the palette knife created these unexpected textural moments that felt like emotional interruptions in an otherwise meditative space. rothko once said his paintings are about the basic human emotions, and i wanted this piece to create a similar contemplative environment where the viewer could project their own internal weather."
   }
 ];
 
@@ -41,34 +41,34 @@ export async function generateConceptualPrompt(
     messages: [
       {
         role: 'system',
-        content: `You are a visionary cinematic art director who creates deeply evocative, conceptually rich prompts for AI image generation. Your specialty is creating prompts that feel like frames from an arthouse film - layered with meaning, visual poetry, and emotional resonance.
+        content: `You are a visionary abstract artist who creates deeply evocative, conceptually rich prompts for AI image generation. Your specialty is creating prompts that feel like abstract paintings - layered with meaning, visual poetry, and emotional resonance through non-representational forms, bold colors, and expressive techniques.
 
-Your prompts should transcend mere description to evoke a complete cinematic moment - not just what something looks like, but what it means, how it feels, and the story it tells. Think in terms of lighting, composition, emotional atmosphere, and symbolic elements.
+Your prompts should transcend mere description to evoke complete abstract compositions - not just what something looks like, but what it means, how it feels, and the emotional truth it expresses. Think in terms of color relationships, textural elements, compositional balance, brushwork techniques, and symbolic abstraction.
 
-${!isFluxPro ? 'For the FLUX model (cinestill 800t style), include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "cinestill 800t", "night time", "film grain", and "4k" for better quality.' : 'For the FLUX Pro model, focus on creating rich, detailed descriptions with cinematic qualities. Include keywords like "cinematic lighting", "film grain", "night time", and "4k" for better quality.'}
+${!isFluxPro ? 'For the FLUX model, include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "abstract painting", "painterly texture", "brushstrokes", and "4k" for better quality.' : 'For the FLUX Pro model, focus on creating rich, detailed descriptions of abstract paintings with artistic qualities. Include keywords like "abstract composition", "painterly texture", "brushstrokes", and "4k" for better quality.'}
 
-Here are examples of the sophisticated cinematic prompt style to emulate:
+Here are examples of the sophisticated abstract art prompt style to emulate:
 
 ${examplePromptsText}
 
 Create a prompt that:
-1. Has rich cinematic visual details - lighting, composition, color palette, depth of field
-2. Incorporates conceptual depth with layers of metaphor and symbolism
+1. Has rich painterly visual details - brushwork, texture, color relationships, compositional balance
+2. Incorporates conceptual depth with layers of metaphor and symbolism through abstraction
 3. Evokes a specific emotional atmosphere or philosophical question
-4. Feels like a frame from an arthouse film or a moment of visual poetry
-5. Works well with the cinematic, night-time aesthetic
-6. Includes technical elements that enhance the image quality (film grain, lighting details)
+4. References specific abstract painting techniques or movements (expressionism, color field, cubism, etc.)
+5. Works well with the painterly, textural aesthetic
+6. Includes technical elements that enhance the image quality (brushstrokes, texture details, artistic medium)
 
-For the "Creative Process" explanation, write in a reflective, personal tone as if you are an artist explaining the deeper meaning behind your work. Include:
+For the "Creative Process" explanation, write in a reflective, personal tone as if you are an abstract artist explaining the deeper meaning behind your work. Include:
 1. The emotional or philosophical inspiration
 2. Personal reflections or questions that drove the creation
 3. Symbolic elements and their significance
-4. Cultural or artistic references that informed your thinking
+4. References to abstract art movements or artists that informed your approach
 5. Use lowercase, intimate language as if sharing a private thought`
       },
       {
         role: 'user',
-        content: `Create a deeply cinematic, conceptually rich art prompt for the concept "${concept}". Make it feel like a frame from an arthouse film with layers of visual and emotional meaning. Include both the prompt itself and a reflective creative process explanation.`
+        content: `Create a deeply expressive, conceptually rich abstract art prompt for the concept "${concept}". Make it feel like a contemporary abstract painting with layers of visual and emotional meaning. Include both the prompt itself and a reflective creative process explanation.`
       }
     ],
     temperature: options.temperature || 0.85,
@@ -103,15 +103,15 @@ For the "Creative Process" explanation, write in a reflective, personal tone as 
     }
     
     // Add FLUX-specific keywords if they're not already present
-    const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
+    const fluxKeywords = ['abstract painting', 'painterly texture', 'brushstrokes', '4k'];
     let keywordsToAdd = fluxKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
     
     if (keywordsToAdd.length > 0) {
       detailedPrompt = `${detailedPrompt}, ${keywordsToAdd.join(', ')}`;
     }
   } else {
-    // For FLUX Pro, ensure we have cinematic keywords
-    const fluxProKeywords = ['cinematic lighting', 'film grain', 'night time', '4k'];
+    // For FLUX Pro, ensure we have abstract art keywords
+    const fluxProKeywords = ['abstract composition', 'painterly texture', 'brushstrokes', '4k'];
     let keywordsToAdd = fluxProKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
     
     if (keywordsToAdd.length > 0) {
