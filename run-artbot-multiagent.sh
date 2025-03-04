@@ -80,9 +80,49 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+# Create a temporary directory to run the script with proper module settings
+TMP_DIR=$(mktemp -d)
+
+# Copy the dist directory to the temporary directory
+if [ -d "dist" ]; then
+  cp -r dist "$TMP_DIR/"
+else
+  echo -e "${RED}Error: dist directory not found. Build may have failed.${NC}"
+  rm -rf "$TMP_DIR"
+  exit 1
+fi
+
+# Copy the .env file to the temporary directory
+cp .env "$TMP_DIR/"
+
+# Copy node_modules to the temporary directory
+if [ -d "node_modules" ]; then
+  echo -e "${YELLOW}Copying dependencies...${NC}"
+  cp -r node_modules "$TMP_DIR/"
+else
+  echo -e "${YELLOW}Installing dependencies in temporary directory...${NC}"
+  # Copy package.json and package-lock.json to ensure correct dependencies
+  cp package.json "$TMP_DIR/" 2>/dev/null || true
+  cp package-lock.json "$TMP_DIR/" 2>/dev/null || true
+  cp npm-shrinkwrap.json "$TMP_DIR/" 2>/dev/null || true
+  
+  # Install dependencies in the temporary directory
+  (cd "$TMP_DIR" && npm install --quiet)
+  
+  if [ $? -ne 0 ]; then
+    echo -e "${RED}Failed to install dependencies. Trying minimal install...${NC}"
+    (cd "$TMP_DIR" && npm install --quiet dotenv axios uuid)
+    
+    if [ $? -ne 0 ]; then
+      echo -e "${RED}Failed to install minimal dependencies. Exiting.${NC}"
+      rm -rf "$TMP_DIR"
+      exit 1
+    fi
+  fi
+fi
+
 # Create a temporary file for the ArtBot script
-TMP_FILE=$(mktemp)
-cat > "$TMP_FILE" <<EOL
+cat > "$TMP_DIR/run.js" <<EOL
 // Ensure this file is treated as an ES module
 import { ArtBotMultiAgentSystem } from './dist/artbot-multiagent-system.js';
 
@@ -118,10 +158,14 @@ runArtBot().catch(console.error);
 EOL
 
 # Create a package.json file to specify type=module
-PACKAGE_TMP=$(mktemp)
-cat > "$PACKAGE_TMP" <<EOL
+cat > "$TMP_DIR/package.json" <<EOL
 {
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "axios": "^1.0.0",
+    "uuid": "^9.0.0"
+  }
 }
 EOL
 
@@ -133,23 +177,24 @@ echo -e "${YELLOW}This will run a complete art creation process with multiple ag
 echo -e "${YELLOW}The process may take several minutes to complete${NC}"
 echo ""
 
-# Create a temporary directory to run the script with proper module settings
-TMP_DIR=$(mktemp -d)
-cp "$TMP_FILE" "$TMP_DIR/run.js"
-cp "$PACKAGE_TMP" "$TMP_DIR/package.json"
-
 # Run the script from the temporary directory
 (cd "$TMP_DIR" && node run.js)
 
 # Check if the script was successful
 if [ $? -ne 0 ]; then
   echo -e "${RED}ArtBot multi-agent system failed. Please check the error messages above.${NC}"
-  rm -rf "$TMP_DIR" "$TMP_FILE" "$PACKAGE_TMP"
+  rm -rf "$TMP_DIR"
   exit 1
 fi
 
+# Copy any output files back to the current directory if needed
+if [ -d "$TMP_DIR/output" ]; then
+  mkdir -p output
+  cp -r "$TMP_DIR/output/"* output/ 2>/dev/null || true
+fi
+
 # Clean up
-rm -rf "$TMP_DIR" "$TMP_FILE" "$PACKAGE_TMP"
+rm -rf "$TMP_DIR"
 
 echo -e "${BLUE}Done!${NC}"
 echo -e "${GREEN}Check the output directory for your generated image and project files.${NC}" 
