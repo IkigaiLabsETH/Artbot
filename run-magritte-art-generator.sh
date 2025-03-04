@@ -47,6 +47,10 @@ if [ -z "$CONCEPT" ]; then
     echo -e "${YELLOW}No concept provided. Will generate a random Magritte surrealist concept.${NC}"
 fi
 
+# Set the image model to FLUX Pro
+export DEFAULT_IMAGE_MODEL="black-forest-labs/flux-1.1-pro"
+echo -e "${GREEN}Using image model: ${DEFAULT_IMAGE_MODEL}${NC}"
+
 # Compile TypeScript code
 echo -e "${GREEN}Compiling TypeScript code...${NC}"
 tsc

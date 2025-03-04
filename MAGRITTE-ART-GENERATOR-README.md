@@ -22,6 +22,7 @@ The Magritte Surrealism Art Generator is a specialized version of ArtBot that fo
 - **Multi-Agent Collaboration**: Uses specialized agents (Director, Ideator, Stylist, Refiner, Critic) to create cohesive artwork
 - **Customizable Concepts**: Generate random Magritte-style concepts or provide your own
 - **Multiple AI Provider Support**: Run with either Anthropic or OpenAI as the primary AI provider
+- **High-Quality Image Generation**: Uses the FLUX Pro model (black-forest-labs/flux-1.1-pro) for superior image quality
 
 ## Prerequisites
 
@@ -39,6 +40,10 @@ The Magritte Surrealism Art Generator is a specialized version of ArtBot that fo
 # Make the scripts executable (if not already)
 chmod +x run-magritte-art-generator.sh
 chmod +x run-magritte-art-generator-openai.sh
+chmod +x check-flux-pro-access.sh
+
+# Check if you have access to the FLUX Pro model
+./check-flux-pro-access.sh
 
 # Run with Anthropic as primary AI provider (with a custom concept)
 ./run-magritte-art-generator.sh "bowler hat floating above ocean"
@@ -69,6 +74,15 @@ REPLICATE_API_KEY=your_replicate_api_key
 ```
 
 At least one of either `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` is required, along with `REPLICATE_API_KEY`.
+
+## Image Generation Model
+
+The scripts are configured to use the FLUX Pro model (black-forest-labs/flux-1.1-pro) for image generation, which provides high-quality results that are well-suited for Magritte's surrealist style. This model is automatically set by the scripts, so you don't need to configure it manually.
+
+If the FLUX Pro model is unavailable, the system will automatically try fallback models in this order:
+1. Regular FLUX model (adirik/flux-cinestill)
+2. Minimax model (minimax/image-01)
+3. OpenAI DALL-E (if available)
 
 ## Customizing Art Direction
 
@@ -108,7 +122,10 @@ Generated images and metadata are saved in the `output` directory. For each gene
 - **API Errors**: 
   - If you encounter Anthropic API overload errors, use the OpenAI-based script instead: `./run-magritte-art-generator-openai.sh`
   - If you see "No AI provider available" errors, check that your API keys are correctly set in the `.env` file
-- **Image Generation Issues**: Check your Replicate API key and ensure you have sufficient credits
+- **Image Generation Issues**: 
+  - If you see "Invalid version or not permitted" errors, your Replicate API key may not have access to the FLUX Pro model
+  - Run `./check-flux-pro-access.sh` to verify if you have access to the FLUX Pro model
+  - Check your Replicate API key and ensure you have sufficient credits
 - **Compilation Errors**: Make sure TypeScript is installed globally or in your project
 - **"find: unknown primary" Error**: On macOS, the script may need modification for the `find` command. Edit the script to use `find output -name "flux-*.png" -type f | sort | tail -1` instead
 
@@ -120,6 +137,7 @@ For more advanced customization, you can:
 2. Adjust the `src/defaultArtGenerator.ts` file to change how the Magritte style is applied
 3. Create your own art direction JSON file with specific Magritte-inspired elements
 4. Set the `USE_OPENAI_PRIMARY=true` environment variable to use OpenAI as the primary AI provider in any script
+5. Change the `DEFAULT_IMAGE_MODEL` environment variable if you want to use a different image generation model
 
 ## Related Documentation
 
