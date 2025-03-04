@@ -1,0 +1,42 @@
+{
+  "styleEmphasis": [
+    "cinematic",
+    "dramatic lighting",
+    "film grain",
+    "high contrast",
+    "atmospheric"
+  ],
+  "visualElements": [
+    "reflective surfaces",
+    "dynamic shadows",
+    "depth of field",
+    "environmental storytelling"
+  ],
+  "colorPalette": [
+    "rich blues",
+    "deep reds",
+    "golden highlights",
+    "shadow detail",
+    "selective saturation"
+  ],
+  "compositionGuidelines": [
+    "rule of thirds",
+    "leading lines",
+    "depth of field",
+    "framing elements",
+    "balanced asymmetry"
+  ],
+  "moodAndTone": "atmospheric and evocative with a sense of mystery",
+  "references": [
+    "Roger Deakins cinematography",
+    "Gregory Crewdson photography",
+    "Blade Runner 2049 visual style"
+  ],
+  "avoidElements": [
+    "text",
+    "watermarks",
+    "distorted faces",
+    "overly saturated colors",
+    "digital artifacts"
+  ]
+} 
