@@ -9,6 +9,13 @@ if [ -z "$NODE_VERSION" ] || [ "$NODE_VERSION" -lt 23 ]; then
   exit 1
 fi
 
+# Check if pnpm is installed
+if ! command -v pnpm &> /dev/null; then
+  echo "Error: pnpm is not installed."
+  echo "Please install pnpm: npm install -g pnpm"
+  exit 1
+fi
+
 # Check if the character file exists
 if [ ! -f "characters/art-creator.json" ]; then
   echo "Error: characters/art-creator.json not found."
@@ -19,8 +26,8 @@ fi
 # Build the plugin-art-creator
 echo "Building plugin-art-creator..."
 cd packages/plugin-art-creator
-npm install
-npm run build
+pnpm install
+pnpm run build
 cd ../..
 
 # Create symbolic link for the plugin in agent's node_modules
@@ -32,7 +39,10 @@ ln -sf $(pwd)/packages/plugin-art-creator agent/node_modules/@elizaos/plugin-art
 # Load environment variables from .env file
 if [ -f ".env" ]; then
   echo "Loading environment variables from .env file..."
-  export $(grep -v '^#' .env | xargs)
+  # Set environment variables manually
+  export OPENAI_API_KEY=$(grep OPENAI_API_KEY .env | cut -d '=' -f2 | sed 's/#.*$//' | tr -d ' ')
+  export ANTHROPIC_API_KEY=$(grep ANTHROPIC_API_KEY .env | cut -d '=' -f2 | tr -d ' ')
+  export REPLICATE_API_KEY=$(grep REPLICATE_API_KEY .env | cut -d '=' -f2 | tr -d ' ')
 fi
 
 # Check if required environment variables are set
@@ -54,7 +64,12 @@ if [ -z "$REPLICATE_API_KEY" ]; then
   exit 1
 fi
 
+# Print the API keys for debugging
+echo "Using OPENAI_API_KEY: $OPENAI_API_KEY"
+echo "Using ANTHROPIC_API_KEY: $ANTHROPIC_API_KEY"
+echo "Using REPLICATE_API_KEY: $REPLICATE_API_KEY"
+
 # Run the agent with the art-creator character
 echo "Starting Eliza with ArtBot character..."
 cd agent
-npm run start -- --characters="../characters/art-creator.json" 
+pnpm run start -- --characters="../characters/art-creator.json" 
