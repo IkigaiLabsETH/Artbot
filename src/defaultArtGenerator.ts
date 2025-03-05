@@ -98,7 +98,17 @@ const defaultArtDirection: ArtDirection = {
     "shadow detail",
     "selective saturation",
     "oil paint color mixing",
-    "limited palette typical of Magritte's work"
+    "limited palette typical of Magritte's work",
+    "twilight blues from 'The Empire of Light'",
+    "clear sky blues",
+    "muted greens of foliage",
+    "warm wood tones",
+    "cool grays for clouds",
+    "stark black silhouettes",
+    "pale flesh tones",
+    "crisp whites for collars and clouds",
+    "subtle shadow gradients",
+    "atmospheric perspective blues"
   ],
   compositionGuidelines: [
     "rule of thirds",
@@ -109,9 +119,20 @@ const defaultArtDirection: ArtDirection = {
     "surreal scale relationships",
     "clean compositions with clear subjects",
     "canvas-like proportions",
-    "traditional painting composition"
+    "traditional painting composition",
+    "centered single subject focus",
+    "theatrical staging of elements",
+    "window-like framing devices",
+    "horizon line placement for psychological effect",
+    "juxtaposition of disparate scales",
+    "symmetrical balance with surreal disruption",
+    "negative space as positive element",
+    "precise geometric arrangement",
+    "layered reality planes",
+    "visual paradox construction",
+    "deliberate flatness in certain elements"
   ],
-  moodAndTone: "dreamlike and contemplative with a sense of mystery and philosophical questioning, rendered with the texture and quality of oil paint on canvas",
+  moodAndTone: "dreamlike and contemplative with a sense of mystery and philosophical questioning, rendered with the texture and quality of oil paint on canvas. The atmosphere should evoke a quiet unease through impossible juxtapositions that feel strangely familiar yet profoundly alien. There should be an intellectual playfulness beneath the serious execution, inviting viewers to question their perception of reality. The emotional tone balances between melancholy, wonder, and subtle humor, with a distinctly Belgian surrealist sensibility that differs from the more psychological or chaotic approaches of other surrealists.",
   references: [
     "René Magritte's 'The Son of Man'",
     "René Magritte's 'The Empire of Light'",
@@ -158,15 +179,26 @@ function loadArtDirectionFromFile(filePath: string): ArtDirection | null {
   return null;
 }
 
+// Function to load category-specific art direction
+function loadCategoryArtDirection(category?: string): ArtDirection | null {
+  if (!category) return null;
+  
+  // Convert category to filename format (e.g., 'magritte_lovers')
+  const categoryFileName = `magritte_${category.toLowerCase().replace(/\s+/g, '_')}.json`;
+  const categoryFilePath = path.join(process.cwd(), categoryFileName);
+  
+  const categoryArtDirection = loadArtDirectionFromFile(categoryFilePath);
+  if (categoryArtDirection) {
+    console.log(`Loaded category-specific art direction from ${categoryFileName}`);
+    return categoryArtDirection;
+  }
+  
+  return null;
+}
+
 // Check for art direction file in the current directory
 const artDirectionFilePath = path.join(process.cwd(), 'art-direction.json');
 const fileArtDirection = loadArtDirectionFromFile(artDirectionFilePath);
-
-// Merge file-based art direction with default, with file taking precedence
-const artDirection: ArtDirection = {
-  ...defaultArtDirection,
-  ...fileArtDirection
-};
 
 // Get the directory name
 const __filename = fileURLToPath(import.meta.url);
@@ -182,6 +214,72 @@ if (!fs.existsSync(outputDir)) {
 const concept = process.argv[2];
 // Get category from command line arguments (if provided)
 const categoryArg = process.argv[3];
+
+// Detect concept category based on content if not explicitly provided
+function detectConceptCategory(concept: string): string | undefined {
+  if (!concept) return undefined;
+  
+  const conceptLower = concept.toLowerCase();
+  
+  // Category detection patterns
+  const categoryPatterns = [
+    { category: 'lovers', keywords: ['lover', 'veil', 'covered face', 'hidden identity', 'intimacy', 'couple'] },
+    { category: 'empire_of_light', keywords: ['day and night', 'empire of light', 'night sky', 'daytime', 'street lamp'] },
+    { category: 'objects', keywords: ['apple', 'pipe', 'bowler hat', 'everyday object', 'still life'] },
+    { category: 'windows', keywords: ['window', 'frame', 'view', 'looking through', 'glass'] },
+    { category: 'silhouettes', keywords: ['silhouette', 'shadow', 'outline', 'dark figure'] },
+    { category: 'metamorphosis', keywords: ['transform', 'change', 'metamorphosis', 'becoming', 'evolution'] },
+    { category: 'wordplay', keywords: ['word', 'language', 'text', 'meaning', 'treachery of images'] },
+    { category: 'scale', keywords: ['giant', 'miniature', 'scale', 'proportion', 'size', 'oversized'] },
+    { category: 'mystery', keywords: ['mystery', 'enigma', 'puzzle', 'unknown', 'question'] },
+    { category: 'landscapes', keywords: ['landscape', 'nature', 'horizon', 'vista', 'scenery'] },
+    { category: 'skies', keywords: ['sky', 'cloud', 'bird', 'flying', 'heaven', 'air'] },
+    { category: 'classic', keywords: ['classic', 'iconic', 'famous', 'son of man', 'golconda'] }
+  ];
+  
+  // Check for keyword matches
+  for (const pattern of categoryPatterns) {
+    if (pattern.keywords.some(keyword => conceptLower.includes(keyword))) {
+      console.log(`\n🔍 Auto-detected category: ${pattern.category} based on concept keywords`);
+      return pattern.category;
+    }
+  }
+  
+  return undefined;
+}
+
+// Determine the category to use
+const detectedCategory = categoryArg || detectConceptCategory(concept);
+
+// Check for category-specific art direction if category is provided
+const categoryArtDirection = loadCategoryArtDirection(detectedCategory);
+
+// Log the art direction selection process
+console.log('\n🎨 Art Direction Selection:');
+if (categoryArg) {
+  console.log(`- Using explicitly specified category: "${categoryArg}"`);
+} else if (detectedCategory) {
+  console.log(`- Using auto-detected category: "${detectedCategory}"`);
+} else {
+  console.log('- Using default art direction (no specific category)');
+}
+
+if (fileArtDirection) {
+  console.log('- Found custom art-direction.json file');
+}
+
+if (categoryArtDirection) {
+  console.log(`- Applied category-specific art direction from: magritte_${detectedCategory}.json`);
+} else if (detectedCategory) {
+  console.log(`- No category-specific file found for "${detectedCategory}", using base art direction`);
+}
+
+// Merge art directions with priority: category > file > default
+const artDirection: ArtDirection = {
+  ...defaultArtDirection,
+  ...fileArtDirection,
+  ...categoryArtDirection
+};
 
 // Define the models
 const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
@@ -259,17 +357,17 @@ async function generateArt(concept: string) {
       // Determine which category to use
       let category: ConceptCategory | undefined;
       
-      if (categoryArg) {
-        // Try to match the category argument to a valid category
+      if (detectedCategory) {
+        // Try to match the detected category to a valid category
         const categoryKey = Object.keys(ConceptCategory).find(
-          key => key.toLowerCase() === categoryArg.toLowerCase()
+          key => key.toLowerCase() === detectedCategory.toLowerCase()
         );
         
         if (categoryKey) {
           category = ConceptCategory[categoryKey as keyof typeof ConceptCategory];
           console.log(`\n🎬 Generating a ${category} concept...`);
         } else {
-          console.log(`\n⚠️ Unknown category: "${categoryArg}". Using MAGRITTE_SURREALISM category.`);
+          console.log(`\n⚠️ Unknown category: "${detectedCategory}". Using MAGRITTE_SURREALISM category.`);
           category = ConceptCategory.MAGRITTE_SURREALISM;
         }
       } else {
@@ -289,7 +387,7 @@ async function generateArt(concept: string) {
       const isCryptoRelated = cryptoKeywords.some(keyword => concept.toLowerCase().includes(keyword));
       
       // If crypto-related, use CRYPTO_ART category
-      if (isCryptoRelated && !categoryArg) {
+      if (isCryptoRelated && !detectedCategory) {
         console.log(`\n🎬 Detected crypto-related concept, using CRYPTO_ART category...`);
         const cryptoArtConcept = await generateCinematicConcept(aiService, {
           temperature: 0.9,
@@ -306,13 +404,13 @@ async function generateArt(concept: string) {
     const isCryptoRelated = cryptoKeywords.some(keyword => artConcept.toLowerCase().includes(keyword));
     
     // Determine if we should use Magritte style
-    const useMagritteStyle = categoryArg === 'magritte_surrealism' || 
-                            (categoryArg === undefined && !isCryptoRelated && 
+    const useMagritteStyle = detectedCategory === 'magritte_surrealism' || 
+                            (detectedCategory === undefined && !isCryptoRelated && 
                              (artConcept.toLowerCase().includes('magritte') ||
                               artConcept.toLowerCase().includes('surreal')));
                               
     // Determine if we should use Impressionist style
-    const useImpressionistStyle = categoryArg === 'impressionist';
+    const useImpressionistStyle = detectedCategory === 'impressionist';
     
     // Create a category-specific art direction
     let categoryArtDirection: ArtDirection = { ...artDirection };
@@ -466,7 +564,7 @@ async function generateArt(concept: string) {
       creativeProcess: creativeProcess,
       imageUrl: imageUrl,
       timestamp: new Date().toISOString(),
-      isCryptoNative: isCryptoRelated || categoryArg === 'crypto_art',
+      isCryptoNative: isCryptoRelated || detectedCategory === 'crypto_art',
       multiAgentCollaboration: true,
       artDirection: project.artDirection,
       critique: result.critique ? {
@@ -494,7 +592,7 @@ async function generateArt(concept: string) {
       { 
         type: 'artwork', 
         concept: artConcept,
-        isCryptoNative: isCryptoRelated || categoryArg === 'crypto_art'
+        isCryptoNative: isCryptoRelated || detectedCategory === 'crypto_art'
       },
       ['artwork', 'flux', 'multi-agent', ...(isCryptoRelated ? ['crypto', 'bitcoin', 'satoshi'] : []), ...artConcept.split(' ')]
     );
