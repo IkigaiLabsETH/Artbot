@@ -39,6 +39,7 @@ image_data/
 models/
 
 /out
+/output
 
 .env.production
 .env_main
