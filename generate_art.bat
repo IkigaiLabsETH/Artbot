@@ -1,6 +1,13 @@
 @echo off
-echo === Magritte Art Generator ===
-echo Starting interactive mode...
+echo =====================================
+echo Magritte Art Generator
+echo =====================================
+echo Starting the art generation process...
 echo.
-node generate_art.js
+
+node multi_agent_integration.js
+
+echo.
+echo Art generation complete!
+echo =====================================
 pause 

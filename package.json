@@ -1,74 +1,29 @@
 {
-  "name": "artbot",
-  "version": "0.1.0",
-  "description": "Advanced AI Art Generation System",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
+  "name": "magritte-art-generator",
+  "version": "1.0.0",
+  "description": "A sophisticated art generator in the style of René Magritte with personalized taste model",
+  "main": "multi_agent_integration.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/defaultArtGenerator.js",
-    "start:original": "node dist/index.js",
-    "dev": "ts-node src/index.ts",
-    "test": "jest",
-    "lint": "eslint . --ext .ts",
-    "format": "prettier --write \"**/*.ts\"",
-    "init": "ts-node src/scripts/init.ts",
-    "demo:multiagent": "node dist/demo-multiagent.js",
-    "demo:idea-queue": "node dist/demo-idea-queue.js",
-    "demo:memory": "node dist/demo-memory.js",
-    "demo:collaborative": "node dist/demo-collaborative-memory.js",
-    "demo:aesthetic": "node dist/demo-aesthetic.js",
-    "demo:social": "node dist/demo-social.js",
-    "demo:flux": "node dist/generate-art-flux.js",
-    "demo:flux-multiagent": "node dist/demo-flux-multiagent.js",
-    "test:multiagent": "node test-multiagent.js",
-    "monitor:performance": "node monitor-multiagent-performance.js",
-    "report:performance": "./monitor-multiagent-performance.sh",
-    "test:plugin": "node --loader ts-node/esm test-plugin.ts",
-    "test:simple": "node --experimental-modules simple-test.js"
-  },
-  "dependencies": {
-    "@anthropic-ai/sdk": "^0.18.0",
-    "@elizaos/core": "^0.25.9",
-    "@tensorflow/tfjs-node": "^4.17.0",
-    "dotenv": "^16.4.7",
-    "ml-kmeans": "^6.0.0",
-    "node-fetch": "^2.7.0",
-    "openai": "^4.28.0",
-    "sharp": "^0.33.2",
-    "uuid": "^9.0.1"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.19",
-    "@types/sharp": "^0.32.0",
-    "@types/uuid": "^9.0.8",
-    "@typescript-eslint/eslint-plugin": "^7.0.1",
-    "@typescript-eslint/parser": "^7.0.1",
-    "eslint": "^8.56.0",
-    "jest": "^29.7.0",
-    "prettier": "^3.2.5",
-    "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
-  },
-  "author": "IkigaiLabs",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/IkigaiLabsETH/artbot.git"
+    "start": "node multi_agent_integration.js",
+    "generate": "node generate_art.js",
+    "train": "node train_taste_model.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "ai",
+    "magritte",
     "art",
-    "generative",
-    "creative",
-    "autonomous"
+    "generator",
+    "surrealism",
+    "ai",
+    "personalized",
+    "taste",
+    "model",
+    "elo",
+    "multi-agent"
   ],
-  "bugs": {
-    "url": "https://github.com/IkigaiLabsETH/artbot/issues"
-  },
-  "homepage": "https://github.com/IkigaiLabsETH/artbot#readme",
-  "packageManager": "pnpm@9.15.3+sha512.1f79bc245a66eb0b07c5d4d83131240774642caaa86ef7d0434ab47c0d16f66b04e21e0c086eb61e62c77efc4d7f7ec071afad3796af64892fae66509173893a"
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
 }
