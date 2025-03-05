@@ -7,6 +7,49 @@
 
 const artDirectionLoader = require('./art_direction_loader');
 const { initializeAestheticJudgmentSystem } = require('./aesthetic_judgment_system');
+const readline = require('readline');
+
+/**
+ * Utility function to display aesthetic evaluation scores in the terminal
+ * 
+ * @param {Object} result - The result object containing scores and feedback
+ * @param {Object} aestheticJudgmentSystem - The aesthetic judgment system
+ */
+function displayAestheticScores(result, aestheticJudgmentSystem) {
+  // Display scores in a visually appealing way
+  console.log('\n=== Aesthetic Evaluation Scores ===');
+  console.log('┌─────────────────────────┬────────┬────────────┬─────────────────┐');
+  console.log('│ Criterion               │ Score  │ Weight     │ Visual          │');
+  console.log('├─────────────────────────┼────────┼────────────┼─────────────────┤');
+  
+  // Get the evaluation criteria weights
+  const criteria = aestheticJudgmentSystem.evaluationCriteria;
+  
+  // Display each score with its weight
+  for (const criterion in result.scores) {
+    const score = result.scores[criterion].toFixed(2);
+    const weight = criteria[criterion].weight;
+    const weightPercent = (weight * 100).toFixed(0) + '%';
+    const criterionName = criterion.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+    
+    // Create visual bar for score
+    const barLength = Math.round(result.scores[criterion] * 10);
+    const bar = '█'.repeat(barLength) + '░'.repeat(10 - barLength);
+    
+    console.log(`│ ${criterionName.padEnd(23)} │ ${score} │ ${weightPercent.padEnd(10)} │ ${bar} │`);
+  }
+  
+  console.log('├─────────────────────────┼────────┼────────────┼─────────────────┤');
+  // Create visual bar for overall score
+  const overallBarLength = Math.round(result.overallScore * 10);
+  const overallBar = '█'.repeat(overallBarLength) + '░'.repeat(10 - overallBarLength);
+  console.log(`│ Overall Score           │ ${result.overallScore.toFixed(2)} │            │ ${overallBar} │`);
+  console.log('└─────────────────────────┴────────┴────────────┴─────────────────┘');
+  
+  // Display improvement suggestions
+  console.log('\nImprovement Suggestions:');
+  console.log(result.improvementSuggestions);
+}
 
 /**
  * Director Agent - Coordinates the creative process
@@ -52,15 +95,29 @@ class DirectorAgent {
     const critiqueResult = await this.criticAgent.evaluateArtwork(refinementResult, artDirection, this.aestheticJudgmentSystem);
     console.log('Director: Critique complete');
     
-    // Return the final result
-    return {
+    // Simulate image generation (in a real implementation, this would generate the actual image)
+    console.log('\n=== Generating Image ===');
+    console.log('Prompt:', refinementResult.finalPrompt);
+    console.log('Negative Prompt:', refinementResult.finalNegativePrompt);
+    console.log('Parameters:', JSON.stringify(refinementResult.finalParameters, null, 2));
+    console.log('=== Image Generated ===');
+    
+    // Display aesthetic scores immediately after image generation
+    const result = {
       prompt: refinementResult.finalPrompt,
       negativePrompt: refinementResult.finalNegativePrompt,
       parameters: refinementResult.finalParameters,
       feedback: critiqueResult.feedback,
       scores: critiqueResult.scores,
-      overallScore: critiqueResult.overallScore
+      overallScore: critiqueResult.overallScore,
+      improvementSuggestions: critiqueResult.improvementSuggestions
     };
+    
+    // Display the scores
+    displayAestheticScores(result, this.aestheticJudgmentSystem);
+    
+    // Return the final result
+    return result;
   }
 }
 
@@ -238,55 +295,113 @@ async function runMultiAgentExample() {
   const director = new DirectorAgent();
   
   // Example 1: Classic category
-  console.log('\nExample 1: Classic Category');
+  console.log('\n=== Example 1: Classic Category ===');
   const result1 = await director.processRequest('A businessman standing on a cliff', 'classic');
-  console.log('Final Result:');
-  console.log('Prompt:', result1.prompt);
-  console.log('Negative Prompt:', result1.negativePrompt);
-  console.log('Parameters:', JSON.stringify(result1.parameters, null, 2));
-  
-  // Display complete feedback from Critic Agent
-  console.log('\nCritic Agent Feedback:');
-  console.log('Style Adherence:', result1.feedback.styleAdherence);
-  console.log('Visual Elements:', result1.feedback.visualElementsPresence);
-  console.log('Composition Quality:', result1.feedback.compositionQuality);
-  console.log('Overall Impression:', result1.feedback.overallImpression);
-  console.log('References:', result1.feedback.references);
-  console.log('Improvement Suggestions:', result1.improvementSuggestions);
-  
-  // Display scores
-  console.log('\nEvaluation Scores:');
-  for (const criterion in result1.scores) {
-    console.log(`${criterion}: ${result1.scores[criterion].toFixed(2)}`);
-  }
-  console.log(`Overall Score: ${result1.overallScore.toFixed(2)}`);
   
   // Example 2: Empire of Light category
-  console.log('\nExample 2: Empire of Light Category');
+  console.log('\n=== Example 2: Empire of Light Category ===');
   const result2 = await director.processRequest('A house by a street lamp', 'empire_of_light');
-  console.log('Final Result:');
-  console.log('Prompt:', result2.prompt);
-  console.log('Negative Prompt:', result2.negativePrompt);
-  console.log('Parameters:', JSON.stringify(result2.parameters, null, 2));
-  
-  // Display complete feedback from Critic Agent
-  console.log('\nCritic Agent Feedback:');
-  console.log('Style Adherence:', result2.feedback.styleAdherence);
-  console.log('Visual Elements:', result2.feedback.visualElementsPresence);
-  console.log('Composition Quality:', result2.feedback.compositionQuality);
-  console.log('Overall Impression:', result2.feedback.overallImpression);
-  console.log('References:', result2.feedback.references);
-  console.log('Improvement Suggestions:', result2.improvementSuggestions);
-  
-  // Display scores
-  console.log('\nEvaluation Scores:');
-  for (const criterion in result2.scores) {
-    console.log(`${criterion}: ${result2.scores[criterion].toFixed(2)}`);
-  }
-  console.log(`Overall Score: ${result2.overallScore.toFixed(2)}`);
 }
 
-// Run the multi-agent example
-runMultiAgentExample().catch(error => {
-  console.error('Error running multi-agent example:', error);
-}); 
+/**
+ * Function to allow users to generate art with a custom prompt and category
+ */
+async function generateCustomArt() {
+  // Create the Director agent
+  const director = new DirectorAgent();
+  
+  // Create readline interface for user input
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  
+  // List available categories
+  const categories = artDirectionLoader.listCategories();
+  console.log('\nAvailable Magritte categories:');
+  categories.forEach((category, index) => {
+    console.log(`${index + 1}. ${category}`);
+  });
+  
+  // Function to ask a question and get a response
+  const askQuestion = (question) => {
+    return new Promise((resolve) => {
+      rl.question(question, (answer) => {
+        resolve(answer);
+      });
+    });
+  };
+  
+  try {
+    // Get category selection from user
+    const categoryIndex = parseInt(await askQuestion('\nSelect a category (enter number): ')) - 1;
+    if (isNaN(categoryIndex) || categoryIndex < 0 || categoryIndex >= categories.length) {
+      console.log('Invalid category selection. Using "classic" as default.');
+      var selectedCategory = 'classic';
+    } else {
+      var selectedCategory = categories[categoryIndex];
+    }
+    
+    // Get prompt from user
+    const userPrompt = await askQuestion(`\nEnter your prompt for the ${selectedCategory} category: `);
+    
+    // Generate the artwork
+    console.log(`\nGenerating artwork for "${userPrompt}" in the ${selectedCategory} category...\n`);
+    await director.processRequest(userPrompt, selectedCategory);
+    
+    // Ask if the user wants to generate another artwork
+    const generateAnother = await askQuestion('\nGenerate another artwork? (y/n): ');
+    if (generateAnother.toLowerCase() === 'y') {
+      await generateCustomArt();
+    }
+  } catch (error) {
+    console.error('Error generating custom art:', error);
+  } finally {
+    rl.close();
+  }
+}
+
+/**
+ * Main function to run the application
+ */
+async function main() {
+  console.log('=== Magritte Art Generator ===');
+  console.log('1. Run examples');
+  console.log('2. Generate custom art');
+  
+  // Create readline interface for user input
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  
+  rl.question('\nSelect an option (1 or 2): ', async (answer) => {
+    rl.close();
+    
+    if (answer === '1') {
+      await runMultiAgentExample();
+    } else if (answer === '2') {
+      await generateCustomArt();
+    } else {
+      console.log('Invalid option. Running examples by default.');
+      await runMultiAgentExample();
+    }
+  });
+}
+
+// Run the main function
+main().catch(error => {
+  console.error('Error running application:', error);
+});
+
+// Export functions for external use
+module.exports = {
+  generateCustomArt,
+  runMultiAgentExample,
+  DirectorAgent,
+  IdeatorAgent,
+  StylistAgent,
+  RefinerAgent,
+  CriticAgent,
+  displayAestheticScores
+}; 

@@ -71,7 +71,25 @@ We developed a sophisticated aesthetic judgment system (`aesthetic_judgment_syst
 
 The aesthetic judgment system analyzes the artwork based on the art direction guidelines and provides comprehensive evaluation results that can be used to refine the generation process.
 
-### 5. Documentation
+### 5. Interactive Art Generation
+
+We created a user-friendly interface for generating custom artwork, allowing users to:
+
+- Choose between running examples or generating custom art
+- Select from available Magritte categories
+- Enter custom prompts for art generation
+- View real-time aesthetic evaluation with visual score representation
+- Generate multiple artworks in sequence
+
+For ease of use, we've included:
+- A dedicated script (`generate_art.js`) for direct access to the interactive mode
+- Platform-specific convenience scripts:
+  - `generate_art.bat` for Windows users
+  - `generate_art.sh` for macOS/Linux users
+
+These scripts provide a streamlined way to access the art generation functionality without navigating through menus.
+
+### 6. Documentation
 
 We created comprehensive documentation:
 
@@ -97,6 +115,8 @@ The fine-tuning work provides several key improvements to the Magritte art gener
 
 7. **Feedback Loop**: The combination of art direction and aesthetic judgment creates a feedback loop that can be used to iteratively improve the quality of the generated artwork.
 
+8. **Interactive Art Generation**: The interactive feature allows users to generate custom artwork, providing a more personalized and engaging experience.
+
 ## Implementation Recommendations
 
 To fully implement these enhancements, we recommend:
@@ -114,6 +134,8 @@ To fully implement these enhancements, we recommend:
 6. **Consider Multi-Agent Approach**: Consider implementing a simplified version of the multi-agent system to enhance the generation process.
 
 7. **Feedback Integration**: Use the feedback from the aesthetic judgment system to refine the generation parameters and improve the quality of the artwork.
+
+8. **Interactive Feature**: Implement the interactive art generation feature to allow users to generate custom artwork.
 
 ## Conclusion
 

@@ -107,6 +107,78 @@ When implementing these art direction files in the generation system:
 4. Use the color palette and composition guidelines for parameter settings
 5. Apply the avoidElements list as negative prompting or post-processing filters
 
+## Interactive Art Generation
+
+The system includes an interactive command-line interface that allows users to generate custom Magritte-inspired artwork. This feature provides:
+
+1. **Category Selection**: Choose from all available Magritte categories
+2. **Custom Prompts**: Enter your own prompt to guide the art generation
+3. **Real-time Feedback**: View aesthetic evaluation scores with visual representations
+4. **Multiple Generation**: Create multiple artworks in a single session
+
+### Using the Interactive Feature
+
+To use the interactive art generation feature:
+
+1. Run the application with `node multi_agent_integration.js`
+2. Select option 2 for "Generate custom art"
+3. Choose a category from the list of available options
+4. Enter your custom prompt
+5. View the generated artwork details and aesthetic evaluation
+6. Choose whether to generate another artwork
+
+Alternatively, you can directly access the interactive mode:
+
+```bash
+# Run the interactive art generator directly
+node generate_art.js
+```
+
+For convenience, we've also included platform-specific scripts:
+
+**Windows:**
+```
+generate_art.bat
+```
+
+**macOS/Linux:**
+```
+./generate_art.sh
+```
+
+These scripts will immediately start the interactive art generation process without requiring you to select from the main menu.
+
+### Example Interaction
+
+```
+=== Magritte Art Generator ===
+1. Run examples
+2. Generate custom art
+
+Select an option (1 or 2): 2
+
+Available Magritte categories:
+1. classic
+2. empire_of_light
+3. landscapes
+4. metamorphosis
+5. mystery
+6. scale
+7. silhouettes
+8. skies
+9. windows
+
+Select a category (enter number): 1
+
+Enter your prompt for the classic category: A man with an apple floating in front of his face
+
+Generating artwork for "A man with an apple floating in front of his face" in the classic category...
+
+[Image generation details and aesthetic evaluation would appear here]
+
+Generate another artwork? (y/n): y
+```
+
 ## Examples
 
 For examples of how these art direction files translate into generated artwork, see the `examples` directory, which contains sample images for each category along with the prompts and parameters used to generate them.
@@ -117,4 +189,4 @@ For examples of how these art direction files translate into generated artwork, 
 - Magritte, René. *The Treachery of Images*. 1929.
 - Magritte, René. *The Son of Man*. 1964.
 - Sylvester, David. *Magritte: The Silence of the World*. Harry N. Abrams, 1992.
-- Paquet, Marcel. *René Magritte*. Taschen, 2000. 
+- Paquet, Marcel. *René Magritte*. Taschen, 2000.
