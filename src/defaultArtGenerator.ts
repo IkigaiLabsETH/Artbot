@@ -7,7 +7,6 @@ import { ReplicateService } from './services/replicate/index.js';
 import { AIService } from './services/ai/index.js';
 import { MemorySystem, MemoryType } from './services/memory/index.js';
 import { StyleService } from './services/style/index.js';
-import { MultiAgentSystem } from './services/multiagent/index.js';
 import { generateCinematicConcept, generateMultipleConcepts, ConceptCategory } from './services/ai/conceptGenerator.js';
 
 // Load environment variables
