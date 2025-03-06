@@ -20,6 +20,9 @@ importers:
       dotenv:
         specifier: ^16.4.7
         version: 16.4.7
+      glob:
+        specifier: ^10.3.10
+        version: 10.4.5
       ml-kmeans:
         specifier: ^6.0.0
         version: 6.0.0

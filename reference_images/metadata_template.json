@@ -1,26 +1,130 @@
 {
-  "filename": "example_image.png",
-  "title": "Example Artwork Title",
-  "artist": "Original Artist (if known)",
-  "year": "Year of creation (if known)",
-  "source": "Original source or 'Original creation'",
-  "license": "Copyright status or license type",
-  "categories": ["primary_category", "secondary_category"],
-  "tags": [
-    "descriptive_tag_1",
-    "descriptive_tag_2",
-    "descriptive_tag_3"
-  ],
-  "style_attributes": {
-    "color_palette": ["#HEX1", "#HEX2", "#HEX3"],
-    "composition": "Description of composition approach",
-    "texture": "Description of texture qualities",
-    "mood": "Description of emotional tone",
-    "technique": "Description of artistic technique"
-  },
-  "prompt_used": "If generated with AI, the prompt that created it",
+  "name": "Example Artwork Title",
   "description": "A brief description of the artwork and its significance to the collection",
-  "inspiration_value": "Notes on specific elements that make this a valuable reference",
-  "added_date": "YYYY-MM-DD",
-  "added_by": "Name of person who added this to the collection"
+  "image": "ipfs://example_image_hash",
+  "external_url": "https://example.com/artwork/id",
+  "animation_url": "",
+  "background_color": "",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "Original Artist (if known)"
+    },
+    {
+      "trait_type": "Year",
+      "value": "Year of creation"
+    },
+    {
+      "trait_type": "Category",
+      "value": "primary_category"
+    },
+    {
+      "trait_type": "Style",
+      "value": "magritte|bourdin|hybrid"
+    },
+    {
+      "trait_type": "Subcategory",
+      "value": "compositions|objects|scenes|studies"
+    },
+    {
+      "display_type": "date",
+      "trait_type": "Created Date",
+      "value": "timestamp"
+    }
+  ],
+  "artistic_attributes": {
+    "style_elements": {
+      "core_symbols": [],
+      "visual_elements": [],
+      "philosophical_themes": [],
+      "technical_approach": []
+    },
+    "color_scheme": {
+      "palette": ["#HEX1", "#HEX2", "#HEX3"],
+      "color_descriptions": ["Description 1", "Description 2", "Description 3"]
+    },
+    "composition": {
+      "arrangement": "",
+      "focal_points": [],
+      "spatial_relationships": ""
+    },
+    "technique": {
+      "primary_method": "",
+      "materials": [],
+      "special_effects": []
+    }
+  },
+  "properties": {
+    "files": [
+      {
+        "uri": "ipfs://example_image_hash",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "",
+        "share": 100
+      }
+    ],
+    "collection": {
+      "name": "ArtBot Reference Collection",
+      "family": "ArtBot"
+    },
+    "source": {
+      "origin": "Original creation or source",
+      "license": "Copyright status or license type"
+    }
+  },
+  "style_guide": {
+    "magritte": {
+      "core_elements": [
+        "bowler hats",
+        "green apples",
+        "pipes",
+        "clouds",
+        "birds",
+        "windows",
+        "curtains"
+      ],
+      "compositions": [
+        "balanced arrangements",
+        "theatrical staging",
+        "impossible juxtapositions",
+        "classical proportions"
+      ],
+      "lighting": [
+        "empire of light",
+        "day-night contrast",
+        "naturalistic illumination",
+        "mysterious shadows"
+      ]
+    },
+    "bourdin": {
+      "core_elements": [
+        "fashion items",
+        "fragmented bodies",
+        "luxury objects",
+        "mirrors",
+        "high heels",
+        "cosmetics"
+      ],
+      "compositions": [
+        "radical cropping",
+        "geometric precision",
+        "dramatic angles",
+        "compressed space"
+      ],
+      "lighting": [
+        "high contrast",
+        "dramatic shadows",
+        "theatrical lighting",
+        "colored gels"
+      ]
+    }
+  },
+  "metadata_version": "1.0.0",
+  "added_by": "Name of person who added this to the collection",
+  "added_date": "YYYY-MM-DD"
 } 

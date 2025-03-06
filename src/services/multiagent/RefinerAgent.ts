@@ -123,7 +123,17 @@ export class RefinerAgent extends BaseAgent {
         - Iteration count: ${this.state.context.refinementParameters.iterationCount}
         - Refinement strength: ${this.state.context.refinementParameters.refinementStrength}
         - Detail level: ${this.state.context.refinementParameters.detailLevel}
-        - Preserve style weight: ${this.state.context.refinementParameters.preserveStyleWeight}`
+        - Preserve style weight: ${this.state.context.refinementParameters.preserveStyleWeight}
+        
+        Style Expertise:
+        1. René Magritte Surrealism: Clean compositions, philosophical questioning, everyday objects in extraordinary contexts, bowler hats, clouds, blue skies, and impossible juxtapositions.
+        
+        2. Guy Bourdin Post-Photography: Bold high-fashion surrealism with provocative compositions, high-contrast colors (especially reds against other colors), fragmented body parts, luxury objects with sinister undertones, tight cropping, radical framing, and narrative implications. Known for his work with Vogue Paris and Charles Jourdan shoe campaigns.
+        
+        When refining artwork, pay special attention to:
+        - If the style references Bourdin or fashion photography: Emphasize saturated colors, dramatic cropping, narrative tension, and glossy surfaces
+        - If the style references Magritte or traditional surrealism: Emphasize clean compositions, philosophical elements, and impossible juxtapositions
+        - For blended styles: Create a harmonious fusion that respects both influences`
       },
       {
         role: 'user',
@@ -259,6 +269,61 @@ export class RefinerAgent extends BaseAgent {
   }
   
   private createDefaultArtwork(project: any): any {
+    // Check if the project title or description contains Bourdin-related keywords
+    const bourdinKeywords = ['fashion', 'glamour', 'editorial', 'bourdin', 'provocative', 'high-contrast', 'cropped'];
+    const isBourdinRelated = bourdinKeywords.some(keyword => 
+      (project.title?.toLowerCase().includes(keyword) || project.description?.toLowerCase().includes(keyword))
+    );
+    
+    if (isBourdinRelated) {
+      return {
+        id: uuidv4(),
+        title: `${project.title} Artwork`,
+        description: "A bold, high-fashion artwork inspired by Guy Bourdin's provocative style.",
+        prompt: `Guy Bourdin inspired high-fashion photograph for project: ${project.title} - ${project.description}. Bold colors, dramatic composition, narrative tension, glossy surfaces, cinematic lighting.`,
+        negativePrompt: "blurry, distorted, low quality, ugly, poorly drawn, traditional painting, watercolor, traditional surrealism",
+        imageUrl: null, // No image generated for default artwork
+        visualElements: [
+          "fragmented body parts",
+          "luxury objects",
+          "dramatic poses",
+          "partial views"
+        ],
+        composition: {
+          structure: "Asymmetrical composition",
+          focalPoints: ["Dramatic cropping", "Partial figures"],
+          flow: "Diagonal tension",
+          balance: "Intentionally unbalanced"
+        },
+        colorUsage: {
+          palette: ["#FF0000", "#000000", "#0000FF", "#FFFFFF"],
+          dominant: "#FF0000",
+          accents: ["#0000FF"],
+          transitions: "Sharp contrasts"
+        },
+        texture: {
+          type: "Glossy",
+          details: "Reflective surfaces",
+          materials: "Fashion photography"
+        },
+        emotionalImpact: {
+          primary: "Provocative",
+          secondary: "Mysterious",
+          notes: "The artwork creates narrative tension through juxtaposition of beauty and discomfort."
+        },
+        refinementIterations: 1,
+        style: {
+          name: "Bourdin Fashion Surrealism",
+          description: "High-contrast fashion photography with surrealist elements"
+        },
+        project: {
+          id: project.id,
+          title: project.title
+        },
+        created: new Date()
+      };
+    }
+    
     return {
       id: uuidv4(),
       title: `${project.title} Artwork`,

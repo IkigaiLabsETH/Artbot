@@ -36,6 +36,13 @@
               "#FFD700",
               "#32CD32"
             ],
+            "color_descriptions": [
+              "Bourdin-inspired purple",
+              "Fashion-forward pink",
+              "Surreal cyan",
+              "Luxury gold",
+              "Natural green"
+            ],
             "composition": "Organic flowing forms with cosmic elements in a dreamlike garden setting",
             "texture": "Smooth with ethereal glow effects and particle details",
             "mood": "Mystical and otherworldly",
@@ -45,7 +52,9 @@
           "description": "This artwork depicts an otherworldly garden with cosmic elements, featuring vibrant colors and flowing organic forms. It blends surrealism with abstract art to create a mystical, dreamlike environment that evokes a sense of wonder and exploration.",
           "inspiration_value": "The vibrant color relationships and the balance between organic and cosmic elements make this a valuable reference for projects exploring surreal environments and dreamlike spaces.",
           "added_date": "2023-12-20",
-          "added_by": "ArtBot Development Team"
+          "added_by": "ArtBot Development Team",
+          "hash": "8842a02cb64bb783b40ba6d904371e666ad0115ad559c631835097ccb9bf4d9c",
+          "size": 1790495
         }
       ]
     },
@@ -112,6 +121,13 @@
               "#F9D423",
               "#FFFFFF"
             ],
+            "color_descriptions": [
+              "Deep Magritte sky blue",
+              "Atmospheric light blue",
+              "Warm accent red",
+              "Golden hour yellow",
+              "Cloud white"
+            ],
             "composition": "Floating islands and impossible structures in a dreamlike sky environment",
             "texture": "Soft atmospheric effects with detailed foreground elements",
             "mood": "Dreamy and contemplative",
@@ -128,58 +144,500 @@
     "traditional": {
       "count": 0,
       "images": []
+    },
+    "magritte": {
+      "count": 1,
+      "images": [
+        {
+          "name": "Surreal Dreamscape - A Magritte Study",
+          "description": "This Magritte-inspired scene explores the artist's themes of spatial impossibility and reality questioning through floating architectural elements. The composition employs his characteristic clear sky backdrop and precise rendering style, while introducing impossible architectural arrangements that challenge viewer perception.",
+          "image": "ipfs://[hash_placeholder]/surreal-dreamscape.png",
+          "external_url": "https://artbot.gallery/magritte/scenes/surreal-dreamscape",
+          "animation_url": "",
+          "background_color": "#1A2980",
+          "attributes": [
+            {
+              "trait_type": "Artist",
+              "value": "ArtBot Team"
+            },
+            {
+              "trait_type": "Year",
+              "value": "2023"
+            },
+            {
+              "trait_type": "Category",
+              "value": "magritte"
+            },
+            {
+              "trait_type": "Style",
+              "value": "magritte"
+            },
+            {
+              "trait_type": "Subcategory",
+              "value": "scenes"
+            },
+            {
+              "display_type": "date",
+              "trait_type": "Created Date",
+              "value": "1703246400"
+            },
+            {
+              "trait_type": "Rarity",
+              "value": "Unique"
+            }
+          ],
+          "artistic_attributes": {
+            "style_elements": {
+              "core_symbols": [
+                "floating structures",
+                "clouds",
+                "architectural elements"
+              ],
+              "visual_elements": [
+                "impossible structures",
+                "ethereal sky",
+                "floating islands"
+              ],
+              "philosophical_themes": [
+                "reality questioning",
+                "spatial paradox",
+                "architectural impossibility"
+              ],
+              "technical_approach": [
+                "precise rendering",
+                "atmospheric perspective",
+                "realistic detail"
+              ]
+            },
+            "color_scheme": {
+              "palette": [
+                "#1A2980",
+                "#26D0CE",
+                "#FF4E50",
+                "#F9D423",
+                "#FFFFFF"
+              ],
+              "color_descriptions": [
+                "Deep Magritte sky blue",
+                "Atmospheric light blue",
+                "Warm accent red",
+                "Golden hour yellow",
+                "Cloud white"
+              ]
+            },
+            "composition": {
+              "arrangement": "Multiple vanishing points with floating architectural elements",
+              "focal_points": [
+                "central floating structure",
+                "distant floating islands",
+                "ethereal sky"
+              ],
+              "spatial_relationships": "Impossible architectural arrangements defying gravity"
+            },
+            "technique": {
+              "primary_method": "Digital painting with classical Magritte-style rendering",
+              "materials": [
+                "digital medium",
+                "atmospheric effects",
+                "precise detail work"
+              ],
+              "special_effects": [
+                "atmospheric depth",
+                "impossible physics",
+                "ethereal lighting"
+              ]
+            }
+          },
+          "properties": {
+            "files": [
+              {
+                "uri": "ipfs://[hash_placeholder]/surreal-dreamscape.png",
+                "type": "image/png"
+              }
+            ],
+            "category": "image",
+            "creators": [
+              {
+                "address": "ARTBOT_TEAM_ADDRESS",
+                "share": 100
+              }
+            ],
+            "collection": {
+              "name": "ArtBot Reference Collection",
+              "family": "ArtBot Magritte Studies"
+            },
+            "source": {
+              "origin": "Original creation",
+              "license": "CC BY-NC-SA 4.0"
+            }
+          },
+          "metadata_version": "1.0.0",
+          "added_by": "ArtBot Development Team",
+          "added_date": "2023-12-22"
+        }
+      ],
+      "style_guide": {
+        "core_elements": [
+          "bowler hats",
+          "green apples",
+          "pipes",
+          "clouds",
+          "birds",
+          "windows",
+          "curtains"
+        ],
+        "compositions": [
+          "balanced arrangements",
+          "theatrical staging",
+          "impossible juxtapositions",
+          "classical proportions"
+        ],
+        "lighting": [
+          "empire of light",
+          "day-night contrast",
+          "naturalistic illumination",
+          "mysterious shadows"
+        ],
+        "color_palettes": [
+          [
+            "#87CEEB",
+            "#FFFFFF",
+            "#000000",
+            "#8B4513",
+            "#228B22"
+          ],
+          [
+            "#1A4B84",
+            "#DCC7AA",
+            "#F4E4BC",
+            "#2C5530",
+            "#8F8F8F"
+          ],
+          [
+            "#B0C4DE",
+            "#FFE4B5",
+            "#2F4F4F",
+            "#CD853F",
+            "#E6E6FA"
+          ]
+        ],
+        "techniques": [
+          "precise rendering",
+          "seamless blending",
+          "trompe l'oeil",
+          "realistic detail"
+        ]
+      }
+    },
+    "bourdin": {
+      "count": 0,
+      "images": [],
+      "style_guide": {
+        "core_elements": [
+          "fashion items",
+          "fragmented bodies",
+          "luxury objects",
+          "mirrors",
+          "high heels",
+          "cosmetics"
+        ],
+        "compositions": [
+          "radical cropping",
+          "geometric precision",
+          "dramatic angles",
+          "compressed space"
+        ],
+        "lighting": [
+          "high contrast",
+          "dramatic shadows",
+          "theatrical lighting",
+          "colored gels"
+        ],
+        "color_palettes": [
+          [
+            "#FF0000",
+            "#000000",
+            "#FFFFFF",
+            "#FF69B4",
+            "#800080"
+          ],
+          [
+            "#DC143C",
+            "#4B0082",
+            "#FFD700",
+            "#000000",
+            "#FF1493"
+          ],
+          [
+            "#8B0000",
+            "#483D8B",
+            "#00FF7F",
+            "#4169E1",
+            "#FF4500"
+          ]
+        ],
+        "techniques": [
+          "controlled studio lighting",
+          "color filtration",
+          "multiple exposure",
+          "glossy finish"
+        ]
+      }
+    },
+    "hybrid": {
+      "count": 1,
+      "images": [
+        {
+          "name": "Cosmic Garden - A Magritte-Bourdin Fusion",
+          "description": "This hybrid study combines Bourdin's bold color choices and glossy aesthetics with Magritte's surreal spatial arrangements. The cosmic garden setting serves as a metaphysical space where fashion meets philosophy, creating a unique fusion of both artists' signatures.",
+          "image": "ipfs://[hash_placeholder]/cosmic-garden.png",
+          "external_url": "https://artbot.gallery/hybrid/studies/cosmic-garden",
+          "animation_url": "",
+          "background_color": "#6A0DAD",
+          "attributes": [
+            {
+              "trait_type": "Artist",
+              "value": "ArtBot Team"
+            },
+            {
+              "trait_type": "Year",
+              "value": "2023"
+            },
+            {
+              "trait_type": "Category",
+              "value": "hybrid"
+            },
+            {
+              "trait_type": "Style",
+              "value": "hybrid"
+            },
+            {
+              "trait_type": "Subcategory",
+              "value": "studies"
+            },
+            {
+              "display_type": "date",
+              "trait_type": "Created Date",
+              "value": "1703073600"
+            },
+            {
+              "trait_type": "Rarity",
+              "value": "Unique"
+            }
+          ],
+          "artistic_attributes": {
+            "style_elements": {
+              "core_symbols": [
+                "cosmic elements",
+                "garden features",
+                "luxury objects"
+              ],
+              "visual_elements": [
+                "flowing organic forms",
+                "fashion elements",
+                "surreal spaces"
+              ],
+              "philosophical_themes": [
+                "nature meets luxury",
+                "cosmic fashion",
+                "metaphysical garden"
+              ],
+              "technical_approach": [
+                "digital painting",
+                "fashion photography aesthetics",
+                "surreal composition"
+              ]
+            },
+            "color_scheme": {
+              "palette": [
+                "#6A0DAD",
+                "#FF1493",
+                "#00FFFF",
+                "#FFD700",
+                "#32CD32"
+              ],
+              "color_descriptions": [
+                "Bourdin-inspired purple",
+                "Fashion-forward pink",
+                "Surreal cyan",
+                "Luxury gold",
+                "Natural green"
+              ]
+            },
+            "composition": {
+              "arrangement": "Fusion of fashion editorial and surreal garden space",
+              "focal_points": [
+                "cosmic elements",
+                "fashion objects",
+                "organic forms"
+              ],
+              "spatial_relationships": "Luxury objects in surreal garden environment"
+            },
+            "technique": {
+              "primary_method": "Digital painting with fashion photography influence",
+              "materials": [
+                "digital medium",
+                "particle effects",
+                "light manipulation"
+              ],
+              "special_effects": [
+                "ethereal glow",
+                "fashion lighting",
+                "cosmic particles"
+              ]
+            }
+          },
+          "properties": {
+            "files": [
+              {
+                "uri": "ipfs://[hash_placeholder]/cosmic-garden.png",
+                "type": "image/png"
+              }
+            ],
+            "category": "image",
+            "creators": [
+              {
+                "address": "ARTBOT_TEAM_ADDRESS",
+                "share": 100
+              }
+            ],
+            "collection": {
+              "name": "ArtBot Reference Collection",
+              "family": "ArtBot Hybrid Studies"
+            },
+            "source": {
+              "origin": "Original creation",
+              "license": "CC BY-NC-SA 4.0"
+            }
+          },
+          "metadata_version": "1.0.0",
+          "added_by": "ArtBot Development Team",
+          "added_date": "2023-12-20"
+        }
+      ],
+      "style_guide": {
+        "core_elements": [
+          "surreal fashion",
+          "philosophical objects",
+          "luxury symbolism",
+          "metaphysical spaces"
+        ],
+        "compositions": [
+          "dramatic surrealism",
+          "fashion philosophy",
+          "impossible glamour",
+          "symbolic luxury"
+        ],
+        "lighting": [
+          "theatrical surrealism",
+          "metaphysical contrast",
+          "philosophical glamour",
+          "mysterious fashion"
+        ],
+        "color_palettes": [
+          [
+            "#FF0000",
+            "#87CEEB",
+            "#000000",
+            "#FFD700",
+            "#4B0082"
+          ],
+          [
+            "#DC143C",
+            "#B0C4DE",
+            "#2F4F4F",
+            "#FF1493",
+            "#228B22"
+          ],
+          [
+            "#8B0000",
+            "#1A4B84",
+            "#E6E6FA",
+            "#800080",
+            "#CD853F"
+          ]
+        ],
+        "techniques": [
+          "surreal fashion photography",
+          "philosophical staging",
+          "metaphysical luxury",
+          "conceptual glamour"
+        ]
+      }
+    }
+  },
+  "style_metadata_templates": {
+    "magritte": {
+      "style_elements": {
+        "core_symbols": [],
+        "visual_paradox": "",
+        "spatial_arrangement": "",
+        "philosophical_theme": "",
+        "reality_questioning": ""
+      },
+      "technical_aspects": {
+        "rendering_quality": "",
+        "perspective_treatment": "",
+        "surface_finish": "",
+        "detail_level": ""
+      }
+    },
+    "bourdin": {
+      "style_elements": {
+        "fashion_context": "",
+        "narrative_tension": "",
+        "psychological_aspect": "",
+        "luxury_elements": "",
+        "body_fragmentation": ""
+      },
+      "technical_aspects": {
+        "lighting_setup": "",
+        "color_treatment": "",
+        "composition_approach": "",
+        "surface_quality": ""
+      }
+    },
+    "hybrid": {
+      "style_elements": {
+        "surreal_fashion": "",
+        "philosophical_glamour": "",
+        "metaphysical_luxury": "",
+        "conceptual_narrative": ""
+      },
+      "technical_aspects": {
+        "style_fusion": "",
+        "technique_blend": "",
+        "visual_philosophy": "",
+        "narrative_approach": ""
+      }
     }
   },
   "tags_index": {
-    "cosmic": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/abstract/cosmic-garden.png"
-    ],
-    "garden": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/abstract/cosmic-garden.png"
-    ],
-    "vibrant": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/abstract/cosmic-garden.png"
-    ],
-    "colorful": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/abstract/cosmic-garden.png"
-    ],
-    "abstract": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/abstract/cosmic-garden.png"
-    ],
     "surreal": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/abstract/cosmic-garden.png",
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/surreal/surreal-dreamscape.png"
-    ],
-    "digital": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/abstract/cosmic-garden.png",
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/surreal/surreal-dreamscape.png"
-    ],
-    "space": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/abstract/cosmic-garden.png"
-    ],
-    "organic": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/abstract/cosmic-garden.png"
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/magritte/scenes/surreal-dreamscape.png",
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/hybrid/studies/cosmic-garden.png"
     ],
     "dreamscape": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/surreal/surreal-dreamscape.png"
-    ],
-    "landscape": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/surreal/surreal-dreamscape.png"
-    ],
-    "fantasy": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/surreal/surreal-dreamscape.png"
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/magritte/scenes/surreal-dreamscape.png"
     ],
     "floating": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/surreal/surreal-dreamscape.png"
-    ],
-    "islands": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/surreal/surreal-dreamscape.png"
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/magritte/scenes/surreal-dreamscape.png"
     ],
     "ethereal": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/surreal/surreal-dreamscape.png"
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/magritte/scenes/surreal-dreamscape.png"
     ],
-    "mystical": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/surreal/surreal-dreamscape.png"
+    "cosmic": [
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/hybrid/studies/cosmic-garden.png"
+    ],
+    "garden": [
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/hybrid/studies/cosmic-garden.png"
+    ],
+    "hybrid-style": [
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/hybrid/studies/cosmic-garden.png"
+    ],
+    "digital": [
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/magritte/scenes/surreal-dreamscape.png",
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/hybrid/studies/cosmic-garden.png"
     ]
   }
 }

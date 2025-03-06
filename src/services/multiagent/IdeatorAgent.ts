@@ -28,7 +28,8 @@ export class IdeatorAgent extends BaseAgent {
       },
       preferredApproaches: [
         IdeationApproach.CONCEPTUAL,
-        IdeationApproach.VISUAL
+        IdeationApproach.VISUAL,
+        IdeationApproach.NARRATIVE
       ],
       approachWeights: {
         [IdeationApproach.CONCEPTUAL]: 0.8,
@@ -38,6 +39,62 @@ export class IdeatorAgent extends BaseAgent {
         [IdeationApproach.TECHNICAL]: 0.5,
         [IdeationApproach.CULTURAL]: 0.6,
         [IdeationApproach.EXPERIMENTAL]: 0.4
+      },
+      bourdinKeywords: [
+        // Fashion and Editorial
+        'fashion', 'glamour', 'editorial', 'haute couture', 'runway', 'model', 'magazine',
+        'vogue paris', 'charles jourdan', 'french fashion', 'luxury brands',
+        // Visual Elements
+        'high-contrast', 'saturated', 'vibrant', 'bold colors', 'red lips', 'crimson',
+        'glossy', 'metallic', 'reflective', 'neon', 'jewel tones',
+        // Composition
+        'cropped', 'fragmented', 'disembodied', 'partial view', 'tight framing', 'cinematic',
+        'geometric', 'asymmetrical', 'dramatic angles', 'compressed space',
+        // Narrative and Mood
+        'provocative', 'erotic', 'suggestive', 'mysterious narrative', 'tension',
+        'psychological', 'dark humor', 'surreal fashion', 'theatrical',
+        // Objects and Props
+        'stiletto', 'high heel', 'mannequin', 'luxury goods', 'cosmetics', 'perfume',
+        'mirrors', 'glass', 'water', 'architectural elements',
+        // Technical
+        'studio lighting', 'location shoots', 'color filtration', 'multiple exposure',
+        'bourdin', 'post-photography', 'fashion photography'
+      ],
+      magritteKeywords: [
+        // Core Symbols
+        'bowler hat', 'green apple', 'pipe', 'dove', 'clouds', 'sky',
+        'curtain', 'window', 'mirror', 'door', 'key', 'bell',
+        // Philosophical Concepts
+        'surreal', 'paradox', 'mystery', 'philosophical', 'metaphysical',
+        'reality questioning', 'perception', 'representation',
+        // Visual Elements
+        'day-night', 'empire of light', 'floating objects', 'impossible scale',
+        'transparent', 'metamorphosis', 'hybrid forms', 'stone',
+        // Settings
+        'belgian landscape', 'empty streets', 'interior-exterior',
+        'wallpapered rooms', 'seaside', 'castle', 'classical architecture',
+        // Techniques
+        'precise rendering', 'realistic detail', 'clean edges',
+        'seamless transitions', 'trompe loeil', 'atmospheric perspective',
+        // Themes
+        'human condition', 'identity', 'language', 'time', 'space',
+        'everyday uncanny', 'familiar strange', 'hidden connections'
+      ],
+      artisticApproaches: {
+        bourdin: {
+          composition: ['radical cropping', 'fragmentation', 'geometric precision', 'dramatic angles'],
+          lighting: ['high contrast', 'dramatic shadows', 'controlled studio', 'theatrical'],
+          color: ['saturated', 'bold', 'psychological', 'fashion-forward'],
+          narrative: ['implied stories', 'psychological tension', 'erotic suggestion', 'dark humor'],
+          techniques: ['fashion photography', 'color manipulation', 'set design', 'staging']
+        },
+        magritte: {
+          composition: ['balanced', 'precise', 'theatrical', 'impossible juxtapositions'],
+          lighting: ['natural', 'mysterious', 'empire of light', 'subtle contrasts'],
+          color: ['realistic', 'symbolic', 'atmospheric', 'contemplative'],
+          narrative: ['philosophical puzzles', 'visual paradoxes', 'poetic connections', 'metaphysical'],
+          techniques: ['precise rendering', 'seamless blending', 'realistic detail', 'conceptual fusion']
+        }
       }
     };
   }
@@ -290,13 +347,26 @@ export class IdeatorAgent extends BaseAgent {
   }
   
   /**
-   * Generate narrative ideas focused on storytelling elements
+   * Generate narrative ideas focused on storytelling and narrative elements
    */
   private async generateNarrativeIdeas(task: any, project: any): Promise<any[]> {
+    // Check if the project is Bourdin-related
+    const isBourdinRelated = this.isBourdinRelated(project);
+    
     const messages: AIMessage[] = [
       {
         role: 'system',
-        content: `You are the Ideator agent specializing in NARRATIVE ideation. Focus on storytelling, character development, and sequential art. Generate ideas that convey stories or narratives through visual means.`
+        content: `You are the Ideator agent specializing in NARRATIVE ideation. Focus on storytelling, character development, plot, and narrative structure. Generate ideas that tell compelling stories or suggest narrative moments.
+        
+        ${isBourdinRelated ? `
+        IMPORTANT: This project relates to Guy Bourdin's post-photography style. Incorporate these narrative elements:
+        - Mysterious and provocative implied narratives
+        - Tension between beauty and discomfort
+        - Cinematic moments frozen in time
+        - Surreal juxtapositions with narrative implications
+        - Luxury and fashion contexts with underlying darkness
+        - Theatrical staging that suggests a larger story
+        ` : ''}`
       },
       {
         role: 'user',
@@ -357,10 +427,23 @@ export class IdeatorAgent extends BaseAgent {
    * Generate visual ideas focused on composition and visual elements
    */
   private async generateVisualIdeas(task: any, project: any): Promise<any[]> {
+    // Check if the project is Bourdin-related
+    const isBourdinRelated = this.isBourdinRelated(project);
+    
     const messages: AIMessage[] = [
       {
         role: 'system',
-        content: `You are the Ideator agent specializing in VISUAL ideation. Focus on visual composition, color theory, form, texture, and visual impact. Generate ideas that prioritize visual aesthetics and composition.`
+        content: `You are the Ideator agent specializing in VISUAL ideation. Focus on visual composition, color theory, form, texture, and visual impact. Generate ideas that prioritize visual aesthetics and composition.
+        
+        ${isBourdinRelated ? `
+        IMPORTANT: This project relates to Guy Bourdin's post-photography style. Incorporate these key elements:
+        - Bold high-fashion surrealism with provocative compositions
+        - High-contrast colors (especially reds against other colors)
+        - Fragmented body parts and luxury objects with sinister undertones
+        - Tight cropping, radical framing, and narrative implications
+        - Glossy surfaces and theatrical staging
+        - References to Bourdin's work with Vogue Paris and Charles Jourdan shoe campaigns
+        ` : ''}`
       },
       {
         role: 'user',
@@ -449,28 +532,78 @@ export class IdeatorAgent extends BaseAgent {
    * Generate technical ideas focused on execution and methods
    */
   private async generateTechnicalIdeas(task: any, project: any): Promise<any[]> {
+    // Check if the project is Bourdin-related
+    const isBourdinRelated = this.isBourdinRelated(project);
+    
     // Implementation for technical ideas
-    // Mock technical ideas for now
-    return [
+    const messages: AIMessage[] = [
       {
-        title: "Algorithmic Emergence",
-        description: "Using generative algorithms to create emergent patterns",
-        elements: ["code-generated patterns", "rule-based structures", "emergent complexity"],
-        styles: ["generative art", "algorithmic", "digital"],
-        emotionalImpact: "wonder at complexity from simplicity",
-        technicalApproach: "Custom algorithm using cellular automata rules",
-        executionMethod: "Digital generation with physical translation through precision printing"
+        role: 'system',
+        content: `You are the Ideator agent specializing in TECHNICAL ideation. Focus on execution methods, technical approaches, materials, and processes. Generate ideas that explore innovative technical solutions.
+        
+        ${isBourdinRelated ? `
+        IMPORTANT: This project relates to Guy Bourdin's post-photography style. Incorporate these technical elements:
+        - High-production value fashion photography techniques
+        - Precise lighting for dramatic shadows and high contrast
+        - Meticulous staging and set design
+        - Color saturation and manipulation techniques
+        - Innovative cropping and framing approaches
+        - Glossy surface treatments and reflections
+        ` : ''}`
       },
       {
-        title: "Material Transformation",
-        description: "Exploring the transformation of materials through chemical processes",
-        elements: ["chemical reactions", "material state changes", "process documentation"],
-        styles: ["process art", "material-focused", "scientific"],
-        emotionalImpact: "fascination with transformation and impermanence",
-        technicalApproach: "Controlled chemical reactions on various substrates",
-        executionMethod: "Multi-stage process with photographic documentation of each phase"
+        role: 'user',
+        content: `Generate 5 technical-driven art ideas for the following project:
+        
+        Title: ${project.title}
+        Description: ${project.description}
+        Requirements: ${project.requirements.join(', ')}
+        
+        For each idea, provide:
+        1. A title that suggests a technical approach
+        2. A description of the technical execution
+        3. Key technical elements
+        4. Potential styles
+        5. Emotional impact
+        
+        Format each idea as a JSON object.`
       }
     ];
+    
+    try {
+      const response = await this.aiService.getCompletion({
+        messages,
+        temperature: 0.8
+      });
+      
+      // Parse the response to extract ideas
+      // In a real implementation, we would parse the JSON response
+      // For now, we'll return mock ideas
+      
+      return [
+        {
+          title: "Algorithmic Emergence",
+          description: "Using generative algorithms to create emergent patterns",
+          elements: ["code-generated patterns", "rule-based structures", "emergent complexity"],
+          styles: ["generative art", "algorithmic", "digital"],
+          emotionalImpact: "wonder at complexity from simplicity",
+          technicalApproach: "Custom algorithm using cellular automata rules",
+          executionMethod: "Digital generation with physical translation through precision printing"
+        },
+        {
+          title: "Material Transformation",
+          description: "Exploring the transformation of materials through chemical processes",
+          elements: ["chemical reactions", "material state changes", "process documentation"],
+          styles: ["process art", "material-focused", "scientific"],
+          emotionalImpact: "fascination with transformation and impermanence",
+          technicalApproach: "Controlled chemical reactions on various substrates",
+          executionMethod: "Multi-stage process with photographic documentation of each phase"
+        }
+      ];
+    } catch (error) {
+      console.error('Error generating technical ideas:', error);
+      return this.generateFallbackIdeas();
+    }
   }
   
   /**
@@ -533,6 +666,9 @@ export class IdeatorAgent extends BaseAgent {
    * Original general idea generation method
    */
   private async generateIdeas(task: any, project: any): Promise<any[]> {
+    // Check if the project is Bourdin-related
+    const isBourdinRelated = this.isBourdinRelated(project);
+    
     // Use AI service to generate creative ideas
     const messages: AIMessage[] = [
       {
@@ -540,7 +676,18 @@ export class IdeatorAgent extends BaseAgent {
         content: `You are the Ideator agent in a multi-agent art creation system. Your role is to generate creative, diverse, and novel ideas based on project requirements. 
         Exploration rate: ${this.state.context.ideationParameters.explorationRate}
         Diversity weight: ${this.state.context.ideationParameters.diversityWeight}
-        Novelty threshold: ${this.state.context.ideationParameters.noveltyThreshold}`
+        Novelty threshold: ${this.state.context.ideationParameters.noveltyThreshold}
+        
+        ${isBourdinRelated ? `
+        IMPORTANT: This project relates to Guy Bourdin's post-photography style. Your ideas should incorporate elements of:
+        - Bold high-fashion surrealism with provocative compositions
+        - High-contrast colors (especially reds against other colors)
+        - Fragmented body parts and luxury objects with sinister undertones
+        - Tight cropping, radical framing, and narrative implications
+        - Mysterious and provocative implied narratives
+        - Tension between beauty and discomfort
+        - References to Bourdin's work with Vogue Paris and Charles Jourdan shoe campaigns
+        ` : ''}`
       },
       {
         role: 'user',
@@ -615,17 +762,153 @@ export class IdeatorAgent extends BaseAgent {
   }
   
   /**
-   * Generate fallback ideas in case of errors
+   * Determine if a project is related to Bourdin's style
+   */
+  private isBourdinRelated(project: any): boolean {
+    const bourdinKeywords = this.state.context.bourdinKeywords;
+    const projectText = `${project.title} ${project.description} ${project.requirements.join(' ')}`.toLowerCase();
+    
+    // Check for explicit Bourdin references
+    const hasBourdinKeywords = bourdinKeywords.some(keyword => projectText.includes(keyword.toLowerCase()));
+    
+    // Check for fashion/editorial context
+    const hasFashionContext = ['fashion', 'editorial', 'glamour', 'vogue', 'luxury'].some(term => 
+      projectText.includes(term.toLowerCase())
+    );
+    
+    // Check for visual style indicators
+    const hasVisualStyle = ['high-contrast', 'saturated', 'cropped', 'fragmented'].some(term => 
+      projectText.includes(term.toLowerCase())
+    );
+    
+    return hasBourdinKeywords || (hasFashionContext && hasVisualStyle);
+  }
+  
+  /**
+   * Generate fallback ideas when other methods fail
    */
   private generateFallbackIdeas(): any[] {
     return [
       {
-        title: "Fallback Idea",
-        description: "A simple concept using basic elements",
-        elements: ["simple shapes", "primary colors"],
-        styles: ["minimalist"],
-        emotionalImpact: "calm"
+        title: "Visual Harmony",
+        description: "A balanced composition exploring color relationships",
+        elements: ["geometric shapes", "color gradients", "balanced composition"],
+        styles: ["abstract", "geometric", "color field"],
+        emotionalImpact: "calm and visual satisfaction"
+      },
+      {
+        title: "Narrative Moment",
+        description: "A frozen moment suggesting a larger story",
+        elements: ["character silhouette", "environmental context", "symbolic objects"],
+        styles: ["illustrative", "narrative", "symbolic"],
+        emotionalImpact: "curiosity and narrative engagement"
+      },
+      {
+        title: "Bourdin-Inspired Fashion Narrative",
+        description: "A provocative fashion scene with mysterious narrative implications",
+        elements: ["fragmented figures", "luxury objects", "high-contrast lighting", "dramatic cropping"],
+        styles: ["fashion photography", "surrealism", "high-contrast", "narrative"],
+        emotionalImpact: "intrigue, tension, and visual drama",
+        visualComposition: "Asymmetrical with dramatic cropping and focal points",
+        colorPalette: "Vibrant reds against deep shadows and pale skin tones"
       }
     ];
+  }
+
+  private isMagritteRelated(project: any): boolean {
+    const magritteKeywords = this.state.context.magritteKeywords;
+    const projectText = `${project.title} ${project.description} ${project.requirements.join(' ')}`.toLowerCase();
+    
+    // Check for explicit Magritte references
+    const hasMagritteKeywords = magritteKeywords.some(keyword => projectText.includes(keyword.toLowerCase()));
+    
+    // Check for surrealist/philosophical context
+    const hasPhilosophicalContext = ['surreal', 'philosophical', 'paradox', 'metaphysical'].some(term => 
+      projectText.includes(term.toLowerCase())
+    );
+    
+    // Check for visual style indicators
+    const hasVisualStyle = ['floating', 'impossible', 'juxtaposition', 'metamorphosis'].some(term => 
+      projectText.includes(term.toLowerCase())
+    );
+    
+    return hasMagritteKeywords || (hasPhilosophicalContext && hasVisualStyle);
+  }
+
+  private getArtisticApproach(project: any): 'bourdin' | 'magritte' | 'hybrid' {
+    const isBourdin = this.isBourdinRelated(project);
+    const isMagritte = this.isMagritteRelated(project);
+    
+    if (isBourdin && isMagritte) {
+      return 'hybrid';
+    } else if (isBourdin) {
+      return 'bourdin';
+    } else if (isMagritte) {
+      return 'magritte';
+    }
+    
+    // Default to the approach that best matches the project's themes
+    const projectText = `${project.title} ${project.description} ${project.requirements.join(' ')}`.toLowerCase();
+    
+    const fashionScore = ['fashion', 'glamour', 'luxury', 'editorial', 'photography'].filter(term => 
+      projectText.includes(term)
+    ).length;
+    
+    const philosophicalScore = ['surreal', 'philosophical', 'metaphysical', 'paradox', 'mystery'].filter(term => 
+      projectText.includes(term)
+    ).length;
+    
+    return fashionScore > philosophicalScore ? 'bourdin' : 'magritte';
+  }
+
+  private generateArtisticIdea(approach: 'bourdin' | 'magritte' | 'hybrid', concept: string): any {
+    const approaches = this.state.context.artisticApproaches;
+    
+    if (approach === 'hybrid') {
+      // Create a hybrid approach combining both styles
+      return {
+        title: `${concept} - A Surreal Fashion Narrative`,
+        description: "Fusion of Bourdin's provocative fashion photography with Magritte's philosophical surrealism",
+        elements: [
+          ...this.getRandomElements(approaches.bourdin.composition, 2),
+          ...this.getRandomElements(approaches.magritte.composition, 2),
+          ...this.getRandomElements(approaches.bourdin.lighting, 1),
+          ...this.getRandomElements(approaches.magritte.lighting, 1)
+        ],
+        styles: ['fashion surrealism', 'philosophical fashion', 'conceptual photography'],
+        techniques: [
+          ...this.getRandomElements(approaches.bourdin.techniques, 2),
+          ...this.getRandomElements(approaches.magritte.techniques, 2)
+        ],
+        narrative: [
+          ...this.getRandomElements(approaches.bourdin.narrative, 2),
+          ...this.getRandomElements(approaches.magritte.narrative, 2)
+        ]
+      };
+    }
+    
+    const selectedApproach = approaches[approach];
+    return {
+      title: approach === 'bourdin' 
+        ? `${concept} - A Fashion Narrative`
+        : `${concept} - A Philosophical Vision`,
+      description: approach === 'bourdin'
+        ? "A provocative fashion narrative with psychological depth"
+        : "A surrealist exploration of perception and reality",
+      elements: [
+        ...this.getRandomElements(selectedApproach.composition, 2),
+        ...this.getRandomElements(selectedApproach.lighting, 2)
+      ],
+      styles: approach === 'bourdin'
+        ? ['fashion photography', 'editorial', 'provocative']
+        : ['surrealism', 'philosophical', 'metaphysical'],
+      techniques: this.getRandomElements(selectedApproach.techniques, 3),
+      narrative: this.getRandomElements(selectedApproach.narrative, 3)
+    };
+  }
+
+  private getRandomElements<T>(array: T[], count: number): T[] {
+    const shuffled = [...array].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
   }
 } 

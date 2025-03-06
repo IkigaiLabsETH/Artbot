@@ -22,11 +22,16 @@ interface ArtDirection {
   moodAndTone?: string;           // Overall mood and tone
   references?: string[];          // Reference artists or works
   avoidElements?: string[];       // Elements to avoid
+  styles?: {                      // Style variants
+    [key: string]: ArtDirection;
+  };
+  defaultStyle?: string;          // Default style to use
 }
 
 // Default art direction that can be overridden by environment variables or parameters
 const defaultArtDirection: ArtDirection = {
   styleEmphasis: [
+    // Magritte elements
     "Magritte surrealism",
     "oil painting technique",
     "visible brushstrokes",
@@ -49,17 +54,33 @@ const defaultArtDirection: ArtDirection = {
     "metaphorical objects",
     "subtle humor",
     "ephemeral illusions",
-    "floating or suspended objects",
-    "whimsical shape interplay",
-    "contradictory perspectives",
-    "hidden or partially veiled faces",
-    "juxtaposed architectural elements",
-    "fragmented or repeated forms",
-    "clean, crisp outlines",
-    "quiet, still atmosphere",
-    "meticulous attention to detail"
+    "philosophical questioning",
+    "conceptual paradoxes",
+    "visual poetry",
+    // Guy Bourdin elements
+    "high-fashion surrealism",
+    "cinematic drama",
+    "bold and provocative styling",
+    "hyper-stylized compositions",
+    "exaggerated contrast",
+    "saturated color intensity",
+    "graphic and geometric arrangements",
+    "sharp and theatrical lighting",
+    "absurdist yet seductive visual narratives",
+    "glossy and polished aesthetic",
+    "otherworldly glamour",
+    "erotic undertones with surreal juxtapositions",
+    "enigmatic and dreamlike storytelling",
+    "fashion photography meets fine art",
+    "bold cropping and unexpected framing",
+    "commercial aesthetics with artistic depth",
+    "fetishistic elements with artistic intent",
+    "narrative tension through visual fragments",
+    "hyperreal color saturation",
+    "staged scenarios with mysterious implications"
   ],
   visualElements: [
+    // Magritte elements
     "bowler hats",
     "floating objects",
     "clouds",
@@ -85,9 +106,30 @@ const defaultArtDirection: ArtDirection = {
     "mismatched reflections",
     "disjointed landscapes",
     "blend of interior and exterior spaces",
-    "human figures with altered proportions"
+    // Guy Bourdin elements
+    "elongated limbs and dramatic poses",
+    "partially obscured figures",
+    "fragmented body parts as objects",
+    "high heels and stockings as symbols of fetishism",
+    "glossy red lips",
+    "unexpected mannequin-like expressions",
+    "disembodied legs and arms",
+    "retro automobiles with reflections",
+    "mirrors used for distorted realities",
+    "poolside glamour",
+    "vivid backdrops of red, pink, and orange",
+    "oversized accessories as surreal objects",
+    "subliminal tension in everyday settings",
+    "visual irony through exaggerated femininity",
+    "cinematic storytelling with incomplete narratives",
+    "fashion accessories in surreal contexts",
+    "models with doll-like or mannequin qualities",
+    "luxury objects with sinister undertones",
+    "domestic settings with uncanny elements",
+    "commercial products elevated to artistic symbols"
   ],
   colorPalette: [
+    // Magritte elements
     "Magritte blues",
     "soft greens",
     "earthy browns",
@@ -103,13 +145,25 @@ const defaultArtDirection: ArtDirection = {
     "muted greens of foliage",
     "warm wood tones",
     "cool grays for clouds",
-    "stark black silhouettes",
-    "pale flesh tones",
-    "crisp whites for collars and clouds",
-    "subtle shadow gradients",
-    "atmospheric perspective blues"
+    // Guy Bourdin elements
+    "high-contrast red and black",
+    "electric blues and deep purples",
+    "bold primary colors with extreme saturation",
+    "glossy skin tones with a hyperreal sheen",
+    "intense shadow-play creating depth",
+    "high-contrast highlights with a sculptural effect",
+    "retro pastel shades used subversively",
+    "artificial neon glow for added tension",
+    "striking monochrome with deep blacks and crisp whites",
+    "candy-like color saturation",
+    "blood reds against pale skin",
+    "jewel tones with unnatural intensity",
+    "synthetic color combinations",
+    "color blocking with dramatic impact",
+    "reflective surfaces with color distortion"
   ],
   compositionGuidelines: [
+    // Magritte elements
     "rule of thirds",
     "leading lines",
     "depth of field",
@@ -125,14 +179,26 @@ const defaultArtDirection: ArtDirection = {
     "horizon line placement for psychological effect",
     "juxtaposition of disparate scales",
     "symmetrical balance with surreal disruption",
-    "negative space as positive element",
-    "precise geometric arrangement",
-    "layered reality planes",
-    "visual paradox construction",
-    "deliberate flatness in certain elements"
+    // Guy Bourdin elements
+    "tight cropping with focus on partial details",
+    "radical framing techniques",
+    "unexpected perspective shifts",
+    "graphic and symmetrical arrangements",
+    "negative space used for dramatic effect",
+    "extreme foreshortening and distorted angles",
+    "bold, unnatural color contrasts",
+    "forced perspectives that heighten the surrealist feel",
+    "motion blur used selectively to create tension",
+    "fragmentation of subjects to break realism",
+    "diagonal compositions with dynamic energy",
+    "frame within frame techniques",
+    "strategic placement of color accents",
+    "compositional tension through asymmetry",
+    "cinematic framing with narrative implications"
   ],
-  moodAndTone: "dreamlike and contemplative with a sense of mystery and philosophical questioning, rendered with the texture and quality of oil paint on canvas. The atmosphere should evoke a quiet unease through impossible juxtapositions that feel strangely familiar yet profoundly alien. There should be an intellectual playfulness beneath the serious execution, inviting viewers to question their perception of reality. The emotional tone balances between melancholy, wonder, and subtle humor, with a distinctly Belgian surrealist sensibility that differs from the more psychological or chaotic approaches of other surrealists.",
+  moodAndTone: "A fusion of Magritte's dreamlike philosophical questioning with Guy Bourdin's seductive, provocative boldness. The atmosphere should blend surrealist concepts with high-fashion aesthetics, creating compositions that are both intellectually stimulating and visually striking. Magritte's quiet contemplation, subtle humor, and metaphysical puzzles merge with Bourdin's theatrical drama, erotic tension, and commercial glamour. The result should be images that provoke thought while captivating with their bold visual impact—philosophical depth expressed through provocative styling, traditional painting techniques enhanced by fashion photography's dramatic flair, and surrealist concepts given new life through contemporary visual language.",
   references: [
+    // Magritte references
     "René Magritte's 'The Son of Man'",
     "René Magritte's 'The Empire of Light'",
     "René Magritte's 'The Treachery of Images'",
@@ -145,23 +211,45 @@ const defaultArtDirection: ArtDirection = {
     "René Magritte's 'Le Blanc Seing (The Blank Check)'",
     "René Magritte's 'The Listening Room (La Chambre d'Écoute)'",
     "René Magritte's 'La Clairvoyance'",
-    "René Magritte's 'The Lost Jockey (Le Jockey Perdu)'",
-    "René Magritte's 'Decalcomania'",
     "René Magritte's oil painting techniques",
-    "Traditional Belgian surrealist painting style"
+    "Traditional Belgian surrealist painting style",
+    // Guy Bourdin references
+    "Guy Bourdin's Vogue Paris fashion editorials",
+    "Guy Bourdin's Charles Jourdan shoe campaigns",
+    "Guy Bourdin's work for French Vogue (1955-1987)",
+    "Guy Bourdin's Pentax calendar series",
+    "Guy Bourdin's Chanel campaigns",
+    "Helmut Newton's high-gloss eroticism",
+    "Man Ray's experimental fashion photography",
+    "Hitchcock's dramatic lighting and compositions",
+    "Kubrick's symmetrical cinematography",
+    "Retro-futuristic advertising aesthetics",
+    "Fetishistic and cinematic styling from the 70s and 80s",
+    "Roland Barthes' semiotic analysis of fashion imagery",
+    "David Lynch's surrealist film aesthetics"
   ],
   avoidElements: [
+    // Common elements to avoid
     "text",
     "watermarks",
-    "distorted faces",
-    "overly saturated colors",
     "digital artifacts",
-    "abstract expressionism",
     "chaotic compositions",
+    "abstract expressionism",
+    "3D rendering look",
     "photorealistic rendering",
     "digital art aesthetics",
-    "3D rendering look",
-    "photography-like lighting"
+    // Magritte-specific avoids
+    "distorted faces (unless in Magritte's specific style)",
+    "overly saturated colors (unless in Bourdin's specific style)",
+    // Guy Bourdin specific avoids
+    "soft-focus or pastel romanticism",
+    "naturalistic and candid photography",
+    "muted or desaturated color schemes",
+    "low-contrast, flat lighting",
+    "overly digital and CGI aesthetics",
+    "realism without surreal or exaggerated elements",
+    "documentary-style photography",
+    "casual or unstylized compositions"
   ]
 };
 
@@ -182,8 +270,10 @@ function loadArtDirectionFromFile(filePath: string): ArtDirection | null {
 function loadCategoryArtDirection(category?: string): ArtDirection | null {
   if (!category) return null;
   
-  // Convert category to filename format (e.g., 'magritte_lovers')
-  const categoryFileName = `magritte_${category.toLowerCase().replace(/\s+/g, '_')}.json`;
+  // Convert category to filename format (e.g., 'magritte_lovers' or 'bourdin_fashion')
+  const prefix = category.toLowerCase().includes('bourdin') ? 'bourdin' : 'magritte';
+  const categoryName = category.toLowerCase().replace(/^bourdin_|^magritte_/, '');
+  const categoryFileName = `${prefix}_${categoryName.replace(/\s+/g, '_')}.json`;
   const categoryFilePath = path.join(process.cwd(), categoryFileName);
   
   const categoryArtDirection = loadArtDirectionFromFile(categoryFilePath);
@@ -233,7 +323,13 @@ function detectConceptCategory(concept: string): string | undefined {
     { category: 'mystery', keywords: ['mystery', 'enigma', 'puzzle', 'unknown', 'question'] },
     { category: 'landscapes', keywords: ['landscape', 'nature', 'horizon', 'vista', 'scenery'] },
     { category: 'skies', keywords: ['sky', 'cloud', 'bird', 'flying', 'heaven', 'air'] },
-    { category: 'classic', keywords: ['classic', 'iconic', 'famous', 'son of man', 'golconda'] }
+    { category: 'classic', keywords: ['classic', 'iconic', 'famous', 'son of man', 'golconda'] },
+    // Add Bourdin-related categories
+    { category: 'bourdin_fashion', keywords: ['fashion', 'vogue', 'glamour', 'editorial', 'haute couture', 'runway', 'model', 'magazine'] },
+    { category: 'bourdin_color', keywords: ['vibrant', 'saturated', 'high-contrast', 'bold colors', 'red lips', 'crimson', 'electric blue'] },
+    { category: 'bourdin_composition', keywords: ['cropped', 'fragmented', 'disembodied', 'partial view', 'tight framing', 'cinematic', 'theatrical'] },
+    { category: 'bourdin_narrative', keywords: ['provocative', 'erotic', 'suggestive', 'mysterious narrative', 'implied story', 'tension', 'suspense'] },
+    { category: 'bourdin_objects', keywords: ['stiletto', 'high heel', 'mannequin', 'luxury goods', 'cosmetics', 'perfume', 'jewelry', 'accessories'] }
   ];
   
   // Check for keyword matches
@@ -268,7 +364,7 @@ if (fileArtDirection) {
 }
 
 if (categoryArtDirection) {
-  console.log(`- Applied category-specific art direction from: magritte_${detectedCategory}.json`);
+  console.log(`- Applied category-specific art direction from: ${detectedCategory}.json`);
 } else if (detectedCategory) {
   console.log(`- No category-specific file found for "${detectedCategory}", using base art direction`);
 }
@@ -381,102 +477,174 @@ async function generateArt(concept: string) {
         category
       });
     } else {
-      // Check if the provided concept is crypto-related
-      const cryptoKeywords = ['bitcoin', 'crypto', 'blockchain', 'nft', 'satoshi', 'ethereum', 'web3', 'token'];
-      const isCryptoRelated = cryptoKeywords.some(keyword => concept.toLowerCase().includes(keyword));
+      // Check if the provided concept is post-photography related
+      const postPhotoKeywords = [
+        // Fashion and styling keywords
+        'fashion', 'glamour', 'editorial', 'haute couture', 'runway', 'model', 'magazine', 'styling',
+        // Visual style keywords
+        'glossy', 'high-contrast', 'saturated', 'vibrant', 'bold colors', 'electric', 'crimson',
+        // Composition keywords
+        'cropped', 'fragmented', 'disembodied', 'partial view', 'tight framing', 'cinematic', 'theatrical',
+        // Narrative and mood keywords
+        'provocative', 'erotic', 'suggestive', 'mysterious narrative', 'implied story', 'tension', 'suspense',
+        // Object keywords
+        'stiletto', 'high heel', 'mannequin', 'luxury goods', 'cosmetics', 'perfume', 'jewelry', 'accessories',
+        // Artist references
+        'bourdin', 'newton', 'avedon', 'penn', 'post-photography'
+      ];
+      const isPostPhotoRelated = postPhotoKeywords.some(keyword => concept.toLowerCase().includes(keyword));
       
-      // If crypto-related, use CRYPTO_ART category
-      if (isCryptoRelated && !detectedCategory) {
-        console.log(`\n🎬 Detected crypto-related concept, using CRYPTO_ART category...`);
-        const cryptoArtConcept = await generateCinematicConcept(aiService, {
+      // If post-photography related, use POST_PHOTOGRAPHY category
+      if (isPostPhotoRelated && !detectedCategory) {
+        console.log(`\n🎬 Detected post-photography related concept, using POST_PHOTOGRAPHY category...`);
+        const postPhotographyConcept = await generateCinematicConcept(aiService, {
           temperature: 0.9,
-          category: ConceptCategory.CRYPTO_ART
+          category: ConceptCategory.POST_PHOTOGRAPHY
         });
-        artConcept = cryptoArtConcept;
+        artConcept = postPhotographyConcept;
       }
     }
     
     console.log(`\n💡 Using concept: "${artConcept}"`);
     
-    // Check if the concept is crypto-related for the project setup
-    const cryptoKeywords = ['bitcoin', 'crypto', 'blockchain', 'nft', 'satoshi', 'ethereum', 'web3', 'token', 'fidenza', 'ringers', 'meridian', 'xcopy', 'beeple'];
-    const isCryptoRelated = cryptoKeywords.some(keyword => artConcept.toLowerCase().includes(keyword));
+    // Check if the concept is post-photography related for the project setup
+    const postPhotoKeywords = [
+      // Fashion and styling keywords
+      'fashion', 'glamour', 'editorial', 'haute couture', 'runway', 'model', 'magazine', 'styling',
+      // Visual style keywords
+      'glossy', 'high-contrast', 'saturated', 'vibrant', 'bold colors', 'electric', 'crimson',
+      // Composition keywords
+      'cropped', 'fragmented', 'disembodied', 'partial view', 'tight framing', 'cinematic', 'theatrical',
+      // Narrative and mood keywords
+      'provocative', 'erotic', 'suggestive', 'mysterious narrative', 'implied story', 'tension', 'suspense',
+      // Object keywords
+      'stiletto', 'high heel', 'mannequin', 'luxury goods', 'cosmetics', 'perfume', 'jewelry', 'accessories',
+      // Artist references
+      'bourdin', 'newton', 'avedon', 'penn', 'post-photography'
+    ];
+    const isPostPhotoRelated = postPhotoKeywords.some(keyword => artConcept.toLowerCase().includes(keyword));
     
+    // Determine if we should use Bourdin style
+    const useBourdinStyle = detectedCategory?.toLowerCase().includes('bourdin') || 
+                           (detectedCategory === undefined && isPostPhotoRelated && 
+                            (artConcept.toLowerCase().includes('bourdin') ||
+                             artConcept.toLowerCase().includes('fashion') ||
+                             artConcept.toLowerCase().includes('editorial')));
+                             
     // Determine if we should use Magritte style
-    const useMagritteStyle = detectedCategory === 'magritte_surrealism' || 
-                            (detectedCategory === undefined && !isCryptoRelated && 
+    const useMagritteStyle = detectedCategory?.toLowerCase().includes('magritte') || 
+                            (detectedCategory === undefined && !isPostPhotoRelated && 
                              (artConcept.toLowerCase().includes('magritte') ||
                               artConcept.toLowerCase().includes('surreal')));
                               
     // Determine if we should use Impressionist style
     const useImpressionistStyle = detectedCategory === 'impressionist';
     
+    // Get the appropriate style from the art direction file if it exists
+    let artDirectionStyle = artDirection;
+    if (fileArtDirection && fileArtDirection.styles) {
+      artDirectionStyle = getStyleFromArtDirection(fileArtDirection, isPostPhotoRelated);
+    }
+    
     // Create a category-specific art direction
-    let categoryArtDirection: ArtDirection = { ...artDirection };
+    let categoryArtDirection: ArtDirection = { ...artDirectionStyle };
     
     if (useImpressionistStyle) {
       // Override with impressionist-specific art direction
       categoryArtDirection = {
-        styleEmphasis: ["Impressionist style", ...(artDirection.styleEmphasis?.filter(style => 
+        styleEmphasis: ["Impressionist style", ...(artDirectionStyle.styleEmphasis?.filter(style => 
           !style.toLowerCase().includes('magritte') && 
           !style.toLowerCase().includes('surreal')) || [])],
         visualElements: ["visible brushstrokes", "emphasis on light", "everyday subject matter", 
-          ...(artDirection.visualElements?.filter(element => 
+          ...(artDirectionStyle.visualElements?.filter(element => 
             !["bowler hats", "floating objects", "impossible scenes", 
              "ordinary objects in extraordinary contexts"].includes(element)) || [])],
         colorPalette: ["light colors", "visible brushstrokes", 
-          ...(artDirection.colorPalette?.filter(color => !color.toLowerCase().includes('magritte')) || [])],
+          ...(artDirectionStyle.colorPalette?.filter(color => !color.toLowerCase().includes('magritte')) || [])],
         compositionGuidelines: ["visible brushstrokes", "emphasis on light", "everyday subject matter", 
-          ...(artDirection.compositionGuidelines?.filter(guideline => 
+          ...(artDirectionStyle.compositionGuidelines?.filter(guideline => 
             !guideline.toLowerCase().includes('surreal')) || [])],
         moodAndTone: "light and airy with a focus on capturing fleeting moments and natural light",
         references: ["Claude Monet's 'Waterlilies'", "Pierre-Auguste Renoir's 'Luncheon of the Boating Party'",
-          ...(artDirection.references?.filter(ref => !ref.toLowerCase().includes('magritte')) || [])],
-        avoidElements: [...(artDirection.avoidElements || []), "surreal elements", "impossible scenes"]
+          ...(artDirectionStyle.references?.filter(ref => !ref.toLowerCase().includes('magritte')) || [])],
+        avoidElements: [...(artDirectionStyle.avoidElements || []), "surreal elements", "impossible scenes"]
       };
-    } else if (useMagritteStyle) {
-      // Use Magritte-specific art direction
+    } else if (useBourdinStyle) {
+      // Override with Bourdin-specific art direction
       categoryArtDirection = {
-        styleEmphasis: ["Magritte surrealism", "surreal juxtaposition", 
-          ...(artDirection.styleEmphasis?.filter(style => !style.toLowerCase().includes('impressionist')) || [])],
-        visualElements: ["bowler hats", "floating objects", "clouds", "blue skies", 
-          "impossible scenes", "ordinary objects in extraordinary contexts",
-          "green apples (often oversized)", "men in suits", "veiled faces",
-          "unexpected scale changes", "train engines in unusual places",
-          "overlapping realities", "theatrical backdrops", "contradictory shadows",
-          "day-to-night contrasts", "the single eye", "curtains framing scenes",
-          "mismatched reflections", "blend of interior and exterior spaces",
-          ...(artDirection.visualElements?.filter(element => 
-            !["visible brushstrokes", "emphasis on light", "everyday subject matter"].includes(element)) || [])],
-        colorPalette: ["Magritte blues", "soft greens", "earthy browns", 
-          ...(artDirection.colorPalette?.filter(color => !color.toLowerCase().includes('impressionist')) || [])],
-        compositionGuidelines: ["surreal scale relationships", "clean compositions with clear subjects", 
-          ...(artDirection.compositionGuidelines?.filter(guideline => 
-            !guideline.toLowerCase().includes('impressionist')) || [])],
-        moodAndTone: "dreamlike and contemplative with a sense of mystery and philosophical questioning",
-        references: ["René Magritte's 'The Son of Man'", "René Magritte's 'The Empire of Light'", 
-          "René Magritte's 'The Treachery of Images'", "René Magritte's 'Golconda'",
-          "René Magritte's 'Time Transfixed (La Durée Poignardée)'",
-          "René Magritte's 'The Lovers (Les Amants)'",
-          "René Magritte's 'Not to Be Reproduced (La Reproduction Interdite)'",
-          "René Magritte's 'The Human Condition (La Condition Humaine)'",
-          "René Magritte's 'The False Mirror (Le Faux Miroir)'",
-          "René Magritte's 'Le Blanc Seing (The Blank Check)'",
-          "René Magritte's 'The Listening Room (La Chambre d'Écoute)'",
-          "René Magritte's 'La Clairvoyance'",
-          "René Magritte's 'The Lost Jockey (Le Jockey Perdu)'",
-          "René Magritte's 'Decalcomania'",
-          ...(artDirection.references?.filter(ref => 
-            !ref.toLowerCase().includes('monet') && 
-            !ref.toLowerCase().includes('renoir')) || [])],
-        avoidElements: [...(artDirection.avoidElements || []), "visible brushstrokes", "impressionist elements"]
+        styleEmphasis: ["Post-photography style", "High-fashion surrealism", "Bold and provocative styling", "Cinematic drama", 
+          ...(artDirectionStyle.styleEmphasis?.filter(style => 
+            !style.toLowerCase().includes('magritte') && 
+            !style.toLowerCase().includes('traditional surreal')) || [])],
+        visualElements: ["Elongated limbs and dramatic poses", "Partially obscured figures", "Fragmented body parts as objects",
+          "Luxury objects with sinister undertones", "Fashion accessories in surreal contexts",
+          ...(artDirectionStyle.visualElements?.filter(element => 
+            !["bowler hats", "floating objects", "clouds in rooms"].includes(element)) || [])],
+        colorPalette: ["High-contrast red and black", "Electric blues and deep purples", "Blood reds against pale skin",
+          "Jewel tones with unnatural intensity", "Glossy surfaces with reflections",
+          ...(artDirectionStyle.colorPalette?.filter(color => !color.toLowerCase().includes('magritte')) || [])],
+        compositionGuidelines: ["Tight cropping with focus on partial details", "Radical framing techniques", 
+          "Diagonal compositions with dynamic energy", "Cinematic framing with narrative implications",
+          ...(artDirectionStyle.compositionGuidelines?.filter(guideline => 
+            !guideline.toLowerCase().includes('traditional surreal')) || [])],
+        moodAndTone: "Provocative and unsettling with a glossy, high-fashion aesthetic. Creates tension through juxtaposition of beauty and discomfort, with an underlying sense of narrative mystery.",
+        references: ["Guy Bourdin's Vogue Paris fashion editorials", "Guy Bourdin's Charles Jourdan shoe campaigns",
+          "Guy Bourdin's Pentax calendar", "Guy Bourdin's work for French Vogue in the 1970s",
+          ...(artDirectionStyle.references?.filter(ref => !ref.toLowerCase().includes('magritte')) || [])],
+        avoidElements: [...(artDirectionStyle.avoidElements || []), "traditional surrealism", "painterly techniques", "visible brushstrokes"]
       };
-    } else if (isCryptoRelated) {
-      // Add crypto-specific elements
-      categoryArtDirection.visualElements = [
-        ...(categoryArtDirection.visualElements || []),
-        'blockchain visualization', 'digital currency symbols', 'cryptographic elements'
-      ];
+    } else {
+      // For all other styles, ensure we blend Magritte and Guy Bourdin elements
+      // Add some Guy Bourdin elements if they're not already present
+      if (!categoryArtDirection.styleEmphasis?.some(style => style.toLowerCase().includes('fashion'))) {
+        categoryArtDirection.styleEmphasis = [
+          ...(categoryArtDirection.styleEmphasis || []),
+          "high-fashion surrealism",
+          "cinematic drama",
+          "bold and provocative styling"
+        ];
+      }
+      
+      if (!categoryArtDirection.visualElements?.some(element => element.toLowerCase().includes('limbs'))) {
+        categoryArtDirection.visualElements = [
+          ...(categoryArtDirection.visualElements || []),
+          "elongated limbs and dramatic poses",
+          "partially obscured figures",
+          "fragmented body parts as objects"
+        ];
+      }
+      
+      if (!categoryArtDirection.colorPalette?.some(color => color.toLowerCase().includes('contrast'))) {
+        categoryArtDirection.colorPalette = [
+          ...(categoryArtDirection.colorPalette || []),
+          "high-contrast red and black",
+          "electric blues and deep purples"
+        ];
+      }
+      
+      if (!categoryArtDirection.compositionGuidelines?.some(guideline => guideline.toLowerCase().includes('cropping'))) {
+        categoryArtDirection.compositionGuidelines = [
+          ...(categoryArtDirection.compositionGuidelines || []),
+          "tight cropping with focus on partial details",
+          "radical framing techniques"
+        ];
+      }
+      
+      // Ensure the mood and tone reflects the blend
+      if (!categoryArtDirection.moodAndTone?.toLowerCase().includes('bourdin') && 
+          !categoryArtDirection.moodAndTone?.toLowerCase().includes('fashion')) {
+        categoryArtDirection.moodAndTone = categoryArtDirection.moodAndTone + 
+          " Blended with Guy Bourdin's provocative high-fashion surrealism for a unique visual impact.";
+      }
+      
+      // Add Guy Bourdin references if not present
+      if (!categoryArtDirection.references?.some(ref => ref.toLowerCase().includes('bourdin'))) {
+        categoryArtDirection.references = [
+          ...(categoryArtDirection.references || []),
+          "Guy Bourdin's Vogue Paris fashion editorials",
+          "Guy Bourdin's Charles Jourdan shoe campaigns"
+        ];
+      }
     }
     
     // Create a project for the multi-agent system
@@ -488,7 +656,7 @@ async function generateArt(concept: string) {
         "Create a visually striking image that captures the essence of the concept",
         "Use cinematic lighting and composition",
         "Incorporate rich visual metaphors and symbolism",
-        isCryptoRelated ? "Include crypto-native visual elements and aesthetics" : "Balance abstract and recognizable elements",
+        isPostPhotoRelated ? "Include high-fashion surrealism with bold styling and provocative compositions" : "Balance abstract and recognizable elements",
         useMagritteStyle ? "Use René Magritte's surrealist style with clean compositions and philosophical questioning" : 
         useImpressionistStyle ? "Use Impressionist style with visible brushstrokes, emphasis on light, and everyday subject matter" : 
         "Evoke an emotional response in the viewer"
@@ -563,7 +731,7 @@ async function generateArt(concept: string) {
       creativeProcess: creativeProcess,
       imageUrl: imageUrl,
       timestamp: new Date().toISOString(),
-      isCryptoNative: isCryptoRelated || detectedCategory === 'crypto_art',
+      isPostPhotoNative: isPostPhotoRelated || detectedCategory === 'post_photography',
       multiAgentCollaboration: true,
       artDirection: project.artDirection,
       critique: result.critique ? {
@@ -591,9 +759,9 @@ async function generateArt(concept: string) {
       { 
         type: 'artwork', 
         concept: artConcept,
-        isCryptoNative: isCryptoRelated || detectedCategory === 'crypto_art'
+        isPostPhotoNative: isPostPhotoRelated || detectedCategory === 'post_photography'
       },
-      ['artwork', 'flux', 'multi-agent', ...(isCryptoRelated ? ['crypto', 'bitcoin', 'satoshi'] : []), ...artConcept.split(' ')]
+      ['artwork', 'flux', 'multi-agent', ...(isPostPhotoRelated ? ['fashion', 'surreal', 'bourdin'] : []), ...artConcept.split(' ')]
     );
     
     console.log('\n✨ Art generation completed successfully!');
@@ -617,4 +785,46 @@ async function generateArt(concept: string) {
 generateArt(concept).catch(console.error);
 
 // Export the function for use in other modules
-export { generateArt }; 
+export { generateArt };
+
+// Function to get the appropriate style from the art direction file
+function getStyleFromArtDirection(artDirection: any, isPostPhotoRelated: boolean = false): ArtDirection {
+  // If the art direction has a styles object, it's using the new format
+  if (artDirection && artDirection.styles) {
+    // Instead of choosing one style or the other, blend them together
+    const magritteStyle = artDirection.styles['magritte'] || {};
+    const postPhotoStyle = artDirection.styles['postPhotography'] || {};
+    
+    // Create a blended style that combines elements from both
+    return {
+      styleEmphasis: [
+        ...(magritteStyle.styleEmphasis || []).slice(0, 15), // Take more Magritte elements
+        ...(postPhotoStyle.styleEmphasis || []).slice(0, 15) // Take more Bourdin elements
+      ],
+      visualElements: [
+        ...(magritteStyle.visualElements || []).slice(0, 15), // Take more Magritte elements
+        ...(postPhotoStyle.visualElements || []).slice(0, 15) // Take more Bourdin elements
+      ],
+      colorPalette: [
+        ...(magritteStyle.colorPalette || []).slice(0, 10), // Take more Magritte colors
+        ...(postPhotoStyle.colorPalette || []).slice(0, 10) // Take more Bourdin colors
+      ],
+      compositionGuidelines: [
+        ...(magritteStyle.compositionGuidelines || []).slice(0, 10), // Take more Magritte composition
+        ...(postPhotoStyle.compositionGuidelines || []).slice(0, 10) // Take more Bourdin composition
+      ],
+      moodAndTone: "A fusion of Magritte's dreamlike philosophical questioning with Guy Bourdin's seductive, provocative boldness. The atmosphere should blend surrealist concepts with high-fashion aesthetics, creating compositions that are both intellectually stimulating and visually striking. Magritte's quiet contemplation, subtle humor, and metaphysical puzzles merge with Bourdin's theatrical drama, erotic tension, and commercial glamour.",
+      references: [
+        ...(magritteStyle.references || []).slice(0, 10), // Take more Magritte references
+        ...(postPhotoStyle.references || []).slice(0, 10) // Take more Bourdin references
+      ],
+      avoidElements: [
+        ...(magritteStyle.avoidElements || []).slice(0, 5), // Take Magritte avoids
+        ...(postPhotoStyle.avoidElements || []).slice(0, 8) // Take more Bourdin avoids
+      ]
+    };
+  }
+  
+  // If it's using the old format, return as is
+  return artDirection;
+} 

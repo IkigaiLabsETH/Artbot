@@ -18,12 +18,105 @@ export class StylistAgent extends BaseAgent {
         distinctivenessWeight: 0.7,
         adaptabilityWeight: 0.6
       },
-      styleLibrary: [
-        { name: 'Minimalist', elements: ['simple shapes', 'limited color palette', 'negative space'] },
-        { name: 'Abstract', elements: ['non-representational forms', 'bold colors', 'geometric shapes'] },
-        { name: 'Surrealist', elements: ['dreamlike imagery', 'unexpected juxtapositions', 'symbolic elements'] },
-        { name: 'Impressionist', elements: ['visible brushstrokes', 'emphasis on light', 'movement'] },
-        { name: 'Digital', elements: ['pixel art', 'glitch effects', 'vector graphics'] }
+      styleLibrary: {
+        bourdin: {
+          core: {
+            essence: 'Provocative fashion surrealism with psychological depth',
+            era: 'Post-photography modernism',
+            influences: ['fashion editorial', 'surrealism', 'cinema', 'psychology']
+          },
+          visual: {
+            composition: {
+              primary: ['radical cropping', 'fragmentation', 'geometric precision'],
+              secondary: ['asymmetrical balance', 'dynamic tension', 'compressed space'],
+              framing: ['tight', 'dramatic', 'unconventional angles']
+            },
+            lighting: {
+              quality: ['hard', 'dramatic', 'theatrical'],
+              technique: ['high contrast', 'controlled studio', 'dramatic shadows'],
+              effects: ['rim lighting', 'colored gels', 'spot focusing']
+            },
+            color: {
+              palettes: [
+                ['saturated red', 'deep black', 'flesh tones'],
+                ['electric blue', 'hot pink', 'metallic silver'],
+                ['emerald green', 'burgundy', 'gold']
+              ],
+              characteristics: ['bold', 'high-contrast', 'psychological'],
+              treatments: ['glossy', 'saturated', 'dramatic']
+            }
+          },
+          elements: {
+            fashion: ['haute couture', 'luxury accessories', 'avant-garde designs'],
+            props: ['mirrors', 'mannequins', 'architectural elements'],
+            settings: ['studio sets', 'location shoots', 'minimalist spaces']
+          },
+          techniques: {
+            photographic: ['controlled lighting', 'color filtration', 'multiple exposure'],
+            styling: ['body fragmentation', 'surreal juxtaposition', 'geometric arrangement'],
+            narrative: ['psychological tension', 'erotic suggestion', 'mysterious plots']
+          }
+        },
+        magritte: {
+          core: {
+            essence: 'Philosophical surrealism with precise realism',
+            era: 'Belgian surrealism',
+            influences: ['metaphysics', 'philosophy', 'poetry', 'classical painting']
+          },
+          visual: {
+            composition: {
+              primary: ['balanced arrangement', 'theatrical staging', 'impossible juxtapositions'],
+              secondary: ['classical proportion', 'precise placement', 'spatial paradox'],
+              framing: ['formal', 'contemplative', 'stage-like']
+            },
+            lighting: {
+              quality: ['naturalistic', 'mysterious', 'crystalline'],
+              technique: ['day-night contrast', 'subtle modeling', 'atmospheric'],
+              effects: ['empire of light', 'impossible shadows', 'ethereal glow']
+            },
+            color: {
+              palettes: [
+                ['sky blue', 'earth tones', 'cloud white'],
+                ['night blue', 'golden hour yellow', 'stone grey'],
+                ['leaf green', 'twilight purple', 'dawn pink']
+              ],
+              characteristics: ['naturalistic', 'symbolic', 'contemplative'],
+              treatments: ['matte', 'subtle', 'atmospheric']
+            }
+          },
+          elements: {
+            symbols: ['bowler hat', 'apple', 'pipe', 'dove', 'clouds'],
+            settings: ['windows', 'curtains', 'empty streets', 'belgian landscapes'],
+            objects: ['everyday items', 'floating objects', 'transformed objects']
+          },
+          techniques: {
+            painting: ['precise rendering', 'seamless blending', 'trompe loeil'],
+            surrealism: ['impossible scale', 'object displacement', 'reality questioning'],
+            conceptual: ['visual paradox', 'philosophical puzzle', 'poetic connection']
+          }
+        }
+      },
+      hybridApproaches: [
+        {
+          name: 'Philosophical Fashion',
+          description: 'Merging Bourdin\'s fashion drama with Magritte\'s metaphysical puzzles',
+          elements: {
+            composition: ['dramatic cropping with impossible spaces', 'geometric surrealism'],
+            lighting: ['theatrical natural light', 'paradoxical shadows'],
+            color: ['bold symbolism', 'psychological naturalism'],
+            narrative: ['fashion metaphysics', 'luxury philosophy']
+          }
+        },
+        {
+          name: 'Surreal Editorial',
+          description: 'Combining Magritte\'s surreal poetry with Bourdin\'s editorial edge',
+          elements: {
+            composition: ['fragmented reality', 'symbolic fashion'],
+            lighting: ['empire of glamour', 'mysterious contrast'],
+            color: ['provocative naturalism', 'symbolic saturation'],
+            narrative: ['philosophical fashion', 'metaphysical desire']
+          }
+        }
       ]
     };
   }
@@ -74,7 +167,7 @@ export class StylistAgent extends BaseAgent {
       this.state.context.currentTask = task;
       
       // Develop styles based on the ideas
-      const styles = await this.developStyles(task, content.project);
+      const styles = await this.developStyleForProject(task, content.project);
       
       // Store developed styles
       this.state.context.developedStyles = styles;
@@ -109,204 +202,254 @@ export class StylistAgent extends BaseAgent {
     return null;
   }
   
-  private async developStyles(task: any, project: any): Promise<any[]> {
-    // Extract ideas from the task
-    const ideas = task.ideas || [];
+  private async developStyleForProject(project: any, ideas: any[]): Promise<any[]> {
+    // Determine the dominant artistic approach
+    const approach = this.determineArtisticApproach(project, ideas);
     
-    if (ideas.length === 0) {
-      return [this.createDefaultStyle()];
-    }
-    
-    // Get reference images if available
-    let referenceImagesPrompt = '';
-    
-    if (this.referenceImageProvider) {
-      // Extract key terms from ideas and project
-      const keyTerms = ideas.flatMap((idea: any) => 
-        [idea.title, ...(idea.styles || []), ...(idea.elements || [])]
-      ).concat([project.title, project.description]);
-      
-      const combinedText = keyTerms.join(' ');
-      
-      // Get relevant reference images
-      const referenceImages = this.referenceImageProvider.getStyleReferenceImages(combinedText, 3);
-      
-      if (referenceImages.length > 0) {
-        referenceImagesPrompt = `\n\nReference Images for Inspiration:
-${referenceImages.map((img, index) => {
-  let imgInfo = `Reference ${index + 1}: ${img.title || img.filename}`;
-  
-  if (img.description) {
-    imgInfo += `\nDescription: ${img.description}`;
-  }
-  
-  if (img.style_attributes) {
-    const attrs = img.style_attributes;
-    imgInfo += '\nStyle Attributes:';
-    
-    if (attrs.color_palette && attrs.color_palette.length > 0) {
-      imgInfo += `\n- Color Palette: ${attrs.color_palette.join(', ')}`;
-    }
-    
-    if (attrs.composition) {
-      imgInfo += `\n- Composition: ${attrs.composition}`;
-    }
-    
-    if (attrs.texture) {
-      imgInfo += `\n- Texture: ${attrs.texture}`;
-    }
-    
-    if (attrs.mood) {
-      imgInfo += `\n- Mood: ${attrs.mood}`;
-    }
-    
-    if (attrs.technique) {
-      imgInfo += `\n- Technique: ${attrs.technique}`;
+    // Generate styles based on the approach
+    switch (approach.type) {
+      case 'bourdin':
+        return this.developBourdinStyle(project, ideas, approach.weight);
+      case 'magritte':
+        return this.developMagritteStyle(project, ideas, approach.weight);
+      case 'hybrid':
+        return this.developHybridStyle(project, ideas, approach.hybridRatio);
+      default:
+        return this.developDefaultStyle(project, ideas);
     }
   }
-  
-  if (img.tags && img.tags.length > 0) {
-    imgInfo += `\nTags: ${img.tags.join(', ')}`;
-  }
-  
-  return imgInfo;
-}).join('\n\n')}
 
-Use these reference images as inspiration for your style development. Incorporate elements from these references that align with the project requirements and ideas.`;
-      }
+  private determineArtisticApproach(project: any, ideas: any[]): {
+    type: 'bourdin' | 'magritte' | 'hybrid';
+    weight?: number;
+    hybridRatio?: number;
+  } {
+    const projectText = `${String(project.title)} ${String(project.description)} ${ideas.map(i => String(i.description)).join(' ')}`.toLowerCase();
+    
+    // Calculate style scores
+    const bourdinScore = this.calculateStyleScore(projectText, this.state.context.styleLibrary.bourdin);
+    const magritteScore = this.calculateStyleScore(projectText, this.state.context.styleLibrary.magritte);
+    
+    // Determine approach based on scores
+    if (Math.abs(bourdinScore - magritteScore) < 0.2) {
+      // Scores are close enough to warrant a hybrid approach
+      const hybridRatio = bourdinScore / (bourdinScore + magritteScore);
+      return { type: 'hybrid', hybridRatio };
     }
     
-    // Use AI service to develop styles based on the ideas
-    const messages: AIMessage[] = [
-      {
-        role: 'system',
-        content: `You are the Stylist agent in a multi-agent art creation system. Your role is to develop cohesive, distinctive, and adaptable artistic styles based on creative ideas.
-        Coherence weight: ${this.state.context.styleParameters.coherenceWeight}
-        Distinctiveness weight: ${this.state.context.styleParameters.distinctivenessWeight}
-        Adaptability weight: ${this.state.context.styleParameters.adaptabilityWeight}`
-      },
-      {
-        role: 'user',
-        content: `Develop 3 unique artistic styles for the following project and ideas:
-        
-        Project: ${project.title} - ${project.description}
-        
-        Ideas:
-        ${ideas.map((idea: any, index: number) => 
-          `${index + 1}. ${idea.title}: ${idea.description}
-           Elements: ${idea.elements ? idea.elements.join(', ') : 'None specified'}
-           Suggested styles: ${idea.styles ? idea.styles.join(', ') : 'None specified'}`
-        ).join('\n\n')}
-        ${referenceImagesPrompt}
-        
-        For each style, provide:
-        1. A name
-        2. A description
-        3. Key visual characteristics
-        4. Color palette
-        5. Texture and materials
-        6. Composition guidelines
-        
-        Format each style as a JSON object.`
-      }
-    ];
+    if (bourdinScore > magritteScore) {
+      return { type: 'bourdin', weight: bourdinScore };
+    }
     
-    try {
-      const response = await this.aiService.getCompletion({
-        messages,
-        temperature: 0.7
-      });
-      
-      // Parse the response to extract styles
-      // In a real implementation, we would parse the JSON response
-      // For now, we'll return mock styles based on the ideas
-      
-      return [
-        {
-          id: uuidv4(),
-          name: "Cosmic Minimalism",
-          description: "A clean, minimalist approach with cosmic elements",
-          visualCharacteristics: [
-            "simple geometric forms",
-            "celestial motifs",
-            "balanced negative space",
-            "subtle gradients"
-          ],
-          colorPalette: [
-            "#0B0E17", // deep space black
-            "#1A237E", // deep blue
-            "#7986CB", // light blue
-            "#FFFFFF", // white
-            "#FFD700"  // gold accent
-          ],
-          texture: "smooth, matte surfaces with occasional metallic accents",
-          composition: "centered focal points with radial balance"
+    return { type: 'magritte', weight: magritteScore };
+  }
+
+  private calculateStyleScore(text: string, styleLibrary: any): number {
+    let score = 0;
+    let totalChecks = 0;
+    
+    // Check core concepts
+    const coreMatches = (styleLibrary.core.influences as string[]).filter(influence => 
+      text.includes(influence.toLowerCase())
+    ).length;
+    score += coreMatches / styleLibrary.core.influences.length;
+    totalChecks++;
+    
+    // Check visual elements
+    const visualMatches = Object.values(styleLibrary.visual)
+      .flatMap(category => Object.values(category as Record<string, string[]>))
+      .flat()
+      .filter(element => text.includes((element as string).toLowerCase()))
+      .length;
+    score += visualMatches / 20; // Normalize by expected average matches
+    totalChecks++;
+    
+    // Check specific elements
+    const elementMatches = Object.values(styleLibrary.elements)
+      .flat()
+      .filter(element => text.includes((element as string).toLowerCase()))
+      .length;
+    score += elementMatches / 15; // Normalize by expected average matches
+    totalChecks++;
+    
+    // Check techniques
+    const techniqueMatches = Object.values(styleLibrary.techniques)
+      .flat()
+      .filter(technique => text.includes((technique as string).toLowerCase()))
+      .length;
+    score += techniqueMatches / 10; // Normalize by expected average matches
+    totalChecks++;
+    
+    return score / totalChecks;
+  }
+
+  private async developBourdinStyle(project: any, ideas: any[], weight: number): Promise<any[]> {
+    const library = this.state.context.styleLibrary.bourdin;
+    const styles = [];
+    
+    for (const idea of ideas) {
+      const style = {
+        name: `${idea.title} - Bourdin Interpretation`,
+        description: "A provocative fashion narrative with psychological depth",
+        composition: this.selectStyleElements(library.visual.composition, weight),
+        lighting: this.selectStyleElements(library.visual.lighting, weight),
+        color: {
+          palette: this.selectRandomPalette(library.visual.color.palettes),
+          treatment: this.selectStyleElements(library.visual.color.treatments, weight)
         },
-        {
-          id: uuidv4(),
-          name: "Digital Surrealism",
-          description: "A blend of digital aesthetics with surrealist concepts",
-          visualCharacteristics: [
-            "glitch effects",
-            "impossible geometries",
-            "dreamlike juxtapositions",
-            "digital artifacts"
-          ],
-          colorPalette: [
-            "#FF00FF", // magenta
-            "#00FFFF", // cyan
-            "#121212", // near black
-            "#E6E6FA", // lavender
-            "#32CD32"  // lime green
-          ],
-          texture: "pixelated elements with smooth transitions",
-          composition: "asymmetrical with unexpected focal points"
+        elements: {
+          fashion: this.selectStyleElements(library.elements.fashion, weight),
+          props: this.selectStyleElements(library.elements.props, weight),
+          settings: this.selectStyleElements(library.elements.settings, weight)
         },
-        {
-          id: uuidv4(),
-          name: "Emotional Expressionism",
-          description: "An expressive style focused on emotional impact through color and form",
-          visualCharacteristics: [
-            "bold brushstrokes",
-            "expressive color use",
-            "abstracted human elements",
-            "dynamic movement"
-          ],
-          colorPalette: [
-            "#E63946", // red
-            "#F1FAEE", // off-white
-            "#A8DADC", // light blue
-            "#457B9D", // medium blue
-            "#1D3557"  // dark blue
-          ],
-          texture: "visible brushwork with textured surfaces",
-          composition: "dynamic diagonals with emotional rhythm"
+        techniques: {
+          photographic: this.selectStyleElements(library.techniques.photographic, weight),
+          styling: this.selectStyleElements(library.techniques.styling, weight),
+          narrative: this.selectStyleElements(library.techniques.narrative, weight)
         }
-      ];
-    } catch (error) {
-      console.error('Error developing styles:', error);
-      return [this.createDefaultStyle()];
+      };
+      
+      styles.push(style);
     }
+    
+    return styles;
+  }
+
+  private async developMagritteStyle(project: any, ideas: any[], weight: number): Promise<any[]> {
+    const library = this.state.context.styleLibrary.magritte;
+    const styles = [];
+    
+    for (const idea of ideas) {
+      const style = {
+        name: `${idea.title} - Magritte Vision`,
+        description: "A philosophical surrealist exploration of reality",
+        composition: this.selectStyleElements(library.visual.composition, weight),
+        lighting: this.selectStyleElements(library.visual.lighting, weight),
+        color: {
+          palette: this.selectRandomPalette(library.visual.color.palettes),
+          treatment: this.selectStyleElements(library.visual.color.treatments, weight)
+        },
+        elements: {
+          symbols: this.selectStyleElements(library.elements.symbols, weight),
+          settings: this.selectStyleElements(library.elements.settings, weight),
+          objects: this.selectStyleElements(library.elements.objects, weight)
+        },
+        techniques: {
+          painting: this.selectStyleElements(library.techniques.painting, weight),
+          surrealism: this.selectStyleElements(library.techniques.surrealism, weight),
+          conceptual: this.selectStyleElements(library.techniques.conceptual, weight)
+        }
+      };
+      
+      styles.push(style);
+    }
+    
+    return styles;
+  }
+
+  private async developHybridStyle(project: any, ideas: any[], hybridRatio: number): Promise<any[]> {
+    const styles = [];
+    const bourdinLibrary = this.state.context.styleLibrary.bourdin;
+    const magritteLibrary = this.state.context.styleLibrary.magritte;
+    
+    for (const idea of ideas) {
+      // Select a hybrid approach template
+      const hybridTemplate = this.selectRandomHybridTemplate();
+      
+      const style = {
+        name: `${idea.title} - ${hybridTemplate.name}`,
+        description: hybridTemplate.description,
+        composition: {
+          bourdin: this.selectStyleElements(bourdinLibrary.visual.composition, hybridRatio),
+          magritte: this.selectStyleElements(magritteLibrary.visual.composition, 1 - hybridRatio)
+        },
+        lighting: {
+          bourdin: this.selectStyleElements(bourdinLibrary.visual.lighting, hybridRatio),
+          magritte: this.selectStyleElements(magritteLibrary.visual.lighting, 1 - hybridRatio)
+        },
+        color: {
+          palette: this.mergeColorPalettes(
+            this.selectRandomPalette(bourdinLibrary.visual.color.palettes),
+            this.selectRandomPalette(magritteLibrary.visual.color.palettes),
+            hybridRatio
+          ),
+          treatment: [
+            ...this.selectStyleElements(bourdinLibrary.visual.color.treatments, hybridRatio),
+            ...this.selectStyleElements(magritteLibrary.visual.color.treatments, 1 - hybridRatio)
+          ]
+        },
+        elements: {
+          fashion: this.selectStyleElements(bourdinLibrary.elements.fashion, hybridRatio),
+          symbols: this.selectStyleElements(magritteLibrary.elements.symbols, 1 - hybridRatio),
+          props: [
+            ...this.selectStyleElements(bourdinLibrary.elements.props, hybridRatio),
+            ...this.selectStyleElements(magritteLibrary.elements.objects, 1 - hybridRatio)
+          ]
+        },
+        techniques: {
+          photographic: this.selectStyleElements(bourdinLibrary.techniques.photographic, hybridRatio),
+          surrealism: this.selectStyleElements(magritteLibrary.techniques.surrealism, 1 - hybridRatio),
+          narrative: [
+            ...this.selectStyleElements(bourdinLibrary.techniques.narrative, hybridRatio),
+            ...this.selectStyleElements(magritteLibrary.techniques.conceptual, 1 - hybridRatio)
+          ]
+        }
+      };
+      
+      styles.push(style);
+    }
+    
+    return styles;
+  }
+
+  private selectStyleElements(elements: string[], weight: number): string[] {
+    const count = Math.max(1, Math.floor(elements.length * weight));
+    return this.getRandomElements(elements, count);
+  }
+
+  private selectRandomPalette(palettes: string[][]): string[] {
+    return palettes[Math.floor(Math.random() * palettes.length)];
+  }
+
+  private mergeColorPalettes(palette1: string[], palette2: string[], ratio: number): string[] {
+    const count1 = Math.floor(palette1.length * ratio);
+    const count2 = Math.floor(palette2.length * (1 - ratio));
+    
+    return [
+      ...this.getRandomElements(palette1, count1),
+      ...this.getRandomElements(palette2, count2)
+    ];
+  }
+
+  private selectRandomHybridTemplate(): any {
+    const templates = this.state.context.hybridApproaches;
+    return templates[Math.floor(Math.random() * templates.length)];
+  }
+
+  private getRandomElements<T>(array: T[], count: number): T[] {
+    const shuffled = [...array].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
   }
   
-  private createDefaultStyle(): any {
-    return {
-      id: uuidv4(),
+  private async developDefaultStyle(project: any, ideas: any[]): Promise<any[]> {
+    return [{
       name: "Default Style",
-      description: "A simple, clean style suitable for various content",
-      visualCharacteristics: [
-        "clean lines",
-        "simple shapes",
-        "balanced composition"
-      ],
-      colorPalette: [
-        "#FFFFFF", // white
-        "#000000", // black
-        "#0077B6", // blue
-        "#FFD60A"  // yellow
-      ],
-      texture: "smooth, flat surfaces",
-      composition: "balanced, centered composition"
-    };
+      description: "A balanced blend of contemporary elements",
+      composition: ["balanced", "centered", "harmonious"],
+      lighting: ["natural", "soft", "ambient"],
+      color: {
+        palette: ["#000000", "#FFFFFF", "#808080"],
+        treatment: ["balanced", "natural"]
+      },
+      elements: {
+        primary: ["geometric shapes", "organic forms"],
+        secondary: ["texture", "pattern"],
+        accents: ["minimal details"]
+      },
+      techniques: {
+        primary: ["digital composition", "photographic elements"],
+        secondary: ["subtle effects", "clean editing"]
+      }
+    }];
   }
 } 

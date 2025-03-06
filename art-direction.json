@@ -1,72 +1,158 @@
 {
-  "styleEmphasis": [
-    "Magritte surrealism",
-    "oil painting technique",
-    "visible brushstrokes",
-    "canvas texture",
-    "painterly quality",
-    "traditional painting style",
-    "fine art",
-    "non-photorealistic",
-    "high contrast",
-    "atmospheric",
-    "surreal juxtaposition"
-  ],
-  "visualElements": [
-    "bowler hats",
-    "floating objects",
-    "clouds",
-    "blue skies",
-    "reflective surfaces",
-    "impossible scenes",
-    "ordinary objects in extraordinary contexts",
-    "visual paradoxes",
-    "windows and frames",
-    "silhouettes"
-  ],
-  "colorPalette": [
-    "Magritte blues",
-    "soft greens",
-    "earthy browns",
-    "rich blues",
-    "deep reds",
-    "golden highlights",
-    "shadow detail",
-    "selective saturation",
-    "oil paint color mixing",
-    "limited palette typical of Magritte's work"
-  ],
-  "compositionGuidelines": [
-    "rule of thirds",
-    "leading lines",
-    "depth of field",
-    "framing elements",
-    "balanced asymmetry",
-    "surreal scale relationships",
-    "clean compositions with clear subjects",
-    "canvas-like proportions",
-    "traditional painting composition"
-  ],
-  "moodAndTone": "dreamlike and contemplative with a sense of mystery and philosophical questioning, rendered with the texture and quality of oil paint on canvas",
-  "references": [
-    "René Magritte's 'The Son of Man'",
-    "René Magritte's 'The Empire of Light'",
-    "René Magritte's 'The Treachery of Images'",
-    "René Magritte's 'Golconda'",
-    "René Magritte's oil painting techniques",
-    "Traditional Belgian surrealist painting style"
-  ],
-  "avoidElements": [
-    "text",
-    "watermarks",
-    "distorted faces",
-    "overly saturated colors",
-    "digital artifacts",
-    "abstract expressionism",
-    "chaotic compositions",
-    "photorealistic rendering",
-    "digital art aesthetics",
-    "3D rendering look",
-    "photography-like lighting"
-  ]
+  "styles": {
+    "magritte": {
+      "styleEmphasis": [
+        "Magritte surrealism",
+        "oil painting technique",
+        "visible brushstrokes",
+        "canvas texture",
+        "painterly quality",
+        "traditional painting style",
+        "fine art",
+        "non-photorealistic",
+        "high contrast",
+        "atmospheric",
+        "surreal juxtaposition"
+      ],
+      "visualElements": [
+        "bowler hats",
+        "floating objects",
+        "clouds",
+        "blue skies",
+        "reflective surfaces",
+        "impossible scenes",
+        "ordinary objects in extraordinary contexts",
+        "visual paradoxes",
+        "windows and frames",
+        "silhouettes"
+      ],
+      "colorPalette": [
+        "Magritte blues",
+        "soft greens",
+        "earthy browns",
+        "rich blues",
+        "deep reds",
+        "golden highlights",
+        "shadow detail",
+        "selective saturation",
+        "oil paint color mixing",
+        "limited palette typical of Magritte's work"
+      ],
+      "compositionGuidelines": [
+        "rule of thirds",
+        "leading lines",
+        "depth of field",
+        "framing elements",
+        "balanced asymmetry",
+        "surreal scale relationships",
+        "clean compositions with clear subjects",
+        "canvas-like proportions",
+        "traditional painting composition"
+      ],
+      "moodAndTone": "dreamlike and contemplative with a sense of mystery and philosophical questioning, rendered with the texture and quality of oil paint on canvas",
+      "references": [
+        "René Magritte's 'The Son of Man'",
+        "René Magritte's 'The Empire of Light'",
+        "René Magritte's 'The Treachery of Images'",
+        "René Magritte's 'Golconda'",
+        "René Magritte's oil painting techniques",
+        "Traditional Belgian surrealist painting style"
+      ],
+      "avoidElements": [
+        "text",
+        "watermarks",
+        "distorted faces",
+        "overly saturated colors",
+        "digital artifacts",
+        "abstract expressionism",
+        "chaotic compositions",
+        "photorealistic rendering",
+        "digital art aesthetics",
+        "3D rendering look",
+        "photography-like lighting"
+      ]
+    },
+    "postPhotography": {
+      "styleEmphasis": [
+        "high-fashion surrealism",
+        "cinematic drama",
+        "bold and provocative styling",
+        "hyper-stylized compositions",
+        "exaggerated contrast",
+        "saturated color intensity",
+        "graphic and geometric arrangements",
+        "sharp and theatrical lighting",
+        "absurdist yet seductive visual narratives",
+        "glossy and polished aesthetic",
+        "otherworldly glamour",
+        "erotic undertones with surreal juxtapositions",
+        "enigmatic and dreamlike storytelling",
+        "fashion photography meets fine art",
+        "bold cropping and unexpected framing"
+      ],
+      "visualElements": [
+        "elongated limbs and dramatic poses",
+        "partially obscured figures",
+        "fragmented body parts as objects",
+        "high heels and stockings as symbols of fetishism",
+        "glossy red lips",
+        "unexpected mannequin-like expressions",
+        "disembodied legs and arms",
+        "retro automobiles with reflections",
+        "mirrors used for distorted realities",
+        "poolside glamour",
+        "vivid backdrops of red, pink, and orange",
+        "oversized accessories as surreal objects",
+        "subliminal tension in everyday settings",
+        "visual irony through exaggerated femininity",
+        "cinematic storytelling with incomplete narratives"
+      ],
+      "colorPalette": [
+        "high-contrast red and black",
+        "electric blues and deep purples",
+        "bold primary colors with extreme saturation",
+        "glossy skin tones with a hyperreal sheen",
+        "intense shadow-play creating depth",
+        "high-contrast highlights with a sculptural effect",
+        "retro pastel shades used subversively",
+        "artificial neon glow for added tension",
+        "striking monochrome with deep blacks and crisp whites"
+      ],
+      "compositionGuidelines": [
+        "tight cropping with focus on partial details",
+        "radical framing techniques",
+        "unexpected perspective shifts",
+        "graphic and symmetrical arrangements",
+        "negative space used for dramatic effect",
+        "extreme foreshortening and distorted angles",
+        "bold, unnatural color contrasts",
+        "forced perspectives that heighten the surrealist feel",
+        "motion blur used selectively to create tension",
+        "fragmentation of subjects to break realism"
+      ],
+      "moodAndTone": "Seductive, provocative, and unapologetically bold. The atmosphere should exude high-fashion surrealism with an undercurrent of eroticism and mystery. The compositions should be hyper-stylized, with strong graphical elements, exaggerated contrasts, and a polished yet surreal finish. The emotional tone balances between desire, unease, and playful irony, creating a world that is both glamorous and unsettling. The images should feel like snapshots of enigmatic, unresolved stories, always leaving room for interpretation and intrigue.",
+      "references": [
+        "Guy Bourdin's Vogue Paris fashion editorials",
+        "Guy Bourdin's Charles Jourdan shoe campaigns",
+        "Helmut Newton's high-gloss eroticism",
+        "Surrealist painters like Dalí and De Chirico",
+        "Man Ray's experimental fashion photography",
+        "Hitchcock's dramatic lighting and compositions",
+        "Kubrick's symmetrical cinematography",
+        "Retro-futuristic advertising aesthetics",
+        "Fetishistic and cinematic styling from the 70s and 80s"
+      ],
+      "avoidElements": [
+        "soft-focus or pastel romanticism",
+        "naturalistic and candid photography",
+        "overly complex backgrounds",
+        "muted or desaturated color schemes",
+        "chaotic or cluttered compositions",
+        "low-contrast, flat lighting",
+        "overly digital and CGI aesthetics",
+        "realism without surreal or exaggerated elements"
+      ]
+    }
+  },
+  "defaultStyle": "postPhotography"
 } 
