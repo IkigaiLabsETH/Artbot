@@ -31,7 +31,28 @@ interface ArtDirection {
 // Default art direction that can be overridden by environment variables or parameters
 const defaultArtDirection: ArtDirection = {
   styleEmphasis: [
-    // Magritte elements
+    // Primary Guy Bourdin elements (emphasized)
+    "high-fashion surrealism",
+    "cinematic drama",
+    "bold and provocative styling",
+    "hyper-stylized compositions",
+    "exaggerated contrast",
+    "saturated color intensity",
+    "graphic and geometric arrangements",
+    "sharp and theatrical lighting",
+    "absurdist yet seductive visual narratives",
+    "glossy and polished aesthetic",
+    "otherworldly glamour",
+    "erotic undertones with surreal juxtapositions",
+    "enigmatic and dreamlike storytelling",
+    "fashion photography meets fine art",
+    "bold cropping and unexpected framing",
+    "commercial aesthetics with artistic depth",
+    "fetishistic elements with artistic intent",
+    "narrative tension through visual fragments",
+    "hyperreal color saturation",
+    "staged scenarios with mysterious implications",
+    // Magritte elements (complementary)
     "Magritte surrealism",
     "oil painting technique",
     "visible brushstrokes",
@@ -56,31 +77,31 @@ const defaultArtDirection: ArtDirection = {
     "ephemeral illusions",
     "philosophical questioning",
     "conceptual paradoxes",
-    "visual poetry",
-    // Guy Bourdin elements
-    "high-fashion surrealism",
-    "cinematic drama",
-    "bold and provocative styling",
-    "hyper-stylized compositions",
-    "exaggerated contrast",
-    "saturated color intensity",
-    "graphic and geometric arrangements",
-    "sharp and theatrical lighting",
-    "absurdist yet seductive visual narratives",
-    "glossy and polished aesthetic",
-    "otherworldly glamour",
-    "erotic undertones with surreal juxtapositions",
-    "enigmatic and dreamlike storytelling",
-    "fashion photography meets fine art",
-    "bold cropping and unexpected framing",
-    "commercial aesthetics with artistic depth",
-    "fetishistic elements with artistic intent",
-    "narrative tension through visual fragments",
-    "hyperreal color saturation",
-    "staged scenarios with mysterious implications"
+    "visual poetry"
   ],
   visualElements: [
-    // Magritte elements
+    // Primary Guy Bourdin elements (emphasized)
+    "elongated limbs and dramatic poses",
+    "partially obscured figures",
+    "fragmented body parts as objects",
+    "high heels and stockings as symbols of fetishism",
+    "glossy red lips",
+    "unexpected mannequin-like expressions",
+    "disembodied legs and arms",
+    "retro automobiles with reflections",
+    "mirrors used for distorted realities",
+    "poolside glamour",
+    "vivid backdrops of red, pink, and orange",
+    "oversized accessories as surreal objects",
+    "subliminal tension in everyday settings",
+    "visual irony through exaggerated femininity",
+    "cinematic storytelling with incomplete narratives",
+    "fashion accessories in surreal contexts",
+    "models with doll-like or mannequin qualities",
+    "luxury objects with sinister undertones",
+    "domestic settings with uncanny elements",
+    "commercial products elevated to artistic symbols",
+    // Magritte elements (complementary)
     "bowler hats",
     "floating objects",
     "clouds",
@@ -105,47 +126,10 @@ const defaultArtDirection: ArtDirection = {
     "curtains framing scenes",
     "mismatched reflections",
     "disjointed landscapes",
-    "blend of interior and exterior spaces",
-    // Guy Bourdin elements
-    "elongated limbs and dramatic poses",
-    "partially obscured figures",
-    "fragmented body parts as objects",
-    "high heels and stockings as symbols of fetishism",
-    "glossy red lips",
-    "unexpected mannequin-like expressions",
-    "disembodied legs and arms",
-    "retro automobiles with reflections",
-    "mirrors used for distorted realities",
-    "poolside glamour",
-    "vivid backdrops of red, pink, and orange",
-    "oversized accessories as surreal objects",
-    "subliminal tension in everyday settings",
-    "visual irony through exaggerated femininity",
-    "cinematic storytelling with incomplete narratives",
-    "fashion accessories in surreal contexts",
-    "models with doll-like or mannequin qualities",
-    "luxury objects with sinister undertones",
-    "domestic settings with uncanny elements",
-    "commercial products elevated to artistic symbols"
+    "blend of interior and exterior spaces"
   ],
   colorPalette: [
-    // Magritte elements
-    "Magritte blues",
-    "soft greens",
-    "earthy browns",
-    "rich blues",
-    "deep reds",
-    "golden highlights",
-    "shadow detail",
-    "selective saturation",
-    "oil paint color mixing",
-    "limited palette typical of Magritte's work",
-    "twilight blues from 'The Empire of Light'",
-    "clear sky blues",
-    "muted greens of foliage",
-    "warm wood tones",
-    "cool grays for clouds",
-    // Guy Bourdin elements
+    // Primary Guy Bourdin colors (emphasized)
     "high-contrast red and black",
     "electric blues and deep purples",
     "bold primary colors with extreme saturation",
@@ -160,26 +144,26 @@ const defaultArtDirection: ArtDirection = {
     "jewel tones with unnatural intensity",
     "synthetic color combinations",
     "color blocking with dramatic impact",
-    "reflective surfaces with color distortion"
+    "reflective surfaces with color distortion",
+    // Magritte colors (complementary)
+    "Magritte blues",
+    "soft greens",
+    "earthy browns",
+    "rich blues",
+    "deep reds",
+    "golden highlights",
+    "shadow detail",
+    "selective saturation",
+    "oil paint color mixing",
+    "limited palette typical of Magritte's work",
+    "twilight blues from 'The Empire of Light'",
+    "clear sky blues",
+    "muted greens of foliage",
+    "warm wood tones",
+    "cool grays for clouds"
   ],
   compositionGuidelines: [
-    // Magritte elements
-    "rule of thirds",
-    "leading lines",
-    "depth of field",
-    "framing elements",
-    "balanced asymmetry",
-    "surreal scale relationships",
-    "clean compositions with clear subjects",
-    "canvas-like proportions",
-    "traditional painting composition",
-    "centered single subject focus",
-    "theatrical staging of elements",
-    "window-like framing devices",
-    "horizon line placement for psychological effect",
-    "juxtaposition of disparate scales",
-    "symmetrical balance with surreal disruption",
-    // Guy Bourdin elements
+    // Primary Guy Bourdin composition (emphasized)
     "tight cropping with focus on partial details",
     "radical framing techniques",
     "unexpected perspective shifts",
@@ -194,11 +178,41 @@ const defaultArtDirection: ArtDirection = {
     "frame within frame techniques",
     "strategic placement of color accents",
     "compositional tension through asymmetry",
-    "cinematic framing with narrative implications"
+    "cinematic framing with narrative implications",
+    // Magritte composition (complementary)
+    "rule of thirds",
+    "leading lines",
+    "depth of field",
+    "framing elements",
+    "balanced asymmetry",
+    "surreal scale relationships",
+    "clean compositions with clear subjects",
+    "canvas-like proportions",
+    "traditional painting composition",
+    "centered single subject focus",
+    "theatrical staging of elements",
+    "window-like framing devices",
+    "horizon line placement for psychological effect",
+    "juxtaposition of disparate scales",
+    "symmetrical balance with surreal disruption"
   ],
-  moodAndTone: "A fusion of Magritte's dreamlike philosophical questioning with Guy Bourdin's seductive, provocative boldness. The atmosphere should blend surrealist concepts with high-fashion aesthetics, creating compositions that are both intellectually stimulating and visually striking. Magritte's quiet contemplation, subtle humor, and metaphysical puzzles merge with Bourdin's theatrical drama, erotic tension, and commercial glamour. The result should be images that provoke thought while captivating with their bold visual impact—philosophical depth expressed through provocative styling, traditional painting techniques enhanced by fashion photography's dramatic flair, and surrealist concepts given new life through contemporary visual language.",
+  moodAndTone: "A bold exploration of Guy Bourdin's provocative high-fashion surrealism, leading with theatrical drama, erotic tension, and commercial glamour, while incorporating Magritte's dreamlike philosophical elements. The atmosphere primarily emphasizes Bourdin's psychological intensity, seductive aesthetics, and calculated discomfort, enriched by Magritte's contemplative surrealism and metaphysical puzzles. The result should be images that provoke both visceral and intellectual responses—pushing the boundaries of fashion photography into fine art through radical composition and mysterious storytelling, while maintaining access to the deeper philosophical questions characteristic of surrealism.",
   references: [
-    // Magritte references
+    // Primary Guy Bourdin references (emphasized)
+    "Guy Bourdin's Vogue Paris fashion editorials",
+    "Guy Bourdin's Charles Jourdan shoe campaigns",
+    "Guy Bourdin's work for French Vogue (1955-1987)",
+    "Guy Bourdin's Pentax calendar series",
+    "Guy Bourdin's Chanel campaigns",
+    "Helmut Newton's high-gloss eroticism",
+    "Man Ray's experimental fashion photography",
+    "Hitchcock's dramatic lighting and compositions",
+    "Kubrick's symmetrical cinematography",
+    "Retro-futuristic advertising aesthetics",
+    "Fetishistic and cinematic styling from the 70s and 80s",
+    "Roland Barthes' semiotic analysis of fashion imagery",
+    "David Lynch's surrealist film aesthetics",
+    // Magritte references (complementary)
     "René Magritte's 'The Son of Man'",
     "René Magritte's 'The Empire of Light'",
     "René Magritte's 'The Treachery of Images'",
@@ -212,21 +226,7 @@ const defaultArtDirection: ArtDirection = {
     "René Magritte's 'The Listening Room (La Chambre d'Écoute)'",
     "René Magritte's 'La Clairvoyance'",
     "René Magritte's oil painting techniques",
-    "Traditional Belgian surrealist painting style",
-    // Guy Bourdin references
-    "Guy Bourdin's Vogue Paris fashion editorials",
-    "Guy Bourdin's Charles Jourdan shoe campaigns",
-    "Guy Bourdin's work for French Vogue (1955-1987)",
-    "Guy Bourdin's Pentax calendar series",
-    "Guy Bourdin's Chanel campaigns",
-    "Helmut Newton's high-gloss eroticism",
-    "Man Ray's experimental fashion photography",
-    "Hitchcock's dramatic lighting and compositions",
-    "Kubrick's symmetrical cinematography",
-    "Retro-futuristic advertising aesthetics",
-    "Fetishistic and cinematic styling from the 70s and 80s",
-    "Roland Barthes' semiotic analysis of fashion imagery",
-    "David Lynch's surrealist film aesthetics"
+    "Traditional Belgian surrealist painting style"
   ],
   avoidElements: [
     // Common elements to avoid
@@ -238,10 +238,7 @@ const defaultArtDirection: ArtDirection = {
     "3D rendering look",
     "photorealistic rendering",
     "digital art aesthetics",
-    // Magritte-specific avoids
-    "distorted faces (unless in Magritte's specific style)",
-    "overly saturated colors (unless in Bourdin's specific style)",
-    // Guy Bourdin specific avoids
+    // Style-specific avoids
     "soft-focus or pastel romanticism",
     "naturalistic and candid photography",
     "muted or desaturated color schemes",
@@ -249,7 +246,11 @@ const defaultArtDirection: ArtDirection = {
     "overly digital and CGI aesthetics",
     "realism without surreal or exaggerated elements",
     "documentary-style photography",
-    "casual or unstylized compositions"
+    "casual or unstylized compositions",
+    "traditional surrealist clichés without fashion context",
+    "overly literal interpretations",
+    "distorted faces (unless in Magritte's specific style)",
+    "overly saturated colors (unless in Bourdin's specific style)"
   ]
 };
 
