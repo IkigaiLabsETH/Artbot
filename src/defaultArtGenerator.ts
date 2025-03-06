@@ -406,32 +406,60 @@ async function generateArt(concept: string) {
       });
     } else {
       // Check if the provided concept is post-photography related
-      const postPhotoKeywords = [
-        // Fashion and styling keywords
-        'fashion', 'glamour', 'editorial', 'haute couture', 'runway', 'model', 'magazine', 'styling',
-        // Visual style keywords
-        'glossy', 'high-contrast', 'saturated', 'vibrant', 'bold colors', 'electric', 'crimson',
-        // Composition keywords
-        'cropped', 'fragmented', 'disembodied', 'partial view', 'tight framing', 'cinematic', 'theatrical',
-        // Narrative and mood keywords
-        'provocative', 'erotic', 'suggestive', 'mysterious narrative', 'implied story', 'tension', 'suspense',
-        // Object keywords
-        'stiletto', 'high heel', 'mannequin', 'luxury goods', 'cosmetics', 'perfume', 'jewelry', 'accessories',
-        // Artist references
-        'bourdin', 'newton', 'avedon', 'penn', 'post-photography'
+      const bourdinKeywords = [
+        // Core Bourdin elements
+        'red', 'crimson', 'glossy', 'theatrical', 'dramatic', 'staged', 'narrative',
+        // Fashion elements
+        'fashion', 'glamour', 'editorial', 'haute couture', 'model', 'magazine',
+        // Visual style
+        'high-contrast', 'saturated', 'vibrant', 'cropped', 'fragmented',
+        // Composition elements
+        'partial view', 'tight framing', 'cinematic', 'diagonal', 'bisected',
+        // Objects and props
+        'stiletto', 'heel', 'mannequin', 'mirror', 'reflection', 'chrome',
+        // Mood and atmosphere
+        'erotic', 'tension', 'mysterious', 'sinister', 'psychological',
+        // Lighting
+        'spotlight', 'shadow', 'backlit', 'neon', 'gel lighting',
+        // Luxury elements
+        'luxury', 'cosmetics', 'perfume', 'jewelry', 'accessories',
+        // Specific Bourdin techniques
+        'bourdin', 'fragmentation', 'radical crop', 'staged scene'
       ];
       
-      // Always regenerate as post-photography concept unless explicitly Magritte-themed
+      // Always regenerate as Bourdin concept unless explicitly Magritte-themed
       const isMagritteThemed = concept.toLowerCase().includes('magritte') || 
                               concept.toLowerCase().includes('bowler hat') ||
                               concept.toLowerCase().includes('pipe') ||
                               (detectedCategory && detectedCategory.toLowerCase().includes('magritte'));
       
+      const isBourdinStyle = bourdinKeywords.some(keyword => 
+        concept.toLowerCase().includes(keyword.toLowerCase())
+      );
+      
       if (!isMagritteThemed) {
-        console.log(`\n🎬 Transforming concept into post-photography style...`);
+        // Select a random Bourdin-specific category based on concept keywords
+        const bourdinCategories = [
+          ConceptCategory.BOURDIN_FASHION,
+          ConceptCategory.BOURDIN_COLOR,
+          ConceptCategory.BOURDIN_COMPOSITION,
+          ConceptCategory.BOURDIN_NARRATIVE,
+          ConceptCategory.BOURDIN_OBJECTS,
+          ConceptCategory.BOURDIN_FRAGMENTATION,
+          ConceptCategory.BOURDIN_GLAMOUR,
+          ConceptCategory.BOURDIN_EROTICISM,
+          ConceptCategory.BOURDIN_LIGHTING,
+          ConceptCategory.BOURDIN_STAGING,
+          ConceptCategory.BOURDIN_CROPPING,
+          ConceptCategory.BOURDIN_LUXURY
+        ];
+        
+        const selectedCategory = bourdinCategories[Math.floor(Math.random() * bourdinCategories.length)];
+        
+        console.log(`\n🎬 Transforming concept into ${selectedCategory} style...`);
         artConcept = await generateCinematicConcept(aiService, {
           temperature: 0.9,
-          category: ConceptCategory.POST_PHOTOGRAPHY
+          category: selectedCategory
         });
       }
     }

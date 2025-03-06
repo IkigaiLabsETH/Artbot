@@ -28,7 +28,12 @@ export enum ConceptCategory {
   BOURDIN_SHADOWS = 'bourdin_shadows',             // Dramatic shadow play and lighting techniques
   BOURDIN_REFLECTIONS = 'bourdin_reflections',     // Mirror reflections and visual duplications
   BOURDIN_AUTOMOBILES = 'bourdin_automobiles',     // Vintage cars and automotive elements in fashion contexts
-  BOURDIN_SURREALISM = 'bourdin_surrealism'        // General Bourdin surrealist style with fashion elements
+  BOURDIN_SURREALISM = 'bourdin_surrealism',        // General Bourdin surrealist style with fashion elements
+  BOURDIN_EROTICISM = 'bourdin_eroticism',         // Erotic tension and seductive elements in fashion context
+  BOURDIN_LIGHTING = 'bourdin_lighting',           // Dramatic and theatrical lighting techniques
+  BOURDIN_STAGING = 'bourdin_staging',             // Complex staged scenarios with psychological tension
+  BOURDIN_CROPPING = 'bourdin_cropping',           // Extreme and radical cropping techniques
+  BOURDIN_LUXURY = 'bourdin_luxury',               // Luxury product photography with surreal elements
 }
 
 /**
@@ -43,7 +48,23 @@ export async function generateCinematicConcept(
     category?: ConceptCategory;
   } = {}
 ): Promise<string> {
-  const category = options.category || ConceptCategory.POST_PHOTOGRAPHY;
+  // Increase chance of selecting Bourdin categories by default
+  const defaultBourdinCategories = [
+    ConceptCategory.BOURDIN_FASHION,
+    ConceptCategory.BOURDIN_COLOR,
+    ConceptCategory.BOURDIN_COMPOSITION,
+    ConceptCategory.BOURDIN_NARRATIVE,
+    ConceptCategory.BOURDIN_OBJECTS,
+    ConceptCategory.BOURDIN_FRAGMENTATION,
+    ConceptCategory.BOURDIN_GLAMOUR,
+    ConceptCategory.BOURDIN_EROTICISM,
+    ConceptCategory.BOURDIN_LIGHTING,
+    ConceptCategory.BOURDIN_STAGING,
+    ConceptCategory.BOURDIN_CROPPING,
+    ConceptCategory.BOURDIN_LUXURY
+  ];
+  
+  const category = options.category || defaultBourdinCategories[Math.floor(Math.random() * defaultBourdinCategories.length)];
   
   // Define category-specific prompts
   const categoryPrompts = {
@@ -599,7 +620,72 @@ Examples of good Bourdin surrealist concepts:
 - "fashion accessories transforming into other objects"
 - "model in impossible physical position"
 - "surreal narrative sequence in fashion context"
-- "fashion elements creating visual paradox"`
+- "fashion elements creating visual paradox"`,
+
+    [ConceptCategory.BOURDIN_EROTICISM]: `You are Guy Bourdin, master of creating erotic tension within the context of high-fashion photography.
+
+Your concepts should focus on the subtle interplay between seduction, fashion, and psychological tension, without being explicitly sexual.
+
+Examples of good Bourdin erotic concepts:
+- "red lips against polished chrome"
+- "stockinged legs in mirror maze"
+- "model's reflection with hidden desire"
+- "perfume bottle with sensual shadow"
+- "gloved hand touching luxury object"
+- "stiletto heel piercing silk fabric"
+- "model's gaze in fractured mirror"`,
+
+    [ConceptCategory.BOURDIN_LIGHTING]: `You are Guy Bourdin, innovator of dramatic lighting techniques in fashion photography.
+
+Your concepts should emphasize theatrical lighting that creates psychological tension and dramatic atmosphere.
+
+Examples of good Bourdin lighting concepts:
+- "harsh spotlight on crimson dress"
+- "model split by diagonal shadow"
+- "neon glow on glossy surface"
+- "dramatic backlighting through smoke"
+- "colored gel shadows on skin"
+- "single light source drama"
+- "model emerging from darkness"`,
+
+    [ConceptCategory.BOURDIN_STAGING]: `You are Guy Bourdin, master of complex staged scenarios in fashion photography.
+
+Your concepts should create elaborate theatrical scenes with psychological tension and narrative implications.
+
+Examples of good Bourdin staging concepts:
+- "model fleeing luxury hotel"
+- "mannequin in crime scene"
+- "fashion emergency in elevator"
+- "mysterious meeting at pool"
+- "glamorous accident scene"
+- "model observing own double"
+- "luxury products as evidence"`,
+
+    [ConceptCategory.BOURDIN_CROPPING]: `You are Guy Bourdin, pioneer of radical cropping techniques in fashion photography.
+
+Your concepts should emphasize extreme framing and partial views that create visual tension and mystery.
+
+Examples of good Bourdin cropping concepts:
+- "legs cropped at crucial moment"
+- "partial face in mirror shard"
+- "truncated figure in doorway"
+- "model bisected by frame"
+- "extreme closeup of red nail"
+- "fragmented body in pieces"
+- "radical perspective on heel"`,
+
+    [ConceptCategory.BOURDIN_LUXURY]: `You are Guy Bourdin, transforming luxury product photography into surreal art.
+
+Your concepts should elevate commercial products into dreamlike scenarios with psychological depth.
+
+Examples of good Bourdin luxury concepts:
+- "lipstick drawing blood line"
+- "perfume bottle casting monster shadow"
+- "jewelry strangling mannequin neck"
+- "handbag with impossible contents"
+- "watch face showing alternate reality"
+- "cosmetics creating crime scene"
+- "luxury brand as murder weapon"`,
   };
   
   const systemPrompt = categoryPrompts[category] || categoryPrompts[ConceptCategory.MAGRITTE_SURREALISM];
@@ -698,7 +784,12 @@ export async function generateMultipleConcepts(
     [ConceptCategory.BOURDIN_SHADOWS]: `You are Guy Bourdin, the master of dramatic shadow play and innovative lighting techniques that transformed fashion photography.`,
     [ConceptCategory.BOURDIN_REFLECTIONS]: `You are Guy Bourdin, the innovative photographer known for your use of mirrors, reflections, and visual duplications to create surreal fashion narratives.`,
     [ConceptCategory.BOURDIN_AUTOMOBILES]: `You are Guy Bourdin, the revolutionary fashion photographer known for incorporating vintage automobiles and automotive elements into your surreal fashion narratives.`,
-    [ConceptCategory.BOURDIN_SURREALISM]: `You are Guy Bourdin, the master of fashion surrealism who transformed commercial photography into fine art through your distinctive blend of surrealist techniques and high-fashion aesthetics.`
+    [ConceptCategory.BOURDIN_SURREALISM]: `You are Guy Bourdin, the master of fashion surrealism who transformed commercial photography into fine art through your distinctive blend of surrealist techniques and high-fashion aesthetics.`,
+    [ConceptCategory.BOURDIN_EROTICISM]: `You are Guy Bourdin, master of creating erotic tension within the context of high-fashion photography.`,
+    [ConceptCategory.BOURDIN_LIGHTING]: `You are Guy Bourdin, innovator of dramatic lighting techniques in fashion photography.`,
+    [ConceptCategory.BOURDIN_STAGING]: `You are Guy Bourdin, master of complex staged scenarios in fashion photography.`,
+    [ConceptCategory.BOURDIN_CROPPING]: `You are Guy Bourdin, pioneer of radical cropping techniques in fashion photography.`,
+    [ConceptCategory.BOURDIN_LUXURY]: `You are Guy Bourdin, transforming luxury product photography into surreal art.`,
   };
   
   const categoryDescription = categoryPrompts[category] || categoryPrompts[ConceptCategory.MAGRITTE_SURREALISM];
