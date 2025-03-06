@@ -1281,510 +1281,142 @@ export class CreativeEngine {
       // Check if we're using FLUX Pro
       const isFluxPro = this.replicateService.getDefaultModel().includes('black-forest-labs/flux');
       
-      // Enhanced style detection with specific artistic elements
+      // Enhanced style detection with expanded Bourdin keywords
       const bourdinKeywords = [
+        // Core Bourdin elements
         'fashion', 'bourdin', 'glamour', 'editorial',
         'stiletto', 'mannequin', 'haute couture', 'vogue',
         'theatrical', 'provocative', 'cinematic', 'legs',
         'shoes', 'cosmetics', 'surreal fashion', 'narrative',
         'charles jourdan', 'french vogue', 'composition',
-        'color story', 'mise-en-scene', 'dramatic lighting'
+        'color story', 'mise-en-scene', 'dramatic lighting',
+        // Additional Bourdin-specific elements
+        'fetish', 'glossy', 'high-contrast', 'cropped',
+        'fragmented', 'commercial', 'staged', 'dramatic',
+        'fashion editorial', 'studio lighting', 'posed',
+        'stylized', 'fashion photography', 'advertising',
+        'fashion campaign', 'fashion narrative', 'fashion story',
+        'fashion styling', 'fashion art', 'fashion surrealism'
       ];
       
-      const magritteKeywords = [
-        'magritte', 'surreal', 'bowler hat', 'apple',
-        'pipe', 'cloud', 'window', 'mirror', 'bird',
-        'philosophical', 'paradox', 'mystery',
-        'curtain', 'silhouette', 'train', 'eye',
-        'day-night', 'interior-exterior', 'floating',
-        'metamorphosis', 'stone castle', 'fire', 'leaf',
-        'treachery', 'human condition', 'empire of light'
-      ];
-      
-      // Determine style with enhanced keyword matching
-      const isBourdinStyle = bourdinKeywords.some(keyword => 
-        concept.toLowerCase().includes(keyword)) || options.style === 'bourdin';
-      
-      const isMagritteStyle = magritteKeywords.some(keyword => 
-        concept.toLowerCase().includes(keyword)) || options.style === 'magritte';
-      
-      // Default to Magritte if no style is specified
-      const styleToUse = isBourdinStyle ? 'bourdin' : 'magritte';
-      
-      // Style-specific artistic parameters
+      // Strengthen Bourdin parameters
       const artisticParams = {
         bourdin: {
+          parameters: {
+            numInferenceSteps: 50,        // Increased from 45
+            guidanceScale: 10.5,          // Increased from 9.5
+            temperature: 0.98,            // Increased from 0.95
+            saturation: 1.35,            // Increased from 1.2
+            contrast: 1.45,              // Increased from 1.3
+            sharpness: 1.2,              // Added sharpness
+            vibrance: 1.25,              // Added vibrance
+            clarity: 1.3,                // Added clarity
+            dramaticEffect: 1.4          // Added dramatic effect
+          },
+          emphasis: {
+            fashion: 0.9,                // Increased fashion weight
+            surrealism: 0.7,             // Reduced surrealism weight
+            commercial: 0.85,            // Increased commercial weight
+            theatrical: 0.95,            // Increased theatrical weight
+            psychological: 0.8           // Added psychological weight
+          },
           composition: {
-            cropping: 'radical and unexpected',
-            framing: 'theatrical and staged',
-            perspective: 'dramatic and distorted',
-            depth: 'compressed and layered',
-            arrangement: 'geometric precision',
-            balance: 'asymmetrical tension',
-            scale: 'exaggerated proportions',
-            viewpoint: 'unconventional angles',
-            staging: 'meticulous set design',
-            dimensionality: 'flattened space with depth',
-            dynamism: 'implied movement',
-            negative_space: 'strategic use'
+            arrangement: "extreme and provocative",
+            balance: "deliberate asymmetrical tension",
+            perspective: "radically distorted",
+            depth: "intensely compressed",
+            scale: "dramatically exaggerated proportions",
+            cropping: "aggressive and partial",
+            framing: "hyper-theatrical and daring"
           },
           lighting: {
-            style: 'high-contrast and dramatic',
-            direction: 'precise and sculptural',
-            shadows: 'deep and graphic',
-            highlights: 'intense and controlled',
-            mood: 'enigmatic and cinematic',
-            quality: 'hard and focused',
-            contrast: 'extreme and deliberate',
-            sourcePlacement: 'theatrical positioning',
-            environmentalLight: 'controlled studio',
-            coloredLighting: 'dramatic gels',
-            spotlighting: 'precise beam control',
-            shadowPlay: 'graphic patterns'
+            style: "ultra high-contrast and theatrical",
+            direction: "sculptural and dramatic",
+            shadows: "deep black graphic shadows",
+            highlights: "intense specular highlights",
+            mood: "hyper-dramatic and cinematic"
           },
           color: {
-            palette: [
-              'saturated red',
-              'deep burgundy',
-              'electric blue',
-              'emerald green',
-              'hot pink',
-              'glossy black',
-              'vibrant yellow',
-              'rich purple',
-              'metallic silver',
-              'flesh tones',
-              'blood red',
-              'neon accents',
-              'jewel tones',
-              'cosmetic pastels'
-            ],
-            saturation: 'intense and deliberate',
-            contrast: 'maximum impact',
-            treatment: 'high-gloss finish',
-            harmony: 'bold and provocative',
-            mood: 'sensual and dramatic',
-            symbolism: 'psychological color',
-            relationships: 'tension and attraction',
-            schemes: 'complementary shock'
+            palette: ["blood red", "electric blue", "deep black", "acid green"],
+            saturation: "maximum",
+            contrast: "extreme",
+            treatment: "glossy and vibrant"
           },
           elements: {
-            fashion: [
-              'stiletto heels',
-              'haute couture garments',
-              'designer accessories',
-              'cosmetics',
-              'stockings',
-              'gloves',
-              'jewelry',
-              'lingerie',
-              'evening wear',
-              'avant-garde designs',
-              'charles jourdan shoes',
-              'luxury brands',
-              'experimental fashion',
-              'sculptural clothing'
-            ],
-            props: [
-              'mirrors',
-              'mannequins',
-              'vintage cars',
-              'architectural elements',
-              'geometric shapes',
-              'water features',
-              'glass surfaces',
-              'modernist furniture',
-              'industrial objects',
-              'luxury goods',
-              'surreal objects',
-              'found objects',
-              'natural elements',
-              'theatrical props'
-            ],
-            poses: [
-              'fragmented bodies',
-              'cropped limbs',
-              'elongated figures',
-              'dramatic gestures',
-              'mannequin-like poses',
-              'contorted positions',
-              'suspended motion',
-              'sculptural arrangements',
-              'implied movement',
-              'psychological tension',
-              'erotic suggestion',
-              'abstract forms',
-              'geometric alignment',
-              'narrative gestures'
-            ],
-            settings: [
-              'studio environments',
-              'location shoots',
-              'architectural spaces',
-              'minimalist sets',
-              'surreal landscapes',
-              'urban locations',
-              'beach scenes',
-              'industrial spaces',
-              'luxury interiors',
-              'geometric backgrounds',
-              'abstract environments',
-              'constructed realities',
-              'theatrical stages',
-              'narrative spaces'
-            ]
+            fashion: ["haute couture", "stilettos", "luxury accessories"],
+            props: ["mirrors", "mannequins", "geometric shapes"],
+            poses: ["extreme", "fragmented", "provocative"]
           },
           techniques: {
-            photography: [
-              'controlled lighting',
-              'precise exposure',
-              'color filtration',
-              'multiple exposure',
-              'strategic cropping',
-              'depth compression',
-              'perspective manipulation',
-              'film chemistry',
-              'color saturation',
-              'shadow control',
-              'highlight retention',
-              'motion blur',
-              'focus manipulation',
-              'optical effects'
-            ],
-            styling: [
-              'provocative arrangement',
-              'surreal juxtaposition',
-              'geometric composition',
-              'body fragmentation',
-              'prop integration',
-              'fashion storytelling',
-              'visual tension',
-              'narrative staging',
-              'color coordination',
-              'texture contrast',
-              'sculptural styling',
-              'abstract arrangement',
-              'psychological styling',
-              'symbolic placement'
-            ],
-            narrative: [
-              'implied stories',
-              'psychological drama',
-              'erotic suggestion',
-              'dark humor',
-              'surreal scenarios',
-              'fashion allegory',
-              'visual metaphor',
-              'dream sequences',
-              'symbolic narrative',
-              'emotional tension',
-              'mysterious plots',
-              'cinematic scenes',
-              'theatrical drama',
-              'psychological depth'
-            ],
-            postProduction: [
-              'color enhancement',
-              'contrast manipulation',
-              'selective printing',
-              'dodging and burning',
-              'color filtration',
-              'texture enhancement',
-              'grain control',
-              'tonal adjustment',
-              'highlight control',
-              'shadow detail',
-              'color balance',
-              'print finishing',
-              'retouching',
-              'presentation'
-            ]
-          },
-          conceptualThemes: {
-            sexuality: [
-              'erotic suggestion',
-              'body fragmentation',
-              'intimate moments',
-              'psychological tension',
-              'desire and taboo',
-              'sensual atmosphere'
-            ],
-            consumerism: [
-              'luxury goods',
-              'fashion fetishism',
-              'brand storytelling',
-              'product dramatization',
-              'commercial surrealism',
-              'aspirational imagery'
-            ],
-            psychology: [
-              'dream states',
-              'unconscious desires',
-              'psychological drama',
-              'emotional tension',
-              'narrative mystery',
-              'symbolic suggestion'
-            ],
-            aesthetics: [
-              'beauty standards',
-              'fashion innovation',
-              'visual pleasure',
-              'artistic composition',
-              'stylistic evolution',
-              'medium exploration'
-            ],
-            narrative: [
-              'implied stories',
-              'cinematic moments',
-              'suspended drama',
-              'visual sequences',
-              'theatrical scenes',
-              'psychological plots'
-            ],
-            technique: [
-              'photographic mastery',
-              'lighting innovation',
-              'color exploration',
-              'compositional rules',
-              'technical precision',
-              'medium boundaries'
-            ]
+            photography: ["high-speed sync", "dramatic lighting", "color gels"],
+            styling: ["avant-garde fashion", "provocative poses", "extreme cropping"],
+            narrative: ["psychological tension", "erotic suggestion", "commercial surrealism"]
           }
         },
         magritte: {
+          parameters: {
+            numInferenceSteps: 28,        // Standard for surrealist work
+            guidanceScale: 7.0,           // More balanced for surrealism
+            temperature: 0.75,            // More controlled
+            saturation: 1.0,             // Natural saturation
+            contrast: 1.0,               // Natural contrast
+            sharpness: 1.0,              // Standard sharpness
+            vibrance: 1.0,               // Natural vibrance
+            clarity: 1.0,                // Standard clarity
+            dramaticEffect: 1.0          // Natural dramatic effect
+          },
+          emphasis: {
+            surrealism: 0.9,             // High surrealism weight
+            symbolism: 0.85,             // Strong symbolic emphasis
+            philosophy: 0.8,             // Philosophical undertones
+            mystery: 0.75,               // Mysterious elements
+            poetry: 0.7                  // Poetic elements
+          },
           composition: {
-            arrangement: 'precise',
-            balance: 'harmonious',
-            perspective: 'realistic',
-            depth: 'ambiguous',
-            scale: 'paradoxical',
-            framing: 'theatrical',
-            layering: 'overlapping realities',
-            spatiality: 'impossible architecture',
-            symmetry: 'deceptive balance',
-            viewpoint: 'frontal and direct',
-            staging: 'theatrical presentation',
-            dimensionality: 'flattened depth with realistic rendering'
+            arrangement: "precise and balanced",
+            balance: "carefully structured",
+            perspective: "subtly altered",
+            depth: "ambiguous and dreamlike",
+            scale: "playfully distorted",
+            cropping: "classical and considered",
+            framing: "contemplative and clean"
           },
           lighting: {
-            style: 'naturalistic',
-            direction: 'subtle',
-            shadows: 'contradictory',
-            highlights: 'gentle',
-            mood: 'mysterious',
-            timeOfDay: 'day-night contrast',
-            atmosphere: 'dreamlike clarity',
-            quality: 'crystalline',
-            contrast: 'subtle yet profound',
-            sourcePlacement: 'logically impossible',
-            environmentalLight: 'empire of light effect',
-            shadowLogic: 'philosophical shadows'
+            style: "soft and naturalistic",
+            direction: "diffused and even",
+            shadows: "subtle and atmospheric",
+            highlights: "gentle gradients",
+            mood: "contemplative and mysterious"
           },
           color: {
-            palette: [
-              'sky blue',
-              'warm earth tones',
-              'deep green',
-              'twilight purple',
-              'golden hour yellow',
-              'moonlit silver',
-              'cloud white',
-              'shadow black',
-              'stone grey',
-              'fire red',
-              'leaf green',
-              'night blue',
-              'dawn pink',
-              'dusk violet'
-            ],
-            saturation: 'moderate',
-            contrast: 'balanced',
-            treatment: 'matte',
-            harmony: 'naturalistic with surreal accents',
-            mood: 'contemplative',
-            symbolism: 'color as metaphysical element',
-            transitions: 'subtle gradients',
-            relationships: 'unexpected color logic'
+            palette: ["sky blue", "warm gray", "deep green", "muted brown"],
+            saturation: "natural",
+            contrast: "balanced",
+            treatment: "smooth and painterly"
           },
           elements: {
-            symbols: [
-              'bowler hat',
-              'green apple',
-              'pipe',
-              'dove',
-              'single eye',
-              'train engine',
-              'bell',
-              'key',
-              'rose',
-              'candle',
-              'stone castle',
-              'fire',
-              'leaf',
-              'umbrella',
-              'bilboquet',
-              'sheet music',
-              'easel',
-              'wine glass',
-              'paper scroll',
-              'human torso',
-              'lion',
-              'fish'
-            ],
-            settings: [
-              'windows',
-              'clouds',
-              'rooms',
-              'landscapes',
-              'theatrical curtains',
-              'doorways to nowhere',
-              'impossible staircases',
-              'floating rocks',
-              'stage-like settings',
-              'mirror frames',
-              'belgian coastline',
-              'empty streets',
-              'wallpapered rooms',
-              'picture frames within frames',
-              'infinite corridors',
-              'sky-filled spaces',
-              'stone balustrades',
-              'classical architecture',
-              'seaside promenades',
-              'forest clearings'
-            ],
-            objects: [
-              'everyday items',
-              'mirrors',
-              'curtains',
-              'floating objects',
-              'oversized objects',
-              'misplaced objects',
-              'metamorphosing objects',
-              'transparent silhouettes',
-              'nested frames',
-              'contradictory shadows',
-              'broken mirrors',
-              'empty picture frames',
-              'floating stones',
-              'giant combs',
-              'levitating boulders',
-              'hybrid creatures',
-              'fragmented bodies',
-              'musical instruments',
-              'wooden doors',
-              'glass bottles'
-            ]
+            symbols: ["bowler hats", "clouds", "pipes", "apples"],
+            settings: ["blue skies", "interiors", "windows"],
+            objects: ["everyday items", "floating objects", "curtains"]
           },
           techniques: {
-            painting: [
-              'precise rendering',
-              'smooth brushwork',
-              'trompe loeil',
-              'photorealistic detail',
-              'seamless transitions',
-              'perfect surface finish',
-              'invisible brushwork',
-              'glazing techniques',
-              'sharp edges',
-              'atmospheric perspective',
-              'volumetric modeling',
-              'textural precision'
-            ],
-            surrealism: [
-              'visual paradox',
-              'displacement',
-              'transformation',
-              'scale distortion',
-              'reality layering',
-              'spatial impossibility',
-              'object transfiguration',
-              'contextual inversion',
-              'metamorphosis',
-              'double imagery',
-              'conceptual fusion',
-              'temporal displacement',
-              'spatial discontinuity',
-              'logical impossibility'
-            ],
-            philosophy: [
-              'reality questioning',
-              'object relationships',
-              'word-image play',
-              'perception challenge',
-              'existential mystery',
-              'symbolic dialogue',
-              'metaphysical poetry',
-              'conceptual juxtaposition',
-              'phenomenological inquiry',
-              'representational critique',
-              'linguistic paradox',
-              'ontological puzzles',
-              'perceptual ambiguity',
-              'cognitive dissonance'
-            ]
-          },
-          conceptualThemes: {
-            perception: [
-              'reality vs representation',
-              'visible vs hidden',
-              'interior vs exterior',
-              'presence vs absence',
-              'appearance vs essence',
-              'surface vs depth',
-              'revelation vs concealment'
-            ],
-            time: [
-              'day vs night simultaneity',
-              'temporal paradox',
-              'eternal moment',
-              'suspended time',
-              'multiple temporalities',
-              'timeless present'
-            ],
-            space: [
-              'impossible architecture',
-              'spatial discontinuity',
-              'dimensional ambiguity',
-              'infinite recursion',
-              'spatial paradox',
-              'dimensional collapse'
-            ],
-            identity: [
-              'anonymous figures',
-              'hidden faces',
-              'multiplicity of self',
-              'faceless presence',
-              'collective anonymity',
-              'universal human'
-            ],
-            language: [
-              'word-image relationships',
-              'naming vs representation',
-              'linguistic paradox',
-              'semiotic play',
-              'meaning displacement',
-              'representational crisis'
-            ],
-            metamorphosis: [
-              'object transformation',
-              'hybrid forms',
-              'material transmutation',
-              'elemental change',
-              'natural-artificial fusion'
-            ],
-            mystery: [
-              'everyday uncanny',
-              'familiar made strange',
-              'hidden connections',
-              'metaphysical wonder',
-              'ordinary transcendence'
-            ]
+            painting: ["oil painting", "smooth blending", "precise edges"],
+            surrealism: ["juxtaposition", "scale distortion", "impossible scenes"],
+            philosophy: ["visual paradox", "symbolic meaning", "questioning reality"]
           }
         }
       };
       
-      // Select current style parameters
+      // Modify the style detection logic to favor Bourdin more strongly
+      const isBourdinStyle = bourdinKeywords.some(keyword => 
+        concept.toLowerCase().includes(keyword)) || 
+        options.style === 'bourdin' ||
+        (options.style !== 'magritte' && Math.random() > 0.2); // 80% chance to default to Bourdin
+      
+      // Default to Bourdin if no style is specified
+      const styleToUse = isBourdinStyle ? 'bourdin' : 'magritte';
+      
+      // Style-specific artistic parameters
       const currentStyle = styleToUse === 'bourdin' ? artisticParams.bourdin : artisticParams.magritte;
       
       // Retrieve style-specific memories for inspiration
@@ -1801,22 +1433,25 @@ export class CreativeEngine {
       const { prompt, creativeProcess } = await generateConceptualPrompt(this.aiService, concept, {
         useFluxPro: isFluxPro,
         postPhotoNative: isBourdinStyle,
-        temperature: isBourdinStyle ? 0.85 : 0.75,
+        temperature: isBourdinStyle ? 0.9 : 0.75,
         maxTokens: 2000
       });
       
-      // Enhanced style-specific parameters for image generation
+      // Update image generation options
       const imageOptions = {
         ...options,
         width: options.width || 768,
         height: options.height || 768,
-        numInferenceSteps: options.numInferenceSteps || (isBourdinStyle ? 35 : 28),
-        guidanceScale: options.guidanceScale || (isBourdinStyle ? 7.5 : 7.0),
-        seed: options.seed || Math.floor(Math.random() * 2147483647),
-        // Style-specific image parameters
-        composition: currentStyle.composition,
-        lighting: currentStyle.lighting,
-        color: currentStyle.color
+        numInferenceSteps: options.numInferenceSteps || (isBourdinStyle ? artisticParams.bourdin.parameters.numInferenceSteps : 28),
+        guidanceScale: options.guidanceScale || (isBourdinStyle ? artisticParams.bourdin.parameters.guidanceScale : 7.0),
+        temperature: isBourdinStyle ? artisticParams.bourdin.parameters.temperature : 0.75,
+        saturation: isBourdinStyle ? artisticParams.bourdin.parameters.saturation : 1.0,
+        contrast: isBourdinStyle ? artisticParams.bourdin.parameters.contrast : 1.0,
+        sharpness: isBourdinStyle ? artisticParams.bourdin.parameters.sharpness : 1.0,
+        vibrance: isBourdinStyle ? artisticParams.bourdin.parameters.vibrance : 1.0,
+        clarity: isBourdinStyle ? artisticParams.bourdin.parameters.clarity : 1.0,
+        dramaticEffect: isBourdinStyle ? artisticParams.bourdin.parameters.dramaticEffect : 1.0,
+        styleEmphasis: isBourdinStyle ? artisticParams.bourdin.emphasis : undefined
       };
       
       // Generate the image using the model

@@ -570,28 +570,86 @@ async function generateArt(concept: string) {
         avoidElements: [...(artDirectionStyle.avoidElements || []), "surreal elements", "impossible scenes"]
       };
     } else if (useBourdinStyle) {
-      // Override with Bourdin-specific art direction
+      // Override with enhanced Bourdin-specific art direction
       categoryArtDirection = {
-        styleEmphasis: ["Post-photography style", "High-fashion surrealism", "Bold and provocative styling", "Cinematic drama", 
+        styleEmphasis: [
+          "Extreme post-photography style",
+          "Provocative high-fashion surrealism",
+          "Ultra-bold and theatrical styling",
+          "Maximum dramatic impact",
+          "Hyper-stylized compositions",
+          "Radical narrative tension",
+          "Commercial glamour with artistic depth",
+          "Fashion editorial extremes",
+          "Bourdin signature cropping",
+          "Psychological drama in fashion",
           ...(artDirectionStyle.styleEmphasis?.filter(style => 
             !style.toLowerCase().includes('magritte') && 
-            !style.toLowerCase().includes('traditional surreal')) || [])],
-        visualElements: ["Elongated limbs and dramatic poses", "Partially obscured figures", "Fragmented body parts as objects",
-          "Luxury objects with sinister undertones", "Fashion accessories in surreal contexts",
+            !style.toLowerCase().includes('traditional surreal')) || [])
+        ],
+        visualElements: [
+          "Dramatically cropped limbs",
+          "Extreme poses and gestures",
+          "Fetishistic fashion elements",
+          "High-gloss surfaces",
+          "Luxury objects with menace",
+          "Blood-red accents",
+          "Mirror fragmentations",
+          "Mannequin-like figures",
+          "Theatrical props with tension",
+          "Compressed spatial relationships",
           ...(artDirectionStyle.visualElements?.filter(element => 
-            !["bowler hats", "floating objects", "clouds in rooms"].includes(element)) || [])],
-        colorPalette: ["High-contrast red and black", "Electric blues and deep purples", "Blood reds against pale skin",
-          "Jewel tones with unnatural intensity", "Glossy surfaces with reflections",
-          ...(artDirectionStyle.colorPalette?.filter(color => !color.toLowerCase().includes('magritte')) || [])],
-        compositionGuidelines: ["Tight cropping with focus on partial details", "Radical framing techniques", 
-          "Diagonal compositions with dynamic energy", "Cinematic framing with narrative implications",
+            !["bowler hats", "floating objects", "clouds in rooms"].includes(element)) || [])
+        ],
+        colorPalette: [
+          "Maximum contrast black",
+          "Blood red",
+          "Electric blue",
+          "Acid green",
+          "Hot pink",
+          "Deep burgundy",
+          "Metallic silver",
+          "Glossy white",
+          "Neon accents",
+          "Flesh tones with tension",
+          ...(artDirectionStyle.colorPalette?.filter(color => 
+            !color.toLowerCase().includes('magritte')) || [])
+        ],
+        compositionGuidelines: [
+          "Extreme cropping techniques",
+          "Radical framing angles",
+          "Maximum spatial compression",
+          "Theatrical staging",
+          "Geometric precision",
+          "Aggressive negative space",
+          "Dramatic scale relationships",
+          "Psychological framing",
+          "Fashion editorial dynamics",
+          "Bourdin signature perspectives",
           ...(artDirectionStyle.compositionGuidelines?.filter(guideline => 
-            !guideline.toLowerCase().includes('traditional surreal')) || [])],
-        moodAndTone: "Provocative and unsettling with a glossy, high-fashion aesthetic. Creates tension through juxtaposition of beauty and discomfort, with an underlying sense of narrative mystery.",
-        references: ["Guy Bourdin's Vogue Paris fashion editorials", "Guy Bourdin's Charles Jourdan shoe campaigns",
-          "Guy Bourdin's Pentax calendar", "Guy Bourdin's work for French Vogue in the 1970s",
-          ...(artDirectionStyle.references?.filter(ref => !ref.toLowerCase().includes('magritte')) || [])],
-        avoidElements: [...(artDirectionStyle.avoidElements || []), "traditional surrealism", "painterly techniques", "visible brushstrokes"]
+            !guideline.toLowerCase().includes('traditional surreal')) || [])
+        ],
+        moodAndTone: "Ultra-provocative and intensely theatrical with maximum dramatic impact. Creates extreme tension through radical juxtapositions of beauty and unease. Pushes fashion photography to its psychological and visual limits with Bourdin's signature style of high-gloss menace and seductive discomfort.",
+        references: [
+          "Guy Bourdin's most provocative Vogue Paris editorials",
+          "Charles Jourdan shoe campaign extremes",
+          "Bourdin's controversial 1970s work",
+          "Pentax calendar radical compositions",
+          "Bourdin's color-saturated commercial work",
+          ...(artDirectionStyle.references?.filter(ref => 
+            !ref.toLowerCase().includes('magritte')) || [])
+        ],
+        avoidElements: [
+          "Soft or romantic elements",
+          "Natural or candid moments",
+          "Traditional fashion poses",
+          "Conservative framing",
+          "Muted colors",
+          "Gentle lighting",
+          "Documentary style",
+          "Traditional surrealism",
+          ...(artDirectionStyle.avoidElements || [])
+        ]
       };
     } else {
       // For all other styles, ensure we blend Magritte and Guy Bourdin elements
@@ -798,20 +856,20 @@ function getStyleFromArtDirection(artDirection: any, isPostPhotoRelated: boolean
     // Create a blended style that combines elements from both
     return {
       styleEmphasis: [
-        ...(magritteStyle.styleEmphasis || []).slice(0, 15), // Take more Magritte elements
-        ...(postPhotoStyle.styleEmphasis || []).slice(0, 15) // Take more Bourdin elements
+        ...(magritteStyle.styleEmphasis || []).slice(0, 10), // Reduced Magritte elements
+        ...(postPhotoStyle.styleEmphasis || []).slice(0, 20) // Increased Bourdin elements
       ],
       visualElements: [
-        ...(magritteStyle.visualElements || []).slice(0, 15), // Take more Magritte elements
-        ...(postPhotoStyle.visualElements || []).slice(0, 15) // Take more Bourdin elements
+        ...(magritteStyle.visualElements || []).slice(0, 10), // Reduced Magritte elements
+        ...(postPhotoStyle.visualElements || []).slice(0, 20) // Increased Bourdin elements
       ],
       colorPalette: [
-        ...(magritteStyle.colorPalette || []).slice(0, 10), // Take more Magritte colors
-        ...(postPhotoStyle.colorPalette || []).slice(0, 10) // Take more Bourdin colors
+        ...(magritteStyle.colorPalette || []).slice(0, 8), // Reduced Magritte colors
+        ...(postPhotoStyle.colorPalette || []).slice(0, 12) // Increased Bourdin colors
       ],
       compositionGuidelines: [
-        ...(magritteStyle.compositionGuidelines || []).slice(0, 10), // Take more Magritte composition
-        ...(postPhotoStyle.compositionGuidelines || []).slice(0, 10) // Take more Bourdin composition
+        ...(magritteStyle.compositionGuidelines || []).slice(0, 8), // Reduced Magritte composition
+        ...(postPhotoStyle.compositionGuidelines || []).slice(0, 12) // Increased Bourdin composition
       ],
       moodAndTone: "A fusion of Magritte's dreamlike philosophical questioning with Guy Bourdin's seductive, provocative boldness. The atmosphere should blend surrealist concepts with high-fashion aesthetics, creating compositions that are both intellectually stimulating and visually striking. Magritte's quiet contemplation, subtle humor, and metaphysical puzzles merge with Bourdin's theatrical drama, erotic tension, and commercial glamour.",
       references: [
