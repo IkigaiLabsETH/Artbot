@@ -483,11 +483,11 @@ class PersonalizedTasteModel {
     const explorationBonus = this.calculateExplorationBonus(features);
     
     // Combine aesthetic score with preference score
-    const aestheticWeight = 0.6; // Weight for aesthetic quality
-    const preferenceWeight = 0.4; // Weight for learned preferences
+    const aestheticWeight = 0.7; // Increased weight for aesthetic quality
+    const preferenceWeight = 0.3; // Decreased weight for learned preferences
     
-    // Get overall aesthetic score
-    const overallAestheticScore = aestheticScores.overallScore || 0.5;
+    // Get overall aesthetic score with Bourdin bias
+    const overallAestheticScore = this.calculateBourdinfocusedScore(aestheticScores) || 0.5;
     
     // Calculate combined base score
     const baseScore = (aestheticWeight * overallAestheticScore) + 
@@ -514,6 +514,24 @@ class PersonalizedTasteModel {
         moodAndTone: features.moodAndTone
       }
     };
+  }
+  
+  /**
+   * Calculate aesthetic score with emphasis on Bourdin characteristics
+   * @private
+   */
+  calculateBourdinfocusedScore(aestheticScores) {
+    const bourdinCharacteristics = {
+      contrast: 0.25,
+      saturation: 0.2,
+      composition: 0.25,
+      drama: 0.2,
+      technical: 0.1
+    };
+    
+    return Object.entries(bourdinCharacteristics).reduce((score, [characteristic, weight]) => {
+      return score + (aestheticScores[characteristic] || 0.5) * weight;
+    }, 0);
   }
   
   /**

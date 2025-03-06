@@ -43,7 +43,7 @@ export async function generateCinematicConcept(
     category?: ConceptCategory;
   } = {}
 ): Promise<string> {
-  const category = options.category || ConceptCategory.MAGRITTE_SURREALISM;
+  const category = options.category || ConceptCategory.POST_PHOTOGRAPHY;
   
   // Define category-specific prompts
   const categoryPrompts = {

@@ -1411,7 +1411,7 @@ export class CreativeEngine {
       const isBourdinStyle = bourdinKeywords.some(keyword => 
         concept.toLowerCase().includes(keyword)) || 
         options.style === 'bourdin' ||
-        (options.style !== 'magritte' && Math.random() > 0.2); // 80% chance to default to Bourdin
+        (options.style !== 'magritte' && Math.random() > 0.1); // 90% chance to default to Bourdin
       
       // Default to Bourdin if no style is specified
       const styleToUse = isBourdinStyle ? 'bourdin' : 'magritte';

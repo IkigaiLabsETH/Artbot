@@ -379,8 +379,8 @@ async function generateArt(concept: string) {
     let artConcept = concept;
     
     if (!artConcept) {
-      // Determine which category to use
-      let category: ConceptCategory | undefined;
+      // Default to POST_PHOTOGRAPHY category unless explicitly specified otherwise
+      let category = ConceptCategory.POST_PHOTOGRAPHY;
       
       if (detectedCategory) {
         // Try to match the detected category to a valid category
@@ -392,13 +392,11 @@ async function generateArt(concept: string) {
           category = ConceptCategory[categoryKey as keyof typeof ConceptCategory];
           console.log(`\n🎬 Generating a ${category} concept...`);
         } else {
-          console.log(`\n⚠️ Unknown category: "${detectedCategory}". Using MAGRITTE_SURREALISM category.`);
-          category = ConceptCategory.MAGRITTE_SURREALISM;
+          console.log(`\n⚠️ Unknown category: "${detectedCategory}". Using POST_PHOTOGRAPHY category.`);
+          category = ConceptCategory.POST_PHOTOGRAPHY;
         }
       } else {
-        // If no category specified, use MAGRITTE_SURREALISM as the default
-        category = ConceptCategory.MAGRITTE_SURREALISM;
-        console.log(`\n🎬 Generating a ${category} concept...`);
+        console.log(`\n🎬 Generating a post-photography concept...`);
       }
       
       // Generate the concept with the selected category
@@ -422,16 +420,19 @@ async function generateArt(concept: string) {
         // Artist references
         'bourdin', 'newton', 'avedon', 'penn', 'post-photography'
       ];
-      const isPostPhotoRelated = postPhotoKeywords.some(keyword => concept.toLowerCase().includes(keyword));
       
-      // If post-photography related, use POST_PHOTOGRAPHY category
-      if (isPostPhotoRelated && !detectedCategory) {
-        console.log(`\n🎬 Detected post-photography related concept, using POST_PHOTOGRAPHY category...`);
-        const postPhotographyConcept = await generateCinematicConcept(aiService, {
+      // Always regenerate as post-photography concept unless explicitly Magritte-themed
+      const isMagritteThemed = concept.toLowerCase().includes('magritte') || 
+                              concept.toLowerCase().includes('bowler hat') ||
+                              concept.toLowerCase().includes('pipe') ||
+                              (detectedCategory && detectedCategory.toLowerCase().includes('magritte'));
+      
+      if (!isMagritteThemed) {
+        console.log(`\n🎬 Transforming concept into post-photography style...`);
+        artConcept = await generateCinematicConcept(aiService, {
           temperature: 0.9,
           category: ConceptCategory.POST_PHOTOGRAPHY
         });
-        artConcept = postPhotographyConcept;
       }
     }
     
@@ -786,22 +787,22 @@ function getStyleFromArtDirection(artDirection: any, isPostPhotoRelated: boolean
     // Create a blended style that combines elements from both
     return {
       styleEmphasis: [
-        ...(magritteStyle.styleEmphasis || []).slice(0, 10), // Reduced Magritte elements
-        ...(postPhotoStyle.styleEmphasis || []).slice(0, 20) // Increased Bourdin elements
+        ...(magritteStyle.styleEmphasis || []).slice(0, 5), // Significantly reduced Magritte elements
+        ...(postPhotoStyle.styleEmphasis || []).slice(0, 25) // Heavily increased Bourdin elements
       ],
       visualElements: [
-        ...(magritteStyle.visualElements || []).slice(0, 10), // Reduced Magritte elements
-        ...(postPhotoStyle.visualElements || []).slice(0, 20) // Increased Bourdin elements
+        ...(magritteStyle.visualElements || []).slice(0, 5), // Significantly reduced Magritte elements
+        ...(postPhotoStyle.visualElements || []).slice(0, 25) // Heavily increased Bourdin elements
       ],
       colorPalette: [
-        ...(magritteStyle.colorPalette || []).slice(0, 8), // Reduced Magritte colors
-        ...(postPhotoStyle.colorPalette || []).slice(0, 12) // Increased Bourdin colors
+        ...(magritteStyle.colorPalette || []).slice(0, 4), // Significantly reduced Magritte colors
+        ...(postPhotoStyle.colorPalette || []).slice(0, 16) // Heavily increased Bourdin colors
       ],
       compositionGuidelines: [
-        ...(magritteStyle.compositionGuidelines || []).slice(0, 8), // Reduced Magritte composition
-        ...(postPhotoStyle.compositionGuidelines || []).slice(0, 12) // Increased Bourdin composition
+        ...(magritteStyle.compositionGuidelines || []).slice(0, 4), // Significantly reduced Magritte composition
+        ...(postPhotoStyle.compositionGuidelines || []).slice(0, 16) // Heavily increased Bourdin composition
       ],
-      moodAndTone: "A fusion of Magritte's dreamlike philosophical questioning with Guy Bourdin's seductive, provocative boldness. The atmosphere should blend surrealist concepts with high-fashion aesthetics, creating compositions that are both intellectually stimulating and visually striking. Magritte's quiet contemplation, subtle humor, and metaphysical puzzles merge with Bourdin's theatrical drama, erotic tension, and commercial glamour.",
+      moodAndTone: "A bold fusion dominated by Guy Bourdin's seductive and provocative high-fashion aesthetics, with subtle undertones of surrealist elements. The atmosphere emphasizes theatrical drama, erotic tension, and commercial glamour, while maintaining a hint of metaphysical intrigue. The focus is primarily on Bourdin's signature style of high-gloss sophistication, radical compositions, and psychological impact.",
       references: [
         ...(magritteStyle.references || []).slice(0, 10), // Take more Magritte references
         ...(postPhotoStyle.references || []).slice(0, 10) // Take more Bourdin references
