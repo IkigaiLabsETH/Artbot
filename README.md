@@ -138,14 +138,9 @@ npm run batch -- --count=5 "your concept"
 ## Development
 
 ```bash
-# Run tests
-npm test
 
-# Start development server
-npm run dev
+pnpm i && pnpm build && pnpm start
 
-# Build for production
-npm run build
 ```
 
 ## Contributing
