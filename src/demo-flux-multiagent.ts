@@ -231,7 +231,7 @@ ${ideaResult.content}`
 Create a detailed prompt that:
 1. Incorporates all key elements from the concept and style guide
 2. Is optimized for the FLUX model (cinestill 800t film aesthetic)
-3. Includes the trigger word "CNSTLL" at the beginning
+3. Includes the trigger word "IKIGAI" at the beginning
 4. Incorporates technical keywords like "cinestill 800t", "film grain", "night time", and "4k"
 5. Has rich visual details and metaphorical elements
 6. Is approximately 150-250 words in length
@@ -239,7 +239,7 @@ Create a detailed prompt that:
 Also provide a brief "Creative Process" explanation that reveals the thinking behind the prompt.
 
 Provide your response in this format:
-Prompt: [Your detailed prompt starting with CNSTLL]
+Prompt: [Your detailed prompt starting with IKIGAI]
 
 Creative Process: [Brief explanation of your thinking]`
         },
@@ -279,8 +279,8 @@ ${styleResult.styleContent}`
     }
     
     // Ensure the prompt starts with the FLUX trigger word
-    if (!detailedPrompt.includes('CNSTLL')) {
-      detailedPrompt = `CNSTLL ${detailedPrompt}`;
+    if (!detailedPrompt.includes('IKIGAI')) {
+      detailedPrompt = `IKIGAI ${detailedPrompt}`;
     }
     
     // Add FLUX-specific keywords if they're not already present

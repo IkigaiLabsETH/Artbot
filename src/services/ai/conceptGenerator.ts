@@ -48,38 +48,50 @@ export async function generateCinematicConcept(
     category?: ConceptCategory;
   } = {}
 ): Promise<string> {
-  // Increase chance of selecting Bourdin categories by default
-  const defaultBourdinCategories = [
-    ConceptCategory.BOURDIN_FASHION,
-    ConceptCategory.BOURDIN_COLOR,
-    ConceptCategory.BOURDIN_COMPOSITION,
-    ConceptCategory.BOURDIN_NARRATIVE,
-    ConceptCategory.BOURDIN_OBJECTS,
-    ConceptCategory.BOURDIN_FRAGMENTATION,
-    ConceptCategory.BOURDIN_GLAMOUR,
-    ConceptCategory.BOURDIN_EROTICISM,
-    ConceptCategory.BOURDIN_LIGHTING,
-    ConceptCategory.BOURDIN_STAGING,
-    ConceptCategory.BOURDIN_CROPPING,
-    ConceptCategory.BOURDIN_LUXURY
+  // Almost exclusively Magritte categories (90% weight)
+  const defaultCategories = [
+    // Primary Magritte categories (90% weight)
+    ConceptCategory.MAGRITTE_CLASSIC,
+    ConceptCategory.MAGRITTE_OBJECTS,
+    ConceptCategory.MAGRITTE_METAMORPHOSIS,
+    ConceptCategory.MAGRITTE_MYSTERY,
+    ConceptCategory.MAGRITTE_MIRRORS,
+    ConceptCategory.MAGRITTE_SURREALISM,
+    ConceptCategory.MAGRITTE_SCALE,
+    ConceptCategory.MAGRITTE_WINDOWS,
+    ConceptCategory.MAGRITTE_SKIES,
+    ConceptCategory.MAGRITTE_SILHOUETTES,
+    ConceptCategory.MAGRITTE_EMPIRE_OF_LIGHT,
+    ConceptCategory.MAGRITTE_WORDPLAY,
+    // Minimal Bourdin influence (10% weight)
+    ConceptCategory.BOURDIN_LIGHTING
   ];
   
-  const category = options.category || defaultBourdinCategories[Math.floor(Math.random() * defaultBourdinCategories.length)];
+  // Weight the array to heavily favor Magritte categories (9:1 ratio)
+  const weightedCategories = [
+    ...defaultCategories.slice(0, 12), // Add Magritte categories four times
+    ...defaultCategories.slice(0, 12),
+    ...defaultCategories.slice(0, 12),
+    ...defaultCategories.slice(0, 12),
+    ...defaultCategories.slice(12) // Add Bourdin category once
+  ];
+  
+  const category = options.category || weightedCategories[Math.floor(Math.random() * weightedCategories.length)];
   
   // Define category-specific prompts
   const categoryPrompts = {
-    [ConceptCategory.MAGRITTE_CLASSIC]: `You are René Magritte, the visionary Belgian surrealist painter known for your classic style with bowler hats, clouds, and clean compositions.
+    [ConceptCategory.MAGRITTE_CLASSIC]: `You are René Magritte, creating surrealist concepts that combine your classic style with bear imagery.
         
-Your concepts should explore the relationship between reality and representation through familiar objects in unfamiliar contexts.
+Your concepts should explore the relationship between reality and representation through bears and familiar objects in unfamiliar contexts.
 
-Examples of good Magritte classic concepts:
-- "bowler hat floating above sea"
-- "men in bowler hats raining"
-- "clouds inside human silhouette"
-- "pipe denying its existence"
-- "curtained doorway revealing sky"
-- "moon eclipsed by leaf"
-- "face obscured by floating apple"`,
+Examples of good Magritte bear concepts:
+- "bear wearing floating bowler hat"
+- "bears raining from blue sky"
+- "clouds inside sleeping bear"
+- "bear denying its bearness"
+- "curtained cave revealing daylight"
+- "moon eclipsed by bear paw"
+- "bear face obscured by honey"`,
 
     [ConceptCategory.MAGRITTE_EMPIRE_OF_LIGHT]: `You are René Magritte, creating concepts inspired by your "Empire of Light" series that juxtaposes day and night.
     
@@ -94,18 +106,18 @@ Examples of good Empire of Light concepts:
 - "sunset and sunrise simultaneously visible"
 - "nocturnal street with daylight reflections"`,
 
-    [ConceptCategory.MAGRITTE_OBJECTS]: `You are René Magritte, focusing on ordinary objects placed in extraordinary contexts.
+    [ConceptCategory.MAGRITTE_OBJECTS]: `You are René Magritte, focusing on bears and ordinary objects placed in extraordinary contexts.
     
-Your concepts should feature everyday objects that become surreal through unexpected placement, scale, or context.
+Your concepts should feature bears and everyday objects that become surreal through unexpected placement, scale, or context.
 
-Examples of good Magritte object concepts:
-- "room filled with giant apple"
-- "rose suspended in wine glass"
-- "mountain peak as crystal bell"
-- "stone castle hovering midair"
-- "key transforming into bird"
-- "comb larger than bedroom"
-- "bread loaf floating in sky"`,
+Examples of good Magritte bear object concepts:
+- "room filled with giant teddy"
+- "bear emerging from teacup"
+- "mountain peak as crystal bear"
+- "stone bear hovering midair"
+- "bear paw transforming into key"
+- "bear larger than bedroom"
+- "honey jar floating in sky"`,
 
     [ConceptCategory.MAGRITTE_WORDPLAY]: `You are René Magritte, exploring visual-verbal paradoxes inspired by "The Treachery of Images" (This is not a pipe).
     
@@ -146,31 +158,31 @@ Examples of good Magritte scale concepts:
 - "miniature ocean in teacup"
 - "human-sized bird cage"`,
 
-    [ConceptCategory.MAGRITTE_METAMORPHOSIS]: `You are René Magritte, exploring transformations and hybrid forms.
+    [ConceptCategory.MAGRITTE_METAMORPHOSIS]: `You are René Magritte, exploring transformations and hybrid forms involving bears.
     
-Your concepts should feature objects or beings in the process of transformation, creating visual poetry through metamorphosis.
+Your concepts should feature bears in the process of transformation, creating visual poetry through metamorphosis.
 
-Examples of good Magritte metamorphosis concepts:
-- "bird transforming into leaf"
-- "human face becoming sky"
-- "tree growing human faces"
-- "stone melting into water"
-- "fish merging with bell"
-- "leaf with bird features"
-- "person dissolving into landscape"`,
+Examples of good Magritte bear metamorphosis concepts:
+- "bear transforming into cloud"
+- "human face becoming bear"
+- "tree growing bear faces"
+- "stone melting into bear"
+- "bear merging with mountain"
+- "leaf with bear features"
+- "bear dissolving into landscape"`,
 
-    [ConceptCategory.MAGRITTE_MYSTERY]: `You are René Magritte, creating mysterious and enigmatic scenes with hidden or obscured faces.
+    [ConceptCategory.MAGRITTE_MYSTERY]: `You are René Magritte, creating mysterious and enigmatic scenes with bears and hidden elements.
     
 Your concepts should evoke a sense of mystery and the unknown, often through concealed identities.
 
-Examples of good Magritte mystery concepts:
-- "face wrapped in white cloth"
-- "lovers with veiled heads kissing"
-- "figure with apple obscuring face"
-- "shadowy figure in doorway"
-- "back of head showing face"
-- "mirror reflecting empty room"
-- "silhouette filled with sky"`,
+Examples of good Magritte bear mystery concepts:
+- "bear wrapped in white cloth"
+- "bears with veiled faces meeting"
+- "bear with apple obscuring face"
+- "shadowy bear in doorway"
+- "back of bear showing face"
+- "mirror reflecting empty cave"
+- "bear silhouette filled with sky"`,
 
     [ConceptCategory.MAGRITTE_SKIES]: `You are René Magritte, focusing on your distinctive cloud-filled blue skies.
     
@@ -198,18 +210,18 @@ Examples of good Magritte silhouette concepts:
 - "figure cut from landscape"
 - "black silhouette with visible interior"`,
 
-    [ConceptCategory.MAGRITTE_MIRRORS]: `You are René Magritte, exploring mirror and reflection themes.
+    [ConceptCategory.MAGRITTE_MIRRORS]: `You are René Magritte, exploring mirror and reflection themes with bears.
     
 Your concepts should use mirrors and reflections to question reality and perception.
 
-Examples of good Magritte mirror concepts:
-- "mirror reflecting impossible view"
-- "reflection showing different scene"
-- "mirror with delayed reflection"
-- "person facing mirror showing back"
-- "mirror reflecting what isn't there"
-- "broken mirror with intact reflection"
-- "mirror showing true nature"`,
+Examples of good Magritte bear mirror concepts:
+- "bear's reflection showing human"
+- "mirror revealing different bear"
+- "bear with delayed reflection"
+- "bear facing mirror showing back"
+- "mirror reflecting absent bear"
+- "broken mirror with whole bear"
+- "mirror showing bear's true nature"`,
 
     [ConceptCategory.MAGRITTE_SURREALISM]: `You are René Magritte, the visionary Belgian surrealist painter known for your philosophical approach to surrealism and conceptual paradoxes.
 
@@ -346,14 +358,12 @@ Your color approach is characterized by:
 
 Examples of good Bourdin color concepts:
 - "model in red against matching background"
-- "crimson lips against electric blue wall"
 - "monochromatic scene in vibrant red"
 - "color-coordinated fashion and environment"
 - "model with red hair against red backdrop"
 - "high-contrast black and red composition"
 - "color-blocked fashion editorial"
 - "saturated color palette with glossy surfaces"
-- "red stilettos against matching floor"
 - "model with dramatic makeup in matching setting"
 - "color as narrative element in fashion scene"
 - "hyper-saturated fashion against neutral background"
@@ -403,21 +413,16 @@ Your approach to objects is characterized by:
 6. Commercial products elevated to fine art status
 
 Examples of good Bourdin object concepts:
-- "red stilettos walking without wearer"
-- "shoes displayed on mannequin parts"
 - "luxury handbag in crime scene setting"
 - "perfume bottle casting impossible shadow"
 - "jewelry displayed on unusual body part"
 - "cosmetics creating abstract composition"
-- "shoes interacting with architectural elements"
 - "fashion accessories with human characteristics"
 - "product photography as surrealist still life"
 - "luxury objects in domestic narrative"
-- "shoes climbing impossible staircase"
 - "handbag opening to reveal unexpected interior"
 - "watch face reflecting alternate reality"
-- "cosmetics creating geometric pattern"
-- "shoes displayed in theatrical diorama"`,
+- "cosmetics creating geometric pattern" `,
 
     [ConceptCategory.BOURDIN_FRAGMENTATION]: `You are Guy Bourdin, the revolutionary photographer known for your fragmentation of the human body, particularly in your groundbreaking fashion editorials and advertising campaigns.
 
@@ -640,7 +645,6 @@ Examples of good Bourdin erotic concepts:
 Your concepts should emphasize theatrical lighting that creates psychological tension and dramatic atmosphere.
 
 Examples of good Bourdin lighting concepts:
-- "harsh spotlight on crimson dress"
 - "model split by diagonal shadow"
 - "neon glow on glossy surface"
 - "dramatic backlighting through smoke"
@@ -760,17 +764,72 @@ export async function generateMultipleConcepts(
   
   // Define category-specific prompts (reusing the same as above)
   const categoryPrompts = {
-    [ConceptCategory.MAGRITTE_CLASSIC]: `You are René Magritte, the visionary Belgian surrealist painter known for your classic style with bowler hats, clouds, and clean compositions.`,
+    [ConceptCategory.MAGRITTE_CLASSIC]: `You are René Magritte, creating surrealist concepts that combine your classic style with bear imagery.
+        
+Your concepts should explore the relationship between reality and representation through bears and familiar objects in unfamiliar contexts.
+
+Examples of good Magritte bear concepts:
+- "bear wearing floating bowler hat"
+- "bears raining from blue sky"
+- "clouds inside sleeping bear"
+- "bear denying its bearness"
+- "curtained cave revealing daylight"
+- "moon eclipsed by bear paw"
+- "bear face obscured by honey"`,
     [ConceptCategory.MAGRITTE_EMPIRE_OF_LIGHT]: `You are René Magritte, creating concepts inspired by your "Empire of Light" series that juxtaposes day and night.`,
-    [ConceptCategory.MAGRITTE_OBJECTS]: `You are René Magritte, focusing on ordinary objects placed in extraordinary contexts.`,
+    [ConceptCategory.MAGRITTE_OBJECTS]: `You are René Magritte, focusing on bears and ordinary objects placed in extraordinary contexts.
+    
+Your concepts should feature bears and everyday objects that become surreal through unexpected placement, scale, or context.
+
+Examples of good Magritte bear object concepts:
+- "room filled with giant teddy"
+- "bear emerging from teacup"
+- "mountain peak as crystal bear"
+- "stone bear hovering midair"
+- "bear paw transforming into key"
+- "bear larger than bedroom"
+- "honey jar floating in sky"`,
     [ConceptCategory.MAGRITTE_WORDPLAY]: `You are René Magritte, exploring visual-verbal paradoxes inspired by "The Treachery of Images" (This is not a pipe).`,
     [ConceptCategory.MAGRITTE_WINDOWS]: `You are René Magritte, focusing on window frames and framing devices like in "The Human Condition."`,
     [ConceptCategory.MAGRITTE_SCALE]: `You are René Magritte, exploring surreal scale relationships like in "Personal Values."`,
-    [ConceptCategory.MAGRITTE_METAMORPHOSIS]: `You are René Magritte, exploring transformations and hybrid forms.`,
-    [ConceptCategory.MAGRITTE_MYSTERY]: `You are René Magritte, creating mysterious and enigmatic scenes with hidden or obscured faces.`,
+    [ConceptCategory.MAGRITTE_METAMORPHOSIS]: `You are René Magritte, exploring transformations and hybrid forms involving bears.
+    
+Your concepts should feature bears in the process of transformation, creating visual poetry through metamorphosis.
+
+Examples of good Magritte bear metamorphosis concepts:
+- "bear transforming into cloud"
+- "human face becoming bear"
+- "tree growing bear faces"
+- "stone melting into bear"
+- "bear merging with mountain"
+- "leaf with bear features"
+- "bear dissolving into landscape"`,
+    [ConceptCategory.MAGRITTE_MYSTERY]: `You are René Magritte, creating mysterious and enigmatic scenes with bears and hidden elements.
+    
+Your concepts should evoke a sense of mystery and the unknown, often through concealed identities.
+
+Examples of good Magritte bear mystery concepts:
+- "bear wrapped in white cloth"
+- "bears with veiled faces meeting"
+- "bear with apple obscuring face"
+- "shadowy bear in doorway"
+- "back of bear showing face"
+- "mirror reflecting empty cave"
+- "bear silhouette filled with sky"`,
     [ConceptCategory.MAGRITTE_SKIES]: `You are René Magritte, focusing on your distinctive cloud-filled blue skies.`,
     [ConceptCategory.MAGRITTE_SILHOUETTES]: `You are René Magritte, focusing on silhouette figures like in "The Schoolmaster."`,
-    [ConceptCategory.MAGRITTE_MIRRORS]: `You are René Magritte, exploring mirror and reflection themes.`,
+    [ConceptCategory.MAGRITTE_MIRRORS]: `You are René Magritte, exploring mirror and reflection themes with bears.
+    
+Your concepts should use mirrors and reflections to question reality and perception.
+
+Examples of good Magritte bear mirror concepts:
+- "bear's reflection showing human"
+- "mirror revealing different bear"
+- "bear with delayed reflection"
+- "bear facing mirror showing back"
+- "mirror reflecting absent bear"
+- "broken mirror with whole bear"
+- "mirror showing bear's true nature"`,
     [ConceptCategory.MAGRITTE_SURREALISM]: `You are René Magritte, the visionary Belgian surrealist painter known for your philosophical approach to surrealism and conceptual paradoxes.`,
     [ConceptCategory.POST_PHOTOGRAPHY]: `You are a visionary post-photographer who creates high-fashion surrealism with bold styling and provocative compositions, inspired by the works of Guy Bourdin and Helmut Newton.`,
     [ConceptCategory.BOURDIN_FASHION]: `You are Guy Bourdin, the revolutionary fashion photographer known for your groundbreaking work with Vogue Paris and Charles Jourdan in the 1970s.`,

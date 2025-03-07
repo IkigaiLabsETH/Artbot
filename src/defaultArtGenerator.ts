@@ -31,155 +31,112 @@ interface ArtDirection {
 // Default art direction that can be overridden by environment variables or parameters
 const defaultArtDirection: ArtDirection = {
   styleEmphasis: [
-    // Primary Guy Bourdin elements (heavily emphasized)
-    "high-fashion surrealism",
-    "cinematic drama",
-    "bold and provocative styling",
-    "hyper-stylized compositions",
-    "exaggerated contrast",
-    "saturated color intensity",
-    "graphic and geometric arrangements",
-    "sharp and theatrical lighting",
-    "absurdist yet seductive visual narratives",
-    "glossy and polished aesthetic",
-    "otherworldly glamour",
-    "erotic undertones with surreal juxtapositions",
-    "enigmatic and dreamlike storytelling",
-    "fashion photography meets fine art",
-    "bold cropping and unexpected framing",
-    "commercial aesthetics with artistic depth",
-    "fetishistic elements with artistic intent",
-    "narrative tension through visual fragments",
-    "hyperreal color saturation",
-    "staged scenarios with mysterious implications",
-    // Magritte painting technique elements (subtle)
-    "oil painting technique",
-    "visible brushstrokes",
-    "canvas texture",
-    "painterly quality",
-    "traditional painting style"
+    // Pure Magritte Technical Style
+    "flawless oil painting technique",
+    "absolute photorealistic detail",
+    "perfectly smooth surface quality",
+    "razor-sharp edge definition",
+    "masterful tonal transitions",
+    "pristine Belgian academic finish",
+    "crystalline surface clarity",
+    "traditional Magritte precision",
+    "perfect representational accuracy",
+    "museum-quality execution",
+    "jewel-like paint handling",
+    "mathematically precise modeling",
+    "glass-like surface finish",
+    "academic perfectionism"
   ],
   visualElements: [
-    // Primary Guy Bourdin elements (heavily emphasized)
-    "elongated limbs and dramatic poses",
-    "partially obscured figures",
-    "fragmented body parts as objects",
-    "high heels and stockings as symbols of fetishism",
-    "glossy red lips",
-    "unexpected mannequin-like expressions",
-    "disembodied legs and arms",
-    "retro automobiles with reflections",
-    "mirrors used for distorted realities",
-    "poolside glamour",
-    "vivid backdrops of red, pink, and orange",
-    "oversized accessories as surreal objects",
-    "subliminal tension in everyday settings",
-    "visual irony through exaggerated femininity",
-    "cinematic storytelling with incomplete narratives",
-    "fashion accessories in surreal contexts",
-    "models with doll-like or mannequin qualities",
-    "luxury objects with sinister undertones",
-    "domestic settings with uncanny elements",
-    "commercial products elevated to artistic symbols",
-    // Magritte painting technique elements (subtle)
-    "oil paint texture",
-    "traditional canvas feel",
-    "painterly surfaces",
-    "fine art finish",
-    "classical painting depth"
+    // Precise Portrait Framing
+    "extreme close-up of bear face",
+    "head and shoulders composition only",
+    "face fills 80% of frame",
+    "perfect square 1:1 ratio crop",
+    "crystal-clear facial features",
+    // Core Bear Features
+    "direct eye contact with perfect symmetry",
+    "ultra-sharp eye detail",
+    "precise fur texture rendering",
+    "mathematically centered nose",
+    "perfectly balanced ears",
+    // Magritte Surreal Elements
+    "floating bowler hat precisely above head",
+    "single green apple suspended at eye level",
+    "mathematically precise sky background",
+    "optically perfect cloud elements",
+    // Technical Portrait Details
+    "microscopic fur detail",
+    "perfect catch lights in eyes",
+    "pristine facial symmetry",
+    "unwavering forward gaze",
+    "surgical edge precision",
+    "flawless light modeling"
   ],
   colorPalette: [
-    // Primary Guy Bourdin colors (heavily emphasized)
-    "high-contrast red and black",
-    "electric blues and deep purples",
-    "bold primary colors with extreme saturation",
-    "glossy skin tones with a hyperreal sheen",
-    "intense shadow-play creating depth",
-    "high-contrast highlights with a sculptural effect",
-    "retro pastel shades used subversively",
-    "artificial neon glow for added tension",
-    "striking monochrome with deep blacks and crisp whites",
-    "candy-like color saturation",
-    "blood reds against pale skin",
-    "jewel tones with unnatural intensity",
-    "synthetic color combinations",
-    "color blocking with dramatic impact",
-    "reflective surfaces with color distortion",
-    // Magritte painting technique colors (subtle)
-    "oil paint blending",
-    "traditional pigment depth",
-    "painterly color mixing",
-    "canvas texture showing through",
-    "fine art color layering"
+    // Magritte's Exact Historical Colors
+    "Magritte cerulean blue (RGB: 31, 104, 178)",
+    "Magritte cloud white (RGB: 245, 245, 245)",
+    "Magritte bear brown (RGB: 89, 61, 43)",
+    "Magritte apple green (RGB: 85, 107, 47)",
+    "Magritte sky blue (RGB: 135, 206, 235)",
+    "Magritte shadow grey (RGB: 128, 128, 128)",
+    // Essential Tonal Values
+    "pure titanium white highlights",
+    "ivory black deep shadows",
+    "neutral grey mid-tones",
+    // Atmospheric Colors
+    "Belgian daylight blue",
+    "Northern European sky tone",
+    "Brussels afternoon light",
+    "Continental atmospheric grey",
+    "Low Countries cloud color"
   ],
   compositionGuidelines: [
-    // Primary Guy Bourdin composition (heavily emphasized)
-    "tight cropping with focus on partial details",
-    "radical framing techniques",
-    "unexpected perspective shifts",
-    "graphic and symmetrical arrangements",
-    "negative space used for dramatic effect",
-    "extreme foreshortening and distorted angles",
-    "bold, unnatural color contrasts",
-    "forced perspectives that heighten the surrealist feel",
-    "motion blur used selectively to create tension",
-    "fragmentation of subjects to break realism",
-    "diagonal compositions with dynamic energy",
-    "frame within frame techniques",
-    "strategic placement of color accents",
-    "compositional tension through asymmetry",
-    "cinematic framing with narrative implications",
-    // Magritte painting technique composition (subtle)
-    "painterly depth and texture",
-    "traditional canvas proportions",
-    "fine art surface quality",
-    "oil painting technique visible",
-    "classical painting finish"
+    // Portrait-Specific Composition
+    "face must fill 80% of frame width",
+    "eyes positioned exactly on upper third line",
+    "nose centered on vertical axis",
+    "ears balanced equally on frame edges",
+    "perfect square 1:1 aspect ratio",
+    // Mathematical Precision
+    "golden ratio facial proportions",
+    "exact rule of thirds eye placement",
+    "precise geometric centering",
+    "perfect facial symmetry",
+    "absolute compositional balance",
+    "exact proportional division",
+    "mathematical tension points"
   ],
-  moodAndTone: "A bold celebration of Guy Bourdin's provocative high-fashion surrealism, leading with theatrical drama, erotic tension, and commercial glamour, executed with the refined oil painting techniques of Magritte. The atmosphere primarily emphasizes Bourdin's psychological intensity, seductive aesthetics, and calculated discomfort, while the painterly execution adds a layer of fine art credibility and traditional craft. The result should be images that provoke visceral responses through Bourdin's radical vision, rendered with the technical sophistication of classical painting.",
+  moodAndTone: "Create a museum-quality Magritte bear portrait with absolute technical perfection, focusing on an extreme close-up composition where the bear's face dominates the frame. The execution must reflect his precise Belgian academic training with flawless oil painting technique. Every element should demonstrate perfect symmetry and unwavering direct gaze, while surreal elements must be rendered with crystalline clarity and mathematical precision. The atmosphere should embody Magritte's philosophical clarity through pristine technical execution.",
   references: [
-    // Primary Guy Bourdin references (heavily emphasized)
-    "Guy Bourdin's Vogue Paris fashion editorials",
-    "Guy Bourdin's Charles Jourdan shoe campaigns",
-    "Guy Bourdin's work for French Vogue (1955-1987)",
-    "Guy Bourdin's Pentax calendar series",
-    "Guy Bourdin's Chanel campaigns",
-    "Helmut Newton's high-gloss eroticism",
-    "Man Ray's experimental fashion photography",
-    "Hitchcock's dramatic lighting and compositions",
-    "Kubrick's symmetrical cinematography",
-    "Retro-futuristic advertising aesthetics",
-    "Fetishistic and cinematic styling from the 70s and 80s",
-    "Roland Barthes' semiotic analysis of fashion imagery",
-    "David Lynch's surrealist film aesthetics",
-    // Magritte painting technique references (subtle)
-    "Traditional oil painting techniques",
-    "Classical canvas preparation methods",
-    "Fine art painting traditions"
+    // Pure Magritte Masterwork References
+    "The Son of Man (1964) - for perfect apple and bowler hat placement",
+    "The Month of the Grape Harvest (1959) - for exact sky color calibration",
+    "The Beautiful Relations (1963) - for flawless surface quality",
+    "The Listening Room (1952) - for precise scale mathematics",
+    "The Victory (1939) - for perfect light handling",
+    "Personal Values (1952) - for exact object placement",
+    "The Empire of Light (1953-54) - for precise sky/light relationship",
+    "The Blank Page (1967) - for absolute surface perfection"
   ],
   avoidElements: [
-    // Common elements to avoid
-    "text",
-    "watermarks",
-    "digital artifacts",
-    "chaotic compositions",
-    "abstract expressionism",
-    "3D rendering look",
-    "photorealistic rendering",
-    "digital art aesthetics",
-    // Style-specific avoids
-    "soft-focus or pastel romanticism",
-    "naturalistic and candid photography",
-    "muted or desaturated color schemes",
-    "low-contrast, flat lighting",
-    "overly digital and CGI aesthetics",
-    "realism without surreal or exaggerated elements",
-    "documentary-style photography",
-    "casual or unstylized compositions",
-    "traditional surrealist clichés without fashion context",
-    "overly literal interpretations",
-    "typical Magritte motifs (bowler hats, pipes, apples)",
-    "purely philosophical surrealism without fashion context"
+    // Technical Imperfections to Avoid
+    "full body shots",
+    "three-quarter views",
+    "profile angles",
+    "tilted head poses",
+    "looking away poses",
+    "environmental elements",
+    "busy backgrounds",
+    "visible brush texture",
+    "impasto technique",
+    "loose brushwork",
+    "painterly effects",
+    "surface irregularity",
+    "textural variation",
+    "atmospheric softness",
+    "edge ambiguity"
   ]
 };
 
@@ -240,26 +197,54 @@ function detectConceptCategory(concept: string): string | undefined {
   
   const conceptLower = concept.toLowerCase();
   
-  // Category detection patterns
+  // Heavily prioritize Magritte-related categories with detailed keywords
   const categoryPatterns = [
-    { category: 'lovers', keywords: ['lover', 'veil', 'covered face', 'hidden identity', 'intimacy', 'couple'] },
-    { category: 'empire_of_light', keywords: ['day and night', 'empire of light', 'night sky', 'daytime', 'street lamp'] },
-    { category: 'objects', keywords: ['apple', 'pipe', 'bowler hat', 'everyday object', 'still life'] },
-    { category: 'windows', keywords: ['window', 'frame', 'view', 'looking through', 'glass'] },
-    { category: 'silhouettes', keywords: ['silhouette', 'shadow', 'outline', 'dark figure'] },
-    { category: 'metamorphosis', keywords: ['transform', 'change', 'metamorphosis', 'becoming', 'evolution'] },
-    { category: 'wordplay', keywords: ['word', 'language', 'text', 'meaning', 'treachery of images'] },
-    { category: 'scale', keywords: ['giant', 'miniature', 'scale', 'proportion', 'size', 'oversized'] },
-    { category: 'mystery', keywords: ['mystery', 'enigma', 'puzzle', 'unknown', 'question'] },
-    { category: 'landscapes', keywords: ['landscape', 'nature', 'horizon', 'vista', 'scenery'] },
-    { category: 'skies', keywords: ['sky', 'cloud', 'bird', 'flying', 'heaven', 'air'] },
-    { category: 'classic', keywords: ['classic', 'iconic', 'famous', 'son of man', 'golconda'] },
-    // Add Bourdin-related categories
-    { category: 'bourdin_fashion', keywords: ['fashion', 'vogue', 'glamour', 'editorial', 'haute couture', 'runway', 'model', 'magazine'] },
-    { category: 'bourdin_color', keywords: ['vibrant', 'saturated', 'high-contrast', 'bold colors', 'red lips', 'crimson', 'electric blue'] },
-    { category: 'bourdin_composition', keywords: ['cropped', 'fragmented', 'disembodied', 'partial view', 'tight framing', 'cinematic', 'theatrical'] },
-    { category: 'bourdin_narrative', keywords: ['provocative', 'erotic', 'suggestive', 'mysterious narrative', 'implied story', 'tension', 'suspense'] },
-    { category: 'bourdin_objects', keywords: ['stiletto', 'high heel', 'mannequin', 'luxury goods', 'cosmetics', 'perfume', 'jewelry', 'accessories'] }
+    // Primary Magritte categories (90% weight)
+    { 
+      category: 'magritte_classic', 
+      keywords: [
+        'bowler hat', 'pipe', 'apple', 'cloud', 'surreal object',
+        'bear', 'window', 'sky', 'mirror', 'curtain', 'silhouette',
+        'floating', 'mysterious', 'philosophical', 'paradox'
+      ]
+    },
+    { 
+      category: 'magritte_objects', 
+      keywords: [
+        'floating', 'impossible', 'ordinary object', 'transformation',
+        'bear object', 'giant', 'miniature', 'levitation', 'stone',
+        'crystal', 'wood', 'natural', 'everyday item'
+      ]
+    },
+    { 
+      category: 'magritte_metamorphosis', 
+      keywords: [
+        'transform', 'change', 'becoming', 'hybrid',
+        'bear transformation', 'cloud bear', 'stone bear', 'tree bear',
+        'merging', 'evolving', 'morphing', 'blending'
+      ]
+    },
+    { 
+      category: 'magritte_mystery', 
+      keywords: [
+        'hidden face', 'veiled', 'obscured', 'enigma',
+        'bear face', 'shrouded', 'concealed', 'masked',
+        'mysterious', 'unknown', 'secret', 'shadow'
+      ]
+    },
+    { 
+      category: 'magritte_mirrors', 
+      keywords: [
+        'reflection', 'mirror', 'double', 'duplicate',
+        'bear reflection', 'false mirror', 'glass', 'portal',
+        'parallel', 'twin', 'copied', 'repeated'
+      ]
+    },
+    // Limited Bourdin influence (10% weight)
+    { 
+      category: 'bourdin_lighting', 
+      keywords: ['dramatic light', 'shadow play', 'theatrical']
+    }
   ];
   
   // Check for keyword matches
@@ -270,7 +255,8 @@ function detectConceptCategory(concept: string): string | undefined {
     }
   }
   
-  return undefined;
+  // Default to Magritte classic if no specific category is detected
+  return 'magritte_classic';
 }
 
 // Determine the category to use
@@ -311,6 +297,154 @@ const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
 const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
 const MINIMAX_MODEL = 'minimax/image-01';
 
+// Add this function before the generateArt function
+async function generateArtCritique(artwork: any, artDirection: ArtDirection): Promise<{
+  strengths: string[];
+  areasForImprovement: string[];
+  overallScore: number;
+  technicalAnalysis: string[];
+  compositionalAnalysis: string[];
+  stylisticFidelity: string[];
+  aiEvaluation?: {
+    technicalScore: number;
+    compositionScore: number;
+    stylisticScore: number;
+    analysis: string;
+  };
+}> {
+  // Initialize AI service for evaluation
+  const aiService = new AIService({
+    anthropicApiKey: process.env.ANTHROPIC_API_KEY,
+    openaiApiKey: process.env.OPENAI_API_KEY,
+  });
+  
+  await aiService.initialize();
+
+  // Prepare the evaluation prompt
+  const evaluationPrompt = `
+    Analyze this artwork in the context of René Magritte's style and the following art direction:
+    ${JSON.stringify(artDirection, null, 2)}
+
+    Image URL: ${artwork.imageUrl}
+
+    Please evaluate:
+    1. Technical Execution (0-10): Surface quality, edge precision, tonal gradation, detail resolution
+    2. Compositional Success (0-10): Face framing, symmetry, eye positioning, surreal element placement
+    3. Stylistic Fidelity (0-10): Adherence to Magritte's style, philosophical clarity, surrealist integration
+    
+    Provide a detailed analysis focusing on:
+    - How well it captures Magritte's technical precision
+    - Success in achieving the specified composition
+    - Authenticity to Magritte's surrealist vision
+    - Integration of bear portrait with surreal elements
+  `;
+
+  // Get AI evaluation
+  const aiResponse = await aiService.generateText(evaluationPrompt, {
+    temperature: 0.3, // Lower temperature for more consistent analysis
+    maxTokens: 1000
+  });
+
+  // Parse AI response for scores and analysis
+  const technicalScoreMatch = aiResponse.match(/Technical Execution.*?(\d+)/);
+  const compositionScoreMatch = aiResponse.match(/Compositional Success.*?(\d+)/);
+  const stylisticScoreMatch = aiResponse.match(/Stylistic Fidelity.*?(\d+)/);
+
+  const aiEvaluation = {
+    technicalScore: technicalScoreMatch ? parseInt(technicalScoreMatch[1]) : 7,
+    compositionScore: compositionScoreMatch ? parseInt(compositionScoreMatch[1]) : 7,
+    stylisticScore: stylisticScoreMatch ? parseInt(stylisticScoreMatch[1]) : 7,
+    analysis: aiResponse
+  };
+
+  // Evaluate based on Magritte's principles
+  const technicalCriteria = [
+    "Surface quality and smoothness",
+    "Edge precision and definition",
+    "Tonal gradation accuracy",
+    "Detail resolution in fur rendering",
+    "Light and shadow handling",
+    "Color accuracy to Magritte palette"
+  ];
+
+  const compositionalCriteria = [
+    "Face fills 80% of frame",
+    "Perfect symmetrical alignment",
+    "Eye positioning on upper third",
+    "Central nose placement",
+    "Square aspect ratio maintenance",
+    "Surreal element placement"
+  ];
+
+  const stylisticCriteria = [
+    "Magritte's philosophical clarity",
+    "Surrealist element integration",
+    "Bear portrait authenticity",
+    "Direct gaze engagement",
+    "Academic painting technique",
+    "Overall conceptual strength"
+  ];
+
+  // Use AI scores to influence criteria evaluation
+  const strengths: string[] = [];
+  const areasForImprovement: string[] = [];
+  const technicalAnalysis: string[] = [];
+  const compositionalAnalysis: string[] = [];
+  const stylisticFidelity: string[] = [];
+
+  // Technical Analysis influenced by AI technical score
+  technicalCriteria.forEach(criterion => {
+    const score = (aiEvaluation.technicalScore / 10) + (Math.random() * 0.3 - 0.15); // Add small random variation
+    if (score > 0.7) {
+      technicalAnalysis.push(`✓ Strong ${criterion}`);
+      strengths.push(`Excellent ${criterion.toLowerCase()}`);
+    } else {
+      technicalAnalysis.push(`△ Could improve ${criterion}`);
+      areasForImprovement.push(`Enhance ${criterion.toLowerCase()}`);
+    }
+  });
+
+  // Compositional Analysis influenced by AI composition score
+  compositionalCriteria.forEach(criterion => {
+    const score = (aiEvaluation.compositionScore / 10) + (Math.random() * 0.3 - 0.15);
+    if (score > 0.7) {
+      compositionalAnalysis.push(`✓ Achieved ${criterion}`);
+      strengths.push(`Successful ${criterion.toLowerCase()}`);
+    } else {
+      compositionalAnalysis.push(`△ Adjust ${criterion}`);
+      areasForImprovement.push(`Refine ${criterion.toLowerCase()}`);
+    }
+  });
+
+  // Stylistic Analysis influenced by AI stylistic score
+  stylisticCriteria.forEach(criterion => {
+    const score = (aiEvaluation.stylisticScore / 10) + (Math.random() * 0.3 - 0.15);
+    if (score > 0.7) {
+      stylisticFidelity.push(`✓ Captured ${criterion}`);
+      strengths.push(`Strong ${criterion.toLowerCase()}`);
+    } else {
+      stylisticFidelity.push(`△ Develop ${criterion}`);
+      areasForImprovement.push(`Strengthen ${criterion.toLowerCase()}`);
+    }
+  });
+
+  // Calculate overall score using AI evaluation scores
+  const overallScore = Math.min(10, Math.round(
+    (aiEvaluation.technicalScore + aiEvaluation.compositionScore + aiEvaluation.stylisticScore) / 3
+  ));
+
+  return {
+    strengths,
+    areasForImprovement,
+    overallScore,
+    technicalAnalysis,
+    compositionalAnalysis,
+    stylisticFidelity,
+    aiEvaluation
+  };
+}
+
+// Modify the generateArt function to include the new critique
 async function generateArt(concept: string) {
   try {
     // Check for API keys
@@ -379,8 +513,8 @@ async function generateArt(concept: string) {
     let artConcept = concept;
     
     if (!artConcept) {
-      // Default to POST_PHOTOGRAPHY category unless explicitly specified otherwise
-      let category = ConceptCategory.POST_PHOTOGRAPHY;
+      // Default to MAGRITTE_CLASSIC category unless explicitly specified otherwise
+      let category = ConceptCategory.MAGRITTE_CLASSIC;
       
       if (detectedCategory) {
         // Try to match the detected category to a valid category
@@ -392,11 +526,11 @@ async function generateArt(concept: string) {
           category = ConceptCategory[categoryKey as keyof typeof ConceptCategory];
           console.log(`\n🎬 Generating a ${category} concept...`);
         } else {
-          console.log(`\n⚠️ Unknown category: "${detectedCategory}". Using POST_PHOTOGRAPHY category.`);
-          category = ConceptCategory.POST_PHOTOGRAPHY;
+          console.log(`\n⚠️ Unknown category: "${detectedCategory}". Using MAGRITTE_CLASSIC category.`);
+          category = ConceptCategory.MAGRITTE_CLASSIC;
         }
       } else {
-        console.log(`\n🎬 Generating a post-photography concept...`);
+        console.log(`\n🎬 Generating a Magritte classic concept...`);
       }
       
       // Generate the concept with the selected category
@@ -405,62 +539,54 @@ async function generateArt(concept: string) {
         category
       });
     } else {
-      // Check if the provided concept is post-photography related
-      const bourdinKeywords = [
-        // Core Bourdin elements
-        'red', 'crimson', 'glossy', 'theatrical', 'dramatic', 'staged', 'narrative',
-        // Fashion elements
-        'fashion', 'glamour', 'editorial', 'haute couture', 'model', 'magazine',
-        // Visual style
-        'high-contrast', 'saturated', 'vibrant', 'cropped', 'fragmented',
-        // Composition elements
-        'partial view', 'tight framing', 'cinematic', 'diagonal', 'bisected',
-        // Objects and props
-        'stiletto', 'heel', 'mannequin', 'mirror', 'reflection', 'chrome',
-        // Mood and atmosphere
-        'erotic', 'tension', 'mysterious', 'sinister', 'psychological',
-        // Lighting
-        'spotlight', 'shadow', 'backlit', 'neon', 'gel lighting',
-        // Luxury elements
-        'luxury', 'cosmetics', 'perfume', 'jewelry', 'accessories',
-        // Specific Bourdin techniques
-        'bourdin', 'fragmentation', 'radical crop', 'staged scene'
+      // Check if the provided concept is Magritte-related
+      const magritteKeywords = [
+        // Core Magritte elements
+        'bowler hat', 'pipe', 'apple', 'cloud', 'window', 'sky',
+        'mirror', 'curtain', 'silhouette', 'floating', 'mysterious',
+        // Bear-specific Magritte elements
+        'bear face', 'bear reflection', 'bear cloud', 'bear window',
+        'bear silhouette', 'bear transformation', 'bear paradox',
+        // Philosophical elements
+        'philosophical', 'paradox', 'surreal', 'impossible', 'metaphysical',
+        // Natural elements
+        'stone', 'wood', 'leaf', 'tree', 'mountain', 'ocean', 'sky',
+        // Symbolic objects
+        'key', 'door', 'frame', 'room', 'chair', 'table', 'book',
+        // Specific Magritte techniques
+        'magritte', 'surrealism', 'belgian surrealism', 'philosophical art'
       ];
       
-      // Always regenerate as Bourdin concept unless explicitly Magritte-themed
-      const isMagritteThemed = concept.toLowerCase().includes('magritte') || 
-                              concept.toLowerCase().includes('bowler hat') ||
-                              concept.toLowerCase().includes('pipe') ||
-                              (detectedCategory && detectedCategory.toLowerCase().includes('magritte'));
+      // Only transform to Bourdin if explicitly requested
+      const isBourdinRequested = concept.toLowerCase().includes('bourdin') || 
+                                (detectedCategory && detectedCategory.toLowerCase().includes('bourdin'));
       
-      const isBourdinStyle = bourdinKeywords.some(keyword => 
+      const isMagritteStyle = magritteKeywords.some(keyword => 
         concept.toLowerCase().includes(keyword.toLowerCase())
-      );
+      ) || !isBourdinRequested;
       
-      if (!isMagritteThemed) {
-        // Select a random Bourdin-specific category based on concept keywords
-        const bourdinCategories = [
-          ConceptCategory.BOURDIN_FASHION,
-          ConceptCategory.BOURDIN_COLOR,
-          ConceptCategory.BOURDIN_COMPOSITION,
-          ConceptCategory.BOURDIN_NARRATIVE,
-          ConceptCategory.BOURDIN_OBJECTS,
-          ConceptCategory.BOURDIN_FRAGMENTATION,
-          ConceptCategory.BOURDIN_GLAMOUR,
-          ConceptCategory.BOURDIN_EROTICISM,
-          ConceptCategory.BOURDIN_LIGHTING,
-          ConceptCategory.BOURDIN_STAGING,
-          ConceptCategory.BOURDIN_CROPPING,
-          ConceptCategory.BOURDIN_LUXURY
+      if (isMagritteStyle) {
+        // Select a random Magritte-specific category
+        const magritteCategories = [
+          ConceptCategory.MAGRITTE_CLASSIC,
+          ConceptCategory.MAGRITTE_OBJECTS,
+          ConceptCategory.MAGRITTE_METAMORPHOSIS,
+          ConceptCategory.MAGRITTE_MYSTERY,
+          ConceptCategory.MAGRITTE_MIRRORS,
+          ConceptCategory.MAGRITTE_SCALE,
+          ConceptCategory.MAGRITTE_WINDOWS,
+          ConceptCategory.MAGRITTE_SILHOUETTES
         ];
         
-        const selectedCategory = bourdinCategories[Math.floor(Math.random() * bourdinCategories.length)];
+        const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
         
-        console.log(`\n🎬 Transforming concept into ${selectedCategory} style...`);
-        artConcept = await generateCinematicConcept(aiService, {
-          temperature: 0.9,
-          category: selectedCategory
-        });
+        if (!concept.toLowerCase().includes('magritte')) {
+          console.log(`\n🎬 Enhancing concept with ${selectedCategory} style...`);
+          artConcept = await generateCinematicConcept(aiService, {
+            temperature: 0.9,
+            category: selectedCategory
+          });
+        }
       }
     }
     
@@ -568,8 +694,6 @@ async function generateArt(concept: string) {
           "Hot pink",
           "Deep burgundy",
           "Metallic silver",
-          "Glossy white",
-          "Neon accents",
           "Flesh tones with tension",
           ...(artDirectionStyle.colorPalette?.filter(color => 
             !color.toLowerCase().includes('magritte')) || [])
@@ -741,7 +865,39 @@ async function generateArt(concept: string) {
     fs.writeFileSync(imagePath, imageUrl);
     console.log(`\n✅ Image URL saved to: ${imagePath}`);
     
-    // Save metadata
+    // After generating the artwork and before saving metadata, add critique
+    const critique = await generateArtCritique(artwork, project.artDirection);
+    
+    // Log detailed critique
+    console.log('\n📊 Artwork Critique:');
+    console.log('\n🎨 Technical Analysis:');
+    critique.technicalAnalysis.forEach(analysis => console.log(analysis));
+    
+    console.log('\n📐 Compositional Analysis:');
+    critique.compositionalAnalysis.forEach(analysis => console.log(analysis));
+    
+    console.log('\n🖼️ Stylistic Fidelity:');
+    critique.stylisticFidelity.forEach(analysis => console.log(analysis));
+    
+    console.log('\n💪 Strengths:');
+    critique.strengths.forEach(strength => console.log(`• ${strength}`));
+    
+    console.log('\n📈 Areas for Improvement:');
+    critique.areasForImprovement.forEach(area => console.log(`• ${area}`));
+    
+    console.log(`\n⭐ Overall Score: ${critique.overallScore}/10`);
+
+    // After logging the critique, add AI evaluation results
+    if (critique.aiEvaluation) {
+      console.log('\n🤖 AI Evaluation:');
+      console.log(`Technical Score: ${critique.aiEvaluation.technicalScore}/10`);
+      console.log(`Composition Score: ${critique.aiEvaluation.compositionScore}/10`);
+      console.log(`Stylistic Score: ${critique.aiEvaluation.stylisticScore}/10`);
+      console.log('\nDetailed AI Analysis:');
+      console.log(critique.aiEvaluation.analysis);
+    }
+
+    // Update the metadata with detailed critique and AI evaluation
     const metadata = {
       concept: artConcept,
       prompt: prompt,
@@ -751,11 +907,15 @@ async function generateArt(concept: string) {
       isPostPhotoNative: isPostPhotoRelated || detectedCategory === 'post_photography',
       multiAgentCollaboration: true,
       artDirection: project.artDirection,
-      critique: result.critique ? {
-        strengths: result.critique.strengths,
-        areasForImprovement: result.critique.areasForImprovement,
-        overallScore: result.critique.overallScore
-      } : null
+      critique: {
+        strengths: critique.strengths,
+        areasForImprovement: critique.areasForImprovement,
+        overallScore: critique.overallScore,
+        technicalAnalysis: critique.technicalAnalysis,
+        compositionalAnalysis: critique.compositionalAnalysis,
+        stylisticFidelity: critique.stylisticFidelity,
+        aiEvaluation: critique.aiEvaluation
+      }
     };
     
     fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
@@ -770,7 +930,7 @@ async function generateArt(concept: string) {
         imageUrl: imageUrl,
         multiAgentCollaboration: true,
         artDirection: project.artDirection,
-        critique: result.critique
+        critique: critique
       },
       MemoryType.EXPERIENCE,
       { 
@@ -808,36 +968,41 @@ export { generateArt };
 function getStyleFromArtDirection(artDirection: any, isPostPhotoRelated: boolean = false): ArtDirection {
   // If the art direction has a styles object, it's using the new format
   if (artDirection && artDirection.styles) {
-    // Instead of choosing one style or the other, blend them together
+    // Create a style that almost exclusively uses Magritte with minimal Bourdin elements
     const magritteStyle = artDirection.styles['magritte'] || {};
     const postPhotoStyle = artDirection.styles['postPhotography'] || {};
     
-    // Create a blended style that combines elements from both
     return {
       styleEmphasis: [
-        ...(magritteStyle.styleEmphasis || []).slice(0, 5), // Significantly reduced Magritte elements
-        ...(postPhotoStyle.styleEmphasis || []).slice(0, 25) // Heavily increased Bourdin elements
+        ...(magritteStyle.styleEmphasis || []).slice(0, 25), // Almost all Magritte elements
+        ...(postPhotoStyle.styleEmphasis || []).slice(0, 2)  // Minimal Bourdin elements
       ],
       visualElements: [
-        ...(magritteStyle.visualElements || []).slice(0, 5), // Significantly reduced Magritte elements
-        ...(postPhotoStyle.visualElements || []).slice(0, 25) // Heavily increased Bourdin elements
+        ...(magritteStyle.visualElements || []).slice(0, 25), // Almost all Magritte elements
+        ...(postPhotoStyle.visualElements || []).slice(0, 2)  // Minimal Bourdin elements
       ],
       colorPalette: [
-        ...(magritteStyle.colorPalette || []).slice(0, 4), // Significantly reduced Magritte colors
-        ...(postPhotoStyle.colorPalette || []).slice(0, 16) // Heavily increased Bourdin colors
+        ...(magritteStyle.colorPalette || []).slice(0, 15), // Almost all Magritte colors
+        ...(postPhotoStyle.colorPalette || []).slice(0, 2)  // Minimal Bourdin colors
       ],
       compositionGuidelines: [
-        ...(magritteStyle.compositionGuidelines || []).slice(0, 4), // Significantly reduced Magritte composition
-        ...(postPhotoStyle.compositionGuidelines || []).slice(0, 16) // Heavily increased Bourdin composition
+        ...(magritteStyle.compositionGuidelines || []).slice(0, 15), // Almost all Magritte composition
+        ...(postPhotoStyle.compositionGuidelines || []).slice(0, 2)   // Minimal Bourdin composition
       ],
-      moodAndTone: "A bold fusion dominated by Guy Bourdin's seductive and provocative high-fashion aesthetics, with subtle undertones of surrealist elements. The atmosphere emphasizes theatrical drama, erotic tension, and commercial glamour, while maintaining a hint of metaphysical intrigue. The focus is primarily on Bourdin's signature style of high-gloss sophistication, radical compositions, and psychological impact.",
+      moodAndTone: "A pure exploration of Magritte's surrealist vision, deeply focused on philosophical paradoxes, metaphysical questioning, and pristine compositions. The atmosphere embodies Magritte's contemplative approach to reality and representation, with his characteristic clean, precise execution and conceptual depth. While maintaining the technical sophistication of modern photography, the style remains firmly rooted in Magritte's surrealist philosophy and visual language.",
       references: [
-        ...(magritteStyle.references || []).slice(0, 10), // Take more Magritte references
-        ...(postPhotoStyle.references || []).slice(0, 10) // Take more Bourdin references
+        ...(magritteStyle.references || []).slice(0, 18), // Almost all Magritte references
+        ...(postPhotoStyle.references || []).slice(0, 2)  // Minimal Bourdin references
       ],
       avoidElements: [
-        ...(magritteStyle.avoidElements || []).slice(0, 5), // Take Magritte avoids
-        ...(postPhotoStyle.avoidElements || []).slice(0, 8) // Take more Bourdin avoids
+        ...(magritteStyle.avoidElements || []),
+        "fashion editorial style",
+        "extreme contrast",
+        "provocative poses",
+        "commercial aesthetics",
+        "radical cropping",
+        "fetishistic elements",
+        "high-fashion styling"
       ]
     };
   }

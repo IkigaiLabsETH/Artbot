@@ -45,8 +45,8 @@ export class IdeatorAgent extends BaseAgent {
         'fashion', 'glamour', 'editorial', 'haute couture', 'runway', 'model', 'magazine',
         'vogue paris', 'charles jourdan', 'french fashion', 'luxury brands',
         // Visual Elements
-        'high-contrast', 'saturated', 'vibrant', 'bold colors', 'red lips', 'crimson',
-        'glossy', 'metallic', 'reflective', 'neon', 'jewel tones',
+        'high-contrast', 'saturated', 'vibrant', 'bold colors', 'crimson',
+        'glossy', 'metallic', 'reflective', 'jewel tones',
         // Composition
         'cropped', 'fragmented', 'disembodied', 'partial view', 'tight framing', 'cinematic',
         'geometric', 'asymmetrical', 'dramatic angles', 'compressed space',
@@ -54,7 +54,7 @@ export class IdeatorAgent extends BaseAgent {
         'provocative', 'erotic', 'suggestive', 'mysterious narrative', 'tension',
         'psychological', 'dark humor', 'surreal fashion', 'theatrical',
         // Objects and Props
-        'stiletto', 'high heel', 'mannequin', 'luxury goods', 'cosmetics', 'perfume',
+        'mannequin', 'luxury goods', 'cosmetics', 'perfume',
         'mirrors', 'glass', 'water', 'architectural elements',
         // Technical
         'studio lighting', 'location shoots', 'color filtration', 'multiple exposure',
@@ -441,7 +441,6 @@ export class IdeatorAgent extends BaseAgent {
         - High-contrast colors (especially reds against other colors)
         - Fragmented body parts and luxury objects with sinister undertones
         - Tight cropping, radical framing, and narrative implications
-        - Glossy surfaces and theatrical staging
         - References to Bourdin's work with Vogue Paris and Charles Jourdan shoe campaigns
         ` : ''}`
       },
@@ -548,7 +547,6 @@ export class IdeatorAgent extends BaseAgent {
         - Meticulous staging and set design
         - Color saturation and manipulation techniques
         - Innovative cropping and framing approaches
-        - Glossy surface treatments and reflections
         ` : ''}`
       },
       {

@@ -169,7 +169,7 @@ async function generateArtWithFlux() {
 
 Your prompts should be layered with meaning, metaphor, and visual complexity - not just describing what something looks like, but what it means and how it feels.
 
-For the FLUX model (cinestill 800t style), include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "cinestill 800t", "night time", "film grain", and "4k" for better quality.
+For the FLUX model (cinestill 800t style), include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "cinestill 800t", "night time", "film grain", and "4k" for better quality.
 
 Here are examples of the sophisticated prompt style to emulate:
 
@@ -214,8 +214,8 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
     }
     
     // Ensure the prompt starts with the FLUX trigger word
-    if (!detailedPrompt.includes('CNSTLL')) {
-      detailedPrompt = `CNSTLL ${detailedPrompt}`;
+    if (!detailedPrompt.includes('IKIGAI')) {
+      detailedPrompt = `IKIGAI ${detailedPrompt}`;
     }
     
     // Add FLUX-specific keywords if they're not already present

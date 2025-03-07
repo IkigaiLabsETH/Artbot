@@ -1343,7 +1343,7 @@ export class CreativeEngine {
             treatment: "glossy and vibrant"
           },
           elements: {
-            fashion: ["haute couture", "stilettos", "luxury accessories"],
+            fashion: ["haute couture", "luxury accessories"],
             props: ["mirrors", "mannequins", "geometric shapes"],
             poses: ["extreme", "fragmented", "provocative"]
           },

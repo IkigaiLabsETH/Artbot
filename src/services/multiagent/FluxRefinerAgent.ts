@@ -50,26 +50,10 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
         },
         // Bourdin-Magritte Fusion examples
         {
-          prompt: "Glossy red stiletto emerging from a Magritte-style clouded sky, suspended above a mirror-like surface reflecting an impossible blue daylight scene, elongated mannequin legs dissolving into floating bowler hats, theatrical lighting creating dramatic shadows against surreal backdrop, fashion photography meets philosophical questioning, hyper-stylized composition with extreme color saturation, 4k.",
-          process: "I wanted to create a dialogue between Bourdin's provocative fashion surrealism and Magritte's philosophical puzzles. The stiletto represents Bourdin's fetishistic commercial elements, while the clouded sky and bowler hats pull from Magritte's iconic symbolism. The mirror reflection playing with day and night references Magritte's 'Empire of Light' while maintaining Bourdin's high-gloss aesthetic. The composition challenges our perception of reality while celebrating the seductive power of fashion imagery."
-        },
-        {
           prompt: "Fragmented mannequin in blood-red evening gown against deep twilight sky, multiple moons visible through windows that shouldn't exist, disembodied glossy lips floating like Magritte's clouds, green apple placed provocatively on patent leather shoe, extreme perspective and theatrical lighting, hyper-stylized commercial surrealism, 4k.",
           process: "This piece merges Bourdin's commercial eroticism with Magritte's conceptual paradoxes. The fragmented mannequin and blood-red gown speak to Bourdin's fashion work, while the impossible windows and floating elements reference Magritte's reality-bending compositions. The green apple serves as a bridge between both worlds—simultaneously a Magritte symbol and a Bourdin-style provocative object. The multiple moons create that sense of disorientation that both artists mastered in their own ways."
         },
-        {
-          prompt: "High-fashion tableau in Magritte's room: elongated model legs emerging from ornate picture frames, bowler hat reflecting neon-lit lingerie, men in suits with mirror-faces arranged in geometric patterns, blood-red stilettos walking across cloud-filled ceiling, extreme contrast and hyperreal color saturation, cinematic tension with philosophical undertones, 4k.",
-          process: "I explored how Bourdin's radical fashion photography could inhabit Magritte's metaphysical spaces. The elongated legs and neon-lit lingerie represent Bourdin's provocative commercial work, while the bowler hats and suited figures maintain Magritte's questioning of reality. The mirror-faces combine both artists' interest in reflection and identity, while the blood-red stilettos walking on clouds create that signature tension between desire and impossibility."
-        },
         // Post-photography examples
-        {
-          prompt: "High-fashion surrealist tableau with elongated limbs against vivid red backdrop, hyper-stylized mannequin poses with theatrical lighting, fragmented body parts arranged in geometric composition, glossy red lips reflecting neon glow, vintage automobile with distorted chrome reflections, extreme perspective on patent leather stilettos, disembodied legs beside azure swimming pool, mirrors creating impossible anatomies, saturated color intensity with electric blues and deep purples, bold cropping techniques isolating intimate details, subliminal tension in domestic setting, fetishistic elements with surreal juxtapositions, cinematic framing suggesting incomplete narrative, glossy skin tones with hyperreal sheen, negative space creating dramatic suspense, fashion photography meets fine art, 4k.",
-          process: "i wanted to explore the intersection of high-fashion photography and surrealist art, drawing direct inspiration from guy bourdin's revolutionary work for charles jourdan and vogue paris. the elongated limbs and mannequin-like poses create that sense of otherworldly glamour that's so central to post-photography aesthetics. the vivid red backdrop is a deliberate homage to bourdin's signature color palette—that high-contrast red that creates immediate visual tension and desire. the fragmented body parts arranged in geometric composition reference both bourdin's radical framing techniques and the surrealist tradition of objectifying the human form. the vintage automobile with distorted chrome reflections speaks to both the commercial fashion world and the uncanny dreamscapes of surrealism. i was particularly interested in how helmut newton's high-gloss eroticism could be merged with more abstract compositional elements—creating that balance between seduction and unease that defines the post-photography movement."
-        },
-        {
-          prompt: "Post-photography fashion narrative with fragmented mannequin figures against electric blue backdrop, hyper-stylized composition with radical cropping techniques, disembodied glossy legs in impossible geometric arrangement, vintage automobile reflecting distorted female silhouettes, high-contrast theatrical lighting creating dramatic shadows, patent leather stilettos positioned as surrealist sculpture, mannequin hands emerging from swimming pool surface, saturated primary colors with extreme color blocking, glossy red lips floating in negative space, fetishistic elements with surrealist displacement, cinematic tension in domestic setting, mirrors creating impossible anatomies, extreme perspective on fashion accessories, subliminal narrative suggesting both desire and unease, bold graphic composition with symmetrical elements disrupted by human forms, fashion photography meets fine art, 4k.",
-          process: "i wanted to create a visual dialogue between commercial fashion photography and surrealist art traditions, drawing direct inspiration from guy bourdin's revolutionary work that transformed advertising into art. the fragmented mannequin figures represent how fashion imagery often reduces the human body to abstract compositional elements—a practice bourdin pioneered in his charles jourdan campaigns where the product became secondary to the provocative narrative. the electric blue backdrop creates that artificial, hyperreal quality that separates post-photography from documentary approaches—that sense that we're viewing a constructed reality rather than capturing one. the disembodied glossy legs arranged in impossible geometric patterns directly reference bourdin's iconic shoe campaigns, where he used the female form as both object and architecture."
-        },
         {
           prompt: "High-fashion surrealist tableau with monochrome figures against vivid red backdrop, extreme contrast creating sculptural bodies, elongated limbs arranged in impossible geometric patterns, disembodied high heels walking across mirrored surface, mannequin-like models with blank expressions and glossy skin, retro-futuristic automobile partially visible in frame, oversized fashion accessories transformed into surreal objects, radical cropping techniques revealing only fragments of narrative, high-contrast lighting creating dramatic shadows and highlights, fetishistic elements with clinical precision, poolside setting with artificial blue water, reflective surfaces distorting reality, cinematic composition suggesting film still from nonexistent movie, subliminal tension between glamour and unease, bold graphic elements with architectural precision, fashion photography elevated to conceptual art, 4k.",
           process: "this piece emerged from my fascination with how guy bourdin and helmut newton transformed commercial fashion photography into conceptual art that challenged viewers both aesthetically and psychologically. the monochrome figures against that signature bourdin red creates an immediate visual tension—that stark contrast between absence and presence that defined his most iconic work. the elongated limbs arranged in impossible geometric patterns reference how bourdin would often distort the human form into abstract compositional elements, particularly in his groundbreaking charles jourdan campaigns where the product became almost secondary to the provocative narrative."
@@ -79,10 +63,6 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           prompt: "Luxury perfume advertisement in Bourdin style: oversized crystal bottle floating in blood-red void, mannequin hands emerging from liquid gold surface, disembodied glossy lips multiplied in fractured mirrors, extreme close-up of eyes with metallic reflection, hyper-stylized composition with radical cropping, theatrical lighting creating dramatic shadows, fashion elements transformed into surreal sculptures, cinematic tension suggesting untold story, 4k.",
           process: "I wanted to capture Bourdin's revolutionary approach to commercial photography, where the product becomes secondary to the psychological narrative. The floating perfume bottle and liquid gold surface create that sense of luxury while maintaining an unsettling edge. The multiplied lips and fractured mirrors reference both fashion's obsession with beauty and Bourdin's interest in fragmentation and reflection. The metallic elements and blood-red void are direct homages to his signature color palette and material fetishism."
         },
-        {
-          prompt: "Fashion editorial in domestic setting: model's elongated legs emerging from pastel refrigerator, blood-red stilettos walking up kitchen walls, mannequin hands arranging fruit in impossible patterns, extreme perspective on luxury handbag reflecting distorted domestic scene, hyper-saturated colors with theatrical lighting, subliminal tension between glamour and banality, 4k.",
-          process: "This piece explores Bourdin's fascination with transforming mundane domestic spaces into stages for fashion surrealism. The refrigerator and kitchen setting reference his ability to make the ordinary extraordinary, while the blood-red stilettos and elongated legs maintain his signature elements. The impossible fruit arrangements and distorted reflections create that sense of unease he was famous for, while the hyper-saturated colors and theatrical lighting elevate the scene from simple domestic space to fashion fantasy."
-        }
       ],
       postPhotographyStyle: {
         styleEmphasis: [
@@ -279,7 +259,7 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
 
 Your prompts should be layered with meaning, metaphor, and visual complexity - not just describing what something looks like, but what it means and how it feels. They should emphasize high-contrast colors, bold compositions, theatrical lighting, and the distinctive glossy, polished aesthetic of post-photography.
 
-For the FLUX model, include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "high-fashion surrealism", "cinematic drama", "bold styling", "hyper-stylized", and "4k" for better quality.
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "high-fashion surrealism", "cinematic drama", "bold styling", "hyper-stylized", and "4k" for better quality.
 
 Here are the key elements to emphasize in your prompts:
 ${this.state.context.postPhotographyStyle.styleEmphasis.map(item => `- ${item}`).join('\n')}
@@ -316,7 +296,7 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
 
 Your prompts should be layered with meaning, metaphor, and visual complexity - not just describing what something looks like, but what it means and how it feels. They should emphasize traditional oil painting techniques, visible brushstrokes, canvas texture, and the distinctive painterly quality of Magritte's work.
 
-For the FLUX model, include the trigger word "CNSTLL" at the beginning of the prompt, and incorporate keywords like "oil painting", "traditional art", "canvas texture", "visible brushstrokes", and "painterly style" for better quality.
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "oil painting", "traditional art", "canvas texture", "visible brushstrokes", and "painterly style" for better quality.
 
 Here are the key elements to emphasize in your prompts:
 1. Oil painting techniques and textures
@@ -381,8 +361,8 @@ Include both the prompt itself and a brief creative process explanation.`
       }
       
       // Ensure the prompt starts with the FLUX trigger word
-      if (!detailedPrompt.includes('CNSTLL')) {
-        detailedPrompt = `CNSTLL ${detailedPrompt}`;
+      if (!detailedPrompt.includes('IKIGAI')) {
+        detailedPrompt = `IKIGAI ${detailedPrompt}`;
       }
       
       // Add style-specific keywords if they're not already present
@@ -505,7 +485,7 @@ Include both the prompt itself and a brief creative process explanation.`
       
       // Create a default artwork as fallback
       return {
-        prompt: `CNSTLL ${project.title}, cinestill 800t, film grain, night time, 4k`,
+        prompt: `IKIGAI ${project.title}, cinestill 800t, film grain, night time, 4k`,
         creativeProcess: "Generated as fallback due to error in refinement process.",
         imageUrl: "https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png",
         error: `${error}`

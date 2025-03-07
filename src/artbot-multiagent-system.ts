@@ -352,7 +352,7 @@ export class ArtBotMultiAgentSystem {
     
     // Get the FluxRefinerAgent to generate the artwork
     let imageUrl = 'https://replicate.delivery/pbxt/4JkAMBmbhJxKkBTcwvLJWQAYTkZ0ky3gT6NpSEVweWwbfSgQA/out-0.png';
-    let prompt = 'CNSTLL A detailed artwork based on ' + session.project.title;
+    let prompt = 'IKIGAI A detailed artwork based on ' + session.project.title;
     let creativeProcess = 'Generated using the FLUX model with a conceptually rich prompt';
     
     if (session.project.useFlux) {

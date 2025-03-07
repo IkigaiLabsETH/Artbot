@@ -81,8 +81,8 @@ export class ReplicateService {
         input.output_format = input.output_format || "png";
         
         // Ensure the prompt has the FLUX trigger word
-        if (input.prompt && !input.prompt.includes('CNSTLL')) {
-          input.prompt = `CNSTLL ${input.prompt}`;
+        if (input.prompt && !input.prompt.includes('IKIGAI')) {
+          input.prompt = `IKIGAI ${input.prompt}`;
         }
         
         // Add FLUX-specific keywords if they're not already present
@@ -100,7 +100,7 @@ export class ReplicateService {
         input.width = input.width || this.defaultWidth;
         input.height = input.height || this.defaultHeight;
         
-        // FLUX Pro doesn't need the CNSTLL trigger word or specific keywords
+        // FLUX Pro doesn't need the IKIGAI trigger word or specific keywords
         // But we'll keep any cinematic elements in the prompt
         
         // Make sure we have the right parameters for FLUX Pro
@@ -323,8 +323,8 @@ export class ReplicateService {
       
       // For FLUX model, enhance the prompt with conceptually rich elements if not already provided
       if (isFluxModel) {
-        if (!prompt.includes('CNSTLL')) {
-          prompt = `CNSTLL ${prompt}`;
+        if (!prompt.includes('IKIGAI')) {
+          prompt = `IKIGAI ${prompt}`;
         }
         
         // Add FLUX-specific keywords if they're not already present
