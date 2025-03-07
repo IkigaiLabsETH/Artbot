@@ -32,112 +32,103 @@ interface ArtDirection {
 // Default art direction that can be overridden by environment variables or parameters
 const defaultArtDirection: ArtDirection = {
   styleEmphasis: [
-    // Pure Magritte Technical Style
-    "flawless oil painting technique",
-    "absolute photorealistic detail",
+    // Pure Portrait Focus
+    "extreme close-up portrait technique",
+    "absolute photorealistic detail in facial features",
     "perfectly smooth surface quality",
-    "razor-sharp edge definition",
-    "masterful tonal transitions",
-    "pristine Belgian academic finish",
-    "crystalline surface clarity",
-    "traditional Magritte precision",
-    "perfect representational accuracy",
+    "razor-sharp eye definition",
+    "masterful fur rendering",
+    "pristine portrait finish",
+    "crystalline facial clarity",
+    "perfect anatomical precision",
     "museum-quality execution",
-    "jewel-like paint handling",
-    "mathematically precise modeling",
-    "glass-like surface finish",
-    "academic perfectionism"
+    "mathematically precise facial modeling",
+    // Essential Minimalism
+    "absolute essential elements only",
+    "pure portrait focus",
+    "stark simplicity",
+    "singular subject emphasis",
+    "minimal compositional elements"
   ],
   visualElements: [
-    // Precise Portrait Framing
-    "extreme close-up of bear face",
-    "head and shoulders composition only",
-    "face fills 80% of frame",
+    // Extreme Portrait Focus
+    "extreme macro close-up of bear face",
+    "eyes and nose only composition",
+    "face fills 95% of frame",
     "perfect square 1:1 ratio crop",
-    "crystal-clear facial features",
+    "ultra-sharp facial features",
     // Core Bear Features
     "direct eye contact with perfect symmetry",
-    "ultra-sharp eye detail",
-    "precise fur texture rendering",
+    "ultra-detailed iris texture",
+    "microscopic fur detail around eyes",
     "mathematically centered nose",
-    "perfectly balanced ears",
-    // Magritte Surreal Elements
-    "floating bowler hat precisely above head",
-    "single green apple suspended at eye level",
-    "mathematically precise sky background",
-    "optically perfect cloud elements",
-    // Technical Portrait Details
-    "microscopic fur detail",
-    "perfect catch lights in eyes",
-    "pristine facial symmetry",
+    "perfect facial symmetry",
+    // Essential Details
+    "pristine catch lights in eyes",
+    "individual eyelash definition",
     "unwavering forward gaze",
     "surgical edge precision",
-    "flawless light modeling"
+    "absolute minimal lighting"
   ],
   colorPalette: [
-    // Magritte's Exact Historical Colors
-    "Magritte cerulean blue (RGB: 31, 104, 178)",
-    "Magritte cloud white (RGB: 245, 245, 245)",
-    "Magritte bear brown (RGB: 89, 61, 43)",
-    "Magritte apple green (RGB: 85, 107, 47)",
-    "Magritte sky blue (RGB: 135, 206, 235)",
-    "Magritte shadow grey (RGB: 128, 128, 128)",
-    // Essential Tonal Values
-    "pure titanium white highlights",
-    "ivory black deep shadows",
-    "neutral grey mid-tones",
-    // Atmospheric Colors
-    "Belgian daylight blue",
-    "Northern European sky tone",
-    "Brussels afternoon light",
-    "Continental atmospheric grey",
-    "Low Countries cloud color"
+    // Essential Portrait Colors
+    "bear fur brown (RGB: 89, 61, 43)",
+    "eye highlight white (RGB: 245, 245, 245)",
+    "iris detail brown (RGB: 75, 54, 33)",
+    // Minimal Tones
+    "pure black for depth",
+    "single highlight tone",
+    "one shadow value"
   ],
   compositionGuidelines: [
-    // Portrait-Specific Composition
-    "face must fill 80% of frame width",
+    // Extreme Portrait Composition
+    "face must fill 95% of frame width",
     "eyes positioned exactly on upper third line",
-    "nose centered on vertical axis",
-    "ears balanced equally on frame edges",
+    "nose perfectly centered on vertical axis",
+    "absolute symmetrical balance",
     "perfect square 1:1 aspect ratio",
     // Mathematical Precision
-    "golden ratio facial proportions",
+    "golden ratio eye spacing",
     "exact rule of thirds eye placement",
-    "precise geometric centering",
-    "perfect facial symmetry",
-    "absolute compositional balance",
-    "exact proportional division",
-    "mathematical tension points"
+    "precise facial centering",
+    // Minimalist Constraints
+    "no environmental elements",
+    "pure black background",
+    "single light source only",
+    "minimal depth layers"
   ],
-  moodAndTone: "Create a museum-quality Magritte bear portrait with absolute technical perfection, focusing on an extreme close-up composition where the bear's face dominates the frame. The execution must reflect his precise Belgian academic training with flawless oil painting technique. Every element should demonstrate perfect symmetry and unwavering direct gaze, while surreal elements must be rendered with crystalline clarity and mathematical precision. The atmosphere should embody Magritte's philosophical clarity through pristine technical execution.",
+  moodAndTone: "Create an extremely minimalist bear portrait with absolute technical perfection, focusing exclusively on an extreme macro close-up where only the bear's eyes and nose are visible. Strip away all surreal elements to achieve radical simplicity. The execution must demonstrate flawless technique with an unwavering focus on facial features. Every element should emphasize the bear's direct gaze and perfect symmetry. The atmosphere should embody pure portraiture through pristine technical execution and absolute minimalism.",
   references: [
-    // Pure Magritte Masterwork References
-    "The Son of Man (1964) - for perfect apple and bowler hat placement",
-    "The Month of the Grape Harvest (1959) - for exact sky color calibration",
-    "The Beautiful Relations (1963) - for flawless surface quality",
-    "The Listening Room (1952) - for precise scale mathematics",
-    "The Victory (1939) - for perfect light handling",
-    "Personal Values (1952) - for exact object placement",
-    "The Empire of Light (1953-54) - for precise sky/light relationship",
-    "The Blank Page (1967) - for absolute surface perfection"
+    // Portrait References
+    "Chuck Close's 'Big Self-Portrait' (1967-1968) - for extreme close-up technique",
+    "The Blank Page (1967) - for absolute surface perfection",
+    "Dürer's precision in animal studies - for anatomical accuracy"
   ],
   avoidElements: [
-    // Technical Imperfections to Avoid
-    "full body shots",
+    // Composition Restrictions
+    "anything below nose level",
+    "anything above forehead",
+    "any body elements",
     "three-quarter views",
     "profile angles",
     "tilted head poses",
     "looking away poses",
-    "environmental elements",
-    "busy backgrounds",
-    "visible brush texture",
-    "impasto technique",
-    "loose brushwork",
-    "painterly effects",
-    "surface irregularity",
-    "textural variation",
-    "atmospheric softness",
-    "edge ambiguity"
+    // Background Elements
+    "any background elements",
+    "environmental context",
+    "props or objects",
+    "surreal elements",
+    "floating items",
+    "bowler hats",
+    "apples",
+    "clouds",
+    // Technical Restrictions
+    "multiple light sources",
+    "complex shadows",
+    "textural variations",
+    "atmospheric effects",
+    "decorative elements",
+    "pattern elements"
   ]
 };
 
@@ -198,53 +189,15 @@ function detectConceptCategory(concept: string): string | undefined {
   
   const conceptLower = concept.toLowerCase();
   
-  // Heavily prioritize Magritte-related categories with detailed keywords
+  // Heavily prioritize close-up portrait categories
   const categoryPatterns = [
-    // Primary Magritte categories (90% weight)
     { 
-      category: 'magritte_classic', 
+      category: 'portrait_closeup', 
       keywords: [
-        'bowler hat', 'pipe', 'apple', 'cloud', 'surreal object',
-        'bear', 'window', 'sky', 'mirror', 'curtain', 'silhouette',
-        'floating', 'mysterious', 'philosophical', 'paradox'
+        'close-up', 'portrait', 'face', 'eyes', 'gaze', 'stare',
+        'macro', 'detail', 'facial', 'expression', 'look',
+        'direct', 'front view', 'symmetrical', 'centered'
       ]
-    },
-    { 
-      category: 'magritte_objects', 
-      keywords: [
-        'floating', 'impossible', 'ordinary object', 'transformation',
-        'bear object', 'giant', 'miniature', 'levitation', 'stone',
-        'crystal', 'wood', 'natural', 'everyday item'
-      ]
-    },
-    { 
-      category: 'magritte_metamorphosis', 
-      keywords: [
-        'transform', 'change', 'becoming', 'hybrid',
-        'bear transformation', 'cloud bear', 'stone bear', 'tree bear',
-        'merging', 'evolving', 'morphing', 'blending'
-      ]
-    },
-    { 
-      category: 'magritte_mystery', 
-      keywords: [
-        'hidden face', 'veiled', 'obscured', 'enigma',
-        'bear face', 'shrouded', 'concealed', 'masked',
-        'mysterious', 'unknown', 'secret', 'shadow'
-      ]
-    },
-    { 
-      category: 'magritte_mirrors', 
-      keywords: [
-        'reflection', 'mirror', 'double', 'duplicate',
-        'bear reflection', 'false mirror', 'glass', 'portal',
-        'parallel', 'twin', 'copied', 'repeated'
-      ]
-    },
-    // Limited Bourdin influence (10% weight)
-    { 
-      category: 'bourdin_lighting', 
-      keywords: ['dramatic light', 'shadow play', 'theatrical']
     }
   ];
   
@@ -256,8 +209,8 @@ function detectConceptCategory(concept: string): string | undefined {
     }
   }
   
-  // Default to Magritte classic if no specific category is detected
-  return 'magritte_classic';
+  // Default to portrait_closeup if no specific category is detected
+  return 'portrait_closeup';
 }
 
 // Determine the category to use
@@ -382,103 +335,101 @@ async function generateArt(concept: string) {
     let artConcept = concept;
     
     if (!artConcept) {
-      // Default to MAGRITTE_CLASSIC category unless explicitly specified otherwise
+      // Always use portrait-focused classic category
       let category = ConceptCategory.MAGRITTE_CLASSIC;
       
-      if (detectedCategory) {
-        // Try to match the detected category to a valid category
-        const categoryKey = Object.keys(ConceptCategory).find(
-          key => key.toLowerCase() === detectedCategory.toLowerCase()
-        );
-        
-        if (categoryKey) {
-          category = ConceptCategory[categoryKey as keyof typeof ConceptCategory];
-          console.log(`\n🎬 Generating concepts for ${category}...`);
-        } else {
-          console.log(`\n⚠️ Unknown category: "${detectedCategory}". Using MAGRITTE_CLASSIC category.`);
-          category = ConceptCategory.MAGRITTE_CLASSIC;
-        }
-      } else {
-        console.log(`\n🎬 Generating Magritte classic concepts...`);
-      }
+      console.log(`\n🎬 Generating styled bear portrait concepts...`);
       
-      // Generate multiple concepts with the selected category
-      const concepts = await generateMultipleConcepts(
+      // First generate base concepts
+      const basePortraitConcepts = await generateMultipleConcepts(
         aiService,
         3, // Generate 3 concepts
         {
-          temperature: 0.9,
+          temperature: 0.7, // Higher temperature for more creative variations
           category
         }
       );
 
-      // Display concepts for selection
-      console.log('\n📝 Generated Concepts:');
-      concepts.forEach((concept, index) => {
+      // Define distinctive bear styling elements
+      const bearStyles = [
+        {
+          accessory: "vintage round glasses",
+          personality: "intellectual",
+          detail: "gold wire frames catching light"
+        },
+        {
+          accessory: "silk bow tie",
+          personality: "sophisticated",
+          detail: "deep burgundy with subtle pattern"
+        },
+        {
+          accessory: "leather newsboy cap",
+          personality: "artisan",
+          detail: "worn leather texture"
+        },
+        {
+          accessory: "pearl necklace",
+          personality: "elegant",
+          detail: "single strand of lustrous pearls"
+        },
+        {
+          accessory: "monocle",
+          personality: "distinguished",
+          detail: "gold chain accent"
+        },
+        {
+          accessory: "velvet beret",
+          personality: "artistic",
+          detail: "deep navy velvet"
+        }
+      ];
+
+      // Enhance each concept with unique styling
+      const enhancedConcepts = basePortraitConcepts.map((concept, index) => {
+        // Select a random style (ensure each concept gets a different style)
+        const style = bearStyles[Math.floor(Math.random() * bearStyles.length)];
+        
+        // Create styled portrait concept
+        return `Minimalist bear portrait with ${style.accessory} - ${style.personality} expression, ${style.detail}. Ultra-close facial study, eyes dominating frame, perfect symmetry, pure black background.`;
+      });
+
+      // Display enhanced concepts for selection
+      console.log('\n📝 Generated Styled Portrait Concepts:');
+      enhancedConcepts.forEach((concept, index) => {
         console.log(`${index + 1}. ${concept}`);
       });
 
       // Get user input for concept selection
-      const selection = await getUserInput('\n🤔 Please select a concept (1-3): ');
+      const selection = await getUserInput('\n🤔 Please select a styled portrait concept (1-3): ');
       const selectedIndex = parseInt(selection) - 1;
       
-      if (selectedIndex >= 0 && selectedIndex < concepts.length) {
-        artConcept = concepts[selectedIndex];
-        console.log(`\n✨ Selected concept: "${artConcept}"`);
+      if (selectedIndex >= 0 && selectedIndex < enhancedConcepts.length) {
+        artConcept = enhancedConcepts[selectedIndex];
+        console.log(`\n✨ Selected styled portrait concept: "${artConcept}"`);
       } else {
-        console.log('\n⚠️ Invalid selection. Using the first concept as default.');
-        artConcept = concepts[0];
-        console.log(`\n✨ Selected concept: "${artConcept}"`);
+        console.log('\n⚠️ Invalid selection. Using the first styled portrait concept as default.');
+        artConcept = enhancedConcepts[0];
+        console.log(`\n✨ Selected styled portrait concept: "${artConcept}"`);
       }
     } else {
-      // Check if the provided concept is Magritte-related
-      const magritteKeywords = [
-        // Core Magritte elements
-        'bowler hat', 'pipe', 'apple', 'cloud', 'window', 'sky',
-        'mirror', 'curtain', 'silhouette', 'floating', 'mysterious',
-        // Bear-specific Magritte elements
-        'bear face', 'bear reflection', 'bear cloud', 'bear window',
-        'bear silhouette', 'bear transformation', 'bear paradox',
-        // Philosophical elements
-        'philosophical', 'paradox', 'surreal', 'impossible', 'metaphysical',
-        // Natural elements
-        'stone', 'wood', 'leaf', 'tree', 'mountain', 'ocean', 'sky',
-        // Symbolic objects
-        'key', 'door', 'frame', 'room', 'chair', 'table', 'book',
-        // Specific Magritte techniques
-        'magritte', 'surrealism', 'belgian surrealism', 'philosophical art'
+      // Enhance any provided concept with styling elements if not present
+      const styleKeywords = [
+        'glasses', 'monocle', 'hat', 'cap', 'tie', 'bowtie',
+        'necklace', 'scarf', 'collar', 'brooch', 'pin'
       ];
       
-      // Only transform to Bourdin if explicitly requested
-      const isBourdinRequested = concept.toLowerCase().includes('bourdin') || 
-                                (detectedCategory && detectedCategory.toLowerCase().includes('bourdin'));
+      const hasStyle = styleKeywords.some(keyword => 
+        artConcept.toLowerCase().includes(keyword)
+      );
       
-      const isMagritteStyle = magritteKeywords.some(keyword => 
-        concept.toLowerCase().includes(keyword.toLowerCase())
-      ) || !isBourdinRequested;
-      
-      if (isMagritteStyle) {
-        // Select a random Magritte-specific category
-        const magritteCategories = [
-          ConceptCategory.MAGRITTE_CLASSIC,
-          ConceptCategory.MAGRITTE_OBJECTS,
-          ConceptCategory.MAGRITTE_METAMORPHOSIS,
-          ConceptCategory.MAGRITTE_MYSTERY,
-          ConceptCategory.MAGRITTE_MIRRORS,
-          ConceptCategory.MAGRITTE_SCALE,
-          ConceptCategory.MAGRITTE_WINDOWS,
-          ConceptCategory.MAGRITTE_SILHOUETTES
-        ];
-        
-        const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
-        
-        if (!concept.toLowerCase().includes('magritte')) {
-          console.log(`\n🎬 Enhancing concept with ${selectedCategory} style...`);
-          artConcept = await generateCinematicConcept(aiService, {
-            temperature: 0.9,
-            category: selectedCategory
-          });
-        }
+      if (!hasStyle) {
+        console.log(`\n🎬 Enhancing concept with distinctive styling...`);
+        const style = {
+          accessory: "vintage round glasses",
+          personality: "intellectual",
+          detail: "gold wire frames catching light"
+        };
+        artConcept = `Minimalist bear portrait with ${style.accessory} - ${style.personality} expression, ${style.detail}. Ultra-close facial study, eyes dominating frame, perfect symmetry, pure black background.`;
       }
     }
     
