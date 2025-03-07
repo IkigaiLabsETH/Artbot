@@ -297,153 +297,6 @@ const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
 const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
 const MINIMAX_MODEL = 'minimax/image-01';
 
-// Add this function before the generateArt function
-async function generateArtCritique(artwork: any, artDirection: ArtDirection): Promise<{
-  strengths: string[];
-  areasForImprovement: string[];
-  overallScore: number;
-  technicalAnalysis: string[];
-  compositionalAnalysis: string[];
-  stylisticFidelity: string[];
-  aiEvaluation?: {
-    technicalScore: number;
-    compositionScore: number;
-    stylisticScore: number;
-    analysis: string;
-  };
-}> {
-  // Initialize AI service for evaluation
-  const aiService = new AIService({
-    anthropicApiKey: process.env.ANTHROPIC_API_KEY,
-    openaiApiKey: process.env.OPENAI_API_KEY,
-  });
-  
-  await aiService.initialize();
-
-  // Prepare the evaluation prompt
-  const evaluationPrompt = `
-    Analyze this artwork in the context of René Magritte's style and the following art direction:
-    ${JSON.stringify(artDirection, null, 2)}
-
-    Image URL: ${artwork.imageUrl}
-
-    Please evaluate:
-    1. Technical Execution (0-10): Surface quality, edge precision, tonal gradation, detail resolution
-    2. Compositional Success (0-10): Face framing, symmetry, eye positioning, surreal element placement
-    3. Stylistic Fidelity (0-10): Adherence to Magritte's style, philosophical clarity, surrealist integration
-    
-    Provide a detailed analysis focusing on:
-    - How well it captures Magritte's technical precision
-    - Success in achieving the specified composition
-    - Authenticity to Magritte's surrealist vision
-    - Integration of bear portrait with surreal elements
-  `;
-
-  // Get AI evaluation
-  const aiResponse = await aiService.generateText(evaluationPrompt, {
-    temperature: 0.3, // Lower temperature for more consistent analysis
-    maxTokens: 1000
-  });
-
-  // Parse AI response for scores and analysis
-  const technicalScoreMatch = aiResponse.match(/Technical Execution.*?(\d+)/);
-  const compositionScoreMatch = aiResponse.match(/Compositional Success.*?(\d+)/);
-  const stylisticScoreMatch = aiResponse.match(/Stylistic Fidelity.*?(\d+)/);
-
-  const aiEvaluation = {
-    technicalScore: technicalScoreMatch ? parseInt(technicalScoreMatch[1]) : 7,
-    compositionScore: compositionScoreMatch ? parseInt(compositionScoreMatch[1]) : 7,
-    stylisticScore: stylisticScoreMatch ? parseInt(stylisticScoreMatch[1]) : 7,
-    analysis: aiResponse
-  };
-
-  // Evaluate based on Magritte's principles
-  const technicalCriteria = [
-    "Surface quality and smoothness",
-    "Edge precision and definition",
-    "Tonal gradation accuracy",
-    "Detail resolution in fur rendering",
-    "Light and shadow handling",
-    "Color accuracy to Magritte palette"
-  ];
-
-  const compositionalCriteria = [
-    "Face fills 80% of frame",
-    "Perfect symmetrical alignment",
-    "Eye positioning on upper third",
-    "Central nose placement",
-    "Square aspect ratio maintenance",
-    "Surreal element placement"
-  ];
-
-  const stylisticCriteria = [
-    "Magritte's philosophical clarity",
-    "Surrealist element integration",
-    "Bear portrait authenticity",
-    "Direct gaze engagement",
-    "Academic painting technique",
-    "Overall conceptual strength"
-  ];
-
-  // Use AI scores to influence criteria evaluation
-  const strengths: string[] = [];
-  const areasForImprovement: string[] = [];
-  const technicalAnalysis: string[] = [];
-  const compositionalAnalysis: string[] = [];
-  const stylisticFidelity: string[] = [];
-
-  // Technical Analysis influenced by AI technical score
-  technicalCriteria.forEach(criterion => {
-    const score = (aiEvaluation.technicalScore / 10) + (Math.random() * 0.3 - 0.15); // Add small random variation
-    if (score > 0.7) {
-      technicalAnalysis.push(`✓ Strong ${criterion}`);
-      strengths.push(`Excellent ${criterion.toLowerCase()}`);
-    } else {
-      technicalAnalysis.push(`△ Could improve ${criterion}`);
-      areasForImprovement.push(`Enhance ${criterion.toLowerCase()}`);
-    }
-  });
-
-  // Compositional Analysis influenced by AI composition score
-  compositionalCriteria.forEach(criterion => {
-    const score = (aiEvaluation.compositionScore / 10) + (Math.random() * 0.3 - 0.15);
-    if (score > 0.7) {
-      compositionalAnalysis.push(`✓ Achieved ${criterion}`);
-      strengths.push(`Successful ${criterion.toLowerCase()}`);
-    } else {
-      compositionalAnalysis.push(`△ Adjust ${criterion}`);
-      areasForImprovement.push(`Refine ${criterion.toLowerCase()}`);
-    }
-  });
-
-  // Stylistic Analysis influenced by AI stylistic score
-  stylisticCriteria.forEach(criterion => {
-    const score = (aiEvaluation.stylisticScore / 10) + (Math.random() * 0.3 - 0.15);
-    if (score > 0.7) {
-      stylisticFidelity.push(`✓ Captured ${criterion}`);
-      strengths.push(`Strong ${criterion.toLowerCase()}`);
-    } else {
-      stylisticFidelity.push(`△ Develop ${criterion}`);
-      areasForImprovement.push(`Strengthen ${criterion.toLowerCase()}`);
-    }
-  });
-
-  // Calculate overall score using AI evaluation scores
-  const overallScore = Math.min(10, Math.round(
-    (aiEvaluation.technicalScore + aiEvaluation.compositionScore + aiEvaluation.stylisticScore) / 3
-  ));
-
-  return {
-    strengths,
-    areasForImprovement,
-    overallScore,
-    technicalAnalysis,
-    compositionalAnalysis,
-    stylisticFidelity,
-    aiEvaluation
-  };
-}
-
 // Modify the generateArt function to include the new critique
 async function generateArt(concept: string) {
   try {
@@ -865,39 +718,7 @@ async function generateArt(concept: string) {
     fs.writeFileSync(imagePath, imageUrl);
     console.log(`\n✅ Image URL saved to: ${imagePath}`);
     
-    // After generating the artwork and before saving metadata, add critique
-    const critique = await generateArtCritique(artwork, project.artDirection);
-    
-    // Log detailed critique
-    console.log('\n📊 Artwork Critique:');
-    console.log('\n🎨 Technical Analysis:');
-    critique.technicalAnalysis.forEach(analysis => console.log(analysis));
-    
-    console.log('\n📐 Compositional Analysis:');
-    critique.compositionalAnalysis.forEach(analysis => console.log(analysis));
-    
-    console.log('\n🖼️ Stylistic Fidelity:');
-    critique.stylisticFidelity.forEach(analysis => console.log(analysis));
-    
-    console.log('\n💪 Strengths:');
-    critique.strengths.forEach(strength => console.log(`• ${strength}`));
-    
-    console.log('\n📈 Areas for Improvement:');
-    critique.areasForImprovement.forEach(area => console.log(`• ${area}`));
-    
-    console.log(`\n⭐ Overall Score: ${critique.overallScore}/10`);
-
-    // After logging the critique, add AI evaluation results
-    if (critique.aiEvaluation) {
-      console.log('\n🤖 AI Evaluation:');
-      console.log(`Technical Score: ${critique.aiEvaluation.technicalScore}/10`);
-      console.log(`Composition Score: ${critique.aiEvaluation.compositionScore}/10`);
-      console.log(`Stylistic Score: ${critique.aiEvaluation.stylisticScore}/10`);
-      console.log('\nDetailed AI Analysis:');
-      console.log(critique.aiEvaluation.analysis);
-    }
-
-    // Update the metadata with detailed critique and AI evaluation
+    // Update the metadata without critique
     const metadata = {
       concept: artConcept,
       prompt: prompt,
@@ -906,16 +727,7 @@ async function generateArt(concept: string) {
       timestamp: new Date().toISOString(),
       isPostPhotoNative: isPostPhotoRelated || detectedCategory === 'post_photography',
       multiAgentCollaboration: true,
-      artDirection: project.artDirection,
-      critique: {
-        strengths: critique.strengths,
-        areasForImprovement: critique.areasForImprovement,
-        overallScore: critique.overallScore,
-        technicalAnalysis: critique.technicalAnalysis,
-        compositionalAnalysis: critique.compositionalAnalysis,
-        stylisticFidelity: critique.stylisticFidelity,
-        aiEvaluation: critique.aiEvaluation
-      }
+      artDirection: project.artDirection
     };
     
     fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
@@ -929,8 +741,7 @@ async function generateArt(concept: string) {
         creativeProcess: creativeProcess,
         imageUrl: imageUrl,
         multiAgentCollaboration: true,
-        artDirection: project.artDirection,
-        critique: critique
+        artDirection: project.artDirection
       },
       MemoryType.EXPERIENCE,
       { 
