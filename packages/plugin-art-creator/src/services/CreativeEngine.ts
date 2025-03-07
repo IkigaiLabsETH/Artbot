@@ -18,8 +18,29 @@ interface CreativeEngineConfig {
   anthropicApiKey: string;
 }
 
+// Magritte-specific creative metrics
+interface MagritteMetrics {
+  metaphysicalDepth: number;    // Depth of philosophical questioning
+  symbolicResonance: number;    // Strength of symbolic relationships
+  paradoxicalImpact: number;    // Effectiveness of visual paradoxes
+  atmosphericMystery: number;   // Level of mysterious atmosphere
+  theatricalStaging: number;    // Quality of dramatic presentation
+}
+
+// Enhanced creative state with Magritte focus
+interface EnhancedCreativeState extends CreativeState {
+  magritteMetrics: MagritteMetrics;
+  surrealistPreferences: {
+    metaphysical: number;
+    symbolic: number;
+    paradoxical: number;
+    atmospheric: number;
+    theatrical: number;
+  };
+}
+
 export class CreativeEngine extends Service {
-  private state: CreativeState;
+  private state: EnhancedCreativeState;
   private selfDialogue: SelfDialogue;
   private memorySystem: MemorySystem;
   private artMemoryService: ArtMemoryService | null = null;
@@ -39,11 +60,18 @@ export class CreativeEngine extends Service {
     this.memorySystem = new MemorySystem();
     this.reflectionEngine = new ReflectionEngine();
     
+    // Initialize enhanced creative state with Magritte focus
     this.state = {
       currentIdeas: [],
       completedWorks: [],
-      stylePreferences: {},
-      explorationRate: 0.2,
+      stylePreferences: {
+        'metaphysical-surrealism': 0.9,
+        'symbolic-paradox': 0.8,
+        'theatrical-staging': 0.7,
+        'atmospheric-mystery': 0.7,
+        'philosophical-questioning': 0.8
+      },
+      explorationRate: 0.7,
       autonomyLevel: 0.8,
       creativityMetrics: {
         novelty: 0,
@@ -54,6 +82,20 @@ export class CreativeEngine extends Service {
           conceptual: 0,
           stylistic: 0
         }
+      },
+      magritteMetrics: {
+        metaphysicalDepth: 0.8,
+        symbolicResonance: 0.7,
+        paradoxicalImpact: 0.8,
+        atmosphericMystery: 0.7,
+        theatricalStaging: 0.6
+      },
+      surrealistPreferences: {
+        metaphysical: 0.9,
+        symbolic: 0.8,
+        paradoxical: 0.8,
+        atmospheric: 0.7,
+        theatrical: 0.7
       }
     };
   }
@@ -257,30 +299,214 @@ export class CreativeEngine extends Service {
   }
 
   /**
-   * Generate art ideas using the current provider
+   * Generate art ideas using the current provider with Magritte focus
    */
   async generateArtIdeas(count: number = 3): Promise<ArtworkIdea[]> {
-    console.log(`Generating ${count} art ideas using ${this.getProvider()}`);
+    console.log(`Generating ${count} Magritte-inspired art ideas using ${this.getProvider()}`);
     
     const ideas: ArtworkIdea[] = [];
     
     for (let i = 0; i < count; i++) {
-      const concept = `Concept ${i + 1}`;
+      const concept = await this.generateMagritteInspiredConcept();
       const dialogue = await this.selfDialogue.explore(concept);
       
       const idea: ArtworkIdea = {
         id: uuidv4(),
         concept: dialogue.concept,
-        medium: ['Digital', 'Oil painting', 'Watercolor'][Math.floor(Math.random() * 3)],
-        style: ['Abstract', 'Realistic', 'Impressionist'][Math.floor(Math.random() * 3)],
-        score: dialogue.confidence,
+        medium: this.selectMagritteMedium(),
+        style: this.selectMagritteStyle(),
+        score: this.evaluateMagritteScore(dialogue),
         timestamp: Date.now()
       };
       
       ideas.push(idea);
       this.state.currentIdeas.push(idea);
+      
+      // Update Magritte metrics based on the generated idea
+      this.updateMagritteMetrics(idea);
     }
     
     return ideas;
+  }
+
+  /**
+   * Generate a Magritte-inspired concept
+   */
+  private async generateMagritteInspiredConcept(): Promise<string> {
+    const elements = [
+      'bowler hat', 'green apple', 'pipe', 'window', 'mirror',
+      'clouds', 'bird', 'castle', 'curtain', 'key'
+    ];
+    
+    const themes = [
+      'reality questioning', 'object relationships', 'visual paradox',
+      'metaphysical truth', 'symbolic meaning', 'philosophical puzzle'
+    ];
+    
+    const techniques = [
+      'juxtaposition', 'displacement', 'scale manipulation',
+      'trompe l\'oeil', 'theatrical staging', 'atmospheric mystery'
+    ];
+    
+    const element = elements[Math.floor(Math.random() * elements.length)];
+    const theme = themes[Math.floor(Math.random() * themes.length)];
+    const technique = techniques[Math.floor(Math.random() * techniques.length)];
+    
+    return `A metaphysical exploration of ${theme} through ${technique}, featuring ${element}`;
+  }
+
+  /**
+   * Select appropriate medium for Magritte-style work
+   */
+  private selectMagritteMedium(): string {
+    const media = [
+      'Oil painting',
+      'Gouache',
+      'Mixed media',
+      'Digital painting'
+    ];
+    
+    return media[Math.floor(Math.random() * media.length)];
+  }
+
+  /**
+   * Select appropriate style for Magritte-inspired work
+   */
+  private selectMagritteStyle(): string {
+    const styles = [
+      'Metaphysical surrealism',
+      'Philosophical paradox',
+      'Symbolic realism',
+      'Theatrical surrealism',
+      'Atmospheric mystery'
+    ];
+    
+    return styles[Math.floor(Math.random() * styles.length)];
+  }
+
+  /**
+   * Evaluate score based on Magritte-specific criteria
+   */
+  private evaluateMagritteScore(dialogue: CreativeDialogue): number {
+    const metrics = {
+      metaphysicalDepth: this.evaluateMetaphysicalDepth(dialogue),
+      symbolicResonance: this.evaluateSymbolicResonance(dialogue),
+      paradoxicalImpact: this.evaluateParadoxicalImpact(dialogue),
+      atmosphericMystery: this.evaluateAtmosphericMystery(dialogue),
+      theatricalStaging: this.evaluateTheatricalStaging(dialogue)
+    };
+    
+    // Weight and combine metrics
+    return (
+      metrics.metaphysicalDepth * 0.3 +
+      metrics.symbolicResonance * 0.2 +
+      metrics.paradoxicalImpact * 0.2 +
+      metrics.atmosphericMystery * 0.15 +
+      metrics.theatricalStaging * 0.15
+    );
+  }
+
+  /**
+   * Update Magritte-specific metrics based on generated idea
+   */
+  private updateMagritteMetrics(idea: ArtworkIdea): void {
+    // Update metrics based on idea characteristics
+    const metrics = this.state.magritteMetrics;
+    
+    // Adjust metaphysical depth
+    if (idea.concept.includes('philosophical') || idea.concept.includes('metaphysical')) {
+      metrics.metaphysicalDepth = Math.min(1, metrics.metaphysicalDepth + 0.1);
+    }
+    
+    // Adjust symbolic resonance
+    if (idea.concept.includes('symbolic') || idea.concept.includes('meaning')) {
+      metrics.symbolicResonance = Math.min(1, metrics.symbolicResonance + 0.1);
+    }
+    
+    // Adjust paradoxical impact
+    if (idea.concept.includes('paradox') || idea.concept.includes('impossible')) {
+      metrics.paradoxicalImpact = Math.min(1, metrics.paradoxicalImpact + 0.1);
+    }
+    
+    // Adjust atmospheric mystery
+    if (idea.concept.includes('mysterious') || idea.concept.includes('atmosphere')) {
+      metrics.atmosphericMystery = Math.min(1, metrics.atmosphericMystery + 0.1);
+    }
+    
+    // Adjust theatrical staging
+    if (idea.concept.includes('theatrical') || idea.concept.includes('staging')) {
+      metrics.theatricalStaging = Math.min(1, metrics.theatricalStaging + 0.1);
+    }
+  }
+
+  /**
+   * Evaluate metaphysical depth of a dialogue
+   */
+  private evaluateMetaphysicalDepth(dialogue: CreativeDialogue): number {
+    const metaphysicalKeywords = [
+      'philosophical', 'metaphysical', 'reality', 'truth',
+      'existence', 'perception', 'representation'
+    ];
+    
+    return this.calculateKeywordScore(dialogue.concept, metaphysicalKeywords);
+  }
+
+  /**
+   * Evaluate symbolic resonance of a dialogue
+   */
+  private evaluateSymbolicResonance(dialogue: CreativeDialogue): number {
+    const symbolicKeywords = [
+      'symbolic', 'meaning', 'representation', 'object',
+      'relationship', 'resonance', 'connection'
+    ];
+    
+    return this.calculateKeywordScore(dialogue.concept, symbolicKeywords);
+  }
+
+  /**
+   * Evaluate paradoxical impact of a dialogue
+   */
+  private evaluateParadoxicalImpact(dialogue: CreativeDialogue): number {
+    const paradoxicalKeywords = [
+      'paradox', 'impossible', 'contradiction', 'juxtaposition',
+      'surreal', 'displacement', 'transformation'
+    ];
+    
+    return this.calculateKeywordScore(dialogue.concept, paradoxicalKeywords);
+  }
+
+  /**
+   * Evaluate atmospheric mystery of a dialogue
+   */
+  private evaluateAtmosphericMystery(dialogue: CreativeDialogue): number {
+    const atmosphericKeywords = [
+      'mysterious', 'atmosphere', 'enigmatic', 'ethereal',
+      'dreamlike', 'poetic', 'ambiguous'
+    ];
+    
+    return this.calculateKeywordScore(dialogue.concept, atmosphericKeywords);
+  }
+
+  /**
+   * Evaluate theatrical staging of a dialogue
+   */
+  private evaluateTheatricalStaging(dialogue: CreativeDialogue): number {
+    const theatricalKeywords = [
+      'theatrical', 'staging', 'dramatic', 'presentation',
+      'scene', 'composition', 'arrangement'
+    ];
+    
+    return this.calculateKeywordScore(dialogue.concept, theatricalKeywords);
+  }
+
+  /**
+   * Calculate keyword-based score
+   */
+  private calculateKeywordScore(text: string, keywords: string[]): number {
+    const matches = keywords.filter(keyword => 
+      text.toLowerCase().includes(keyword.toLowerCase())
+    );
+    
+    return Math.min(1, matches.length / (keywords.length * 0.5));
   }
 } 

@@ -68,6 +68,15 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           prompt: "Luxury perfume advertisement in Bourdin style: oversized crystal bottle floating in blood-red void, mannequin hands emerging from liquid gold surface, disembodied glossy lips multiplied in fractured mirrors, extreme close-up of eyes with metallic reflection, hyper-stylized composition with radical cropping, theatrical lighting creating dramatic shadows, fashion elements transformed into surreal sculptures, cinematic tension suggesting untold story, 4k.",
           process: "I wanted to capture Bourdin's revolutionary approach to commercial photography, where the product becomes secondary to the psychological narrative. The floating perfume bottle and liquid gold surface create that sense of luxury while maintaining an unsettling edge. The multiplied lips and fractured mirrors reference both fashion's obsession with beauty and Bourdin's interest in fragmentation and reflection. The metallic elements and blood-red void are direct homages to his signature color palette and material fetishism."
         },
+        // Hopper-style examples
+        {
+          prompt: "IKIGAI Urban solitude in pure Hopper style: empty diner at dawn, dramatic diagonal sunlight through large windows, geometric shadows creating psychological depth, stark architectural simplicity, precise observation of morning light, muted color palette with warm highlights, contemplative atmosphere, pristine technical execution with photorealistic detail, 4k.",
+          process: "Drawing directly from Hopper's mastery of urban solitude and light, I focused on creating a psychologically charged space through dramatic morning light. The empty diner and geometric shadows echo Hopper's exploration of modern isolation, while the precise architectural detail and muted palette capture his characteristic style of American realism."
+        },
+        {
+          prompt: "IKIGAI Hopper-inspired hotel room scene: stark morning light casting long shadows, minimalist interior with geometric simplification, solitary bed precisely observed, large window framing urban view, psychological tension through emptiness, architectural precision in perspective, natural illumination creating dramatic contrast, contemplative atmosphere, photorealistic execution, 4k.",
+          process: "I approached this piece by merging Hopper's precise architectural observation with his masterful use of natural light. The stark morning light and minimalist interior create that signature sense of isolation, while the geometric simplification and precise perspective reflect his meticulous approach to composition. The psychological atmosphere is enhanced through careful manipulation of light and shadow."
+        }
       ],
       postPhotographyStyle: {
         styleEmphasis: [
@@ -85,7 +94,17 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           "absolute photorealistic detail in facial features",
           "perfectly smooth surface quality",
           "razor-sharp eye definition",
-          "masterful fur rendering with Magritte-like precision"
+          "masterful fur rendering with Magritte-like precision",
+          "precise architectural observation",
+          "dramatic natural lighting",
+          "psychological atmosphere",
+          "urban solitude",
+          "geometric simplification",
+          "contemplative mood",
+          "modern isolation",
+          "stark contrasts",
+          "emotional distance",
+          "realistic detail"
         ],
         visualElements: [
           "surreal play of scale and proportion",
@@ -97,7 +116,17 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           "eyes and nose composition with Magritte-like presence",
           "face fills 95% of frame like a Magritte object",
           "perfect square 1:1 ratio crop",
-          "ultra-sharp facial features in Magritte style"
+          "ultra-sharp facial features in Magritte style",
+          "large windows with dramatic light",
+          "empty urban spaces",
+          "geometric architectural forms",
+          "stark shadows",
+          "solitary figures or objects",
+          "precise perspective",
+          "minimalist interiors",
+          "urban architecture",
+          "morning or late afternoon light",
+          "contemplative spaces"
         ],
         colorPalette: [
           "deep Magritte blue (RGB: 28, 45, 83)",
@@ -108,7 +137,15 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           "iris detail brown (RGB: 75, 54, 33)",
           "philosophical black (RGB: 0, 0, 0)",
           "contemplative shadow (RGB: 40, 40, 40)",
-          "mysterious highlight (RGB: 220, 220, 220)"
+          "mysterious highlight (RGB: 220, 220, 220)",
+          "morning light yellow (RGB: 255, 236, 179)",
+          "urban shadow blue (RGB: 68, 85, 102)",
+          "architectural grey (RGB: 128, 128, 128)",
+          "warm sunlight (RGB: 255, 214, 170)",
+          "cool shadow (RGB: 87, 96, 111)",
+          "muted wall tone (RGB: 230, 230, 230)",
+          "psychological brown (RGB: 101, 67, 33)",
+          "urban brick red (RGB: 165, 42, 42)"
         ],
         compositionGuidelines: [
           "perfect central positioning like Magritte's objects",
@@ -120,16 +157,31 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           "eyes positioned exactly on upper third line",
           "nose perfectly centered on vertical axis",
           "absolute symmetrical balance",
-          "perfect square 1:1 aspect ratio"
+          "perfect square 1:1 aspect ratio",
+          "dramatic diagonal light placement",
+          "geometric architectural framing",
+          "precise perspective lines",
+          "psychological use of empty space",
+          "stark shadow patterns",
+          "contemplative distance",
+          "urban architectural elements",
+          "minimalist interior arrangement",
+          "natural light emphasis",
+          "solitary object placement"
         ],
-        moodAndTone: "Create a portrait that embodies Magritte's philosophical surrealism while incorporating modern hipster/rock elements. The execution must demonstrate his characteristic pristine technique and conceptual depth. Every element should contribute to a sense of metaphysical questioning, with the bear's gaze holding the same mysterious presence found in Magritte's work. The modern accessories should feel as if they've always existed in Magritte's universe, rendered with his signature precise, dreamlike clarity.",
+        moodAndTone: "Create scenes that embody Hopper's exploration of urban solitude and modern isolation. The execution must demonstrate his characteristic precise observation and psychological depth. Every element should contribute to a sense of contemplative stillness, with dramatic natural light creating emotional resonance. The architectural elements should be rendered with geometric clarity while maintaining psychological tension.",
         references: [
           "Magritte's 'The Son of Man' (1964) - for mysterious presence",
           "Magritte's 'The False Mirror' (1929) - for eye treatment",
           "Magritte's 'The Listening Room' (1952) - for scale and presence",
           "Magritte's 'The Blank Signature' (1965) - for technical execution",
           "Magritte's 'The Central Story' (1928) - for compositional balance",
-          "Magritte's 'The Glass Key' (1959) - for surface treatment"
+          "Magritte's 'The Glass Key' (1959) - for surface treatment",
+          "Hopper's 'Nighthawks' (1942) - for urban solitude and artificial light",
+          "Hopper's 'Early Sunday Morning' (1930) - for architectural geometry",
+          "Hopper's 'Morning Sun' (1952) - for dramatic natural light",
+          "Hopper's 'Rooms by the Sea' (1951) - for psychological space",
+          "Hopper's 'Office in a Small City' (1953) - for urban isolation"
         ],
         avoidElements: [
           "impressionistic brushwork",
@@ -149,7 +201,17 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           "atmospheric effects",
           "pattern elements",
           "decorative flourishes",
-          "random elements"
+          "random elements",
+          "busy scenes",
+          "crowded compositions",
+          "excessive detail",
+          "romantic atmosphere",
+          "expressionistic distortion",
+          "decorative elements",
+          "complex patterns",
+          "chaotic arrangements",
+          "fantasy elements",
+          "sentimental mood"
         ]
       }
     };

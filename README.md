@@ -12,7 +12,7 @@
     ╰──────────────────────╯
 ```
 
-*Blending Surrealist Philosophy with Fashion Photography*
+*Bridging Classical Mastery with Contemporary Vision*
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Documentation](#documentation) • [Contributing](#contributing)
 
@@ -20,71 +20,86 @@
 
 ## Vision
 
-ArtBot represents a new paradigm in creative artificial intelligence, specializing in the generation of Magritte-inspired bear portraits infused with contemporary hipster and rockstar aesthetics. Drawing inspiration from René Magritte's surrealist masterpieces and modern urban culture, ArtBot creates unique portraits that blend philosophical depth with contemporary style.
+ArtBot represents a new paradigm in creative artificial intelligence - one where machines transcend their role as mere tools to become true collaborative partners in the artistic process. Drawing inspiration from both classical masters and contemporary innovators, ArtBot creates unique artworks that span the full spectrum of artistic expression.
 
 Our approach is built on three core principles:
 
-1. **Magritte's Surrealist Vision**: Each portrait embodies Magritte's pristine technique, philosophical depth, and conceptual surrealism.
-2. **Contemporary Style Fusion**: Modern hipster and rockstar elements are seamlessly integrated into Magritte's surrealist universe.
-3. **Technical Excellence**: Every portrait maintains crystalline clarity, perfect symmetry, and museum-quality execution.
+1. **Comprehensive Style Mastery**: Deep understanding and implementation of diverse artistic styles, from classical masters to contemporary digital artists.
+2. **Intelligent Style Fusion**: Sophisticated ability to blend and evolve different artistic approaches.
+3. **Technical Excellence**: Precise execution across multiple artistic mediums and techniques.
 
 ## Features
 
-- **Magritte-Style Portraits**: Ultra-close bear portraits with metaphysical depth and surrealist undertones
-- **Modern Accessories**: Curated collection of hipster and rockstar elements
-- **Style Evolution**: Dynamic fusion of classical surrealism with contemporary fashion
-- **Perfect Execution**: Pristine technical quality with Magritte's signature precision
-- **Philosophical Depth**: Each portrait poses questions about reality and representation
+- **Multi-Style Mastery**: Support for 22 distinct artistic styles across different eras and movements
+- **Style Evolution**: Dynamic style development using genetic algorithms and feedback
+- **Style Fusion**: Intelligent blending of different artistic approaches
+- **Perfect Execution**: High-quality output across all supported styles
+- **Philosophical Depth**: Each artwork maintains the essence of its chosen style(s)
 
-## Style Elements
+## Supported Art Styles
 
-### Core Magritte Elements
-- Perfect central positioning
-- Mysterious atmospheric depth
-- Philosophical use of negative space
-- Crystal-clear rendering
-- Metaphysical gaze
+### Classical Masters
+- **Picasso**: Cubist innovation and geometric fragmentation
+- **Van Gogh**: Post-impressionist expression and dynamic brushwork
+- **Hopper**: American realism and atmospheric scenes
 
-### Contemporary Accessories
+### Surrealists
+- **Magritte**: Philosophical surrealism and conceptual depth
+- **Bourdin**: Fashion surrealism and dramatic staging
+
+### Abstract Pioneers
+- **Mondrian**: Neo-plasticism and geometric abstraction
+- **Rothko**: Color field abstraction and emotional depth
+- **Kandinsky**: Abstract expressionism and musical synesthesia
+- **Malevich**: Suprematism and pure geometric forms
+- **Popova**: Constructivism and revolutionary design
+
+### Photography Masters
+- **Cartier-Bresson**: The decisive moment
+- **Arbus**: Intimate portraiture
+- **Avedon**: Fashion and portraiture mastery
+- **Eggleston**: Color photography pioneer
+- **Leibovitz**: Contemporary portrait innovation
+- **Bourdin**: Fashion surrealism fusion
+
+### Contemporary Photographers
+- **Cooper & Gorfer**: Contemporary still life
+- **Von Wong**: Epic conceptual photography
+
+### Digital Age Artists
+- **Beeple**: Dystopian tech maximalism
+- **XCOPY**: Glitch art and crypto aesthetics
+- **Cherniak**: Algorithmic precision
+- **Ikigai**: Quantum-fluid abstraction
+
+## Style Architecture
+
 ```
-┌─────────────────────┐
-│  Modern Hipster     │     ┌─────────────────────┐
-│  - Vintage Wayfarers│     │    Classic Rock     │
-│  - Artisanal Leather│     │  - Worn Leather     │
-│  - Beanie          ◄─────►│  - Bandanas        │
-│  - Typewriter Keys  │     │  - Spiked Collars   │
-└─────────────────────┘     └─────────────────────┘
-         ▲                           ▲
-         │                           │
-         └───────────┬──────────────┘
-                     │
-              ┌──────┴──────────┐
-              │  Fusion Styles  │
-              └─────────────────┘
+┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────────┐
+│   Classical Era     │ ←→  │  Modern Movement    │ ←→  │  Digital Frontier   │
+└─────────────────────┘     └─────────────────────┘     └─────────────────────┘
+         ↑                           ↑                            ↑
+         │                           │                            │
+         └───────────┬──────────────┴────────────────┬──────────┘
+                     │                                │
+              ┌──────┴──────────┐            ┌───────┴───────┐
+              │  Style Fusion   │            │ Evolution Engine│
+              └─────────────────┘            └───────────────┘
 ```
-
-### Color Palette
-- Deep Magritte Blue (RGB: 28, 45, 83)
-- Surrealist Sky Blue (RGB: 163, 193, 227)
-- Metaphysical Grey (RGB: 128, 128, 128)
-- Bear Fur Brown (RGB: 89, 61, 43)
-- Philosophical Black (RGB: 0, 0, 0)
 
 ## Technical Specifications
 
-### Portrait Requirements
-- Face fills 95% of frame
-- Perfect symmetrical composition
-- Ultra-sharp facial features
-- Crystalline clarity in execution
-- 1:1 aspect ratio
+### Style Implementation
+- Comprehensive style definitions
+- Dynamic style parameters
+- Intelligent style mixing
+- Evolution capabilities
 
-### Style Guidelines
-- Direct eye contact with metaphysical intensity
-- Pristine technical execution
-- Seamless integration of modern accessories
-- Philosophical depth in presentation
-- Museum-quality finish
+### Output Requirements
+- High-fidelity reproduction
+- Style-specific parameters
+- Fusion compatibility
+- Technical precision
 
 ## Installation
 
@@ -112,7 +127,7 @@ STORAGE_PATH=.artbot
 ## Usage
 
 ```bash
-# Generate a portrait
+# Generate artwork
 npm run generate
 
 # Start development server
@@ -122,23 +137,31 @@ npm run dev
 npm run build
 ```
 
-## Style References
+## Multi-Agent System
 
-### Magritte Works
-- 'The Son of Man' (1964) - for mysterious presence
-- 'The False Mirror' (1929) - for eye treatment
-- 'The Listening Room' (1952) - for scale and presence
-- 'The Blank Signature' (1965) - for technical execution
+ArtBot employs a sophisticated multi-agent system for artwork creation:
 
-### Modern Elements
-- Contemporary hipster fashion
-- Classic rock aesthetics
-- Urban street style
-- Alternative music culture
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    MultiAgentSystem                         │
+│                                                             │
+│  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐    │
+│  │Director │   │Ideator  │   │Stylist  │   │Refiner  │    │
+│  │Agent    │<->│Agent    │<->│Agent    │<->│Agent    │<->┐ │
+│  └─────────┘   └─────────┘   └─────────┘   └─────────┘   │ │
+│       ^                                                   │ │
+│       │                                                   │ │
+│       v                                                   v │
+│  ┌─────────┐                                         ┌─────────┐
+│  │Message  │                                         │Critic   │
+│  │Queue    │<----------------------------------------│Agent    │
+│  └─────────┘                                         └─────────┘
+└─────────────────────────────────────────────────────────────┘
+```
 
 ## Contributing
 
-We welcome contributions that enhance our unique blend of classical surrealism and contemporary style. To contribute:
+We welcome contributions that enhance our multi-style artistic capabilities. To contribute:
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -152,15 +175,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- Inspired by René Magritte's surrealist masterpieces
+- Inspired by classical masters and contemporary innovators
 - Built with Claude 3.5 Sonnet and Stable Diffusion
 - Special thanks to the AI art community
 
 ## Philosophy
 
-Our approach represents a unique fusion of Magritte's philosophical surrealism with contemporary urban culture. Each portrait exists in that liminal space between classical art and modern style, creating a new visual language that questions our understanding of both tradition and innovation.
+ArtBot represents a significant step forward in understanding machine creativity. Through sophisticated cognitive architectures and learning systems, it demonstrates that creativity isn't solely a human trait, but rather a spectrum of possibilities that emerges from the interaction between intelligence, experience, and expression.
 
-Through sophisticated cognitive architectures and precise technical execution, ArtBot demonstrates how AI can bridge seemingly disparate artistic worlds, creating portraits that are both timeless and distinctly contemporary.
+Our approach bridges classical artistry with contemporary innovation, creating a new paradigm for AI-assisted creative expression that honors artistic traditions while embracing future possibilities.
 
 <div align="center">
 

@@ -74,6 +74,138 @@ const examplePrompts = [
   }
 ];
 
+// Add style-specific configurations
+interface StyleConfig {
+  prompt_prefix: string;
+  prompt_suffix: string;
+  negative_prompt: string;
+  num_inference_steps: number;
+  guidance_scale: number;
+  style_emphasis?: {
+    [key: string]: number;
+  };
+}
+
+const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
+  hopper: {
+    prompt_prefix: "In Edward Hopper's distinctive style of American realism, with dramatic light and shadow and urban solitude. Create a contemplative interpretation with ",
+    prompt_suffix: ". Use Hopper's characteristic architectural geometry, psychological atmosphere, and precise observation. Style of Nighthawks and Early Sunday Morning.",
+    negative_prompt: "busy, crowded, chaotic, abstract, expressionist, decorative, romantic, sentimental, impressionist, loose, emotional, dramatic, fantasy, surreal",
+    num_inference_steps: 40,
+    guidance_scale: 11.0,
+    style_emphasis: {
+      psychological_realism: 0.9,
+      urban_solitude: 0.8,
+      dramatic_lighting: 0.8,
+      architectural_geometry: 0.7
+    }
+  },
+  arbus: {
+    prompt_prefix: "In Diane Arbus's distinctive documentary style, with psychological intensity and social observation. Create a revealing interpretation with ",
+    prompt_suffix: ". Use Arbus's characteristic direct gaze, social marginality, and square format composition. Style of Identical Twins and Jewish Giant.",
+    negative_prompt: "glamorous, superficial, conventional, posed, artificial, flattering, decorative, sentimental, romantic, idealized",
+    num_inference_steps: 40,
+    guidance_scale: 11.0,
+    style_emphasis: {
+      psychological_depth: 0.9,
+      social_documentation: 0.8,
+      direct_confrontation: 0.8,
+      square_composition: 0.7
+    }
+  },
+  avedon: {
+    prompt_prefix: "In Richard Avedon's stark portrait style, with minimalist white backgrounds and psychological intensity. Create a revealing interpretation with ",
+    prompt_suffix: ". Use Avedon's characteristic stark lighting, minimalist composition, and psychological depth. Style of In the American West.",
+    negative_prompt: "cluttered, decorative, environmental, soft, romantic, painterly, atmospheric, busy, complex, ornate",
+    num_inference_steps: 40,
+    guidance_scale: 11.0,
+    style_emphasis: {
+      stark_minimalism: 0.9,
+      psychological_intensity: 0.8,
+      sharp_detail: 0.8,
+      white_background: 0.7
+    }
+  },
+  eggleston: {
+    prompt_prefix: "In William Eggleston's pioneering color style, with democratic vision and everyday beauty. Create a compelling interpretation with ",
+    prompt_suffix: ". Use Eggleston's characteristic saturated color, democratic subject matter, and precise composition. Style of The Red Ceiling and Memphis.",
+    negative_prompt: "black and white, monochrome, staged, artificial, dramatic, theatrical, posed, contrived, forced, unnatural",
+    num_inference_steps: 40,
+    guidance_scale: 11.0,
+    style_emphasis: {
+      democratic_vision: 0.9,
+      color_intensity: 0.8,
+      everyday_beauty: 0.8,
+      precise_composition: 0.7
+    }
+  },
+  leibovitz: {
+    prompt_prefix: "In Annie Leibovitz's dramatic portrait style, with theatrical lighting and conceptual narrative. Create a powerful interpretation with ",
+    prompt_suffix: ". Use Leibovitz's characteristic dramatic lighting, environmental context, and narrative depth. Style of Vanity Fair portraits.",
+    negative_prompt: "candid, snapshot, casual, unplanned, spontaneous, documentary, unposed, natural, simple, understated",
+    num_inference_steps: 40,
+    guidance_scale: 11.0,
+    style_emphasis: {
+      dramatic_lighting: 0.9,
+      conceptual_narrative: 0.8,
+      environmental_context: 0.8,
+      theatrical_staging: 0.7
+    }
+  },
+  cartierbresson: {
+    prompt_prefix: "In Henri Cartier-Bresson's decisive moment style, with geometric precision and street observation. Create a poetic interpretation with ",
+    prompt_suffix: ". Use Cartier-Bresson's characteristic geometric composition, decisive timing, and visual poetry. Style of Behind the Gare Saint-Lazare.",
+    negative_prompt: "posed, artificial, staged, theatrical, manipulated, digital, processed, unnatural, forced, contrived",
+    num_inference_steps: 40,
+    guidance_scale: 11.0,
+    style_emphasis: {
+      decisive_moment: 0.9,
+      geometric_composition: 0.8,
+      street_observation: 0.8,
+      visual_poetry: 0.7
+    }
+  },
+  coopergorfer: {
+    prompt_prefix: "In Cooper & Gorfer's dreamlike narrative style, with layered compositions and cultural storytelling. Create an ethereal interpretation with ",
+    prompt_suffix: ". Use Cooper & Gorfer's characteristic layered imagery, cultural elements, and dreamlike atmosphere. Style of Between These Folded Walls, Utopia.",
+    negative_prompt: "documentary, realistic, straightforward, unprocessed, literal, simple, stark, harsh, mundane",
+    num_inference_steps: 40,
+    guidance_scale: 11.0,
+    style_emphasis: {
+      layered_composition: 0.9,
+      cultural_narrative: 0.8,
+      dreamlike_quality: 0.8,
+      ethereal_atmosphere: 0.7
+    }
+  },
+  vonwong: {
+    prompt_prefix: "In Benjamin Von Wong's epic environmental style, with dramatic staging and social impact. Create a powerful interpretation with ",
+    prompt_suffix: ". Use Von Wong's characteristic epic scale, environmental message, and dramatic lighting. Style of his environmental activism work.",
+    negative_prompt: "simple, understated, casual, candid, natural, unstaged, ordinary, mundane, subtle",
+    num_inference_steps: 40,
+    guidance_scale: 11.0,
+    style_emphasis: {
+      epic_scale: 0.9,
+      environmental_message: 0.8,
+      dramatic_staging: 0.8,
+      social_impact: 0.7
+    }
+  },
+  bourdin: {
+    prompt_prefix: "In Guy Bourdin's surreal fashion style, with bold color and psychological tension. Create a provocative interpretation with ",
+    prompt_suffix: ". Use Bourdin's characteristic saturated color, narrative mystery, and psychological edge. Style of his Vogue and Charles Jourdan work.",
+    negative_prompt: "natural, documentary, candid, realistic, straightforward, conventional, traditional, expected",
+    num_inference_steps: 40,
+    guidance_scale: 11.0,
+    style_emphasis: {
+      surreal_composition: 0.9,
+      bold_color: 0.8,
+      psychological_tension: 0.8,
+      narrative_mystery: 0.7
+    }
+  }
+};
+
 async function generateArtWithFlux() {
   try {
     console.log('🎨 ArtBot Image Generator using FLUX');
@@ -102,57 +234,29 @@ async function generateArtWithFlux() {
     
     console.log('✅ Services initialized\n');
     
-    // Get concept from command line arguments or generate a new one
+    // Get concept and style from command line arguments
     let concept = process.argv[2];
-    // Get category from command line arguments (if provided)
-    const categoryArg = process.argv[3];
+    const styleArg = process.argv[3]?.toLowerCase();
+
+    // Get style configuration
+    const styleConfig = styleArg ? STYLE_CONFIGS[styleArg] : STYLE_CONFIGS.hopper; // Default to Hopper style
     
-    if (!concept) {
-      // Determine which category to use
-      let category: ConceptCategory | undefined;
-      
-      if (categoryArg) {
-        // Try to match the category argument to a valid category
-        const categoryKey = Object.keys(ConceptCategory).find(
-          key => key.toLowerCase() === categoryArg.toLowerCase()
-        );
-        
-        if (categoryKey) {
-          category = ConceptCategory[categoryKey as keyof typeof ConceptCategory];
-          console.log(`🎬 Generating a ${category} concept...`);
-        } else {
-          console.log(`⚠️ Unknown category: "${categoryArg}". Using MAGRITTE_SURREALISM as default.`);
-          category = ConceptCategory.MAGRITTE_SURREALISM;
-        }
-      } else {
-        // If no category specified, use a random Magritte category for variety
-        const categories = Object.values(ConceptCategory).filter(cat => 
-          typeof cat === 'string' && cat.toString().startsWith('magritte_')
-        );
-        category = categories[Math.floor(Math.random() * categories.length)] as ConceptCategory;
-        console.log(`🎬 Generating a ${category} concept...`);
-      }
-      
-      // Generate the concept with the selected category
-      concept = await generateCinematicConcept(aiService, { 
-        temperature: 0.9,
-        category
-      });
+    if (styleArg && !STYLE_CONFIGS[styleArg]) {
+      console.log(`⚠️ Unknown style: "${styleArg}". Using Hopper style as default.`);
     }
-    
-    console.log(`💡 Using concept: "${concept}"\n`);
-    
-    // Default image settings for FLUX
+
+    // Use style-specific parameters
     const width = 768;
     const height = 768;
-    const numInferenceSteps = 28;
-    const guidanceScale = 3;
-    
+    const numInferenceSteps = styleConfig.num_inference_steps;
+    const guidanceScale = styleConfig.guidance_scale;
+
+    console.log(`🎨 Style: ${styleArg || 'hopper'}`);
     console.log(`📐 Image dimensions: ${width}x${height}`);
     console.log(`🔄 Inference steps: ${numInferenceSteps}`);
     console.log(`🎯 Guidance scale: ${guidanceScale}`);
     
-    // Generate detailed prompt
+    // Generate detailed prompt with style-specific configuration
     console.log('📝 Generating detailed prompt...');
     
     // Format example prompts for the system message
@@ -165,28 +269,31 @@ async function generateArtWithFlux() {
       messages: [
         {
           role: 'system',
-          content: `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation. 
+          content: `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation in the style of specific artists.
 
-Your prompts should be layered with meaning, metaphor, and visual complexity - not just describing what something looks like, but what it means and how it feels.
+Your prompts should incorporate the distinctive elements of the chosen artist's style while maintaining the FLUX model's cinematic qualities.
 
-For the FLUX model (cinestill 800t style), include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "cinestill 800t", "night time", "film grain", and "4k" for better quality.
+For the FLUX model (cinestill 800t style), include:
+- The trigger word "IKIGAI" at the beginning
+- Keywords: "cinestill 800t", "night time", "film grain", "4k"
+- The artist's characteristic style elements and techniques
+- Technical specifications that enhance both FLUX and the artist's style
 
-Here are examples of the sophisticated prompt style to emulate:
-
-${examplePromptsText}
+Style Configuration:
+${JSON.stringify(styleConfig, null, 2)}
 
 Create a prompt that:
-1. Has rich visual details and textures
-2. Incorporates conceptual depth and metaphorical elements
-3. Suggests emotional or philosophical undertones
-4. Works well with the cinematic, night-time aesthetic of FLUX
-5. Includes technical elements that enhance the FLUX model (film grain, lighting details)
+1. Begins with the style-specific prefix
+2. Incorporates the artist's key visual elements
+3. Maintains FLUX's cinematic qualities
+4. Ends with the style-specific suffix
+5. Avoids elements from the negative prompt
 
-Also provide a brief "Creative Process" explanation that reveals the thinking behind the prompt - the meaning, inspiration, or conceptual framework.`
+Also provide a brief "Creative Process" explanation that reveals how you've merged the artist's style with FLUX's cinematic qualities.`
         },
         {
           role: 'user',
-          content: `Create a conceptually rich, detailed art prompt for the concept "${concept}". Include both the prompt itself and a brief creative process explanation.`
+          content: `Create a conceptually rich, detailed art prompt for the concept "${concept}" in the style of ${styleArg || 'Edward Hopper'}. Include both the prompt itself and a brief creative process explanation.`
         }
       ],
       temperature: 0.8,
@@ -240,10 +347,12 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
     fs.writeFileSync(promptFilePath, `Prompt: ${detailedPrompt}\n\nCreative Process: ${creativeProcess}`);
     console.log(`✅ Prompt saved to: ${promptFilePath}\n`);
     
-    // Generate image using FLUX model on Replicate
+    // Add style-specific negative prompt
+    const negativePrompt = styleConfig.negative_prompt;
+    
+    // Generate image using FLUX model with style-specific parameters
     console.log('🖼️ Generating image with FLUX...');
     
-    // Make a direct API call to Replicate
     const response = await fetch('https://api.replicate.com/v1/predictions', {
       method: 'POST',
       headers: {
@@ -254,6 +363,7 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
         version: "9936c2def0a71d960f3c302a7d0c1c04f73fe55bee4a8fa45af33e4517c1a3bf",
         input: {
           prompt: detailedPrompt,
+          negative_prompt: negativePrompt,
           width: width,
           height: height,
           num_inference_steps: numInferenceSteps,
@@ -294,8 +404,10 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
     const metadataPath = path.join(outputDir, `flux-${concept.replace(/\s+/g, '-').toLowerCase()}-metadata.json`);
     const metadata = {
       concept: concept,
-      category: categoryArg || 'auto-generated',
+      style: styleArg || 'hopper',
+      styleConfig: styleConfig,
       prompt: detailedPrompt,
+      negativePrompt: negativePrompt,
       creativeProcess: creativeProcess,
       imageUrl: imageUrl,
       timestamp: new Date().toISOString()
@@ -307,7 +419,7 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
     
     return {
       concept,
-      category: categoryArg || 'auto-generated',
+      style: styleArg || 'hopper',
       prompt: detailedPrompt,
       creativeProcess,
       imageUrl

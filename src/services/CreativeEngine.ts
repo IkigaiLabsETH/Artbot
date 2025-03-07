@@ -5,6 +5,7 @@ import { MemorySystem, MemoryType, Memory } from './memory/index.js';
 import { StyleService } from './style/index.js';
 import { ReplicateService } from './replicate/index.js';
 import { SocialEngagementService, SocialPlatform, FeedbackType, FeedbackSentiment } from './social/index.js';
+import { ArtBotMultiAgentSystem } from '../artbot-multiagent-system.js';
 
 // Define interfaces for the components we need
 interface CreativeState {
@@ -64,6 +65,12 @@ interface MagritteTechniques {
   philosophy: string[];
 }
 
+interface IkigaiTechniques {
+  quantum: string[];
+  neural: string[];
+  temporal: string[];
+}
+
 interface StyleParams {
   composition: {
     arrangement: string;
@@ -87,9 +94,121 @@ interface StyleParams {
     contrast: string;
     treatment: string;
   };
-  elements: BourdinElements | MagritteElements;
-  techniques: BourdinTechniques | MagritteTechniques;
+  elements?: {
+    symbols?: string[];
+    settings?: string[];
+    objects?: string[];
+  };
+  techniques?: {
+    [key: string]: string[];
+  };
 }
+
+// Define style-specific artistic parameters
+const artisticParams = {
+  beeple: {
+    composition: {
+      arrangement: "monumental dystopian scale",
+      balance: "maximalist chaos",
+      perspective: "extreme dramatic angles",
+      depth: "infinite dystopian space",
+      scale: "gigantic structures",
+      cropping: "cinematic widescreen",
+      framing: "epic scale framing"
+    },
+    lighting: {
+      style: "dramatic technological",
+      direction: "multiple light sources",
+      shadows: "deep tech noir",
+      highlights: "neon accents",
+      mood: "apocalyptic atmosphere"
+    },
+    color: {
+      palette: ["toxic neon", "dystopian grey", "digital blue", "warning red", "industrial rust"],
+      saturation: "hyper-saturated",
+      contrast: "extreme HDR",
+      treatment: "digital maximalism"
+    },
+    elements: {
+      symbols: ["dystopian icons", "corporate logos", "technological ruins"],
+      settings: ["post-apocalyptic landscapes", "cyber megacities", "digital wastelands"],
+      objects: ["giant robots", "holographic displays", "mechanical beings"]
+    },
+    techniques: {
+      rendering: ["hyper-detailed", "maximalist", "photorealistic"],
+      effects: ["volumetric lighting", "particle systems", "atmospheric fog"],
+      composition: ["extreme perspective", "monumental scale", "dynamic angles"]
+    }
+  },
+  xcopy: {
+    composition: {
+      arrangement: "glitch symmetry",
+      balance: "corrupted harmony",
+      perspective: "flattened space",
+      depth: "digital void",
+      scale: "screen-space scale",
+      cropping: "harsh cuts",
+      framing: "glitch frame"
+    },
+    lighting: {
+      style: "harsh digital",
+      direction: "corrupted sources",
+      shadows: "digital black",
+      highlights: "glitch bright",
+      mood: "dark psychological"
+    },
+    color: {
+      palette: ["glitch red", "void black", "digital green", "static white", "error blue"],
+      saturation: "corrupted values",
+      contrast: "extreme digital",
+      treatment: "glitch aesthetics"
+    },
+    elements: {
+      symbols: ["skulls", "glitch patterns", "crypto icons"],
+      settings: ["digital void", "corrupted space", "virtual realms"],
+      objects: ["distorted figures", "broken screens", "digital artifacts"]
+    },
+    techniques: {
+      rendering: ["glitch art", "pixel sorting", "data moshing"],
+      effects: ["scan lines", "visual noise", "signal interference"],
+      composition: ["stark contrast", "minimal elements", "corrupted symmetry"]
+    }
+  },
+  cherniak: {
+    composition: {
+      arrangement: "algorithmic precision",
+      balance: "mathematical harmony",
+      perspective: "geometric space",
+      depth: "calculated dimension",
+      scale: "proportional ratios",
+      cropping: "precise bounds",
+      framing: "geometric frame"
+    },
+    lighting: {
+      style: "systematic illumination",
+      direction: "calculated angles",
+      shadows: "geometric shade",
+      highlights: "precise light",
+      mood: "mathematical clarity"
+    },
+    color: {
+      palette: ["pure black", "precise white", "geometric grey", "systematic color", "calculated tone"],
+      saturation: "controlled values",
+      contrast: "precise ratios",
+      treatment: "algorithmic rendering"
+    },
+    elements: {
+      symbols: ["geometric primitives", "mathematical curves", "algorithmic patterns"],
+      settings: ["abstract space", "computational void", "systematic grid"],
+      objects: ["wrapped strings", "perfect circles", "geometric pegs"]
+    },
+    techniques: {
+      rendering: ["vector precision", "mathematical accuracy", "clean lines"],
+      effects: ["systematic variation", "controlled randomness", "geometric harmony"],
+      composition: ["golden ratio", "recursive patterns", "systematic spacing"]
+    }
+  }
+};
 
 export class CreativeEngine {
   private state: CreativeState;
@@ -111,6 +230,7 @@ export class CreativeEngine {
     selfDescription: string;
   };
   private replicateService: ReplicateService;
+  private artBotMultiAgentSystem: ArtBotMultiAgentSystem;
 
   constructor(config: CreativeEngineConfig = {}) {
     this.aiService = new AIService(config);
@@ -140,6 +260,15 @@ export class CreativeEngine {
     // Initialize replicate service
     this.replicateService = config.replicateService || new ReplicateService({
       apiKey: process.env.REPLICATE_API_KEY
+    });
+    
+    // Initialize ArtBot multi-agent system
+    this.artBotMultiAgentSystem = new ArtBotMultiAgentSystem({
+      aiService: this.aiService,
+      replicateService: this.replicateService,
+      memorySystem: this.memorySystem,
+      styleService: this.styleService,
+      outputDir: config.baseDir || process.cwd()
     });
     
     // Initialize idea queue
@@ -1270,7 +1399,10 @@ export class CreativeEngine {
   }
 
   // Add a new method for generating conceptually rich images
-  async generateConceptualImage(concept: string, options: Record<string, any> = {}): Promise<{
+  async generateConceptualImage(
+    concept: string,
+    options: Record<string, any> = {}
+  ): Promise<{
     imageUrl: string | null;
     prompt: string;
     creativeProcess: string;
@@ -1278,273 +1410,37 @@ export class CreativeEngine {
     artisticDetails: StyleParams;
   }> {
     try {
-      // Check if we're using FLUX Pro
-      const isFluxPro = this.replicateService.getDefaultModel().includes('black-forest-labs/flux');
-      
-      // Enhanced style detection with expanded Bourdin keywords
-      const bourdinKeywords = [
-        // Core Bourdin elements
-        'fashion', 'bourdin', 'glamour', 'editorial',
-        'stiletto', 'mannequin', 'haute couture', 'vogue',
-        'theatrical', 'provocative', 'cinematic', 'legs',
-        'shoes', 'cosmetics', 'surreal fashion', 'narrative',
-        'charles jourdan', 'french vogue', 'composition',
-        'color story', 'mise-en-scene', 'dramatic lighting',
-        // Additional Bourdin-specific elements
-        'fetish', 'glossy', 'high-contrast', 'cropped',
-        'fragmented', 'commercial', 'staged', 'dramatic',
-        'fashion editorial', 'studio lighting', 'posed',
-        'stylized', 'fashion photography', 'advertising',
-        'fashion campaign', 'fashion narrative', 'fashion story',
-        'fashion styling', 'fashion art', 'fashion surrealism'
-      ];
-      
-      // Strengthen Bourdin parameters
-      const artisticParams = {
-        bourdin: {
-          parameters: {
-            numInferenceSteps: 50,        // Increased from 45
-            guidanceScale: 10.5,          // Increased from 9.5
-            temperature: 0.98,            // Increased from 0.95
-            saturation: 1.35,            // Increased from 1.2
-            contrast: 1.45,              // Increased from 1.3
-            sharpness: 1.2,              // Added sharpness
-            vibrance: 1.25,              // Added vibrance
-            clarity: 1.3,                // Added clarity
-            dramaticEffect: 1.4          // Added dramatic effect
-          },
-          emphasis: {
-            fashion: 0.9,                // Increased fashion weight
-            surrealism: 0.7,             // Reduced surrealism weight
-            commercial: 0.85,            // Increased commercial weight
-            theatrical: 0.95,            // Increased theatrical weight
-            psychological: 0.8           // Added psychological weight
-          },
-          composition: {
-            arrangement: "extreme and provocative",
-            balance: "deliberate asymmetrical tension",
-            perspective: "radically distorted",
-            depth: "intensely compressed",
-            scale: "dramatically exaggerated proportions",
-            cropping: "aggressive and partial",
-            framing: "hyper-theatrical and daring"
-          },
-          lighting: {
-            style: "ultra high-contrast and theatrical",
-            direction: "sculptural and dramatic",
-            shadows: "deep black graphic shadows",
-            highlights: "intense specular highlights",
-            mood: "hyper-dramatic and cinematic"
-          },
-          color: {
-            palette: ["blood red", "electric blue", "deep black", "acid green"],
-            saturation: "maximum",
-            contrast: "extreme",
-            treatment: "glossy and vibrant"
-          },
-          elements: {
-            fashion: ["haute couture", "luxury accessories"],
-            props: ["mirrors", "mannequins", "geometric shapes"],
-            poses: ["extreme", "fragmented", "provocative"]
-          },
-          techniques: {
-            photography: ["high-speed sync", "dramatic lighting", "color gels"],
-            styling: ["avant-garde fashion", "provocative poses", "extreme cropping"],
-            narrative: ["psychological tension", "erotic suggestion", "commercial surrealism"]
-          }
-        },
-        magritte: {
-          parameters: {
-            numInferenceSteps: 28,        // Standard for surrealist work
-            guidanceScale: 7.0,           // More balanced for surrealism
-            temperature: 0.75,            // More controlled
-            saturation: 1.0,             // Natural saturation
-            contrast: 1.0,               // Natural contrast
-            sharpness: 1.0,              // Standard sharpness
-            vibrance: 1.0,               // Natural vibrance
-            clarity: 1.0,                // Standard clarity
-            dramaticEffect: 1.0          // Natural dramatic effect
-          },
-          emphasis: {
-            surrealism: 0.9,             // High surrealism weight
-            symbolism: 0.85,             // Strong symbolic emphasis
-            philosophy: 0.8,             // Philosophical undertones
-            mystery: 0.75,               // Mysterious elements
-            poetry: 0.7                  // Poetic elements
-          },
-          composition: {
-            arrangement: "precise and balanced",
-            balance: "carefully structured",
-            perspective: "subtly altered",
-            depth: "ambiguous and dreamlike",
-            scale: "playfully distorted",
-            cropping: "classical and considered",
-            framing: "contemplative and clean"
-          },
-          lighting: {
-            style: "soft and naturalistic",
-            direction: "diffused and even",
-            shadows: "subtle and atmospheric",
-            highlights: "gentle gradients",
-            mood: "contemplative and mysterious"
-          },
-          color: {
-            palette: ["sky blue", "warm gray", "deep green", "muted brown"],
-            saturation: "natural",
-            contrast: "balanced",
-            treatment: "smooth and painterly"
-          },
-          elements: {
-            symbols: ["bowler hats", "clouds", "pipes", "apples"],
-            settings: ["blue skies", "interiors", "windows"],
-            objects: ["everyday items", "floating objects", "curtains"]
-          },
-          techniques: {
-            painting: ["oil painting", "smooth blending", "precise edges"],
-            surrealism: ["juxtaposition", "scale distortion", "impossible scenes"],
-            philosophy: ["visual paradox", "symbolic meaning", "questioning reality"]
-          }
-        }
-      };
-      
-      // Modify the style detection logic to favor Bourdin more strongly
-      const isBourdinStyle = bourdinKeywords.some(keyword => 
-        concept.toLowerCase().includes(keyword)) || 
-        options.style === 'bourdin' ||
-        (options.style !== 'magritte' && Math.random() > 0.1); // 90% chance to default to Bourdin
-      
-      // Default to Bourdin if no style is specified
-      const styleToUse = isBourdinStyle ? 'bourdin' : 'magritte';
-      
-      // Style-specific artistic parameters
-      const currentStyle = styleToUse === 'bourdin' ? artisticParams.bourdin : artisticParams.magritte;
-      
-      // Retrieve style-specific memories for inspiration
-      const styleMemories = await this.memorySystem.retrieveMemories(
-        styleToUse,
+      const selectedStyle = options.style?.toLowerCase() || 'cherniak';
+      const currentStyle = artisticParams[selectedStyle as keyof typeof artisticParams] || artisticParams.cherniak;
+
+      // Generate the prompt using the imported function
+      const { prompt, creativeProcess } = await generateConceptualPrompt(
+        this.aiService,
+        concept,
         {
-          type: MemoryType.STYLE,
-          limit: 3,
-          sortBy: 'relevance'
+          ...options,
+          style: selectedStyle
         }
       );
-      
-      // Generate a conceptually rich prompt with enhanced style-specific options
-      const { prompt, creativeProcess } = await generateConceptualPrompt(this.aiService, concept, {
-        useFluxPro: isFluxPro,
-        postPhotoNative: isBourdinStyle,
-        temperature: isBourdinStyle ? 0.9 : 0.75,
-        maxTokens: 2000
-      });
-      
-      // Update image generation options
-      const imageOptions = {
-        ...options,
-        width: options.width || 768,
-        height: options.height || 768,
-        numInferenceSteps: options.numInferenceSteps || (isBourdinStyle ? artisticParams.bourdin.parameters.numInferenceSteps : 28),
-        guidanceScale: options.guidanceScale || (isBourdinStyle ? artisticParams.bourdin.parameters.guidanceScale : 7.0),
-        temperature: isBourdinStyle ? artisticParams.bourdin.parameters.temperature : 0.75,
-        saturation: isBourdinStyle ? artisticParams.bourdin.parameters.saturation : 1.0,
-        contrast: isBourdinStyle ? artisticParams.bourdin.parameters.contrast : 1.0,
-        sharpness: isBourdinStyle ? artisticParams.bourdin.parameters.sharpness : 1.0,
-        vibrance: isBourdinStyle ? artisticParams.bourdin.parameters.vibrance : 1.0,
-        clarity: isBourdinStyle ? artisticParams.bourdin.parameters.clarity : 1.0,
-        dramaticEffect: isBourdinStyle ? artisticParams.bourdin.parameters.dramaticEffect : 1.0,
-        styleEmphasis: isBourdinStyle ? artisticParams.bourdin.emphasis : undefined
+
+      // Prepare the generation parameters based on style
+      const generationParams = {
+        prompt,
+        ...this.getStyleSpecificParams(selectedStyle)
       };
-      
-      // Generate the image using the model
-      const imageUrl = await this.replicateService.generateImage(prompt, imageOptions);
-      
-      // Type guards for style-specific elements
-      function isBourdinElements(elements: BourdinElements | MagritteElements): elements is BourdinElements {
-        return 'fashion' in elements;
-      }
 
-      function isBourdinTechniques(techniques: BourdinTechniques | MagritteTechniques): techniques is BourdinTechniques {
-        return 'photography' in techniques;
-      }
+      // Generate the image
+      const result = await this.replicateService.runPrediction(
+        undefined,
+        generationParams
+      );
 
-      // Store the result in memory with enhanced style-specific metadata
-      if (imageUrl) {
-        const memory = await this.storeMemory(
-          {
-            concept,
-            prompt,
-            creativeProcess,
-            imageUrl,
-            style: styleToUse,
-            parameters: imageOptions,
-            artisticDetails: currentStyle
-          },
-          MemoryType.VISUAL,
-          {
-            type: 'conceptual-image',
-            timestamp: new Date().toISOString(),
-            style: styleToUse,
-            postPhotoNative: isBourdinStyle,
-            artisticApproach: isBourdinStyle ? 'post-photography' : 'surrealist',
-            compositionStyle: currentStyle.composition.arrangement,
-            lightingStyle: currentStyle.lighting.style,
-            colorPalette: currentStyle.color.palette
-          },
-          [
-            'conceptual',
-            isFluxPro ? 'flux-pro' : 'flux',
-            concept,
-            styleToUse,
-            ...(isBourdinElements(currentStyle.elements) ? 
-              ['post-photography', 'fashion', 'bourdin', ...currentStyle.elements.fashion] : 
-              ['surrealism', 'magritte', ...currentStyle.elements.symbols]),
-            ...(options.tags || [])
-          ]
-        );
-        
-        // Update style preferences based on the generated image
-        await this.evolveStylePreferences();
-        
-        // Store enhanced style-specific memory with type guards
-        await this.memorySystem.storeMemory(
-          {
-            style: styleToUse,
-            elements: isBourdinElements(currentStyle.elements) ? [
-              ...currentStyle.elements.fashion,
-              ...currentStyle.elements.props,
-              ...currentStyle.elements.poses
-            ] : [
-              ...currentStyle.elements.symbols,
-              ...currentStyle.elements.settings,
-              ...currentStyle.elements.objects
-            ],
-            techniques: isBourdinTechniques(currentStyle.techniques) ? [
-              ...currentStyle.techniques.photography,
-              ...currentStyle.techniques.styling,
-              ...currentStyle.techniques.narrative
-            ] : [
-              ...currentStyle.techniques.painting,
-              ...currentStyle.techniques.surrealism,
-              ...currentStyle.techniques.philosophy
-            ],
-            composition: currentStyle.composition,
-            lighting: currentStyle.lighting,
-            color: currentStyle.color
-          },
-          MemoryType.STYLE,
-          {
-            artworkId: memory.id,
-            timestamp: new Date().toISOString(),
-            artisticDetails: currentStyle
-          },
-          [styleToUse, 'style-elements', ...Object.keys(currentStyle)]
-        );
-      }
-      
+      // Process and return the result
       return {
-        imageUrl,
+        imageUrl: result?.output?.[0] || null,
         prompt,
         creativeProcess,
-        style: styleToUse,
+        style: selectedStyle,
         artisticDetails: currentStyle
       };
     } catch (error) {
@@ -1557,5 +1453,34 @@ export class CreativeEngine {
         artisticDetails: {} as StyleParams
       };
     }
+  }
+
+  private getStyleSpecificParams(style: string): Record<string, any> {
+    // Define style-specific generation parameters
+    const styleParams: Record<string, Record<string, any>> = {
+      beeple: {
+        num_inference_steps: 50,
+        guidance_scale: 12.0,
+        width: 1024,
+        height: 1024,
+        scheduler: "DPMSolverMultistep"
+      },
+      xcopy: {
+        num_inference_steps: 45,
+        guidance_scale: 13.0,
+        width: 1024,
+        height: 1024,
+        scheduler: "DDIM" // Better for glitch effects
+      },
+      cherniak: {
+        num_inference_steps: 40,
+        guidance_scale: 11.5,
+        width: 1024,
+        height: 1024,
+        scheduler: "EulerAncestral" // Better for geometric precision
+      }
+    };
+
+    return styleParams[style] || styleParams.cherniak;
   }
 } 

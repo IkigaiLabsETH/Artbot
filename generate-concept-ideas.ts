@@ -34,19 +34,31 @@ enum ConceptCategory {
 
 // Sample concepts for each category (as a fallback if API calls fail)
 const sampleConcepts: Record<ConceptCategory, string[]> = {
-  [ConceptCategory.CINEMATIC]: [
-    "abandoned lighthouse at dawn",
-    "neon-lit alleyway after rain",
-    "ancient temple reclaimed by jungle",
-    "solitary figure on endless dunes",
-    "cybernetic garden under binary stars"
-  ],
   [ConceptCategory.SURREAL]: [
-    "melting clocks on desert branches",
-    "floating islands of library books",
-    "doorways opening into ocean depths",
-    "staircases leading to nowhere",
-    "mechanical birds with cloud wings"
+    "bowler hat floating above clouded city",
+    "apple obscuring businessman's face in mirror",
+    "birds transforming into leaves in twilight",
+    "geometric doorway opening to infinite sky",
+    "curtains parting to reveal impossible landscape",
+    "window reflecting different time of day",
+    "stone castle floating in belgian sky",
+    "pipe that contains an entire universe",
+    "theatrical staging of everyday objects in void",
+    "spiritual geometry dividing reality"
+  ],
+  [ConceptCategory.CINEMATIC]: [
+    "dramatic shadows cast by invisible objects",
+    "mysterious figure in bowler hat under streetlight",
+    "geometric patterns emerging from fog",
+    "theatrical staging of metaphysical scene",
+    "surreal narrative in empty room"
+  ],
+  [ConceptCategory.ABSTRACT]: [
+    "spiritual geometry intersecting reality",
+    "metaphysical color harmonies",
+    "geometric forms in mysterious space",
+    "paradoxical shapes casting impossible shadows",
+    "abstract composition with surreal elements"
   ],
   [ConceptCategory.CYBERPUNK]: [
     "neon market beneath data highways",
@@ -69,19 +81,12 @@ const sampleConcepts: Record<ConceptCategory, string[]> = {
     "street food vendors under lanterns",
     "abandoned factory reclaimed by artists"
   ],
-  [ConceptCategory.ABSTRACT]: [
-    "fractured light through crystal prisms",
-    "geometric patterns dissolving into chaos",
-    "layered textures of rust and patina",
-    "flowing ribbons of complementary colors",
-    "mathematical sequences visualized in space"
-  ],
   [ConceptCategory.NOSTALGIC]: [
-    "drive-in theater under starry sky",
-    "vinyl records stacked in dusty light",
-    "childhood treehouse rediscovered years later",
-    "polaroid photographs scattered on attic floor",
-    "vintage arcade machines glowing in darkness"
+    "vintage bowler hat in empty room",
+    "old mirror reflecting impossible scene",
+    "antique window with surreal view",
+    "classical objects in paradoxical arrangement",
+    "retro elements with metaphysical twist"
   ],
   [ConceptCategory.FUTURISTIC]: [
     "vertical farm towers dominating cityscape",
@@ -91,11 +96,11 @@ const sampleConcepts: Record<ConceptCategory, string[]> = {
     "automated construction swarms building habitat"
   ],
   [ConceptCategory.FANTASY]: [
-    "dragon perched on ancient library tower",
-    "fairy market hidden in mushroom forest",
-    "wizard's observatory under aurora sky",
-    "crystal castle reflecting impossible colors",
-    "phoenix rebirth amid sacred ruins"
+    "magical doorway to belgian sky",
+    "enchanted bowler hat floating in void",
+    "mystical geometry transforming reality",
+    "surreal castle in impossible space",
+    "metaphysical garden with floating objects"
   ],
   [ConceptCategory.DYSTOPIAN]: [
     "abandoned megacity reclaimed by nature",
