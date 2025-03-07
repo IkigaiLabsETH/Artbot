@@ -8,6 +8,7 @@ import { AIService } from './services/ai/index.js';
 import { MemorySystem, MemoryType } from './services/memory/index.js';
 import { StyleService } from './services/style/index.js';
 import { generateCinematicConcept, generateMultipleConcepts, ConceptCategory } from './services/ai/conceptGenerator.js';
+import * as readline from 'readline';
 
 // Load environment variables
 dotenv.config();
@@ -297,6 +298,21 @@ const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
 const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
 const MINIMAX_MODEL = 'minimax/image-01';
 
+// Add this helper function for user input
+async function getUserInput(question: string): Promise<string> {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  return new Promise((resolve) => {
+    rl.question(question, (answer) => {
+      rl.close();
+      resolve(answer);
+    });
+  });
+}
+
 // Modify the generateArt function to include the new critique
 async function generateArt(concept: string) {
   try {
@@ -362,7 +378,7 @@ async function generateArt(concept: string) {
     console.log('🤖 ArtBot Multi-Agent System initialized');
     console.log('✅ Services initialized');
     
-    // If no concept is provided via command line, generate a random cinematic concept
+    // If no concept is provided via command line, generate multiple cinematic concepts
     let artConcept = concept;
     
     if (!artConcept) {
@@ -377,20 +393,43 @@ async function generateArt(concept: string) {
         
         if (categoryKey) {
           category = ConceptCategory[categoryKey as keyof typeof ConceptCategory];
-          console.log(`\n🎬 Generating a ${category} concept...`);
+          console.log(`\n🎬 Generating concepts for ${category}...`);
         } else {
           console.log(`\n⚠️ Unknown category: "${detectedCategory}". Using MAGRITTE_CLASSIC category.`);
           category = ConceptCategory.MAGRITTE_CLASSIC;
         }
       } else {
-        console.log(`\n🎬 Generating a Magritte classic concept...`);
+        console.log(`\n🎬 Generating Magritte classic concepts...`);
       }
       
-      // Generate the concept with the selected category
-      artConcept = await generateCinematicConcept(aiService, { 
-        temperature: 0.9,
-        category
+      // Generate multiple concepts with the selected category
+      const concepts = await generateMultipleConcepts(
+        aiService,
+        3, // Generate 3 concepts
+        {
+          temperature: 0.9,
+          category
+        }
+      );
+
+      // Display concepts for selection
+      console.log('\n📝 Generated Concepts:');
+      concepts.forEach((concept, index) => {
+        console.log(`${index + 1}. ${concept}`);
       });
+
+      // Get user input for concept selection
+      const selection = await getUserInput('\n🤔 Please select a concept (1-3): ');
+      const selectedIndex = parseInt(selection) - 1;
+      
+      if (selectedIndex >= 0 && selectedIndex < concepts.length) {
+        artConcept = concepts[selectedIndex];
+        console.log(`\n✨ Selected concept: "${artConcept}"`);
+      } else {
+        console.log('\n⚠️ Invalid selection. Using the first concept as default.');
+        artConcept = concepts[0];
+        console.log(`\n✨ Selected concept: "${artConcept}"`);
+      }
     } else {
       // Check if the provided concept is Magritte-related
       const magritteKeywords = [
