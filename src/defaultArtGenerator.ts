@@ -32,113 +32,114 @@ interface ArtDirection {
 // Default art direction that can be overridden by environment variables or parameters
 const defaultArtDirection: ArtDirection = {
   styleEmphasis: [
-    // Magritte's Core Style Elements
-    "precise Magritte-style photorealism",
-    "metaphysical questioning through visual paradox",
-    "surrealist juxtaposition of ordinary objects",
-    "dreamlike clarity and pristine execution",
-    "philosophical contemplation through imagery",
-    "clean lines and perfect technical execution",
-    "mysterious atmospheric depth",
-    "conceptual depth with visual simplicity",
-    "poetic surrealism in everyday objects",
-    "symbolic resonance in ordinary items",
-    // Portrait Focus with Magritte Elements
-    "extreme close-up portrait technique",
-    "absolute photorealistic detail in facial features",
-    "perfectly smooth surface quality",
-    "razor-sharp eye definition",
-    "masterful fur rendering with Magritte-like precision",
-    "pristine portrait finish in Magritte style",
-    "crystalline facial clarity with surreal undertones",
-    "perfect anatomical precision with metaphysical quality",
-    "museum-quality execution in Magritte tradition",
-    "mathematically precise facial modeling"
+    // Pure Magritte Oil Painting Style
+    "classic Magritte oil painting technique",
+    "traditional surrealist paint handling",
+    "characteristic Magritte matte finish",
+    "subtle oil paint texture",
+    "pure Magritte brushwork precision",
+    "quintessential painted surface quality",
+    "traditional canvas-like finish",
+    "classic oil painting depth",
+    "pure Magritte paint layering",
+    "characteristic painted light effects",
+    "traditional surrealist color blending",
+    "metaphysical stillness in paint",
+    "pure Magritte pictorial logic",
+    "classic painted object relationships",
+    "perfect Magritte painterly balance"
   ],
   visualElements: [
-    // Magritte's Signature Elements
-    "surreal play of scale and proportion",
-    "perfect balance of reality and dream",
-    "mysterious atmospheric depth",
-    "crystal-clear rendering of textures",
-    "metaphysical window effect",
-    // Portrait Elements
-    "extreme macro close-up of bear face",
-    "eyes and nose composition with Magritte-like presence",
-    "face fills 95% of frame like a Magritte object",
-    "perfect square 1:1 ratio crop",
-    "ultra-sharp facial features in Magritte style",
-    // Core Features
-    "direct eye contact with metaphysical intensity",
-    "ultra-detailed iris texture like Magritte's glass",
-    "microscopic fur detail with surreal precision",
-    "mathematically centered nose as focal point",
-    "perfect facial symmetry with philosophical weight"
+    // Pure Magritte Painting Elements
+    "classic Magritte painted scale relationships",
+    "traditional oil-painted sky",
+    "quintessential painted atmospheric depth",
+    "characteristic Magritte surface finish",
+    "metaphysical painted windows",
+    "pure Magritte object rendering in oils",
+    "classic painted cloud formations",
+    "perfect painted light treatment",
+    "metaphysical space in oils",
+    "pure Magritte object relationships",
+    "classic painted architectural elements",
+    "quintessential painted shadows",
+    "perfect painted surface qualities",
+    "pure philosophical painted arrangements",
+    "classic Magritte curtain textures in oil"
   ],
   colorPalette: [
-    // Magritte's Classic Palette
-    "deep Magritte blue (RGB: 28, 45, 83)",
-    "surrealist sky blue (RGB: 163, 193, 227)",
-    "metaphysical grey (RGB: 128, 128, 128)",
-    // Essential Portrait Colors
-    "bear fur brown (RGB: 89, 61, 43)",
-    "eye highlight white (RGB: 245, 245, 245)",
-    "iris detail brown (RGB: 75, 54, 33)",
-    // Magritte's Depth Colors
-    "philosophical black (RGB: 0, 0, 0)",
-    "contemplative shadow (RGB: 40, 40, 40)",
-    "mysterious highlight (RGB: 220, 220, 220)"
+    // Magritte's Oil Painting Palette
+    "quintessential Magritte oil blue (slightly muted)",
+    "traditional painted sky blue (with subtle variation)",
+    "classic Magritte grey (oil paint quality)",
+    "painted black (soft matte finish)",
+    "oil painting white (subtle canvas texture)",
+    "pure Magritte earth tones in oil",
+    "classic painted cloud white",
+    "quintessential shadow tones in oils",
+    "perfect daylight blue (painted quality)",
+    "pure metaphysical neutrals in oil paint"
   ],
   compositionGuidelines: [
-    // Magritte's Composition Rules
-    "perfect central positioning like Magritte's objects",
-    "mysterious depth through precise placement",
-    "metaphysical balance in frame",
-    "surreal scale relationships",
-    "philosophical use of negative space",
-    // Portrait Requirements
-    "face must fill 95% of frame width",
-    "eyes positioned exactly on upper third line",
-    "nose perfectly centered on vertical axis",
-    "absolute symmetrical balance",
-    "perfect square 1:1 aspect ratio",
-    // Magritte's Technical Rules
-    "crystal-clear focus throughout",
-    "perfect edge definition",
-    "precise tonal gradations",
-    "masterful light control"
+    // Pure Magritte Painting Composition
+    "perfect Magritte painted positioning",
+    "quintessential painted depth",
+    "pure surrealist painted balance",
+    "classic Magritte scale in oils",
+    "philosophical use of painted space",
+    "perfect painted object isolation",
+    "pure Magritte painted symmetry",
+    "quintessential surrealist canvas framing",
+    "classic metaphysical perspective in oils",
+    "perfect Magritte painted spatial logic",
+    "pure object-ground relationship in paint",
+    "classic surrealist depth in oils",
+    "quintessential painted window framing",
+    "perfect philosophical painted composition",
+    "pure metaphysical staging in oils"
   ],
-  moodAndTone: "Create a portrait that embodies Magritte's philosophical surrealism while incorporating modern hipster/rock elements. The execution must demonstrate his characteristic pristine technique and conceptual depth. Every element should contribute to a sense of metaphysical questioning, with the bear's gaze holding the same mysterious presence found in Magritte's work. The modern accessories should feel as if they've always existed in Magritte's universe, rendered with his signature precise, dreamlike clarity.",
+  moodAndTone: "Create a pure Magritte-style oil painting that embodies his quintessential philosophical surrealism. The execution must demonstrate his characteristic oil painting technique with its subtle surface quality and traditional painted finish. Every element should contribute to a profound sense of surrealist questioning, rendered with his signature painted clarity and philosophical weight. The work should feel as if it emerged directly from Magritte's easel, with the characteristic matte finish and precise paint handling of his iconic works.",
   references: [
-    "Magritte's 'The Son of Man' (1964) - for mysterious presence",
-    "Magritte's 'The False Mirror' (1929) - for eye treatment",
-    "Magritte's 'The Listening Room' (1952) - for scale and presence",
-    "Magritte's 'The Blank Signature' (1965) - for technical execution",
-    "Magritte's 'The Central Story' (1928) - for compositional balance",
-    "Magritte's 'The Glass Key' (1959) - for surface treatment"
+    "Magritte's 'The Son of Man' (1964) - for characteristic oil painting technique",
+    "Magritte's 'The False Mirror' (1929) - for painted eye treatment",
+    "Magritte's 'The Listening Room' (1952) - for painted scale and presence",
+    "Magritte's 'The Blank Signature' (1965) - for oil painting execution",
+    "Magritte's 'The Central Story' (1928) - for painted compositional balance",
+    "Magritte's 'The Glass Key' (1959) - for oil surface treatment",
+    "Magritte's 'The Empire of Light' (1953-54) - for painted metaphysical light",
+    "Magritte's 'The Human Condition' (1933) - for pure painted philosophical depth",
+    "Magritte's 'Time Transfixed' (1938) - for classic painted surrealist logic",
+    "Magritte's 'The Treachery of Images' (1929) - for traditional oil technique"
   ],
   avoidElements: [
     // Anti-Magritte Elements
-    "impressionistic brushwork",
-    "expressionistic distortion",
-    "loose or sketchy rendering",
-    "textural experimentation",
-    "abstract elements",
+    "photorealistic effects",
+    "camera-like precision",
+    "photographic qualities",
+    "digital smoothness",
+    "hyper-realistic details",
+    "lens-like effects",
+    "HDR-style lighting",
+    "photographic depth of field",
+    "camera-based perspective",
+    "impressionistic effects",
+    "expressionistic elements",
+    "loose rendering",
+    "heavy impasto texture",
+    "visible brushstrokes",
+    "abstract forms",
     "gestural marks",
-    // Composition Restrictions
-    "anything below nose level",
-    "anything above forehead",
-    "three-quarter views",
-    "profile angles",
-    "tilted head poses",
-    "looking away poses",
-    // Technical Restrictions
-    "multiple light sources",
-    "complex shadows",
-    "atmospheric effects",
-    "pattern elements",
-    "decorative flourishes",
-    "random elements"
+    "fashion styling",
+    "commercial aesthetics",
+    "editorial elements",
+    "dramatic lighting",
+    "complex patterns",
+    "decorative elements",
+    "random compositions",
+    "narrative drama",
+    "emotional expression",
+    "dynamic movement",
+    "temporal effects"
   ]
 };
 
@@ -854,45 +855,32 @@ export { generateArt };
 function getStyleFromArtDirection(artDirection: any, isPostPhotoRelated: boolean = false): ArtDirection {
   // If the art direction has a styles object, it's using the new format
   if (artDirection && artDirection.styles) {
-    // Create a style that almost exclusively uses Magritte with minimal Bourdin elements
+    // Use exclusively Magritte style
     const magritteStyle = artDirection.styles['magritte'] || {};
-    const postPhotoStyle = artDirection.styles['postPhotography'] || {};
     
     return {
-      styleEmphasis: [
-        ...(magritteStyle.styleEmphasis || []).slice(0, 25), // Almost all Magritte elements
-        ...(postPhotoStyle.styleEmphasis || []).slice(0, 2)  // Minimal Bourdin elements
-      ],
-      visualElements: [
-        ...(magritteStyle.visualElements || []).slice(0, 25), // Almost all Magritte elements
-        ...(postPhotoStyle.visualElements || []).slice(0, 2)  // Minimal Bourdin elements
-      ],
-      colorPalette: [
-        ...(magritteStyle.colorPalette || []).slice(0, 15), // Almost all Magritte colors
-        ...(postPhotoStyle.colorPalette || []).slice(0, 2)  // Minimal Bourdin colors
-      ],
-      compositionGuidelines: [
-        ...(magritteStyle.compositionGuidelines || []).slice(0, 15), // Almost all Magritte composition
-        ...(postPhotoStyle.compositionGuidelines || []).slice(0, 2)   // Minimal Bourdin composition
-      ],
-      moodAndTone: "A pure exploration of Magritte's surrealist vision, deeply focused on philosophical paradoxes, metaphysical questioning, and pristine compositions. The atmosphere embodies Magritte's contemplative approach to reality and representation, with his characteristic clean, precise execution and conceptual depth. While maintaining the technical sophistication of modern photography, the style remains firmly rooted in Magritte's surrealist philosophy and visual language.",
-      references: [
-        ...(magritteStyle.references || []).slice(0, 18), // Almost all Magritte references
-        ...(postPhotoStyle.references || []).slice(0, 2)  // Minimal Bourdin references
-      ],
+      styleEmphasis: magritteStyle.styleEmphasis || defaultArtDirection.styleEmphasis,
+      visualElements: magritteStyle.visualElements || defaultArtDirection.visualElements,
+      colorPalette: magritteStyle.colorPalette || defaultArtDirection.colorPalette,
+      compositionGuidelines: magritteStyle.compositionGuidelines || defaultArtDirection.compositionGuidelines,
+      moodAndTone: magritteStyle.moodAndTone || defaultArtDirection.moodAndTone,
+      references: magritteStyle.references || defaultArtDirection.references,
       avoidElements: [
         ...(magritteStyle.avoidElements || []),
         "fashion editorial style",
-        "extreme contrast",
-        "provocative poses",
         "commercial aesthetics",
-        "radical cropping",
-        "fetishistic elements",
-        "high-fashion styling"
+        "provocative elements",
+        "extreme contrasts",
+        "dynamic compositions",
+        "narrative drama",
+        "emotional expression",
+        "temporal effects",
+        "gestural elements",
+        "textural experimentation"
       ]
     };
   }
   
-  // If it's using the old format, return as is
-  return artDirection;
+  // If it's using the old format, return the default Magritte-focused art direction
+  return defaultArtDirection;
 } 
