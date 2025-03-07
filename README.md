@@ -104,14 +104,8 @@ Our approach is built on three core principles:
 ## Installation
 
 ```bash
-# Install dependencies
-npm install
+pnpm i && pnpm build && pnpm start
 
-# Set up environment variables
-cp .env.example .env
-
-# Initialize the system
-npm run init
 ```
 
 ## Configuration
@@ -127,14 +121,7 @@ STORAGE_PATH=.artbot
 ## Usage
 
 ```bash
-# Generate artwork
-npm run generate
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
+pnpm i && pnpm build && pnpm start
 ```
 
 ## Multi-Agent System
