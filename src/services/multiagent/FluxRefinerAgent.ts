@@ -41,12 +41,17 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
       examplePrompts: [
         // Magritte-style examples
         {
-          prompt: "Two distinct streams of text-covered surfaces meeting and interweaving, creating new symbols at their intersection, handprints visible beneath the transformation.",
-          process: "I imagined a tide of language pouring over humanity, each word a fragment of forgotten histories clawing its way into relevance. the hands seemed to rise not in hope, but in desperation, as if trying to pull down the weight of their own erasure. it felt like watching a crowd beg to be remembered by the very thing that consumed them."
+          prompt: "IKIGAI Extreme close-up portrait in pure Magritte style: bear's face fills 95% of frame, metaphysical gaze with philosophical depth, crystalline clarity in execution, mysterious atmospheric depth behind eyes, perfect symmetrical composition, surrealist undertones in lighting, ultra-sharp facial features rendered with Magritte's precision, deep Magritte blue background (RGB: 28, 45, 83), pristine technical execution, oil painting quality with photorealistic detail, conceptual depth through visual paradox, 4k.",
+          process: "Drawing directly from Magritte's philosophical approach to portraiture, I focused on creating a metaphysical presence through the bear's direct gaze. The extreme close-up format and crystalline clarity echo Magritte's precision, while the mysterious atmospheric depth creates that signature sense of philosophical questioning. Every element is rendered with his characteristic pristine technique, creating a portrait that exists in that liminal space between reality and surrealism that Magritte mastered."
         },
         {
-          prompt: "Corrupted family photograph with digital artifacts, fragments of code visible through torn pixels, half-formed faces emerging from static, timestamp errors overlaying personal moments.",
-          process: "Family portraits always felt like a strange ritual to me, a way to preserve stories even as the people in them slipped into myth. here, the glitch insists on memory's fragility—pink streaks eating away at faces like a digital wildfire. it's an act of rebellion and an act of erasure. i wondered if this was her revenge for being seen too much or not enough."
+          prompt: "IKIGAI Magritte-inspired bear portrait with hipster elements: vintage round glasses floating impossibly yet precisely rendered, eyes positioned exactly on upper third line with metaphysical intensity, face mathematically centered with philosophical weight, surrealist play of scale in accessories, crystal-clear fur detail meeting dreamlike atmosphere, perfect edge definition throughout, Magritte's signature color palette, oil painting aesthetics with photorealistic precision, 4k.",
+          process: "I approached this piece by merging Magritte's precise technical execution with his love of philosophical paradox. The floating glasses create that signature Magritte tension between the real and the surreal, while the mathematical precision in the composition reflects his meticulous approach. The modern accessories are treated with his characteristic attention to surface quality and light, making them feel as if they've always existed in his universe."
+        },
+        // Pure Magritte Reference
+        {
+          prompt: "IKIGAI Ultra-close bear portrait channeling 'The Son of Man': face fills exactly 95% of frame, mysterious depth in eyes referencing 'The False Mirror', perfect Magritte-style symmetry, photorealistic fur detail with philosophical weight, metaphysical lighting creating subtle shadows, surrealist undertones in expression, pristine technical execution in oil painting style, deep Magritte blue background, conceptual depth through visual paradox, 4k.",
+          process: "This piece directly references Magritte's most iconic works while maintaining his philosophical approach. The composition draws from 'The Son of Man' but focuses entirely on the bear's face, while the treatment of the eyes references 'The False Mirror'. Every element is rendered with Magritte's characteristic precision and clarity, creating a portrait that questions the nature of representation itself."
         },
         // Bourdin-Magritte Fusion examples
         {
@@ -66,83 +71,85 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
       ],
       postPhotographyStyle: {
         styleEmphasis: [
-          "high-fashion surrealism",
-          "cinematic drama",
-          "bold and provocative styling",
-          "hyper-stylized compositions",
-          "exaggerated contrast",
-          "saturated color intensity",
-          "graphic and geometric arrangements",
-          "sharp and theatrical lighting",
-          "absurdist yet seductive visual narratives",
-          "glossy and polished aesthetic",
-          "otherworldly glamour",
-          "erotic undertones with surreal juxtapositions",
-          "enigmatic and dreamlike storytelling",
-          "fashion photography meets fine art",
-          "bold cropping and unexpected framing"
+          "precise Magritte-style photorealism",
+          "metaphysical questioning through visual paradox",
+          "surrealist juxtaposition of ordinary objects",
+          "dreamlike clarity and pristine execution",
+          "philosophical contemplation through imagery",
+          "clean lines and perfect technical execution",
+          "mysterious atmospheric depth",
+          "conceptual depth with visual simplicity",
+          "poetic surrealism in everyday objects",
+          "symbolic resonance in ordinary items",
+          "extreme close-up portrait technique",
+          "absolute photorealistic detail in facial features",
+          "perfectly smooth surface quality",
+          "razor-sharp eye definition",
+          "masterful fur rendering with Magritte-like precision"
         ],
         visualElements: [
-          "elongated limbs and dramatic poses",
-          "partially obscured figures",
-          "fragmented body parts as objects",
-          "high heels and stockings as symbols of fetishism",
-          "glossy red lips",
-          "unexpected mannequin-like expressions",
-          "disembodied legs and arms",
-          "retro automobiles with reflections",
-          "mirrors used for distorted realities",
-          "poolside glamour",
-          "vivid backdrops of red, pink, and orange",
-          "oversized accessories as surreal objects",
-          "subliminal tension in everyday settings",
-          "visual irony through exaggerated femininity",
-          "cinematic storytelling with incomplete narratives"
+          "surreal play of scale and proportion",
+          "perfect balance of reality and dream",
+          "mysterious atmospheric depth",
+          "crystal-clear rendering of textures",
+          "metaphysical window effect",
+          "extreme macro close-up of bear face",
+          "eyes and nose composition with Magritte-like presence",
+          "face fills 95% of frame like a Magritte object",
+          "perfect square 1:1 ratio crop",
+          "ultra-sharp facial features in Magritte style"
         ],
         colorPalette: [
-          "high-contrast red and black",
-          "electric blues and deep purples",
-          "bold primary colors with extreme saturation",
-          "glossy skin tones with a hyperreal sheen",
-          "intense shadow-play creating depth",
-          "high-contrast highlights with a sculptural effect",
-          "retro pastel shades used subversively",
-          "artificial neon glow for added tension",
-          "striking monochrome with deep blacks and crisp whites"
+          "deep Magritte blue (RGB: 28, 45, 83)",
+          "surrealist sky blue (RGB: 163, 193, 227)",
+          "metaphysical grey (RGB: 128, 128, 128)",
+          "bear fur brown (RGB: 89, 61, 43)",
+          "eye highlight white (RGB: 245, 245, 245)",
+          "iris detail brown (RGB: 75, 54, 33)",
+          "philosophical black (RGB: 0, 0, 0)",
+          "contemplative shadow (RGB: 40, 40, 40)",
+          "mysterious highlight (RGB: 220, 220, 220)"
         ],
         compositionGuidelines: [
-          "tight cropping with focus on partial details",
-          "radical framing techniques",
-          "unexpected perspective shifts",
-          "graphic and symmetrical arrangements",
-          "negative space used for dramatic effect",
-          "extreme foreshortening and distorted angles",
-          "bold, unnatural color contrasts",
-          "forced perspectives that heighten the surrealist feel",
-          "motion blur used selectively to create tension",
-          "fragmentation of subjects to break realism"
+          "perfect central positioning like Magritte's objects",
+          "mysterious depth through precise placement",
+          "metaphysical balance in frame",
+          "surreal scale relationships",
+          "philosophical use of negative space",
+          "face must fill 95% of frame width",
+          "eyes positioned exactly on upper third line",
+          "nose perfectly centered on vertical axis",
+          "absolute symmetrical balance",
+          "perfect square 1:1 aspect ratio"
         ],
-        moodAndTone: "Seductive, provocative, and unapologetically bold. The atmosphere should exude high-fashion surrealism with an undercurrent of eroticism and mystery. The compositions should be hyper-stylized, with strong graphical elements, exaggerated contrasts, and a polished yet surreal finish. The emotional tone balances between desire, unease, and playful irony, creating a world that is both glamorous and unsettling. The images should feel like snapshots of enigmatic, unresolved stories, always leaving room for interpretation and intrigue.",
+        moodAndTone: "Create a portrait that embodies Magritte's philosophical surrealism while incorporating modern hipster/rock elements. The execution must demonstrate his characteristic pristine technique and conceptual depth. Every element should contribute to a sense of metaphysical questioning, with the bear's gaze holding the same mysterious presence found in Magritte's work. The modern accessories should feel as if they've always existed in Magritte's universe, rendered with his signature precise, dreamlike clarity.",
         references: [
-          "Guy Bourdin's Vogue Paris fashion editorials",
-          "Guy Bourdin's Charles Jourdan shoe campaigns",
-          "Helmut Newton's high-gloss eroticism",
-          "Surrealist painters like Dalí and De Chirico",
-          "Man Ray's experimental fashion photography",
-          "Hitchcock's dramatic lighting and compositions",
-          "Kubrick's symmetrical cinematography",
-          "Retro-futuristic advertising aesthetics",
-          "Fetishistic and cinematic styling from the 70s and 80s"
+          "Magritte's 'The Son of Man' (1964) - for mysterious presence",
+          "Magritte's 'The False Mirror' (1929) - for eye treatment",
+          "Magritte's 'The Listening Room' (1952) - for scale and presence",
+          "Magritte's 'The Blank Signature' (1965) - for technical execution",
+          "Magritte's 'The Central Story' (1928) - for compositional balance",
+          "Magritte's 'The Glass Key' (1959) - for surface treatment"
         ],
         avoidElements: [
-          "soft-focus or pastel romanticism",
-          "naturalistic and candid photography",
-          "overly complex backgrounds",
-          "muted or desaturated color schemes",
-          "chaotic or cluttered compositions",
-          "low-contrast, flat lighting",
-          "overly digital and CGI aesthetics",
-          "realism without surreal or exaggerated elements"
+          "impressionistic brushwork",
+          "expressionistic distortion",
+          "loose or sketchy rendering",
+          "textural experimentation",
+          "abstract elements",
+          "gestural marks",
+          "anything below nose level",
+          "anything above forehead",
+          "three-quarter views",
+          "profile angles",
+          "tilted head poses",
+          "looking away poses",
+          "multiple light sources",
+          "complex shadows",
+          "atmospheric effects",
+          "pattern elements",
+          "decorative flourishes",
+          "random elements"
         ]
       }
     };

@@ -32,103 +32,113 @@ interface ArtDirection {
 // Default art direction that can be overridden by environment variables or parameters
 const defaultArtDirection: ArtDirection = {
   styleEmphasis: [
-    // Pure Portrait Focus
+    // Magritte's Core Style Elements
+    "precise Magritte-style photorealism",
+    "metaphysical questioning through visual paradox",
+    "surrealist juxtaposition of ordinary objects",
+    "dreamlike clarity and pristine execution",
+    "philosophical contemplation through imagery",
+    "clean lines and perfect technical execution",
+    "mysterious atmospheric depth",
+    "conceptual depth with visual simplicity",
+    "poetic surrealism in everyday objects",
+    "symbolic resonance in ordinary items",
+    // Portrait Focus with Magritte Elements
     "extreme close-up portrait technique",
     "absolute photorealistic detail in facial features",
     "perfectly smooth surface quality",
     "razor-sharp eye definition",
-    "masterful fur rendering",
-    "pristine portrait finish",
-    "crystalline facial clarity",
-    "perfect anatomical precision",
-    "museum-quality execution",
-    "mathematically precise facial modeling",
-    // Essential Minimalism
-    "absolute essential elements only",
-    "pure portrait focus",
-    "stark simplicity",
-    "singular subject emphasis",
-    "minimal compositional elements"
+    "masterful fur rendering with Magritte-like precision",
+    "pristine portrait finish in Magritte style",
+    "crystalline facial clarity with surreal undertones",
+    "perfect anatomical precision with metaphysical quality",
+    "museum-quality execution in Magritte tradition",
+    "mathematically precise facial modeling"
   ],
   visualElements: [
-    // Extreme Portrait Focus
+    // Magritte's Signature Elements
+    "surreal play of scale and proportion",
+    "perfect balance of reality and dream",
+    "mysterious atmospheric depth",
+    "crystal-clear rendering of textures",
+    "metaphysical window effect",
+    // Portrait Elements
     "extreme macro close-up of bear face",
-    "eyes and nose only composition",
-    "face fills 95% of frame",
+    "eyes and nose composition with Magritte-like presence",
+    "face fills 95% of frame like a Magritte object",
     "perfect square 1:1 ratio crop",
-    "ultra-sharp facial features",
-    // Core Bear Features
-    "direct eye contact with perfect symmetry",
-    "ultra-detailed iris texture",
-    "microscopic fur detail around eyes",
-    "mathematically centered nose",
-    "perfect facial symmetry",
-    // Essential Details
-    "pristine catch lights in eyes",
-    "individual eyelash definition",
-    "unwavering forward gaze",
-    "surgical edge precision",
-    "absolute minimal lighting"
+    "ultra-sharp facial features in Magritte style",
+    // Core Features
+    "direct eye contact with metaphysical intensity",
+    "ultra-detailed iris texture like Magritte's glass",
+    "microscopic fur detail with surreal precision",
+    "mathematically centered nose as focal point",
+    "perfect facial symmetry with philosophical weight"
   ],
   colorPalette: [
+    // Magritte's Classic Palette
+    "deep Magritte blue (RGB: 28, 45, 83)",
+    "surrealist sky blue (RGB: 163, 193, 227)",
+    "metaphysical grey (RGB: 128, 128, 128)",
     // Essential Portrait Colors
     "bear fur brown (RGB: 89, 61, 43)",
     "eye highlight white (RGB: 245, 245, 245)",
     "iris detail brown (RGB: 75, 54, 33)",
-    // Minimal Tones
-    "pure black for depth",
-    "single highlight tone",
-    "one shadow value"
+    // Magritte's Depth Colors
+    "philosophical black (RGB: 0, 0, 0)",
+    "contemplative shadow (RGB: 40, 40, 40)",
+    "mysterious highlight (RGB: 220, 220, 220)"
   ],
   compositionGuidelines: [
-    // Extreme Portrait Composition
+    // Magritte's Composition Rules
+    "perfect central positioning like Magritte's objects",
+    "mysterious depth through precise placement",
+    "metaphysical balance in frame",
+    "surreal scale relationships",
+    "philosophical use of negative space",
+    // Portrait Requirements
     "face must fill 95% of frame width",
     "eyes positioned exactly on upper third line",
     "nose perfectly centered on vertical axis",
     "absolute symmetrical balance",
     "perfect square 1:1 aspect ratio",
-    // Mathematical Precision
-    "golden ratio eye spacing",
-    "exact rule of thirds eye placement",
-    "precise facial centering",
-    // Minimalist Constraints
-    "no environmental elements",
-    "pure black background",
-    "single light source only",
-    "minimal depth layers"
+    // Magritte's Technical Rules
+    "crystal-clear focus throughout",
+    "perfect edge definition",
+    "precise tonal gradations",
+    "masterful light control"
   ],
-  moodAndTone: "Create an extremely minimalist bear portrait with absolute technical perfection, focusing exclusively on an extreme macro close-up where only the bear's eyes and nose are visible. Strip away all surreal elements to achieve radical simplicity. The execution must demonstrate flawless technique with an unwavering focus on facial features. Every element should emphasize the bear's direct gaze and perfect symmetry. The atmosphere should embody pure portraiture through pristine technical execution and absolute minimalism.",
+  moodAndTone: "Create a portrait that embodies Magritte's philosophical surrealism while incorporating modern hipster/rock elements. The execution must demonstrate his characteristic pristine technique and conceptual depth. Every element should contribute to a sense of metaphysical questioning, with the bear's gaze holding the same mysterious presence found in Magritte's work. The modern accessories should feel as if they've always existed in Magritte's universe, rendered with his signature precise, dreamlike clarity.",
   references: [
-    // Portrait References
-    "Chuck Close's 'Big Self-Portrait' (1967-1968) - for extreme close-up technique",
-    "The Blank Page (1967) - for absolute surface perfection",
-    "Dürer's precision in animal studies - for anatomical accuracy"
+    "Magritte's 'The Son of Man' (1964) - for mysterious presence",
+    "Magritte's 'The False Mirror' (1929) - for eye treatment",
+    "Magritte's 'The Listening Room' (1952) - for scale and presence",
+    "Magritte's 'The Blank Signature' (1965) - for technical execution",
+    "Magritte's 'The Central Story' (1928) - for compositional balance",
+    "Magritte's 'The Glass Key' (1959) - for surface treatment"
   ],
   avoidElements: [
+    // Anti-Magritte Elements
+    "impressionistic brushwork",
+    "expressionistic distortion",
+    "loose or sketchy rendering",
+    "textural experimentation",
+    "abstract elements",
+    "gestural marks",
     // Composition Restrictions
     "anything below nose level",
     "anything above forehead",
-    "any body elements",
     "three-quarter views",
     "profile angles",
     "tilted head poses",
     "looking away poses",
-    // Background Elements
-    "any background elements",
-    "environmental context",
-    "props or objects",
-    "surreal elements",
-    "floating items",
-    "bowler hats",
-    "apples",
-    "clouds",
     // Technical Restrictions
     "multiple light sources",
     "complex shadows",
-    "textural variations",
     "atmospheric effects",
-    "decorative elements",
-    "pattern elements"
+    "pattern elements",
+    "decorative flourishes",
+    "random elements"
   ]
 };
 
@@ -338,79 +348,164 @@ async function generateArt(concept: string) {
       // Always use portrait-focused classic category
       let category = ConceptCategory.MAGRITTE_CLASSIC;
       
-      console.log(`\n🎬 Generating styled bear portrait concepts...`);
+      console.log(`\n🎬 Generating styled bear portrait concept...`);
       
-      // First generate base concepts
+      // Generate a single base concept
       const basePortraitConcepts = await generateMultipleConcepts(
         aiService,
-        3, // Generate 3 concepts
+        1, // Generate only 1 concept
         {
-          temperature: 0.7, // Higher temperature for more creative variations
+          temperature: 0.7,
           category
         }
       );
 
       // Define distinctive bear styling elements
       const bearStyles = [
+        // Modern Hipster Styles
         {
-          accessory: "vintage round glasses",
-          personality: "intellectual",
-          detail: "gold wire frames catching light"
+          accessory: "thick-rimmed vintage Wayfarers",
+          personality: "indie hipster",
+          detail: "matte black frames with subtle coffee stains"
         },
         {
-          accessory: "silk bow tie",
-          personality: "sophisticated",
-          detail: "deep burgundy with subtle pattern"
+          accessory: "artisanal leather suspenders",
+          personality: "craft beer enthusiast",
+          detail: "hand-stitched with copper hardware"
         },
         {
-          accessory: "leather newsboy cap",
-          personality: "artisan",
-          detail: "worn leather texture"
+          accessory: "carefully disheveled beanie",
+          personality: "vinyl collector",
+          detail: "locally sourced merino wool in mustard yellow"
+        },
+        
+        // Classic Rock Styles
+        {
+          accessory: "worn leather jacket",
+          personality: "rock legend",
+          detail: "vintage studs and hand-painted band logos"
         },
         {
-          accessory: "pearl necklace",
-          personality: "elegant",
-          detail: "single strand of lustrous pearls"
+          accessory: "signature bandana",
+          personality: "guitar hero",
+          detail: "faded red with silver skull pattern"
         },
         {
-          accessory: "monocle",
-          personality: "distinguished",
-          detail: "gold chain accent"
+          accessory: "spiked leather collar",
+          personality: "punk rocker",
+          detail: "chrome spikes catching dramatic light"
+        },
+        
+        // Alternative/Indie Rock
+        {
+          accessory: "oversized flannel shirt",
+          personality: "grunge icon",
+          detail: "perfectly distressed red and black plaid"
         },
         {
-          accessory: "velvet beret",
-          personality: "artistic",
-          detail: "deep navy velvet"
+          accessory: "vintage band t-shirt",
+          personality: "indie musician",
+          detail: "faded Sonic Youth design with artistic tears"
+        },
+        {
+          accessory: "layered silver necklaces",
+          personality: "alternative artist",
+          detail: "mixed chains with guitar pick pendant"
+        },
+        
+        // Modern Rock Fashion
+        {
+          accessory: "designer leather wristbands",
+          personality: "modern rocker",
+          detail: "studded black leather with chrome details"
+        },
+        {
+          accessory: "custom ear piercings",
+          personality: "punk artist",
+          detail: "multiple silver hoops catching light"
+        },
+        {
+          accessory: "vintage military jacket",
+          personality: "rebel musician",
+          detail: "customized with band patches and safety pins"
+        },
+        
+        // Hipster Fashion
+        {
+          accessory: "authentic 80s denim jacket",
+          personality: "retro enthusiast",
+          detail: "perfectly faded with hand-sewn patches"
+        },
+        {
+          accessory: "artisanal bow tie",
+          personality: "coffee connoisseur",
+          detail: "handwoven organic cotton in forest green"
+        },
+        {
+          accessory: "vintage typewriter key necklace",
+          personality: "analog artist",
+          detail: "brass keys spelling 'CREATE'"
+        },
+        
+        // Fusion Styles
+        {
+          accessory: "mixed metal ear cuff",
+          personality: "avant-garde performer",
+          detail: "copper and silver geometric design"
+        },
+        {
+          accessory: "hand-painted denim vest",
+          personality: "street artist",
+          detail: "custom artwork with metallic accents"
+        },
+        {
+          accessory: "vintage camera strap",
+          personality: "underground photographer",
+          detail: "weathered leather with brass hardware"
+        },
+        
+        // Statement Pieces
+        {
+          accessory: "oversized vintage sunglasses",
+          personality: "festival headliner",
+          detail: "round gold frames with gradient lenses"
+        },
+        {
+          accessory: "handmade feather earring",
+          personality: "bohemian rocker",
+          detail: "black feathers with silver accents"
+        },
+        {
+          accessory: "tattoo choker",
+          personality: "90s revival artist",
+          detail: "layered with silver charm details"
+        },
+        
+        // Urban Rock
+        {
+          accessory: "custom chain necklace",
+          personality: "urban legend",
+          detail: "mixed metals with vintage guitar pendant"
+        },
+        {
+          accessory: "distressed denim collar",
+          personality: "garage band icon",
+          detail: "hand-frayed with safety pin accents"
+        },
+        {
+          accessory: "leather fedora",
+          personality: "indie folk artist",
+          detail: "vintage black with silver feather band"
         }
       ];
 
-      // Enhance each concept with unique styling
-      const enhancedConcepts = basePortraitConcepts.map((concept, index) => {
-        // Select a random style (ensure each concept gets a different style)
-        const style = bearStyles[Math.floor(Math.random() * bearStyles.length)];
-        
-        // Create styled portrait concept
-        return `Minimalist bear portrait with ${style.accessory} - ${style.personality} expression, ${style.detail}. Ultra-close facial study, eyes dominating frame, perfect symmetry, pure black background.`;
-      });
-
-      // Display enhanced concepts for selection
-      console.log('\n📝 Generated Styled Portrait Concepts:');
-      enhancedConcepts.forEach((concept, index) => {
-        console.log(`${index + 1}. ${concept}`);
-      });
-
-      // Get user input for concept selection
-      const selection = await getUserInput('\n🤔 Please select a styled portrait concept (1-3): ');
-      const selectedIndex = parseInt(selection) - 1;
+      // Select three random styles without repetition
+      const availableStyles = [...bearStyles];
+      const selectedStyle = availableStyles[Math.floor(Math.random() * availableStyles.length)];
       
-      if (selectedIndex >= 0 && selectedIndex < enhancedConcepts.length) {
-        artConcept = enhancedConcepts[selectedIndex];
-        console.log(`\n✨ Selected styled portrait concept: "${artConcept}"`);
-      } else {
-        console.log('\n⚠️ Invalid selection. Using the first styled portrait concept as default.');
-        artConcept = enhancedConcepts[0];
-        console.log(`\n✨ Selected styled portrait concept: "${artConcept}"`);
-      }
+      // Create styled portrait concept
+      artConcept = `Minimalist ${selectedStyle.personality} bear with ${selectedStyle.accessory} (${selectedStyle.detail}). Ultra-close facial study, eyes dominating frame, perfect symmetry, pure black background.`;
+      console.log(`\n✨ Generated styled portrait concept: "${artConcept}"`);
     } else {
       // Enhance any provided concept with styling elements if not present
       const styleKeywords = [
@@ -697,18 +792,17 @@ async function generateArt(concept: string) {
     const imagePath = path.join(outputDir, `flux-${sanitizedConcept}.txt`);
     const metadataPath = path.join(outputDir, `flux-${sanitizedConcept}-metadata.json`);
     
-    // Save prompt and creative process
+    // Save prompt and creative process (silently)
     fs.writeFileSync(
       promptPath,
       `Prompt: ${prompt}\n\nCreative Process: ${creativeProcess}`
     );
-    console.log(`\n✅ Prompt saved to: ${promptPath}`);
     
-    // Save image URL
+    // Save and display only the image URL
     fs.writeFileSync(imagePath, imageUrl);
-    console.log(`\n✅ Image URL saved to: ${imagePath}`);
+    console.log(`\n✨ Generated Image URL: ${imageUrl}`);
     
-    // Update the metadata without critique
+    // Create metadata object
     const metadata = {
       concept: artConcept,
       prompt: prompt,
@@ -720,10 +814,10 @@ async function generateArt(concept: string) {
       artDirection: project.artDirection
     };
     
+    // Save metadata silently
     fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
-    console.log(`\n✅ Metadata saved to: ${metadataPath}`);
     
-    // Store in memory system
+    // Store in memory system silently
     await memorySystem.storeMemory(
       {
         concept: artConcept,
@@ -742,17 +836,8 @@ async function generateArt(concept: string) {
       ['artwork', 'flux', 'multi-agent', ...(isPostPhotoRelated ? ['fashion', 'surreal', 'bourdin'] : []), ...artConcept.split(' ')]
     );
     
-    console.log('\n✨ Art generation completed successfully!');
-    console.log('\n🤖 Multi-Agent Collaboration Summary:');
-    console.log('- Director Agent: Coordinated the creative process');
-    console.log('- Ideator Agent: Generated creative ideas based on the concept');
-    console.log('- Stylist Agent: Developed artistic styles for the concept');
-    console.log('- Refiner Agent: Created the final artwork using FLUX');
-    console.log('- Critic Agent: Provided evaluation and feedback');
-    
-    if (result.critique) {
-      console.log(`\n📊 Artwork Evaluation: ${result.critique.overallScore}/10`);
-    }
+    // Minimal completion message
+    console.log('✅ Generation complete');
     
   } catch (error) {
     console.error('❌ Error generating art:', error);

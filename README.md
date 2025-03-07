@@ -1,4 +1,4 @@
-# ArtBot - Surrealist Vision Generator
+# ArtBot - Exploring the Future of Creative Intelligence
 
 <div align="center">
 
@@ -18,70 +18,90 @@
 
 </div>
 
-## Overview
+## Vision
 
-ArtBot is a sophisticated AI art generation system that uniquely combines René Magritte's philosophical surrealism with Guy Bourdin's provocative fashion photography. Through a multi-agent collaborative system, it creates artworks that challenge perception while maintaining high aesthetic and conceptual standards.
+ArtBot represents a new paradigm in creative artificial intelligence, specializing in the generation of Magritte-inspired bear portraits infused with contemporary hipster and rockstar aesthetics. Drawing inspiration from René Magritte's surrealist masterpieces and modern urban culture, ArtBot creates unique portraits that blend philosophical depth with contemporary style.
 
-<div align="center">
+Our approach is built on three core principles:
 
-### Artistic Fusion
-🎨 Magritte's Surrealism + 📸 Bourdin's Fashion = 🌟 Unique Visual Language
-
-</div>
+1. **Magritte's Surrealist Vision**: Each portrait embodies Magritte's pristine technique, philosophical depth, and conceptual surrealism.
+2. **Contemporary Style Fusion**: Modern hipster and rockstar elements are seamlessly integrated into Magritte's surrealist universe.
+3. **Technical Excellence**: Every portrait maintains crystalline clarity, perfect symmetry, and museum-quality execution.
 
 ## Features
 
-### Core Capabilities
-- 🤖 **Advanced Multi-Agent System**
-  - Director Agent: Orchestrates the creative process
-  - Ideator Agent: Generates innovative concepts
-  - Stylist Agent: Develops unique artistic styles
-  - Refiner Agent: Perfects visual details
-  - Critic Agent: Provides artistic evaluation
+- **Magritte-Style Portraits**: Ultra-close bear portraits with metaphysical depth and surrealist undertones
+- **Modern Accessories**: Curated collection of hipster and rockstar elements
+- **Style Evolution**: Dynamic fusion of classical surrealism with contemporary fashion
+- **Perfect Execution**: Pristine technical quality with Magritte's signature precision
+- **Philosophical Depth**: Each portrait poses questions about reality and representation
 
-- 🎯 **Category-Specific Art Direction**
-  - Magritte-inspired categories (Lovers, Empire of Light, Objects, etc.)
-  - Bourdin-inspired categories (Fashion, Color, Composition, etc.)
-  - Hybrid style combinations
+## Style Elements
 
-- 🎨 **Sophisticated Style System**
-  - Dynamic style evolution
-  - Intelligent style blending
-  - Context-aware aesthetics
+### Core Magritte Elements
+- Perfect central positioning
+- Mysterious atmospheric depth
+- Philosophical use of negative space
+- Crystal-clear rendering
+- Metaphysical gaze
 
-### Technical Features
-- 📊 **Advanced Processing**
-  - High-resolution image generation
-  - Intelligent composition analysis
-  - Style transfer capabilities
+### Contemporary Accessories
+```
+┌─────────────────────┐
+│  Modern Hipster     │     ┌─────────────────────┐
+│  - Vintage Wayfarers│     │    Classic Rock     │
+│  - Artisanal Leather│     │  - Worn Leather     │
+│  - Beanie          ◄─────►│  - Bandanas        │
+│  - Typewriter Keys  │     │  - Spiked Collars   │
+└─────────────────────┘     └─────────────────────┘
+         ▲                           ▲
+         │                           │
+         └───────────┬──────────────┘
+                     │
+              ┌──────┴──────────┐
+              │  Fusion Styles  │
+              └─────────────────┘
+```
 
-- 💾 **Memory System**
-  - Experience-based learning
-  - Style evolution tracking
-  - Creative process memory
+### Color Palette
+- Deep Magritte Blue (RGB: 28, 45, 83)
+- Surrealist Sky Blue (RGB: 163, 193, 227)
+- Metaphysical Grey (RGB: 128, 128, 128)
+- Bear Fur Brown (RGB: 89, 61, 43)
+- Philosophical Black (RGB: 0, 0, 0)
 
-- 🔄 **Workflow Integration**
-  - Seamless API integration
-  - Batch processing support
-  - Custom pipeline creation
+## Technical Specifications
+
+### Portrait Requirements
+- Face fills 95% of frame
+- Perfect symmetrical composition
+- Ultra-sharp facial features
+- Crystalline clarity in execution
+- 1:1 aspect ratio
+
+### Style Guidelines
+- Direct eye contact with metaphysical intensity
+- Pristine technical execution
+- Seamless integration of modern accessories
+- Philosophical depth in presentation
+- Museum-quality finish
 
 ## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/artbot.git
-cd artbot
-
 # Install dependencies
 npm install
 
-# Set up environment
+# Set up environment variables
 cp .env.example .env
+
+# Initialize the system
+npm run init
 ```
 
 ## Configuration
 
-Configure your environment variables:
+Configure the system through environment variables:
 
 ```env
 ANTHROPIC_API_KEY=your_api_key
@@ -91,61 +111,34 @@ STORAGE_PATH=.artbot
 
 ## Usage
 
-### Basic Art Generation
-
 ```bash
-# Generate art with default settings
-npm start "your concept"
+# Generate a portrait
+npm run generate
 
-# Generate with specific category
-npm start "your concept" "category_name"
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
 ```
 
-### Advanced Usage
+## Style References
 
-```bash
-# Use specific style blend
-npm run generate -- --style=bourdin_fashion "your concept"
+### Magritte Works
+- 'The Son of Man' (1964) - for mysterious presence
+- 'The False Mirror' (1929) - for eye treatment
+- 'The Listening Room' (1952) - for scale and presence
+- 'The Blank Signature' (1965) - for technical execution
 
-# Batch generation
-npm run batch -- --count=5 "your concept"
-```
-
-## Art Direction System
-
-### Style Categories
-
-#### Magritte-Inspired
-- 🌌 Empire of Light
-- 🎭 Lovers
-- 🍎 Objects
-- 🪟 Windows
-- 👤 Silhouettes
-- 🦋 Metamorphosis
-- 📝 Wordplay
-- 📏 Scale
-- 🔍 Mystery
-- 🌅 Landscapes
-- ☁️ Skies
-
-#### Bourdin-Inspired
-- 👗 Fashion
-- 🎨 Color
-- 📸 Composition
-- 📖 Narrative
-- 💎 Objects
-
-## Development
-
-```bash
-
-pnpm i && pnpm build && pnpm start
-
-```
+### Modern Elements
+- Contemporary hipster fashion
+- Classic rock aesthetics
+- Urban street style
+- Alternative music culture
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions that enhance our unique blend of classical surrealism and contemporary style. To contribute:
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -153,23 +146,21 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## Documentation
-
-- [Technical Documentation](docs/technical.md)
-- [API Reference](docs/api.md)
-- [Style Guide](docs/style-guide.md)
-- [Multi-Agent System](docs/multi-agent.md)
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
-- Inspired by René Magritte's surrealist philosophy
-- Influenced by Guy Bourdin's revolutionary fashion photography
-- Built with modern AI technologies
+- Inspired by René Magritte's surrealist masterpieces
+- Built with Claude 3.5 Sonnet and Stable Diffusion
 - Special thanks to the AI art community
+
+## Philosophy
+
+Our approach represents a unique fusion of Magritte's philosophical surrealism with contemporary urban culture. Each portrait exists in that liminal space between classical art and modern style, creating a new visual language that questions our understanding of both tradition and innovation.
+
+Through sophisticated cognitive architectures and precise technical execution, ArtBot demonstrates how AI can bridge seemingly disparate artistic worlds, creating portraits that are both timeless and distinctly contemporary.
 
 <div align="center">
 
