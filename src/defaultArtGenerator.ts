@@ -523,7 +523,7 @@ async function generateArt(concept: string) {
 
     // Randomly select a Magritte category
     const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
-    console.log(`\n✨ Using ${selectedCategory.replace('magritte_', '').replace('_', ' ')} × LiveTheLifeTV fusion for generation`);
+    console.log(`\n✨ Using ${selectedCategory.replace('magritte_', '').replace('_', ' ')} for generation`);
 
     // Check for API keys
     const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
@@ -626,11 +626,11 @@ async function generateArt(concept: string) {
     
     const project = {
       title: artConcept,
-      description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')} × LiveTheLifeTV fusion: "${artConcept}"`,
+      description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')}: "${artConcept}"`,
       useFlux: true,
       modelConfig: {
         ...MAGRITTE_STYLE_CONFIG,
-        prompt_prefix: `In a fusion of René Magritte's ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealism and LiveTheLifeTV's cinematic vision, create a scene that blends metaphysical wonder with retro-futuristic nostalgia. Combine `,
+        prompt_prefix: `In René Magritte's ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealism, create a scene that blends metaphysical wonder with retro-futuristic nostalgia. Combine `,
         prompt_suffix: `. Render with:
 - Lighting: Dramatic cinema-inspired illumination with noir undertones
 - Color: Rich, warm vintage tones (especially reds and oranges) contrasted with deep blues
@@ -640,7 +640,7 @@ async function generateArt(concept: string) {
 Style emphasizing both symbolic resonance and cinematic storytelling.`
       },
       requirements: [
-        `Create a fusion of Magritte surrealism and LiveTheLifeTV's cinematic style`,
+        `Create a fusion of Magritte surrealism`,
         ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3),
         ...LIVE_THE_LIFE_ELEMENTS.settings.slice(0, 2)
       ],
