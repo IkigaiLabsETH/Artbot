@@ -89,6 +89,32 @@ const STYLE_REFINEMENT_CONFIGS: Record<string, RefinementConfig> = {
       "precise spacing",
       "algorithmic variation"
     ]
+  },
+  belgian_surrealism: {
+    prompt_prefix: "Refine in Belgian Surrealist style with ",
+    prompt_suffix: ". Emphasize dream-like imagery, symbolic depth, and unexpected juxtapositions.",
+    refinement_steps: 3,
+    style_parameters: {
+      surrealism_level: 0.9,
+      symbolism: 0.85,
+      juxtaposition: "unexpected",
+      atmosphere: "dream-like",
+      clarity: "symbolic"
+    },
+    quality_checks: [
+      "Verify dream-like atmosphere",
+      "Check symbolic clarity",
+      "Ensure unexpected juxtapositions",
+      "Validate surrealist narrative",
+      "Confirm visual coherence"
+    ],
+    style_elements: [
+      "floating objects",
+      "symbolic imagery",
+      "unexpected scale",
+      "dream-like settings",
+      "visual paradoxes"
+    ]
   }
 };
 

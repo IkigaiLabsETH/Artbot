@@ -19,7 +19,7 @@ function ensureDirectoryExists(dirPath) {
 }
 
 // Define concept categories
-const ConceptCategory = {
+const Idearium = {
   CINEMATIC: 'cinematic',
   SURREAL: 'surreal',
   CYBERPUNK: 'cyberpunk',
@@ -34,93 +34,91 @@ const ConceptCategory = {
 
 // Sample concepts for each category (as a fallback if API calls fail)
 const sampleConcepts = {
-  [ConceptCategory.CINEMATIC]: [
-    "abandoned lighthouse at dawn",
-    "neon-lit alleyway after rain",
-    "ancient temple reclaimed by jungle",
-    "solitary figure on endless dunes",
-    "cybernetic garden under binary stars"
+  [Idearium.CINEMATIC]: [
+    "cinematic scene of floating umbrellas in a city",
+    "film noir street with faceless pedestrians",
+    "dramatic lighting on levitating objects",
+    "mysterious figures in bowler hats",
+    "cinematic clouds entering through windows"
   ],
-  [ConceptCategory.SURREAL]: [
-    "melting clocks on desert branches",
-    "floating islands of library books",
-    "doorways opening into ocean depths",
-    "staircases leading to nowhere",
-    "mechanical birds with cloud wings"
+  [Idearium.SURREAL]: [
+    "bowler hat floating above faceless figure",
+    "apple obscuring a man's face",
+    "clouds inside a room",
+    "door opening to sky-filled landscape",
+    "mirror reflecting impossible scenes"
   ],
-  [ConceptCategory.CYBERPUNK]: [
-    "neon market beneath data highways",
-    "augmented street performer in rain",
-    "corporate towers piercing digital clouds",
-    "back-alley cybernetic clinic glowing",
-    "holographic advertisements reflecting in puddles"
+  [Idearium.CYBERPUNK]: [
+    "surreal cybernetic figures with apple heads",
+    "digital clouds merging with cityscape",
+    "floating neon bowler hats",
+    "cyberpunk street with impossible perspectives",
+    "holographic doors opening to surreal worlds"
   ],
-  [ConceptCategory.NATURE]: [
-    "ancient redwood forest in fog",
-    "lightning storm over mountain peaks",
-    "desert bloom after rare rainfall",
-    "arctic ice caves glowing blue",
-    "volcanic eruption against night sky"
+  [Idearium.NATURE]: [
+    "trees growing upside down from clouds",
+    "floating rocks with miniature forests",
+    "birds transforming into leaves",
+    "surreal landscape with oversized fruits",
+    "river flowing vertically into the sky"
   ],
-  [ConceptCategory.URBAN]: [
-    "rooftop garden overlooking skyscrapers",
-    "subway station at empty midnight",
-    "century-old apartments beside glass towers",
-    "street food vendors under lanterns",
-    "abandoned factory reclaimed by artists"
+  [Idearium.URBAN]: [
+    "cityscape with floating buildings",
+    "streets filled with faceless commuters",
+    "urban scene with raining apples",
+    "windows opening to unexpected landscapes",
+    "streetlights illuminating daytime skies"
   ],
-  [ConceptCategory.ABSTRACT]: [
-    "fractured light through crystal prisms",
-    "geometric patterns dissolving into chaos",
-    "layered textures of rust and patina",
-    "flowing ribbons of complementary colors",
-    "mathematical sequences visualized in space"
+  [Idearium.ABSTRACT]: [
+    "abstract composition of floating bowler hats",
+    "geometric clouds intersecting rooms",
+    "surreal patterns of apples and mirrors",
+    "abstract doors leading nowhere",
+    "visual paradoxes in geometric forms"
   ],
-  [ConceptCategory.NOSTALGIC]: [
-    "drive-in theater under starry sky",
-    "vinyl records stacked in dusty light",
-    "childhood treehouse rediscovered years later",
-    "polaroid photographs scattered on attic floor",
-    "vintage arcade machines glowing in darkness"
+  [Idearium.NOSTALGIC]: [
+    "vintage surrealist posters on walls",
+    "old-fashioned room with floating objects",
+    "retro scene with oversized apples",
+    "nostalgic interior with impossible reflections",
+    "classic furniture suspended mid-air"
   ],
-  [ConceptCategory.FUTURISTIC]: [
-    "vertical farm towers dominating cityscape",
-    "quantum computer laboratory humming",
-    "solar sail ships departing orbital station",
-    "neural interface meditation garden",
-    "automated construction swarms building habitat"
+  [Idearium.FUTURISTIC]: [
+    "futuristic city with floating bowler hats",
+    "surreal technology merging with nature",
+    "levitating futuristic vehicles",
+    "digital landscapes entering physical spaces",
+    "futuristic doors opening to surreal dimensions"
   ],
-  [ConceptCategory.FANTASY]: [
-    "dragon perched on ancient library tower",
-    "fairy market hidden in mushroom forest",
-    "wizard's observatory under aurora sky",
-    "crystal castle reflecting impossible colors",
-    "phoenix rebirth amid sacred ruins"
+  [Idearium.FANTASY]: [
+    "fantasy scene with floating castles",
+    "mythical creatures with surreal features",
+    "enchanted forest with impossible geometry",
+    "magical mirrors reflecting alternate realities",
+    "fantasy landscapes suspended in clouds"
   ],
-  [ConceptCategory.DYSTOPIAN]: [
-    "abandoned megacity reclaimed by nature",
-    "last library protected by volunteers",
-    "water rationing station in endless drought",
-    "surveillance drones monitoring empty streets",
-    "luxury bunker amid devastated landscape"
+  [Idearium.DYSTOPIAN]: [
+    "dystopian city with floating ruins",
+    "faceless crowds in surreal dystopia",
+    "abandoned surrealist architecture",
+    "surreal wasteland with floating debris",
+    "doors opening to dystopian landscapes"
   ]
 };
 
-// Simple function to get multiple concepts
+// Helper function to shuffle and sample array elements
+function shuffleArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
 function getMultipleConcepts(category, count) {
-  const concepts = sampleConcepts[category];
-  
-  // If requesting more concepts than we have samples, repeat some
-  if (count > concepts.length) {
-    const result = [];
-    for (let i = 0; i < count; i++) {
-      result.push(concepts[i % concepts.length]);
-    }
-    return result;
-  }
-  
-  // Otherwise return a random subset
-  return concepts.slice(0, count);
+  const concepts = sampleConcepts(category);
+  return shuffleArray(concepts).slice(0, count);
+}
+
+function sampleConcepts(category) {
+  return sampleConcepts = sampleConcepts = sampleConcepts || sampleConcepts;
+  return sampleConcepts(category);
 }
 
 async function generateConceptIdeas() {
@@ -142,16 +140,16 @@ async function generateConceptIdeas() {
     
     if (categoryArg) {
       // Try to match the category argument to a valid category
-      const categoryKey = Object.keys(ConceptCategory).find(
+      const categoryKey = Object.keys(Idearium).find(
         key => key.toLowerCase() === categoryArg.toLowerCase()
       );
       
       if (categoryKey) {
-        category = ConceptCategory[categoryKey];
+        category = Idearium[categoryKey];
         console.log(`🎬 Generating ${count} ${category} concepts...\n`);
       } else {
         console.log(`⚠️ Unknown category: "${categoryArg}". Using default cinematic category.\n`);
-        category = ConceptCategory.CINEMATIC;
+        category = Idearium.CINEMATIC;
       }
       
       // Generate concepts for the specified category
@@ -180,7 +178,7 @@ async function generateConceptIdeas() {
       const results = {};
       
       // Generate concepts for each category
-      for (const cat of Object.values(ConceptCategory)) {
+      for (const cat of Object.values(Idearium)) {
         console.log(`Category: ${cat}`);
         const concepts = getMultipleConcepts(cat, count);
         
