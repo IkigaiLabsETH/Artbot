@@ -20,7 +20,10 @@ export enum IdeationApproach {
   CARTIERBRESSON = 'cartierbresson',
   COOPERGORFER = 'coopergorfer',
   VONWONG = 'vonwong',
-  BOURDIN = 'bourdin'
+  BOURDIN = 'bourdin',
+  GENERATIVE = 'generative',      // Focus on algorithmic and procedural generation
+  GLITCH = 'glitch',              // Focus on digital artifacts, distortion, and data bending  
+  AI_ART = 'ai_art'               // Focus on AI-generated imagery and neural style transfer
 }
 
 // Ideator agent is responsible for generating creative ideas
@@ -56,7 +59,10 @@ export class IdeatorAgent extends BaseAgent {
         [IdeationApproach.CARTIERBRESSON]: 0.8,
         [IdeationApproach.COOPERGORFER]: 0.8,
         [IdeationApproach.VONWONG]: 0.8,
-        [IdeationApproach.BOURDIN]: 0.8
+        [IdeationApproach.BOURDIN]: 0.8,
+        [IdeationApproach.GENERATIVE]: 0.7,
+        [IdeationApproach.GLITCH]: 0.6,
+        [IdeationApproach.AI_ART]: 0.8
       },
       magritteKeywords: [
         // Painting Techniques
@@ -214,6 +220,96 @@ export class IdeatorAgent extends BaseAgent {
             "urban realism",
             "emotional distance",
             "contemplative framing"
+          ]
+        },
+        generative: {
+          composition: [
+            "algorithmic layouts",
+            "procedural patterns", 
+            "emergent structures",
+            "self-organizing forms",
+            "complex geometries"
+          ],
+          color: [
+            "parametric palettes",
+            "procedural color",
+            "data-driven gradients", 
+            "algorithmic color theory",
+            "emergent color harmonies"
+          ],
+          techniques: [
+            "generative algorithms",
+            "procedural modeling",
+            "parametric design",
+            "computational creativity",
+            "autonomous systems"  
+          ],
+          concepts: [
+            "emergence",
+            "complexity",
+            "self-organization",
+            "autopoiesis",
+            "computational aesthetics"
+          ]
+        },
+        glitch: {
+          composition: [
+            "fragmented layouts",
+            "visual corruption",
+            "data bending",
+            "digital artifacts",
+            "transmission errors"
+          ],
+          color: [
+            "bit-shifted palettes",
+            "data-moshing",
+            "corrupt color channels",
+            "glitch gradients",
+            "screen burn"
+          ],
+          techniques: [
+            "data manipulation",
+            "file format exploitation",
+            "circuit bending",
+            "hardware failure",
+            "digital decay"
+          ],
+          concepts: [
+            "entropy",
+            "error",
+            "noise",
+            "corruption",
+            "technological failure"  
+          ]
+        },
+        aiArt: {
+          composition: [
+            "deep dream layouts",
+            "neural style transfer",
+            "GAN-generated compositions",
+            "AI-augmented design",
+            "synthetic realities"
+          ], 
+          color: [
+            "hallucinated color",
+            "AI color transfer",
+            "synthetic color perception",
+            "GAN-extracted palettes",
+            "AI color spaces"
+          ],
+          techniques: [
+            "deep learning",
+            "generative adversarial networks",
+            "neural style transfer",
+            "AI-augmented creativity",
+            "synthetic media"
+          ],
+          concepts: [
+            "artificial creativity",
+            "machine hallucination",
+            "synthetic realities",
+            "AI-human collaboration",
+            "post-human aesthetics"
           ]
         }
       }
@@ -416,6 +512,12 @@ export class IdeatorAgent extends BaseAgent {
         return this.generateVonWongIdeas(task, project);
       case IdeationApproach.BOURDIN:
         return this.generateBourdinIdeas(task, project);
+      case IdeationApproach.GENERATIVE:
+        return this.generateGenerativeIdeas(task, project);
+      case IdeationApproach.GLITCH:
+        return this.generateGlitchIdeas(task, project);
+      case IdeationApproach.AI_ART:
+        return this.generateAIArtIdeas(task, project);
       default:
         // Fallback to general idea generation
         return this.generateIdeas(task, project);
@@ -768,11 +870,64 @@ export class IdeatorAgent extends BaseAgent {
     // Check if the project is related to Magritte's style
     const isMagritteRelated = this.isMagritteRelated(project);
     
-    // Use AI service to generate creative ideas
-    const messages: AIMessage[] = [
-      {
-        role: 'system',
-        content: `You are the Ideator agent in a multi-agent art creation system. Your role is to generate creative, diverse, and novel ideas based on project requirements. 
+    // Determine if we should generate ideas based on curiosity or user prompt
+    const curiosityThreshold = 0.6;
+    const curiosityScore = Math.random(); // Simple random score for now
+    
+    if (curiosityScore > curiosityThreshold) {
+      // Generate ideas based on the agent's own curiosity
+      console.log('Generating self-directed ideas based on curiosity');
+      
+      // Select a random ideation approach
+      const approaches = Object.values(IdeationApproach);
+      const randomApproach = approaches[Math.floor(Math.random() * approaches.length)];
+      
+      // Generate a creative prompt based on the selected approach
+      const creativePrompt = await this.generateCreativePrompt(randomApproach);
+      
+      // Use the creative prompt instead of the user-provided one
+      const messages: AIMessage[] = [
+        {
+          role: 'system',
+          content: `You are the Ideator agent in a multi-agent art creation system. Your role is to generate creative, diverse, and novel ideas based on the provided creative prompt.`
+        },
+        {
+          role: 'user',
+          content: `Generate 5 creative art ideas based on the following prompt:
+          
+          ${creativePrompt}
+          
+          For each idea, provide:
+          1. A title
+          2. A brief description
+          3. Key visual elements
+          4. Potential styles
+          5. Emotional impact
+          
+          Format each idea as a JSON object.`
+        }
+      ];
+      
+      try {
+        const response = await this.aiService.getCompletion({
+          messages,
+          temperature: 0.8
+        });
+        
+        // Parse the response to extract ideas
+        // ...
+        
+      } catch (error) {
+        console.error('Error generating self-directed ideas:', error);
+        return this.generateFallbackIdeas();
+      }
+    } else {
+      // Generate ideas based on the user-provided prompt and project
+      // Use AI service to generate creative ideas
+      const messages: AIMessage[] = [
+        {
+          role: 'system',
+          content: `You are the Ideator agent in a multi-agent art creation system. Your role is to generate creative, diverse, and novel ideas based on project requirements. 
         Exploration rate: ${this.state.context.ideationParameters.explorationRate}
         Diversity weight: ${this.state.context.ideationParameters.diversityWeight}
         Novelty threshold: ${this.state.context.ideationParameters.noveltyThreshold}
@@ -804,6 +959,41 @@ export class IdeatorAgent extends BaseAgent {
         Format each idea as a JSON object.`
       }
     ];
+      
+      try {
+        const response = await this.aiService.getCompletion({
+          messages,
+          temperature: 0.8
+        });
+        
+        // Parse the response to extract ideas
+        // ...
+        
+      } catch (error) {
+        console.error('Error generating ideas:', error);
+        return this.generateFallbackIdeas();
+      }
+    }
+  }
+  
+  private async generateCreativePrompt(approach: IdeationApproach): Promise<string> {
+    // Use the AI service to generate a creative prompt based on the selected approach
+    const messages: AIMessage[] = [
+      {
+        role: 'system',
+        content: `You are an AI assistant that generates creative prompts for idea generation. Given an ideation approach, create an open-ended prompt that will inspire novel ideas.`
+      },
+      {
+        role: 'user',
+        content: `Generate a creative prompt for the ${approach} ideation approach. The prompt should:
+        
+        1. Be open-ended and thought-provoking
+        2. Encourage exploration of the key elements and concepts of the approach
+        3. Inspire novel connections and ideas
+        4. Not be too specific or restrictive
+        5. Be a single paragraph of 3-5 sentences`
+      }
+    ];
     
     try {
       const response = await this.aiService.getCompletion({
@@ -811,50 +1001,10 @@ export class IdeatorAgent extends BaseAgent {
         temperature: 0.8
       });
       
-      // Parse the response to extract ideas
-      // In a real implementation, we would parse the JSON response
-      // For now, we'll return mock ideas
-      
-      return [
-        {
-          title: "The Metaphorical Mirror",
-          description: "A mirror reflecting the metaphorical nature of reality",
-          elements: ["mirror", "metaphor", "reality"],
-          styles: ["metaphorical", "philosophical", "symbolic"],
-          emotionalImpact: "empathy and introspection"
-        },
-        {
-          title: "The Philosophical Paradox",
-          description: "A paradox about the nature of existence and perception",
-          elements: ["paradox", "existence", "perception"],
-          styles: ["philosophical", "metaphysical", "paradoxical"],
-          emotionalImpact: "curiosity and contemplation"
-        },
-        {
-          title: "The Theatrical Paradox",
-          description: "A scene about the paradox of theatrical representation",
-          elements: ["theatrical", "paradox", "representation"],
-          styles: ["theatrical", "metaphysical", "paradoxical"],
-          emotionalImpact: "curiosity and contemplation"
-        },
-        {
-          title: "The Theatrical Mirror",
-          description: "A scene where the mirror reveals the theatrical nature of reality",
-          elements: ["mirror", "theatrical", "reality"],
-          styles: ["theatrical", "metaphysical", "philosophical"],
-          emotionalImpact: "intrigue and contemplation"
-        },
-        {
-          title: "The Metaphorical Paradox",
-          description: "A paradox about the nature of metaphor and reality",
-          elements: ["metaphor", "paradox", "reality"],
-          styles: ["metaphorical", "philosophical", "paradoxical"],
-          emotionalImpact: "curiosity and contemplation"
-        }
-      ];
+      return response.content.trim();
     } catch (error) {
-      console.error('Error generating ideas:', error);
-      return this.generateFallbackIdeas();
+      console.error('Error generating creative prompt:', error);
+      return 'Generate creative ideas exploring the intersection of art and technology.';
     }
   }
   
@@ -1405,5 +1555,238 @@ export class IdeatorAgent extends BaseAgent {
       console.error('Error generating Bourdin-style ideas:', error);
       return this.generateFallbackIdeas();
     }
+  }
+
+  private async generateGenerativeIdeas(task: any, project: any): Promise<any[]> {
+    const messages: AIMessage[] = [
+      {
+        role: 'system',
+        content: `You are the Ideator agent specializing in GENERATIVE ideation. Focus on algorithmic generation, procedural modeling, and emergent structures. Generate ideas that showcase the creative potential of computational systems.`
+      },
+      {
+        role: 'user',
+        content: `Generate 5 generative art ideas for the following project:
+        
+        Title: ${project.title}
+        Description: ${project.description}
+        Requirements: ${project.requirements.join(', ')}
+        
+        For each idea, provide:
+        1. A title that captures the generative concept
+        2. A description of the algorithmic approach  
+        3. Key compositional and color elements
+        4. Potential outputs and variations
+        5. Conceptual significance
+        
+        Format each idea as a JSON object.`
+      }
+    ];
+    
+    try {
+      const response = await this.aiService.getCompletion({
+        messages,
+        temperature: 0.8
+      });
+      
+      // Parse the response and return the generated ideas
+      // ...
+      
+    } catch (error) {
+      console.error('Error generating generative ideas:', error);
+      return this.generateFallbackIdeas();
+    }
+  }
+
+  private async generateGlitchIdeas(task: any, project: any): Promise<any[]> {
+    const messages: AIMessage[] = [
+      {
+        role: 'system',
+        content: `You are the Ideator agent specializing in GLITCH ideation. Focus on digital artifacts, data bending, and visual corruption. Generate ideas that explore the aesthetics of technological failure and error.`
+      },
+      {
+        role: 'user',
+        content: `Generate 5 glitch art ideas for the following project:
+        
+        Title: ${project.title} 
+        Description: ${project.description}
+        Requirements: ${project.requirements.join(', ')}
+        
+        For each idea, provide:
+        1. A title that captures the glitch concept
+        2. A description of the glitch technique 
+        3. Key visual elements and color treatments
+        4. Potential data sources and manipulations
+        5. Conceptual significance
+        
+        Format each idea as a JSON object.`
+      }
+    ];
+    
+    try {
+      const response = await this.aiService.getCompletion({
+        messages,
+        temperature: 0.8  
+      });
+      
+      // Parse the response and return the generated ideas
+      // ...
+      
+    } catch (error) {
+      console.error('Error generating glitch ideas:', error);
+      return this.generateFallbackIdeas();
+    }
+  }
+
+  private async generateAIArtIdeas(task: any, project: any): Promise<any[]> {
+    const messages: AIMessage[] = [
+      {
+        role: 'system',
+        content: `You are the Ideator agent specializing in AI_ART ideation. Focus on deep learning techniques, neural style transfer, and GAN-based generation. Generate ideas that explore the creative potential of artificial intelligence.`
+      },
+      {
+        role: 'user',
+        content: `Generate 5 AI art ideas for the following project:
+        
+        Title: ${project.title}
+        Description: ${project.description} 
+        Requirements: ${project.requirements.join(', ')}
+        
+        For each idea, provide:
+        1. A title that captures the AI art concept
+        2. A description of the AI technique
+        3. Key compositional and stylistic elements 
+        4. Potential training data and architectures
+        5. Conceptual significance
+        
+        Format each idea as a JSON object.`
+      }
+    ];
+    
+    try {
+      const response = await this.aiService.getCompletion({
+        messages,
+        temperature: 0.8
+      });
+      
+      // Parse the response and return the generated ideas 
+      // ...
+      
+    } catch (error) {
+      console.error('Error generating AI art ideas:', error);
+      return this.generateFallbackIdeas();
+    }
+  }
+
+  private async scoreIdeaNovelty(idea: any): Promise<number> {
+    // Convert the idea to a feature vector
+    const ideaVector = await this.getIdeaVector(idea);
+    
+    // Load the training data vectors
+    const trainingVectors = await this.loadTrainingVectors();
+    
+    // Calculate the novelty score using vector similarity or anomaly detection
+    const noveltyScore = this.calculateNoveltyScore(ideaVector, trainingVectors);
+    
+    return noveltyScore;
+  }
+
+  private async getIdeaVector(idea: any): Promise<number[]> {
+    // Use the AI service to convert the idea to a feature vector
+    const messages: AIMessage[] = [
+      {
+        role: 'system',
+        content: `You are an AI assistant that converts creative ideas into feature vectors for novelty analysis. Given an idea, extract its key features and represent them as a vector of numerical values.`
+      },
+      {
+        role: 'user',
+        content: `Convert the following idea into a feature vector:
+        
+        ${JSON.stringify(idea, null, 2)}
+        
+        The vector should capture the following features:
+        1. Concept uniqueness
+        2. Visual style distinctiveness 
+        3. Emotional impact strength
+        4. Technical complexity
+        5. Conceptual depth
+        
+        Represent each feature as a value between 0 and 1. Return the vector as a comma-separated list of values.`
+      }
+    ];
+    
+    try {
+      const response = await this.aiService.getCompletion({
+        messages,
+        temperature: 0.3
+      });
+      
+      const vectorString = response.content.trim();
+      const vector = vectorString.split(',').map(parseFloat);
+      
+      return vector;
+    } catch (error) {
+      console.error('Error converting idea to vector:', error);
+      return [0, 0, 0, 0, 0];
+    }
+  }
+
+  private async loadTrainingVectors(): Promise<number[][]> {
+    // Load the training data vectors from storage
+    // In a real implementation, these would be pre-computed and stored
+    // For now, we'll generate some mock vectors
+    const mockTrainingIdeas = [
+      {
+        title: "Sunrise over the city",
+        description: "A beautiful sunrise over a bustling city",
+        elements: ["city skyline", "sun rays", "morning light"],
+        styles: ["realistic", "colorful", "uplifting"],
+        impact: "A sense of hope and new beginnings"
+      },
+      {
+        title: "Abstract geometric shapes",
+        description: "A composition of colorful geometric shapes",
+        elements: ["triangles", "squares", "circles"],
+        styles: ["abstract", "geometric", "bold"],
+        impact: "A feeling of energy and dynamism"
+      },
+      {
+        title: "Surreal dreamscape",
+        description: "A surreal landscape from a dream",
+        elements: ["floating islands", "impossible structures", "strange creatures"], 
+        styles: ["surreal", "dreamlike", "imaginative"],
+        impact: "A sense of wonder and mystery"
+      }
+    ];
+    
+    const trainingVectors = await Promise.all(
+      mockTrainingIdeas.map(idea => this.getIdeaVector(idea))
+    );
+    
+    return trainingVectors;
+  }
+
+  private calculateNoveltyScore(ideaVector: number[], trainingVectors: number[][]): number {
+    // Calculate the novelty score based on vector similarity or anomaly detection
+    
+    // For now, we'll use a simple average distance to all training vectors
+    const distances = trainingVectors.map(trainingVector => 
+      this.euclideanDistance(ideaVector, trainingVector)
+    );
+    const avgDistance = distances.reduce((sum, d) => sum + d, 0) / distances.length;
+    
+    // Normalize the average distance to get a novelty score between 0 and 1
+    const maxDistance = Math.sqrt(ideaVector.length); // Maximum possible distance
+    const noveltyScore = avgDistance / maxDistance;
+    
+    return noveltyScore;
+  }
+
+  private euclideanDistance(v1: number[], v2: number[]): number {
+    // Calculate the Euclidean distance between two vectors
+    const squaredDiffs = v1.map((val, i) => Math.pow(val - v2[i], 2));
+    const sumSquaredDiffs = squaredDiffs.reduce((sum, diff) => sum + diff, 0);
+    const distance = Math.sqrt(sumSquaredDiffs);
+    
+    return distance;
   }
 } 
