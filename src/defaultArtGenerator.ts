@@ -240,81 +240,101 @@ const MINIMAX_MODEL = 'minimax/image-01';
 
 // Define the models with Belgian Surrealist-LiveTheLifeTV fusion settings
 const MAGRITTE_STYLE_CONFIG = {
-  prompt_prefix: "Drawing from the Belgian Surrealist tradition but focusing exclusively on vintage Apple technology, create a scene that blends surrealism with LiveTheLifeTV's modern cinematic vision. Using only classic Apple products and interfaces from the Macintosh era (1984-1995), the scene should maintain the Belgian Surrealists' execution while incorporating ",
-  prompt_suffix: `. Render with meticulous attention to:
-- Objects: Exclusively vintage Apple hardware and interfaces:
-  * Macintosh computers (128K through Quadra)
-  * Apple II family systems
-  * Original Apple peripherals and accessories
-  * Classic Mac OS interfaces and icons
-  * Apple-specific cables and connectors
-  * Period-accurate Apple marketing elements
-- Color Palette: Classic Apple computing colors:
-  * Warm beiges and creams from original Macintosh cases
-  * Platinum greys from Apple IIc and later Macs
-  * Phosphorescent greens from early monitors
-  * Rainbow logo spectrum (red, orange, yellow, green, blue, purple)
-  * Clean whites from early Mac interface elements
-  * System-specific greys and blues from Mac OS
-- Lighting: Belgian Surrealist approaches with vintage tech:
-  * Magritte's crystalline illumination on CRT screens
-  * Delvaux's dreamy atmosphere with screen glow
-  * Baes's mysterious glow from status LEDs
-  * Computer lab fluorescent clarity
-- Composition: Belgian Surrealist principles with Apple elements:
-  * Magritte's impossible juxtapositions of Mac hardware
-  * Delvaux's architectural depth in computer labs
-  * Mariën's poetic arrangements of Apple products
-  * Graverol's symbolic framing of interfaces
-- Technical Elements:
-  * Perfectly smooth paint application
-  * Crisp edges and precise details
-  * Photorealistic rendering of Apple hardware
-  * Clean, uncluttered compositions
-  * Sharp focus throughout
-Style emphasizing Belgian Surrealist mastery while exclusively using vintage Apple aesthetics.`,
-  negative_prompt: "loose brushwork, visible brushstrokes, impasto, textured paint, expressionistic, sketchy, painterly, rough, gestural, abstract, messy, blurry, modern devices, contemporary colors, dark moody tones, grungy textures, weathered surfaces, distressed materials, non-Apple antiques, vintage furniture, classical elements, traditional antiques, period decorations, vintage mechanical objects, antique artifacts",
-  num_inference_steps: 50,
-  guidance_scale: 12.5
+  prompt_prefix: "In the exact style of René Magritte's iconic oil paintings, with his signature flat, illustrative technique and dreamlike surrealism. Using his characteristic methods: perfectly flat matte surfaces, complete absence of visible brushwork, hard-edged forms, and simplified volumes. The scene must embody his pure surrealist vision with theatrical lighting and simplified forms, as seen in 'The Son of Man' and 'The False Mirror'. With absolute fidelity to Magritte's painting style, create ",
+  prompt_suffix: `. The artwork must strictly follow Magritte's iconic style:
+
+- Oil Painting Technique (Pure Magritte):
+  * Completely flat, matte surfaces without any texture
+  * Simplified forms with hard, precise edges
+  * No visible brushstrokes whatsoever
+  * Limited tonal range typical of Magritte
+  * Theatrical, artificial lighting
+  * Reduced, simplified shadows
+  * Minimal modeling of forms
+  * Pure, unmodulated colors
+  * Sharp, clean contours
+  * Flat, stage-like depth
+  * Simplified reflections
+  * Minimal surface detail
+  * Clear, graphic-like forms
+  * Reduced atmospheric perspective
+  * Pure illustrative quality
+
+- Composition (Magritte's Vision):
+  * Theatrical, stage-like arrangements
+  * Simplified geometric forms
+  * Clear figure-ground relationships
+  * Minimal environmental detail
+  * Strong silhouettes
+  * Limited depth of field
+  * Crisp edges between elements
+  * Flat color areas
+  * Reduced number of elements
+  * Clear spatial relationships
+
+Technical Requirements:
+  * Pure flat oil painting style
+  * No photographic qualities
+  * No texture or brushwork
+  * Limited tonal transitions
+  * Hard-edged forms only
+  * Simplified volumes
+  * Clear contours
+  * Reduced detail
+  * Limited palette
+  * Theatrical lighting`,
+  negative_prompt: "photorealistic, hyperrealistic, detailed, textured, 3D, depth, volumetric, realistic, photographic, camera, lens, detailed texture, fine detail, intricate detail, high detail, skin texture, fabric texture, surface texture, film grain, noise, detailed background, realistic lighting, natural lighting, volumetric lighting, atmospheric effects, depth of field, bokeh, motion blur, realistic shadows, cast shadows, subsurface scattering, realistic reflections, specular highlights, ray tracing, global illumination, ambient occlusion, detailed materials, realistic materials, procedural textures, normal maps, bump maps, displacement maps, high dynamic range, tone mapping, color grading, post-processing, cinematic, dramatic lighting, moody, gritty, weathered, worn, aged, distressed, detailed environment, environmental detail, realistic environment, realistic nature, realistic architecture, realistic objects, realistic props, realistic furniture, realistic clothing, realistic hair, realistic skin, realistic eyes, realistic metals, realistic glass, realistic wood, realistic fabric, realistic leather, realistic plastic, realistic rubber, realistic paper, realistic stone, realistic concrete, realistic brick, realistic rust, realistic dirt, realistic dust, realistic scratches, realistic wear, realistic aging",
+  num_inference_steps: 100,
+  guidance_scale: 25.0,     // Increased for stronger style adherence
+  scheduler: "DPMSolverMultistep",
+  num_samples: 1,
+  seed: -1,
+  cfg_scale: 25.0,         // Increased for stronger prompt adherence
+  image_resolution: 2024,
+  sampler_name: "DPM++ 2M Karras",
+  denoising_strength: 0.35, // Reduced further for flatter, more Magritte-like results
+  control_scale: 0.98,     // Increased for even better style control
+  control_start: 0.15,
+  control_end: 0.98       // Extended for better refinement
 };
 
-// Add LiveTheLifeTV-specific visual elements with Magritte's painting approach
+// Add painting-specific visual elements
 const LIVE_THE_LIFE_ELEMENTS = {
   settings: [
-    "pristinely rendered Apple II computer labs",
-    "crystal-clear vintage Macintosh workstations",
-    "meticulously detailed early Apple development spaces",
-    "cleanly painted Cupertino offices circa 1984",
-    "precisely rendered Apple II manufacturing facilities",
-    "photorealistic Mac testing laboratories",
-    "mathematically perfect Apple service centers"
+    "oil painted Apple II computer labs with pristine surfaces",
+    "Macintosh workstations rendered in perfect oil technique",
+    "early Apple development spaces with Magritte's precision",
+    "Cupertino offices painted with crystalline clarity",
+    "manufacturing facilities in perfect oil finish",
+    "testing laboratories with unified lighting",
+    "service centers with subtle canvas texture"
   ],
   objects: [
-    "flawlessly rendered Macintosh 128K",
-    "pristinely detailed Apple IIe",
-    "perfectly painted original rainbow Apple logos",
-    "meticulously rendered Apple Extended Keyboard",
-    "crystalline Apple monitors",
-    "immaculately painted Apple ImageWriter",
-    "precisely detailed Apple 3.5-inch floppy disks",
-    "cleanly executed Apple Desktop Bus mouse",
-    "photorealistic System 6 interfaces",
-    "perfectly rendered AppleTalk connectors"
+    "Macintosh 128K with flawless oil painted surface",
+    "Apple IIe rendered in perfect matte finish",
+    "rainbow Apple logos with smooth color transitions",
+    "Apple Extended Keyboard with subtle highlights",
+    "monitors with painted screen glow",
+    "ImageWriter with precise edge detail",
+    "floppy disks with perfect shadow modeling",
+    "Desktop Bus mouse with pristine surface quality",
+    "System 6 interfaces translated to oil paint",
+    "AppleTalk connectors with delicate reflections"
   ],
   lighting: [
-    "Magritte's crystalline daylight on CRT screens",
-    "pristinely rendered LED indicator lights",
-    "mathematically perfect screen glow",
-    "cleanly painted vintage monitor illumination",
-    "precisely rendered Apple logo highlights",
-    "meticulously detailed computer lab lighting",
-    "photorealistic screen reflections"
+    "Magritte's signature crystalline illumination",
+    "perfectly rendered LED indicators",
+    "subtle painted screen phosphorescence",
+    "mathematically precise reflections",
+    "carefully modeled surface highlights",
+    "unified studio lighting treatment",
+    "delicate shadow transitions"
   ],
   color_palettes: [
-    ["original Macintosh beige", "System 7 grey", "Apple II green"],
-    ["platinum grey", "rainbow logo spectrum", "early Mac white"],
-    ["Apple IIc cream", "Mac OS blue", "status LED red"],
-    ["keyboard beige", "screen phosphor", "menu bar grey"]
+    ["oil painted Macintosh beige", "System 7 grey with canvas texture", "painted Apple II green"],
+    ["pristine platinum grey", "perfectly rendered rainbow spectrum", "traditional Mac white"],
+    ["flawless Apple IIc cream", "painted Mac OS blue", "precise LED red"],
+    ["perfect keyboard beige", "subtle screen phosphor", "delicate menu bar grey"]
   ]
 };
 
@@ -405,8 +425,8 @@ async function generateArt(concept: string) {
     const replicateService = new ReplicateService({
       apiKey: replicateApiKey,
       defaultModel: process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL,
-      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '1024', 10),
-      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '1024', 10),
+      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '2024', 10),
+      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '2024', 10),
       defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '40', 10),
       defaultGuidanceScale: parseFloat(process.env.GUIDANCE_SCALE || '12.0'),
     });
@@ -453,19 +473,19 @@ async function generateArt(concept: string) {
       console.log(`\n🎬 Generating fusion concept for ${selectedCategory.replace('magritte_', '').replace('_', ' ')}...`);
       
       // Get elements from both styles
-      const magritteElements = categoryArtDirection?.visualElements || [];
-      const magritteStyle = categoryArtDirection?.styleEmphasis || [];
+      const magritteElements = categoryArtDirection?.visualElements || defaultArtDirection.visualElements;
+      const magritteStyle = categoryArtDirection?.styleEmphasis || defaultArtDirection.styleEmphasis;
       const liveTheLifeSettings = LIVE_THE_LIFE_ELEMENTS.settings;
       const liveTheLifeObjects = LIVE_THE_LIFE_ELEMENTS.objects;
       
-      // Select random elements from both styles
-      const selectedMagritteElement = magritteElements[Math.floor(Math.random() * magritteElements.length)];
-      const selectedMagritteStyle = magritteStyle[Math.floor(Math.random() * magritteStyle.length)];
-      const selectedSetting = liveTheLifeSettings[Math.floor(Math.random() * liveTheLifeSettings.length)];
-      const selectedObject = liveTheLifeObjects[Math.floor(Math.random() * liveTheLifeObjects.length)];
+      // Select random elements from both styles with fallbacks
+      const selectedMagritteElement = magritteElements[Math.floor(Math.random() * magritteElements.length)] || "floating vintage Apple computer";
+      const selectedMagritteStyle = magritteStyle[Math.floor(Math.random() * magritteStyle.length)] || "Magritte's metaphysical precision";
+      const selectedSetting = liveTheLifeSettings[Math.floor(Math.random() * liveTheLifeSettings.length)] || "pristine oil-painted environment";
+      const selectedObject = liveTheLifeObjects[Math.floor(Math.random() * liveTheLifeObjects.length)] || "Macintosh with perfect oil painting finish";
       
-      // Create a fusion concept
-      artConcept = `A surrealist scene where ${selectedMagritteElement} meets ${selectedObject} in a ${selectedSetting}, rendered with ${selectedMagritteStyle}`;
+      // Create a fusion concept with validation
+      artConcept = `A surrealist scene where ${selectedMagritteElement} meets ${selectedObject} in ${selectedSetting}, painted with ${selectedMagritteStyle}`;
       console.log(`\n✨ Generated fusion concept: "${artConcept}"`);
     }
     
@@ -533,10 +553,20 @@ Style emphasizing both symbolic resonance and cinematic storytelling.`
     }
     
     // Update file paths to use selected style
-    const sanitizedConcept = artConcept.replace(/\s+/g, '-').toLowerCase();
-    const promptPath = path.join(outputDir, `${selectedCategory.replace('magritte_', '').replace('_', '-')}-${sanitizedConcept}-prompt.txt`);
-    const imagePath = path.join(outputDir, `${selectedCategory.replace('magritte_', '').replace('_', '-')}-${sanitizedConcept}.txt`);
-    const metadataPath = path.join(outputDir, `${selectedCategory.replace('magritte_', '').replace('_', '-')}-${sanitizedConcept}-metadata.json`);
+    const sanitizedConcept = artConcept
+      .split(' ')
+      .slice(0, 3) // Take only first 3 words
+      .join('-')
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, ''); // Remove special characters
+    
+    const timestamp = new Date().getTime().toString(36); // Convert timestamp to base36
+    const stylePrefix = selectedCategory.replace('magritte_', '').slice(0, 8); // Take first 8 chars of style
+    const baseFilename = `${stylePrefix}-${timestamp}-${sanitizedConcept}`.slice(0, 64); // Limit total length
+    
+    const promptPath = path.join(outputDir, `${baseFilename}-prompt.txt`);
+    const imagePath = path.join(outputDir, `${baseFilename}.txt`);
+    const metadataPath = path.join(outputDir, `${baseFilename}-meta.json`);
     
     // Save prompt and creative process (silently)
     fs.writeFileSync(

@@ -50,13 +50,16 @@ export class ReplicateService {
    * Run a prediction on a model
    */
   async runPrediction(
-    model: string = this.defaultModel,
+    model: string | undefined,
     input: Record<string, any>
   ): Promise<ModelPrediction> {
+    // Use the default model if none is provided
+    const selectedModel = model || this.defaultModel;
+    
     // Create a prediction object
     const prediction: ModelPrediction = {
       id: uuidv4(),
-      model,
+      model: selectedModel,
       input,
       output: null,
       created: new Date(),
@@ -69,8 +72,8 @@ export class ReplicateService {
       }
       
       // Check if this is a FLUX model
-      const isFluxModel = model.includes('flux-cinestill') || model.includes('adirik/flux');
-      const isFluxProModel = model.includes('black-forest-labs/flux');
+      const isFluxModel = selectedModel.includes('flux-cinestill') || selectedModel.includes('adirik/flux');
+      const isFluxProModel = selectedModel.includes('black-forest-labs/flux');
       
       // If this is the FLUX model, add default parameters if not provided
       if (isFluxModel) {
@@ -111,7 +114,7 @@ export class ReplicateService {
         }
       }
       // If this is the minimax model, adjust parameters accordingly
-      else if (model.includes('minimax/image')) {
+      else if (selectedModel.includes('minimax/image')) {
         // Minimax model typically uses these parameters
         input.width = input.width || this.defaultWidth;
         input.height = input.height || this.defaultHeight;
@@ -123,13 +126,13 @@ export class ReplicateService {
         input.negative_prompt = input.negative_prompt || '';
       }
       // If this is an SDXL model, add default parameters if not provided
-      else if (model.includes('stability-ai') || model.includes('sdxl')) {
+      else if (selectedModel.includes('stability-ai') || selectedModel.includes('sdxl')) {
         input.width = input.width || this.defaultWidth;
         input.height = input.height || this.defaultHeight;
         input.num_outputs = input.num_outputs || 1;
       }
       
-      console.log(`🔄 Running prediction on model: ${model}`);
+      console.log(`🔄 Running prediction on model: ${selectedModel}`);
       console.log(`📝 Input: ${JSON.stringify(input, null, 2)}`);
 
       // Make the actual API call to Replicate
@@ -141,7 +144,7 @@ export class ReplicateService {
         },
         body: JSON.stringify({
           // Use the model name without version hash to get the latest version
-          version: model.includes(':') ? model : `${model}`,
+          version: selectedModel.includes(':') ? selectedModel : `${selectedModel}`,
           input: input
         })
       });
@@ -152,11 +155,11 @@ export class ReplicateService {
         
         // If the model is not found or not permitted, try fallback models in sequence
         if (errorData.status === 422) {
-          if (model === FLUX_PRO_MODEL) {
+          if (selectedModel === FLUX_PRO_MODEL) {
             // If FLUX Pro fails, try the regular FLUX model
             console.log(`⚠️ FLUX Pro model failed, trying regular FLUX model`);
             return this.runPrediction(FLUX_MODEL_BASE, input);
-          } else if (model === FLUX_MODEL_BASE || model.includes('flux-cinestill')) {
+          } else if (selectedModel === FLUX_MODEL_BASE) {
             // If regular FLUX fails, try the minimax model
             console.log(`⚠️ FLUX model failed, trying minimax/image-01 model`);
             return this.runPrediction(FALLBACK_MODEL, {
@@ -165,7 +168,7 @@ export class ReplicateService {
               height: input.height,
               negative_prompt: input.negative_prompt || ''
             });
-          } else if (model !== FALLBACK_MODEL) {
+          } else if (selectedModel !== FALLBACK_MODEL) {
             // If we're not already using the fallback model, try it
             console.log(`⚠️ Trying fallback to minimax/image-01 model`);
             return this.runPrediction(FALLBACK_MODEL, {
@@ -219,10 +222,9 @@ export class ReplicateService {
       
       return prediction;
     } catch (error) {
-      // Handle error
-      console.error(`❌ Prediction failed: ${error}`);
+      console.error(`Error running prediction: ${error}`);
       prediction.status = 'failed';
-      prediction.error = error instanceof Error ? error.message : String(error);
+      prediction.error = error.message;
       return prediction;
     }
   }

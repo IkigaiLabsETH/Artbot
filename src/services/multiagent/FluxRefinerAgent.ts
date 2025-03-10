@@ -4,6 +4,7 @@ import { ReplicateService } from '../replicate/index.js';
 import * as fs from 'fs';
 import * as path from 'path';
 import fetch from 'node-fetch';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * FluxRefinerAgent specializes in generating cinematic images using the FLUX model
@@ -285,300 +286,98 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
 
   async refineArtworkWithFlux(project: any, style: any): Promise<any> {
     console.log(`Refining artwork with FLUX for project: ${project.title}`);
-    console.log(`Output directory: ${this.outputDir}`);
+    
+    // Get the model from ReplicateService
+    const model = this.replicateService.getDefaultModel();
+    console.log(`Using model: ${model}`);
+    
+    // Generate the detailed prompt
+    const detailedPrompt = await this.generateDetailedPrompt(project, style);
+    console.log(`Generated detailed prompt: ${detailedPrompt}`);
+    
+    // Default image settings
+    const width = 768;
+    const height = 768;
+    const numInferenceSteps = 28;
+    const guidanceScale = 3;
+    const outputFormat = "png";
+    
+    let imageUrl = '';
+    let imageResult;
     
     try {
-      // Ensure output directory exists
-      if (!fs.existsSync(this.outputDir)) {
-        fs.mkdirSync(this.outputDir, { recursive: true });
-      }
-
-      // Format example prompts for the system message
-      const examplePromptsText = this.state.context.examplePrompts.map((ex: any, i: number) => 
-        `Example ${i+1}:\nPrompt: ${ex.prompt}\nCreative Process: ${ex.process}`
-      ).join('\n\n');
-      
-      // Determine if we should use post-photography style
-      const isPostPhotography = project.isPostPhotoNative || 
-                               (project.description && 
-                                (project.description.toLowerCase().includes('fashion') || 
-                                 project.description.toLowerCase().includes('bourdin') || 
-                                 project.description.toLowerCase().includes('newton') || 
-                                 project.description.toLowerCase().includes('glamour')));
-      
-      // Generate a detailed prompt based on the project and style
-      const promptResponse = await this.aiService.getCompletion({
-        model: 'claude-3-sonnet-20240229',
-        messages: [
-          {
-            role: 'system',
-            content: isPostPhotography ? 
-              // Post-photography system prompt
-              `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate vintage Apple aesthetics through the lens of Belgian surrealism.
-
-Your prompts should celebrate the iconic design and innovative spirit of early Apple products (1976-1995) while maintaining the mysterious and contemplative nature of Belgian surrealism. Focus on classic Apple hardware, original interfaces, and period-accurate details.
-
-For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage computing", "classic Apple", "retro technology", and "4k" for better quality.
-
-Here are the key elements to emphasize in your prompts:
-${this.state.context.postPhotographyStyle.styleEmphasis.map(item => `- ${item}`).join('\n')}
-
-Visual elements to incorporate:
-${this.state.context.postPhotographyStyle.visualElements.map(item => `- ${item}`).join('\n')}
-
-Color palette to utilize:
-${this.state.context.postPhotographyStyle.colorPalette.map(item => `- ${item}`).join('\n')}
-
-Composition guidelines:
-${this.state.context.postPhotographyStyle.compositionGuidelines.map(item => `- ${item}`).join('\n')}
-
-Mood and tone:
-${this.state.context.postPhotographyStyle.moodAndTone}
-
-References to draw from:
-${this.state.context.postPhotographyStyle.references.map(item => `- ${item}`).join('\n')}
-
-Elements to avoid:
-${this.state.context.postPhotographyStyle.avoidElements.map(item => `- ${item}`).join('\n')}
-
-Create a prompt that:
-1. Celebrates vintage Apple technology with surrealist wonder
-2. Incorporates period-accurate hardware and interfaces
-3. Suggests philosophical depth through impossible arrangements
-4. Emphasizes pristine technical execution
-5. Maintains historical accuracy while creating metaphysical scenes`
-              :
-              // Magritte-style system prompt
-              `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's surrealist style with vintage Apple technology.
-
-Your prompts should blend Magritte's philosophical approach with early Apple products (1976-1995), creating scenes that question reality while celebrating classic computing. Focus on pristine execution, impossible arrangements, and metaphysical wonder.
-
-For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage Apple", "surreal computing", "philosophical technology", and "4k" for better quality.
-
-Here are the key elements to emphasize in your prompts:
-1. Pristine rendering of vintage Apple hardware
-2. Impossible arrangements of classic computers
-3. Metaphysical juxtaposition of interfaces
-4. Crystal-clear execution of period details
-5. Philosophical depth through technological elements
-
-Create a prompt that:
-1. Has rich visual details celebrating vintage Apple design
-2. Incorporates Magritte's love of philosophical paradox
-3. Suggests deeper meanings through impossible arrangements
-4. Emphasizes pristine technical execution
-5. Maintains historical accuracy while creating surreal scenes
-
-Also provide a brief "Creative Process" explanation that reveals the thinking behind the prompt - the meaning, inspiration, or conceptual framework.`
-          },
-          {
-            role: 'user',
-            content: isPostPhotography ?
-              // Post-photography user prompt
-              `Create a conceptually rich, detailed art prompt for the project titled "${project.title}" with the following description: "${project.description}".
-
-The style guide specifies: ${JSON.stringify(style)}
-
-The output should look and feel like high-fashion surrealist photography in the style of Guy Bourdin and Helmut Newton, with bold styling, hyper-stylized compositions, and exaggerated contrast.
-
-Include both the prompt itself and a brief creative process explanation.`
-              :
-              // Magritte-style user prompt
-              `Create a conceptually rich, detailed art prompt for the project titled "${project.title}" with the following description: "${project.description}".
-
-The style guide specifies: ${JSON.stringify(style)}
-
-The output should look and feel like a traditional oil painting in Magritte's style, not a photorealistic image.
-
-Include both the prompt itself and a brief creative process explanation.`
-          }
-        ],
-        temperature: 0.8,
-        maxTokens: 1500
-      });
-      
-      // Parse the response to extract the prompt and creative process
-      const responseContent = promptResponse.content;
-      let detailedPrompt = '';
-      let creativeProcess = '';
-      
-      // Extract the prompt and creative process using regex
-      const promptMatch = responseContent.match(/Prompt:(.+?)(?=Creative Process:|$)/s);
-      const processMatch = responseContent.match(/Creative Process:(.+?)(?=$)/s);
-      
-      if (promptMatch && promptMatch[1]) {
-        detailedPrompt = promptMatch[1].trim();
-      } else {
-        // Fallback if the format isn't as expected
-        detailedPrompt = responseContent;
-      }
-      
-      if (processMatch && processMatch[1]) {
-        creativeProcess = processMatch[1].trim();
-      }
-      
-      // Ensure the prompt starts with the FLUX trigger word
-      if (!detailedPrompt.includes('IKIGAI')) {
-        detailedPrompt = `IKIGAI ${detailedPrompt}`;
-      }
-      
-      // Add style-specific keywords if they're not already present
-      const styleKeywords = isPostPhotography ? 
-        ['vintage computing', 'classic Apple', 'retro technology', 'surreal tech', 'period-accurate', '4k'] :
-        ['vintage Apple', 'surreal computing', 'philosophical technology', 'classic hardware', 'retro interfaces', '4k'];
-      
-      let keywordsToAdd = styleKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
-      
-      if (keywordsToAdd.length > 0) {
-        detailedPrompt = `${detailedPrompt}, ${keywordsToAdd.join(', ')}`;
-      }
-      
-      console.log(`Generated prompt: ${detailedPrompt}`);
-      
-      // Save the prompt and creative process to a file
-      const sanitizedTitle = this.sanitizeFilename(project.title);
-      const baseFilename = project.outputFilename || `flux-vintage-apple-${sanitizedTitle}`;
-      const promptFilename = `${baseFilename}-prompt.txt`;
-      const promptFilePath = path.join(this.outputDir, promptFilename);
-      
-      // Create any necessary subdirectories
-      const promptDir = path.dirname(promptFilePath);
-      if (!fs.existsSync(promptDir)) {
-        fs.mkdirSync(promptDir, { recursive: true });
-      }
-      
-      fs.writeFileSync(promptFilePath, `Prompt: ${detailedPrompt}\n\nCreative Process: ${creativeProcess}`);
-      
-      // Generate image using FLUX model on Replicate
-      console.log(`Generating image with model: ${this.replicateService.getDefaultModel()}...`);
-      
-      // Get parameters from context
-      const { width, height, numInferenceSteps, guidanceScale, outputFormat } = this.state.context.fluxParameters;
-      
-      // Call the Replicate service to generate the image
-      let imageUrl;
-      let imageResult;
-      
-      try {
-        // Use the default model from ReplicateService instead of hardcoding
-        imageResult = await this.replicateService.runPrediction(
-          undefined, // This will use the defaultModel from ReplicateService
-          {
-            prompt: detailedPrompt,
-            width,
-            height,
-            num_inference_steps: numInferenceSteps,
-            guidance_scale: guidanceScale,
-            output_format: outputFormat
-          }
-        );
-        
-        if (imageResult && imageResult.output && imageResult.output.length > 0) {
-          // Fix for truncated URL issue
-          imageUrl = typeof imageResult.output === 'string' ? imageResult.output.trim() : imageResult.output[0];
-          
-          // Debug logging for the image URL
-          if (process.env.DEBUG_IMAGE_URL === 'true') {
-            console.log(`🔍 DEBUG - Raw imageResult: ${JSON.stringify(imageResult)}`);
-            console.log(`🔍 DEBUG - imageResult.output: ${JSON.stringify(imageResult.output)}`);
-            console.log(`🔍 DEBUG - imageUrl type: ${typeof imageUrl}`);
-            console.log(`🔍 DEBUG - imageUrl value: ${imageUrl}`);
-            console.log(`🔍 DEBUG - imageUrl starts with http: ${imageUrl.startsWith('http')}`);
-          }
-          
-          console.log(`Image generated successfully: ${imageUrl}`);
-        } else {
-          throw new Error('No output returned from Replicate API');
-        }
-      } catch (error) {
-        console.log(`Error calling Replicate API: ${error}, using placeholder image`);
-        // Use a placeholder image URL - ensure it's a valid absolute URL
-        imageUrl = 'https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png';
-        console.log(`Using placeholder image: ${imageUrl}`);
-      }
-      
-      // Save the image URL to a file
-      const outputUrlPath = path.join(this.outputDir, `${baseFilename}.txt`);
-      
-      // Ensure the directory exists for the URL file
-      const urlDir = path.dirname(outputUrlPath);
-      if (!fs.existsSync(urlDir)) {
-        fs.mkdirSync(urlDir, { recursive: true });
-      }
-      
-      // Ensure we have a valid URL before saving
-      if (imageUrl && typeof imageUrl === 'string' && imageUrl.startsWith('http')) {
-        fs.writeFileSync(outputUrlPath, imageUrl);
-        console.log(`Image URL saved to: ${outputUrlPath}`);
-      } else {
-        console.error(`Invalid image URL: ${imageUrl}`);
-        // Use a fallback URL
-        imageUrl = 'https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png';
-        fs.writeFileSync(outputUrlPath, imageUrl);
-        console.log(`Fallback image URL saved to: ${outputUrlPath}`);
-      }
-      
-      // Download the image
-      const outputImagePath = path.join(this.outputDir, `${baseFilename}.png`);
-      
-      // Ensure the directory exists for the image file
-      const imageDir = path.dirname(outputImagePath);
-      if (!fs.existsSync(imageDir)) {
-        fs.mkdirSync(imageDir, { recursive: true });
-      }
-      
-      await this.downloadImage(imageUrl, outputImagePath);
-      console.log(`Image downloaded to: ${outputImagePath}`);
-      
-      // Save metadata about the generation
-      const metadata = {
-        project: {
-          ...project,
-          title: sanitizedTitle // Use sanitized title in metadata
-        },
-        style,
-        prompt: detailedPrompt,
-        creativeProcess,
-        parameters: {
+      // Use the model from ReplicateService
+      imageResult = await this.replicateService.runPrediction(
+        model,
+        {
+          prompt: detailedPrompt,
           width,
           height,
-          numInferenceSteps,
-          guidanceScale
-        },
-        imageUrl,
-        timestamp: new Date().toISOString()
-      };
+          num_inference_steps: numInferenceSteps,
+          guidance_scale: guidanceScale,
+          output_format: outputFormat
+        }
+      );
       
-      const metadataPath = path.join(this.outputDir, `${baseFilename}-metadata.json`);
-      
-      // Ensure the directory exists for the metadata file
-      const metadataDir = path.dirname(metadataPath);
-      if (!fs.existsSync(metadataDir)) {
-        fs.mkdirSync(metadataDir, { recursive: true });
+      if (imageResult && imageResult.output && imageResult.output.length > 0) {
+        // Fix for truncated URL issue
+        imageUrl = typeof imageResult.output === 'string' ? imageResult.output.trim() : imageResult.output[0];
+        
+        // Debug logging for the image URL
+        if (process.env.DEBUG_IMAGE_URL === 'true') {
+          console.log(`🔍 DEBUG - Raw imageResult: ${JSON.stringify(imageResult)}`);
+          console.log(`🔍 DEBUG - imageResult.output: ${JSON.stringify(imageResult.output)}`);
+          console.log(`🔍 DEBUG - imageUrl type: ${typeof imageUrl}`);
+          console.log(`🔍 DEBUG - imageUrl value: ${imageUrl}`);
+          console.log(`🔍 DEBUG - imageUrl starts with http: ${imageUrl.startsWith('http')}`);
+        }
+        
+        console.log(`Image generated successfully: ${imageUrl}`);
+      } else {
+        throw new Error('No output returned from Replicate API');
       }
-      
-      fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
-      
-      return {
-        prompt: detailedPrompt,
-        creativeProcess,
-        imageUrl: imageUrl && typeof imageUrl === 'string' && imageUrl.startsWith('http') 
-          ? imageUrl 
-          : 'https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png',
-        localImagePath: outputImagePath,
-        metadata
-      };
     } catch (error) {
-      console.error(`Error in refineArtworkWithFlux: ${error}`);
-      
-      // Create a default artwork as fallback
-      return {
-        prompt: `IKIGAI ${project.title}, cinestill 800t, film grain, night time, 4k`,
-        creativeProcess: "Generated as fallback due to error in refinement process.",
-        imageUrl: "https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png",
-        error: `${error}`
-      };
+      console.log(`Error calling Replicate API: ${error}, using placeholder image`);
+      // Use a placeholder image URL - ensure it's a valid absolute URL
+      imageUrl = 'https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png';
+      console.log(`Using placeholder image: ${imageUrl}`);
     }
+    
+    // Save the image URL to a file
+    const baseFilename = project.outputFilename || `flux-vintage-apple-${project.title.replace(/\s+/g, '-').toLowerCase()}`;
+    const outputUrlPath = path.join(this.outputDir, `${baseFilename}.txt`);
+    
+    // Ensure the directory exists for the URL file
+    const urlDir = path.dirname(outputUrlPath);
+    if (!fs.existsSync(urlDir)) {
+      fs.mkdirSync(urlDir, { recursive: true });
+    }
+    
+    // Write the URL to a file
+    fs.writeFileSync(outputUrlPath, imageUrl);
+    console.log(`Image URL saved to: ${outputUrlPath}`);
+    
+    // Return the result
+    return {
+      id: uuidv4(),
+      title: `${project.title} - Vintage Apple Surrealism`,
+      description: `A surrealist artwork inspired by vintage Apple aesthetics and Magritte's style.`,
+      prompt: detailedPrompt,
+      imageUrl: imageUrl,
+      creativeProcess: `Generated using ${model} with vintage Apple computing aesthetics and Belgian surrealist style.`,
+      parameters: {
+        width,
+        height,
+        numInferenceSteps,
+        guidanceScale,
+        outputFormat
+      },
+      project: {
+        id: project.id,
+        title: project.title
+      },
+      created: new Date()
+    };
   }
   
   // Helper function to download an image from a URL
@@ -624,5 +423,146 @@ Include both the prompt itself and a brief creative process explanation.`
 
   getState(): AgentState {
     return this.state;
+  }
+
+  /**
+   * Generate a detailed prompt based on the project and style
+   */
+  private async generateDetailedPrompt(project: any, style: any): Promise<string> {
+    // Format example prompts for the system message
+    const examplePromptsText = this.state.context.examplePrompts.map((ex: any, i: number) => 
+      `Example ${i+1}:\nPrompt: ${ex.prompt}\nCreative Process: ${ex.process}`
+    ).join('\n\n');
+    
+    // Determine if we should use post-photography style
+    const isPostPhotography = project.isPostPhotoNative || 
+                             (project.description && 
+                              (project.description.toLowerCase().includes('fashion') || 
+                               project.description.toLowerCase().includes('bourdin') || 
+                               project.description.toLowerCase().includes('newton') || 
+                               project.description.toLowerCase().includes('glamour')));
+    
+    // Generate a detailed prompt based on the project and style
+    const promptResponse = await this.aiService.getCompletion({
+      model: 'claude-3-sonnet-20240229',
+      messages: [
+        {
+          role: 'system',
+          content: isPostPhotography ? 
+            // Post-photography system prompt
+            `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate vintage Apple aesthetics through the lens of Belgian surrealism.
+
+Your prompts should celebrate the iconic design and innovative spirit of early Apple products (1976-1995) while maintaining the mysterious and contemplative nature of Belgian surrealism. Focus on classic Apple hardware, original interfaces, and period-accurate details.
+
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage computing", "classic Apple", "retro technology", and "4k" for better quality.
+
+Here are the key elements to emphasize in your prompts:
+${this.state.context.postPhotographyStyle.styleEmphasis.map(item => `- ${item}`).join('\n')}
+
+Visual elements to incorporate:
+${this.state.context.postPhotographyStyle.visualElements.map(item => `- ${item}`).join('\n')}
+
+Color palette to utilize:
+${this.state.context.postPhotographyStyle.colorPalette.map(item => `- ${item}`).join('\n')}
+
+Composition guidelines:
+${this.state.context.postPhotographyStyle.compositionGuidelines.map(item => `- ${item}`).join('\n')}
+
+Mood and tone:
+${this.state.context.postPhotographyStyle.moodAndTone}
+
+References to draw from:
+${this.state.context.postPhotographyStyle.references.map(item => `- ${item}`).join('\n')}
+
+Elements to avoid:
+${this.state.context.postPhotographyStyle.avoidElements.map(item => `- ${item}`).join('\n')}
+
+Create a prompt that:
+1. Celebrates vintage Apple technology with surrealist wonder
+2. Incorporates period-accurate hardware and interfaces
+3. Suggests philosophical depth through impossible arrangements
+4. Emphasizes pristine technical execution
+5. Maintains historical accuracy while creating metaphysical scenes`
+            :
+            // Magritte-style system prompt
+            `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's surrealist style with vintage Apple technology.
+
+Your prompts should blend Magritte's philosophical approach with early Apple products (1976-1995), creating scenes that question reality while celebrating classic computing. Focus on pristine execution, impossible arrangements, and metaphysical wonder.
+
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage Apple", "surreal computing", "philosophical technology", and "4k" for better quality.
+
+Here are the key elements to emphasize in your prompts:
+1. Pristine rendering of vintage Apple hardware
+2. Impossible arrangements of classic computers
+3. Metaphysical juxtaposition of interfaces
+4. Crystal-clear execution of period details
+5. Philosophical depth through technological elements
+
+Create a prompt that:
+1. Has rich visual details celebrating vintage Apple design
+2. Incorporates Magritte's love of philosophical paradox
+3. Suggests deeper meanings through impossible arrangements
+4. Emphasizes pristine technical execution
+5. Maintains historical accuracy while creating surreal scenes
+
+Also provide a brief "Creative Process" explanation that reveals the thinking behind the prompt - the meaning, inspiration, or conceptual framework.`
+        },
+        {
+          role: 'user',
+          content: isPostPhotography ?
+            // Post-photography user prompt
+            `Create a conceptually rich, detailed art prompt for the project titled "${project.title}" with the following description: "${project.description}".
+
+The style guide specifies: ${JSON.stringify(style)}
+
+The output should look and feel like high-fashion surrealist photography in the style of Guy Bourdin and Helmut Newton, with bold styling, hyper-stylized compositions, and exaggerated contrast.
+
+Include both the prompt itself and a brief creative process explanation.`
+            :
+            // Magritte-style user prompt
+            `Create a conceptually rich, detailed art prompt for the project titled "${project.title}" with the following description: "${project.description}".
+
+The style guide specifies: ${JSON.stringify(style)}
+
+The output should look and feel like a traditional oil painting in Magritte's style, not a photorealistic image.
+
+Include both the prompt itself and a brief creative process explanation.`
+        }
+      ],
+      temperature: 0.8,
+      maxTokens: 1500
+    });
+    
+    // Parse the response to extract the prompt and creative process
+    const responseContent = promptResponse.content;
+    let detailedPrompt = '';
+    
+    // Extract the prompt using regex
+    const promptMatch = responseContent.match(/Prompt:(.+?)(?=Creative Process:|$)/s);
+    
+    if (promptMatch && promptMatch[1]) {
+      detailedPrompt = promptMatch[1].trim();
+    } else {
+      // Fallback if the format isn't as expected
+      detailedPrompt = responseContent;
+    }
+    
+    // Ensure the prompt starts with the FLUX trigger word
+    if (!detailedPrompt.includes('IKIGAI')) {
+      detailedPrompt = `IKIGAI ${detailedPrompt}`;
+    }
+    
+    // Add style-specific keywords if they're not already present
+    const styleKeywords = isPostPhotography ? 
+      ['vintage computing', 'classic Apple', 'retro technology', 'surreal tech', 'period-accurate', '4k'] :
+      ['vintage Apple', 'surreal computing', 'philosophical technology', 'classic hardware', 'retro interfaces', '4k'];
+    
+    let keywordsToAdd = styleKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
+    
+    if (keywordsToAdd.length > 0) {
+      detailedPrompt = `${detailedPrompt}, ${keywordsToAdd.join(', ')}`;
+    }
+    
+    return detailedPrompt;
   }
 } 

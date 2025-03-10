@@ -60,95 +60,97 @@ export class IdeatorAgent extends BaseAgent {
       },
       magritteKeywords: [
         // Painting Techniques
-        'oil painting', 'smooth brushwork', 'precise edges', 'matte finish',
-        'canvas texture', 'traditional medium', 'painted surface', 'crystalline detail',
-        'soft shadows', 'unified lighting', 'clean transitions', 'subtle modeling',
+        'traditional oil painting', 'flawless brushwork', 'pristine edges', 'perfect matte finish',
+        'classical canvas texture', 'traditional medium', 'perfect surface quality', 'crystalline detail',
+        'subtle shadows', 'unified lighting', 'smooth transitions', 'delicate modeling',
+        'museum quality', 'masterful technique', 'perfect execution', 'classical approach',
         
         // Core Symbols and Objects
-        'painted Macintosh', 'rendered Apple II', 'oil painted Lisa',
-        'canvas floppy disk', 'painted CRT screen', 'traditional rainbow logo',
-        'rendered keyboard', 'painted mouse', 'oil interface', 'painted HyperCard',
+        'perfectly painted Macintosh', 'traditional Apple II rendering', 'classical Lisa painting',
+        'pristine floppy disk', 'oil painted CRT screen', 'traditional rainbow logo',
+        'perfectly rendered keyboard', 'classical mouse painting', 'traditional interface',
+        'pristine HyperCard', 'flawless System 6', 'perfect System 7',
         
         // Philosophical Concepts
-        'digital surrealism', 'computational paradox', 'interface mystery',
-        'technological metaphysics', 'silicon philosophy', 'binary truth',
-        'computer reality', 'digital identity', 'virtual space', 'code poetry',
+        'classical surrealism', 'traditional paradox', 'perfect interface mystery',
+        'metaphysical computing', 'philosophical technology', 'binary truth',
+        'classical reality', 'digital identity', 'traditional space', 'computational poetry',
         
         // Visual Elements
-        'painted screen glow', 'oil rendered LED', 'canvas beige',
-        'traditional platinum grey', 'painted phosphor green', 'rendered interface',
-        'oil menu bars', 'painted dialog boxes', 'traditional pixels',
+        'perfect screen glow', 'traditional LED rendering', 'classical beige',
+        'pristine platinum grey', 'perfect phosphor green', 'traditional interface',
+        'flawless menu bars', 'classical dialog boxes', 'perfect pixels',
         
         // Settings and Environments
-        'painted computer lab', 'oil rendered workspace', 'canvas office',
-        'traditional Cupertino', 'painted facility', 'rendered engineering room',
-        'oil prototype lab', 'painted server room', 'traditional manufacturing',
+        'traditional computer lab', 'classical workspace', 'perfect office',
+        'pristine Cupertino', 'traditional facility', 'perfect engineering room',
+        'classical prototype lab', 'traditional server room', 'perfect manufacturing',
         
         // Techniques and Approaches
-        'oil rendering', 'traditional authenticity', 'painted accuracy',
-        'canvas illusion', 'hardware poetry', 'technological trompe l\'oeil',
-        'painted surrealism', 'traditional philosophy', 'oil binary art'
+        'traditional rendering', 'classical authenticity', 'perfect accuracy',
+        'traditional illusion', 'hardware poetry', 'classical trompe l\'oeil',
+        'perfect surrealism', 'traditional philosophy', 'classical binary art'
       ],
       artisticApproaches: {
         magritte: {
           composition: [
-            'oil painted vintage computers',
-            'traditional interface arrangements',
-            'painted hardware staging',
-            'canvas screen displays',
-            'oil rendered cables',
-            'traditional computer labs',
-            'painted monitor reflections',
-            'oil binary windows',
-            'traditional computation',
-            'painted space distortion'
+            'traditionally painted vintage computers',
+            'classical interface arrangements',
+            'perfect hardware staging',
+            'traditional screen displays',
+            'flawless cable rendering',
+            'classical computer labs',
+            'perfect monitor reflections',
+            'traditional binary windows',
+            'classical computation',
+            'perfect space distortion'
           ],
           lighting: [
-            'oil rendered CRT glow',
-            'traditional LED mystery',
-            'painted phosphor light',
-            'canvas indicator poetry',
-            'oil digital twilight',
-            'traditional silicon shadows',
-            'painted interface radiance',
-            'oil binary luminescence',
-            'traditional electronic atmosphere',
-            'painted computational light'
+            'traditional CRT glow',
+            'classical LED illumination',
+            'perfect phosphor light',
+            'traditional indicator poetry',
+            'classical digital twilight',
+            'perfect silicon shadows',
+            'traditional interface radiance',
+            'classical binary luminescence',
+            'perfect electronic atmosphere',
+            'traditional computational light'
           ],
           color: [
-            'oil painted Macintosh beige',
-            'traditional Apple II green',
-            'painted platinum grey',
-            'canvas System 7 blue',
-            'oil rainbow spectrum',
-            'traditional Mac white',
-            'painted LED red',
-            'oil floppy beige',
-            'traditional keyboard grey',
-            'painted screen silver'
+            'traditionally painted Macintosh beige',
+            'classical Apple II green',
+            'perfect platinum grey',
+            'traditional System 7 blue',
+            'classical rainbow spectrum',
+            'perfect Mac white',
+            'traditional LED red',
+            'classical floppy beige',
+            'perfect keyboard grey',
+            'traditional screen silver'
           ],
           narrative: [
-            'oil computational philosophy',
+            'classical computational philosophy',
             'traditional interface paradoxes',
-            'painted digital poetry',
-            'canvas silicon metaphysics',
-            'oil binary questions',
-            'traditional technological surrealism',
-            'painted electronic dialogues',
-            'oil machine narratives',
-            'traditional code stories',
-            'painted digital identity'
+            'perfect digital poetry',
+            'classical silicon metaphysics',
+            'traditional binary questions',
+            'perfect technological surrealism',
+            'classical electronic dialogues',
+            'traditional machine narratives',
+            'perfect code stories',
+            'classical digital identity'
           ],
           techniques: [
-            'smooth oil technique',
-            'precise edge control',
-            'subtle surface texture',
-            'unified light treatment',
-            'crystalline detail',
-            'soft shadow modeling',
-            'clean color transitions',
-            'matte finish rendering',
-            'canvas-like quality',
+            'flawless oil technique',
+            'perfect edge control',
+            'traditional surface texture',
+            'classical light treatment',
+            'pristine detail rendering',
+            'perfect shadow modeling',
+            'traditional color transitions',
+            'classical matte finish',
+            'perfect canvas quality',
             'traditional oil methods'
           ]
         },

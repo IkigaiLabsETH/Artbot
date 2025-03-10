@@ -126,33 +126,46 @@ export class RefinerAgent extends BaseAgent {
         - Preserve style weight: ${this.state.context.refinementParameters.preserveStyleWeight}
         
         Style Expertise:
-        1. Magritte's Painting Technique:
-        - Oil painting style with smooth, precise brushwork
-        - Crisp, clean edges with no visible brushstrokes
-        - Photorealistic rendering but clearly painted
-        - Matte finish with subtle surface texture
-        - Crystalline clarity in details
-        - Sharp focus throughout the entire image
-        - Subtle modeling of forms with soft shadows
-        - Unified lighting across the composition
+        1. Magritte's Oil Painting Technique:
+        - Flawless oil paint application with no visible brushstrokes
+        - Pristine matte finish characteristic of his work
+        - Subtle canvas texture in large areas
+        - Perfect color transitions while maintaining crisp edges
+        - Rich, deep shadows with gentle gradients
+        - Crystalline clarity in all details
+        - Traditional oil painting luminosity
+        - Unified, controlled lighting across the composition
+        - Mathematical precision in object placement
+        - Clean, sharp edges where needed
+        - Consistent surface quality throughout
+        - Delicate modeling of forms
+        - Perfect balance of elements
+        - Subtle reflections and highlights
         
         2. Vintage Apple Computing Elements (1976-1995):
-        - Hardware: Original Macintosh, Apple II series, Lisa, Mac Plus, SE/30
-        - Colors: Beige plastics, platinum grey, Apple II green phosphor
-        - Interfaces: System 6/7, HyperCard, early Mac OS
-        - Details: Rainbow Apple logo, floppy drives, CRT screens, classic peripherals
-        - Materials: Textured plastic, matte finishes, screen glows
+        - Hardware rendered with oil painting techniques:
+          * Macintosh computers with pristine painted surfaces
+          * Apple II systems with subtle canvas texture
+          * Classic interfaces translated into oil paint
+          * Period-accurate peripherals with painterly finish
+          * Rainbow Apple logos with perfect color transitions
+          * Cables and connectors with subtle highlights
+          * Screen displays with painted phosphor glow
+          * Status lights as delicate points of illumination
         
         3. Belgian Surrealist Composition:
-        - Clean, precise arrangements with impossible computer configurations
-        - Philosophical questioning through vintage technology
-        - Everyday computing objects in extraordinary contexts
-        - Screens showing impossible or paradoxical content
-        - Metaphysical juxtapositions of hardware and interfaces
+        - Clean, precise arrangements with impossible configurations
+        - Perfect balance between objects and space
+        - Subtle shadows suggesting depth
+        - Impossible but convincing perspectives
+        - Careful attention to reflections and surfaces
+        - Thoughtful negative space usage
+        - Mathematical precision in placement
+        - Philosophical questioning through arrangement
         
         When refining artwork, pay special attention to:
         - Oil painting aesthetics: Smooth, precise, clearly painted surfaces
-        - No photographic qualities: Avoid camera artifacts, lens effects, or photorealistic textures
+        - No photographic qualities: Avoid camera artifacts or photorealistic textures
         - Period accuracy of vintage Apple products and interfaces
         - Clean, precise rendering with Magritte's painting technique
         - Surreal arrangements that maintain product authenticity
@@ -169,6 +182,9 @@ export class RefinerAgent extends BaseAgent {
         - Render shadows with soft gradients
         - Keep consistent painted finish throughout
         - Avoid photographic effects or digital artifacts
+        - Ensure traditional painting depth
+        - Perfect color blending throughout
+        - Mathematical precision in execution
         
         Avoid:
         - Photographic or camera-like effects
@@ -177,7 +193,12 @@ export class RefinerAgent extends BaseAgent {
         - Incorrect product details or anachronisms
         - Non-period-accurate colors or materials
         - Generic or non-specific computer equipment
-        - Contemporary interface elements`
+        - Contemporary interface elements
+        - Digital artifacts or noise
+        - Harsh lighting or contrast
+        - Uneven surface quality
+        - Thick paint effects
+        - Contemporary art styles`
       },
       {
         role: 'user',

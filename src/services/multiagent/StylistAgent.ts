@@ -21,85 +21,157 @@ export class StylistAgent extends BaseAgent {
       styleLibrary: {
         magritte: {
           core: {
-            essence: 'Oil painted surrealism with vintage Apple technology',
+            essence: 'Traditional oil painting techniques applied to vintage Apple technology',
             era: 'Belgian surrealism meets early computing (1976-1995)',
-            influences: ['oil painting', 'metaphysics', 'early computing', 'Belgian surrealism']
+            influences: [
+              'traditional oil painting',
+              'Magritte\'s precise technique',
+              'vintage computing',
+              'Belgian surrealism',
+              'classical painting methods'
+            ]
           },
           visual: {
             composition: {
-              primary: ['balanced vintage hardware', 'surreal interface staging', 'impossible computer arrangements'],
-              secondary: ['precise product placement', 'spatial computing paradox', 'interface illusions'],
-              framing: ['formal oil painting', 'contemplative canvas', 'stage-like product display']
+              primary: [
+                'perfectly balanced vintage hardware',
+                'mathematically precise staging',
+                'impossible computer arrangements',
+                'golden ratio compositions',
+                'classical painting structure'
+              ],
+              secondary: [
+                'precise product placement',
+                'spatial computing paradox',
+                'interface illusions',
+                'traditional depth techniques',
+                'painterly perspective'
+              ],
+              framing: [
+                'museum-quality oil painting',
+                'traditional canvas proportions',
+                'classical composition rules',
+                'formal painting arrangement',
+                'contemplative spacing'
+              ]
             },
             lighting: {
-              quality: ['painted CRT glow', 'oil rendered LED indicators', 'luminous phosphor displays'],
-              technique: ['smooth shadow transitions', 'subtle light modeling', 'crystalline reflections'],
-              effects: ['painted screen glow', 'oil rendered shadows', 'ethereal machine light']
+              quality: [
+                'traditional oil painting illumination',
+                'perfectly rendered LED indicators',
+                'classical studio lighting',
+                'old masters glow technique',
+                'pristine surface highlights'
+              ],
+              technique: [
+                'smooth shadow transitions',
+                'perfect light modeling',
+                'crystalline reflections',
+                'traditional glazing effects',
+                'subtle luminosity'
+              ],
+              effects: [
+                'oil painted screen glow',
+                'traditional light rendering',
+                'classical shadow depth',
+                'perfect highlight control',
+                'subtle ambient occlusion'
+              ]
             },
             color: {
               palettes: [
-                ['original Macintosh beige', 'System 7 grey', 'Apple II green'],
-                ['platinum grey', 'rainbow logo spectrum', 'early Mac white'],
-                ['Apple IIc cream', 'Mac OS blue', 'status LED red']
+                ['oil painted Macintosh beige', 'traditional System 7 grey', 'glazed Apple II green'],
+                ['classical platinum grey', 'perfect rainbow spectrum', 'pristine Mac white'],
+                ['traditional Apple IIc cream', 'painted Mac OS blue', 'precise LED red']
               ],
-              characteristics: ['oil paint finish', 'smooth transitions', 'matte surface'],
-              treatments: ['painted plastic', 'canvas texture', 'subtle aging']
+              characteristics: [
+                'oil paint finish',
+                'perfect color transitions',
+                'traditional matte surface',
+                'classical color harmony',
+                'subtle tonal variations'
+              ],
+              treatments: [
+                'traditional canvas texture',
+                'perfect paint application',
+                'classical varnish finish',
+                'subtle aging effects',
+                'pristine surface quality'
+              ]
             }
           },
           elements: {
-            symbols: ['oil painted Apple logo', 'painted floppy disk', 'rendered CRT screen'],
-            settings: ['painted computer labs', 'surreal development spaces', 'metaphysical offices'],
-            objects: ['oil rendered computers', 'painted peripherals', 'surreal cables']
+            symbols: [
+              'perfectly painted Apple logo',
+              'traditional floppy disk rendering',
+              'oil painted CRT screen',
+              'classical keyboard treatment',
+              'pristine interface elements'
+            ],
+            settings: [
+              'traditional computer lab painting',
+              'classical development space',
+              'oil painted office interior',
+              'perfectly rendered facilities',
+              'pristine testing environment'
+            ],
+            objects: [
+              'perfectly painted computers',
+              'traditional peripheral rendering',
+              'classical cable arrangement',
+              'pristine hardware details',
+              'oil painted accessories'
+            ]
           },
           techniques: {
             painting: [
-              'smooth oil technique',
-              'precise edge control',
+              'flawless oil application',
+              'perfect edge control',
               'subtle surface texture',
               'unified light treatment',
-              'crystalline detail',
-              'soft shadow modeling',
-              'clean color transitions',
-              'matte finish rendering',
-              'canvas-like quality',
-              'traditional oil methods'
+              'crystalline detail rendering',
+              'classical shadow modeling',
+              'smooth color transitions',
+              'traditional matte finish',
+              'pristine canvas quality',
+              'perfect paint layering'
             ],
             surrealism: [
               'impossible interface scale',
-              'computer displacement',
-              'reality questioning',
-              'metaphysical arrangements',
-              'paradoxical reflections'
+              'perfect object displacement',
+              'classical reality questioning',
+              'traditional metaphysical approach',
+              'pristine paradox rendering'
             ],
             conceptual: [
-              'technological paradox',
-              'computational philosophy',
-              'digital poetry',
-              'silicon metaphysics',
-              'binary surrealism'
+              'philosophical technology',
+              'classical computing poetry',
+              'traditional binary surrealism',
+              'perfect metaphysical staging',
+              'pristine concept execution'
             ]
           }
         }
       },
       hybridApproaches: [
         {
-          name: 'Oil Painted Computing',
-          description: 'Merging traditional oil painting with vintage technology',
+          name: 'Classical Computing',
+          description: 'Traditional oil painting techniques applied to vintage technology',
           elements: {
-            composition: ['painted hardware', 'canvas-like interfaces'],
-            lighting: ['oil rendered glow', 'painted indicators'],
-            color: ['smooth color transitions', 'matte finish'],
-            narrative: ['painted metaphysics', 'traditional surrealism']
+            composition: ['perfect hardware arrangement', 'classical interface staging'],
+            lighting: ['traditional illumination', 'pristine highlights'],
+            color: ['perfect color harmony', 'traditional finish'],
+            narrative: ['classical metaphysics', 'traditional surrealism']
           }
         },
         {
           name: 'Digital Canvas',
-          description: 'Traditional painting techniques with digital elements',
+          description: 'Classical painting methods with vintage computing elements',
           elements: {
-            composition: ['oil painted screens', 'surreal hardware'],
-            lighting: ['painted phosphor', 'traditional glow'],
-            color: ['oil paint palette', 'vintage tones'],
-            narrative: ['painted philosophy', 'canvas computing']
+            composition: ['traditional screen arrangement', 'perfect hardware staging'],
+            lighting: ['classical screen glow', 'pristine illumination'],
+            color: ['traditional palette', 'perfect vintage tones'],
+            narrative: ['classical philosophy', 'traditional computing poetry']
           }
         }
       ]
