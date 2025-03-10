@@ -1785,8 +1785,8 @@ export class CreativeEngine {
         prompt: `In the precise style of René Magritte's surrealist oil paintings, particularly referencing the techniques from ${selectedReferences.join(' and ')}, create: ${prompt}. ${selectedTechniques.join('. ')}`,
         num_inference_steps: 45,
         guidance_scale: 12.0,
-        width: 1024,
-        height: 1024,
+        width: 1024, // Explicitly set to 1024
+        height: 1024, // Explicitly set to 1024
         scheduler: "DPMSolverMultistep",
         negative_prompt: [
           "photographic",
@@ -1809,13 +1809,20 @@ export class CreativeEngine {
           "contemporary art",
           "digital art",
           "3d rendering"
-        ].join(", ")
+        ].join(", "),
+        // Force override any default dimensions from the service
+        override_defaults: true
       };
 
-      // Generate the image
+      // Generate the image with explicit model override to ensure correct dimensions
       const result = await this.replicateService.runPrediction(
         undefined,
-        generationParams
+        {
+          ...generationParams,
+          // Double-ensure the dimensions by setting them at the top level
+          width: 1024,
+          height: 1024
+        }
       );
 
       return {
