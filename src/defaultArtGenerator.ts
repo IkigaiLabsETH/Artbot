@@ -302,75 +302,75 @@ const MAGRITTE_STYLE_CONFIG = {
 const MAGRITTE_COLOR_PALETTE = {
   sky: {
     day: {
-      color: "luminous cerulean blue",
+      color: "pure cerulean blue",
       reference: "The Empire of Light (1953-54)",
-      usage: "Clean, pure sky backgrounds"
+      usage: "Primary sky and background color"
     },
     night: {
-      color: "deep prussian blue",
+      color: "deep charcoal grey",
       reference: "The Dominion of Light (1948)",
-      usage: "Deep, solid dark backgrounds"
+      usage: "Deep, solid dark backgrounds and shadows"
     },
     twilight: {
-      color: "pale grey-blue",
+      color: "pale porcelain flesh",
       reference: "The Blank Signature (1965)",
-      usage: "Neutral atmospheric backgrounds"
+      usage: "Transitional and atmospheric elements"
     }
   },
   portraits: {
     face: {
       color: "pale porcelain flesh",
       reference: "The Son of Man (1964)",
-      usage: "Main portrait elements"
+      usage: "Main portrait elements and skin tones"
     },
     suit: {
       color: "deep charcoal grey",
       reference: "Golconda (1953)",
-      usage: "Business attire and formal elements"
+      usage: "Primary formal and structural elements"
     },
     mask: {
-      color: "deep viridian green",
-      reference: "The Son of Man (1964) apple",
-      usage: "Obscuring elements and symbolic objects"
+      color: "pure cerulean blue",
+      reference: "The Son of Man (1964)",
+      usage: "Key symbolic and focal elements"
     },
     shadow: {
-      color: "cool prussian shadow",
+      color: "deep charcoal grey",
       reference: "The Great War (1964)",
-      usage: "Portrait shadows and depth"
+      usage: "Shadow definition and depth"
     }
   },
   backgrounds: {
     pure: {
-      color: "flat cerulean blue",
+      color: "pure cerulean blue",
       reference: "The Victory (1939)",
-      usage: "Clean, pure background planes"
+      usage: "Primary background planes"
     },
     neutral: {
-      color: "pale grey-white",
+      color: "pale porcelain flesh",
       reference: "Decalcomania (1966)",
-      usage: "Neutral portrait backgrounds"
+      usage: "Neutral and transitional spaces"
     },
     modern: {
-      color: "clear sky blue",
+      color: "deep charcoal grey",
       reference: "The Dominion of Light series",
-      usage: "Contemporary settings"
+      usage: "Contemporary settings and structures"
     }
   },
   objects: {
     symbolic: {
-      color: "deep viridian",
+      color: "pure cerulean blue",
       reference: "The Son of Man (1964)",
-      usage: "Key symbolic elements"
+      usage: "Key symbolic elements and focal points"
     },
     formal: {
-      color: "pure charcoal black",
+      color: "deep charcoal grey",
       reference: "Golconda bowler hats",
-      usage: "Business and formal objects"
+      usage: "Formal objects and structural elements"
     },
     technological: {
-      color: "pale platinum grey",
+      color: "pale porcelain flesh",
       reference: "The Listening Room (1952)",
-      usage: "Modern and tech elements"
+      usage: "Modern elements and transitions"
     }
   }
 };
@@ -449,7 +449,37 @@ const LIVE_THE_LIFE_ELEMENTS = {
     ["pure cerulean blue", "pale porcelain flesh", "deep charcoal grey"],
     ["clear sky blue", "Pantone 453C beige", "pure black"],
     ["pale grey-white", "deep viridian", "platinum grey"],
-    ["luminous blue", "pale flesh", "matte black"]
+    ["luminous blue", "pale flesh", "matte black"],
+    
+    // Empire of Light palettes
+    ["midnight blue", "golden lamplight", "misty grey"],
+    ["twilight cerulean", "warm ivory", "deep shadow black"],
+    ["dusk purple", "pale yellow", "charcoal darkness"],
+    
+    // Mysterious Interior palettes
+    ["deep mahogany brown", "pale alabaster", "prussian blue"],
+    ["rich burgundy", "antique ivory", "slate grey"],
+    ["dark emerald", "cream white", "ebony black"],
+    
+    // Symbolic Object palettes
+    ["blood crimson", "pearl white", "deep navy"],
+    ["forest green", "bone white", "dark umber"],
+    ["royal purple", "shell pink", "graphite grey"],
+    
+    // Metaphysical Landscape palettes
+    ["horizon blue", "cloud white", "earth brown"],
+    ["sunset orange", "misty grey", "deep indigo"],
+    ["morning gold", "fog white", "mountain grey"],
+    
+    // Belgian Surrealist Masters palettes
+    ["Delvaux twilight blue", "moonlit flesh", "shadow black"],
+    ["Graverol emerald", "mystical white", "dark violet"],
+    ["Mariën cobalt", "paper white", "ink black"],
+    
+    // Contemporary Interpretations
+    ["electric blue", "digital white", "matte black"],
+    ["neon cerulean", "synthetic flesh", "carbon grey"],
+    ["cyber azure", "artificial ivory", "obsidian black"]
   ],
   lighting: [
     "perfect sourceless light from Son of Man",
