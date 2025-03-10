@@ -23,7 +23,8 @@ export enum IdeationApproach {
   BOURDIN = 'bourdin',
   GENERATIVE = 'generative',      // Focus on algorithmic and procedural generation
   GLITCH = 'glitch',              // Focus on digital artifacts, distortion, and data bending  
-  AI_ART = 'ai_art'               // Focus on AI-generated imagery and neural style transfer
+  AI_ART = 'ai_art',              // Focus on AI-generated imagery and neural style transfer
+  PORTRAIT = 'portrait'           // Focus on portraits and character-driven imagery
 }
 
 // Ideator agent is responsible for generating creative ideas
@@ -44,25 +45,26 @@ export class IdeatorAgent extends BaseAgent {
         IdeationApproach.SYMBOLIC
       ],
       approachWeights: {
-        [IdeationApproach.METAPHYSICAL]: 0.9,
-        [IdeationApproach.SURREAL]: 0.8,
-        [IdeationApproach.SYMBOLIC]: 0.8,
-        [IdeationApproach.ATMOSPHERIC]: 0.7,
-        [IdeationApproach.COMPOSITIONAL]: 0.7,
-        [IdeationApproach.NARRATIVE]: 0.6,
-        [IdeationApproach.THEATRICAL]: 0.6,
-        [IdeationApproach.HOPPER]: 0.8,
+        [IdeationApproach.METAPHYSICAL]: 0.2,
+        [IdeationApproach.SURREAL]: 0.95,
+        [IdeationApproach.SYMBOLIC]: 0.1,
+        [IdeationApproach.ATMOSPHERIC]: 0.1,
+        [IdeationApproach.COMPOSITIONAL]: 0.1,
+        [IdeationApproach.NARRATIVE]: 0.1,
+        [IdeationApproach.THEATRICAL]: 0.1,
+        [IdeationApproach.HOPPER]: 0.1,
         [IdeationApproach.ARBUS]: 0.8,
         [IdeationApproach.AVEDON]: 0.8,
-        [IdeationApproach.EGGLESTON]: 0.8,
+        [IdeationApproach.EGGLESTON]: 0.1,
         [IdeationApproach.LEIBOVITZ]: 0.8,
-        [IdeationApproach.CARTIERBRESSON]: 0.8,
-        [IdeationApproach.COOPERGORFER]: 0.8,
-        [IdeationApproach.VONWONG]: 0.8,
-        [IdeationApproach.BOURDIN]: 0.8,
-        [IdeationApproach.GENERATIVE]: 0.7,
-        [IdeationApproach.GLITCH]: 0.6,
-        [IdeationApproach.AI_ART]: 0.8
+        [IdeationApproach.CARTIERBRESSON]: 0.1,
+        [IdeationApproach.COOPERGORFER]: 0.1,
+        [IdeationApproach.VONWONG]: 0.1,
+        [IdeationApproach.BOURDIN]: 0.2,
+        [IdeationApproach.GENERATIVE]: 0.1,
+        [IdeationApproach.GLITCH]: 0.1,
+        [IdeationApproach.AI_ART]: 0.1,
+        [IdeationApproach.PORTRAIT]: 0.9
       },
       magritteKeywords: [
         // Painting Techniques
@@ -311,6 +313,112 @@ export class IdeatorAgent extends BaseAgent {
             "AI-human collaboration",
             "post-human aesthetics"
           ]
+        },
+        surrealism: {
+          composition: [
+            "impossible juxtapositions",
+            "dream-like scenes",
+            "irrational scale",
+            "gravity defiance",
+            "spatial ambiguity"
+          ],
+          color: [
+            "unnatural palettes",
+            "hyper-saturated hues",
+            "color symbolism",
+            "discordant combinations",
+            "ethereal atmospheres" 
+          ],
+          techniques: [
+            "automatism",
+            "collage",
+            "decalcomania",
+            "frottage",
+            "grattage"
+          ],
+          concepts: [
+            "unconscious mind",
+            "dreams and fantasies",
+            "metamorphosis",
+            "irrationality",
+            "psychological enigmas"
+          ],
+          elements: [
+            "floating objects",
+            "anthropomorphism",
+            "distorted forms",
+            "symbolic creatures",
+            "paradoxical situations"
+          ]
+        },
+        arbus: {
+          elements: [
+            "direct gaze",
+            "unconventional subjects",
+            "social outsiders",
+            "psychological intensity",
+            "raw honesty"
+          ],
+          techniques: [
+            "confrontational composition",
+            "stark lighting",
+            "environmental context",
+            "unfiltered realism",
+            "empathetic observation"  
+          ],
+          concepts: [
+            "identity",
+            "marginality",
+            "social norms",
+            "human condition",
+            "personal truth"
+          ]
+        },
+        avedon: {
+          elements: [
+            "minimalist backdrops",
+            "iconic faces",
+            "expressive eyes",
+            "revealing poses",
+            "stripped-down essence"
+          ],
+          techniques: [
+            "large-format precision",
+            "high-contrast lighting",
+            "confrontational crop",
+            "psychological presence",
+            "hyperreal detail"
+          ],
+          concepts: [
+            "celebrity",
+            "public persona",
+            "inner truth",
+            "iconic identity",
+            "personal essence"  
+          ]
+        },
+        leibovitz: {
+          elements: [
+            "elaborately staged scenes",
+            "cinematic lighting",
+            "iconic characters",
+            "narrative moments",
+            "symbolic props"
+          ],
+          techniques: [
+            "conceptual storytelling",
+            "dramatic composition",
+            "theatrical staging",
+            "mythic amplification",
+            "pop culture references"
+          ],  
+          concepts: [
+            "celebrity mythology",
+            "cultural identity",
+            "personal narrative",
+            "iconic moments",
+            "symbolic representation"
+          ]
         }
       }
     };
@@ -483,7 +591,7 @@ export class IdeatorAgent extends BaseAgent {
       case IdeationApproach.METAPHYSICAL:
         return this.generateMetaphysicalIdeas(task, project);
       case IdeationApproach.SURREAL:
-        return this.generateSurrealIdeas(task, project);
+        return this.generateSurrealIdeas(task, project, 1.0, 1500);
       case IdeationApproach.SYMBOLIC:
         return this.generateSymbolicIdeas(task, project);
       case IdeationApproach.ATMOSPHERIC:
@@ -497,13 +605,25 @@ export class IdeatorAgent extends BaseAgent {
       case IdeationApproach.HOPPER:
         return this.generateHopperIdeas(task, project);
       case IdeationApproach.ARBUS:
-        return this.generateArbusIdeas(task, project);
+        return this.generateArbusIdeas(task, project, {
+          emphasizeFacialExpressions: true,
+          includeEnvironmentalContext: true,
+          focusOnMarginalized: true
+        });  
       case IdeationApproach.AVEDON:
-        return this.generateAvedonIdeas(task, project);
+        return this.generateAvedonIdeas(task, project, {
+          useMinimalistBackdrops: true,
+          emphasizeIconicPortraits: true,
+          focusOnCharacterEssence: true
+        });
       case IdeationApproach.EGGLESTON:
         return this.generateEgglestonIdeas(task, project);
       case IdeationApproach.LEIBOVITZ:
-        return this.generateLeibovitzIdeas(task, project);
+        return this.generateLeibovitzIdeas(task, project, {
+          includeElaborateStaging: true, 
+          useCinematicLighting: true,
+          emphasizeIconicCharacters: true
+        });
       case IdeationApproach.CARTIERBRESSON:
         return this.generateCartierBressonIdeas(task, project);
       case IdeationApproach.COOPERGORFER:
@@ -586,7 +706,9 @@ export class IdeatorAgent extends BaseAgent {
   /**
    * Generate surreal ideas focused on impossible juxtapositions and dream-like scenarios
    */
-  private async generateSurrealIdeas(task: any, project: any): Promise<any[]> {
+  private async generateSurrealIdeas(task: any, project: any, temperature: number, maxTokens: number): Promise<any[]> {
+    const surrealPrompt = await this.generateSurrealPrompt(project);
+    
     const messages: AIMessage[] = [
       {
         role: 'system',
@@ -594,11 +716,9 @@ export class IdeatorAgent extends BaseAgent {
       },
       {
         role: 'user',
-        content: `Generate 5 surreal art ideas for the following project:
+        content: `Generate 5 surreal art ideas for the following prompt:
         
-        Title: ${project.title}
-        Description: ${project.description}
-        Requirements: ${project.requirements.join(', ')}
+        ${surrealPrompt}
         
         For each idea, provide:
         1. A title that captures the surreal concept
@@ -614,31 +734,52 @@ export class IdeatorAgent extends BaseAgent {
     try {
       const response = await this.aiService.getCompletion({
         messages,
-        temperature: 0.8
+        temperature,
+        maxTokens
       });
       
-      // Mock surreal ideas
-      return [
-        {
-          title: "The Room of Infinite Windows",
-          description: "A space where each window opens onto itself",
-          elements: ["recursive windows", "impossible perspectives", "self-referential views"],
-          styles: ["architectural surrealism", "spatial paradox", "infinite regression"],
-          impact: "disorientation of spatial perception",
-          visualComposition: "Nested frames creating an endless visual loop"
-        },
-        {
-          title: "Objects in Revolt",
-          description: "Everyday items questioning their own existence",
-          elements: ["floating bowler hats", "self-painting pipes", "doors opening to doors"],
-          styles: ["object surrealism", "metaphysical humor", "symbolic rebellion"],
-          impact: "challenging object-identity relationships",
-          visualComposition: "Organized chaos of self-aware objects"
-        }
-      ];
+      // Parse the response and return the generated ideas
+      // ...
+      
     } catch (error) {
       console.error('Error generating surreal ideas:', error);
       return this.generateFallbackIdeas();
+    }
+  }
+  
+  private async generateSurrealPrompt(project: any): Promise<string> {
+    // Use the AI service to generate a surrealist prompt based on the project
+    const messages: AIMessage[] = [
+      {
+        role: 'system',
+        content: `You are an AI assistant that generates surrealist prompts for idea generation. Given a project description, create a prompt that will inspire surreal and dream-like ideas.`
+      },
+      {
+        role: 'user',
+        content: `Generate a surrealist prompt for the following project:
+        
+        Title: ${project.title}
+        Description: ${project.description}
+        
+        The prompt should:
+        1. Incorporate key elements of surrealism like impossible juxtapositions, dream logic, and symbolic imagery
+        2. Be open-ended and thought-provoking to inspire a range of surreal ideas
+        3. Relate to the project's theme or subject matter in a surreal way
+        4. Encourage the exploration of the subconscious and irrational
+        5. Be 2-3 sentences long`
+      }
+    ];
+    
+    try {
+      const response = await this.aiService.getCompletion({
+        messages,
+        temperature: 0.8
+      });
+      
+      return response.content.trim();
+    } catch (error) {
+      console.error('Error generating surreal prompt:', error);
+      return `Generate surreal ideas that juxtapose ${project.title} with elements of the subconscious and irrational.`;
     }
   }
   
@@ -869,6 +1010,37 @@ export class IdeatorAgent extends BaseAgent {
   private async generateIdeas(task: any, project: any): Promise<any[]> {
     // Check if the project is related to Magritte's style
     const isMagritteRelated = this.isMagritteRelated(project);
+    
+    // Check for surrealist keywords in the project description
+    const surrealismKeywords = ['surreal', 'dream', 'impossible', 'juxtaposition', 'irrational'];
+    const isSurrealismRelated = surrealismKeywords.some(keyword => 
+      project.description.toLowerCase().includes(keyword)  
+    );
+
+    if (isSurrealismRelated) {
+      console.log('Surrealist project detected, generating ideas with SURREAL approach');
+      return this.generateSurrealIdeas(task, project, 1.0, 1500);
+    }
+    
+    // Check for portrait-related keywords in the project description
+    const portraitKeywords = ['portrait', 'face', 'person', 'character', 'expression', 'identity'];
+    const isPortraitRelated = portraitKeywords.some(keyword =>
+      project.description.toLowerCase().includes(keyword)
+    );
+    
+    if (isPortraitRelated) {
+      console.log('Portrait project detected, prioritizing ARBUS, AVEDON, LEIBOVITZ approaches');
+      
+      const portraitApproaches = [
+        IdeationApproach.ARBUS,
+        IdeationApproach.AVEDON, 
+        IdeationApproach.LEIBOVITZ
+      ];
+      
+      const selectedApproach = portraitApproaches[Math.floor(Math.random() * portraitApproaches.length)];
+      
+      return this.generateIdeasWithApproach(task, project, selectedApproach);
+    }
     
     // Determine if we should generate ideas based on curiosity or user prompt
     const curiosityThreshold = 0.6;
@@ -1118,7 +1290,7 @@ export class IdeatorAgent extends BaseAgent {
   }
 
   // Add new idea generation methods for photographers
-  private async generateArbusIdeas(task: any, project: any): Promise<any[]> {
+  private async generateArbusIdeas(task: any, project: any, params: any): Promise<any[]> {
     const messages: AIMessage[] = [
       {
         role: 'system',
@@ -1173,7 +1345,7 @@ export class IdeatorAgent extends BaseAgent {
     }
   }
 
-  private async generateAvedonIdeas(task: any, project: any): Promise<any[]> {
+  private async generateAvedonIdeas(task: any, project: any, params: any): Promise<any[]> {
     const messages: AIMessage[] = [
       {
         role: 'system',
@@ -1282,7 +1454,7 @@ export class IdeatorAgent extends BaseAgent {
     }
   }
 
-  private async generateLeibovitzIdeas(task: any, project: any): Promise<any[]> {
+  private async generateLeibovitzIdeas(task: any, project: any, params: any): Promise<any[]> {
     const messages: AIMessage[] = [
       {
         role: 'system',
