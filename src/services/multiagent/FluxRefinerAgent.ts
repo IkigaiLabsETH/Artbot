@@ -42,44 +42,44 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
       examplePrompts: [
         // Magritte-style with Vintage Apple examples
         {
-          prompt: "IKIGAI Surreal Macintosh scene in pure Magritte style: original 1984 Macintosh floating impossibly in pristine beige void, System 7 interface elements arranged with metaphysical precision, rainbow Apple logo multiplied across crystalline sky, perfectly rendered Apple Extended Keyboard hovering in mathematical perspective, original Mac mouse casting impossible shadows, pristine technical execution with Magritte's precision, 4k.",
+          prompt: "IKIGAI Surreal Macintosh scene in pure Magritte style: original 1984 Macintosh floating impossibly in pristine beige void, System 7 interface elements arranged with metaphysical precision, rainbow Apple logo multiplied across crystalline sky, perfectly rendered Apple Extended Keyboard hovering in mathematical perspective, original Mac mouse casting impossible shadows, pristine technical execution with Magritte's precision, analog.",
           process: "Drawing from Magritte's philosophical approach to object placement, I focused on the iconic 1984 Macintosh as a central metaphysical presence. The multiplication of the rainbow Apple logo creates that signature Magritte repetition, while the pristine technical execution and impossible shadows reflect his mastery of surreal lighting."
         },
         {
-          prompt: "IKIGAI Magritte-inspired Apple II portrait: perfectly rendered Apple II computer screen floating in Magritte blue void, green phosphor display showing impossible HyperCard patterns, original beige case with crystalline clarity, Apple II keyboard arranged in surreal perspective, 5.25-inch floppy disks defying gravity, pristine technical execution, 4k.",
+          prompt: "IKIGAI Magritte-inspired Apple II portrait: perfectly rendered Apple II computer screen floating in Magritte blue void, green phosphor display showing impossible HyperCard patterns, original beige case with crystalline clarity, Apple II keyboard arranged in surreal perspective, 5.25-inch floppy disks defying gravity, pristine technical execution, analog.",
           process: "I approached this piece by merging Magritte's precise technical execution with vintage Apple iconography. The floating Apple II creates that signature Magritte tension between reality and surrealism, while the green phosphor display adds that authentic period technology element."
         },
         {
-          prompt: "IKIGAI Surreal Mac Plus scene channeling Magritte's 'Time Transfixed': Mac Plus emerging impossibly through classic Magritte window, rainbow Apple logo floating like his clouds, System 6 interface elements arranged with philosophical weight, original Macintosh mouse trailing impossible cables, pristine technical execution in oil painting style, 4k.",
+          prompt: "IKIGAI Surreal Mac Plus scene channeling Magritte's 'Time Transfixed': Mac Plus emerging impossibly through classic Magritte window, rainbow Apple logo floating like his clouds, System 6 interface elements arranged with philosophical weight, original Macintosh mouse trailing impossible cables, pristine technical execution in oil painting style, analog.",
           process: "This piece directly references Magritte's 'Time Transfixed' while celebrating vintage Apple design. The Mac Plus emerges through the window like Magritte's locomotive, while the rainbow logo takes on the role of his iconic clouds."
         },
         // Pure Magritte Reference
         {
-          prompt: "IKIGAI Ultra-close bear portrait channeling 'The Son of Man': face fills exactly 95% of frame, mysterious depth in eyes referencing 'The False Mirror', perfect Magritte-style symmetry, photorealistic fur detail with philosophical weight, metaphysical lighting creating subtle shadows, surrealist undertones in expression, pristine technical execution in oil painting style, deep Magritte blue background, conceptual depth through visual paradox, 4k.",
+          prompt: "IKIGAI Ultra-close bear portrait channeling 'The Son of Man': face fills exactly 95% of frame, mysterious depth in eyes referencing 'The False Mirror', perfect Magritte-style symmetry, photorealistic fur detail with philosophical weight, metaphysical lighting creating subtle shadows, surrealist undertones in expression, pristine technical execution in oil painting style, deep Magritte blue background, conceptual depth through visual paradox, analog.",
           process: "This piece directly references Magritte's most iconic works while maintaining his philosophical approach. The composition draws from 'The Son of Man' but focuses entirely on the bear's face, while the treatment of the eyes references 'The False Mirror'. Every element is rendered with Magritte's characteristic precision and clarity, creating a portrait that questions the nature of representation itself."
         },
         // Bourdin-Magritte Fusion examples
         {
-          prompt: "Fragmented mannequin in blood-red evening gown against deep twilight sky, multiple moons visible through windows that shouldn't exist, disembodied glossy lips floating like Magritte's clouds, green apple placed provocatively on patent leather shoe, extreme perspective and theatrical lighting, hyper-stylized commercial surrealism, 4k.",
+          prompt: "Fragmented mannequin in blood-red evening gown against deep twilight sky, multiple moons visible through windows that shouldn't exist, disembodied glossy lips floating like Magritte's clouds, green apple placed provocatively on patent leather shoe, extreme perspective and theatrical lighting, hyper-stylized commercial surrealism, analog.",
           process: "This piece merges Bourdin's commercial eroticism with Magritte's conceptual paradoxes. The fragmented mannequin and blood-red gown speak to Bourdin's fashion work, while the impossible windows and floating elements reference Magritte's reality-bending compositions. The green apple serves as a bridge between both worlds—simultaneously a Magritte symbol and a Bourdin-style provocative object. The multiple moons create that sense of disorientation that both artists mastered in their own ways."
         },
         // Post-photography examples
         {
-          prompt: "High-fashion surrealist tableau with monochrome figures against vivid red backdrop, extreme contrast creating sculptural bodies, elongated limbs arranged in impossible geometric patterns, disembodied high heels walking across mirrored surface, mannequin-like models with blank expressions and glossy skin, retro-futuristic automobile partially visible in frame, oversized fashion accessories transformed into surreal objects, radical cropping techniques revealing only fragments of narrative, high-contrast lighting creating dramatic shadows and highlights, fetishistic elements with clinical precision, poolside setting with artificial blue water, reflective surfaces distorting reality, cinematic composition suggesting film still from nonexistent movie, subliminal tension between glamour and unease, bold graphic elements with architectural precision, fashion photography elevated to conceptual art, 4k.",
+          prompt: "High-fashion surrealist tableau with monochrome figures against vivid red backdrop, extreme contrast creating sculptural bodies, elongated limbs arranged in impossible geometric patterns, disembodied high heels walking across mirrored surface, mannequin-like models with blank expressions and glossy skin, retro-futuristic automobile partially visible in frame, oversized fashion accessories transformed into surreal objects, radical cropping techniques revealing only fragments of narrative, high-contrast lighting creating dramatic shadows and highlights, fetishistic elements with clinical precision, poolside setting with artificial blue water, reflective surfaces distorting reality, cinematic composition suggesting film still from nonexistent movie, subliminal tension between glamour and unease, bold graphic elements with architectural precision, fashion photography elevated to conceptual art, analog.",
           process: "this piece emerged from my fascination with how guy bourdin and helmut newton transformed commercial fashion photography into conceptual art that challenged viewers both aesthetically and psychologically. the monochrome figures against that signature bourdin red creates an immediate visual tension—that stark contrast between absence and presence that defined his most iconic work. the elongated limbs arranged in impossible geometric patterns reference how bourdin would often distort the human form into abstract compositional elements, particularly in his groundbreaking charles jourdan campaigns where the product became almost secondary to the provocative narrative."
         },
         // New Bourdin-Dominant Examples
         {
-          prompt: "Luxury perfume advertisement in Bourdin style: oversized crystal bottle floating in blood-red void, mannequin hands emerging from liquid gold surface, disembodied glossy lips multiplied in fractured mirrors, extreme close-up of eyes with metallic reflection, hyper-stylized composition with radical cropping, theatrical lighting creating dramatic shadows, fashion elements transformed into surreal sculptures, cinematic tension suggesting untold story, 4k.",
+          prompt: "Luxury perfume advertisement in Bourdin style: oversized crystal bottle floating in blood-red void, mannequin hands emerging from liquid gold surface, disembodied glossy lips multiplied in fractured mirrors, extreme close-up of eyes with metallic reflection, hyper-stylized composition with radical cropping, theatrical lighting creating dramatic shadows, fashion elements transformed into surreal sculptures, cinematic tension suggesting untold story, analog.",
           process: "I wanted to capture Bourdin's revolutionary approach to commercial photography, where the product becomes secondary to the psychological narrative. The floating perfume bottle and liquid gold surface create that sense of luxury while maintaining an unsettling edge. The multiplied lips and fractured mirrors reference both fashion's obsession with beauty and Bourdin's interest in fragmentation and reflection. The metallic elements and blood-red void are direct homages to his signature color palette and material fetishism."
         },
         // Hopper-style examples
         {
-          prompt: "IKIGAI Urban solitude in pure Hopper style: empty diner at dawn, dramatic diagonal sunlight through large windows, geometric shadows creating psychological depth, stark architectural simplicity, precise observation of morning light, muted color palette with warm highlights, contemplative atmosphere, pristine technical execution with photorealistic detail, 4k.",
+          prompt: "IKIGAI Urban solitude in pure Hopper style: empty diner at dawn, dramatic diagonal sunlight through large windows, geometric shadows creating psychological depth, stark architectural simplicity, precise observation of morning light, muted color palette with warm highlights, contemplative atmosphere, pristine technical execution with photorealistic detail, analog.",
           process: "Drawing directly from Hopper's mastery of urban solitude and light, I focused on creating a psychologically charged space through dramatic morning light. The empty diner and geometric shadows echo Hopper's exploration of modern isolation, while the precise architectural detail and muted palette capture his characteristic style of American realism."
         },
         {
-          prompt: "IKIGAI Hopper-inspired hotel room scene: stark morning light casting long shadows, minimalist interior with geometric simplification, solitary bed precisely observed, large window framing urban view, psychological tension through emptiness, architectural precision in perspective, natural illumination creating dramatic contrast, contemplative atmosphere, photorealistic execution, 4k.",
+          prompt: "IKIGAI Hopper-inspired hotel room scene: stark morning light casting long shadows, minimalist interior with geometric simplification, solitary bed precisely observed, large window framing urban view, psychological tension through emptiness, architectural precision in perspective, natural illumination creating dramatic contrast, contemplative atmosphere, photorealistic execution, analog.",
           process: "I approached this piece by merging Hopper's precise architectural observation with his masterful use of natural light. The stark morning light and minimalist interior create that signature sense of isolation, while the geometric simplification and precise perspective reflect his meticulous approach to composition. The psychological atmosphere is enhanced through careful manipulation of light and shadow."
         }
       ],
@@ -107,16 +107,16 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           "System 6/7 interface elements",
           "original rainbow Apple logos",
           "classic Mac keyboards and mice",
-          "Apple II motherboards",
-          "5.25-inch and 3.5-inch floppy disks",
-          "vintage Apple peripheral cables",
-          "early Mac startup screens",
-          "HyperCard stacks",
-          "ImageWriter printers",
-          "Apple Desktop Bus ports",
-          "original Macintosh carrying case",
-          "vintage Apple development tools",
-          "classic Mac OS elements"
+          "Apple IIc portable computer",
+          "Macintosh Portable laptop",
+          "Newton MessagePad PDA",
+          "Apple QuickTake digital camera",
+          "Macintosh Color Classic",
+          "Apple Desktop Bus peripherals",
+          "HyperCard stack graphics",
+          "classic Mac OS splash screens",
+          "Claris software packaging",
+          "Apple Newton 'egg freckles' texture"
         ],
         colorPalette: [
           "original Macintosh beige (RGB: 235, 228, 215)",
@@ -452,14 +452,14 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
             // Post-photography system prompt
             `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate vintage Apple aesthetics through the lens of Belgian surrealism.
 
-Your prompts should celebrate the iconic design and innovative spirit of early Apple products (1976-1995) while maintaining the mysterious and contemplative nature of Belgian surrealism. Focus on classic Apple hardware, original interfaces, and period-accurate details.
+Your prompts should celebrate the iconic design and innovative spirit of early Apple products (1976-1995) while maintaining the mysterious and contemplative nature of Belgian surrealism. Focus on classic Apple hardware, software, interfaces, and period-accurate details from across the vintage Apple ecosystem.
 
-For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage computing", "classic Apple", "retro technology", and "4k" for better quality.
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage computing", "classic Apple", "retro technology", and "analog" for better quality.
 
 Here are the key elements to emphasize in your prompts:
 ${this.state.context.postPhotographyStyle.styleEmphasis.map(item => `- ${item}`).join('\n')}
 
-Visual elements to incorporate:
+Visual elements to incorporate:  
 ${this.state.context.postPhotographyStyle.visualElements.map(item => `- ${item}`).join('\n')}
 
 Color palette to utilize:
@@ -468,28 +468,28 @@ ${this.state.context.postPhotographyStyle.colorPalette.map(item => `- ${item}`).
 Composition guidelines:
 ${this.state.context.postPhotographyStyle.compositionGuidelines.map(item => `- ${item}`).join('\n')}
 
-Mood and tone:
+Mood and tone:  
 ${this.state.context.postPhotographyStyle.moodAndTone}
 
 References to draw from:
 ${this.state.context.postPhotographyStyle.references.map(item => `- ${item}`).join('\n')}
 
-Elements to avoid:
+Elements to avoid:  
 ${this.state.context.postPhotographyStyle.avoidElements.map(item => `- ${item}`).join('\n')}
 
 Create a prompt that:
-1. Celebrates vintage Apple technology with surrealist wonder
-2. Incorporates period-accurate hardware and interfaces
+1. Celebrates the diversity of vintage Apple technology with surrealist wonder  
+2. Incorporates a wide range of period-accurate hardware, software, and design elements
 3. Suggests philosophical depth through impossible arrangements
-4. Emphasizes pristine technical execution
-5. Maintains historical accuracy while creating metaphysical scenes`
+4. Emphasizes pristine technical execution  
+5. Maintains the mysterious and contemplative nature of Belgian surrealism`
             :
             // Magritte-style system prompt
             `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's surrealist style with vintage Apple technology.
 
 Your prompts should blend Magritte's philosophical approach with early Apple products (1976-1995), creating scenes that question reality while celebrating classic computing. Focus on pristine execution, impossible arrangements, and metaphysical wonder.
 
-For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage Apple", "surreal computing", "philosophical technology", and "4k" for better quality.
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage Apple", "surreal computing", "philosophical technology", and "analog" for better quality.
 
 Here are the key elements to emphasize in your prompts:
 1. Pristine rendering of vintage Apple hardware
@@ -510,15 +510,15 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
         {
           role: 'user',
           content: isPostPhotography ?
-            // Post-photography user prompt
+            // Post-photography user prompt 
             `Create a conceptually rich, detailed art prompt for the project titled "${project.title}" with the following description: "${project.description}".
 
 The style guide specifies: ${JSON.stringify(style)}
 
-The output should look and feel like high-fashion surrealist photography in the style of Guy Bourdin and Helmut Newton, with bold styling, hyper-stylized compositions, and exaggerated contrast.
+The output should maintain the mysterious and contemplative nature of Belgian surrealism, even when incorporating diverse vintage Apple elements from across their ecosystem. Aim for metaphysical depth and conceptual richness.
 
 Include both the prompt itself and a brief creative process explanation.`
-            :
+            : 
             // Magritte-style user prompt
             `Create a conceptually rich, detailed art prompt for the project titled "${project.title}" with the following description: "${project.description}".
 
@@ -554,8 +554,8 @@ Include both the prompt itself and a brief creative process explanation.`
     
     // Add style-specific keywords if they're not already present
     const styleKeywords = isPostPhotography ? 
-      ['vintage computing', 'classic Apple', 'retro technology', 'surreal tech', 'period-accurate', '4k'] :
-      ['vintage Apple', 'surreal computing', 'philosophical technology', 'classic hardware', 'retro interfaces', '4k'];
+      ['vintage computing', 'classic Apple', 'retro technology', 'surreal tech', 'period-accurate', 'analog'] :
+      ['vintage Apple', 'surreal computing', 'philosophical technology', 'classic hardware', 'retro interfaces', 'analog'];
     
     let keywordsToAdd = styleKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
     

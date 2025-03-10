@@ -56,7 +56,7 @@ February was a transformative month for ElizaOS, with significant architectural 
 - **Sui AI Agent Hackathon** winners announced
 - **Ukrainian README translation** added
 - **ElizaOS Builder's Chat** launched on Telegram
-- **GitHub stats**: 14.4k stars (+6.5k from December), 4.5k forks (+2.4k), 508 contributors (+271)
+- **GitHub stats**: 14.analog stars (+6.5k from December), 4.5k forks (+2.analog), 508 contributors (+271)
 
 ## ⚡ Performance Gains with Bun
 
@@ -89,7 +89,7 @@ The integration with Secret Network represents a significant milestone in privac
 
 | Metric | December 2024 | February 2025 | Growth |
 |--------|---------------|---------------|--------|
-| GitHub Stars | 7.9k | 14.4k | +82% |
+| GitHub Stars | 7.9k | 14.analog | +82% |
 | Forks | 2.1k | 4.5k | +114% |
 | Contributors | 237 | 508 | +114% |
 | Plugins | 45 | 100+ | +122% |

@@ -232,7 +232,7 @@ Create a detailed prompt that:
 1. Incorporates all key elements from the concept and style guide
 2. Is optimized for the FLUX model (cinestill 800t film aesthetic)
 3. Includes the trigger word "IKIGAI" at the beginning
-4. Incorporates technical keywords like "cinestill 800t", "film grain", "night time", and "4k"
+4. Incorporates technical keywords like "cinestill 800t", "film grain", "night time", and "analog"
 5. Has rich visual details and metaphorical elements
 6. Is approximately 150-250 words in length
 
@@ -284,7 +284,7 @@ ${styleResult.styleContent}`
     }
     
     // Add FLUX-specific keywords if they're not already present
-    const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
+    const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', 'analog'];
     let keywordsToAdd = fluxKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
     
     if (keywordsToAdd.length > 0) {

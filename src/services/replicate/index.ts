@@ -90,7 +90,7 @@ export class ReplicateService {
         
         // Add FLUX-specific keywords if they're not already present
         if (input.prompt) {
-          const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
+          const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', 'analog'];
           let keywordsToAdd = fluxKeywords.filter(keyword => !input.prompt.toLowerCase().includes(keyword.toLowerCase()));
           
           if (keywordsToAdd.length > 0) {
@@ -330,7 +330,7 @@ export class ReplicateService {
         }
         
         // Add FLUX-specific keywords if they're not already present
-        const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
+        const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', 'analog'];
         let keywordsToAdd = fluxKeywords.filter(keyword => !prompt.toLowerCase().includes(keyword.toLowerCase()));
         
         if (keywordsToAdd.length > 0) {

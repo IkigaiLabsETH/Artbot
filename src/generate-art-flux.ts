@@ -275,7 +275,7 @@ Your prompts should incorporate the distinctive elements of the chosen artist's 
 
 For the FLUX model (cinestill 800t style), include:
 - The trigger word "IKIGAI" at the beginning
-- Keywords: "cinestill 800t", "night time", "film grain", "4k"
+- Keywords: "cinestill 800t", "night time", "film grain", "analog"
 - The artist's characteristic style elements and techniques
 - Technical specifications that enhance both FLUX and the artist's style
 
@@ -326,7 +326,7 @@ Also provide a brief "Creative Process" explanation that reveals how you've merg
     }
     
     // Add FLUX-specific keywords if they're not already present
-    const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', '4k'];
+    const fluxKeywords = ['cinestill 800t', 'film grain', 'night time', 'analog'];
     let keywordsToAdd = fluxKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
     
     if (keywordsToAdd.length > 0) {
