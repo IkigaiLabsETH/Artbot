@@ -1,5 +1,6 @@
 import { AIService, AIMessage } from './ai/index.js';
 import { generateConceptualPrompt } from './ai/conceptualPromptGenerator.js';
+import { ConceptCategory } from './ai/conceptGenerator.js';
 import { IdeaQueue, CreativeIdea, ExplorationThread } from './IdeaQueue.js';
 import { MemorySystem, MemoryType, Memory } from './memory/index.js';
 import { StyleService } from './style/index.js';
@@ -51,6 +52,9 @@ interface MagritteElements {
   symbols: string[];
   settings: string[];
   objects: string[];
+  paradoxes: string[];
+  skies: string[];
+  windows: string[];
 }
 
 interface BourdinTechniques {
@@ -63,6 +67,8 @@ interface MagritteTechniques {
   painting: string[];
   surrealism: string[];
   philosophy: string[];
+  composition: string[];
+  lighting: string[];
 }
 
 interface IkigaiTechniques {
@@ -102,6 +108,24 @@ interface StyleParams {
   techniques?: {
     [key: string]: string[];
   };
+}
+
+interface StyleEmphasis {
+  technique?: string;
+  composition?: string;
+  lighting?: string;
+  mood?: string;
+}
+
+interface ConceptGenerationOptions {
+  temperature?: number;
+  maxTokens?: number;
+  model?: string;
+  category?: ConceptCategory;
+  useFluxPro?: boolean;
+  postPhotoNative?: boolean;
+  style?: string;
+  styleEmphasis?: StyleEmphasis;
 }
 
 // Define style-specific artistic parameters
@@ -206,6 +230,237 @@ const artisticParams = {
       rendering: ["vector precision", "mathematical accuracy", "clean lines"],
       effects: ["systematic variation", "controlled randomness", "geometric harmony"],
       composition: ["golden ratio", "recursive patterns", "systematic spacing"]
+    }
+  },
+  magritte: {
+    composition: {
+      arrangement: "metaphysical precision",
+      balance: "philosophical symmetry",
+      perspective: "paradoxical space",
+      depth: "flat yet infinite",
+      scale: "reality-defying proportions",
+      cropping: "window-like framing",
+      framing: "theatrical presentation",
+      spacing: "symbolic isolation",
+      layering: "reality planes intersection"
+    },
+    lighting: {
+      style: "crystalline illumination",
+      direction: "impossible light sources",
+      shadows: "metaphysical shadows",
+      highlights: "surreal accents",
+      mood: "dreamlike atmosphere",
+      timeOfDay: "eternal twilight",
+      contrast: "reality versus illusion",
+      quality: "pristine clarity"
+    },
+    color: {
+      palette: [
+        "sky blue",
+        "cloudy white",
+        "deep black",
+        "forest green",
+        "warm brown",
+        "evening blue",
+        "stone grey",
+        "blood red",
+        "pale flesh"
+      ],
+      saturation: "naturalistic yet surreal",
+      contrast: "subtle yet striking",
+      treatment: "flat oil painting technique",
+      harmony: "classical restraint",
+      symbolism: "color as metaphor"
+    },
+    elements: {
+      symbols: [
+        "bowler hats",
+        "green apples",
+        "clouds",
+        "pipes",
+        "mirrors",
+        "curtains",
+        "windows",
+        "birds",
+        "men in suits",
+        "floating rocks"
+      ],
+      settings: [
+        "infinite skies",
+        "windowframes",
+        "empty rooms",
+        "belgian landscapes",
+        "seaside walls",
+        "mysterious doorways",
+        "floating chambers",
+        "impossible interiors"
+      ],
+      objects: [
+        "floating stones",
+        "curtains",
+        "birds",
+        "bells",
+        "trees",
+        "picture frames",
+        "easels",
+        "chairs",
+        "musical instruments"
+      ],
+      paradoxes: [
+        "day-night coexistence",
+        "inside-outside fusion",
+        "scale contradictions",
+        "object transformations",
+        "reality-reflection inversions"
+      ],
+      skies: [
+        "daytime stars",
+        "impossible clouds",
+        "multiple moons",
+        "gradient twilight",
+        "luminous darkness"
+      ],
+      windows: [
+        "views to nowhere",
+        "impossible perspectives",
+        "reality portals",
+        "frame within frame",
+        "mirror reflections"
+      ]
+    },
+    techniques: {
+      painting: [
+        "flat color fields",
+        "sharp edges",
+        "precise brushwork",
+        "oil glazing",
+        "seamless blending",
+        "photorealistic detail",
+        "controlled texture"
+      ],
+      surrealism: [
+        "object displacement",
+        "scale distortion",
+        "impossible juxtapositions",
+        "reality questioning",
+        "dream logic",
+        "symbolic transformation"
+      ],
+      philosophy: [
+        "visual paradox",
+        "reality questioning",
+        "object poetry",
+        "meaning subversion",
+        "identity exploration",
+        "existence contemplation"
+      ],
+      composition: [
+        "theatrical staging",
+        "central focus",
+        "window framing",
+        "geometric balance",
+        "symbolic placement",
+        "depth illusion"
+      ],
+      lighting: [
+        "day-for-night",
+        "impossible shadows",
+        "crystalline clarity",
+        "metaphysical glow",
+        "eternal twilight",
+        "sourceless illumination"
+      ]
+    },
+    references: {
+      keyWorks: [
+        // 1920s
+        "The Lost Jockey (1926) - First surrealist work",
+        "The Central Story (1927) - Early word-image exploration",
+        "The Meaning of Night (1927) - Early nocturnal themes",
+        "Discovery (1927) - First use of hybrid figures",
+        "The False Mirror (1929) - Iconic eye and cloud imagery",
+        "The Treachery of Images (1929) - Famous pipe painting",
+        "Words and Images (1929) - Text-image relationships",
+        
+        // 1930s
+        "The Key of Dreams (1930) - Word-object relationships",
+        "The Annunciation (1930) - Curtain and bell motifs",
+        "The Human Condition (1933) - Canvas-window paradox",
+        "The Rape (1934) - Face-torso transformation",
+        "Collective Invention (1934) - Hybrid creature theme",
+        "The Red Model (1935) - Boot-foot transformation",
+        "La Clef des Songes (1935) - Object-word mismatches",
+        "The Forbidden Universe (1943) - Stone castle theme",
+        "Time Transfixed (1938) - Train through fireplace",
+        "The Victory (1939) - Cloud-stone formations",
+        
+        // 1940s
+        "The Break in the Clouds (1942) - Sky-bird themes",
+        "The Misanthropes (1942) - Figure in fabric",
+        "Memory of a Journey (1944) - Door within door",
+        "The Liberator (1947) - Bird-leaf transformation",
+        "The Fair Captive (1947) - Fire and landscape",
+        "The Cicerone (1947) - Giant flower theme",
+        
+        // 1950s
+        "The Empire of Light (1953-54) - Day-night paradox",
+        "Golconda (1953) - Raining businessmen",
+        "The Listening Room (1952) - Giant apple indoors",
+        "The Month of the Grape Harvest (1959) - Cloud-curtain",
+        "The Castle of the Pyrenees (1959) - Floating castle",
+        "The Battle of the Argonne (1959) - Tree-leaf paradox",
+        
+        // 1960s
+        "The Son of Man (1964) - Apple-faced businessman",
+        "The Great War (1964) - Face obscured by flower",
+        "The Blank Signature (1965) - Horse-rider fusion",
+        "The Beautiful Relations (1967) - Cloud-stone hybrid",
+        "The Art of Living (1967) - Bird-leaf transformation",
+        "The Beautiful World (1962) - Giant rose in room",
+        "The Good Connections (1963) - Broken glass illusion",
+        "The Clear Ideas (1958) - Glass-sky transformation"
+      ],
+      techniques: [
+        // Signature Techniques
+        "Precise oil painting technique from 'The Son of Man' (1964)",
+        "Sky-ground relationship from 'The Empire of Light' (1953-54)",
+        "Multiple identical elements from 'Golconda' (1953)",
+        "Frame-within-frame concept from 'The Human Condition' (1933)",
+        "Object displacement from 'Time Transfixed' (1938)",
+        "Scale play from 'Personal Values' (1952)",
+        "Reality questioning from 'The Treachery of Images' (1929)",
+        
+        // Advanced Techniques
+        "Word-image juxtaposition from 'The Key of Dreams' (1930)",
+        "Day-night coexistence from 'The Empire of Light' series (1953-54)",
+        "Object transformation from 'The Red Model' (1935)",
+        "Spatial paradox from 'The Human Condition' series (1933-35)",
+        "Material transmutation from 'The Castle of the Pyrenees' (1959)",
+        "Figure multiplication from 'Golconda' (1953)",
+        "Natural-artificial fusion from 'The Liberator' (1947)",
+        
+        // Compositional Techniques
+        "Window framing from 'The Fair Captive' (1947)",
+        "Mirror effects from 'Not to be Reproduced' (1937)",
+        "Scale distortion from 'The Listening Room' (1952)",
+        "Object isolation from 'The Son of Man' (1964)",
+        "Curtain motifs from 'The Central Story' (1927)",
+        "Cloud-stone hybridization from 'The Victory' (1939)",
+        "Interior-exterior blending from 'The Month of the Grape Harvest' (1959)"
+      ],
+      periods: {
+        early: "1926-1929 - Establishment of surrealist vocabulary",
+        mature: "1930-1939 - Development of major themes",
+        wartime: "1940-1945 - Evolution during WWII period",
+        late: "1946-1967 - Refinement of signature style"
+      },
+      themes: {
+        paradox: ["The Empire of Light", "Time Transfixed", "The Human Condition"],
+        transformation: ["The Red Model", "Collective Invention", "The Liberator"],
+        displacement: ["Personal Values", "The Listening Room", "Golconda"],
+        concealment: ["The Son of Man", "The Central Story", "The Great War"],
+        wordImage: ["The Treachery of Images", "The Key of Dreams", "Words and Images"]
+      }
     }
   }
 };
@@ -1482,5 +1737,103 @@ export class CreativeEngine {
     };
 
     return styleParams[style] || styleParams.cherniak;
+  }
+
+  /**
+   * Generate a conceptual image with Magritte style focus
+   */
+  async generateMagritteConceptualImage(
+    concept: string,
+    options: ConceptGenerationOptions = {}
+  ): Promise<{
+    imageUrl: string | null;
+    prompt: string;
+    creativeProcess: string;
+    style: string;
+    artisticDetails: StyleParams;
+  }> {
+    try {
+      const currentStyle = artisticParams.magritte;
+
+      // Select random reference works for inspiration
+      const selectedReferences = currentStyle.references.keyWorks
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 2);
+      
+      // Select random techniques to emphasize
+      const selectedTechniques = currentStyle.references.techniques
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 2);
+
+      // Generate the prompt with Magritte-specific considerations
+      const { prompt, creativeProcess } = await generateConceptualPrompt(
+        this.aiService,
+        concept,
+        {
+          temperature: options.temperature || 0.8,
+          maxTokens: options.maxTokens,
+          model: options.model,
+          category: ConceptCategory.MAGRITTE,
+          useFluxPro: options.useFluxPro,
+          postPhotoNative: options.postPhotoNative,
+          style: 'magritte'
+        }
+      );
+
+      // Prepare enhanced Magritte-specific generation parameters
+      const generationParams = {
+        prompt: `In the precise style of René Magritte's surrealist oil paintings, particularly referencing the techniques from ${selectedReferences.join(' and ')}, create: ${prompt}. ${selectedTechniques.join('. ')}`,
+        num_inference_steps: 45,
+        guidance_scale: 12.0,
+        width: 1024,
+        height: 1024,
+        scheduler: "DPMSolverMultistep",
+        negative_prompt: [
+          "photographic",
+          "grainy",
+          "textured",
+          "imperfect",
+          "brushstrokes",
+          "impressionistic",
+          "abstract",
+          "distorted",
+          "expressionist",
+          "loose style",
+          "rough",
+          "sketchy",
+          "painterly",
+          "gestural",
+          "high contrast",
+          "dramatic lighting",
+          "modern art",
+          "contemporary art",
+          "digital art",
+          "3d rendering"
+        ].join(", ")
+      };
+
+      // Generate the image
+      const result = await this.replicateService.runPrediction(
+        undefined,
+        generationParams
+      );
+
+      return {
+        imageUrl: result?.output?.[0] || null,
+        prompt: generationParams.prompt,
+        creativeProcess,
+        style: 'magritte',
+        artisticDetails: currentStyle
+      };
+    } catch (error) {
+      console.error(`Error generating Magritte conceptual image: ${error}`);
+      return {
+        imageUrl: null,
+        prompt: '',
+        creativeProcess: '',
+        style: 'magritte',
+        artisticDetails: {} as StyleParams
+      };
+    }
   }
 } 
