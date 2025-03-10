@@ -373,93 +373,115 @@ const artisticParams = {
     },
     references: {
       keyWorks: [
-        // 1920s
-        "The Lost Jockey (1926) - First surrealist work",
-        "The Central Story (1927) - Early word-image exploration",
-        "The Meaning of Night (1927) - Early nocturnal themes",
-        "Discovery (1927) - First use of hybrid figures",
-        "The False Mirror (1929) - Iconic eye and cloud imagery",
-        "The Treachery of Images (1929) - Famous pipe painting",
-        "Words and Images (1929) - Text-image relationships",
+        // 1920s - Early Surrealist Period
+        "The Lost Jockey (1926) - First surrealist work, featuring musical notes and trees in impossible scale",
+        "The Central Story (1927) - Early word-image exploration with floating objects",
+        "The Meaning of Night (1927) - Early nocturnal themes with mysterious figures",
+        "Discovery (1927) - First use of hybrid figures and metamorphosis",
+        "The False Mirror (1929) - Iconic eye filled with clouded sky, exploring perception",
+        "The Treachery of Images (1929) - Famous pipe painting with 'Ceci n'est pas une pipe'",
+        "Words and Images (1929) - Seminal work exploring language and visual representation",
         
-        // 1930s
-        "The Key of Dreams (1930) - Word-object relationships",
-        "The Annunciation (1930) - Curtain and bell motifs",
-        "The Human Condition (1933) - Canvas-window paradox",
-        "The Rape (1934) - Face-torso transformation",
-        "Collective Invention (1934) - Hybrid creature theme",
-        "The Red Model (1935) - Boot-foot transformation",
-        "La Clef des Songes (1935) - Object-word mismatches",
-        "The Forbidden Universe (1943) - Stone castle theme",
-        "Time Transfixed (1938) - Train through fireplace",
-        "The Victory (1939) - Cloud-stone formations",
+        // 1930s - Mature Development
+        "The Key of Dreams (1930) - Complex word-object relationships and symbolic meanings",
+        "The Annunciation (1930) - Curtain and bell motifs in theatrical setting",
+        "The Human Condition (1933) - Masterful canvas-window paradox, reality versus representation",
+        "The Rape (1934) - Provocative face-torso transformation, identity exploration",
+        "Collective Invention (1934) - Hybrid creature theme, half-fish half-human",
+        "The Red Model (1935) - Transformative boot-foot fusion, everyday object surrealism",
+        "La Clef des Songes (1935) - Systematic object-word mismatches and associations",
+        "Not to be Reproduced (1937) - Mirror reflection paradox with repeated back view",
+        "Time Transfixed (1938) - Iconic locomotive emerging from fireplace",
+        "The Victory (1939) - Clouds transformed into stone, material paradox",
         
-        // 1940s
-        "The Break in the Clouds (1942) - Sky-bird themes",
-        "The Misanthropes (1942) - Figure in fabric",
-        "Memory of a Journey (1944) - Door within door",
-        "The Liberator (1947) - Bird-leaf transformation",
-        "The Fair Captive (1947) - Fire and landscape",
-        "The Cicerone (1947) - Giant flower theme",
+        // 1940s - Wartime Evolution
+        "The Return of the Flame (1943) - Fire transforming into wood in reverse alchemy",
+        "The Break in the Clouds (1942) - Bird-cloud fusion in impossible sky",
+        "The Misanthropes (1942) - Figure wrapped in fabric, identity concealment",
+        "Memory of a Journey (1944) - Recursive door-within-door composition",
+        "The Liberator (1947) - Bird-leaf hybrid in metamorphosis",
+        "The Fair Captive (1947) - Fire against landscape, element displacement",
+        "The Cicerone (1947) - Giant flower dominating interior space",
         
-        // 1950s
-        "The Empire of Light (1953-54) - Day-night paradox",
-        "Golconda (1953) - Raining businessmen",
-        "The Listening Room (1952) - Giant apple indoors",
-        "The Month of the Grape Harvest (1959) - Cloud-curtain",
-        "The Castle of the Pyrenees (1959) - Floating castle",
-        "The Battle of the Argonne (1959) - Tree-leaf paradox",
+        // 1950s - Classical Period
+        "The Empire of Light Series (1953-54) - Day-night paradox in single scene",
+        "Golconda (1953) - Raining businessmen in bowler hats, social commentary",
+        "The Listening Room (1952) - Giant apple consuming interior space",
+        "The Month of the Grape Harvest (1959) - Cloud-curtain transformation",
+        "The Castle of the Pyrenees (1959) - Floating castle on rock above sea",
+        "The Battle of the Argonne (1959) - Tree-leaf paradox, nature transformation",
         
-        // 1960s
-        "The Son of Man (1964) - Apple-faced businessman",
-        "The Great War (1964) - Face obscured by flower",
-        "The Blank Signature (1965) - Horse-rider fusion",
-        "The Beautiful Relations (1967) - Cloud-stone hybrid",
-        "The Art of Living (1967) - Bird-leaf transformation",
-        "The Beautiful World (1962) - Giant rose in room",
-        "The Good Connections (1963) - Broken glass illusion",
-        "The Clear Ideas (1958) - Glass-sky transformation"
+        // 1960s - Late Masterworks
+        "The Son of Man (1964) - Iconic businessman with floating apple obscuring face",
+        "The Great War (1964) - Face hidden by hovering flower, identity theme",
+        "The Blank Signature (1965) - Horse-rider fusion in landscape",
+        "The Beautiful Relations (1967) - Cloud-stone hybrid floating in sky",
+        "The Art of Living (1967) - Bird-leaf transformation in window",
+        "The Beautiful World (1962) - Giant rose filling room interior",
+        "The Good Connections (1963) - Glass shattering into sky fragments",
+        "The Clear Ideas (1958) - Glass transforming into sky, transparency theme"
       ],
       techniques: [
         // Signature Techniques
-        "Precise oil painting technique from 'The Son of Man' (1964)",
-        "Sky-ground relationship from 'The Empire of Light' (1953-54)",
-        "Multiple identical elements from 'Golconda' (1953)",
-        "Frame-within-frame concept from 'The Human Condition' (1933)",
-        "Object displacement from 'Time Transfixed' (1938)",
-        "Scale play from 'Personal Values' (1952)",
-        "Reality questioning from 'The Treachery of Images' (1929)",
+        "Precise oil painting technique from 'The Son of Man' (1964) - Photorealistic detail with surreal elements",
+        "Sky-ground relationship from 'The Empire of Light' (1953-54) - Day-night coexistence",
+        "Multiple identical elements from 'Golconda' (1953) - Pattern repetition",
+        "Frame-within-frame from 'The Human Condition' (1933) - Reality layering",
+        "Object displacement from 'Time Transfixed' (1938) - Impossible situations",
+        "Scale manipulation from 'Personal Values' (1952) - Object size distortion",
+        "Reality questioning from 'The Treachery of Images' (1929) - Image-text paradox",
         
         // Advanced Techniques
-        "Word-image juxtaposition from 'The Key of Dreams' (1930)",
-        "Day-night coexistence from 'The Empire of Light' series (1953-54)",
-        "Object transformation from 'The Red Model' (1935)",
-        "Spatial paradox from 'The Human Condition' series (1933-35)",
-        "Material transmutation from 'The Castle of the Pyrenees' (1959)",
-        "Figure multiplication from 'Golconda' (1953)",
-        "Natural-artificial fusion from 'The Liberator' (1947)",
+        "Word-image juxtaposition from 'The Key of Dreams' (1930) - Semantic displacement",
+        "Day-night coexistence from 'The Empire of Light' series - Temporal paradox",
+        "Object transformation from 'The Red Model' (1935) - Material metamorphosis",
+        "Spatial paradox from 'The Human Condition' series - Reality versus representation",
+        "Material transmutation from 'The Castle of the Pyrenees' (1959) - Substance transformation",
+        "Figure multiplication from 'Golconda' (1953) - Pattern and repetition",
+        "Natural-artificial fusion from 'The Liberator' (1947) - Hybrid forms",
         
         // Compositional Techniques
-        "Window framing from 'The Fair Captive' (1947)",
-        "Mirror effects from 'Not to be Reproduced' (1937)",
-        "Scale distortion from 'The Listening Room' (1952)",
-        "Object isolation from 'The Son of Man' (1964)",
-        "Curtain motifs from 'The Central Story' (1927)",
-        "Cloud-stone hybridization from 'The Victory' (1939)",
-        "Interior-exterior blending from 'The Month of the Grape Harvest' (1959)"
+        "Window framing from 'The Fair Captive' (1947) - View manipulation",
+        "Mirror effects from 'Not to be Reproduced' (1937) - Reflection paradox",
+        "Scale distortion from 'The Listening Room' (1952) - Object-space relationship",
+        "Object isolation from 'The Son of Man' (1964) - Focus and concealment",
+        "Curtain motifs from 'The Central Story' (1927) - Theater and reality",
+        "Cloud-stone hybridization from 'The Victory' (1939) - Material transformation",
+        "Interior-exterior blending from 'The Month of the Grape Harvest' (1959) - Space fusion"
       ],
       periods: {
-        early: "1926-1929 - Establishment of surrealist vocabulary",
-        mature: "1930-1939 - Development of major themes",
-        wartime: "1940-1945 - Evolution during WWII period",
-        late: "1946-1967 - Refinement of signature style"
+        early: "1926-1929 - Establishment of surrealist vocabulary and foundational techniques",
+        mature: "1930-1939 - Development of major themes and sophisticated paradoxes",
+        wartime: "1940-1945 - Evolution of style during WWII with darker undertones",
+        postwar: "1946-1952 - Return to classic themes with new complexity",
+        late: "1953-1967 - Refinement of signature style and masterwork creation"
       },
       themes: {
-        paradox: ["The Empire of Light", "Time Transfixed", "The Human Condition"],
-        transformation: ["The Red Model", "Collective Invention", "The Liberator"],
-        displacement: ["Personal Values", "The Listening Room", "Golconda"],
-        concealment: ["The Son of Man", "The Central Story", "The Great War"],
-        wordImage: ["The Treachery of Images", "The Key of Dreams", "Words and Images"]
+        paradox: [
+          "The Empire of Light Series (1953-54) - Day-night coexistence",
+          "Time Transfixed (1938) - Object displacement",
+          "The Human Condition Series (1933-35) - Reality versus representation"
+        ],
+        transformation: [
+          "The Red Model (1935) - Object metamorphosis",
+          "Collective Invention (1934) - Hybrid creatures",
+          "The Liberator (1947) - Natural transformation"
+        ],
+        displacement: [
+          "Personal Values (1952) - Scale and context",
+          "The Listening Room (1952) - Size and space",
+          "Golconda (1953) - Figure and environment"
+        ],
+        concealment: [
+          "The Son of Man (1964) - Hidden identity",
+          "The Central Story (1927) - Obscured meaning",
+          "The Great War (1964) - Covered face"
+        ],
+        wordImage: [
+          "The Treachery of Images (1929) - Image-text relationship",
+          "The Key of Dreams (1930) - Object-word association",
+          "Words and Images (1929) - Language and representation"
+        ]
       }
     }
   }
@@ -1782,36 +1804,50 @@ export class CreativeEngine {
 
       // Prepare enhanced Magritte-specific generation parameters
       const generationParams = {
-        prompt: `In the precise style of René Magritte's surrealist oil paintings, particularly referencing the techniques from ${selectedReferences.join(' and ')}, create: ${prompt}. ${selectedTechniques.join('. ')}`,
-        num_inference_steps: 45,
-        guidance_scale: 12.0,
-        width: 1024, // Explicitly set to 1024
-        height: 1024, // Explicitly set to 1024
+        prompt: `In the precise style of René Magritte's surrealist oil paintings, particularly referencing the techniques from ${selectedReferences.join(' and ')}, create: ${prompt}. ${selectedTechniques.join('. ')} Emphasize Magritte's characteristic flat oil painting technique with sharp edges, matte surfaces, and pristine clarity. Use his signature style of smooth, even brushwork with minimal visible texture, creating a dreamlike atmosphere through precise execution rather than expressive brushstrokes.`,
+        num_inference_steps: 50, // Increased for better quality
+        guidance_scale: 14.0, // Increased for stronger style adherence
+        width: 1024,
+        height: 1024,
         scheduler: "DPMSolverMultistep",
         negative_prompt: [
-          "photographic",
-          "grainy",
-          "textured",
-          "imperfect",
-          "brushstrokes",
-          "impressionistic",
-          "abstract",
-          "distorted",
-          "expressionist",
-          "loose style",
-          "rough",
-          "sketchy",
-          "painterly",
-          "gestural",
-          "high contrast",
-          "dramatic lighting",
-          "modern art",
-          "contemporary art",
-          "digital art",
-          "3d rendering"
+          // Anti-photographic elements
+          "photographic", "photo-realistic", "camera", "lens", "photograph", "DSLR", "high-resolution",
+          
+          // Anti-texture elements
+          "grainy", "textured", "rough", "impasto", "thick paint", "visible brushstrokes", "expressive brushwork",
+          
+          // Anti-modern style elements
+          "impressionistic", "abstract", "expressionist", "contemporary", "modern", "digital",
+          
+          // Anti-distortion elements
+          "distorted", "warped", "blurred", "sketchy", "loose", "gestural", "painterly",
+          
+          // Anti-lighting elements
+          "dramatic lighting", "high contrast", "harsh shadows", "lens flare", "HDR",
+          
+          // Anti-digital elements
+          "3d rendering", "CGI", "digital art", "computer generated", "artificial",
+          
+          // Anti-texture details
+          "canvas texture", "brush texture", "paint texture", "surface detail",
+          
+          // Style-breaking elements
+          "atmospheric perspective", "depth of field", "bokeh", "motion blur",
+          "dynamic range", "high detail", "ultra detailed", "hyperrealistic"
         ].join(", "),
-        // Force override any default dimensions from the service
-        override_defaults: true
+        // Additional parameters for style control
+        image_style: "oil painting",
+        style_strength: 0.95, // Strong style enforcement
+        override_defaults: true,
+        // Custom parameters for Magritte-specific effects
+        custom_style_params: {
+          flatness: 0.9,
+          edge_precision: 0.95,
+          surface_smoothness: 0.9,
+          atmospheric_clarity: 0.85,
+          dream_logic: 0.9
+        }
       };
 
       // Generate the image with explicit model override to ensure correct dimensions

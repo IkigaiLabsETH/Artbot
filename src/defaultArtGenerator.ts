@@ -240,101 +240,229 @@ const MINIMAX_MODEL = 'minimax/image-01';
 
 // Define the models with Belgian Surrealist-LiveTheLifeTV fusion settings
 const MAGRITTE_STYLE_CONFIG = {
-  prompt_prefix: "In the exact style of René Magritte's most iconic 1950s oil paintings, using his signature flat painting technique that defined Belgian Surrealism. The scene must be painted with his characteristic methods: absolutely flat color fields, razor-sharp edges, complete absence of modeling or depth, and pure illustrative quality. Using Magritte's precise 1950s technique as seen in 'The Listening Room' and 'Golconda', with his characteristic stark simplicity and dream-like flatness, create ",
-  prompt_suffix: `. The artwork must strictly follow Magritte's 1950s painting style:
+  prompt_prefix: "Create a precise Magritte-style portrait composition with his characteristic treatment of faces and figures as mysterious objects. Using the exact painting technique from 'The Son of Man' (1964) and 'Golconda' (1953), with their pristine surface quality and perfect, shadowless rendering, create ",
+  prompt_suffix: `. The portrait must follow Magritte's precise style:
 
-- Pure Magritte Technique:
-  * Completely flat, unmodulated color fields
-  * Absolutely no volumetric modeling
-  * Hard edges between all elements
-  * No surface texture whatsoever
-  * Stark, artificial shadows only
-  * Simple, solid colors
-  * No gradients or blending
-  * Perfectly clean edges
-  * Comic-book like flatness
-  * Zero atmospheric perspective
-  * Minimal detail rendering
-  * Pure graphic quality
-  * No depth or volume
-  * Stark lighting only
-  * Paper-like flatness
+- Portrait Treatment:
+  * Faces treated as mysterious objects
+  * Perfect, mask-like rendering of flesh
+  * Absolutely flat, shadowless surfaces
+  * Crystal-clear edge definition
+  * No traditional modeling
+  * Pure, unmodulated color fields
+  * Pristine, photographic precision
+  * Complete elimination of brushwork
+  * Surgical exactness in details
+  * Perfect, sourceless illumination
 
-- Classic Magritte Composition:
-  * Single-point perspective only
-  * Perfectly flat backgrounds
-  * Clear silhouettes
-  * Minimal scene elements
-  * Stage-like space
-  * No atmospheric effects
-  * Sharp divisions
-  * Simple forms
-  * Basic shadows
-  * Flat sky
+- Background Treatment:
+  * Pure, flat color fields only
+  * No atmospheric perspective
+  * No traditional space or depth
+  * Perfect, clean surfaces
+  * Modern, timeless setting
+  * Absolute geometric precision
+  * No decorative elements
+  * No period references
+  * Clear, enigmatic space
+  * Pristine emptiness
 
-Technical Requirements:
-  * 1950s Magritte style
-  * Comic-book flatness
-  * No volume or depth
-  * Sharp edges only
-  * Solid colors
-  * Simple shadows
-  * Minimal detail
-  * Flat planes
-  * Clean lines
-  * Basic forms`,
-  negative_prompt: "3D, depth, volume, photorealistic, detailed, textured, realistic, photograph, volumetric, modeled, shaded, gradient, atmospheric, painterly, brushwork, expressive, loose, artistic, impressionistic, detailed, nuanced, subtle, complex, layered, dimensional, perspective, depth of field, rendered, ray-traced, global illumination, ambient occlusion, subsurface scattering, physically based rendering, material properties, surface detail, micro detail, macro detail, fine detail, texture detail, normal map, bump map, displacement, specular, reflection, refraction, caustics, volumetric lighting, god rays, lens effects, chromatic aberration, depth of field, bokeh, motion blur, film grain, noise, grit, weathering, aging, wear, patina, roughness, glossiness, metallic, translucency, transparency, subsurface, scattering, indirect lighting, bounce light, color bleeding, ambient light, direct light, spot light, area light, environmental lighting, shadow mapping, soft shadows, contact shadows, ambient shadows, occlusion, global illumination, radiosity, caustics, photon mapping, ray marching, path tracing, HDRI, tone mapping, color grading, post-processing, compositing, rendering, 3D modeling, sculpting, texturing, shading, lighting, materials, procedural, generative, simulation",
-  num_inference_steps: 150,    // Increased for cleaner edges
-  guidance_scale: 30.0,       // Increased for stronger style adherence
+- Technical Requirements:
+  * Use Magritte's 1950-60s technique
+  * Achieve photographic clarity
+  * Maintain perfect flatness
+  * Create knife-edge precision
+  * Ensure mechanical perfection
+  * Eliminate all texture
+  * Pure color separation
+  * Absolute control
+  * Perfect finish`,
+  negative_prompt: "brushstrokes, texture, impasto, painterly, expressive, loose, gestural, impressionistic, abstract, rough, sketchy, uneven, textured surface, visible canvas, brush marks, paint thickness, palette knife, dry brush, scumbling, glazing, layered paint, broken color, atmospheric effect, sfumato, chiaroscuro, tonal gradation, blended colors, soft edges, feathered edges, painterly technique, artistic looseness, expressive brushwork, textural variation, surface irregularity, paint drips, spontaneous marks, gestural marks, painterly abstraction, artistic freedom, loose handling, energetic brushwork, thick paint, thin paint, variable paint, artistic interpretation, creative brushwork, expressive technique, artistic style, painterly style, artistic flourish, creative expression, artistic license, interpretive style, loose interpretation, creative freedom, artistic spontaneity, expressive freedom, creative license, artistic variation, interpretive freedom, loose style, creative interpretation, expressive style, artistic spontaneity, painterly freedom, creative style, interpretive technique, loose technique, artistic technique, expressive interpretation, creative technique, painterly interpretation, artistic expression, loose expression, creative expression, interpretive expression, 3D, depth, volume, photographic, camera, lens, DSLR, photography, realistic, hyperrealistic, cinematic, dramatic, atmospheric, moody, emotional, expressive, dynamic, energetic, vibrant, lively, animated, movement, motion, action, drama, intensity, passion, force, power, strength, vigor, vitality, life, spirit, soul, feeling, sentiment, mood, atmosphere, ambiance, environment, setting, context, situation, condition, state, quality, character, nature, essence, being, existence, reality, truth, fact, actuality, certainty, definiteness, precision, accuracy, exactness, correctness, rightness, trueness, authenticity, genuineness, validity, legitimacy, soundness, reliability, dependability, trustworthiness, credibility, believability, plausibility, probability, likelihood, possibility, chance, prospect, potential, capacity, capability, ability, power, faculty, means, way, method, manner, mode, fashion, style, approach, technique, procedure, process, practice, custom, habit, routine, convention, tradition, norm, standard, criterion, measure, gauge, test, check, verification, validation, confirmation, corroboration, substantiation, proof, evidence, demonstration, illustration, exemplification, instance, example, case, occurrence, happening, event, incident, episode, occasion, circumstance, situation, condition, state, position, place, location, spot, point, mark, sign, indication, signal, symptom, manifestation, expression, display, showing, exhibition, presentation, demonstration, revelation, disclosure, exposure, uncovering, unfolding, development, evolution, progression, advance, advancement, progress, growth, expansion, enlargement, extension, increase, enhancement, improvement, betterment, amelioration, upgrade, uplift, elevation, raising, lifting, boosting, heightening, intensification, strengthening, reinforcement, fortification, consolidation, stabilization, establishment, institution, constitution, formation, creation, generation, production, making, manufacturing, construction, building, assembly, composition, compilation, collection, gathering, accumulation, amassing, stockpiling, hoarding, storage, preservation, conservation, protection, safeguarding, security, safety, surety, certainty, assurance, guarantee, warranty, pledge, promise, commitment, obligation, duty, responsibility, charge, trust, care, custody, guardianship, keeping, maintenance, support, sustenance, subsistence, livelihood, living, life, existence, being, essence, nature, character, quality, property, attribute, characteristic, feature, aspect, element, component, constituent, ingredient, part, portion, piece, bit, fragment, section, segment, division, subdivision, department, branch, sector, sphere, realm, domain, field, area, region, territory, zone, space, place, position, location, situation, site, spot, point, mark",
+  num_inference_steps: 200,    // Increased further for maximum precision
+  guidance_scale: 35.0,       // Increased for even stronger style adherence
   scheduler: "DPMSolverMultistep",
   num_samples: 1,
   seed: -1,
-  cfg_scale: 30.0,           // Increased for stronger prompt adherence
-  image_resolution: 2024,
+  cfg_scale: 35.0,           // Increased to match guidance_scale
+  image_resolution: 1024,
   sampler_name: "DPM++ 2M Karras",
-  denoising_strength: 0.25,   // Reduced further for maximum flatness
-  control_scale: 0.99,       // Increased for even better style control
-  control_start: 0.10,
-  control_end: 0.99         // Extended for better refinement
+  denoising_strength: 0.2,    // Reduced further for maximum flatness
+  control_scale: 1.0,        // Maximum control for style
+  control_start: 0.0,        // Start control from beginning
+  control_end: 1.0,          // Maintain control throughout
+  style_fidelity: 1.0,       // Maximum style fidelity
+  init_image_strength: 0.2,   // Low init image strength for cleaner result
+  custom_style_params: {
+    portrait_precision: 1.0,    // Maximum portrait precision
+    face_flatness: 1.0,        // Maximum face flatness
+    flesh_smoothness: 1.0,     // Perfect flesh rendering
+    suit_precision: 1.0,       // Perfect suit rendering
+    background_purity: 1.0,    // Pure, clean backgrounds
+    symbolic_clarity: 1.0      // Clear symbolic elements
+  }
 };
 
-// Add painting-specific visual elements
+// Define Magritte's iconic color palette with specific artwork references
+const MAGRITTE_COLOR_PALETTE = {
+  sky: {
+    day: {
+      color: "luminous cerulean blue",
+      reference: "The Empire of Light (1953-54)",
+      usage: "Clean, pure sky backgrounds"
+    },
+    night: {
+      color: "deep prussian blue",
+      reference: "The Dominion of Light (1948)",
+      usage: "Deep, solid dark backgrounds"
+    },
+    twilight: {
+      color: "pale grey-blue",
+      reference: "The Blank Signature (1965)",
+      usage: "Neutral atmospheric backgrounds"
+    }
+  },
+  portraits: {
+    face: {
+      color: "pale porcelain flesh",
+      reference: "The Son of Man (1964)",
+      usage: "Main portrait elements"
+    },
+    suit: {
+      color: "deep charcoal grey",
+      reference: "Golconda (1953)",
+      usage: "Business attire and formal elements"
+    },
+    mask: {
+      color: "deep viridian green",
+      reference: "The Son of Man (1964) apple",
+      usage: "Obscuring elements and symbolic objects"
+    },
+    shadow: {
+      color: "cool prussian shadow",
+      reference: "The Great War (1964)",
+      usage: "Portrait shadows and depth"
+    }
+  },
+  backgrounds: {
+    pure: {
+      color: "flat cerulean blue",
+      reference: "The Victory (1939)",
+      usage: "Clean, pure background planes"
+    },
+    neutral: {
+      color: "pale grey-white",
+      reference: "Decalcomania (1966)",
+      usage: "Neutral portrait backgrounds"
+    },
+    modern: {
+      color: "clear sky blue",
+      reference: "The Dominion of Light series",
+      usage: "Contemporary settings"
+    }
+  },
+  objects: {
+    symbolic: {
+      color: "deep viridian",
+      reference: "The Son of Man (1964)",
+      usage: "Key symbolic elements"
+    },
+    formal: {
+      color: "pure charcoal black",
+      reference: "Golconda bowler hats",
+      usage: "Business and formal objects"
+    },
+    technological: {
+      color: "pale platinum grey",
+      reference: "The Listening Room (1952)",
+      usage: "Modern and tech elements"
+    }
+  }
+};
+
+// Define vintage Apple hardware colors with specific model references
+const APPLE_VINTAGE_PALETTE = {
+  plastics: {
+    beige: {
+      color: "Pantone 453C warm beige",
+      reference: "Macintosh 128K (1984)",
+      usage: "Main computer case color"
+    },
+    platinum: {
+      color: "Pantone 427C cool grey",
+      reference: "Macintosh SE (1987)",
+      usage: "Later model case color"
+    },
+    cream: {
+      color: "Pantone 7527C warm cream",
+      reference: "Apple IIe (1983)",
+      usage: "Early model case color"
+    }
+  },
+  accents: {
+    logo: {
+      color: "muted rainbow spectrum",
+      reference: "Apple logo (1977-1998)",
+      usage: "Brand elements, subtle accents"
+    },
+    text: {
+      color: "dark warm grey",
+      reference: "Apple II text",
+      usage: "Labels and text elements"
+    }
+  },
+  screens: {
+    background: {
+      color: "soft warm grey",
+      reference: "Original Macintosh display",
+      usage: "Monitor background color"
+    }
+  }
+};
+
+// Update LIVE_THE_LIFE_ELEMENTS with portrait focus
 const LIVE_THE_LIFE_ELEMENTS = {
   settings: [
-    "oil painted Apple II computer labs with pristine surfaces",
-    "Macintosh workstations rendered in perfect oil technique",
-    "early Apple development spaces with Magritte's precision",
-    "Cupertino offices painted with crystalline clarity",
-    "manufacturing facilities in perfect oil finish",
-    "testing laboratories with unified lighting",
-    "service centers with subtle canvas texture"
+    "pure cerulean blue background from The Victory",
+    "stark neutral space with Decalcomania's clarity",
+    "clean grey-white backdrop from The Great War",
+    "luminous sky blue setting from Empire of Light",
+    "pristine pale background from The Son of Man",
+    "perfect shadowless space from Golconda",
+    "crystalline void from The Central Story"
+  ],
+  portraits: [
+    "mysterious figure in bowler hat with Macintosh face",
+    "business suit figure with Apple II screen head",
+    "Golconda-style figure carrying vintage Apple device",
+    "Son of Man pose with floating vintage screen",
+    "multiple identical figures with monitor heads like Golconda",
+    "figure in suit with rainbow Apple logo face",
+    "portrait with floating Macintosh obscuring face"
   ],
   objects: [
-    "Macintosh 128K with flawless oil painted surface",
-    "Apple IIe rendered in perfect matte finish",
-    "rainbow Apple logos with smooth color transitions",
-    "Apple Extended Keyboard with subtle highlights",
-    "monitors with painted screen glow",
-    "ImageWriter with precise edge detail",
-    "floppy disks with perfect shadow modeling",
-    "Desktop Bus mouse with pristine surface quality",
-    "System 6 interfaces translated to oil paint",
-    "AppleTalk connectors with delicate reflections"
-  ],
-  lighting: [
-    "Magritte's signature crystalline illumination",
-    "perfectly rendered LED indicators",
-    "subtle painted screen phosphorescence",
-    "mathematically precise reflections",
-    "carefully modeled surface highlights",
-    "unified studio lighting treatment",
-    "delicate shadow transitions"
+    "Macintosh 128K floating like the apple in Son of Man",
+    "Apple IIe as a mysterious Magritte object",
+    "rainbow Apple logo hovering like a surreal symbol",
+    "keyboard suspended in pure blue space",
+    "monitor screen as a void into another reality",
+    "floppy disk as an enigmatic floating object",
+    "mouse transformed into a surreal portrait element"
   ],
   color_palettes: [
-    ["oil painted Macintosh beige", "System 7 grey with canvas texture", "painted Apple II green"],
-    ["pristine platinum grey", "perfectly rendered rainbow spectrum", "traditional Mac white"],
-    ["flawless Apple IIc cream", "painted Mac OS blue", "precise LED red"],
-    ["perfect keyboard beige", "subtle screen phosphor", "delicate menu bar grey"]
+    // Portrait-focused palettes
+    ["pure cerulean blue", "pale porcelain flesh", "deep charcoal grey"],
+    ["clear sky blue", "Pantone 453C beige", "pure black"],
+    ["pale grey-white", "deep viridian", "platinum grey"],
+    ["luminous blue", "pale flesh", "matte black"]
+  ],
+  lighting: [
+    "perfect sourceless light from Son of Man",
+    "clear shadowless illumination from Golconda",
+    "pure even lighting from The Great War",
+    "pristine clarity from The Central Story",
+    "crystalline illumination from Victory",
+    "perfect diffusion from Decalcomania",
+    "absolute clarity from Empire of Light"
   ]
 };
 
@@ -425,10 +553,10 @@ async function generateArt(concept: string) {
     const replicateService = new ReplicateService({
       apiKey: replicateApiKey,
       defaultModel: process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL,
-      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '2024', 10),
-      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '2024', 10),
-      defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '40', 10),
-      defaultGuidanceScale: parseFloat(process.env.GUIDANCE_SCALE || '12.0'),
+      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '1024', 10),
+      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '1024', 10),
+      defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '200', 10),  // Increased to 200
+      defaultGuidanceScale: parseFloat(process.env.GUIDANCE_SCALE || '35.0'),       // Increased to 35.0
     });
     
     await replicateService.initialize();

@@ -81,8 +81,8 @@ Our approach is built on three core principles:
        .─────────.                            .─────────.
       /   Oil    \                          /  Belgian  \
      /  Painting  \________________________/  Surrealism \
-     \            /                        \            /
-      \          /      ┌──────────┐       \          /
+     \  Portrait  /                        \            /
+      \ Style    /      ┌──────────┐       \          /
        '────────'       │  Vintage  │        '────────'
                        │ Computing │
                         └──────────┘
@@ -90,26 +90,85 @@ Our approach is built on three core principles:
 
 ## Technical Specifications
 
-### Painting Technique
-- Smooth oil painting surfaces
-- Precise edge control
-- Crystalline detail rendering
-- Unified lighting treatment
-- Matte finish aesthetics
+### Magritte Portrait Technique
+- Faces treated as mysterious objects
+- Perfect, mask-like flesh rendering
+- Crystal-clear edge definition
+- Absolutely flat, shadowless surfaces
+- Pure, unmodulated color fields
+- Complete elimination of brushwork
+- Surgical precision in details
+- Perfect sourceless illumination
 
-### Vintage Computing Elements
-- Original Macintosh hardware
-- Apple II family systems
-- Classic Mac OS interfaces
-- Period-accurate peripherals
-- Rainbow Apple logo era
+### Color Palette Architecture
 
-### Surrealist Approaches
-- Impossible computer arrangements
-- Metaphysical interface staging
-- Philosophical hardware poetry
-- Digital reality questioning
-- Binary surrealism
+```ascii
+    ╭───────────────────────╮
+    │    Color Systems      │
+    ├───────────┬───────────┤
+    │ Magritte  │  Vintage  │
+    │ Palette   │  Apple    │
+    ├───────────┴───────────┤
+    │ ▢ Portrait Colors     │
+    │ ▢ Background Fields   │
+    │ ▢ Symbolic Objects    │
+    │ ▢ Hardware Tones     │
+    ╰───────────────────────╯
+```
+
+#### Magritte's Signature Colors
+- **Sky Palette**
+  - Luminous cerulean blue (Empire of Light, 1953-54)
+  - Deep prussian blue (Dominion of Light, 1948)
+  - Pale grey-blue (The Blank Signature, 1965)
+
+- **Portrait Elements**
+  - Pale porcelain flesh (The Son of Man, 1964)
+  - Deep charcoal grey (Golconda, 1953)
+  - Deep viridian green (The Son of Man apple)
+  - Cool prussian shadow (The Great War, 1964)
+
+- **Pure Backgrounds**
+  - Flat cerulean blue (The Victory, 1939)
+  - Pale grey-white (Decalcomania, 1966)
+  - Clear sky blue (Dominion of Light series)
+
+#### Vintage Apple Hardware Colors
+- **Plastics**
+  - Pantone 453C warm beige (Macintosh 128K, 1984)
+  - Pantone 427C cool grey (Macintosh SE, 1987)
+  - Pantone 7527C warm cream (Apple IIe, 1983)
+
+- **Accents**
+  - Muted rainbow spectrum (Apple logo, 1977-1998)
+  - Dark warm grey (Apple II text)
+  - Soft warm grey (Original Macintosh display)
+
+### Portrait Compositions
+- Mysterious figures with technological elements
+- Business suits with vintage computing artifacts
+- Multiple Golconda-style figures with monitor heads
+- Son of Man poses with floating vintage screens
+- Rainbow Apple logo as surreal face element
+- Floating Macintosh obscuring portrait faces
+
+### Background Treatment
+- Pure, flat color fields only
+- No atmospheric perspective
+- Perfect, clean surfaces
+- Modern, timeless settings
+- Absolute geometric precision
+- Clear, enigmatic spaces
+- Pristine emptiness
+
+### Technical Parameters
+- Maximum portrait precision
+- Perfect face flatness
+- Surgical edge definition
+- Pure color separation
+- Complete texture elimination
+- Absolute surface control
+- Perfect finish quality
 
 ## Multi-Agent System
 
