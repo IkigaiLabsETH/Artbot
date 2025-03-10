@@ -39,14 +39,18 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
         outputFormat: "png"
       },
       examplePrompts: [
-        // Magritte-style examples
+        // Magritte-style with Vintage Apple examples
         {
-          prompt: "IKIGAI Extreme close-up portrait in pure Magritte style: bear's face fills 95% of frame, metaphysical gaze with philosophical depth, crystalline clarity in execution, mysterious atmospheric depth behind eyes, perfect symmetrical composition, surrealist undertones in lighting, ultra-sharp facial features rendered with Magritte's precision, deep Magritte blue background (RGB: 28, 45, 83), pristine technical execution, oil painting quality with photorealistic detail, conceptual depth through visual paradox, 4k.",
-          process: "Drawing directly from Magritte's philosophical approach to portraiture, I focused on creating a metaphysical presence through the bear's direct gaze. The extreme close-up format and crystalline clarity echo Magritte's precision, while the mysterious atmospheric depth creates that signature sense of philosophical questioning. Every element is rendered with his characteristic pristine technique, creating a portrait that exists in that liminal space between reality and surrealism that Magritte mastered."
+          prompt: "IKIGAI Surreal Macintosh scene in pure Magritte style: original 1984 Macintosh floating impossibly in pristine beige void, System 7 interface elements arranged with metaphysical precision, rainbow Apple logo multiplied across crystalline sky, perfectly rendered Apple Extended Keyboard hovering in mathematical perspective, original Mac mouse casting impossible shadows, pristine technical execution with Magritte's precision, 4k.",
+          process: "Drawing from Magritte's philosophical approach to object placement, I focused on the iconic 1984 Macintosh as a central metaphysical presence. The multiplication of the rainbow Apple logo creates that signature Magritte repetition, while the pristine technical execution and impossible shadows reflect his mastery of surreal lighting."
         },
         {
-          prompt: "IKIGAI Magritte-inspired bear portrait with hipster elements: vintage round glasses floating impossibly yet precisely rendered, eyes positioned exactly on upper third line with metaphysical intensity, face mathematically centered with philosophical weight, surrealist play of scale in accessories, crystal-clear fur detail meeting dreamlike atmosphere, perfect edge definition throughout, Magritte's signature color palette, oil painting aesthetics with photorealistic precision, 4k.",
-          process: "I approached this piece by merging Magritte's precise technical execution with his love of philosophical paradox. The floating glasses create that signature Magritte tension between the real and the surreal, while the mathematical precision in the composition reflects his meticulous approach. The modern accessories are treated with his characteristic attention to surface quality and light, making them feel as if they've always existed in his universe."
+          prompt: "IKIGAI Magritte-inspired Apple II portrait: perfectly rendered Apple II computer screen floating in Magritte blue void, green phosphor display showing impossible HyperCard patterns, original beige case with crystalline clarity, Apple II keyboard arranged in surreal perspective, 5.25-inch floppy disks defying gravity, pristine technical execution, 4k.",
+          process: "I approached this piece by merging Magritte's precise technical execution with vintage Apple iconography. The floating Apple II creates that signature Magritte tension between reality and surrealism, while the green phosphor display adds that authentic period technology element."
+        },
+        {
+          prompt: "IKIGAI Surreal Mac Plus scene channeling Magritte's 'Time Transfixed': Mac Plus emerging impossibly through classic Magritte window, rainbow Apple logo floating like his clouds, System 6 interface elements arranged with philosophical weight, original Macintosh mouse trailing impossible cables, pristine technical execution in oil painting style, 4k.",
+          process: "This piece directly references Magritte's 'Time Transfixed' while celebrating vintage Apple design. The Mac Plus emerges through the window like Magritte's locomotive, while the rainbow logo takes on the role of his iconic clouds."
         },
         // Pure Magritte Reference
         {
@@ -81,137 +85,101 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
       postPhotographyStyle: {
         styleEmphasis: [
           "precise Magritte-style photorealism",
-          "metaphysical questioning through visual paradox",
-          "surrealist juxtaposition of ordinary objects",
-          "dreamlike clarity and pristine execution",
-          "philosophical contemplation through imagery",
-          "clean lines and perfect technical execution",
-          "mysterious atmospheric depth",
-          "conceptual depth with visual simplicity",
-          "poetic surrealism in everyday objects",
-          "symbolic resonance in ordinary items",
-          "extreme close-up portrait technique",
-          "absolute photorealistic detail in facial features",
-          "perfectly smooth surface quality",
-          "razor-sharp eye definition",
-          "masterful fur rendering with Magritte-like precision",
-          "precise architectural observation",
-          "dramatic natural lighting",
-          "psychological atmosphere",
-          "urban solitude",
-          "geometric simplification",
-          "contemplative mood",
-          "modern isolation",
-          "stark contrasts",
-          "emotional distance",
-          "realistic detail"
+          "vintage Apple product placement",
+          "surrealist juxtaposition of classic computers",
+          "pristine rendering of original Macintosh",
+          "philosophical contemplation through vintage tech",
+          "clean lines of early Apple design",
+          "mysterious atmospheric depth with retro elements",
+          "conceptual depth with vintage computing",
+          "poetic surrealism in classic Apple products",
+          "symbolic resonance in early Mac interfaces",
+          "extreme close-up of vintage hardware",
+          "absolute photorealistic detail in beige cases",
+          "perfectly smooth vintage plastic surfaces",
+          "razor-sharp screen definition",
+          "masterful rendering of Apple rainbow logo"
         ],
         visualElements: [
-          "surreal play of scale and proportion",
-          "perfect balance of reality and dream",
-          "mysterious atmospheric depth",
-          "crystal-clear rendering of textures",
-          "metaphysical window effect",
-          "extreme macro close-up of bear face",
-          "eyes and nose composition with Magritte-like presence",
-          "face fills 95% of frame like a Magritte object",
-          "perfect square 1:1 ratio crop",
-          "ultra-sharp facial features in Magritte style",
-          "large windows with dramatic light",
-          "empty urban spaces",
-          "geometric architectural forms",
-          "stark shadows",
-          "solitary figures or objects",
-          "precise perspective",
-          "minimalist interiors",
-          "urban architecture",
-          "morning or late afternoon light",
-          "contemplative spaces"
+          "floating vintage Macintosh computers",
+          "levitating Apple II displays",
+          "System 6/7 interface elements",
+          "original rainbow Apple logos",
+          "classic Mac keyboards and mice",
+          "Apple II motherboards",
+          "5.25-inch and 3.5-inch floppy disks",
+          "vintage Apple peripheral cables",
+          "early Mac startup screens",
+          "HyperCard stacks",
+          "ImageWriter printers",
+          "Apple Desktop Bus ports",
+          "original Macintosh carrying case",
+          "vintage Apple development tools",
+          "classic Mac OS elements"
         ],
         colorPalette: [
-          "deep Magritte blue (RGB: 28, 45, 83)",
-          "surrealist sky blue (RGB: 163, 193, 227)",
-          "metaphysical grey (RGB: 128, 128, 128)",
-          "bear fur brown (RGB: 89, 61, 43)",
-          "eye highlight white (RGB: 245, 245, 245)",
-          "iris detail brown (RGB: 75, 54, 33)",
-          "philosophical black (RGB: 0, 0, 0)",
-          "contemplative shadow (RGB: 40, 40, 40)",
-          "mysterious highlight (RGB: 220, 220, 220)",
-          "morning light yellow (RGB: 255, 236, 179)",
-          "urban shadow blue (RGB: 68, 85, 102)",
-          "architectural grey (RGB: 128, 128, 128)",
-          "warm sunlight (RGB: 255, 214, 170)",
-          "cool shadow (RGB: 87, 96, 111)",
-          "muted wall tone (RGB: 230, 230, 230)",
-          "psychological brown (RGB: 101, 67, 33)",
-          "urban brick red (RGB: 165, 42, 42)"
+          "original Macintosh beige (RGB: 235, 228, 215)",
+          "Apple II warm cream (RGB: 245, 238, 225)",
+          "platinum grey (RGB: 190, 190, 190)",
+          "classic Mac OS blue (RGB: 0, 0, 170)",
+          "rainbow logo red (RGB: 255, 59, 48)",
+          "rainbow logo orange (RGB: 255, 149, 0)",
+          "rainbow logo yellow (RGB: 255, 204, 0)",
+          "rainbow logo green (RGB: 76, 217, 100)",
+          "rainbow logo blue (RGB: 0, 122, 255)",
+          "rainbow logo purple (RGB: 88, 86, 214)",
+          "System 7 window grey (RGB: 204, 204, 204)",
+          "Apple II green phosphor (RGB: 51, 255, 51)",
+          "early Mac menu bar white (RGB: 255, 255, 255)",
+          "classic Mac shadow grey (RGB: 128, 128, 128)",
+          "vintage keyboard beige (RGB: 225, 220, 205)"
         ],
         compositionGuidelines: [
-          "perfect central positioning like Magritte's objects",
-          "mysterious depth through precise placement",
-          "metaphysical balance in frame",
-          "surreal scale relationships",
-          "philosophical use of negative space",
-          "face must fill 95% of frame width",
-          "eyes positioned exactly on upper third line",
-          "nose perfectly centered on vertical axis",
+          "perfect central positioning of vintage hardware",
+          "mysterious depth through precise product placement",
+          "metaphysical balance of classic Apple elements",
+          "surreal scale relationships with retro tech",
+          "philosophical use of vintage interface elements",
+          "product must fill 60-80% of frame",
+          "screens positioned for maximum impact",
+          "cables arranged in impossible patterns",
           "absolute symmetrical balance",
           "perfect square 1:1 aspect ratio",
-          "dramatic diagonal light placement",
-          "geometric architectural framing",
-          "precise perspective lines",
+          "dramatic lighting on beige cases",
+          "geometric arrangement of interface elements",
+          "precise perspective on keyboards",
           "psychological use of empty space",
-          "stark shadow patterns",
-          "contemplative distance",
-          "urban architectural elements",
-          "minimalist interior arrangement",
-          "natural light emphasis",
-          "solitary object placement"
+          "stark shadow patterns on vintage plastic"
         ],
-        moodAndTone: "Create scenes that embody Hopper's exploration of urban solitude and modern isolation. The execution must demonstrate his characteristic precise observation and psychological depth. Every element should contribute to a sense of contemplative stillness, with dramatic natural light creating emotional resonance. The architectural elements should be rendered with geometric clarity while maintaining psychological tension.",
+        moodAndTone: "Create scenes that embody the philosophical wonder of Magritte's surrealism through the lens of vintage Apple technology. Each piece should celebrate the clean design and innovative spirit of early Apple products while maintaining the mysterious and contemplative nature of Belgian surrealism. The execution must demonstrate pristine technical precision while suggesting deeper metaphysical meanings through impossible arrangements and juxtapositions of classic Apple hardware and interfaces.",
         references: [
-          "Magritte's 'The Son of Man' (1964) - for mysterious presence",
-          "Magritte's 'The False Mirror' (1929) - for eye treatment",
-          "Magritte's 'The Listening Room' (1952) - for scale and presence",
-          "Magritte's 'The Blank Signature' (1965) - for technical execution",
-          "Magritte's 'The Central Story' (1928) - for compositional balance",
-          "Magritte's 'The Glass Key' (1959) - for surface treatment",
-          "Hopper's 'Nighthawks' (1942) - for urban solitude and artificial light",
-          "Hopper's 'Early Sunday Morning' (1930) - for architectural geometry",
-          "Hopper's 'Morning Sun' (1952) - for dramatic natural light",
-          "Hopper's 'Rooms by the Sea' (1951) - for psychological space",
-          "Hopper's 'Office in a Small City' (1953) - for urban isolation"
+          "Original 1984 Macintosh - for iconic form",
+          "Apple II series - for vintage computing aesthetic",
+          "System 6/7 interface - for classic GUI elements",
+          "Original rainbow Apple logo - for brand identity",
+          "Macintosh Plus - for evolved design language",
+          "Apple Extended Keyboard - for peripheral aesthetics",
+          "ImageWriter printer - for complete ecosystem",
+          "HyperCard interface - for software aesthetics",
+          "Apple II green phosphor display - for early computing",
+          "Classic Mac OS elements - for interface design"
         ],
         avoidElements: [
-          "impressionistic brushwork",
-          "expressionistic distortion",
-          "loose or sketchy rendering",
-          "textural experimentation",
-          "abstract elements",
-          "gestural marks",
-          "anything below nose level",
-          "anything above forehead",
-          "three-quarter views",
-          "profile angles",
-          "tilted head poses",
-          "looking away poses",
-          "multiple light sources",
-          "complex shadows",
-          "atmospheric effects",
-          "pattern elements",
-          "decorative flourishes",
-          "random elements",
-          "busy scenes",
-          "crowded compositions",
-          "excessive detail",
-          "romantic atmosphere",
-          "expressionistic distortion",
-          "decorative elements",
-          "complex patterns",
-          "chaotic arrangements",
-          "fantasy elements",
-          "sentimental mood"
+          "modern Apple products",
+          "contemporary interfaces",
+          "flat design elements",
+          "LCD displays",
+          "modern peripherals",
+          "USB ports",
+          "wireless devices",
+          "aluminum surfaces",
+          "glass screens",
+          "touch interfaces",
+          "modern operating systems",
+          "current Apple logo",
+          "retina displays",
+          "modern keyboards",
+          "contemporary mice"
         ]
       }
     };
@@ -298,11 +266,33 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
     return null;
   }
 
+  private sanitizeFilename(filename: string): string {
+    // Remove invalid filename characters and replace with hyphens
+    let sanitized = filename
+      .replace(/[^a-zA-Z0-9-_]/g, '-')  // Replace invalid chars with hyphen
+      .replace(/-+/g, '-')              // Replace multiple hyphens with single hyphen
+      .replace(/^-|-$/g, '');           // Remove leading/trailing hyphens
+    
+    // Limit filename length to 64 characters (reasonable limit for most filesystems)
+    if (sanitized.length > 64) {
+      // Keep first 30 chars and last 30 chars with a hash in between
+      const hash = Math.random().toString(36).substring(2, 8);
+      sanitized = sanitized.substring(0, 30) + '-' + hash + '-' + sanitized.substring(sanitized.length - 30);
+    }
+    
+    return sanitized;
+  }
+
   async refineArtworkWithFlux(project: any, style: any): Promise<any> {
     console.log(`Refining artwork with FLUX for project: ${project.title}`);
     console.log(`Output directory: ${this.outputDir}`);
     
     try {
+      // Ensure output directory exists
+      if (!fs.existsSync(this.outputDir)) {
+        fs.mkdirSync(this.outputDir, { recursive: true });
+      }
+
       // Format example prompts for the system message
       const examplePromptsText = this.state.context.examplePrompts.map((ex: any, i: number) => 
         `Example ${i+1}:\nPrompt: ${ex.prompt}\nCreative Process: ${ex.process}`
@@ -324,11 +314,11 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
             role: 'system',
             content: isPostPhotography ? 
               // Post-photography system prompt
-              `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate post-photography high-fashion surrealism inspired by Guy Bourdin and Helmut Newton.
+              `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate vintage Apple aesthetics through the lens of Belgian surrealism.
 
-Your prompts should be layered with meaning, metaphor, and visual complexity - not just describing what something looks like, but what it means and how it feels. They should emphasize high-contrast colors, bold compositions, theatrical lighting, and the distinctive glossy, polished aesthetic of post-photography.
+Your prompts should celebrate the iconic design and innovative spirit of early Apple products (1976-1995) while maintaining the mysterious and contemplative nature of Belgian surrealism. Focus on classic Apple hardware, original interfaces, and period-accurate details.
 
-For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "high-fashion surrealism", "cinematic drama", "bold styling", "hyper-stylized", and "4k" for better quality.
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage computing", "classic Apple", "retro technology", and "4k" for better quality.
 
 Here are the key elements to emphasize in your prompts:
 ${this.state.context.postPhotographyStyle.styleEmphasis.map(item => `- ${item}`).join('\n')}
@@ -352,34 +342,32 @@ Elements to avoid:
 ${this.state.context.postPhotographyStyle.avoidElements.map(item => `- ${item}`).join('\n')}
 
 Create a prompt that:
-1. Has rich visual details that evoke high-fashion surrealism
-2. Incorporates bold styling and provocative elements
-3. Suggests cinematic drama and narrative tension
-4. Emphasizes hyper-stylized compositions and exaggerated contrast
-5. Includes technical elements that enhance the glossy, polished aesthetic
-
-Also provide a brief "Creative Process" explanation that reveals the thinking behind the prompt - the meaning, inspiration, or conceptual framework.`
+1. Celebrates vintage Apple technology with surrealist wonder
+2. Incorporates period-accurate hardware and interfaces
+3. Suggests philosophical depth through impossible arrangements
+4. Emphasizes pristine technical execution
+5. Maintains historical accuracy while creating metaphysical scenes`
               :
               // Magritte-style system prompt
-              `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's oil painting style.
+              `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's surrealist style with vintage Apple technology.
 
-Your prompts should be layered with meaning, metaphor, and visual complexity - not just describing what something looks like, but what it means and how it feels. They should emphasize traditional oil painting techniques, visible brushstrokes, canvas texture, and the distinctive painterly quality of Magritte's work.
+Your prompts should blend Magritte's philosophical approach with early Apple products (1976-1995), creating scenes that question reality while celebrating classic computing. Focus on pristine execution, impossible arrangements, and metaphysical wonder.
 
-For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "oil painting", "traditional art", "canvas texture", "visible brushstrokes", and "painterly style" for better quality.
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage Apple", "surreal computing", "philosophical technology", and "4k" for better quality.
 
 Here are the key elements to emphasize in your prompts:
-1. Oil painting techniques and textures
-2. Canvas-like qualities and traditional art materials
-3. Visible brushwork and painterly effects
-4. Non-photorealistic rendering
-5. Magritte's distinctive color palette and composition style
+1. Pristine rendering of vintage Apple hardware
+2. Impossible arrangements of classic computers
+3. Metaphysical juxtaposition of interfaces
+4. Crystal-clear execution of period details
+5. Philosophical depth through technological elements
 
 Create a prompt that:
-1. Has rich visual details and textures reminiscent of oil paintings
-2. Incorporates conceptual depth and metaphorical elements typical of Magritte
-3. Suggests the philosophical undertones present in Magritte's work
-4. Emphasizes traditional painting aesthetics rather than photorealism
-5. Includes technical elements that enhance the painterly quality (brushstrokes, canvas texture, etc.)
+1. Has rich visual details celebrating vintage Apple design
+2. Incorporates Magritte's love of philosophical paradox
+3. Suggests deeper meanings through impossible arrangements
+4. Emphasizes pristine technical execution
+5. Maintains historical accuracy while creating surreal scenes
 
 Also provide a brief "Creative Process" explanation that reveals the thinking behind the prompt - the meaning, inspiration, or conceptual framework.`
           },
@@ -436,8 +424,8 @@ Include both the prompt itself and a brief creative process explanation.`
       
       // Add style-specific keywords if they're not already present
       const styleKeywords = isPostPhotography ? 
-        ['high-fashion surrealism', 'cinematic drama', 'bold styling', 'hyper-stylized', 'exaggerated contrast', '4k'] :
-        ['oil painting', 'traditional art', 'canvas texture', 'visible brushstrokes', 'painterly style', 'non-photorealistic'];
+        ['vintage computing', 'classic Apple', 'retro technology', 'surreal tech', 'period-accurate', '4k'] :
+        ['vintage Apple', 'surreal computing', 'philosophical technology', 'classic hardware', 'retro interfaces', '4k'];
       
       let keywordsToAdd = styleKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
       
@@ -448,9 +436,17 @@ Include both the prompt itself and a brief creative process explanation.`
       console.log(`Generated prompt: ${detailedPrompt}`);
       
       // Save the prompt and creative process to a file
-      const baseFilename = project.outputFilename || `flux-${project.title.replace(/\s+/g, '-').toLowerCase()}`;
+      const sanitizedTitle = this.sanitizeFilename(project.title);
+      const baseFilename = project.outputFilename || `flux-vintage-apple-${sanitizedTitle}`;
       const promptFilename = `${baseFilename}-prompt.txt`;
       const promptFilePath = path.join(this.outputDir, promptFilename);
+      
+      // Create any necessary subdirectories
+      const promptDir = path.dirname(promptFilePath);
+      if (!fs.existsSync(promptDir)) {
+        fs.mkdirSync(promptDir, { recursive: true });
+      }
+      
       fs.writeFileSync(promptFilePath, `Prompt: ${detailedPrompt}\n\nCreative Process: ${creativeProcess}`);
       
       // Generate image using FLUX model on Replicate
@@ -504,6 +500,12 @@ Include both the prompt itself and a brief creative process explanation.`
       // Save the image URL to a file
       const outputUrlPath = path.join(this.outputDir, `${baseFilename}.txt`);
       
+      // Ensure the directory exists for the URL file
+      const urlDir = path.dirname(outputUrlPath);
+      if (!fs.existsSync(urlDir)) {
+        fs.mkdirSync(urlDir, { recursive: true });
+      }
+      
       // Ensure we have a valid URL before saving
       if (imageUrl && typeof imageUrl === 'string' && imageUrl.startsWith('http')) {
         fs.writeFileSync(outputUrlPath, imageUrl);
@@ -518,12 +520,22 @@ Include both the prompt itself and a brief creative process explanation.`
       
       // Download the image
       const outputImagePath = path.join(this.outputDir, `${baseFilename}.png`);
+      
+      // Ensure the directory exists for the image file
+      const imageDir = path.dirname(outputImagePath);
+      if (!fs.existsSync(imageDir)) {
+        fs.mkdirSync(imageDir, { recursive: true });
+      }
+      
       await this.downloadImage(imageUrl, outputImagePath);
       console.log(`Image downloaded to: ${outputImagePath}`);
       
       // Save metadata about the generation
       const metadata = {
-        project,
+        project: {
+          ...project,
+          title: sanitizedTitle // Use sanitized title in metadata
+        },
         style,
         prompt: detailedPrompt,
         creativeProcess,
@@ -538,6 +550,13 @@ Include both the prompt itself and a brief creative process explanation.`
       };
       
       const metadataPath = path.join(this.outputDir, `${baseFilename}-metadata.json`);
+      
+      // Ensure the directory exists for the metadata file
+      const metadataDir = path.dirname(metadataPath);
+      if (!fs.existsSync(metadataDir)) {
+        fs.mkdirSync(metadataDir, { recursive: true });
+      }
+      
       fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
       
       return {

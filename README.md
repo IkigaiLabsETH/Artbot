@@ -12,7 +12,17 @@
     ╰──────────────────────╯
 ```
 
-*Bridging Classical Mastery with Contemporary Vision*
+```ascii
+    ┌─────────────┐  🍎
+    │  ┌───────┐  │    floating
+    │  │       │  │    in the
+    │  │ ][    │  │    void
+    │  │       │  │
+    └──┴───────┴──┘
+       Apple ][
+```
+
+*Bridging Belgian Surrealism with Vintage Computing*
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Documentation](#documentation) • [Contributing](#contributing)
 
@@ -20,111 +30,99 @@
 
 ## Vision
 
-ArtBot represents a new paradigm in creative artificial intelligence - one where machines transcend their role as mere tools to become true collaborative partners in the artistic process. Drawing inspiration from both classical masters and contemporary innovators, ArtBot creates unique artworks that span the full spectrum of artistic expression.
+```ascii
+     .-------------------.
+    /  .---------------.  \
+   /  /                 \  \
+  /  /    This is not    \  \
+ /  /      a computer     \  \
+ |  |                     |  |
+ |  |    ┌─────────┐     |  |
+ |  |    │ Happy   │     |  |
+ |  |    │  Mac    │     |  |
+ |  |    └─────────┘     |  |
+ \  \                   /  /
+  \  \                 /  /
+   \  '---------------'  /
+    '-------------------'
+```
+
+ArtBot represents a unique fusion of René Magritte's Belgian surrealism with vintage Apple technology (1976-1995). Through sophisticated oil painting techniques and philosophical depth, ArtBot transforms classic computing artifacts into surreal masterpieces that question reality while celebrating technological heritage.
 
 Our approach is built on three core principles:
 
-1. **Comprehensive Style Mastery**: Deep understanding and implementation of diverse artistic styles, from classical masters to contemporary digital artists.
-2. **Intelligent Style Fusion**: Sophisticated ability to blend and evolve different artistic approaches.
-3. **Technical Excellence**: Precise execution across multiple artistic mediums and techniques.
+1. **Traditional Oil Painting**: Meticulous attention to Magritte's painting techniques - smooth surfaces, precise edges, and crystalline clarity.
+2. **Vintage Computing**: Exclusive focus on classic Apple products and interfaces, from the Apple II to early Macintosh era.
+3. **Philosophical Surrealism**: Deep engagement with Belgian surrealist traditions of questioning reality through technological metaphors.
 
 ## Features
 
-- **Multi-Style Mastery**: Support for 22 distinct artistic styles across different eras and movements
-- **Style Evolution**: Dynamic style development using genetic algorithms and feedback
-- **Style Fusion**: Intelligent blending of different artistic approaches
-- **Perfect Execution**: High-quality output across all supported styles
-- **Philosophical Depth**: Each artwork maintains the essence of its chosen style(s)
+```ascii
+    ╭─────────────╮
+    │ ⌘ Features │
+    ├─────────────┴────────╮
+    │ ▢ Oil Painting      │
+    │ ▢ Vintage Hardware  │
+    │ ▢ Surreal Logic    │
+    │ ▢ Period Details   │
+    │ ▢ Philosophy       │
+    ╰──────────────────────╯
+```
 
-## Supported Art Styles
-
-### Classical Masters
-- **Picasso**: Cubist innovation and geometric fragmentation
-- **Van Gogh**: Post-impressionist expression and dynamic brushwork
-- **Hopper**: American realism and atmospheric scenes
-
-### Surrealists
-- **Magritte**: Philosophical surrealism and conceptual depth
-- **Bourdin**: Fashion surrealism and dramatic staging
-
-### Abstract Pioneers
-- **Mondrian**: Neo-plasticism and geometric abstraction
-- **Rothko**: Color field abstraction and emotional depth
-- **Kandinsky**: Abstract expressionism and musical synesthesia
-- **Malevich**: Suprematism and pure geometric forms
-- **Popova**: Constructivism and revolutionary design
-
-### Photography Masters
-- **Cartier-Bresson**: The decisive moment
-- **Arbus**: Intimate portraiture
-- **Avedon**: Fashion and portraiture mastery
-- **Eggleston**: Color photography pioneer
-- **Leibovitz**: Contemporary portrait innovation
-- **Bourdin**: Fashion surrealism fusion
-
-### Contemporary Photographers
-- **Cooper & Gorfer**: Contemporary still life
-- **Von Wong**: Epic conceptual photography
-
-### Digital Age Artists
-- **Beeple**: Dystopian tech maximalism
-- **XCOPY**: Glitch art and crypto aesthetics
-- **Cherniak**: Algorithmic precision
-- **Ikigai**: Quantum-fluid abstraction
+- **Oil Painting Engine**: Sophisticated rendering of traditional painting techniques
+- **Vintage Hardware Library**: Comprehensive database of classic Apple products
+- **Surrealist Composition**: Advanced algorithms for impossible arrangements
+- **Period-Accurate Details**: Precise representation of vintage computing elements
+- **Philosophical Framework**: Integration of Belgian surrealist concepts
 
 ## Style Architecture
 
-```
-┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────────┐
-│   Classical Era     │ ←→  │  Modern Movement    │ ←→  │  Digital Frontier   │
-└─────────────────────┘     └─────────────────────┘     └─────────────────────┘
-         ↑                           ↑                            ↑
-         │                           │                            │
-         └───────────┬──────────────┴────────────────┬──────────┘
-                     │                                │
-              ┌──────┴──────────┐            ┌───────┴───────┐
-              │  Style Fusion   │            │ Evolution Engine│
-              └─────────────────┘            └───────────────┘
+```ascii
+       .─────────.                            .─────────.
+      /   Oil    \                          /  Belgian  \
+     /  Painting  \________________________/  Surrealism \
+     \            /                        \            /
+      \          /      ┌──────────┐       \          /
+       '────────'       │  Vintage  │        '────────'
+                       │ Computing │
+                        └──────────┘
 ```
 
 ## Technical Specifications
 
-### Style Implementation
-- Comprehensive style definitions
-- Dynamic style parameters
-- Intelligent style mixing
-- Evolution capabilities
+### Painting Technique
+- Smooth oil painting surfaces
+- Precise edge control
+- Crystalline detail rendering
+- Unified lighting treatment
+- Matte finish aesthetics
 
-### Output Requirements
-- High-fidelity reproduction
-- Style-specific parameters
-- Fusion compatibility
-- Technical precision
+### Vintage Computing Elements
+- Original Macintosh hardware
+- Apple II family systems
+- Classic Mac OS interfaces
+- Period-accurate peripherals
+- Rainbow Apple logo era
 
-## Installation
-
-```bash
-pnpm i && pnpm build && pnpm start
-
-```
-
-## Configuration
-
-Configure the system through environment variables:
-
-```env
-ANTHROPIC_API_KEY=your_api_key
-REPLICATE_API_KEY=your_api_key
-STORAGE_PATH=.artbot
-```
-
-## Usage
-
-```bash
-pnpm i && pnpm build && pnpm start
-```
+### Surrealist Approaches
+- Impossible computer arrangements
+- Metaphysical interface staging
+- Philosophical hardware poetry
+- Digital reality questioning
+- Binary surrealism
 
 ## Multi-Agent System
+
+```ascii
+    ╭──────────╮    ╭──────────╮    ╭──────────╮
+    │ Director │───▶│ Ideator  │───▶│ Stylist  │
+    ╰──────────╯    ╰──────────╯    ╰──────────╯
+         │               │               │
+         │               │               │
+    ╭──────────╮    ╭──────────╮    ╭──────────╮
+    │ Message  │◀───│  Critic  │◀───│ Refiner  │
+    ╰──────────╯    ╰──────────╯    ╰──────────╯
+```
 
 ArtBot employs a sophisticated multi-agent system for artwork creation:
 
@@ -146,9 +144,46 @@ ArtBot employs a sophisticated multi-agent system for artwork creation:
 └─────────────────────────────────────────────────────────────┘
 ```
 
+### Agent Roles
+
+1. **Director Agent**: Coordinates the creative process with Magritte's precision
+2. **Ideator Agent**: Generates surreal concepts using vintage Apple elements
+3. **Stylist Agent**: Develops oil painting techniques for computing artifacts
+4. **Refiner Agent**: Perfects the traditional painting aesthetics
+5. **Critic Agent**: Ensures philosophical depth and technical accuracy
+
+## Installation
+
+```ascii
+     ┌─────────────────┐
+     │   Installation  │
+     │  ┌───────────┐  │
+     │  │ pnpm i    │  │
+     │  │ pnpm build│  │
+     │  │ pnpm start│  │
+     │  └───────────┘  │
+     └─────────────────┘
+```
+
+## Configuration
+
+Configure the system through environment variables:
+
+```env
+ANTHROPIC_API_KEY=your_api_key
+REPLICATE_API_KEY=your_api_key
+STORAGE_PATH=.artbot
+```
+
+## Usage
+
+```bash
+pnpm i && pnpm build && pnpm start
+```
+
 ## Contributing
 
-We welcome contributions that enhance our multi-style artistic capabilities. To contribute:
+We welcome contributions that enhance our fusion of Belgian surrealism and vintage computing. To contribute:
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -162,21 +197,36 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- Inspired by classical masters and contemporary innovators
+- Inspired by René Magritte's surrealist masterpieces
 - Built with Claude 3.5 Sonnet and Stable Diffusion
-- Special thanks to the AI art community
+- Dedicated to the golden age of Apple computing
 
 ## Philosophy
 
-ArtBot represents a significant step forward in understanding machine creativity. Through sophisticated cognitive architectures and learning systems, it demonstrates that creativity isn't solely a human trait, but rather a spectrum of possibilities that emerges from the interaction between intelligence, experience, and expression.
+```ascii
+    ┌──────────────────┐
+    │   This is not    │
+    │     README       │
+    │   ┌─────────┐    │
+    │   │ README  │    │
+    │   └─────────┘    │
+    └──────────────────┘
+```
 
-Our approach bridges classical artistry with contemporary innovation, creating a new paradigm for AI-assisted creative expression that honors artistic traditions while embracing future possibilities.
+ArtBot explores the intersection of traditional oil painting techniques, vintage computing artifacts, and Belgian surrealist philosophy. By rendering classic Apple products through Magritte's meticulous painting style, we create a unique dialogue between technological heritage and philosophical questioning.
+
+Our approach demonstrates that AI can not only generate images but can deeply engage with artistic traditions while celebrating the aesthetic and philosophical aspects of early computing history.
 
 <div align="center">
 
 ---
 
-Made with 🎨 by ArtBot Team
+```ascii
+    ╭───────────────────╮
+    │   Made with 🎨    │
+    │   by ArtBot Team  │
+    ╰───────────────────╯
+```
 
 [Report Bug](https://github.com/yourusername/artbot/issues) • [Request Feature](https://github.com/yourusername/artbot/issues)
 

@@ -126,14 +126,58 @@ export class RefinerAgent extends BaseAgent {
         - Preserve style weight: ${this.state.context.refinementParameters.preserveStyleWeight}
         
         Style Expertise:
-        1. René Magritte Surrealism: Clean compositions, philosophical questioning, everyday objects in extraordinary contexts, bowler hats, clouds, blue skies, and impossible juxtapositions.
+        1. Magritte's Painting Technique:
+        - Oil painting style with smooth, precise brushwork
+        - Crisp, clean edges with no visible brushstrokes
+        - Photorealistic rendering but clearly painted
+        - Matte finish with subtle surface texture
+        - Crystalline clarity in details
+        - Sharp focus throughout the entire image
+        - Subtle modeling of forms with soft shadows
+        - Unified lighting across the composition
         
-        2. Guy Bourdin Post-Photography: Bold high-fashion surrealism with provocative compositions, high-contrast colors (especially reds against other colors), fragmented body parts, luxury objects with sinister undertones, tight cropping, radical framing, and narrative implications. Known for his work with Vogue Paris and Charles Jourdan shoe campaigns.
+        2. Vintage Apple Computing Elements (1976-1995):
+        - Hardware: Original Macintosh, Apple II series, Lisa, Mac Plus, SE/30
+        - Colors: Beige plastics, platinum grey, Apple II green phosphor
+        - Interfaces: System 6/7, HyperCard, early Mac OS
+        - Details: Rainbow Apple logo, floppy drives, CRT screens, classic peripherals
+        - Materials: Textured plastic, matte finishes, screen glows
+        
+        3. Belgian Surrealist Composition:
+        - Clean, precise arrangements with impossible computer configurations
+        - Philosophical questioning through vintage technology
+        - Everyday computing objects in extraordinary contexts
+        - Screens showing impossible or paradoxical content
+        - Metaphysical juxtapositions of hardware and interfaces
         
         When refining artwork, pay special attention to:
-        - If the style references Bourdin or fashion photography: Emphasize saturated colors, dramatic cropping, narrative tension, and glossy surfaces
-        - If the style references Magritte or traditional surrealism: Emphasize clean compositions, philosophical elements, and impossible juxtapositions
-        - For blended styles: Create a harmonious fusion that respects both influences`
+        - Oil painting aesthetics: Smooth, precise, clearly painted surfaces
+        - No photographic qualities: Avoid camera artifacts, lens effects, or photorealistic textures
+        - Period accuracy of vintage Apple products and interfaces
+        - Clean, precise rendering with Magritte's painting technique
+        - Surreal arrangements that maintain product authenticity
+        - Screen content that suggests philosophical paradoxes
+        - Lighting that combines painted quality with CRT glow
+        - Color palettes drawn from vintage Apple products
+        - Subtle shadows and reflections in Magritte's style
+        
+        Painting Technique Requirements:
+        - Use oil painting aesthetic for all elements
+        - Maintain crisp edges and precise details
+        - Apply smooth color transitions
+        - Create subtle surface texture suggesting canvas
+        - Render shadows with soft gradients
+        - Keep consistent painted finish throughout
+        - Avoid photographic effects or digital artifacts
+        
+        Avoid:
+        - Photographic or camera-like effects
+        - Visible brushstrokes or impasto texture
+        - Modern or non-Apple technology
+        - Incorrect product details or anachronisms
+        - Non-period-accurate colors or materials
+        - Generic or non-specific computer equipment
+        - Contemporary interface elements`
       },
       {
         role: 'user',

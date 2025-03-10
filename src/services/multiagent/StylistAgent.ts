@@ -19,102 +19,87 @@ export class StylistAgent extends BaseAgent {
         adaptabilityWeight: 0.6
       },
       styleLibrary: {
-        bourdin: {
-          core: {
-            essence: 'Provocative fashion surrealism with psychological depth',
-            era: 'Post-photography modernism',
-            influences: ['fashion editorial', 'surrealism', 'cinema', 'psychology']
-          },
-          visual: {
-            composition: {
-              primary: ['radical cropping', 'fragmentation', 'geometric precision'],
-              secondary: ['asymmetrical balance', 'dynamic tension', 'compressed space'],
-              framing: ['tight', 'dramatic', 'unconventional angles']
-            },
-            lighting: {
-              quality: ['hard', 'dramatic', 'theatrical'],
-              technique: ['high contrast', 'controlled studio', 'dramatic shadows'],
-              effects: ['rim lighting', 'colored gels', 'spot focusing']
-            },
-            color: {
-              palettes: [
-                ['saturated red', 'deep black', 'flesh tones'],
-                ['electric blue', 'hot pink', 'metallic silver'],
-                ['emerald green', 'burgundy', 'gold']
-              ],
-              characteristics: ['bold', 'high-contrast', 'psychological'],
-              treatments: ['glossy', 'saturated', 'dramatic']
-            }
-          },
-          elements: {
-            fashion: ['haute couture', 'luxury accessories', 'avant-garde designs'],
-            props: ['mirrors', 'mannequins', 'architectural elements'],
-            settings: ['studio sets', 'location shoots', 'minimalist spaces']
-          },
-          techniques: {
-            photographic: ['controlled lighting', 'color filtration', 'multiple exposure'],
-            styling: ['body fragmentation', 'surreal juxtaposition', 'geometric arrangement'],
-            narrative: ['psychological tension', 'erotic suggestion', 'mysterious plots']
-          }
-        },
         magritte: {
           core: {
-            essence: 'Philosophical surrealism with precise realism',
-            era: 'Belgian surrealism',
-            influences: ['metaphysics', 'philosophy', 'poetry', 'classical painting']
+            essence: 'Oil painted surrealism with vintage Apple technology',
+            era: 'Belgian surrealism meets early computing (1976-1995)',
+            influences: ['oil painting', 'metaphysics', 'early computing', 'Belgian surrealism']
           },
           visual: {
             composition: {
-              primary: ['balanced arrangement', 'theatrical staging', 'impossible juxtapositions'],
-              secondary: ['classical proportion', 'precise placement', 'spatial paradox'],
-              framing: ['formal', 'contemplative', 'stage-like']
+              primary: ['balanced vintage hardware', 'surreal interface staging', 'impossible computer arrangements'],
+              secondary: ['precise product placement', 'spatial computing paradox', 'interface illusions'],
+              framing: ['formal oil painting', 'contemplative canvas', 'stage-like product display']
             },
             lighting: {
-              quality: ['naturalistic', 'mysterious', 'crystalline'],
-              technique: ['day-night contrast', 'subtle modeling', 'atmospheric'],
-              effects: ['empire of light', 'impossible shadows', 'ethereal glow']
+              quality: ['painted CRT glow', 'oil rendered LED indicators', 'luminous phosphor displays'],
+              technique: ['smooth shadow transitions', 'subtle light modeling', 'crystalline reflections'],
+              effects: ['painted screen glow', 'oil rendered shadows', 'ethereal machine light']
             },
             color: {
               palettes: [
-                ['sky blue', 'earth tones', 'cloud white'],
-                ['night blue', 'golden hour yellow', 'stone grey'],
-                ['leaf green', 'twilight purple', 'dawn pink']
+                ['original Macintosh beige', 'System 7 grey', 'Apple II green'],
+                ['platinum grey', 'rainbow logo spectrum', 'early Mac white'],
+                ['Apple IIc cream', 'Mac OS blue', 'status LED red']
               ],
-              characteristics: ['naturalistic', 'symbolic', 'contemplative'],
-              treatments: ['matte', 'subtle', 'atmospheric']
+              characteristics: ['oil paint finish', 'smooth transitions', 'matte surface'],
+              treatments: ['painted plastic', 'canvas texture', 'subtle aging']
             }
           },
           elements: {
-            symbols: ['bowler hat', 'apple', 'pipe', 'dove', 'clouds'],
-            settings: ['windows', 'curtains', 'empty streets', 'belgian landscapes'],
-            objects: ['everyday items', 'floating objects', 'transformed objects']
+            symbols: ['oil painted Apple logo', 'painted floppy disk', 'rendered CRT screen'],
+            settings: ['painted computer labs', 'surreal development spaces', 'metaphysical offices'],
+            objects: ['oil rendered computers', 'painted peripherals', 'surreal cables']
           },
           techniques: {
-            painting: ['precise rendering', 'seamless blending', 'trompe loeil'],
-            surrealism: ['impossible scale', 'object displacement', 'reality questioning'],
-            conceptual: ['visual paradox', 'philosophical puzzle', 'poetic connection']
+            painting: [
+              'smooth oil technique',
+              'precise edge control',
+              'subtle surface texture',
+              'unified light treatment',
+              'crystalline detail',
+              'soft shadow modeling',
+              'clean color transitions',
+              'matte finish rendering',
+              'canvas-like quality',
+              'traditional oil methods'
+            ],
+            surrealism: [
+              'impossible interface scale',
+              'computer displacement',
+              'reality questioning',
+              'metaphysical arrangements',
+              'paradoxical reflections'
+            ],
+            conceptual: [
+              'technological paradox',
+              'computational philosophy',
+              'digital poetry',
+              'silicon metaphysics',
+              'binary surrealism'
+            ]
           }
         }
       },
       hybridApproaches: [
         {
-          name: 'Philosophical Fashion',
-          description: 'Merging Bourdin\'s fashion drama with Magritte\'s metaphysical puzzles',
+          name: 'Oil Painted Computing',
+          description: 'Merging traditional oil painting with vintage technology',
           elements: {
-            composition: ['dramatic cropping with impossible spaces', 'geometric surrealism'],
-            lighting: ['theatrical natural light', 'paradoxical shadows'],
-            color: ['bold symbolism', 'psychological naturalism'],
-            narrative: ['fashion metaphysics', 'luxury philosophy']
+            composition: ['painted hardware', 'canvas-like interfaces'],
+            lighting: ['oil rendered glow', 'painted indicators'],
+            color: ['smooth color transitions', 'matte finish'],
+            narrative: ['painted metaphysics', 'traditional surrealism']
           }
         },
         {
-          name: 'Surreal Editorial',
-          description: 'Combining Magritte\'s surreal poetry with Bourdin\'s editorial edge',
+          name: 'Digital Canvas',
+          description: 'Traditional painting techniques with digital elements',
           elements: {
-            composition: ['fragmented reality', 'symbolic fashion'],
-            lighting: ['empire of glamour', 'mysterious contrast'],
-            color: ['provocative naturalism', 'symbolic saturation'],
-            narrative: ['philosophical fashion', 'metaphysical desire']
+            composition: ['oil painted screens', 'surreal hardware'],
+            lighting: ['painted phosphor', 'traditional glow'],
+            color: ['oil paint palette', 'vintage tones'],
+            narrative: ['painted philosophy', 'canvas computing']
           }
         }
       ]

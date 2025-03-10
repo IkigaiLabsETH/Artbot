@@ -33,103 +33,109 @@ interface ArtDirection {
 // Default art direction that can be overridden by environment variables or parameters
 const defaultArtDirection: ArtDirection = {
   styleEmphasis: [
-    // Magritte's Distinctive Style with Bourdin and Kandinsky influences
-    "metaphysical surrealism",
-    "paradoxical realism",
-    "symbolic juxtaposition",
-    "mysterious atmosphere",
-    "theatrical staging",
-    "geometric spirituality",
-    "poetic displacement",
-    "dreamlike composition",
-    "philosophical questioning",
-    "spatial illusion",
-    "dramatic tension",
-    "harmonious abstraction",
+    // Belgian Surrealist Influences
+    "Magritte's metaphysical precision",
+    "Paul Delvaux's dreamlike atmosphere",
+    "Rachel Baes's mysterious symbolism",
+    "Marcel Mariën's object juxtaposition",
+    "Jane Graverol's feminine surrealism",
+    "Paul Nougé's conceptual paradox",
+    "Marcel Broodthaers's institutional critique",
     "symbolic resonance",
     "temporal displacement",
-    "spiritual geometry"
+    "philosophical questioning",
+    "poetic displacement",
+    "dreamlike composition",
+    "spatial illusion",
+    "dramatic tension",
+    "harmonious abstraction"
   ],
   visualElements: [
-    // Visual Language Elements
-    "floating objects",
-    "impossible windows",
-    "mysterious doorways",
-    "dramatic shadows",
-    "geometric forms",
-    "billowing curtains",
-    "clouded skies",
-    "mirror reflections",
-    "levitating stones",
-    "spiritual symbols",
-    "theatrical lighting",
-    "geometric patterns",
-    "surreal landscapes",
-    "metaphysical props",
-    "symbolic objects"
+    // Strictly Vintage Apple Elements
+    "floating Macintosh SE/30 computers",
+    "levitating Apple IIe displays",
+    "System 7 interface floating in space",
+    "rainbow Apple logos in impossible arrangements",
+    "hovering vintage Mac keyboards",
+    "geometric patterns of Apple II circuit boards",
+    "billowing curtains revealing Mac Plus screens",
+    "clouded skies filled with MacOS icons",
+    "mirror reflections of Apple Lisa interfaces",
+    "classic Mac startup chimes visualized",
+    "original Macintosh mice in surreal patterns",
+    "glowing Apple II power lights",
+    "suspended 5.25-inch Apple floppy disks",
+    "ethereal Apple ImageWriter printers",
+    "metaphysical Apple Desktop Bus ports",
+    "symbolic early HyperCard stacks"
   ],
   colorPalette: [
-    // Magritte-Bourdin-Kandinsky Fusion
-    "belgian sky blue",
-    "deep twilight",
-    "dramatic red",
-    "spiritual yellow",
-    "metaphysical green",
-    "mysterious grey",
-    "theatrical gold",
-    "surreal azure",
-    "geometric ultramarine",
-    "philosophical brown"
+    // Vintage Apple Color Palette
+    "original Macintosh beige",
+    "Apple II warm cream",
+    "platinum grey",
+    "classic Mac OS blue",
+    "rainbow logo red",
+    "rainbow logo yellow",
+    "rainbow logo green",
+    "rainbow logo blue",
+    "rainbow logo purple",
+    "System 7 window grey",
+    "Apple II green phosphor",
+    "early Mac menu bar white",
+    "classic Mac shadow grey",
+    "Apple IIc platinum",
+    "vintage keyboard beige"
   ],
   compositionGuidelines: [
-    // Compositional Principles
-    "paradoxical placement",
-    "dramatic staging",
-    "geometric balance",
+    // Belgian Surrealist Compositional Principles
+    "Magritte's paradoxical placement",
+    "Delvaux's architectural perspective",
+    "Baes's intimate staging",
+    "Mariën's object poetry",
+    "Graverol's symbolic framing",
+    "Nougé's conceptual arrangement",
+    "Broodthaers's institutional spaces",
     "mysterious depth",
-    "symbolic framing",
-    "theatrical lighting",
-    "spiritual harmony",
-    "surreal scale",
+    "surreal scale relationships",
     "metaphysical perspective",
-    "poetic arrangement",
+    "poetic object placement",
     "dramatic tension",
     "geometric rhythm",
     "philosophical space",
-    "temporal discord",
     "symbolic resonance"
   ],
-  moodAndTone: "Create a deeply surreal and metaphysical atmosphere in Magritte's tradition, where familiar objects become mysterious through paradoxical placement and symbolic resonance. Incorporate Bourdin's dramatic staging and theatrical lighting to enhance the narrative tension, while using Kandinsky's geometric spirituality to add harmonic structure.",
+  moodAndTone: "Create a deeply surreal and metaphysical atmosphere drawing from the Belgian Surrealist tradition, where vintage Apple technology becomes mysterious through paradoxical placement and symbolic resonance. Blend Magritte's precise execution, Delvaux's dreamy atmosphere, Baes's mysticism, Mariën's object poetry, Graverol's metamorphoses, Nougé's conceptual approach, and Broodthaers's institutional critique.",
   references: [
-    // Master Influences
-    "Magritte's metaphysical paradoxes and symbolic imagery",
-    "Magritte's mysterious atmospheres and impossible scenarios",
-    "Bourdin's dramatic staging and theatrical lighting",
-    "Bourdin's narrative tension and composition",
-    "Kandinsky's spiritual geometry and harmony",
-    "Kandinsky's dynamic forms and color relationships",
-    "Magritte's window motifs and sky treatments",
-    "Magritte's displacement of ordinary objects",
-    "Bourdin's use of dramatic color and shadow",
-    "Kandinsky's abstract spiritual elements"
+    // Belgian Surrealist Master Influences
+    "Magritte's pristine execution and impossible scenarios",
+    "Delvaux's dreamy architectural spaces",
+    "Rachel Baes's mysterious feminine symbolism",
+    "Marcel Mariën's poetic object arrangements",
+    "Jane Graverol's surreal transformations",
+    "Paul Nougé's conceptual paradoxes",
+    "Marcel Broodthaers's institutional critiques",
+    "Belgian surrealist use of text and image",
+    "Collective Belgian surrealist atmosphere",
+    "Shared themes of displacement and mystery"
   ],
   avoidElements: [
-    // Elements to Avoid
-    "literal surrealism",
-    "obvious symbolism",
-    "random juxtaposition",
-    "excessive drama",
-    "decorative geometry",
-    "cliché imagery",
-    "forced mystery",
-    "shallow philosophy",
-    "predictable composition",
-    "imitative surrealism",
-    "theatrical excess",
-    "rigid geometry",
-    "obvious narrative",
-    "superficial staging",
-    "meaningless symbols"
+    // Elements to Strictly Avoid
+    "non-Apple antique objects",
+    "vintage furniture or decor",
+    "traditional antique elements",
+    "period architectural details",
+    "classical ornaments",
+    "vintage clothing or fashion",
+    "antique books or papers",
+    "historical artifacts",
+    "period-specific decorative elements",
+    "vintage mechanical objects",
+    "antique scientific instruments",
+    "old-world aesthetics",
+    "vintage transportation elements",
+    "period lighting fixtures",
+    "traditional art materials"
   ]
 };
 
@@ -188,9 +194,9 @@ const categoryArg = process.argv[3];
 // Initialize the style manager
 const styleManager = new StyleManager();
 
-// Modify the concept detection to use style parameter
-function detectConceptCategory(concept: string, style: ArtistStyle = 'magritte'): string {
-  // Always return magritte_style regardless of input to enforce Magritte as default
+// Modify the concept detection to always use Magritte style
+function detectConceptCategory(concept: string): string {
+  // Always return magritte_style to enforce Magritte as default
   return 'magritte_style';
 }
 
@@ -232,13 +238,84 @@ const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
 const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
 const MINIMAX_MODEL = 'minimax/image-01';
 
-// Define the models with Magritte-specific settings
+// Define the models with Belgian Surrealist-LiveTheLifeTV fusion settings
 const MAGRITTE_STYLE_CONFIG = {
-  prompt_prefix: "In the metaphysical surrealist style of Magritte, with Bourdin's dramatic staging and Kandinsky's spiritual geometry. Create a mysterious and philosophical interpretation with ",
-  prompt_suffix: ". Use paradoxical placement, theatrical lighting, and geometric harmony. Style emphasizing symbolic resonance and impossible realities.",
-  negative_prompt: "literal, obvious, random, excessive, decorative, cliché, forced, shallow, predictable, imitative, theatrical, rigid, superficial",
+  prompt_prefix: "Drawing from the Belgian Surrealist tradition but focusing exclusively on vintage Apple technology, create a scene that blends surrealism with LiveTheLifeTV's modern cinematic vision. Using only classic Apple products and interfaces from the Macintosh era (1984-1995), the scene should maintain the Belgian Surrealists' execution while incorporating ",
+  prompt_suffix: `. Render with meticulous attention to:
+- Objects: Exclusively vintage Apple hardware and interfaces:
+  * Macintosh computers (128K through Quadra)
+  * Apple II family systems
+  * Original Apple peripherals and accessories
+  * Classic Mac OS interfaces and icons
+  * Apple-specific cables and connectors
+  * Period-accurate Apple marketing elements
+- Color Palette: Classic Apple computing colors:
+  * Warm beiges and creams from original Macintosh cases
+  * Platinum greys from Apple IIc and later Macs
+  * Phosphorescent greens from early monitors
+  * Rainbow logo spectrum (red, orange, yellow, green, blue, purple)
+  * Clean whites from early Mac interface elements
+  * System-specific greys and blues from Mac OS
+- Lighting: Belgian Surrealist approaches with vintage tech:
+  * Magritte's crystalline illumination on CRT screens
+  * Delvaux's dreamy atmosphere with screen glow
+  * Baes's mysterious glow from status LEDs
+  * Computer lab fluorescent clarity
+- Composition: Belgian Surrealist principles with Apple elements:
+  * Magritte's impossible juxtapositions of Mac hardware
+  * Delvaux's architectural depth in computer labs
+  * Mariën's poetic arrangements of Apple products
+  * Graverol's symbolic framing of interfaces
+- Technical Elements:
+  * Perfectly smooth paint application
+  * Crisp edges and precise details
+  * Photorealistic rendering of Apple hardware
+  * Clean, uncluttered compositions
+  * Sharp focus throughout
+Style emphasizing Belgian Surrealist mastery while exclusively using vintage Apple aesthetics.`,
+  negative_prompt: "loose brushwork, visible brushstrokes, impasto, textured paint, expressionistic, sketchy, painterly, rough, gestural, abstract, messy, blurry, modern devices, contemporary colors, dark moody tones, grungy textures, weathered surfaces, distressed materials, non-Apple antiques, vintage furniture, classical elements, traditional antiques, period decorations, vintage mechanical objects, antique artifacts",
   num_inference_steps: 50,
   guidance_scale: 12.5
+};
+
+// Add LiveTheLifeTV-specific visual elements with Magritte's painting approach
+const LIVE_THE_LIFE_ELEMENTS = {
+  settings: [
+    "pristinely rendered Apple II computer labs",
+    "crystal-clear vintage Macintosh workstations",
+    "meticulously detailed early Apple development spaces",
+    "cleanly painted Cupertino offices circa 1984",
+    "precisely rendered Apple II manufacturing facilities",
+    "photorealistic Mac testing laboratories",
+    "mathematically perfect Apple service centers"
+  ],
+  objects: [
+    "flawlessly rendered Macintosh 128K",
+    "pristinely detailed Apple IIe",
+    "perfectly painted original rainbow Apple logos",
+    "meticulously rendered Apple Extended Keyboard",
+    "crystalline Apple monitors",
+    "immaculately painted Apple ImageWriter",
+    "precisely detailed Apple 3.5-inch floppy disks",
+    "cleanly executed Apple Desktop Bus mouse",
+    "photorealistic System 6 interfaces",
+    "perfectly rendered AppleTalk connectors"
+  ],
+  lighting: [
+    "Magritte's crystalline daylight on CRT screens",
+    "pristinely rendered LED indicator lights",
+    "mathematically perfect screen glow",
+    "cleanly painted vintage monitor illumination",
+    "precisely rendered Apple logo highlights",
+    "meticulously detailed computer lab lighting",
+    "photorealistic screen reflections"
+  ],
+  color_palettes: [
+    ["original Macintosh beige", "System 7 grey", "Apple II green"],
+    ["platinum grey", "rainbow logo spectrum", "early Mac white"],
+    ["Apple IIc cream", "Mac OS blue", "status LED red"],
+    ["keyboard beige", "screen phosphor", "menu bar grey"]
+  ]
 };
 
 // Add this helper function for user input
@@ -256,41 +333,53 @@ async function getUserInput(question: string): Promise<string> {
   });
 }
 
-// Add this helper function to get available styles as a formatted string
-function getAvailableStylesFormatting(styleManager: StyleManager): string {
-  const styles = Array.from(styleManager.getAllStyles().keys());
-  return styles.map((style, index) => `${index + 1}. ${style}`).join('\n');
-}
-
 // Modify the generateArt function
-async function generateArt(concept: string, style: ArtistStyle = 'magritte') {
+async function generateArt(concept: string) {
   try {
     // Initialize the style manager first
     const styleManager = new StyleManager();
 
-    // Prompt for style selection
-    console.log('\n🎨 Available Art Styles:');
-    console.log(getAvailableStylesFormatting(styleManager));
-    
-    const defaultStyle = styleManager.getCurrentDefaultStyleName();
-    const styleInput = await getUserInput(`\nSelect a style (1-${styleManager.getAllStyles().size}) or press Enter for default (${defaultStyle}): `);
-    
-    // Convert input to style selection
-    let selectedStyle: ArtistStyle;
-    if (styleInput.trim() === '') {
-      selectedStyle = defaultStyle;
-    } else {
-      const styleIndex = parseInt(styleInput) - 1;
-      const styles = Array.from(styleManager.getAllStyles().keys());
-      if (styleIndex >= 0 && styleIndex < styles.length) {
-        selectedStyle = styles[styleIndex];
-      } else {
-        console.log(`Invalid selection, using default style (${defaultStyle})`);
-        selectedStyle = defaultStyle;
-      }
-    }
+    // Define available Magritte-fusion categories
+    const magritteCategories = [
+      // Original Categories
+      'magritte_classic',
+      'magritte_empire_of_light',
+      'magritte_landscapes',
+      'magritte_metamorphosis',
+      'magritte_mystery',
+      'magritte_objects',
+      'magritte_scale',
+      'magritte_silhouettes',
+      'magritte_skies',
+      'magritte_windows',
+      'magritte_wordplay',
+      
+      // New Specialized Categories
+      'magritte_mirrors_illusion',      // Focuses on mirror reflections and optical illusions
+      'magritte_time_dilation',         // Explores temporal distortions and multiple time states
+      'magritte_floating_elements',     // Specialized in levitating objects and gravity defiance
+      'magritte_hybrid_forms',          // Blending of different objects or beings
+      'magritte_interior_exterior',     // Playing with inside/outside relationships
+      'magritte_perspective_paradox',   // Impossible perspectives and spatial relationships
+      'magritte_veiled_presence',       // Hidden or obscured figures and objects
+      'magritte_symbolic_doors',        // Doorways to impossible spaces
+      'magritte_cloud_metamorphosis',   // Cloud transformations and sky elements
+      'magritte_nocturnal_mystery',     // Night scenes with surreal elements
+      'magritte_domestic_surreal',      // Everyday objects made strange
+      'magritte_architectural_dreams',   // Impossible buildings and structures
+      'magritte_infinite_recursion',    // Images within images, endless repetition
+      'magritte_material_transmutation', // Objects changing material properties
+      'magritte_theatrical_reality',     // Stage-like settings with surreal elements
+      'magritte_philosophical_objects',  // Objects that question their own existence
+      'magritte_temporal_windows',       // Windows showing different times/realities
+      'magritte_identity_masks',         // Playing with hidden and revealed identities
+      'magritte_gravity_defiance',       // Objects and scenes that defy physics
+      'magritte_dimensional_portals'     // Portals to other dimensions/realities
+    ];
 
-    console.log(`\n✨ Using ${selectedStyle} style for generation`);
+    // Randomly select a Magritte category
+    const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
+    console.log(`\n✨ Using ${selectedCategory.replace('magritte_', '').replace('_', ' ')} × LiveTheLifeTV fusion for generation`);
 
     // Check for API keys
     const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
@@ -341,7 +430,7 @@ async function generateArt(concept: string, style: ArtistStyle = 'magritte') {
     
     await styleService.initialize();
     
-    // Initialize the ArtBotMultiAgentSystem
+    // Initialize the ArtBotMultiAgentSystem with Magritte focus
     const artBotMultiAgentSystem = new ArtBotMultiAgentSystem({
       aiService,
       replicateService,
@@ -351,126 +440,68 @@ async function generateArt(concept: string, style: ArtistStyle = 'magritte') {
     });
     
     await artBotMultiAgentSystem.initialize();
-    console.log('🤖 ArtBot Multi-Agent System initialized');
+    console.log('🤖 ArtBot Multi-Agent System initialized for Magritte-style generation');
     console.log('✅ Services initialized');
     
-    // If no concept is provided via command line, generate Magritte concept
+    // If no concept is provided, generate a fusion concept
     let artConcept = concept;
     
     if (!artConcept) {
-      // Always use Magritte-focused category
-      let category = ConceptCategory.MAGRITTE;
+      // Get the category-specific art direction
+      const categoryArtDirection = loadCategoryArtDirection(selectedCategory);
       
-      console.log(`\n🎬 Generating Magritte-inspired surrealist concept...`);
+      console.log(`\n🎬 Generating fusion concept for ${selectedCategory.replace('magritte_', '').replace('_', ' ')}...`);
       
-      // Generate a single base concept
-      const baseConcepts = await generateMultipleConcepts(
-        aiService,
-        1, // Generate only 1 concept
-        {
-          temperature: 0.7,
-          category
-        }
-      );
-
-      // Define distinctive Magritte styling elements
-      const magritteStyles = [
-        // Metaphysical Elements
-        {
-          element: "floating bowler hat",
-          essence: "identity questioner",
-          detail: "hovering mysteriously in Belgian sky"
-        },
-        {
-          element: "window to nowhere",
-          essence: "reality challenger",
-          detail: "framing impossible views of inner truth"
-        },
-        {
-          element: "metamorphic clouds",
-          essence: "form transformer",
-          detail: "clouds taking shapes of everyday objects"
-        },
-        
-        // Symbolic Objects
-        {
-          element: "giant green apple",
-          essence: "scale disruptor",
-          detail: "filling an entire room with paradoxical presence"
-        },
-        {
-          element: "multiplied pipes",
-          essence: "representation questioner",
-          detail: "each denying its own existence"
-        },
-        {
-          element: "mirror of impossibility",
-          essence: "reflection philosopher",
-          detail: "showing what cannot be there"
-        },
-        
-        // Theatrical Settings
-        {
-          element: "curtained reality",
-          essence: "scene revealer",
-          detail: "billowing fabric revealing hidden truths"
-        },
-        {
-          element: "door to elsewhere",
-          essence: "portal master",
-          detail: "opening into philosophical paradox"
-        },
-        {
-          element: "stone castle",
-          essence: "solidity challenger",
-          detail: "floating weightlessly in clear sky"
-        },
-        
-        // Metaphysical Spaces
-        {
-          element: "infinite room",
-          essence: "space bender",
-          detail: "where inside becomes outside"
-        },
-        {
-          element: "time-frozen scene",
-          essence: "moment keeper",
-          detail: "where multiple times coexist"
-        },
-        {
-          element: "perspective puzzle",
-          essence: "vision questioner",
-          detail: "where up and down lose meaning"
-        }
-      ];
-
-      // Select a random Magritte style
-      const selectedStyle = magritteStyles[Math.floor(Math.random() * magritteStyles.length)];
+      // Get elements from both styles
+      const magritteElements = categoryArtDirection?.visualElements || [];
+      const magritteStyle = categoryArtDirection?.styleEmphasis || [];
+      const liveTheLifeSettings = LIVE_THE_LIFE_ELEMENTS.settings;
+      const liveTheLifeObjects = LIVE_THE_LIFE_ELEMENTS.objects;
       
-      // Create styled Magritte concept
-      artConcept = `Surrealist ${selectedStyle.essence} with ${selectedStyle.element} (${selectedStyle.detail}). Metaphysical study of perception, symbolic objects dominating space, mysterious atmosphere.`;
-      console.log(`\n✨ Generated Magritte-inspired concept: "${artConcept}"`);
+      // Select random elements from both styles
+      const selectedMagritteElement = magritteElements[Math.floor(Math.random() * magritteElements.length)];
+      const selectedMagritteStyle = magritteStyle[Math.floor(Math.random() * magritteStyle.length)];
+      const selectedSetting = liveTheLifeSettings[Math.floor(Math.random() * liveTheLifeSettings.length)];
+      const selectedObject = liveTheLifeObjects[Math.floor(Math.random() * liveTheLifeObjects.length)];
+      
+      // Create a fusion concept
+      artConcept = `A surrealist scene where ${selectedMagritteElement} meets ${selectedObject} in a ${selectedSetting}, rendered with ${selectedMagritteStyle}`;
+      console.log(`\n✨ Generated fusion concept: "${artConcept}"`);
     }
     
     console.log(`\n💡 Using concept: "${artConcept}"`);
     
-    // Update the project creation to use selected style
+    // Update the project creation
     const project = {
       title: artConcept,
-      description: `Create an interpretation in ${selectedStyle} style: "${artConcept}"`,
+      description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')} × LiveTheLifeTV fusion: "${artConcept}"`,
       useFlux: true,
-      modelConfig: styleManager.getStyle(selectedStyle).modelConfig,
+      modelConfig: {
+        ...MAGRITTE_STYLE_CONFIG,
+        prompt_prefix: `In a fusion of René Magritte's ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealism and LiveTheLifeTV's cinematic vision, create a scene that blends metaphysical wonder with retro-futuristic nostalgia. Combine `,
+        prompt_suffix: `. Render with:
+- Lighting: Dramatic cinema-inspired illumination with noir undertones
+- Color: Rich, warm vintage tones (especially reds and oranges) contrasted with deep blues
+- Composition: Clean Magritte-style surrealism meets contemporary design
+- Atmosphere: Mysterious and narrative-driven, suggesting stories beyond the frame
+- Technical quality: Hyperrealistic details with painterly surrealist elements
+Style emphasizing both symbolic resonance and cinematic storytelling.`
+      },
       requirements: [
-        `Create an interpretation with ${selectedStyle}'s characteristic elements`,
-        ...styleManager.getStyle(selectedStyle).styleEmphasis.slice(0, 5)
+        `Create a fusion of Magritte surrealism and LiveTheLifeTV's cinematic style`,
+        ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3),
+        ...LIVE_THE_LIFE_ELEMENTS.settings.slice(0, 2)
       ],
-      outputFilename: `${selectedStyle}-flux-${artConcept.replace(/\s+/g, '-').toLowerCase()}`,
-      artDirection: styleManager.getStyle(selectedStyle)
+      outputFilename: `magritte-livethelife-${selectedCategory.replace('magritte_', '')}-${artConcept.replace(/\s+/g, '-').toLowerCase()}`,
+      artDirection: {
+        ...(categoryArtDirection || defaultArtDirection),
+        colorPalette: [...(LIVE_THE_LIFE_ELEMENTS.color_palettes[0])],
+        lighting: [...(LIVE_THE_LIFE_ELEMENTS.lighting.slice(0, 3))]
+      }
     };
 
     // Update logging to show selected style configuration
-    console.log(`\n🎨 ${selectedStyle} Style Configuration:`);
-    console.log(`- Using ${selectedStyle}'s distinctive style`);
+    console.log(`\n🎨 ${selectedCategory.replace('magritte_', '').replace('_', ' ')} Style Configuration:`);
     console.log('- Style emphasis:', project.artDirection.styleEmphasis.slice(0, 3).join(', '));
     console.log('- Color palette:', project.artDirection.colorPalette.slice(0, 3).join(', '));
     
@@ -503,9 +534,9 @@ async function generateArt(concept: string, style: ArtistStyle = 'magritte') {
     
     // Update file paths to use selected style
     const sanitizedConcept = artConcept.replace(/\s+/g, '-').toLowerCase();
-    const promptPath = path.join(outputDir, `${selectedStyle}-flux-${sanitizedConcept}-prompt.txt`);
-    const imagePath = path.join(outputDir, `${selectedStyle}-flux-${sanitizedConcept}.txt`);
-    const metadataPath = path.join(outputDir, `${selectedStyle}-flux-${sanitizedConcept}-metadata.json`);
+    const promptPath = path.join(outputDir, `${selectedCategory.replace('magritte_', '').replace('_', '-')}-${sanitizedConcept}-prompt.txt`);
+    const imagePath = path.join(outputDir, `${selectedCategory.replace('magritte_', '').replace('_', '-')}-${sanitizedConcept}.txt`);
+    const metadataPath = path.join(outputDir, `${selectedCategory.replace('magritte_', '').replace('_', '-')}-${sanitizedConcept}-metadata.json`);
     
     // Save prompt and creative process (silently)
     fs.writeFileSync(
@@ -546,9 +577,9 @@ async function generateArt(concept: string, style: ArtistStyle = 'magritte') {
       { 
         type: 'artwork', 
         concept: artConcept,
-        style: selectedStyle
+        style: selectedCategory.replace('magritte_', '').replace('_', '')
       },
-      ['artwork', 'flux', 'multi-agent', selectedStyle, ...artConcept.split(' ')]
+      ['artwork', 'flux', 'multi-agent', selectedCategory.replace('magritte_', '').replace('_', ''), ...artConcept.split(' ')]
     );
     
     // Minimal completion message

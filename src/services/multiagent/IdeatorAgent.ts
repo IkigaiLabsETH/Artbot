@@ -59,97 +59,97 @@ export class IdeatorAgent extends BaseAgent {
         [IdeationApproach.BOURDIN]: 0.8
       },
       magritteKeywords: [
+        // Painting Techniques
+        'oil painting', 'smooth brushwork', 'precise edges', 'matte finish',
+        'canvas texture', 'traditional medium', 'painted surface', 'crystalline detail',
+        'soft shadows', 'unified lighting', 'clean transitions', 'subtle modeling',
+        
         // Core Symbols and Objects
-        'bowler hat', 'green apple', 'pipe', 'dove', 'clouds', 'sky',
-        'curtain', 'window', 'mirror', 'door', 'key', 'bell',
-        'stone', 'castle', 'bird', 'tree', 'rose', 'candle',
+        'painted Macintosh', 'rendered Apple II', 'oil painted Lisa',
+        'canvas floppy disk', 'painted CRT screen', 'traditional rainbow logo',
+        'rendered keyboard', 'painted mouse', 'oil interface', 'painted HyperCard',
         
         // Philosophical Concepts
-        'surreal', 'paradox', 'mystery', 'metaphysical', 'philosophical',
-        'reality questioning', 'perception', 'representation', 'truth',
-        'existence', 'identity', 'time', 'space', 'meaning',
+        'digital surrealism', 'computational paradox', 'interface mystery',
+        'technological metaphysics', 'silicon philosophy', 'binary truth',
+        'computer reality', 'digital identity', 'virtual space', 'code poetry',
         
         // Visual Elements
-        'day-night', 'empire of light', 'floating objects', 'impossible scale',
-        'transparent', 'metamorphosis', 'hybrid forms', 'silhouette',
-        'reflection', 'shadow', 'void', 'infinity', 'displacement',
+        'painted screen glow', 'oil rendered LED', 'canvas beige',
+        'traditional platinum grey', 'painted phosphor green', 'rendered interface',
+        'oil menu bars', 'painted dialog boxes', 'traditional pixels',
         
         // Settings and Environments
-        'belgian landscape', 'empty streets', 'interior-exterior',
-        'wallpapered rooms', 'seaside', 'classical architecture',
-        'blue sky', 'night scene', 'domestic space', 'infinite space',
+        'painted computer lab', 'oil rendered workspace', 'canvas office',
+        'traditional Cupertino', 'painted facility', 'rendered engineering room',
+        'oil prototype lab', 'painted server room', 'traditional manufacturing',
         
         // Techniques and Approaches
-        'precise rendering', 'realistic detail', 'clean edges',
-        'seamless transitions', 'trompe l\'oeil', 'atmospheric perspective',
-        'philosophical juxtaposition', 'symbolic resonance', 'visual poetry',
-        
-        // Themes and Concepts
-        'human condition', 'language', 'everyday uncanny', 'familiar strange',
-        'hidden connections', 'visual paradox', 'metaphysical truth',
-        'reality questioning', 'object relationships', 'symbolic meaning'
+        'oil rendering', 'traditional authenticity', 'painted accuracy',
+        'canvas illusion', 'hardware poetry', 'technological trompe l\'oeil',
+        'painted surrealism', 'traditional philosophy', 'oil binary art'
       ],
       artisticApproaches: {
         magritte: {
           composition: [
-            'balanced arrangement',
-            'precise placement',
-            'theatrical staging',
-            'impossible juxtapositions',
-            'metaphysical space',
-            'symbolic framing',
-            'window motifs',
-            'mirror compositions',
-            'infinite perspectives',
-            'surreal scale relationships'
+            'oil painted vintage computers',
+            'traditional interface arrangements',
+            'painted hardware staging',
+            'canvas screen displays',
+            'oil rendered cables',
+            'traditional computer labs',
+            'painted monitor reflections',
+            'oil binary windows',
+            'traditional computation',
+            'painted space distortion'
           ],
           lighting: [
-            'natural illumination',
-            'mysterious atmosphere',
-            'empire of light contrasts',
-            'subtle shadows',
-            'metaphysical glow',
-            'twilight ambiguity',
-            'ethereal luminosity',
-            'philosophical darkness',
-            'symbolic light',
-            'paradoxical lighting'
+            'oil rendered CRT glow',
+            'traditional LED mystery',
+            'painted phosphor light',
+            'canvas indicator poetry',
+            'oil digital twilight',
+            'traditional silicon shadows',
+            'painted interface radiance',
+            'oil binary luminescence',
+            'traditional electronic atmosphere',
+            'painted computational light'
           ],
           color: [
-            'belgian sky blue',
-            'realistic tones',
-            'symbolic color',
-            'atmospheric hues',
-            'contemplative palette',
-            'metaphysical colors',
-            'surreal combinations',
-            'philosophical greys',
-            'mysterious greens',
-            'paradoxical contrasts'
+            'oil painted Macintosh beige',
+            'traditional Apple II green',
+            'painted platinum grey',
+            'canvas System 7 blue',
+            'oil rainbow spectrum',
+            'traditional Mac white',
+            'painted LED red',
+            'oil floppy beige',
+            'traditional keyboard grey',
+            'painted screen silver'
           ],
           narrative: [
-            'philosophical puzzles',
-            'visual paradoxes',
-            'poetic connections',
-            'metaphysical questions',
-            'reality investigations',
-            'symbolic stories',
-            'object dialogues',
-            'spatial narratives',
-            'time paradoxes',
-            'identity explorations'
+            'oil computational philosophy',
+            'traditional interface paradoxes',
+            'painted digital poetry',
+            'canvas silicon metaphysics',
+            'oil binary questions',
+            'traditional technological surrealism',
+            'painted electronic dialogues',
+            'oil machine narratives',
+            'traditional code stories',
+            'painted digital identity'
           ],
           techniques: [
-            'precise rendering',
-            'seamless blending',
-            'realistic detail',
-            'conceptual fusion',
-            'trompe l\'oeil',
-            'symbolic placement',
-            'metaphysical staging',
-            'paradoxical framing',
-            'philosophical composition',
-            'surreal juxtaposition'
+            'smooth oil technique',
+            'precise edge control',
+            'subtle surface texture',
+            'unified light treatment',
+            'crystalline detail',
+            'soft shadow modeling',
+            'clean color transitions',
+            'matte finish rendering',
+            'canvas-like quality',
+            'traditional oil methods'
           ]
         },
         hopper: {
