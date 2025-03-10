@@ -492,6 +492,14 @@ async function generateArt(concept: string) {
     console.log(`\n💡 Using concept: "${artConcept}"`);
     
     // Update the project creation
+    const hash = Buffer.from(artConcept).toString('base64')
+      .replace(/[+/=]/g, '') // Remove base64 special chars
+      .slice(0, 8); // Take first 8 chars of hash
+    
+    const timestamp = new Date().getTime().toString(36).slice(-6); // Take last 6 chars of timestamp
+    const stylePrefix = selectedCategory.replace('magritte_', '').slice(0, 4); // Take first 4 chars of style
+    const baseFilename = `${stylePrefix}-${timestamp}-${hash}`; // Will be ~19 chars long
+    
     const project = {
       title: artConcept,
       description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')} × LiveTheLifeTV fusion: "${artConcept}"`,
@@ -512,7 +520,7 @@ Style emphasizing both symbolic resonance and cinematic storytelling.`
         ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3),
         ...LIVE_THE_LIFE_ELEMENTS.settings.slice(0, 2)
       ],
-      outputFilename: `magritte-livethelife-${selectedCategory.replace('magritte_', '')}-${artConcept.replace(/\s+/g, '-').toLowerCase()}`,
+      outputFilename: baseFilename,
       artDirection: {
         ...(categoryArtDirection || defaultArtDirection),
         colorPalette: [...(LIVE_THE_LIFE_ELEMENTS.color_palettes[0])],
@@ -553,14 +561,6 @@ Style emphasizing both symbolic resonance and cinematic storytelling.`
     }
     
     // Update file paths to use selected style
-    const hash = Buffer.from(artConcept).toString('base64')
-      .replace(/[+/=]/g, '') // Remove base64 special chars
-      .slice(0, 8); // Take first 8 chars of hash
-    
-    const timestamp = new Date().getTime().toString(36).slice(-6); // Take last 6 chars of timestamp
-    const stylePrefix = selectedCategory.replace('magritte_', '').slice(0, 4); // Take first 4 chars of style
-    const baseFilename = `${stylePrefix}-${timestamp}-${hash}`; // Will be ~19 chars long
-    
     const promptPath = path.join(outputDir, `${baseFilename}-p.txt`);
     const imagePath = path.join(outputDir, `${baseFilename}.txt`);
     const metadataPath = path.join(outputDir, `${baseFilename}-m.json`);
