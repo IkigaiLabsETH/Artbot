@@ -104,6 +104,44 @@ const STYLE_APPROACHES: Record<string, StyleApproach> = {
       "create balanced tension",
       "follow algorithmic rules"
     ]
+  },
+  naturetech: {
+    description: "Biomimetic fusion style combining natural patterns with technological elements",
+    elements: [
+      "honeycomb structures",
+      "fibonacci spirals",
+      "coral formations",
+      "vine networks",
+      "tesla components",
+      "circuit patterns",
+      "cable assemblies",
+      "retro tech artifacts",
+      "organic textures",
+      "mechanical interfaces"
+    ],
+    techniques: [
+      "pattern layering",
+      "organic-tech fusion",
+      "biomimetic mapping",
+      "texture blending",
+      "geometric abstraction",
+      "natural-digital hybrid rendering"
+    ],
+    themes: [
+      "nature meets technology",
+      "biological computing",
+      "organic circuitry",
+      "sustainable tech",
+      "evolutionary machines",
+      "digital ecology"
+    ],
+    compositionalRules: [
+      "combine organic and technological elements",
+      "use natural patterns as circuit layouts",
+      "integrate mechanical and biological forms",
+      "maintain balance between nature and tech",
+      "create flowing transitions between organic and digital"
+    ]
   }
 };
 

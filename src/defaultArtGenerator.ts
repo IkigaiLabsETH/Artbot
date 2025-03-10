@@ -51,41 +51,37 @@ const defaultArtDirection: ArtDirection = {
     "harmonious abstraction"
   ],
   visualElements: [
-    // Strictly Vintage Apple Elements
-    "floating Macintosh SE/30 computers",
-    "levitating Apple IIe displays",
-    "System 7 interface floating in space",
-    "rainbow Apple logos in impossible arrangements",
-    "hovering vintage Mac keyboards",
-    "geometric patterns of Apple II circuit boards",
-    "billowing curtains revealing Mac Plus screens",
-    "clouded skies filled with MacOS icons",
-    "mirror reflections of Apple Lisa interfaces",
-    "classic Mac startup chimes visualized",
-    "original Macintosh mice in surreal patterns",
-    "glowing Apple II power lights",
-    "suspended 5.25-inch Apple floppy disks",
-    "ethereal Apple ImageWriter printers",
-    "metaphysical Apple Desktop Bus ports",
-    "symbolic early HyperCard stacks"
+    // Strictly Vintage Computer Elements
+    "floating vintage computers",
+    "levitating retro displays",
+    "classic interface elements floating in space",
+    "hovering vintage keyboards",
+    "geometric patterns of circuit boards",
+    "billowing curtains revealing retro screens",
+    "clouded skies filled with classic icons",
+    "mirror reflections of vintage interfaces",
+    "classic startup sounds visualized",
+    "original computer mice in surreal patterns",
+    "glowing power lights",
+    "suspended vintage floppy disks",
+    "ethereal dot matrix printers",
+    "metaphysical peripheral ports",
+    "symbolic early software stacks"
   ],
   colorPalette: [
-    // Vintage Apple Color Palette
-    "original Macintosh beige",
-    "Apple II warm cream",
+    // Vintage Computer Color Palette
+    "classic beige",
+    "warm cream",
     "platinum grey",
-    "classic Mac OS blue",
-    "rainbow logo red",
-    "rainbow logo yellow",
-    "rainbow logo green",
-    "rainbow logo blue",
-    "rainbow logo purple",
-    "System 7 window grey",
-    "Apple II green phosphor",
-    "early Mac menu bar white",
-    "classic Mac shadow grey",
-    "Apple IIc platinum",
-    "vintage keyboard beige"
+    "classic interface blue",
+    "vintage monitor green",
+    "retro keyboard grey",
+    "system window grey",
+    "phosphor green",
+    "early menu bar white",
+    "classic shadow grey",
+    "vintage platinum",
+    "retro computer beige"
   ],
   compositionGuidelines: [
     // Belgian Surrealist Compositional Principles
@@ -277,7 +273,7 @@ const MAGRITTE_STYLE_CONFIG = {
   * Pure color separation
   * Absolute control
   * Perfect finish`,
-  negative_prompt: "brushstrokes, texture, impasto, painterly, expressive, loose, gestural, impressionistic, abstract, rough, sketchy, uneven, textured surface, visible canvas, brush marks, paint thickness, palette knife, dry brush, scumbling, glazing, layered paint, broken color, atmospheric effect, sfumato, chiaroscuro, tonal gradation, blended colors, soft edges, feathered edges, painterly technique, artistic looseness, expressive brushwork, textural variation, surface irregularity, paint drips, spontaneous marks, gestural marks, painterly abstraction, artistic freedom, loose handling, energetic brushwork, thick paint, thin paint, variable paint, artistic interpretation, creative brushwork, expressive technique, artistic style, painterly style, artistic flourish, creative expression, artistic license, interpretive style, loose interpretation, creative freedom, artistic spontaneity, expressive freedom, creative license, artistic variation, interpretive freedom, loose style, creative interpretation, expressive style, artistic spontaneity, painterly freedom, creative style, interpretive technique, loose technique, artistic technique, expressive interpretation, creative technique, painterly interpretation, artistic expression, loose expression, creative expression, interpretive expression, 3D, depth, volume, photographic, camera, lens, DSLR, photography, realistic, hyperrealistic, cinematic, dramatic, atmospheric, moody, emotional, expressive, dynamic, energetic, vibrant, lively, animated, movement, motion, action, drama, intensity, passion, force, power, strength, vigor, vitality, life, spirit, soul, feeling, sentiment, mood, atmosphere, ambiance, environment, setting, context, situation, condition, state, quality, character, nature, essence, being, existence, reality, truth, fact, actuality, certainty, definiteness, precision, accuracy, exactness, correctness, rightness, trueness, authenticity, genuineness, validity, legitimacy, soundness, reliability, dependability, trustworthiness, credibility, believability, plausibility, probability, likelihood, possibility, chance, prospect, potential, capacity, capability, ability, power, faculty, means, way, method, manner, mode, fashion, style, approach, technique, procedure, process, practice, custom, habit, routine, convention, tradition, norm, standard, criterion, measure, gauge, test, check, verification, validation, confirmation, corroboration, substantiation, proof, evidence, demonstration, illustration, exemplification, instance, example, case, occurrence, happening, event, incident, episode, occasion, circumstance, situation, condition, state, position, place, location, spot, point, mark, sign, indication, signal, symptom, manifestation, expression, display, showing, exhibition, presentation, demonstration, revelation, disclosure, exposure, uncovering, unfolding, development, evolution, progression, advance, advancement, progress, growth, expansion, enlargement, extension, increase, enhancement, improvement, betterment, amelioration, upgrade, uplift, elevation, raising, lifting, boosting, heightening, intensification, strengthening, reinforcement, fortification, consolidation, stabilization, establishment, institution, constitution, formation, creation, generation, production, making, manufacturing, construction, building, assembly, composition, compilation, collection, gathering, accumulation, amassing, stockpiling, hoarding, storage, preservation, conservation, protection, safeguarding, security, safety, surety, certainty, assurance, guarantee, warranty, pledge, promise, commitment, obligation, duty, responsibility, charge, trust, care, custody, guardianship, keeping, maintenance, support, sustenance, subsistence, livelihood, living, life, existence, being, essence, nature, character, quality, property, attribute, characteristic, feature, aspect, element, component, constituent, ingredient, part, portion, piece, bit, fragment, section, segment, division, subdivision, department, branch, sector, sphere, realm, domain, field, area, region, territory, zone, space, place, position, location, situation, site, spot, point, mark",
+  negative_prompt: "brushstrokes, texture, impasto, painterly, expressive, loose, gestural, impressionistic, abstract, rough, sketchy, uneven, textured surface, visible canvas, brush marks, paint thickness, palette knife, dry brush, scumbling, glazing, layered paint, broken color, atmospheric effect, sfumato, chiaroscuro, tonal gradation, blended colors, soft edges, feathered edges, painterly technique, artistic looseness, expressive brushwork, textural variation, surface irregularity, paint drips, spontaneous marks, gestural marks, painterly abstraction, artistic freedom, loose handling, energetic brushwork, thick paint, thin paint, variable paint, artistic interpretation, creative brushwork, expressive technique, artistic style, painterly style, artistic flourish, creative expression, artistic license, interpretive style, loose interpretation, creative freedom, artistic spontaneity, expressive freedom, creative license, artistic variation, interpretive freedom, loose style, creative interpretation, expressive style, artistic spontaneity, painterly freedom, creative style, interpretive technique, loose technique, artistic technique, expressive interpretation, creative technique, painterly interpretation, artistic expression, loose expression, creative expression, interpretive expression, 3D, depth, volume, photographic, camera, lens, DSLR, photography, realistic, hyperrealistic, cinematic, dramatic, atmospheric, moody, emotional, expressive, dynamic, energetic, vibrant, lively, animated, movement, motion, action, drama, intensity, passion, force, power, strength, vigor, vitality, life, spirit, soul, feeling, sentiment, mood, atmosphere, ambiance, environment, setting, context, situation, condition, state, quality, character, nature, essence, being, existence, reality, truth, fact, actuality, certainty, definiteness, precision, accuracy, exactness, correctness, rightness, trueness, authenticity, genuineness, validity, legitimacy, soundness, reliability, dependability, trustworthiness, credibility, believability, plausibility, probability, likelihood, possibility, chance, prospect, potential, capacity, capability, ability, power, faculty, means, way, method, manner, mode, fashion, style, approach, technique, procedure, process, practice, custom, habit, routine, convention, tradition, norm, standard, criterion, measure, gauge, test, check, verification, validation, confirmation, corroboration, substantiation, proof, evidence, demonstration, illustration, exemplification, instance, example, case, occurrence, happening, event, incident, episode, occasion, circumstance, situation, condition, state, position, place, location, spot, point, mark, sign, indication, signal, symptom, manifestation, expression, display, showing, exhibition, presentation, demonstration, revelation, disclosure, exposure, uncovering, unfolding, development, evolution, progression, advance, advancement, progress, growth, expansion, enlargement, extension, increase, enhancement, improvement, betterment, amelioration, upgrade, uplift, elevation, raising, lifting, boosting, heightening, intensification, strengthening, reinforcement, fortification, consolidation, stabilization, establishment, institution, constitution, formation, creation, generation, production, making, manufacturing, construction, building, assembly, composition, compilation, collection, gathering, accumulation, amassing, stockpiling, hoarding, storage, preservation, conservation, protection, safeguarding, security, safety, surety, certainty, assurance, guarantee, warranty, pledge, promise, commitment, obligation, duty, responsibility, charge, trust, care, custody, guardianship, keeping, maintenance, support, sustenance, subsistence, livelihood, living, life, existence, being, essence, nature, character, quality, property, attribute, characteristic, feature, aspect, element, component, constituent, ingredient, part, portion, piece, bit, fragment, section, segment, division, subdivision, department, branch, sector, sphere, realm, domain, field, area, region, territory, zone, space, place, position, location, situation, site, spot, point, mark, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
   num_inference_steps: 200,    // Increased further for maximum precision
   guidance_scale: 35.0,       // Increased for even stronger style adherence
   scheduler: "DPMSolverMultistep",
@@ -379,41 +375,41 @@ const MAGRITTE_COLOR_PALETTE = {
   }
 };
 
-// Define vintage Apple hardware colors with specific model references
-const APPLE_VINTAGE_PALETTE = {
+// Define vintage computer hardware colors with generic model references
+const VINTAGE_COMPUTER_PALETTE = {
   plastics: {
     beige: {
       color: "Pantone 453C warm beige",
-      reference: "Macintosh 128K (1984)",
+      reference: "Classic Personal Computer (1980s)",
       usage: "Main computer case color"
     },
     platinum: {
       color: "Pantone 427C cool grey",
-      reference: "Macintosh SE (1987)",
+      reference: "Professional Workstation (1987)",
       usage: "Later model case color"
     },
     cream: {
       color: "Pantone 7527C warm cream",
-      reference: "Apple IIe (1983)",
+      reference: "Home Computer (1983)",
       usage: "Early model case color"
     }
   },
   accents: {
-    logo: {
-      color: "muted rainbow spectrum",
-      reference: "Apple logo (1977-1998)",
-      usage: "Brand elements, subtle accents"
-    },
     text: {
       color: "dark warm grey",
-      reference: "Apple II text",
+      reference: "Classic computer text",
       usage: "Labels and text elements"
+    },
+    screen: {
+      color: "phosphor green",
+      reference: "Vintage monitor display",
+      usage: "Display elements"
     }
   },
   screens: {
     background: {
       color: "soft warm grey",
-      reference: "Original Macintosh display",
+      reference: "Classic computer display",
       usage: "Monitor background color"
     }
   }
@@ -431,22 +427,22 @@ const LIVE_THE_LIFE_ELEMENTS = {
     "crystalline void from The Central Story"
   ],
   portraits: [
-    "mysterious figure in bowler hat with Macintosh face",
-    "business suit figure with Apple II screen head",
-    "Golconda-style figure carrying vintage Apple device",
+    "mysterious figure in bowler hat with monitor face",
+    "business suit figure with screen head",
+    "Golconda-style figure carrying vintage device",
     "Son of Man pose with floating vintage screen",
     "multiple identical figures with monitor heads like Golconda",
-    "figure in suit with rainbow Apple logo face",
-    "portrait with floating Macintosh obscuring face"
+    "figure in suit with glowing screen face",
+    "portrait with floating computer obscuring face"
   ],
   objects: [
-    "Macintosh 128K floating like the apple in Son of Man",
-    "Apple IIe as a mysterious Magritte object",
-    "rainbow Apple logo hovering like a surreal symbol",
+    "vintage computer floating like a mysterious object",
+    "retro machine as a surreal element",
+    "classic interface as an enigmatic symbol",
     "keyboard suspended in pure blue space",
     "monitor screen as a void into another reality",
     "floppy disk as an enigmatic floating object",
-    "mouse transformed into a surreal portrait element"
+    "computer mouse transformed into a surreal portrait element"
   ],
   color_palettes: [
     // Portrait-focused palettes

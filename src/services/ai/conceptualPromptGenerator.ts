@@ -169,7 +169,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   beeple: {
     prompt_prefix: "In Beeple's distinctive dystopian digital art style, with monumental scale and technological decay. Create a hyper-detailed interpretation with ",
     prompt_suffix: ". Use Beeple's characteristic sci-fi elements, pop culture references, and maximalist composition. Style of Everydays series.",
-    negative_prompt: "minimal, traditional, natural, historical, subtle, pastoral, romantic, abstract, vintage, painterly, delicate, classical, organic, conventional",
+    negative_prompt: "minimal, traditional, natural, historical, subtle, pastoral, romantic, abstract, vintage, painterly, delicate, classical, organic, conventional, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 50,
     guidance_scale: 12.0,
     style_emphasis: {
@@ -182,7 +182,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   xcopy: {
     prompt_prefix: "In XCOPY's distinctive glitch art style, with dark surrealism and crypto punk aesthetic. Create a stark, corrupted interpretation with ",
     prompt_suffix: ". Use XCOPY's characteristic glitch effects, death motifs, and minimal composition. Style of Right-click and Save As guy.",
-    negative_prompt: "realistic, natural, smooth, peaceful, traditional, clean, organic, decorative, photorealistic, gentle, soft, harmonious, balanced, conventional",
+    negative_prompt: "realistic, natural, smooth, peaceful, traditional, clean, organic, decorative, photorealistic, gentle, soft, harmonious, balanced, conventional, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 45,
     guidance_scale: 13.0,
     style_emphasis: {
@@ -195,7 +195,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   cherniak: {
     prompt_prefix: "In Dmitri Cherniak's distinctive generative art style, with mathematical precision and algorithmic patterns. Create a systematic interpretation with ",
     prompt_suffix: ". Use Cherniak's characteristic geometric elements, wrapped strings, and minimal composition. Style of Ringers series.",
-    negative_prompt: "organic, hand-drawn, textural, natural, expressive, emotional, random, decorative, figurative, painterly, loose, undefined, arbitrary, uncontrolled",
+    negative_prompt: "organic, hand-drawn, textural, natural, expressive, emotional, random, decorative, figurative, painterly, loose, undefined, arbitrary, uncontrolled, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.5,
     style_emphasis: {
@@ -208,7 +208,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   hopper: {
     prompt_prefix: "In Edward Hopper's distinctive American realist style, with dramatic light and shadow and urban solitude. Create a contemplative interpretation with ",
     prompt_suffix: ". Use Hopper's characteristic architectural geometry, psychological atmosphere, and precise observation. Style of Nighthawks and Early Sunday Morning.",
-    negative_prompt: "busy, crowded, chaotic, abstract, expressionist, decorative, romantic, sentimental, impressionist, loose, emotional, dramatic, fantasy, surreal",
+    negative_prompt: "busy, crowded, chaotic, abstract, expressionist, decorative, romantic, sentimental, impressionist, loose, emotional, dramatic, fantasy, surreal, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -222,7 +222,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   picasso: {
     prompt_prefix: "In Picasso's distinctive cubist style, with geometric fragmentation and multiple perspectives. Create a bold interpretation with ",
     prompt_suffix: ". Use Picasso's characteristic angular forms, overlapping planes, and revolutionary composition. Style of Les Demoiselles d'Avignon and Guernica.",
-    negative_prompt: "realistic, traditional, photographic, conventional, decorative, naturalistic, symmetrical, perspective-correct, detailed, smooth",
+    negative_prompt: "realistic, traditional, photographic, conventional, decorative, naturalistic, symmetrical, perspective-correct, detailed, smooth, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 45,
     guidance_scale: 12.0,
     style_emphasis: {
@@ -235,7 +235,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   warhol: {
     prompt_prefix: "In Andy Warhol's iconic pop art style, with bold colors and commercial imagery. Create a contemporary interpretation with ",
     prompt_suffix: ". Use Warhol's characteristic repetition, screen-print aesthetic, and vibrant color palette. Style of Campbell's Soup Cans and Marilyn Diptych.",
-    negative_prompt: "subtle, painterly, traditional, natural, muted, complex, detailed, realistic, organic, classical",
+    negative_prompt: "subtle, painterly, traditional, natural, muted, complex, detailed, realistic, organic, classical, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -248,7 +248,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   vangogh: {
     prompt_prefix: "In Van Gogh's expressive post-impressionist style, with dynamic brushwork and emotional intensity. Create a passionate interpretation with ",
     prompt_suffix: ". Use Van Gogh's characteristic impasto technique, swirling patterns, and vibrant colors. Style of Starry Night and Sunflowers.",
-    negative_prompt: "smooth, realistic, precise, controlled, photographic, flat, minimal, geometric, digital, clean",
+    negative_prompt: "smooth, realistic, precise, controlled, photographic, flat, minimal, geometric, digital, clean, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 45,
     guidance_scale: 12.0,
     style_emphasis: {
@@ -261,7 +261,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   mondrian: {
     prompt_prefix: "In Mondrian's neo-plastic style, with pure geometric abstraction and primary colors. Create a balanced interpretation with ",
     prompt_suffix: ". Use Mondrian's characteristic grid structure, primary color blocks, and mathematical harmony. Style of Composition with Red, Blue, and Yellow.",
-    negative_prompt: "organic, curved, natural, decorative, complex, detailed, representational, textured, chaotic, diagonal",
+    negative_prompt: "organic, curved, natural, decorative, complex, detailed, representational, textured, chaotic, diagonal, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -274,7 +274,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   rothko: {
     prompt_prefix: "In Rothko's color field style, with luminous rectangular forms and spiritual depth. Create a meditative interpretation with ",
     prompt_suffix: ". Use Rothko's characteristic floating rectangles, subtle color transitions, and emotional resonance. Style of Orange and Yellow.",
-    negative_prompt: "detailed, representational, linear, geometric, sharp, busy, illustrative, narrative, decorative, patterned",
+    negative_prompt: "detailed, representational, linear, geometric, sharp, busy, illustrative, narrative, decorative, patterned, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 45,
     guidance_scale: 12.0,
     style_emphasis: {
@@ -287,7 +287,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   kandinsky: {
     prompt_prefix: "In Kandinsky's abstract expressionist style, with musical rhythm and spiritual geometry. Create a dynamic interpretation with ",
     prompt_suffix: ". Use Kandinsky's characteristic geometric forms, vibrant colors, and musical composition. Style of Composition VIII.",
-    negative_prompt: "representational, realistic, static, muted, figurative, traditional, symmetrical, photographic, literal, narrative",
+    negative_prompt: "representational, realistic, static, muted, figurative, traditional, symmetrical, photographic, literal, narrative, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 45,
     guidance_scale: 12.0,
     style_emphasis: {
@@ -300,7 +300,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   malevich: {
     prompt_prefix: "In Malevich's suprematist style, with pure geometric abstraction and cosmic space. Create a revolutionary interpretation with ",
     prompt_suffix: ". Use Malevich's characteristic floating forms, dynamic composition, and spiritual geometry. Style of Black Square and White on White.",
-    negative_prompt: "representational, decorative, natural, organic, traditional, realistic, narrative, detailed, textured, conventional",
+    negative_prompt: "representational, decorative, natural, organic, traditional, realistic, narrative, detailed, textured, conventional, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -313,7 +313,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   popova: {
     prompt_prefix: "In Popova's constructivist style, with dynamic spatial organization and architectural rhythm. Create a revolutionary interpretation with ",
     prompt_suffix: ". Use Popova's characteristic geometric forms, spatial force lines, and revolutionary composition. Style of Space Force Construction.",
-    negative_prompt: "decorative, naturalistic, traditional, passive, static, organic, representational, ornamental, conventional, narrative",
+    negative_prompt: "decorative, naturalistic, traditional, passive, static, organic, representational, ornamental, conventional, narrative, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -326,7 +326,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   cartierbresson: {
     prompt_prefix: "In Cartier-Bresson's decisive moment style, with perfect timing and geometric precision. Create a spontaneous interpretation with ",
     prompt_suffix: ". Use Cartier-Bresson's characteristic geometric composition, street photography aesthetic, and decisive moment timing. Style of Behind the Gare Saint-Lazare.",
-    negative_prompt: "posed, artificial, staged, manipulated, digital, processed, filtered, contrived, forced, unnatural",
+    negative_prompt: "posed, artificial, staged, manipulated, digital, processed, filtered, contrived, forced, unnatural, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -339,7 +339,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   arbus: {
     prompt_prefix: "In Diane Arbus's distinctive documentary style, with psychological intensity and social observation. Create a revealing interpretation with ",
     prompt_suffix: ". Use Arbus's characteristic direct gaze, social marginality, and square format composition. Style of Identical Twins and Jewish Giant.",
-    negative_prompt: "glamorous, superficial, conventional, posed, artificial, flattering, decorative, sentimental, romantic, idealized",
+    negative_prompt: "glamorous, superficial, conventional, posed, artificial, flattering, decorative, sentimental, romantic, idealized, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -352,7 +352,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   avedon: {
     prompt_prefix: "In Richard Avedon's stark portrait style, with minimalist white backgrounds and psychological intensity. Create a revealing interpretation with ",
     prompt_suffix: ". Use Avedon's characteristic stark lighting, minimalist composition, and psychological depth. Style of In the American West.",
-    negative_prompt: "cluttered, decorative, environmental, soft, romantic, painterly, atmospheric, busy, complex, ornate",
+    negative_prompt: "cluttered, decorative, environmental, soft, romantic, painterly, atmospheric, busy, complex, ornate, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -365,7 +365,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   eggleston: {
     prompt_prefix: "In William Eggleston's pioneering color style, with democratic vision and everyday beauty. Create a compelling interpretation with ",
     prompt_suffix: ". Use Eggleston's characteristic saturated color, democratic subject matter, and precise composition. Style of The Red Ceiling and Memphis.",
-    negative_prompt: "black and white, monochrome, staged, artificial, dramatic, theatrical, posed, contrived, forced, unnatural",
+    negative_prompt: "black and white, monochrome, staged, artificial, dramatic, theatrical, posed, contrived, forced, unnatural, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -378,7 +378,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   leibovitz: {
     prompt_prefix: "In Annie Leibovitz's dramatic portrait style, with theatrical lighting and conceptual narrative. Create a powerful interpretation with ",
     prompt_suffix: ". Use Leibovitz's characteristic dramatic lighting, environmental context, and narrative depth. Style of Vanity Fair portraits.",
-    negative_prompt: "candid, snapshot, casual, unplanned, spontaneous, documentary, unposed, natural, simple, understated",
+    negative_prompt: "candid, snapshot, casual, unplanned, spontaneous, documentary, unposed, natural, simple, understated, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -391,7 +391,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   coopergorfer: {
     prompt_prefix: "In Cooper & Gorfer's dreamlike narrative style, with layered compositions and cultural storytelling. Create an ethereal interpretation with ",
     prompt_suffix: ". Use Cooper & Gorfer's characteristic layered imagery, cultural elements, and dreamlike atmosphere. Style of Between These Folded Walls, Utopia.",
-    negative_prompt: "documentary, realistic, straightforward, unprocessed, literal, simple, stark, harsh, mundane",
+    negative_prompt: "documentary, realistic, straightforward, unprocessed, literal, simple, stark, harsh, mundane, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -404,7 +404,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   vonwong: {
     prompt_prefix: "In Benjamin Von Wong's epic environmental style, with dramatic staging and social impact. Create a powerful interpretation with ",
     prompt_suffix: ". Use Von Wong's characteristic epic scale, environmental message, and dramatic lighting. Style of his environmental activism work.",
-    negative_prompt: "simple, understated, casual, candid, natural, unstaged, ordinary, mundane, subtle",
+    negative_prompt: "simple, understated, casual, candid, natural, unstaged, ordinary, mundane, subtle, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {
@@ -417,7 +417,7 @@ const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
   bourdin: {
     prompt_prefix: "In Guy Bourdin's surreal fashion style, with bold color and psychological tension. Create a provocative interpretation with ",
     prompt_suffix: ". Use Bourdin's characteristic saturated color, narrative mystery, and psychological edge. Style of his Vogue and Charles Jourdan work.",
-    negative_prompt: "natural, documentary, candid, realistic, straightforward, conventional, traditional, expected",
+    negative_prompt: "natural, documentary, candid, realistic, straightforward, conventional, traditional, expected, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
     num_inference_steps: 40,
     guidance_scale: 11.0,
     style_emphasis: {

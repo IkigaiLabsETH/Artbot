@@ -1834,7 +1834,10 @@ export class CreativeEngine {
           
           // Style-breaking elements
           "atmospheric perspective", "depth of field", "bokeh", "motion blur",
-          "dynamic range", "high detail", "ultra detailed", "hyperrealistic"
+          "dynamic range", "high detail", "ultra detailed", "hyperrealistic",
+          
+          // Apple logo restrictions
+          "apple logo", "bitten apple", "apple computer logo", "apple inc logo", "apple brand symbol"
         ].join(", "),
         // Additional parameters for style control
         image_style: "oil painting",
