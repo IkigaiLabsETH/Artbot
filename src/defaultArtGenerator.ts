@@ -626,23 +626,22 @@ async function generateArt(concept: string) {
     
     const project = {
       title: artConcept,
-      description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')}: "${artConcept}"`,
+      description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealist artwork: "${artConcept}"`,
       useFlux: true,
       modelConfig: {
         ...MAGRITTE_STYLE_CONFIG,
         prompt_prefix: `In René Magritte's ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealism, create a scene that blends metaphysical wonder with retro-futuristic nostalgia. Combine `,
         prompt_suffix: `. Render with:
-- Lighting: Dramatic cinema-inspired illumination with noir undertones
-- Color: Rich, warm vintage tones (especially reds and oranges) contrasted with deep blues
-- Composition: Clean Magritte-style surrealism meets contemporary design
-- Atmosphere: Mysterious and narrative-driven, suggesting stories beyond the frame
+- Lighting: Dramatic illumination with noir undertones
+- Color: Rich, warm vintage tones contrasted with deep blues
+- Composition: Clean Magritte-style surrealism
+- Atmosphere: Mysterious and narrative-driven
 - Technical quality: Hyperrealistic details with painterly surrealist elements
-Style emphasizing both symbolic resonance and cinematic storytelling.`
+Style emphasizing symbolic resonance and surreal storytelling.`
       },
       requirements: [
-        `Create a fusion of Magritte surrealism`,
-        ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3),
-        ...LIVE_THE_LIFE_ELEMENTS.settings.slice(0, 2)
+        `Create a precise Magritte surrealist composition`,
+        ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3)
       ],
       outputFilename: baseFilename,
       artDirection: {
