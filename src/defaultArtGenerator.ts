@@ -240,62 +240,62 @@ const MINIMAX_MODEL = 'minimax/image-01';
 
 // Define the models with Belgian Surrealist-LiveTheLifeTV fusion settings
 const MAGRITTE_STYLE_CONFIG = {
-  prompt_prefix: "In the exact style of René Magritte's iconic oil paintings, with his signature flat, illustrative technique and dreamlike surrealism. Using his characteristic methods: perfectly flat matte surfaces, complete absence of visible brushwork, hard-edged forms, and simplified volumes. The scene must embody his pure surrealist vision with theatrical lighting and simplified forms, as seen in 'The Son of Man' and 'The False Mirror'. With absolute fidelity to Magritte's painting style, create ",
-  prompt_suffix: `. The artwork must strictly follow Magritte's iconic style:
+  prompt_prefix: "In the exact style of René Magritte's most iconic 1950s oil paintings, using his signature flat painting technique that defined Belgian Surrealism. The scene must be painted with his characteristic methods: absolutely flat color fields, razor-sharp edges, complete absence of modeling or depth, and pure illustrative quality. Using Magritte's precise 1950s technique as seen in 'The Listening Room' and 'Golconda', with his characteristic stark simplicity and dream-like flatness, create ",
+  prompt_suffix: `. The artwork must strictly follow Magritte's 1950s painting style:
 
-- Oil Painting Technique (Pure Magritte):
-  * Completely flat, matte surfaces without any texture
-  * Simplified forms with hard, precise edges
-  * No visible brushstrokes whatsoever
-  * Limited tonal range typical of Magritte
-  * Theatrical, artificial lighting
-  * Reduced, simplified shadows
-  * Minimal modeling of forms
-  * Pure, unmodulated colors
-  * Sharp, clean contours
-  * Flat, stage-like depth
-  * Simplified reflections
-  * Minimal surface detail
-  * Clear, graphic-like forms
-  * Reduced atmospheric perspective
-  * Pure illustrative quality
+- Pure Magritte Technique:
+  * Completely flat, unmodulated color fields
+  * Absolutely no volumetric modeling
+  * Hard edges between all elements
+  * No surface texture whatsoever
+  * Stark, artificial shadows only
+  * Simple, solid colors
+  * No gradients or blending
+  * Perfectly clean edges
+  * Comic-book like flatness
+  * Zero atmospheric perspective
+  * Minimal detail rendering
+  * Pure graphic quality
+  * No depth or volume
+  * Stark lighting only
+  * Paper-like flatness
 
-- Composition (Magritte's Vision):
-  * Theatrical, stage-like arrangements
-  * Simplified geometric forms
-  * Clear figure-ground relationships
-  * Minimal environmental detail
-  * Strong silhouettes
-  * Limited depth of field
-  * Crisp edges between elements
-  * Flat color areas
-  * Reduced number of elements
-  * Clear spatial relationships
+- Classic Magritte Composition:
+  * Single-point perspective only
+  * Perfectly flat backgrounds
+  * Clear silhouettes
+  * Minimal scene elements
+  * Stage-like space
+  * No atmospheric effects
+  * Sharp divisions
+  * Simple forms
+  * Basic shadows
+  * Flat sky
 
 Technical Requirements:
-  * Pure flat oil painting style
-  * No photographic qualities
-  * No texture or brushwork
-  * Limited tonal transitions
-  * Hard-edged forms only
-  * Simplified volumes
-  * Clear contours
-  * Reduced detail
-  * Limited palette
-  * Theatrical lighting`,
-  negative_prompt: "photorealistic, hyperrealistic, detailed, textured, 3D, depth, volumetric, realistic, photographic, camera, lens, detailed texture, fine detail, intricate detail, high detail, skin texture, fabric texture, surface texture, film grain, noise, detailed background, realistic lighting, natural lighting, volumetric lighting, atmospheric effects, depth of field, bokeh, motion blur, realistic shadows, cast shadows, subsurface scattering, realistic reflections, specular highlights, ray tracing, global illumination, ambient occlusion, detailed materials, realistic materials, procedural textures, normal maps, bump maps, displacement maps, high dynamic range, tone mapping, color grading, post-processing, cinematic, dramatic lighting, moody, gritty, weathered, worn, aged, distressed, detailed environment, environmental detail, realistic environment, realistic nature, realistic architecture, realistic objects, realistic props, realistic furniture, realistic clothing, realistic hair, realistic skin, realistic eyes, realistic metals, realistic glass, realistic wood, realistic fabric, realistic leather, realistic plastic, realistic rubber, realistic paper, realistic stone, realistic concrete, realistic brick, realistic rust, realistic dirt, realistic dust, realistic scratches, realistic wear, realistic aging",
-  num_inference_steps: 100,
-  guidance_scale: 25.0,     // Increased for stronger style adherence
+  * 1950s Magritte style
+  * Comic-book flatness
+  * No volume or depth
+  * Sharp edges only
+  * Solid colors
+  * Simple shadows
+  * Minimal detail
+  * Flat planes
+  * Clean lines
+  * Basic forms`,
+  negative_prompt: "3D, depth, volume, photorealistic, detailed, textured, realistic, photograph, volumetric, modeled, shaded, gradient, atmospheric, painterly, brushwork, expressive, loose, artistic, impressionistic, detailed, nuanced, subtle, complex, layered, dimensional, perspective, depth of field, rendered, ray-traced, global illumination, ambient occlusion, subsurface scattering, physically based rendering, material properties, surface detail, micro detail, macro detail, fine detail, texture detail, normal map, bump map, displacement, specular, reflection, refraction, caustics, volumetric lighting, god rays, lens effects, chromatic aberration, depth of field, bokeh, motion blur, film grain, noise, grit, weathering, aging, wear, patina, roughness, glossiness, metallic, translucency, transparency, subsurface, scattering, indirect lighting, bounce light, color bleeding, ambient light, direct light, spot light, area light, environmental lighting, shadow mapping, soft shadows, contact shadows, ambient shadows, occlusion, global illumination, radiosity, caustics, photon mapping, ray marching, path tracing, HDRI, tone mapping, color grading, post-processing, compositing, rendering, 3D modeling, sculpting, texturing, shading, lighting, materials, procedural, generative, simulation",
+  num_inference_steps: 150,    // Increased for cleaner edges
+  guidance_scale: 30.0,       // Increased for stronger style adherence
   scheduler: "DPMSolverMultistep",
   num_samples: 1,
   seed: -1,
-  cfg_scale: 25.0,         // Increased for stronger prompt adherence
+  cfg_scale: 30.0,           // Increased for stronger prompt adherence
   image_resolution: 2024,
   sampler_name: "DPM++ 2M Karras",
-  denoising_strength: 0.35, // Reduced further for flatter, more Magritte-like results
-  control_scale: 0.98,     // Increased for even better style control
-  control_start: 0.15,
-  control_end: 0.98       // Extended for better refinement
+  denoising_strength: 0.25,   // Reduced further for maximum flatness
+  control_scale: 0.99,       // Increased for even better style control
+  control_start: 0.10,
+  control_end: 0.99         // Extended for better refinement
 };
 
 // Add painting-specific visual elements
@@ -553,20 +553,17 @@ Style emphasizing both symbolic resonance and cinematic storytelling.`
     }
     
     // Update file paths to use selected style
-    const sanitizedConcept = artConcept
-      .split(' ')
-      .slice(0, 3) // Take only first 3 words
-      .join('-')
-      .toLowerCase()
-      .replace(/[^a-z0-9-]/g, ''); // Remove special characters
+    const hash = Buffer.from(artConcept).toString('base64')
+      .replace(/[+/=]/g, '') // Remove base64 special chars
+      .slice(0, 8); // Take first 8 chars of hash
     
-    const timestamp = new Date().getTime().toString(36); // Convert timestamp to base36
-    const stylePrefix = selectedCategory.replace('magritte_', '').slice(0, 8); // Take first 8 chars of style
-    const baseFilename = `${stylePrefix}-${timestamp}-${sanitizedConcept}`.slice(0, 64); // Limit total length
+    const timestamp = new Date().getTime().toString(36).slice(-6); // Take last 6 chars of timestamp
+    const stylePrefix = selectedCategory.replace('magritte_', '').slice(0, 4); // Take first 4 chars of style
+    const baseFilename = `${stylePrefix}-${timestamp}-${hash}`; // Will be ~19 chars long
     
-    const promptPath = path.join(outputDir, `${baseFilename}-prompt.txt`);
+    const promptPath = path.join(outputDir, `${baseFilename}-p.txt`);
     const imagePath = path.join(outputDir, `${baseFilename}.txt`);
-    const metadataPath = path.join(outputDir, `${baseFilename}-meta.json`);
+    const metadataPath = path.join(outputDir, `${baseFilename}-m.json`);
     
     // Save prompt and creative process (silently)
     fs.writeFileSync(
