@@ -350,7 +350,22 @@ export class IdeatorAgent extends BaseAgent {
         role: 'system',
         content: `You are the Ideator agent specializing in METAPHYSICAL ideation in Magritte's tradition. Focus on philosophical paradoxes, reality questioning, and metaphysical concepts. Generate ideas that challenge perception and provoke philosophical thought.
 
-        Important: Use modern/hipster hats instead of bowler hats. Choose from: vintage fedora, newsboy cap, wool beanie, wide-brim felt hat, flat cap, slouchy knit cap, porkpie hat, distressed leather fedora, tweed flat cap, fisherman beanie, trilby hat, bucket hat.`
+        Important: Focus on traditional Magritte elements:
+        - Everyday objects in surreal contexts
+        - Philosophical paradoxes and metaphysical questions
+        - Natural elements (clouds, sky, birds, trees)
+        - Architectural elements (windows, doors, frames)
+        - Traditional objects (pipes, apples, mirrors)
+        - Modern hats (vintage fedora, newsboy cap, wool beanie, wide-brim felt hat, flat cap, slouchy knit cap, porkpie hat, etc.)
+        - Classical settings and environments
+
+        Avoid any references to:
+        - Modern technology
+        - Digital interfaces
+        - Contemporary machinery
+        - Electronic devices
+        - Modern transportation
+        - Current innovations`
       },
       {
         role: 'user',
@@ -363,7 +378,7 @@ export class IdeatorAgent extends BaseAgent {
         For each idea, provide:
         1. A title that encapsulates the metaphysical concept
         2. A philosophical paradox or question
-        3. Key symbolic elements (using modern hats, not bowler hats)
+        3. Key symbolic elements (using traditional Magritte elements and modern hats)
         4. Visual representation
         5. Philosophical impact
         
@@ -413,7 +428,22 @@ export class IdeatorAgent extends BaseAgent {
         role: 'system',
         content: `You are the Ideator agent specializing in SURREAL ideation in Magritte's style. Focus on impossible juxtapositions, dream-like scenarios, and reality-bending concepts. Generate ideas that challenge perception through surreal imagery.
 
-        Important: Use modern/hipster hats instead of bowler hats. Choose from: vintage fedora, newsboy cap, wool beanie, wide-brim felt hat, flat cap, slouchy knit cap, porkpie hat, distressed leather fedora, tweed flat cap, fisherman beanie, trilby hat, bucket hat.`
+        Important: Focus on traditional Magritte elements:
+        - Everyday objects in surreal contexts
+        - Philosophical paradoxes and metaphysical questions
+        - Natural elements (clouds, sky, birds, trees)
+        - Architectural elements (windows, doors, frames)
+        - Traditional objects (pipes, apples, mirrors)
+        - Modern hats (vintage fedora, newsboy cap, wool beanie, wide-brim felt hat, flat cap, slouchy knit cap, porkpie hat, etc.)
+        - Classical settings and environments
+
+        Avoid any references to:
+        - Modern technology
+        - Digital interfaces
+        - Contemporary machinery
+        - Electronic devices
+        - Modern transportation
+        - Current innovations`
       },
       {
         role: 'user',
@@ -424,7 +454,7 @@ export class IdeatorAgent extends BaseAgent {
         For each idea, provide:
         1. A title that captures the surreal concept
         2. A description of the impossible scenario
-        3. Key surreal elements (using modern hats, not bowler hats)
+        3. Key surreal elements (using traditional Magritte elements and modern hats)
         4. Visual composition
         5. Perceptual impact
         
@@ -766,7 +796,16 @@ export class IdeatorAgent extends BaseAgent {
       const messages: AIMessage[] = [
         {
           role: 'system',
-          content: `You are the Ideator agent in a multi-agent art creation system. Your role is to generate creative, diverse, and novel ideas based on the provided creative prompt, focusing on Magritte's surrealist style and philosophical depth.`
+          content: `You are the Ideator agent in a multi-agent art creation system. Your role is to generate creative, diverse, and novel ideas based on the provided creative prompt, focusing on Magritte's surrealist style and philosophical depth.
+
+Important: Focus on traditional Magritte elements:
+- Everyday objects in surreal contexts
+- Philosophical paradoxes and metaphysical questions
+- Natural elements (clouds, sky, birds, trees)
+- Architectural elements (windows, doors, frames)
+- Traditional objects (pipes, apples, mirrors)
+- Modern hats (vintage fedora, newsboy cap, etc.)
+- Classical settings and environments`
         },
         {
           role: 'user',
@@ -815,6 +854,18 @@ export class IdeatorAgent extends BaseAgent {
         - Reality investigations and philosophical questions
         - Metaphysical truths and symbolic meanings
         - Theatrical staging that suggests a larger story
+        - Traditional objects and natural elements
+        - Classical settings and environments
+        - Modern hats (vintage fedora, newsboy cap, etc.)
+        - Everyday objects in surreal contexts
+        
+        Avoid any references to:
+        - Modern technology
+        - Digital interfaces
+        - Contemporary machinery
+        - Electronic devices
+        - Modern transportation
+        - Current innovations
         ` : ''}`
         },
         {
@@ -828,7 +879,7 @@ export class IdeatorAgent extends BaseAgent {
           For each idea, provide:
           1. A title
           2. A brief description
-          3. Key visual elements
+          3. Key visual elements (focusing on traditional Magritte elements)
           4. Potential styles
           5. Emotional impact
           
