@@ -41,32 +41,69 @@ const defaultArtDirection: ArtDirection = {
     "Jane Graverol's feminine surrealism",
     "Paul Nougé's conceptual paradox",
     "Marcel Broodthaers's institutional critique",
-    "symbolic resonance",
-    "temporal displacement",
-    "philosophical questioning",
-    "poetic displacement",
-    "dreamlike composition",
-    "spatial illusion",
-    "dramatic tension",
-    "harmonious abstraction"
+    
+    // International Surrealist Influences
+    "Salvador Dalí's paranoid-critical method and dream-like imagery",
+    "Max Ernst's collage novels and frottage techniques",
+    "Yves Tanguy's abstract and biomorphic landscapes",
+    "André Breton's automatic writing and surrealist games",
+    "Man Ray's rayographs and solarized photographs",
+    "Hans Bellmer's uncanny and fragmented dolls",
+    "Leonora Carrington's fantastical and mythological narratives",
+    "Dorothea Tanning's surreal and psychologically charged interiors",
+    
+    // Related Artistic Movements and Influences
+    "Giorgio de Chirico's metaphysical and enigmatic compositions",
+    "Frida Kahlo's symbolic self-portraits and dream-like elements",
+    "Joan Miró's abstract and biomorphic forms and color palettes",
+    "Jean Arp's organic and fluid shapes and reliefs",
+    "Hannah Hoch's Dadaist photomontages and collages",
+    "Kurt Schwitters's Merz assemblages and installations",
+    "Pablo Picasso's cubist fragmentation and multiple perspectives",
+    "Henri Matisse's expressive use of color and simplified forms",
+    
+    // Avant-Garde Techniques and Approaches
+    "Automatic drawing and writing for subconscious expression",
+    "Collage and assemblage for unexpected juxtapositions",
+    "Frottage and grattage for texture and chance effects",
+    "Photomontage and solarization for surreal distortions",
+    "Exquisite corpse and surrealist games for collaborative creation",
+    "Biomorphic abstraction for organic and fluid forms",
+    "Fragmentation and distortion of the human figure",
+    "Symbolic and archetypal imagery for psychological depth",
+    
+    // Expanded Surrealist Themes and Concepts
+    "The uncanny and the return of the repressed",
+    "The marvelous and the convulsive beauty",
+    "The crisis of the object and the phantom object",
+    "The resolution of dream and reality into a surreality",
+    "The omnipotence of desire and the triumph of love",
+    "The revolution of language and the new myth",
+    "The occultation of Surrealism and the surrealist occult",
+    "The haunted self and the labyrinthine psyche"
   ],
   visualElements: [
-    // Strictly Vintage Computer Elements
-    "floating vintage computers",
-    "levitating retro displays",
-    "classic interface elements floating in space",
-    "hovering vintage keyboards",
-    "geometric patterns of circuit boards",
-    "billowing curtains revealing retro screens",
-    "clouded skies filled with classic icons",
-    "mirror reflections of vintage interfaces",
-    "classic startup sounds visualized",
-    "original computer mice in surreal patterns",
-    "glowing power lights",
-    "suspended vintage floppy disks",
-    "ethereal dot matrix printers",
-    "metaphysical peripheral ports",
-    "symbolic early software stacks"
+    // Magritte-inspired surreal elements with a vintage computer twist
+    "floating vintage computers with Magritte's iconic apples and bowler hats",
+    "levitating retro displays in dreamlike landscapes reminiscent of Magritte's paintings",
+    "classic interface elements floating in surreal skies filled with Magritte's clouds and birds",
+    "hovering vintage keyboards with keys transforming into Magritte's pipes and candles",
+    "geometric patterns of circuit boards blending into Magritte's fragmented architectural elements",
+    "billowing curtains revealing retro screens that contain Magritte's paintings within paintings",
+    "clouded skies filled with classic computer icons and Magritte's enigmatic symbols",
+    "mirror reflections of vintage interfaces merging with Magritte's self-referential illusions",
+    "classic startup sounds visualized as Magritte's musical notes floating in surreal spaces",
+    "original computer mice in surreal patterns alongside Magritte's disembodied hands and eyes",
+    "glowing power lights illuminating Magritte's uncanny still life arrangements",
+    "suspended vintage floppy disks orbiting Magritte's giant floating objects",
+    "ethereal dot matrix printers outputting Magritte's paradoxical text fragments",
+    "metaphysical peripheral ports connecting to Magritte's impossible dream-spaces",
+    "symbolic early software stacks merging with Magritte's conceptual object-scapes",
+    "vintage computer components entangled in Magritte's vines, roots, and organic forms",
+    "retro computer cases opening to reveal Magritte's surreal interior worlds",
+    "classic computer fans blowing Magritte's curtains and revealing hidden realities",
+    "vintage computer cords transforming into Magritte's umbilical cords and life-lines",
+    "antique computer manuals with pages morphing into Magritte's flying birds and soaring sheets"
   ],
   colorPalette: [
     // Vintage Computer Color Palette
@@ -236,141 +273,156 @@ const MINIMAX_MODEL = 'minimax/image-01';
 
 // Define the models with Belgian Surrealist-LiveTheLifeTV fusion settings
 const MAGRITTE_STYLE_CONFIG = {
-  prompt_prefix: "Create a precise Magritte-style portrait composition with his characteristic treatment of faces and figures as mysterious objects. Using the exact painting technique from 'The Son of Man' (1964) and 'Golconda' (1953), with their pristine surface quality and perfect, shadowless rendering, create ",
-  prompt_suffix: `. The portrait must follow Magritte's precise style:
+  prompt_prefix: "Create an enigmatic Magritte-style portrait composition with his signature pristine execution, absolute flatness, and metaphysical atmosphere. Eliminate any trace of brushwork, texture, or depth. Adhering precisely to the techniques in 'The Son of Man' (1964), 'The Lovers' (1928), and 'Golconda' (1953), with their machine-like perfection and razor-sharp edges, create ",
+  prompt_suffix: `. The portrait must epitomize Magritte's iconic style:
 
-- Portrait Treatment:
-  * Faces treated as mysterious objects
-  * Perfect, mask-like rendering of flesh
-  * Absolutely flat, shadowless surfaces
-  * Crystal-clear edge definition
-  * No traditional modeling
-  * Pure, unmodulated color fields
-  * Pristine, photographic precision
-  * Complete elimination of brushwork
-  * Surgical exactness in details
-  * Perfect, sourceless illumination
+- Pristine Execution:
+  * Faces as perfectly smooth, mask-like objects
+  * Absolutely flat, shadowless flesh with no modeling
+  * Crystal-clear edge definition and surgical exactness
+  * Pure, unmodulated color fields and complete flatness
+  * Photographic clarity and precision in every detail
+  * Total elimination of any visible brushwork or texture
 
-- Background Treatment:
-  * Pure, flat color fields only
-  * No atmospheric perspective
-  * No traditional space or depth
-  * Perfect, clean surfaces
-  * Modern, timeless setting
-  * Absolute geometric precision
-  * No decorative elements
-  * No period references
-  * Clear, enigmatic space
-  * Pristine emptiness
+- Enigmatic Atmosphere:
+  * Timeless, otherworldly spaces of pristine emptiness
+  * Metaphysical staging with philosophical undertones
+  * Surreal juxtapositions and conceptual paradoxes
+  * Poetic arrangement of objects in evocative constellations
+  * Sense of mystery, displacement, and cognitive dissonance
+  * Tension between hyperrealism and dream-like surrealism
 
-- Technical Requirements:
-  * Use Magritte's 1950-60s technique
-  * Achieve photographic clarity
-  * Maintain perfect flatness
-  * Create knife-edge precision
-  * Ensure mechanical perfection
-  * Eliminate all texture
-  * Pure color separation
-  * Absolute control
-  * Perfect finish`,
-  negative_prompt: "brushstrokes, texture, impasto, painterly, expressive, loose, gestural, impressionistic, abstract, rough, sketchy, uneven, textured surface, visible canvas, brush marks, paint thickness, palette knife, dry brush, scumbling, glazing, layered paint, broken color, atmospheric effect, sfumato, chiaroscuro, tonal gradation, blended colors, soft edges, feathered edges, painterly technique, artistic looseness, expressive brushwork, textural variation, surface irregularity, paint drips, spontaneous marks, gestural marks, painterly abstraction, artistic freedom, loose handling, energetic brushwork, thick paint, thin paint, variable paint, artistic interpretation, creative brushwork, expressive technique, artistic style, painterly style, artistic flourish, creative expression, artistic license, interpretive style, loose interpretation, creative freedom, artistic spontaneity, expressive freedom, creative license, artistic variation, interpretive freedom, loose style, creative interpretation, expressive style, artistic spontaneity, painterly freedom, creative style, interpretive technique, loose technique, artistic technique, expressive interpretation, creative technique, painterly interpretation, artistic expression, loose expression, creative expression, interpretive expression, 3D, depth, volume, photographic, camera, lens, DSLR, photography, realistic, hyperrealistic, cinematic, dramatic, atmospheric, moody, emotional, expressive, dynamic, energetic, vibrant, lively, animated, movement, motion, action, drama, intensity, passion, force, power, strength, vigor, vitality, life, spirit, soul, feeling, sentiment, mood, atmosphere, ambiance, environment, setting, context, situation, condition, state, quality, character, nature, essence, being, existence, reality, truth, fact, actuality, certainty, definiteness, precision, accuracy, exactness, correctness, rightness, trueness, authenticity, genuineness, validity, legitimacy, soundness, reliability, dependability, trustworthiness, credibility, believability, plausibility, probability, likelihood, possibility, chance, prospect, potential, capacity, capability, ability, power, faculty, means, way, method, manner, mode, fashion, style, approach, technique, procedure, process, practice, custom, habit, routine, convention, tradition, norm, standard, criterion, measure, gauge, test, check, verification, validation, confirmation, corroboration, substantiation, proof, evidence, demonstration, illustration, exemplification, instance, example, case, occurrence, happening, event, incident, episode, occasion, circumstance, situation, condition, state, position, place, location, spot, point, mark, sign, indication, signal, symptom, manifestation, expression, display, showing, exhibition, presentation, demonstration, revelation, disclosure, exposure, uncovering, unfolding, development, evolution, progression, advance, advancement, progress, growth, expansion, enlargement, extension, increase, enhancement, improvement, betterment, amelioration, upgrade, uplift, elevation, raising, lifting, boosting, heightening, intensification, strengthening, reinforcement, fortification, consolidation, stabilization, establishment, institution, constitution, formation, creation, generation, production, making, manufacturing, construction, building, assembly, composition, compilation, collection, gathering, accumulation, amassing, stockpiling, hoarding, storage, preservation, conservation, protection, safeguarding, security, safety, surety, certainty, assurance, guarantee, warranty, pledge, promise, commitment, obligation, duty, responsibility, charge, trust, care, custody, guardianship, keeping, maintenance, support, sustenance, subsistence, livelihood, living, life, existence, being, essence, nature, character, quality, property, attribute, characteristic, feature, aspect, element, component, constituent, ingredient, part, portion, piece, bit, fragment, section, segment, division, subdivision, department, branch, sector, sphere, realm, domain, field, area, region, territory, zone, space, place, position, location, situation, site, spot, point, mark, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-  num_inference_steps: 200,    // Increased further for maximum precision
-  guidance_scale: 35.0,       // Increased for even stronger style adherence
-  scheduler: "DPMSolverMultistep",
+- Magritte's Metaphysical Themes:
+  * The uncanny and the everyday made strange
+  * The double, the mirror, and the split self
+  * Metamorphosis and transformation of figures and objects
+  * The crisis of the object and the phantom object
+  * The resolution of dream and reality into a surreality
+  * The omnipotence of desire and the triumph of love`,
+  negative_prompt: "painterly, expressive, loose, gestural, impressionistic, abstract, rough, sketchy, uneven, textured surface, visible canvas, brush marks, paint thickness, palette knife, dry brush, scumbling, glazing, layered paint, broken color, atmospheric perspective, sfumato, chiaroscuro, tonal gradation, color blending, soft edges, feathered edges, visible brushwork, artistic looseness, textural variation, surface irregularity, paint drips, spontaneous marks, energetic brushwork, thick impasto, variable paint application, artistic interpretation, expressive technique, painterly style, artistic flourish, creative expression, interpretive style, loose handling, artistic spontaneity, expressive freedom, creative license, artistic variation, interpretive freedom, loose style, creative interpretation, expressive style, painterly freedom, creative style, interpretive technique, loose technique, expressive interpretation, creative technique, painterly interpretation, artistic expression, loose expression, creative expression, interpretive expression, visible artist's hand, evidence of process, imperfection, 3D, depth, volume, modeling, shading, form, contour, highlight, shadow, cast shadow, core shadow, reflected light, photographic effects, camera blur, lens flare, bokeh, vignette, film grain, noise, pixelation, posterization, halftone, screen printing, risograph, linocut, woodcut, etching, engraving, aquatint, mezzotint, lithography, silkscreen, monoprint, cyanotype, blueprint, ascii art, vector art, 3D render, CGI, computer graphics, digital art, glitch art, pixel art, low poly, wireframe, hologram, VR, AR, stereoscopic, anaglyph",
+  num_inference_steps: 300,
+  guidance_scale: 45.0,
+  scheduler: "DDIM",
   num_samples: 1,
   seed: -1,
-  cfg_scale: 35.0,           // Increased to match guidance_scale
+  cfg_scale: 45.0,
   image_resolution: 1024,
   sampler_name: "DPM++ 2M Karras",
-  denoising_strength: 0.2,    // Reduced further for maximum flatness
-  control_scale: 1.0,        // Maximum control for style
-  control_start: 0.0,        // Start control from beginning
-  control_end: 1.0,          // Maintain control throughout
-  style_fidelity: 1.0,       // Maximum style fidelity
-  init_image_strength: 0.2,   // Low init image strength for cleaner result
+  denoising_strength: 0.05,
+  control_scale: 1.0,
+  control_start: 0.0,
+  control_end: 1.0,
+  style_fidelity: 1.0,
+  init_image_strength: 0.05,
   custom_style_params: {
-    portrait_precision: 1.0,    // Maximum portrait precision
-    face_flatness: 1.0,        // Maximum face flatness
-    flesh_smoothness: 1.0,     // Perfect flesh rendering
-    suit_precision: 1.0,       // Perfect suit rendering
-    background_purity: 1.0,    // Pure, clean backgrounds
-    symbolic_clarity: 1.0      // Clear symbolic elements
-  }
+    portrait_precision: 1.0,
+    face_flatness: 1.0,
+    flesh_smoothness: 1.0,
+    edge_sharpness: 1.0,
+    surface_quality: 1.0,
+    color_separation: 1.0,
+    brushwork_elimination: 1.0,
+    depth_removal: 1.0,
+    atmospheric_negation: 1.0,
+    conceptual_emphasis: 1.0,
+    metaphysical_resonance: 1.0,
+    surreal_juxtaposition: 1.0,
+    enigmatic_staging: 1.0,
+    cognitive_dissonance: 1.0,
+    hyperreal_surrealism: 1.0
+  },
+  compositionGuidelines: [
+    // Magritte's Iconic Compositional Devices in Portraits
+    "Obscuring the face with displaced objects ('The Son of Man')",
+    "Multiplying figures in grid-like arrangements ('Golconda')",
+    "Transforming facial features into uncanny objects ('The Rape')",
+    "Fusing figures with background elements ('The Therapist')",
+    "Shrouding heads with cloth or drapery ('The Lovers')",
+    "Isolating figures in empty, infinite spaces ('The Month of the Grape Harvest')",
+    "Merging portrait and landscape/skyscape ('The Happy Donor')",
+    "Repeating motifs across a series ('The Dominion of Light')",
+    "Fragmenting and recomposing the body ('The Eternally Obvious')",
+    "Juxtaposing day and night, interior and exterior ('Time Transfixed')",
+    "Paradoxical object placement to create cognitive dissonance",
+    "Metaphysical flattening of space to suggest timeless unreality",
+    "Symbolic framing with windows, doors, and curtains",
+    "Conceptual staging of philosophical and existential themes",
+    "Geometric precision and architectural structuring of space",
+    "Surreal scale juxtapositions and relative size distortions",
+    "Dramatic frontality and confrontational central subject",
+    "Symmetrical balancing and mirroring of compositional elements",
+    "Visual puns, double meanings, and semiotic slippage",
+    "Poetic arrangement of objects in evocative constellations"
+  ]
 };
 
 // Define Magritte's iconic color palette with specific artwork references
 const MAGRITTE_COLOR_PALETTE = {
+  // Refined color palette limited to Magritte's unmodulated tones
   sky: {
     day: {
-      color: "pure cerulean blue",
-      reference: "The Empire of Light (1953-54)",
-      usage: "Primary sky and background color"
+      color: "Magritte sky blue (Pantone 292 C)",
+      reference: "The Dominion of Light series, The Son of Man",
+      usage: "Luminous daytime skies"
     },
     night: {
-      color: "deep charcoal grey",
-      reference: "The Dominion of Light (1948)",
-      usage: "Deep, solid dark backgrounds and shadows"
-    },
-    twilight: {
-      color: "pale porcelain flesh",
-      reference: "The Blank Signature (1965)",
-      usage: "Transitional and atmospheric elements"
+      color: "Magritte midnight blue (Pantone 540 C)",
+      reference: "The Empire of Light series, The Lovers",
+      usage: "Enigmatic night skies"
     }
   },
+  
   portraits: {
-    face: {
-      color: "pale porcelain flesh",
-      reference: "The Son of Man (1964)",
-      usage: "Main portrait elements and skin tones"
+    flesh: {
+      color: "Magritte porcelain flesh (Pantone 7506 C)",
+      reference: "The Son of Man, The Lovers, The Great War",
+      usage: "Smooth, flat skin tones"
     },
-    suit: {
-      color: "deep charcoal grey",
-      reference: "Golconda (1953)",
-      usage: "Primary formal and structural elements"
+    hair: {
+      color: "Magritte chestnut brown (Pantone 469 C)",
+      reference: "The Great War, Golconda, The Son of Man",
+      usage: "Neatly groomed hair"
     },
-    mask: {
-      color: "pure cerulean blue",
-      reference: "The Son of Man (1964)",
-      usage: "Key symbolic and focal elements"
-    },
-    shadow: {
-      color: "deep charcoal grey",
-      reference: "The Great War (1964)",
-      usage: "Shadow definition and depth"
+    cloth: {
+      color: "Magritte drapery white (Pantone 7541 C)",
+      reference: "The Lovers, The Heart of the Matter, The Therapist",
+      usage: "Flowing fabric and shrouds"
     }
   },
-  backgrounds: {
-    pure: {
-      color: "pure cerulean blue",
-      reference: "The Victory (1939)",
-      usage: "Primary background planes"
-    },
-    neutral: {
-      color: "pale porcelain flesh",
-      reference: "Decalcomania (1966)",
-      usage: "Neutral and transitional spaces"
-    },
-    modern: {
-      color: "deep charcoal grey",
-      reference: "The Dominion of Light series",
-      usage: "Contemporary settings and structures"
-    }
-  },
+
   objects: {
-    symbolic: {
-      color: "pure cerulean blue",
-      reference: "The Son of Man (1964)",
-      usage: "Key symbolic elements and focal points"
+    apple: {
+      color: "Magritte apple green (Pantone 360 C)",
+      reference: "The Son of Man, The Listening Room",
+      usage: "Iconic green apples"
     },
-    formal: {
-      color: "deep charcoal grey",
-      reference: "Golconda bowler hats",
-      usage: "Formal objects and structural elements"
+    stone: {
+      color: "Magritte stone grey (Pantone 409 C)",
+      reference: "The Castle of the Pyrenees, The Art of Living",
+      usage: "Massive stone elements"
     },
-    technological: {
-      color: "pale porcelain flesh",
-      reference: "The Listening Room (1952)",
-      usage: "Modern elements and transitions"
+    wood: {
+      color: "Magritte wood brown (Pantone 730 C)",
+      reference: "The Treachery of Images, The Six Elements",
+      usage: "Wooden objects and surfaces"
+    }
+  },
+
+  backgrounds: {
+    wall: {
+      color: "Magritte wall grey (Pantone 400 C)",
+      reference: "The Human Condition, The Memoirs of a Saint",
+      usage: "Flat interior walls"
+    },
+    void: {
+      color: "Magritte void black (Pantone Black C)", 
+      reference: "The Dominion of Light, Time Transfixed",
+      usage: "Absolute darkness and shadows"
+    },
+    sky: {
+      color: "Magritte sky white (Pantone 663 C)",
+      reference: "Decalcomania, The Happy Donor",
+      usage: "Pale, infinite skyscapes" 
     }
   }
 };
@@ -442,7 +494,23 @@ const LIVE_THE_LIFE_ELEMENTS = {
     "keyboard suspended in pure blue space",
     "monitor screen as a void into another reality",
     "floppy disk as an enigmatic floating object",
-    "computer mouse transformed into a surreal portrait element"
+    "computer mouse transformed into a surreal portrait element",
+    "CRT monitor as a window into a metaphysical realm",
+    "vintage computer components arranged in impossible configurations",
+    "classic keyboard keys raining from a surreal sky",
+    "floppy disks metamorphosing into mysterious creatures",
+    "computer mouse cord tangled in a surreal knot",
+    "vintage computer manual pages scattered in a dreamlike landscape",
+    "computer tower opened to reveal a surreal interior world",
+    "computer chip as a labyrinthine city in a surreal space",
+    "vintage computer fan as a hypnotic vortex",
+    "computer speaker as a portal to an alternate reality",
+    "computer cables twisted into surreal organic forms",
+    "motherboard as an abstract expressionist landscape",
+    "punch cards as enigmatic symbols in a surreal composition",
+    "computer case as a frame for a metaphysical still life",
+    "vintage computer ad as a surreal collage element",
+    "computer programming book as a surreal pop-up sculpture"
   ],
   color_palettes: [
     // Portrait-focused palettes
@@ -489,6 +557,52 @@ const LIVE_THE_LIFE_ELEMENTS = {
     "crystalline illumination from Victory",
     "perfect diffusion from Decalcomania",
     "absolute clarity from Empire of Light"
+  ],
+  styleEmphasis: [
+    // Key aspects of Magritte's style in portrait works
+    "Magritte's absolute precision and pristine execution",
+    "Perfectly flat, shadowless rendering of all surfaces",
+    "Crystal-clear edge definition and razor-sharp details",
+    "Pure, unmodulated color fields with no blending or shading",
+    "Photographic clarity and machine-like reproducibility",
+    "Total elimination of any visible brushwork or texture",
+    "Timeless, enigmatic staging with no period references",
+    "Metaphysical flattening of space and perspective",
+    "Conceptual emphasis on philosophical and existential themes",
+    "Poetic juxtaposition and symbolic arrangement of objects",
+    "Geometric precision and architectural structuring of composition",
+    "Surreal distortions of scale and relative sizes",
+    "Confrontational frontality and centrality of subject",
+    "Symmetrical balancing and mirroring of elements",
+    "Visual paradoxes, double meanings, and cognitive dissonance",
+    "Uncanny transformations and fusions of figures and objects",
+    "Displacement and dislocation of expected realities",
+    "Tension between hyperrealism and oneiric surrealism",
+    "Sense of mystery, ambiguity, and metaphysical resonance",
+    "Absolute mastery of technique in service of concept"
+  ],
+  references: [
+    // Magritte's most iconic and recognizable portrait works
+    "The Son of Man (1964) - Apple obscuring bowler-hatted man's face",
+    "The Lovers (1928) - Kissing couple with cloth-shrouded heads", 
+    "Golconda (1953) - Raining men in identical bowler hats and suits",
+    "The Great War (1964) - Flowers obscuring bowler-hatted figure's face",
+    "The Therapist (1937) - Seated figure with birdcage head",
+    "The Rape (1934) - Woman's face replaced by nude torso",
+    "The Happy Donor (1966) - Landscape reflected in man's head silhouette",
+    "The Heart of the Matter (1928) - Mysterious cloth-wrapped figure",
+    "The Month of the Grape Harvest (1959) - Suited man with apple in barren landscape",
+    "The Dominion of Light series (1949-1965) - Paradoxical day/night scenes",
+    "The Empire of Light series (1948-1964) - Glowing windows in night scenes",
+    "The Human Condition series (1933-1935) - Paintings within paintings",
+    "The Castle of the Pyrenees (1959) - Massive stone on tiny base",
+    "The Listening Room (1952) - Giant green apple filling interior room",
+    "The Six Elements (1929) - Fragmented portrait with wooden objects",
+    "Decalcomania (1966) - Sky merging into rocky cliffside",
+    "The Treachery of Images (1929) - 'This is not a pipe' inscription",
+    "Time Transfixed (1938) - Train emerging from fireplace",
+    "The Eternally Obvious (1930) - Fragmented and recomposed female nude",
+    "The Art of Living (1967) - Stone relief with bowler-hatted men"
   ]
 };
 
@@ -624,23 +738,29 @@ async function generateArt(concept: string) {
       // Get the category-specific art direction
       const categoryArtDirection = loadCategoryArtDirection(selectedCategory);
       
-      console.log(`\n🎬 Generating fusion concept for ${selectedCategory.replace('magritte_', '').replace('_', ' ')}...`);
+      console.log(`\n🎨 Generating Magritte-style concept for ${selectedCategory.replace('magritte_', '').replace('_', ' ')}...`);
       
-      // Get elements from both styles
+      // Get elements from the Magritte style
       const magritteElements = categoryArtDirection?.visualElements || defaultArtDirection.visualElements;
       const magritteStyle = categoryArtDirection?.styleEmphasis || defaultArtDirection.styleEmphasis;
-      const liveTheLifeSettings = LIVE_THE_LIFE_ELEMENTS.settings;
-      const liveTheLifeObjects = LIVE_THE_LIFE_ELEMENTS.objects;
       
-      // Select random elements from both styles with fallbacks
-      const selectedMagritteElement = magritteElements[Math.floor(Math.random() * magritteElements.length)] || "floating vintage Apple computer";
+      // Select random elements from the Magritte style with fallbacks
+      const selectedMagritteElement = magritteElements[Math.floor(Math.random() * magritteElements.length)] || "floating apple";
       const selectedMagritteStyle = magritteStyle[Math.floor(Math.random() * magritteStyle.length)] || "Magritte's metaphysical precision";
-      const selectedSetting = liveTheLifeSettings[Math.floor(Math.random() * liveTheLifeSettings.length)] || "pristine oil-painted environment";
-      const selectedObject = liveTheLifeObjects[Math.floor(Math.random() * liveTheLifeObjects.length)] || "Macintosh with perfect oil painting finish";
       
-      // Create a fusion concept with validation
-      artConcept = `A surrealist scene where ${selectedMagritteElement} meets ${selectedObject} in ${selectedSetting}, painted with ${selectedMagritteStyle}`;
-      console.log(`\n✨ Generated fusion concept: "${artConcept}"`);
+      // Create a Magritte-style surrealist portrait concept
+      const magritteConceptTemplate = [
+        `A surrealist portrait where ${selectedMagritteElement} obscures the face, painted with ${selectedMagritteStyle}`,
+        `An enigmatic figure wearing a bowler hat with ${selectedMagritteElement} as a face, executed in the style of ${selectedMagritteStyle}`,
+        `A portrait with ${selectedMagritteElement} as a mask, rendered with ${selectedMagritteStyle}`,
+        `A dreamlike portrait of a figure with ${selectedMagritteElement} for a head, imbued with ${selectedMagritteStyle}`,
+        `Multiple identical figures in bowler hats and suits, with ${selectedMagritteElement} heads, composed like Golconda and painted with ${selectedMagritteStyle}`
+      ];
+
+      const magritteConceptIndex = Math.floor(Math.random() * magritteConceptTemplate.length);
+      artConcept = magritteConceptTemplate[magritteConceptIndex];
+
+      console.log(`\n✨ Generated Magritte-style portrait concept: "${artConcept}"`);
     }
     
     console.log(`\n💡 Using concept: "${artConcept}"`);
@@ -656,28 +776,74 @@ async function generateArt(concept: string) {
     
     const project = {
       title: artConcept,
-      description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealist artwork: "${artConcept}"`,
+      description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealist portrait artwork: "${artConcept}"`,
       useFlux: true,
       modelConfig: {
         ...MAGRITTE_STYLE_CONFIG,
-        prompt_prefix: `In René Magritte's ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealism, create a scene that blends metaphysical wonder with retro-futuristic nostalgia. Combine `,
+        prompt_prefix: `In René Magritte's ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealist portrait style, create a composition that blends metaphysical wonder with enigmatic facial elements. Combine `,
         prompt_suffix: `. Render with:
 - Lighting: Dramatic illumination with noir undertones
 - Color: Rich, warm vintage tones contrasted with deep blues
-- Composition: Clean Magritte-style surrealism
+- Composition: Clean Magritte-style surrealism focused on the figure
 - Atmosphere: Mysterious and narrative-driven
 - Technical quality: Hyperrealistic details with painterly surrealist elements
-Style emphasizing symbolic resonance and surreal storytelling.`
+Style emphasizing symbolic resonance and surreal portraiture.`
       },
       requirements: [
-        `Create a precise Magritte surrealist composition`,
+        `Create a precise Magritte surrealist portrait composition`,
         ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3)
       ],
       outputFilename: baseFilename,
       artDirection: {
         ...(categoryArtDirection || defaultArtDirection),
-        colorPalette: [...(LIVE_THE_LIFE_ELEMENTS.color_palettes[0])],
-        lighting: [...(LIVE_THE_LIFE_ELEMENTS.lighting.slice(0, 3))]
+        colorPalette: [
+          // Portrait colors
+          ...(MAGRITTE_COLOR_PALETTE.portraits.flesh.color),
+          ...(MAGRITTE_COLOR_PALETTE.portraits.hair.color),
+          ...(MAGRITTE_COLOR_PALETTE.portraits.cloth.color),
+          // Sky colors
+          ...(MAGRITTE_COLOR_PALETTE.sky.day.color),
+          ...(MAGRITTE_COLOR_PALETTE.sky.night.color),
+          // Background colors
+          ...(MAGRITTE_COLOR_PALETTE.backgrounds.wall.color),
+          ...(MAGRITTE_COLOR_PALETTE.backgrounds.void.color),
+          ...(MAGRITTE_COLOR_PALETTE.backgrounds.sky.color)
+        ],
+        lighting: [...(MAGRITTE_COLOR_PALETTE.portraits.cloth.color)],
+        references: [
+          // Expanded references to Magritte's specific portrait techniques
+          "The Son of Man (1964) - Iconic apple obscuring bowler-hatted man's face",
+          "The Lovers (1928) - Kissing couple with cloth-shrouded heads",
+          "Golconda (1953) - Raining men in bowler hats and suits",
+          "The Great War (1964) - Bowler-hatted figure with flowers obscuring face",
+          "The Therapist (1937) - Seated figure with birdcage head",
+          "The Rape (1934) - Woman's face replaced by torso",
+          "The Happy Donor (1966) - Landscape reflected in man's head silhouette", 
+          "The Heart of the Matter (1928) - Mysterious figure wrapped in white cloth",
+          "The Month of the Grape Harvest (1959) - Suited man with apple in barren landscape",
+          "The Dominion of Light series (1949-1965) - Paradoxical day/night scenes",
+          "The Empire of Light series (1948-1964) - Glowing windows in night scenes",
+          "The Human Condition series (1933-1935) - Paintings within paintings",
+          "The Castle of the Pyrenees (1959) - Massive stone on small base",
+          "The Listening Room (1952) - Giant green apple filling interior room",
+          "The Six Elements (1929) - Fragmented portrait with wooden objects",
+          "Decalcomania (1966) - Sky merging into rocky cliffside",
+          "The Treachery of Images (1929) - 'Ceci n'est pas une pipe' inscription",
+          "Time Transfixed (1938) - Train emerging from fireplace",
+          "The Eternally Obvious (1930) - Fragmented and recomposed female nude",
+          "The Art of Living (1967) - Stone relief with bowler-hatted men",
+          "The Memoirs of a Saint (1960) - Candlelit figure in bowler hat",
+          "The Happy Donor (1966) - Landscape reflected in man's head silhouette",
+          "The Difficult Crossing (1926) - Figure struggling through surreal landscape",
+          "The Mysteries of the Horizon (1955) - Figures on beach with floating objects",
+          "The Philosopher's Lamp (1936) - Glowing light bulb with bowler hat",
+          "The Fair Captive (1931) - Nude woman with fish and ship elements",
+          "The Healer (1936) - Figure with candle flame obscuring face",
+          "The Cicerone (1947) - Faceless figure in art gallery with paintings",
+          "The Survivor (1950) - Fragmented classical statue in barren landscape",
+          "The Collective Invention (1934) - Mermaid figure on beach",
+          "The Explanation (1952) - Giant key in room with figure at window"
+        ]
       }
     };
 
@@ -687,7 +853,7 @@ Style emphasizing symbolic resonance and surreal storytelling.`
     console.log('- Color palette:', project.artDirection.colorPalette.slice(0, 3).join(', '));
     
     // Run the art project using the multi-agent system
-    console.log(`\n🖼️ Generating Magritte-style art using multi-agent collaboration...`);
+    console.log(`\n🖼️ Generating Magritte-style portrait art using multi-agent collaboration...`);
     const result = await artBotMultiAgentSystem.runArtProject(project);
     
     // Check if we have a valid result with artwork
