@@ -299,6 +299,36 @@ const magritteCategories = [
   'bear_pfp_jungle',         // Jungle explorer with pith helmet
   'bear_pfp_volcano',        // Volcanologist with heat suit
   'bear_pfp_submarine',      // Submarine captain with periscope
+  'bear_pfp_highaltitude',   // High-altitude mountaineer with oxygen mask
+  'bear_pfp_deepcave',       // Deep cave explorer with specialized gear
+  'bear_pfp_polardiver',     // Under-ice diving specialist
+  'bear_pfp_sandboarder',    // Desert dune sandboarding expert
+  'bear_pfp_glaciologist',   // Glacier research specialist
+  'bear_pfp_volcanoboard',   // Volcano boarding enthusiast
+  'bear_pfp_canyoneer',      // Technical canyon descent expert
+  'bear_pfp_iceclimber',     // Ice climbing specialist
+  'bear_pfp_avalanche',      // Avalanche research expert
+  'bear_pfp_desertexplor',   // Deep desert expedition leader
+  'bear_pfp_jungleroute',    // Jungle route finder
+  'bear_pfp_cavephotog',     // Cave photography specialist
+  'bear_pfp_polarnight',     // Polar night explorer
+  'bear_pfp_tropicstorm',    // Tropical storm chaser
+  'bear_pfp_tidepools',      // Extreme tide pool researcher
+  'bear_pfp_geothermal',     // Geothermal vent explorer
+  'bear_pfp_desertarch',     // Desert archaeology specialist
+  'bear_pfp_rainforest',     // Rainforest canopy researcher
+  'bear_pfp_permafrost',     // Permafrost research expert
+  'bear_pfp_seamount',       // Underwater seamount explorer
+  'bear_pfp_polarlights',    // Aurora research specialist
+  'bear_pfp_desertnight',    // Night desert navigator
+  'bear_pfp_cavebio',        // Cave biology researcher
+  'bear_pfp_glacierarch',    // Glacier archaeology expert
+  'bear_pfp_volcanogas',     // Volcanic gas researcher
+  'bear_pfp_junglemed',      // Jungle medicine explorer
+  'bear_pfp_polarbot',       // Polar robotics specialist
+  'bear_pfp_cavewater',      // Underground river explorer
+  'bear_pfp_desertbot',      // Desert robotics expert
+  'bear_pfp_junglearch',     // Lost city archaeology specialist
   
   // Artistic Series
   'bear_pfp_painter',        // Artist with beret and palette
@@ -321,6 +351,50 @@ const magritteCategories = [
   'bear_pfp_puppeteer',     // Puppet master with marionettes
   'bear_pfp_mosaic',        // Mosaic artist with tiles
   'bear_pfp_neon',          // Neon artist with glass tubes
+  'bear_pfp_performance',   // Performance artist with props
+  'bear_pfp_textile',       // Textile art innovator
+  'bear_pfp_digital',       // Digital art pioneer
+  'bear_pfp_conceptual',    // Conceptual art theorist
+  'bear_pfp_installation',  // Installation art creator
+  'bear_pfp_mixedmedia',    // Mixed media explorer
+  'bear_pfp_landart',       // Land art sculptor
+  'bear_pfp_soundart',      // Sound installation artist
+  'bear_pfp_videoart',      // Video art pioneer
+  'bear_pfp_newmedia',      // New media innovator
+  'bear_pfp_archivist',     // Art preservation specialist
+  'bear_pfp_curator',       // Gallery curator with white gloves
+  'bear_pfp_arthistorian',  // Art history scholar
+  'bear_pfp_conservator',   // Art conservation expert
+  'bear_pfp_gallerist',     // Gallery owner with catalog
+  'bear_pfp_artcritic',     // Art critic with notebook
+  'bear_pfp_collector',     // Art collector with portfolio
+  'bear_pfp_restorer',      // Art restoration specialist
+  'bear_pfp_appraiser',     // Art valuation expert
+  'bear_pfp_dealer',        // Fine art dealer with documents
+  
+  // Contemporary Art Forms
+  'bear_pfp_nftartist',     // NFT art creator
+  'bear_pfp_cryptoart',     // Cryptocurrency art pioneer
+  'bear_pfp_aicollab',      // AI art collaborator
+  'bear_pfp_vrartist',      // Virtual reality artist
+  'bear_pfp_hologram',      // Holographic art creator
+  'bear_pfp_bioart',        // Biological art innovator
+  'bear_pfp_generative',    // Generative art coder
+  'bear_pfp_roboticart',    // Robotic art engineer
+  'bear_pfp_datavis',       // Data visualization artist
+  'bear_pfp_augmented',     // Augmented reality creator
+  
+  // Experimental Art Forms
+  'bear_pfp_lightart',      // Light installation artist
+  'bear_pfp_kinetic',       // Kinetic sculpture creator
+  'bear_pfp_interactive',   // Interactive art designer
+  'bear_pfp_timebase',      // Time-based media artist
+  'bear_pfp_ecological',    // Ecological art innovator
+  'bear_pfp_biofeedback',   // Biofeedback art pioneer
+  'bear_pfp_quantum',       // Quantum art experimenter
+  'bear_pfp_nanoart',       // Nano-scale art creator
+  'bear_pfp_spaceart',      // Space art pioneer
+  'bear_pfp_weatherart',    // Weather system artist
   
   // Hipster Series
   'bear_pfp_barista',       // Coffee artisan with apron
@@ -343,6 +417,66 @@ const magritteCategories = [
   'bear_pfp_forager',       // Urban foraging expert
   'bear_pfp_perfumer',      // Natural perfume creator
   'bear_pfp_tintype',       // Vintage photography artist
+  
+  // New Hipster Series Additions
+  'bear_pfp_sourdough',     // Artisanal bread baker
+  'bear_pfp_coffeegeek',    // Coffee science enthusiast
+  'bear_pfp_vintagepen',    // Fountain pen collector
+  'bear_pfp_printmaker',    // Traditional printmaking artist
+  'bear_pfp_indigo',        // Natural dye specialist
+  'bear_pfp_leathercraft',  // Traditional leather worker
+  'bear_pfp_bookrestore',   // Book restoration expert
+  'bear_pfp_typewriter',    // Vintage typewriter enthusiast
+  'bear_pfp_bonsai',        // Bonsai cultivation master
+  'bear_pfp_vintagebike',   // Classic bicycle restorer
+  
+  // Contemporary Craft Series
+  'bear_pfp_smallbatch',    // Small-batch goods maker
+  'bear_pfp_slowfood',      // Slow food movement chef
+  'bear_pfp_naturaldye',    // Natural textile dyer
+  'bear_pfp_handbound',     // Hand-bound journal maker
+  'bear_pfp_woodtype',      // Wood type printing expert
+  'bear_pfp_herbalbar',     // Botanical cocktail creator
+  'bear_pfp_seedsaver',     // Heritage seed collector
+  'bear_pfp_cheesemaker',   // Artisanal cheese crafter
+  'bear_pfp_knifesmith',    // Custom knife maker
+  'bear_pfp_ceramicist',    // Studio pottery artist
+  
+  // Urban Homesteading Series
+  'bear_pfp_urbanfarm',     // City farming specialist
+  'bear_pfp_preserving',    // Food preservation expert
+  'bear_pfp_herbgarden',    // Medicinal herb gardener
+  'bear_pfp_rainwater',     // Water harvesting expert
+  'bear_pfp_composting',    // Urban composting specialist
+  'bear_pfp_soapmaker',     // Natural soap artisan
+  'bear_pfp_candlemaker',   // Beeswax candle crafter
+  'bear_pfp_fiberspinner',  // Natural fiber artist
+  'bear_pfp_meadmaker',     // Artisanal mead brewer
+  'bear_pfp_wildcrafted',   // Wild plant harvester
+  
+  // Modern Maker Series
+  'bear_pfp_analogsynth',   // Analog synthesizer builder
+  'bear_pfp_modular',       // Modular electronics creator
+  'bear_pfp_vintagecam',    // Camera restoration expert
+  'bear_pfp_vinylpress',    // Custom vinyl presser
+  'bear_pfp_tapelabel',     // Cassette label curator
+  'bear_pfp_zinemaker',     // Independent zine publisher
+  'bear_pfp_patchmaker',    // Embroidered patch designer
+  'bear_pfp_pinmaker',      // Enamel pin creator
+  'bear_pfp_stickermake',   // Artisanal sticker maker
+  'bear_pfp_riso',          // Risograph print artist
+  
+  // Sustainable Living Series
+  'bear_pfp_repaircafe',    // Repair cafe specialist
+  'bear_pfp_thriftcore',    // Creative thrifting expert
+  'bear_pfp_upcycler',      // Creative materials reuser
+  'bear_pfp_minimalist',    // Mindful minimalist
+  'bear_pfp_packagefree',   // Zero-waste shop owner
+  'bear_pfp_clothingfix',   // Garment repair specialist
+  'bear_pfp_toolfixer',     // Tool restoration expert
+  'bear_pfp_furnitureup',   // Furniture upcycling artist
+  'bear_pfp_ecofashion',    // Sustainable fashion designer
+  'bear_pfp_swapshop',      // Item exchange curator
   
   // Academic Series (New)
   'bear_pfp_professor',     // Distinguished professor with glasses
@@ -682,7 +816,79 @@ function generateBearConcept(): string {
     "vinyl collector's headphones",
     "tech-weave beanie",
     "algae lab protective cap",
-    "field recording headphones"
+    "field recording headphones",
+    
+    // Hipster Headwear
+    "barista's flat cap",
+    "vintage fedora",
+    "craft brewer's beanie",
+    "botanical sun hat",
+    "mixologist's newsboy cap",
+    "antique collector's cap",
+    "bookshop reading glasses",
+    "gastronome's tasting cap",
+    "fixed gear cycling cap",
+    "artisan's work cap",
+    
+    // New Hipster Headwear
+    "sourdough baker's linen cap",
+    "coffee scientist's tasting cap",
+    "fountain pen collector's visor",
+    "printmaker's protective cap",
+    "natural dyer's bandana",
+    "leatherworker's craftsman cap",
+    "book restorer's magnifying visor",
+    "typewriter enthusiast's vintage cap",
+    "bonsai master's sun hat",
+    "bicycle restorer's workshop cap",
+    
+    // Contemporary Craft Headwear
+    "small-batch maker's bandana",
+    "slow food chef's toque",
+    "natural dye artist's head wrap",
+    "bookbinder's work cap",
+    "wood type printer's visor",
+    "botanical mixologist's cap",
+    "seed collector's field hat",
+    "cheesemaker's hygiene cap",
+    "knifesmith's safety visor",
+    "ceramicist's clay-proof cap",
+    
+    // Urban Homesteading Headwear
+    "urban farmer's straw hat",
+    "food preserver's hair net",
+    "herb gardener's sun visor",
+    "rainwater collector's cap",
+    "compost specialist's bandana",
+    "soap maker's protective cap",
+    "candle crafter's work cap",
+    "fiber artist's weaving band",
+    "mead maker's brewing cap",
+    "foraging expert's field hat",
+    
+    // Modern Maker Headwear
+    "synth builder's anti-static cap",
+    "modular electronics visor",
+    "camera repair magnifying cap",
+    "vinyl pressing safety cap",
+    "tape label curator's beanie",
+    "zine maker's creative cap",
+    "patch designer's work hat",
+    "pin maker's safety glasses",
+    "sticker artist's bandana",
+    "riso print master's cap",
+    
+    // Sustainable Living Headwear
+    "repair cafe specialist's cap",
+    "thrifting expert's vintage hat",
+    "upcycler's creative bandana",
+    "minimalist's essential cap",
+    "zero-waste shop cap",
+    "clothing repair visor",
+    "tool restoration goggles",
+    "furniture upcycler's cap",
+    "eco-fashion designer's hat",
+    "swap shop curator's beanie"
   ];
 
   const secondaryAccessories = [
@@ -867,7 +1073,74 @@ function generateBearConcept(): string {
     "vinyl authentication scope",
     "tech-weave controller",
     "algae monitoring system",
-    "field recording equipment"
+    "field recording equipment",
+    
+    // Hipster Items
+    "artisanal coffee filter",
+    "vinyl record sleeve",
+    "craft beer tasting glass",
+    "terrarium glass",
+    "cocktail mixing spoon",
+    
+    // New Hipster Tools
+    "sourdough starter jar",
+    "coffee refractometer",
+    "vintage fountain pen case",
+    "traditional printing press",
+    "natural dye vat",
+    "leather working tools",
+    "book restoration kit",
+    "vintage typewriter tools",
+    "bonsai trimming set",
+    "bicycle repair tools",
+    
+    // Contemporary Craft Tools
+    "small-batch production tools",
+    "slow food cooking implements",
+    "natural dye collection",
+    "bookbinding equipment",
+    "wood type blocks",
+    "botanical infusion kit",
+    "seed preservation tools",
+    "cheese aging tools",
+    "knife forging equipment",
+    "pottery wheel tools",
+    
+    // Urban Homesteading Tools
+    "urban farming tools",
+    "food preservation equipment",
+    "herb drying racks",
+    "rainwater collection system",
+    "composting tools",
+    "soap making supplies",
+    "candle making kit",
+    "fiber spinning wheel",
+    "mead brewing equipment",
+    "wildcrafting basket",
+    
+    // Modern Maker Tools
+    "synthesizer repair kit",
+    "modular patch cables",
+    "camera repair tools",
+    "vinyl pressing equipment",
+    "tape dubbing deck",
+    "zine printing supplies",
+    "patch embroidery hoop",
+    "enamel pin tools",
+    "sticker cutting machine",
+    "risograph printer",
+    
+    // Sustainable Living Tools
+    "repair cafe toolkit",
+    "thrifting measurement tape",
+    "upcycling supplies",
+    "minimalist organizers",
+    "zero-waste containers",
+    "sewing repair kit",
+    "tool restoration supplies",
+    "furniture refinishing tools",
+    "eco-fabric samples",
+    "swap shop inventory tools"
   ];
 
   const neckwear = [
@@ -1052,7 +1325,74 @@ function generateBearConcept(): string {
     "vinyl collector's lanyard",
     "tech-weave scarf",
     "algae culture carrier",
-    "sound recording strap"
+    "sound recording strap",
+    
+    // Hipster Neckwear
+    "barista's coffee-stained scarf",
+    "vinyl collector's headphones",
+    "brewer's hop garland",
+    "botanical vine wrap",
+    "mixologist's bow tie",
+    
+    // New Hipster Neckwear
+    "baker's flour-dusted scarf",
+    "coffee cupper's aroma guard",
+    "pen collector's ink cloth",
+    "printer's ink-stained scarf",
+    "dyer's indigo bandana",
+    "leather worker's apron tie",
+    "book restorer's protective scarf",
+    "typewriter ribbon necklace",
+    "bonsai master's zen scarf",
+    "bicycle chain necklace",
+    
+    // Contemporary Craft Neckwear
+    "artisan's workshop scarf",
+    "chef's neckerchief",
+    "dyer's color sample wrap",
+    "bookbinder's thread spool",
+    "printer's type gauge chain",
+    "herbalist's dried flower garland",
+    "seed collector's pouch strap",
+    "cheesemaker's culture bag",
+    "knifesmith's leather strap",
+    "potter's clay-proof scarf",
+    
+    // Urban Homesteading Neckwear
+    "garden tool carrier strap",
+    "preserving jar carrier",
+    "herb drying line",
+    "water testing kit strap",
+    "compost thermometer band",
+    "soap curing rack strap",
+    "candle wick holder",
+    "fiber twist counter",
+    "mead testing tube holder",
+    "foraging bag strap",
+    
+    // Modern Maker Neckwear
+    "circuit testing strap",
+    "patch cable organizer",
+    "camera strap collection",
+    "vinyl press gauge chain",
+    "tape deck alignment band",
+    "zine distribution bag",
+    "patch sample display",
+    "pin board carrier",
+    "sticker sheet holder",
+    "ink drum strap",
+    
+    // Sustainable Living Neckwear
+    "tool carrier strap",
+    "thrift haul bag strap",
+    "material collection sling",
+    "minimal gear carrier",
+    "zero-waste bag strap",
+    "thread and needle holder",
+    "restoration tool wrap",
+    "furniture strap carrier",
+    "fabric sample chain",
+    "swap item carrier"
   ];
 
   const clothing = [
@@ -1237,7 +1577,74 @@ function generateBearConcept(): string {
     "vinyl archival jacket",
     "tech-weave garment",
     "algae lab coat",
-    "field recording vest"
+    "field recording vest",
+    
+    // Hipster Wear
+    "barista's denim apron",
+    "vintage record store jacket",
+    "brewer's work coat",
+    "botanical work shirt",
+    "mixologist's vest",
+    
+    // New Hipster Wear
+    "baker's linen apron",
+    "coffee lab coat",
+    "pen collector's vest",
+    "printer's ink-proof smock",
+    "dyer's workshop coat",
+    "leather worker's apron",
+    "book restoration coat",
+    "typewriter repair jacket",
+    "bonsai master's robe",
+    "bicycle mechanic's coveralls",
+    
+    // Contemporary Craft Wear
+    "artisan's workshop coat",
+    "slow food chef's jacket",
+    "natural dyer's smock",
+    "bookbinder's apron",
+    "wood type printer's coat",
+    "botanical bartender's vest",
+    "seed bank lab coat",
+    "cheesemaker's whites",
+    "knifesmith's leather apron",
+    "potter's studio coat",
+    
+    // Urban Homesteading Wear
+    "urban farmer's overalls",
+    "food preservation apron",
+    "herb garden smock",
+    "rain collection gear",
+    "compost work clothes",
+    "soap maker's apron",
+    "candle maker's smock",
+    "fiber artist's dress",
+    "mead maker's coat",
+    "foraging vest",
+    
+    // Modern Maker Wear
+    "electronics work coat",
+    "modular synth lab coat",
+    "camera repair smock",
+    "vinyl press coveralls",
+    "tape label curator's jacket",
+    "zine maker's ink apron",
+    "patch maker's work coat",
+    "pin maker's safety smock",
+    "sticker artist's apron",
+    "riso printer's coat",
+    
+    // Sustainable Living Wear
+    "repair specialist's apron",
+    "thrifted ensemble",
+    "upcycled work coat",
+    "minimalist uniform",
+    "zero-waste apron",
+    "mending specialist's smock",
+    "tool restorer's coveralls",
+    "furniture worker's apron",
+    "eco-fashion prototype",
+    "swap shop curator's coat"
   ];
 
   const additionalElements = [
@@ -1422,7 +1829,120 @@ function generateBearConcept(): string {
     "rare vinyl collection",
     "tech-woven fabric",
     "algae culture system",
-    "field recording setup"
+    "field recording setup",
+    
+    // Hipster Elements
+    "pour-over coffee maker",
+    "vinyl record",
+    "craft beer bottle",
+    "terrarium",
+    "cocktail shaker",
+    "vintage collectible",
+    "rare book",
+    "tasting notes",
+    "fixed gear bicycle",
+    "artisan's tools",
+    "zero waste kit",
+    "honeycomb frame",
+    "kombucha scoby",
+    "herb bundle",
+    "turntable setup",
+    
+    // Academic Elements
+    "rare manuscript",
+    "brass telescope",
+    "archaeological artifacts",
+    "preserved specimens",
+    "library index",
+    "geometric instruments",
+    "laboratory apparatus",
+    "ancient scrolls",
+    "historical documents",
+    "philosophical texts",
+    
+    // Mystical Elements
+    "alchemical vessel",
+    "astrolabe",
+    "crystal sphere",
+    "mystical tome",
+    "medicine bundle",
+    "natural artifacts",
+    "prophetic runes",
+    "magical staff",
+    "wisdom tablets",
+    "occult grimoire",
+    
+    // Steampunk Elements
+    "brass clockwork device",
+    "steam pressure meter",
+    "mechanical calculator",
+    "gear mechanism display",
+    "steam engine model",
+    "brass navigation tool",
+    "clockwork automaton",
+    "steam-powered invention",
+    "mechanical measuring device",
+    "brass scientific instrument",
+    
+    // Classical Music Elements
+    "golden conductor's stand",
+    "vintage musical score",
+    "classical instrument case",
+    "orchestral arrangement",
+    "composer's manuscript",
+    "antique metronome",
+    "performance program",
+    "musical notation book",
+    "concert hall sketch",
+    "classical music award",
+    
+    // Diplomatic Elements
+    "diplomatic seal",
+    "official document case",
+    "ceremonial staff",
+    "state credentials",
+    "treaty document",
+    "embassy seal press",
+    "diplomatic dispatch",
+    "official portfolio",
+    "state ceremony medal",
+    "diplomatic code book",
+    
+    // New Adventure Elements
+    "freediving fins",
+    "highline balance bar",
+    "cave mapping tablet",
+    "packraft paddle",
+    "alpine ice axe",
+    "ski touring poles",
+    "trail running pack",
+    "ice climbing picks",
+    "big wave gun",
+    "skyrunning poles",
+    
+    // New Artistic Elements
+    "sound visualization screen",
+    "living art specimen",
+    "light control board",
+    "data art display",
+    "kinetic sculpture piece",
+    "hologram projector",
+    "projection mapping screen",
+    "AR visualization",
+    "generative art display",
+    "installation framework",
+    
+    // New Hipster Elements
+    "rare mushroom collection",
+    "vintage game collection",
+    "film camera collection",
+    "ceramic art piece",
+    "limited edition zine",
+    "modular synthesizer",
+    "hydroponic garden",
+    "letterpress type set",
+    "kombucha brewing jar",
+    "rare streetwear piece"
   ];
 
   // Create a combination of elements
