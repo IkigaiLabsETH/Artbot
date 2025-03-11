@@ -1818,7 +1818,7 @@ export class CreativeEngine {
           "grainy", "textured", "rough", "impasto", "thick paint", "visible brushstrokes", "expressive brushwork",
           
           // Anti-modern style elements
-          "impressionistic", "abstract", "expressionist", "contemporary", "modern", "digital",
+          "impressionistic", "abstract", "expressionist", "contemporary", "modern art", "digital",
           
           // Anti-distortion elements
           "distorted", "warped", "blurred", "sketchy", "loose", "gestural", "painterly",
@@ -1836,8 +1836,14 @@ export class CreativeEngine {
           "atmospheric perspective", "depth of field", "bokeh", "motion blur",
           "dynamic range", "high detail", "ultra detailed", "hyperrealistic",
           
-          // Apple logo restrictions
-          "apple logo", "bitten apple", "apple computer logo", "apple inc logo", "apple brand symbol"
+          // Tesla logo restrictions
+          "tesla logo", "tesla badge", "tesla emblem", "tesla brand symbol", "tesla wordmark",
+          
+          // Unwanted car elements
+          "gas station", "exhaust pipe", "fuel cap", "internal combustion", "gasoline",
+          "traditional dashboard", "gear shifter", "transmission", "engine bay",
+          "gas pump", "tailpipe", "oil change", "carburetor", "muffler",
+          "fuel gauge", "gas tank", "radiator", "spark plugs", "combustion engine"
         ].join(", "),
         // Additional parameters for style control
         image_style: "oil painting",

@@ -33,95 +33,198 @@ interface ArtDirection {
 // Default art direction that can be overridden by environment variables or parameters
 const defaultArtDirection: ArtDirection = {
   styleEmphasis: [
-    // Belgian Surrealist Influences
-    "Magritte's metaphysical precision",
-    "Paul Delvaux's dreamlike atmosphere",
-    "Rachel Baes's mysterious symbolism",
-    "Marcel Mariën's object juxtaposition",
-    "Jane Graverol's feminine surrealism",
-    "Paul Nougé's conceptual paradox",
-    "Marcel Broodthaers's institutional critique",
+    // Magritte's Key Painting Series References
+    "Empire of Light series (1953-54) technique: Tesla Superchargers under impossible day-night skies",
+    "Time Transfixed (1938) approach: Bitcoin transactions emerging from Tesla ports like Magritte's locomotive",
+    "The Human Condition series (1933-35) style: Tesla screens showing landscapes that perfectly continue beyond their frames",
+    "Son of Man (1964) treatment: Model S obscured by floating Bitcoin blocks with Magritte's perfect shadows",
+    "The Treachery of Images series (1929) concept: Tesla interfaces with paradoxical text about cryptocurrency",
+    "Golconda (1953) multiplication: identical Tesla key cards raining against architectural grid",
+    "The False Mirror (1929) technique: Cybertruck headlight containing infinite blockchain space",
     
-    // International Surrealist Influences
-    "Salvador Dalí's paranoid-critical method and dream-like imagery",
-    "Max Ernst's collage novels and frottage techniques",
-    "Yves Tanguy's abstract and biomorphic landscapes",
-    "André Breton's automatic writing and surrealist games",
-    "Man Ray's rayographs and solarized photographs",
-    "Hans Bellmer's uncanny and fragmented dolls",
-    "Leonora Carrington's fantastical and mythological narratives",
-    "Dorothea Tanning's surreal and psychologically charged interiors",
+    // Specific Magritte Painting Techniques
+    "La Belle Captive (1931) approach: Tesla windshield as canvas-within-canvas showing impossible landscapes",
+    "The Listening Room (1952) scale play: giant Bitcoin mining rig filling tiny Magritte interior",
+    "The Blank Signature (1965) technique: horse-rider silhouette made of flowing blockchain data",
+    "The Central Story (1928) style: Tesla components floating in pure gradient sky",
+    "The Six Elements (1929) fragmentation: Model 3 divided into surreal painted segments",
+    "Memory of a Journey (1955) technique: recursive Tesla doorways leading to mining operations",
+    "The Beautiful Relations (1963) approach: charging cables transforming into Magritte's branches",
     
-    // Related Artistic Movements and Influences
-    "Giorgio de Chirico's metaphysical and enigmatic compositions",
-    "Frida Kahlo's symbolic self-portraits and dream-like elements",
-    "Joan Miró's abstract and biomorphic forms and color palettes",
-    "Jean Arp's organic and fluid shapes and reliefs",
-    "Hannah Hoch's Dadaist photomontages and collages",
-    "Kurt Schwitters's Merz assemblages and installations",
-    "Pablo Picasso's cubist fragmentation and multiple perspectives",
-    "Henri Matisse's expressive use of color and simplified forms",
+    // Magritte's Philosophical Devices
+    "The Key to Dreams (1930) word-image relationships: Tesla parts with contradictory blockchain labels",
+    "Personal Values (1952) scale distortion: giant Bitcoin nodes dwarfing Model S interior",
+    "The Forbidden Universe (1943) doubling: twin Cybertrucks in impossible mirror arrangement",
+    "The Explanation (1952) symbolic objects: Tesla yoke transformed into Magritte's symbolic forms",
+    "The Beautiful World (1962) transformation: charging port flowering into Bitcoin transactions",
+    "The Art of Living (1967) repetition: Tesla Powerwalls in Magritte's grid patterns",
+    "The Mysteries of the Horizon (1955) multiplication: multiple Magritte moons above Supercharger",
     
-    // Avant-Garde Techniques and Approaches
-    "Automatic drawing and writing for subconscious expression",
-    "Collage and assemblage for unexpected juxtapositions",
-    "Frottage and grattage for texture and chance effects",
-    "Photomontage and solarization for surreal distortions",
-    "Exquisite corpse and surrealist games for collaborative creation",
-    "Biomorphic abstraction for organic and fluid forms",
-    "Fragmentation and distortion of the human figure",
-    "Symbolic and archetypal imagery for psychological depth",
-    
-    // Expanded Surrealist Themes and Concepts
-    "The uncanny and the return of the repressed",
-    "The marvelous and the convulsive beauty",
-    "The crisis of the object and the phantom object",
-    "The resolution of dream and reality into a surreality",
-    "The omnipotence of desire and the triumph of love",
-    "The revolution of language and the new myth",
-    "The occultation of Surrealism and the surrealist occult",
-    "The haunted self and the labyrinthine psyche"
+    // Signature Magritte Elements
+    "The Victory (1939) technique: Tesla surfaces painted with Magritte's stone-like flatness",
+    "The Dominion of Light (1948) lighting: impossible day-night illumination of charging stations",
+    "The Collective Invention (1934) hybridization: Tesla-Bitcoin metamorphosis forms",
+    "The Palace of Curtains (1929) trompe l'oeil: painted curtains revealing Model X displays",
+    "The Pilgrim (1966) composition: lone Tesla in Magritte's desolate landscape",
+    "The Ladder of Fire (1939) transformation: charging cable becoming flame-like Bitcoin flow",
+    "The Fair Captive (1947) framing: Model S viewed through Magritte's painted frame"
   ],
   visualElements: [
-    // Magritte-inspired surreal elements with a vintage computer twist
-    "floating vintage computers with Magritte's iconic apples and bowler hats",
-    "levitating retro displays in dreamlike landscapes reminiscent of Magritte's paintings",
-    "classic interface elements floating in surreal skies filled with Magritte's clouds and birds",
-    "hovering vintage keyboards with keys transforming into Magritte's pipes and candles",
-    "geometric patterns of circuit boards blending into Magritte's fragmented architectural elements",
-    "billowing curtains revealing retro screens that contain Magritte's paintings within paintings",
-    "clouded skies filled with classic computer icons and Magritte's enigmatic symbols",
-    "mirror reflections of vintage interfaces merging with Magritte's self-referential illusions",
-    "classic startup sounds visualized as Magritte's musical notes floating in surreal spaces",
-    "original computer mice in surreal patterns alongside Magritte's disembodied hands and eyes",
-    "glowing power lights illuminating Magritte's uncanny still life arrangements",
-    "suspended vintage floppy disks orbiting Magritte's giant floating objects",
-    "ethereal dot matrix printers outputting Magritte's paradoxical text fragments",
-    "metaphysical peripheral ports connecting to Magritte's impossible dream-spaces",
-    "symbolic early software stacks merging with Magritte's conceptual object-scapes",
-    "vintage computer components entangled in Magritte's vines, roots, and organic forms",
-    "retro computer cases opening to reveal Magritte's surreal interior worlds",
-    "classic computer fans blowing Magritte's curtains and revealing hidden realities",
-    "vintage computer cords transforming into Magritte's umbilical cords and life-lines",
-    "antique computer manuals with pages morphing into Magritte's flying birds and soaring sheets"
+    // Classic Magritte Paradoxes with Tesla
+    "bowler-hatted figures with Tesla touchscreen faces (from The Son of Man)",
+    "floating rocks replaced by hovering Cybertrucks (from Castle of the Pyrenees)",
+    "Magritte's pipe emitting Bitcoin transactions (from The Treachery of Images)",
+    "billowing curtains revealing Tesla mining operations (from The Voice of Blood)",
+    "mirrors reflecting impossible Tesla charging scenes (from Reproduction Prohibited)",
+    "windows showing contradictory Tesla landscapes (from The Human Condition)",
+    "birds morphing into Tesla components (from The Large Family)",
+    "Tesla door handles painted as Magritte's lips (from The Beautiful Prisoner)",
+    "Cybertruck windows that are actually painted skies (from The Key of Dreams)",
+    "Model S headlights containing miniature suns (from The Light of Coincidence)",
+    
+    // Magritte's Image-Within-Image with Tesla
+    "Tesla screen displaying exact view behind it like Magritte's easel (from The Human Condition)",
+    "Supercharger station containing its own infinite reflection (from Not to be Reproduced)",
+    "Model 3 dashboard showing impossible Bitcoin landscapes (from The Domain of Arnheim)",
+    "charging port revealing deep space vista (from The Universe Unmasked)",
+    "side mirrors showing different times of day (from The Dominion of Light)",
+    "Tesla app interface containing real clouds (from The Perfect Image)",
+    "Autopilot display continuing the road beyond its frame (from Evening Falls)",
+    "vehicle windows as portals to other Magritte paintings (from The Living Mirror)",
+    
+    // Magritte's Scale Distortions
+    "gigantic Tesla key card dominating tiny city (from Personal Values)",
+    "microscopic Supercharger network floating in vast sky (from The Lost Jockey)",
+    "enormous Bitcoin symbol eclipsing the sun (from The Banquet)",
+    "Model X dwarfed by colossal charging cable (from The Anniversary)",
+    "tiny Tesla factories inside full-size Powerwall (from The Six Elements)",
+    "massive Autopilot icon as architectural element (from Megalomania)",
+    "planet-sized Tesla logo in intimate room (from The Listening Room)",
+    "miniature mining rigs arranged on giant bowler hat (from The Happy Donor)",
+    
+    // Magritte's Metamorphosis Elements
+    "Tesla wheels transforming into clockfaces (from Time Transfixed)",
+    "charging cables becoming liquid silver (from The Waterfall)",
+    "Cybertruck edges dissolving into birds (from The Large Family)",
+    "Model S body flowing into ocean waves (from The Wonders of Nature)",
+    "Bitcoin nodes growing like crystal formations (from The Gradation of Fire)",
+    "Supercharger stations sprouting like trees (from The Blank Signature)",
+    "Tesla seats morphing into clouds (from The Central Story)",
+    "dashboard controls becoming musical notes (from The Alphabet of Revelations)",
+    
+    // Magritte's Impossible Juxtapositions
+    "Tesla factory interior filled with forest (from The Blank Check)",
+    "Supercharger station underwater but perfectly dry (from The Summer Steps)",
+    "Model S floating in space but casting ground shadow (from The Victory)",
+    "Bitcoin mining rigs made of glass containing sky (from The Future of Statues)",
+    "charging cables knitted like wool (from The Red Model)",
+    "Tesla screen showing what's behind the viewer (from Portrait of Edward James)",
+    "Autopilot cameras seeing yesterday (from Memory of a Journey)",
+    "vehicle interior bigger than exterior (from The Forbidden Universe)",
+    
+    // Magritte's Trompe l'oeil Techniques
+    "Tesla door that's actually painted on wall (from The Victory)",
+    "Bitcoin interface revealing real space behind wall (from The Human Condition II)",
+    "Supercharger cable emerging from painted outlet (from Time Transfixed)",
+    "Model 3 casting shadow of different car (from The Mysteries of the Horizon)",
+    "charging station that's actually reflection of nothing (from The False Mirror)",
+    "vehicle panel gaps revealing infinite depth (from The Kiss)",
+    "Autopilot screen continuing exact landscape but at night (from Empire of Light)",
+    "Tesla logo that's actually hole in canvas (from The Two Mysteries)",
+    
+    // Magritte's Recurring Motifs Applied
+    "bowler hats raining inside Tesla cabin (from Golconda)",
+    "green apples replacing all charging indicators (from The Son of Man)",
+    "curtains of Bitcoin code revealing/concealing car (from The Voice of Blood)",
+    "Tesla interior filled with Belgian sky (from The Dominion of Light)",
+    "Model S composed entirely of cloud fragments (from The Battle of the Argonne)",
+    "Cybertruck angles containing nested paintings (from Euclidean Walks)",
+    "charging stations playing Magritte's musical notes (from The Alphabet of Revelations)",
+    "Tesla autopilot seeing through Magritte's eye (from The False Mirror)",
+    
+    // Pure Magritte Painting Techniques
+    "unmodulated color fields on Tesla surfaces (from The Listening Room)",
+    "perfect edge definition on Cybertruck angles (from The Menaced Assassin)",
+    "flat oil paint treatment of screens (from The Physical Possibilities of Thought)",
+    "simplified geometric forms of charging equipment (from The Six Elements)",
+    "pure painted shadows under floating Teslas (from The Dominion of Light)",
+    "matte finish on all technological surfaces (from The Blank Page)",
+    "precise trompe l'oeil effects on Bitcoin interfaces (from The Human Condition)",
+    "absolute flatness in metallic surfaces (from The Ready-Made Bouquet)"
   ],
   colorPalette: [
-    // Vintage Computer Color Palette
-    "classic beige",
-    "warm cream",
-    "platinum grey",
-    "classic interface blue",
-    "vintage monitor green",
-    "retro keyboard grey",
-    "system window grey",
-    "phosphor green",
-    "early menu bar white",
-    "classic shadow grey",
-    "vintage platinum",
-    "retro computer beige"
+    // Magritte's Sky and Atmosphere Colors
+    "Empire of Light day sky blue (RGB: 135, 206, 235)",
+    "Empire of Light night blue (RGB: 25, 25, 112)",
+    "The Dominion of Light twilight purple (RGB: 46, 39, 57)",
+    "The Voice of Space deep cosmos blue (RGB: 15, 15, 48)",
+    "The Curse celestial azure (RGB: 89, 147, 193)",
+    "The False Mirror iris blue (RGB: 70, 130, 180)",
+    "Memory cloud white (RGB: 245, 245, 245)",
+    "The Great War storm grey (RGB: 112, 128, 144)",
+    
+    // Magritte's Architectural Colors
+    "Golconda building cream (RGB: 255, 253, 208)",
+    "The Empire of Light facade grey (RGB: 169, 169, 169)",
+    "Castle of the Pyrenees stone brown (RGB: 139, 131, 120)",
+    "Personal Values wall beige (RGB: 245, 245, 220)",
+    "The Human Condition window frame brown (RGB: 101, 67, 33)",
+    "The Listening Room interior ochre (RGB: 204, 119, 34)",
+    "The Secret Player stage grey (RGB: 105, 105, 105)",
+    "The Annunciation marble white (RGB: 255, 253, 250)",
+    
+    // Magritte's Natural Elements
+    "Son of Man apple green (RGB: 34, 139, 34)",
+    "The Great War leaf green (RGB: 85, 107, 47)",
+    "The Blank Signature grass green (RGB: 124, 252, 0)",
+    "The Beautiful World rose red (RGB: 180, 20, 40)",
+    "The Return bird blue (RGB: 135, 206, 250)",
+    "The Central Story branch brown (RGB: 139, 69, 19)",
+    "The Flowers of Evil blood red (RGB: 139, 0, 0)",
+    "The Large Family tree green (RGB: 34, 139, 34)",
+    
+    // Magritte's Object Colors
+    "The Treachery of Images pipe brown (RGB: 139, 69, 19)",
+    "Time Transfixed locomotive black (RGB: 28, 28, 28)",
+    "Personal Values comb gold (RGB: 255, 215, 0)",
+    "The Son of Man bowler hat black (RGB: 25, 25, 25)",
+    "The Victory stone grey (RGB: 128, 128, 128)",
+    "The Key of Dreams mirror silver (RGB: 192, 192, 192)",
+    "The Mysteries of the Horizon bowler brown (RGB: 92, 64, 51)",
+    "The Ready-Made Bouquet vase blue (RGB: 65, 105, 225)",
+    
+    // Magritte's Atmospheric Effects
+    "The Dominion of Light lamplight yellow (RGB: 255, 244, 224)",
+    "Empire of Light shadow purple (RGB: 48, 25, 52)",
+    "The Human Condition cloud shadow (RGB: 119, 136, 153)",
+    "The Voice of Blood curtain shadow (RGB: 47, 79, 79)",
+    "The Gradation of Fire flame orange (RGB: 226, 88, 34)",
+    "Pandora's Box mist grey (RGB: 200, 200, 200)",
+    "The Six Elements air blue (RGB: 176, 196, 222)",
+    "The Future of Statues moonlight blue (RGB: 230, 230, 250)",
+    
+    // Tesla Colors in Magritte Style
+    "Tesla pearl white (painted flat as The Promise clouds) (RGB: 255, 255, 250)",
+    "Tesla deep blue metallic (unmodulated as The False Mirror) (RGB: 70, 130, 180)",
+    "Tesla red multi-coat (pure as The Beautiful World rose) (RGB: 180, 20, 40)",
+    "Tesla solid black (matte as Time Transfixed) (RGB: 28, 28, 28)",
+    "Tesla silver (flat as The Victory stone) (RGB: 192, 192, 192)",
+    "Tesla chrome delete (pure as Golconda shadows) (RGB: 47, 79, 79)",
+    "Tesla glass (painted as Empire of Light windows) (RGB: 176, 196, 222)",
+    "Tesla interior black (matte as The Son of Man suit) (RGB: 25, 25, 25)",
+    
+    // Bitcoin Elements in Magritte Style
+    "Bitcoin orange (flat as The Gradation of Fire) (RGB: 226, 88, 34)",
+    "Blockchain blue (pure as The Voice of Space) (RGB: 15, 15, 48)",
+    "Node green (unmodulated as The Great War leaves) (RGB: 85, 107, 47)",
+    "Lightning purple (matte as Memory of a Journey) (RGB: 46, 39, 57)",
+    "Mining rig grey (flat as Personal Values metal) (RGB: 169, 169, 169)",
+    "Crypto gold (pure as Personal Values mirror) (RGB: 255, 215, 0)",
+    "Transaction blue (painted as The False Mirror iris) (RGB: 70, 130, 180)",
+    "Wallet black (matte as The Key of Dreams night) (RGB: 25, 25, 112)"
   ],
   compositionGuidelines: [
-    // Belgian Surrealist Compositional Principles
+    // Belgian Surrealist Compositional Principles with Tesla Elements
     "Magritte's paradoxical placement",
     "Delvaux's architectural perspective",
     "Baes's intimate staging",
@@ -138,7 +241,7 @@ const defaultArtDirection: ArtDirection = {
     "philosophical space",
     "symbolic resonance"
   ],
-  moodAndTone: "Create a deeply surreal and metaphysical atmosphere drawing from the Belgian Surrealist tradition, where vintage Apple technology becomes mysterious through paradoxical placement and symbolic resonance. Blend Magritte's precise execution, Delvaux's dreamy atmosphere, Baes's mysticism, Mariën's object poetry, Graverol's metamorphoses, Nougé's conceptual approach, and Broodthaers's institutional critique.",
+  moodAndTone: "Create a deeply surreal and metaphysical atmosphere drawing from the Belgian Surrealist tradition, where modern Tesla technology becomes mysterious through paradoxical placement and symbolic resonance. Blend Magritte's precise execution, Delvaux's dreamy atmosphere, Baes's mysticism, Mariën's object poetry, Graverol's metamorphoses, Nougé's conceptual approach, and Broodthaers's institutional critique.",
   references: [
     // Belgian Surrealist Master Influences
     "Magritte's pristine execution and impossible scenarios",
@@ -621,6 +724,51 @@ async function getUserInput(question: string): Promise<string> {
   });
 }
 
+/**
+ * Formats a color palette for display with proper formatting and grouping
+ * @param colors Array of color strings
+ * @param maxDisplay Maximum number of colors to display (optional)
+ * @returns Formatted string representation of the color palette
+ */
+function formatColorPalette(colors: string[], maxDisplay?: number): string {
+  if (!colors || colors.length === 0) {
+    return 'No colors defined';
+  }
+
+  const displayColors = maxDisplay ? colors.slice(0, maxDisplay) : colors;
+  const remaining = maxDisplay && colors.length > maxDisplay ? colors.length - maxDisplay : 0;
+
+  const formattedColors = displayColors.map(color => {
+    // Clean up the color name and ensure proper formatting
+    const cleanColor = color.trim()
+      .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between camelCase
+      .replace(/_/g, ' ') // Replace underscores with spaces
+      .replace(/\s+/g, ' '); // Normalize spaces
+
+    // Check for RGB values and format them nicely
+    const rgbMatch = cleanColor.match(/\(RGB:\s*(\d+),\s*(\d+),\s*(\d+)\)/);
+    if (rgbMatch) {
+      const [_, r, g, b] = rgbMatch;
+      return `\n  - ${cleanColor.split('(')[0].trim()} (🎨 RGB: ${r}, ${g}, ${b})`;
+    }
+
+    // Check for Pantone values
+    const pantoneMatch = cleanColor.match(/\(Pantone [^)]+\)/);
+    if (pantoneMatch) {
+      return `\n  - ${cleanColor}`;
+    }
+
+    return `\n  - ${cleanColor}`;
+  }).join('');
+
+  let output = `Color Palette:${formattedColors}`;
+  if (remaining > 0) {
+    output += `\n  ... and ${remaining} more colors`;
+  }
+
+  return output;
+}
+
 // Modify the generateArt function
 async function generateArt(concept: string) {
   try {
@@ -847,10 +995,10 @@ Style emphasizing symbolic resonance and surreal portraiture.`
       }
     };
 
-    // Update logging to show selected style configuration
+    // Update logging to show selected style configuration with improved formatting
     console.log(`\n🎨 ${selectedCategory.replace('magritte_', '').replace('_', ' ')} Style Configuration:`);
     console.log('- Style emphasis:', project.artDirection.styleEmphasis.slice(0, 3).join(', '));
-    console.log('- Color palette:', project.artDirection.colorPalette.slice(0, 3).join(', '));
+    console.log(formatColorPalette(project.artDirection.colorPalette, 10)); // Show first 10 colors
     
     // Run the art project using the multi-agent system
     console.log(`\n🖼️ Generating Magritte-style portrait art using multi-agent collaboration...`);
@@ -950,4 +1098,44 @@ function getStyleFromArtDirection(artDirection: any, style: ArtistStyle = 'magri
   }
   
   return styleManager.getStyle(style);
-} 
+}
+
+// Define modern Tesla colors with specific model references
+const TESLA_COLOR_PALETTE = {
+  exteriors: {
+    pearlWhite: {
+      color: "Pearl White Multi-Coat",
+      reference: "Model S/3/X/Y (2020+)",
+      usage: "Main vehicle color"
+    },
+    midnightSilver: {
+      color: "Midnight Silver Metallic",
+      reference: "Model S/3/X/Y (2020+)",
+      usage: "Premium exterior option"
+    },
+    deepBlue: {
+      color: "Deep Blue Metallic",
+      reference: "Model S/3/X/Y (2020+)",
+      usage: "Premium exterior option"
+    }
+  },
+  interiors: {
+    black: {
+      color: "Premium Black",
+      reference: "Model S/3/X/Y (2020+)",
+      usage: "Interior trim and seats"
+    },
+    white: {
+      color: "Ultra White",
+      reference: "Model S/3/X/Y (2020+)",
+      usage: "Premium interior option"
+    }
+  },
+  displays: {
+    screen: {
+      color: "Tesla UI Black",
+      reference: "Model S/3/X/Y (2020+)",
+      usage: "Display elements"
+    }
+  }
+}; 

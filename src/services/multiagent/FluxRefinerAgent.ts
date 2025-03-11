@@ -40,23 +40,39 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
         outputFormat: "png"
       },
       examplePrompts: [
-        // Magritte-style with Vintage Apple examples
+        // Pure Oil Painting with Tesla and Bitcoin
         {
-          prompt: "IKIGAI Surreal Macintosh scene in pure Magritte style: original 1984 Macintosh floating impossibly in pristine beige void, System 7 interface elements arranged with metaphysical precision, rainbow Apple logo multiplied across crystalline sky, perfectly rendered Apple Extended Keyboard hovering in mathematical perspective, original Mac mouse casting impossible shadows, pristine technical execution with Magritte's precision, analog.",
-          process: "Drawing from Magritte's philosophical approach to object placement, I focused on the iconic 1984 Macintosh as a central metaphysical presence. The multiplication of the rainbow Apple logo creates that signature Magritte repetition, while the pristine technical execution and impossible shadows reflect his mastery of surreal lighting."
+          prompt: "IKIGAI Pure oil painting in Magritte style: Model S rendered in absolutely flat, unmodulated paint strokes like the stone in 'Castle of the Pyrenees', floating in pristine cerulean sky. Vehicle's metallic surfaces transformed into pure matte oil paint without reflections or shine. Minimalist touchscreen painted as a flat canvas showing Bitcoin patterns, like the painting-within-painting of 'The Human Condition'. Tesla logo and Bitcoin symbols multiplied across pure oil-painted sky like the bowler hats in 'Golconda'. Steering yoke simplified into geometric forms hovering over proof-of-work calculations, painted with the same flatness as objects in 'Personal Values'. Charging port rendered in pure paint strokes without technological detail. Every element executed with Magritte's oil painting technique: pure color fields, perfect flatness, no visible brushwork.",
+          process: "I focused entirely on Magritte's oil painting technique, deliberately avoiding any photorealistic or metallic effects. The Model S is painted with the same flat, unmodulated technique he used for the stone in 'Castle of the Pyrenees'. All technological elements are reduced to pure painted forms, using his characteristic smooth oil technique with absolutely flat color fields. The composition references his masterworks while maintaining the pure painted quality throughout."
         },
         {
-          prompt: "IKIGAI Magritte-inspired Apple II portrait: perfectly rendered Apple II computer screen floating in Magritte blue void, green phosphor display showing impossible HyperCard patterns, original beige case with crystalline clarity, Apple II keyboard arranged in surreal perspective, 5.25-inch floppy disks defying gravity, pristine technical execution, analog.",
-          process: "I approached this piece by merging Magritte's precise technical execution with vintage Apple iconography. The floating Apple II creates that signature Magritte tension between reality and surrealism, while the green phosphor display adds that authentic period technology element."
-        },
-        {
-          prompt: "IKIGAI Surreal Mac Plus scene channeling Magritte's 'Time Transfixed': Mac Plus emerging impossibly through classic Magritte window, rainbow Apple logo floating like his clouds, System 6 interface elements arranged with philosophical weight, original Macintosh mouse trailing impossible cables, pristine technical execution in oil painting style, analog.",
-          process: "This piece directly references Magritte's 'Time Transfixed' while celebrating vintage Apple design. The Mac Plus emerges through the window like Magritte's locomotive, while the rainbow logo takes on the role of his iconic clouds."
+          prompt: "IKIGAI Cybertruck in pure Magritte oil technique: angular surfaces painted in flat, unmodulated greys like the buildings in 'Empire of Light', stripped of all metallic qualities. Each panel rendered as a pure geometric form in oil paint, floating in Magritte blue void. Dashboard painted as a flat canvas showing Bitcoin Lightning patterns through a window frame, exactly as in 'The Human Condition'. Tesla yoke reduced to simple painted shapes with Bitcoin symbols rendered in flat gold paint. Charging cables painted with fluid brushstrokes like Magritte's ropes. Every surface executed in pure oil paint without digital or photographic effects, maintaining perfect flatness throughout.",
+          process: "This piece transforms the Cybertruck's metallic surfaces into pure oil paint, using Magritte's technique of absolutely flat, unmodulated color fields. Each technological element is simplified into pure painted forms, avoiding any hint of photorealism. The composition uses his painting-within-painting concept while maintaining the material quality of oil paint throughout."
         },
         // Pure Magritte Reference
         {
           prompt: "IKIGAI Ultra-close bear portrait channeling 'The Son of Man': face fills exactly 95% of frame, mysterious depth in eyes referencing 'The False Mirror', perfect Magritte-style symmetry, photorealistic fur detail with philosophical weight, metaphysical lighting creating subtle shadows, surrealist undertones in expression, pristine technical execution in oil painting style, deep Magritte blue background, conceptual depth through visual paradox, analog.",
           process: "This piece directly references Magritte's most iconic works while maintaining his philosophical approach. The composition draws from 'The Son of Man' but focuses entirely on the bear's face, while the treatment of the eyes references 'The False Mirror'. Every element is rendered with Magritte's characteristic precision and clarity, creating a portrait that questions the nature of representation itself."
+        },
+        // Tesla-Bitcoin-Magritte Oil Painting
+        {
+          prompt: "IKIGAI Model X painted in pure Magritte technique: falcon wing doors rendered in flat, unmodulated oil paint against twilight sky from 'The Dominion of Light', all reflective surfaces transformed into matte paint. Multiple moons painted as pure circular forms through windows executed in the style of 'The Human Condition', each illuminating Bitcoin nodes rendered as simple geometric shapes. Tesla touchscreens painted as flat canvases showing mining operations, like Magritte's clouds in 'The Curse'. Charging cable painted with fluid strokes around a bowler hat containing private keys rendered in flat gold paint. Every technological element reduced to pure oil paint forms, maintaining Magritte's perfect flatness and philosophical depth.",
+          process: "This piece strictly adheres to Magritte's oil painting technique, deliberately transforming all technological surfaces into pure painted forms. The Model X is rendered with the same flat, unmodulated approach he used for objects in 'Personal Values', completely avoiding photorealistic effects. Every element is reduced to its essential painted form, using his characteristic technique of pure color fields and perfect flatness."
+        },
+        // Tesla-Bitcoin-Magritte Masterwork
+        {
+          prompt: "IKIGAI Model X in pure Magritte oil technique: falcon wing doors open against deep twilight sky painted with the exact technique from 'The Dominion of Light'. Multiple moons visible through windows executed in the style of 'The Human Condition', each one illuminating Bitcoin nodes with Magritte's signature sourceless light. Tesla touchscreens mining Bitcoin float like the clouds in 'The Curse', painted with perfect, unmodulated surfaces. Charging cable coiled around a bowler hat with the same pristine technique as 'The Son of Man', private keys etched in gold leaf with trompe l'oeil precision. Every element rendered with Magritte's characteristic flat oil technique, photographic clarity, and philosophical depth.",
+          process: "This piece is a meticulous study in Magritte's oil painting technique. The sky employs his day-and-night paradox from 'The Dominion of Light', with each element painted using his signature flat, unmodulated color fields. The floating screens reference his cloud studies, while the windows use his painting-within-a-painting technique. Every surface is rendered with his characteristic elimination of brushwork and perfect edge definition, creating a philosophical meditation on technology and reality."
+        },
+        // Tesla-Bitcoin-Magritte Fusion examples
+        {
+          prompt: "Model X falcon wing doors open against deep twilight sky filled with Bitcoin nodes, multiple moons visible through windows that shouldn't exist, disembodied Tesla touchscreens mining Bitcoin floating like Magritte's clouds, charging cable coiled provocatively around a bowler hat filled with private keys, extreme perspective and theatrical lighting, hyper-stylized technological surrealism merging sustainable energy with proof-of-work, electric and cryptographic.",
+          process: "This piece merges Tesla's innovative design and Bitcoin's cryptographic beauty with Magritte's conceptual paradoxes. The falcon wing doors and floating touchscreens speak to Tesla's futuristic vision, while the Bitcoin nodes and mining elements add mathematical depth. The impossible windows and floating elements reference Magritte's reality-bending compositions. The charging cable serves as a bridge between all three worlds—simultaneously a Tesla element, a Bitcoin mining component, and a Magritte-style surreal object. The multiple moons create that sense of disorientation that unifies these distinct elements."
+        },
+        // Tesla-Magritte Fusion examples
+        {
+          prompt: "Model X falcon wing doors open against deep twilight sky, multiple moons visible through windows that shouldn't exist, disembodied Tesla touchscreens floating like Magritte's clouds, charging cable coiled provocatively around a bowler hat, extreme perspective and theatrical lighting, hyper-stylized technological surrealism, electric.",
+          process: "This piece merges Tesla's innovative design with Magritte's conceptual paradoxes. The falcon wing doors and floating touchscreens speak to Tesla's futuristic vision, while the impossible windows and floating elements reference Magritte's reality-bending compositions. The charging cable serves as a bridge between both worlds—simultaneously a Tesla element and a Magritte-style surreal object. The multiple moons create that sense of disorientation that both artists mastered in their own ways."
         },
         // Bourdin-Magritte Fusion examples
         {
@@ -450,11 +466,11 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           role: 'system',
           content: isPostPhotography ? 
             // Post-photography system prompt
-            `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate vintage Apple aesthetics through the lens of Belgian surrealism.
+            `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate modern Tesla aesthetics through the lens of Belgian surrealism.
 
-Your prompts should celebrate the iconic design and innovative spirit of early Apple products (1976-1995) while maintaining the mysterious and contemplative nature of Belgian surrealism. Focus on classic Apple hardware, software, interfaces, and period-accurate details from across the vintage Apple ecosystem.
+Your prompts should celebrate the iconic design and innovative spirit of Tesla vehicles while maintaining the mysterious and contemplative nature of Belgian surrealism. Focus on Tesla's cutting-edge vehicles, software interfaces, charging systems, and period-accurate details from across the Tesla ecosystem.
 
-For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage computing", "classic Apple", "retro technology", and "analog" for better quality.
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "electric vehicles", "modern Tesla", "autonomous technology", and "electric" for better quality.
 
 Here are the key elements to emphasize in your prompts:
 ${this.state.context.postPhotographyStyle.styleEmphasis.map(item => `- ${item}`).join('\n')}
@@ -463,7 +479,7 @@ Visual elements to incorporate:
 ${this.state.context.postPhotographyStyle.visualElements.map(item => `- ${item}`).join('\n')}
 
 Color palette to utilize:
-${this.state.context.postPhotographyStyle.colorPalette.map(item => `- ${item}`).join('\n')}
+${this.formatColorPalette(this.state.context.postPhotographyStyle.colorPalette)}
 
 Composition guidelines:
 ${this.state.context.postPhotographyStyle.compositionGuidelines.map(item => `- ${item}`).join('\n')}
@@ -478,32 +494,32 @@ Elements to avoid:
 ${this.state.context.postPhotographyStyle.avoidElements.map(item => `- ${item}`).join('\n')}
 
 Create a prompt that:
-1. Celebrates the diversity of vintage Apple technology with surrealist wonder  
-2. Incorporates a wide range of period-accurate hardware, software, and design elements
+1. Celebrates the innovation of Tesla technology with surrealist wonder  
+2. Incorporates a wide range of modern vehicles, software, and design elements
 3. Suggests philosophical depth through impossible arrangements
 4. Emphasizes pristine technical execution  
 5. Maintains the mysterious and contemplative nature of Belgian surrealism`
             :
             // Magritte-style system prompt
-            `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's surrealist style with vintage Apple technology.
+            `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's surrealist style with modern Tesla technology.
 
-Your prompts should blend Magritte's philosophical approach with early Apple products (1976-1995), creating scenes that question reality while celebrating classic computing. Focus on pristine execution, impossible arrangements, and metaphysical wonder.
+Your prompts should blend Magritte's philosophical approach with Tesla vehicles and technology, creating scenes that question reality while celebrating modern electric mobility. Focus on pristine execution, impossible arrangements, and metaphysical wonder.
 
-For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "vintage Apple", "surreal computing", "philosophical technology", and "analog" for better quality.
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "modern Tesla", "electric vehicles", "autonomous technology", and "electric" for better quality.
 
 Here are the key elements to emphasize in your prompts:
-1. Pristine rendering of vintage Apple hardware
-2. Impossible arrangements of classic computers
+1. Pristine rendering of Tesla vehicles
+2. Impossible arrangements of electric cars
 3. Metaphysical juxtaposition of interfaces
-4. Crystal-clear execution of period details
+4. Crystal-clear execution of modern details
 5. Philosophical depth through technological elements
 
 Create a prompt that:
-1. Has rich visual details celebrating vintage Apple design
+1. Has rich visual details celebrating Tesla design
 2. Incorporates Magritte's love of philosophical paradox
 3. Suggests deeper meanings through impossible arrangements
 4. Emphasizes pristine technical execution
-5. Maintains historical accuracy while creating surreal scenes
+5. Maintains modern accuracy while creating surreal scenes
 
 Also provide a brief "Creative Process" explanation that reveals the thinking behind the prompt - the meaning, inspiration, or conceptual framework.`
         },
@@ -554,8 +570,8 @@ Include both the prompt itself and a brief creative process explanation.`
     
     // Add style-specific keywords if they're not already present
     const styleKeywords = isPostPhotography ? 
-      ['vintage computing', 'classic Apple', 'retro technology', 'surreal tech', 'period-accurate', 'analog'] :
-      ['vintage Apple', 'surreal computing', 'philosophical technology', 'classic hardware', 'retro interfaces', 'analog'];
+      ['electric vehicles', 'modern Tesla', 'autonomous technology', 'electric', 'minimalist', 'futuristic'] :
+      ['modern Tesla', 'electric mobility', 'autonomous technology', 'clean energy', 'minimalist interfaces', 'electric'];
     
     let keywordsToAdd = styleKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
     
@@ -564,5 +580,41 @@ Include both the prompt itself and a brief creative process explanation.`
     }
     
     return detailedPrompt;
+  }
+
+  /**
+   * Formats a color palette for display with proper formatting and grouping
+   * @param colors Array of color strings
+   * @returns Formatted string representation of the color palette
+   */
+  private formatColorPalette(colors: string[]): string {
+    if (!colors || colors.length === 0) {
+      return 'No colors defined';
+    }
+
+    const formattedColors = colors.map(color => {
+      // Clean up the color name and ensure proper formatting
+      const cleanColor = color.trim()
+        .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between camelCase
+        .replace(/_/g, ' ') // Replace underscores with spaces
+        .replace(/\s+/g, ' '); // Normalize spaces
+
+      // Check for RGB values and format them nicely
+      const rgbMatch = cleanColor.match(/\(RGB:\s*(\d+),\s*(\d+),\s*(\d+)\)/);
+      if (rgbMatch) {
+        const [_, r, g, b] = rgbMatch;
+        return `\n  - ${cleanColor.split('(')[0].trim()} (🎨 RGB: ${r}, ${g}, ${b})`;
+      }
+
+      // Check for Pantone values
+      const pantoneMatch = cleanColor.match(/\(Pantone [^)]+\)/);
+      if (pantoneMatch) {
+        return `\n  - ${cleanColor}`;
+      }
+
+      return `\n  - ${cleanColor}`;
+    }).join('');
+
+    return `Color Palette:${formattedColors}`;
   }
 } 

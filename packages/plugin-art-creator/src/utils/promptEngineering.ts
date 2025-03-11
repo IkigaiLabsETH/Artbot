@@ -153,5 +153,5 @@ function addQualityBoosters(prompt: string): string {
  * Generates a negative prompt to avoid common issues in generated images
  */
 export function generateNegativePrompt(): string {
-  return 'low quality, bad anatomy, worst quality, low resolution, blurry, distorted proportions, disfigured, deformed, amateur, poorly drawn, ugly, text, watermark, signature, extra limbs, missing limbs, cropped image, out of frame, draft, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol';
+  return 'low quality, bad anatomy, worst quality, low resolution, blurry, distorted proportions, disfigured, deformed, amateur, poorly drawn, ugly, text, watermark, signature, extra limbs, missing limbs, cropped image, out of frame, draft, tesla logo, tesla badge, tesla emblem, tesla brand symbol, tesla wordmark, gas station, exhaust pipe, fuel cap, internal combustion, gasoline';
 } 
