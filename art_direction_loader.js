@@ -40,7 +40,7 @@ const artDirectionCache = new Map();
  */
 const config = {
   cacheEnabled: true,
-  defaultStyle: 'classic',
+  defaultStyle: 'bearPortraits',
   maxCacheSize: 100,
   promptMaxLength: 500,
   weightingEnabled: true

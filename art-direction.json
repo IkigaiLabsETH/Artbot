@@ -1,5 +1,55 @@
 {
   "styles": {
+    "bearPortraits": {
+      "styleEmphasis": [
+        "majestic wildlife portraiture",
+        "natural realism",
+        "emotional depth",
+        "character study",
+        "expressive eyes",
+        "textural detail",
+        "dramatic lighting",
+        "intimate perspective",
+        "environmental harmony",
+        "noble presence"
+      ],
+      "visualElements": [
+        "detailed fur textures",
+        "soulful bear eyes",
+        "natural habitat elements",
+        "dramatic facial features",
+        "powerful shoulders and form",
+        "atmospheric lighting",
+        "wilderness backdrop",
+        "seasonal elements",
+        "characteristic bear poses",
+        "intimate close-ups"
+      ],
+      "colorPalette": [
+        "rich brown",
+        "forest green",
+        "golden honey",
+        "deep black",
+        "misty grey",
+        "autumn rust",
+        "shadow blue",
+        "earthy umber",
+        "dawn pink",
+        "twilight purple"
+      ],
+      "compositionGuidelines": [
+        "centered portrait framing",
+        "eye-level perspective",
+        "rule of thirds for facial features",
+        "natural lighting direction",
+        "balanced negative space",
+        "subtle environmental context",
+        "focus on facial expression",
+        "depth through background blur",
+        "dynamic head angles",
+        "emphasis on eye contact"
+      ]
+    },
     "ikigai": {
       "styleEmphasis": [
         "metaphysical surrealism",

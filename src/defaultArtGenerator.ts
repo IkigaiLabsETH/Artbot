@@ -276,14 +276,1171 @@ const categoryArg = process.argv[3];
 // Initialize the style manager
 const styleManager = new StyleManager();
 
-// Modify the concept detection to always use Magritte style
-function detectConceptCategory(concept: string): string {
-  // Always return magritte_style to enforce Magritte as default
-  return 'magritte_style';
+// Define portrait-specific categories for PFP series
+const magritteCategories = [
+  // Adventure Series
+  'bear_pfp_pilot',          // Vintage aviator with leather jacket
+  'bear_pfp_surfer',         // Retro surf culture with board
+  'bear_pfp_snowboarder',    // Winter sports with goggles
+  'bear_pfp_mountaineer',    // Alpine explorer with ice axe
+  'bear_pfp_sailor',         // Maritime adventurer with peacoat
+  'bear_pfp_skater',         // Vintage skateboard culture
+  'bear_pfp_cyclist',        // Classic cycling with cap
+  'bear_pfp_diver',          // Vintage scuba with brass helmet
+  'bear_pfp_racer',          // Classic motorsport with leather
+  'bear_pfp_climber',        // Rock climbing with rope
+  'bear_pfp_astronaut',      // Space explorer with helmet
+  'bear_pfp_speleologist',   // Cave explorer with headlamp
+  'bear_pfp_wingsuit',       // Wingsuit flyer with gear
+  'bear_pfp_kayaker',        // Whitewater adventurer
+  'bear_pfp_paraglider',     // Paragliding enthusiast
+  'bear_pfp_arctic',         // Arctic explorer with fur hood
+  'bear_pfp_desert',         // Desert adventurer with shemagh
+  'bear_pfp_jungle',         // Jungle explorer with pith helmet
+  'bear_pfp_volcano',        // Volcanologist with heat suit
+  'bear_pfp_submarine',      // Submarine captain with periscope
+  
+  // Artistic Series
+  'bear_pfp_painter',        // Artist with beret and palette
+  'bear_pfp_sculptor',       // Sculptor with chisel and smock
+  'bear_pfp_photographer',   // Classic camera and dark room coat
+  'bear_pfp_musician',       // Jazz player with instrument
+  'bear_pfp_poet',          // Bohemian writer with notebook
+  'bear_pfp_dancer',        // Ballet with classic tutu
+  'bear_pfp_architect',     // Modernist with drafting tools
+  'bear_pfp_filmmaker',     // Director with vintage camera
+  'bear_pfp_designer',      // Fashion designer with measuring tape
+  'bear_pfp_printmaker',    // Printmaker with ink-stained apron
+  'bear_pfp_glassblower',   // Glass artist with tools
+  'bear_pfp_ceramicist',    // Pottery artist with clay
+  'bear_pfp_muralist',      // Street artist with spray cans
+  'bear_pfp_weaver',        // Textile artist with loom
+  'bear_pfp_jeweler',       // Jewelry maker with gems
+  'bear_pfp_origami',       // Paper artist with creations
+  'bear_pfp_calligrapher',  // Calligrapher with brushes
+  'bear_pfp_puppeteer',     // Puppet master with marionettes
+  'bear_pfp_mosaic',        // Mosaic artist with tiles
+  'bear_pfp_neon',          // Neon artist with glass tubes
+  
+  // Hipster Series
+  'bear_pfp_barista',       // Coffee artisan with apron
+  'bear_pfp_vinylista',     // Record collector with headphones
+  'bear_pfp_craftbrewer',   // Craft beer maker with hops
+  'bear_pfp_botanist',      // Plant enthusiast with terrarium
+  'bear_pfp_mixologist',    // Cocktail creator with shaker
+  'bear_pfp_vintage',       // Antique collector with monocle
+  'bear_pfp_bookshop',      // Independent bookstore owner
+  'bear_pfp_foodie',        // Gastronome with tasting spoon
+  'bear_pfp_cyclist_fixed', // Fixed gear bike messenger
+  'bear_pfp_artisanal',     // Artisanal craftsperson
+  'bear_pfp_zerowaste',     // Sustainable living enthusiast
+  'bear_pfp_apiarist',      // Urban beekeeper with hive
+  'bear_pfp_fermentation',  // Fermentation specialist
+  'bear_pfp_herbalist',     // Herbal medicine maker
+  'bear_pfp_vinyl_dj',      // Vinyl DJ with turntables
+  'bear_pfp_teasmith',      // Tea ceremony master
+  'bear_pfp_chocolatier',   // Artisanal chocolate maker
+  'bear_pfp_forager',       // Urban foraging expert
+  'bear_pfp_perfumer',      // Natural perfume creator
+  'bear_pfp_tintype',       // Vintage photography artist
+  
+  // Academic Series (New)
+  'bear_pfp_professor',     // Distinguished professor with glasses
+  'bear_pfp_astronomer',    // Stargazer with telescope
+  'bear_pfp_archaeologist', // Field researcher with tools
+  'bear_pfp_botanist_academic', // Academic botanist with specimens
+  'bear_pfp_librarian',     // Rare book curator
+  'bear_pfp_mathematician', // Mathematician with formulas
+  'bear_pfp_chemist',      // Chemist with laboratory coat
+  'bear_pfp_linguist',     // Language scholar with manuscripts
+  'bear_pfp_historian',    // History scholar with documents
+  'bear_pfp_philosopher',  // Philosophy professor with tome
+  
+  // Mystical Series (New)
+  'bear_pfp_alchemist',    // Alchemist with potions
+  'bear_pfp_astrologer',   // Astrologer with celestial maps
+  'bear_pfp_fortune',      // Fortune teller with crystal ball
+  'bear_pfp_mystic',       // Mystic with sacred scrolls
+  'bear_pfp_shaman',       // Shaman with ritual items
+  'bear_pfp_druid',        // Druid with nature elements
+  'bear_pfp_oracle',       // Oracle with prophetic tools
+  'bear_pfp_wizard',       // Wizard with magical items
+  'bear_pfp_sage',         // Sage with ancient texts
+  'bear_pfp_occultist',    // Occultist with arcane symbols
+  
+  // Steampunk Series (New)
+  'bear_pfp_inventor',      // Victorian inventor with brass goggles
+  'bear_pfp_timekeeper',    // Clockwork master with gears
+  'bear_pfp_aeronaut',      // Airship captain with brass telescope
+  'bear_pfp_mechanist',     // Steam engine expert with tools
+  'bear_pfp_alchemtech',    // Steampunk alchemist with apparatus
+  'bear_pfp_automaton',     // Mechanical being with brass parts
+  'bear_pfp_navigator',     // Sky charts and brass compass
+  'bear_pfp_artificer',     // Mechanical craftsman with tools
+  'bear_pfp_steamsmith',    // Steam machinery expert
+  'bear_pfp_chronologist',  // Time device specialist
+  
+  // Classical Series (New)
+  'bear_pfp_composer',      // Classical music composer
+  'bear_pfp_conductor',     // Orchestra conductor with baton
+  'bear_pfp_violinist',     // Violin virtuoso with instrument
+  'bear_pfp_pianist',       // Grand piano performer
+  'bear_pfp_cellist',       // Cello master with bow
+  'bear_pfp_harpist',       // Harp player with strings
+  'bear_pfp_flautist',      // Flute player with instrument
+  'bear_pfp_operatic',      // Opera singer with score
+  'bear_pfp_chamber',       // Chamber musician
+  'bear_pfp_maestro',       // Music master with manuscript
+  
+  // Diplomatic Series (New)
+  'bear_pfp_ambassador',    // Distinguished diplomat
+  'bear_pfp_consul',        // Consular official with seal
+  'bear_pfp_attache',       // Cultural attaché with portfolio
+  'bear_pfp_envoy',         // Special envoy with documents
+  'bear_pfp_minister',      // Foreign minister with briefcase
+  'bear_pfp_delegate',        // UN delegate with credentials
+  'bear_pfp_emissary',      // Royal emissary with scroll
+  'bear_pfp_chancellor',    // Chancellor with ceremonial chain
+  'bear_pfp_secretary',      // Secretary of state with portfolio
+  'bear_pfp_legate',          // Papal legate with seal
+  
+  // Additional Adventure Types
+  'bear_pfp_balloonist',      // Hot air balloon explorer
+  'bear_pfp_polar',          // Polar expedition leader
+  'bear_pfp_treasure',        // Treasure hunter with map
+  'bear_pfp_safari',          // Safari explorer with binoculars
+  'bear_pfp_deep_sea',        // Deep sea explorer
+  
+  // Additional Artistic Types
+  'bear_pfp_lithographer',    // Stone printing artist
+  'bear_pfp_etcher',          // Etching plate artist
+  'bear_pfp_woodblock',        // Woodblock print master
+  'bear_pfp_fresco',            // Fresco painter with tools
+  'bear_pfp_miniature',        // Miniature painting artist
+  
+  // Additional Academic Types
+  'bear_pfp_cartographer',      // Map maker with tools
+  'bear_pfp_paleographer',      // Ancient writing expert
+  'bear_pfp_antiquarian',        // Antique manuscript expert
+  'bear_pfp_naturalist',        // Nature study scholar
+  'bear_pfp_cosmologist',        // Universe study scholar
+  
+  // New Adventure Series Additions
+  'bear_pfp_freediver',     // Freediving explorer with monofin
+  'bear_pfp_highliner',     // Highline walker with slackline
+  'bear_pfp_caver',         // Cave exploration specialist
+  'bear_pfp_packrafter',    // Packraft wilderness explorer
+  'bear_pfp_alpinist',      // Alpine climbing specialist
+  'bear_pfp_skitourer',     // Backcountry ski explorer
+  'bear_pfp_trailrunner',   // Ultra trail running expert
+  'bear_pfp_iceclimber',    // Ice climbing specialist
+  'bear_pfp_wavesurfer',    // Big wave surfing expert
+  'bear_pfp_skyrunner',     // Mountain running specialist
+  
+  // New Artistic Series Additions
+  'bear_pfp_soundartist',   // Sound installation artist
+  'bear_pfp_bioartist',     // Biological art creator
+  'bear_pfp_lightartist',   // Light installation designer
+  'bear_pfp_dataartist',    // Data visualization artist
+  'bear_pfp_kinetic',       // Kinetic sculpture artist
+  'bear_pfp_hologram',      // Holographic art creator
+  'bear_pfp_projection',    // Projection mapping artist
+  'bear_pfp_augmented',     // Augmented reality artist
+  'bear_pfp_generative',    // Generative art creator
+  'bear_pfp_installation',  // Installation art specialist
+  
+  // New Hipster Series Additions
+  'bear_pfp_mycologist',    // Mushroom foraging expert
+  'bear_pfp_vintagegame',   // Vintage game collector
+  'bear_pfp_analogphoto',   // Analog photography artist
+  'bear_pfp_ceramicist',    // Modern ceramics artist
+  'bear_pfp_zinemaker',     // Independent zine creator
+  'bear_pfp_synthwave',     // Synthwave music producer
+  'bear_pfp_hydroponics',   // Urban hydroponic farmer
+  'bear_pfp_letterpress',   // Letterpress print artist
+  'bear_pfp_kombucha',      // Kombucha brewing master
+  'bear_pfp_streetwear',    // Vintage streetwear curator
+  
+  // Additional Adventure Series
+  'bear_pfp_bouldering',    // Boulder climbing specialist
+  'bear_pfp_slackliner',    // Slackline balance artist
+  'bear_pfp_wingfoiler',    // Wing foiling water sport
+  'bear_pfp_speedflyer',    // Speed flying adrenaline
+  'bear_pfp_iceswimmer',    // Ice swimming expert
+  'bear_pfp_canyoneer',     // Canyon exploration expert
+  'bear_pfp_snowkiter',     // Snow kiting adventurer
+  'bear_pfp_hydrofoiler',   // Hydrofoil board rider
+  'bear_pfp_skydancer',     // Aerial dance performer
+  'bear_pfp_coasteer',      // Coastal adventure explorer
+  
+  // Additional Artistic Series
+  'bear_pfp_cryptoartist',  // Blockchain art creator
+  'bear_pfp_biofeedback',   // Biofeedback art pioneer
+  'bear_pfp_neuralart',     // Neural network artist
+  'bear_pfp_fractalmaker',  // Fractal art designer
+  'bear_pfp_glitchartist',  // Digital glitch artist
+  'bear_pfp_voxelartist',   // Voxel art specialist
+  'bear_pfp_aicollab',      // AI collaboration artist
+  'bear_pfp_biodesigner',   // Bio-design artist
+  'bear_pfp_quantumart',    // Quantum computing artist
+  'bear_pfp_4dart',         // 4D art conceptualist
+  
+  // Additional Hipster Series
+  'bear_pfp_solarpunk',     // Solarpunk lifestyle guru
+  'bear_pfp_retrotech',     // Retro tech enthusiast
+  'bear_pfp_vegancraft',    // Vegan crafts creator
+  'bear_pfp_minimalist',    // Extreme minimalist
+  'bear_pfp_upcycler',      // Creative upcycling artist
+  'bear_pfp_microgreen',    // Microgreens specialist
+  'bear_pfp_vinylhunter',   // Rare vinyl hunter
+  'bear_pfp_techweaver',    // Tech-integrated textiles
+  'bear_pfp_algaelab',      // Algae cultivation artist
+  'bear_pfp_soundhunter',   // Field recording artist
+];
+
+// Function to generate bear PFP concepts in Magritte's style
+function generateBearConcept(): string {
+  const primaryAccessories = [
+    // Adventure Headwear
+    "leather aviator cap",
+    "vintage ski goggles",
+    "maritime captain's hat",
+    "classic cycling cap",
+    "retro diving helmet",
+    "mountaineering beanie",
+    "surf culture bandana",
+    "skater's vintage helmet",
+    "racing leather cap",
+    "climber's headlamp",
+    "astronaut's space helmet",
+    "spelunker's light cap",
+    "wingsuit helmet",
+    "kayaker's spray skirt",
+    "paraglider's helmet",
+    
+    // Artistic Headwear
+    "painter's beret",
+    "sculptor's work cap",
+    "photographer's visor",
+    "conductor's cap",
+    "poet's slouch hat",
+    "architect's modernist glasses",
+    "filmmaker's beret",
+    "designer's avant-garde hat",
+    "printmaker's bandana",
+    "artist's newsboy cap",
+    "glassblower's safety visor",
+    "ceramicist's work cap",
+    "muralist's spray mask",
+    "weaver's head wrap",
+    "jeweler's loupe headband",
+    
+    // Hipster Headwear
+    "barista's flat cap",
+    "vintage fedora",
+    "craft brewer's beanie",
+    "botanical sun hat",
+    "mixologist's newsboy cap",
+    "antique collector's cap",
+    "bookshop reading glasses",
+    "gastronome's tasting cap",
+    "fixed gear cycling cap",
+    "artisan's work cap",
+    "zero waste bandana",
+    "beekeeper's hat",
+    "fermentation specialist's cap",
+    "herbalist's woven hat",
+    "vinyl DJ's headphones",
+    
+    // Academic Headwear
+    "professor's mortarboard",
+    "astronomer's night cap",
+    "archaeologist's field hat",
+    "curator's reading glasses",
+    "mathematician's spectacles",
+    "chemist's safety goggles",
+    "linguist's translation lens",
+    "historian's archive cap",
+    "philosopher's thinking cap",
+    "researcher's magnifying glass",
+    
+    // Mystical Headwear
+    "alchemist's hood",
+    "astrologer's star cap",
+    "fortune teller's head wrap",
+    "mystic's ceremonial crown",
+    "shaman's spirit mask",
+    "druid's leaf crown",
+    "oracle's veil",
+    "wizard's pointed hat",
+    "sage's wisdom band",
+    "occultist's symbolic hat",
+    
+    // Steampunk Headwear
+    "brass goggled top hat",
+    "gear-decorated bowler",
+    "copper-plated aviator cap",
+    "mechanical monocle hat",
+    "steam-powered helmet",
+    "clockwork crown",
+    "brass-fitted cap",
+    "gear-rimmed glasses",
+    "mechanical eye patch",
+    "steam valve hat",
+    
+    // Classical Music Headwear
+    "conductor's formal cap",
+    "composer's velvet beret",
+    "virtuoso's silk headband",
+    "maestro's ceremonial hat",
+    "chamber musician's cap",
+    "opera performer's crown",
+    "concert master's hat",
+    "orchestral director's cap",
+    "soloist's formal headpiece",
+    "classical performer's hat",
+    
+    // Diplomatic Headwear
+    "ambassador's formal hat",
+    "diplomatic corps cap",
+    "consular official's hat",
+    "ministerial top hat",
+    "envoy's formal cap",
+    "chancellor's ceremonial hat",
+    "emissary's plumed hat",
+    "delegate's formal headpiece",
+    "diplomatic service cap",
+    "ceremonial state hat",
+    
+    // New Adventure Headwear
+    "freediving mask",
+    "highliner's balance cap",
+    "caver's LED helmet",
+    "packrafter's dry cap",
+    "alpinist's helmet",
+    "ski touring helmet",
+    "trail runner's visor",
+    "ice climber's helmet",
+    "big wave surfer's cap",
+    "skyrunner's lightweight cap",
+    
+    // New Artistic Headwear
+    "sound artist's headphones",
+    "bioartist's protective visor",
+    "light artist's LED crown",
+    "data artist's AR glasses",
+    "kinetic artist's dynamic hat",
+    "hologram artist's visor",
+    "projection artist's headset",
+    "augmented reality glasses",
+    "generative artist's headpiece",
+    "installation artist's beret",
+    
+    // New Hipster Headwear
+    "mycologist's foraging cap",
+    "vintage gaming headset",
+    "analog photographer's cap",
+    "ceramicist's work bandana",
+    "zinemaker's newsprint cap",
+    "synthwave producer's headphones",
+    "hydroponic farmer's cap",
+    "letterpress printer's visor",
+    "kombucha brewer's bandana",
+    "streetwear curator's cap",
+    
+    // Additional Adventure Headwear
+    "bouldering beanie",
+    "slackline balance cap",
+    "wing foiling helmet",
+    "speedflying aerodynamic helmet",
+    "ice swimming cap",
+    "canyoneering helmet",
+    "snow kiting goggles",
+    "hydrofoil racing helmet",
+    "aerial dance headpiece",
+    "coasteering safety helmet",
+    
+    // Additional Artistic Headwear
+    "crypto-art visor",
+    "biofeedback sensor crown",
+    "neural interface headset",
+    "fractal projection glasses",
+    "glitch effect visor",
+    "voxel creator headset",
+    "AI collaboration interface",
+    "bio-design protective mask",
+    "quantum computing glasses",
+    "4D visualization headset",
+    
+    // Additional Hipster Headwear
+    "solarpunk crystal crown",
+    "vintage tech headphones",
+    "sustainable fiber cap",
+    "minimalist design hat",
+    "upcycled material headband",
+    "microgreen grower's cap",
+    "vinyl collector's headphones",
+    "tech-weave beanie",
+    "algae lab protective cap",
+    "field recording headphones"
+  ];
+
+  const secondaryAccessories = [
+    // Adventure Accessories
+    "vintage flight goggles",
+    "retro surf shades",
+    "mountaineering compass",
+    "sailor's telescope",
+    "skater's vintage sunglasses",
+    "cyclist's racing glasses",
+    "diver's brass gauge",
+    "racer's protective goggles",
+    "climber's carabiner",
+    "adventurer's binoculars",
+    "space navigation device",
+    "cave mapping tools",
+    "altimeter watch",
+    "river reading tools",
+    "wind measurement device",
+    
+    // Artistic Tools
+    "painter's palette",
+    "sculptor's chisel",
+    "vintage camera",
+    "musical instrument",
+    "poet's fountain pen",
+    "architect's ruler",
+    "film director's viewfinder",
+    "designer's measuring tape",
+    "printmaker's tools",
+    "artist's brushes",
+    "glassblowing pipe",
+    "pottery wheel",
+    "spray can set",
+    "weaving shuttle",
+    "jeweler's loupe",
+    
+    // Hipster Items
+    "artisanal coffee filter",
+    "vinyl record sleeve",
+    "craft beer tasting glass",
+    "terrarium glass",
+    "cocktail mixing spoon",
+    "vintage magnifying glass",
+    "first edition book",
+    "tasting notebook",
+    "fixed gear bike lock",
+    "artisan's tool belt",
+    "reusable utensils",
+    "honey dipper",
+    "fermentation crock",
+    "herb drying rack",
+    "turntable needle",
+    
+    // Academic Tools
+    "rare book magnifier",
+    "star chart compass",
+    "archaeological brush",
+    "specimen collection box",
+    "library catalog cards",
+    "mathematical compass",
+    "laboratory equipment",
+    "ancient manuscript case",
+    "historical documents",
+    "philosophical treatise",
+    
+    // Mystical Items
+    "alchemical apparatus",
+    "celestial armillary",
+    "crystal ball stand",
+    "mystical scrollcase",
+    "ritual medicine bag",
+    "natural talismans",
+    "prophetic tablets",
+    "magical implements",
+    "wisdom scrolls",
+    "occult symbols",
+    
+    // Steampunk Accessories
+    "brass mechanical arm",
+    "clockwork compass",
+    "steam pressure gauge",
+    "gear-decorated spyglass",
+    "mechanical calculator",
+    "steam-powered tool",
+    "brass navigation device",
+    "mechanical measuring tool",
+    "steam engine miniature",
+    "clockwork assistant",
+    
+    // Classical Music Accessories
+    "conductor's baton",
+    "golden music stand",
+    "vintage metronome",
+    "orchestral score",
+    "classical instrument",
+    "sheet music folder",
+    "tuning fork set",
+    "composer's quill",
+    "musical manuscript",
+    "performance program",
+    
+    // Diplomatic Accessories
+    "diplomatic portfolio",
+    "official seal press",
+    "ceremonial staff",
+    "document case",
+    "credential holder",
+    "treaty scroll",
+    "diplomatic pouch",
+    "official dispatch box",
+    "state seal",
+    "ceremonial mace",
+    
+    // New Adventure Tools
+    "freediving computer",
+    "highline balance meter",
+    "cave mapping device",
+    "packraft navigation tool",
+    "alpine route finder",
+    "avalanche transceiver",
+    "trail GPS device",
+    "ice climbing tools",
+    "wave height meter",
+    "altitude monitor",
+    
+    // New Artistic Tools
+    "sound visualization pad",
+    "bio-art microscope",
+    "light control panel",
+    "data visualization tablet",
+    "kinetic control remote",
+    "hologram projector",
+    "projection mapping device",
+    "AR controller",
+    "generative art tablet",
+    "installation control pad",
+    
+    // New Hipster Items
+    "mushroom identification guide",
+    "vintage game console",
+    "medium format camera",
+    "pottery wheel controller",
+    "risograph printer",
+    "synthesizer controller",
+    "hydroponic monitoring device",
+    "letterpress gauge",
+    "fermentation monitor",
+    "streetwear authentication tool",
+    
+    // Additional Adventure Tools
+    "climbing chalk bag",
+    "slackline tension meter",
+    "wing foil control bar",
+    "speedflying variometer",
+    "ice swimming thermometer",
+    "canyon mapping device",
+    "snow kite wind meter",
+    "hydrofoil trim control",
+    "aerial dance apparatus",
+    "coasteering navigation tool",
+    
+    // Additional Artistic Tools
+    "blockchain art tablet",
+    "biofeedback visualizer",
+    "neural pattern generator",
+    "fractal algorithm display",
+    "glitch manipulation pad",
+    "voxel modeling tool",
+    "AI collaboration interface",
+    "bio-design microscope",
+    "quantum state viewer",
+    "4D modeling device",
+    
+    // Additional Hipster Items
+    "solar power analyzer",
+    "restored vintage computer",
+    "vegan craft tools",
+    "minimalist design tool",
+    "upcycling workshop tools",
+    "microgreen monitoring pad",
+    "vinyl authentication scope",
+    "tech-weave controller",
+    "algae monitoring system",
+    "field recording equipment"
+  ];
+
+  const neckwear = [
+    // Adventure Neckwear
+    "vintage flight scarf",
+    "sailor's neckerchief",
+    "mountaineer's rope",
+    "surfer's shell necklace",
+    "racer's bandana",
+    "cyclist's winner medal",
+    "diver's air hose",
+    "climber's safety rope",
+    "skater's chain",
+    "adventurer's compass",
+    "space suit collar",
+    "caving rope",
+    "wingsuit zipper",
+    "kayak spray guard",
+    "paragliding harness",
+    
+    // Artistic Neckwear
+    "artist's paint-splattered scarf",
+    "sculptor's work collar",
+    "camera strap",
+    "musician's bow tie",
+    "poet's cravat",
+    "architect's measuring tape",
+    "director's headphones",
+    "designer's silk scarf",
+    "printmaker's ink-stained cloth",
+    "artist's neck wrap",
+    "glassblower's protective collar",
+    "ceramicist's apron tie",
+    "street artist's respirator",
+    "weaver's thread spool",
+    "jeweler's chain",
+    
+    // Hipster Neckwear
+    "barista's coffee-stained scarf",
+    "vinyl collector's headphones",
+    "brewer's hop garland",
+    "botanical vine wrap",
+    "mixologist's bow tie",
+    "vintage chain",
+    "librarian's reading glasses chain",
+    "foodie's napkin",
+    "messenger bag strap",
+    "artisan's tool strap",
+    "recycled fabric wrap",
+    "beekeeper's veil",
+    "fermentation weight",
+    "dried herb garland",
+    "audio cable wrap",
+    
+    // Academic Neckwear
+    "professor's bow tie",
+    "observatory scarf",
+    "field researcher's tie",
+    "curator's cravat",
+    "academic stole",
+    "laboratory safety collar",
+    "translator's neckerchief",
+    "archivist's tie",
+    "philosophical scarf",
+    "scholar's collar",
+    
+    // Mystical Neckwear
+    "alchemist's chain",
+    "celestial collar",
+    "mystic beads",
+    "ritual necklace",
+    "spirit fetish",
+    "natural fiber wrap",
+    "oracle's collar",
+    "wizard's chain",
+    "sage's meditation beads",
+    "symbolic amulet",
+    
+    // Steampunk Neckwear
+    "gear-decorated cravat",
+    "brass-buttoned collar",
+    "steam pipe necklace",
+    "mechanical bow tie",
+    "clockwork collar",
+    "copper chain collar",
+    "brass gear tie",
+    "mechanical choker",
+    "steam valve collar",
+    "gear link chain",
+    
+    // Classical Music Neckwear
+    "conductor's white tie",
+    "performer's bow tie",
+    "orchestral cravat",
+    "maestro's silk scarf",
+    "classical collar",
+    "concert bow tie",
+    "formal neck ruff",
+    "musical score tie",
+    "performance collar",
+    "ceremonial neck chain",
+    
+    // Diplomatic Neckwear
+    "diplomatic corps tie",
+    "ambassador's cravat",
+    "ceremonial collar",
+    "official neck chain",
+    "state ceremony tie",
+    "diplomatic service scarf",
+    "formal state collar",
+    "embassy formal tie",
+    "consular corps cravat",
+    "ministerial chain",
+    
+    // New Adventure Neckwear
+    "freediver's neck weight",
+    "highliner's safety harness",
+    "caver's rope system",
+    "packrafter's dry suit seal",
+    "alpinist's rope coil",
+    "ski tourer's buff",
+    "trail runner's cooling towel",
+    "ice climber's rope",
+    "surfer's leash",
+    "skyrunner's hydration system",
+    
+    // New Artistic Neckwear
+    "sound artist's cable wrap",
+    "bioart protective collar",
+    "light artist's LED scarf",
+    "data visualization tie",
+    "kinetic art chain",
+    "hologram reflector collar",
+    "projection mapping badge",
+    "AR marker necklace",
+    "generative art pendant",
+    "installation artist's tool strap",
+    
+    // New Hipster Neckwear
+    "mushroom collector's pouch",
+    "vintage gaming lanyard",
+    "camera strap collection",
+    "ceramicist's apron tie",
+    "zine distributor's bag strap",
+    "synthwave cable chain",
+    "hydroponic tool holder",
+    "letterpress ink cloth",
+    "kombucha scoby carrier",
+    "streetwear chain collection",
+    
+    // Additional Adventure Neckwear
+    "bouldering crash pad strap",
+    "slackline safety harness",
+    "wing foil harness",
+    "speedflying chest strap",
+    "thermal swimming collar",
+    "canyoneering rope system",
+    "snow kite harness",
+    "hydrofoil impact vest",
+    "aerial dance sling",
+    "coasteering safety line",
+    
+    // Additional Artistic Neckwear
+    "crypto art medallion",
+    "biofeedback sensor collar",
+    "neural network chain",
+    "fractal pattern scarf",
+    "glitch effect collar",
+    "voxel display pendant",
+    "AI interface collar",
+    "bio-design protective collar",
+    "quantum computing chain",
+    "4D visualization pendant",
+    
+    // Additional Hipster Neckwear
+    "solar panel necklace",
+    "vintage tech chain",
+    "sustainable fiber scarf",
+    "minimalist design collar",
+    "upcycled material wrap",
+    "microgreen harvest pouch",
+    "vinyl collector's lanyard",
+    "tech-weave scarf",
+    "algae culture carrier",
+    "sound recording strap"
+  ];
+
+  const clothing = [
+    // Adventure Wear
+    "vintage leather flight jacket",
+    "retro surf poncho",
+    "mountaineering coat",
+    "sailor's peacoat",
+    "classic racing leather",
+    "cycling jersey",
+    "diving suit",
+    "climber's vest",
+    "skater's vintage jacket",
+    "explorer's coat",
+    "space suit",
+    "caving overalls",
+    "wingsuit",
+    "kayaking dry suit",
+    "paragliding jacket",
+    
+    // Artistic Wear
+    "painter's smock",
+    "sculptor's apron",
+    "photographer's vest",
+    "musician's tailcoat",
+    "poet's velvet jacket",
+    "architect's black turtleneck",
+    "director's jacket",
+    "designer's avant-garde coat",
+    "printmaker's work jacket",
+    "artist's paint-splattered coat",
+    "glassblower's heat suit",
+    "potter's clay-dusted apron",
+    "street artist's utility vest",
+    "weaver's pattern coat",
+    "jeweler's precision smock",
+    
+    // Hipster Wear
+    "barista's denim apron",
+    "vintage record store jacket",
+    "brewer's work coat",
+    "botanical work shirt",
+    "mixologist's vest",
+    "antique dealer's jacket",
+    "bookshop cardigan",
+    "chef's jacket",
+    "bike messenger jacket",
+    "artisan's work coat",
+    "upcycled patchwork jacket",
+    "beekeeper's suit",
+    "fermenter's lab coat",
+    "herbalist's garden coat",
+    "DJ's vintage jacket",
+    
+    // Academic Attire
+    "professor's robes",
+    "observatory coat",
+    "field researcher's vest",
+    "curator's jacket",
+    "academic gown",
+    "laboratory coat",
+    "translator's blazer",
+    "archivist's coat",
+    "philosopher's robe",
+    "scholar's jacket",
+    
+    // Mystical Garments
+    "alchemist's robe",
+    "astrologer's cloak",
+    "fortune teller's shawl",
+    "mystic's ceremonial robe",
+    "shaman's ritual garb",
+    "druid's natural vestments",
+    "oracle's flowing robe",
+    "wizard's star-patterned cloak",
+    "sage's meditation robe",
+    "occultist's symbolic vestments",
+    
+    // Steampunk Attire
+    "brass-fitted coat",
+    "gear-decorated vest",
+    "steam engineer's jacket",
+    "mechanical suit",
+    "clockwork waistcoat",
+    "copper-plated armor",
+    "steam-powered suit",
+    "mechanical formal wear",
+    "brass-buttoned coat",
+    "gear mechanism suit",
+    
+    // Classical Music Attire
+    "conductor's tailcoat",
+    "performer's formal suit",
+    "orchestral dress coat",
+    "concert formal wear",
+    "chamber music attire",
+    "opera performance coat",
+    "classical musician's suit",
+    "maestro's formal jacket",
+    "soloist's concert wear",
+    "performance formal coat",
+    
+    // Diplomatic Attire
+    "ambassador's formal suit",
+    "diplomatic corps uniform",
+    "consular official's coat",
+    "ministerial formal wear",
+    "embassy formal suit",
+    "chancellor's robes",
+    "diplomatic service uniform",
+    "state ceremony coat",
+    "official diplomatic wear",
+    "formal state uniform",
+    
+    // New Adventure Wear
+    "freediving wetsuit",
+    "highliner's harness suit",
+    "caver's coverall",
+    "packrafter's dry suit",
+    "alpinist's shell jacket",
+    "ski touring suit",
+    "trail running vest",
+    "ice climbing suit",
+    "big wave impact vest",
+    "skyrunning suit",
+    
+    // New Artistic Wear
+    "sound artist's utility vest",
+    "bioart lab coat",
+    "light artist's reflective suit",
+    "data visualization jacket",
+    "kinetic art worksuit",
+    "hologram artist's coat",
+    "projection mapping vest",
+    "AR developer jacket",
+    "generative artist's suit",
+    "installation work coat",
+    
+    // New Hipster Wear
+    "mushroom foraging vest",
+    "vintage gaming jacket",
+    "analog photography vest",
+    "modern potter's apron",
+    "zine creator's jacket",
+    "synthwave producer's coat",
+    "hydroponic work suit",
+    "letterpress apron",
+    "kombucha lab coat",
+    "curated vintage jacket",
+    
+    // Additional Adventure Wear
+    "bouldering chalk vest",
+    "slackline performance suit",
+    "wing foiling wetsuit",
+    "speedflying wingsuit",
+    "thermal swimming suit",
+    "canyoneering dry suit",
+    "snow kiting suit",
+    "hydrofoil impact suit",
+    "aerial dance costume",
+    "coasteering wetsuit",
+    
+    // Additional Artistic Wear
+    "crypto art display suit",
+    "biofeedback sensor suit",
+    "neural pattern coat",
+    "fractal projection vest",
+    "glitch effect jacket",
+    "voxel creator suit",
+    "AI collaboration coat",
+    "bio-design lab coat",
+    "quantum computing suit",
+    "4D visualization vest",
+    
+    // Additional Hipster Wear
+    "solarpunk sustainable coat",
+    "vintage tech jacket",
+    "vegan craft apron",
+    "minimalist design coat",
+    "upcycled fashion piece",
+    "microgreen lab coat",
+    "vinyl archival jacket",
+    "tech-weave garment",
+    "algae lab coat",
+    "field recording vest"
+  ];
+
+  const additionalElements = [
+    // Adventure Elements
+    "vintage compass",
+    "surfboard",
+    "ice axe",
+    "nautical map",
+    "skateboard",
+    "bicycle wheel",
+    "diving helmet",
+    "racing goggles",
+    "climbing rope",
+    "adventure journal",
+    "space telescope",
+    "cave crystal",
+    "wind meter",
+    "river rapids map",
+    "thermal updraft gauge",
+    
+    // Artistic Elements
+    "paint palette",
+    "sculptor's chisel",
+    "vintage camera",
+    "musical score",
+    "poetry manuscript",
+    "architectural plans",
+    "film reel",
+    "design sketches",
+    "printing press",
+    "artist's brushes",
+    "molten glass orb",
+    "pottery wheel",
+    "spray paint can",
+    "weaving loom",
+    "precious gems",
+    
+    // Hipster Elements
+    "pour-over coffee maker",
+    "vinyl record",
+    "craft beer bottle",
+    "terrarium",
+    "cocktail shaker",
+    "vintage collectible",
+    "rare book",
+    "tasting notes",
+    "fixed gear bicycle",
+    "artisan's tools",
+    "zero waste kit",
+    "honeycomb frame",
+    "kombucha scoby",
+    "herb bundle",
+    "turntable setup",
+    
+    // Academic Elements
+    "rare manuscript",
+    "brass telescope",
+    "archaeological artifacts",
+    "preserved specimens",
+    "library index",
+    "geometric instruments",
+    "laboratory apparatus",
+    "ancient scrolls",
+    "historical documents",
+    "philosophical texts",
+    
+    // Mystical Elements
+    "alchemical vessel",
+    "astrolabe",
+    "crystal sphere",
+    "mystical tome",
+    "medicine bundle",
+    "natural artifacts",
+    "prophetic runes",
+    "magical staff",
+    "wisdom tablets",
+    "occult grimoire",
+    
+    // Steampunk Elements
+    "brass clockwork device",
+    "steam pressure meter",
+    "mechanical calculator",
+    "gear mechanism display",
+    "steam engine model",
+    "brass navigation tool",
+    "clockwork automaton",
+    "steam-powered invention",
+    "mechanical measuring device",
+    "brass scientific instrument",
+    
+    // Classical Music Elements
+    "golden conductor's stand",
+    "vintage musical score",
+    "classical instrument case",
+    "orchestral arrangement",
+    "composer's manuscript",
+    "antique metronome",
+    "performance program",
+    "musical notation book",
+    "concert hall sketch",
+    "classical music award",
+    
+    // Diplomatic Elements
+    "diplomatic seal",
+    "official document case",
+    "ceremonial staff",
+    "state credentials",
+    "treaty document",
+    "embassy seal press",
+    "diplomatic dispatch",
+    "official portfolio",
+    "state ceremony medal",
+    "diplomatic code book",
+    
+    // New Adventure Elements
+    "freediving fins",
+    "highline balance bar",
+    "cave mapping tablet",
+    "packraft paddle",
+    "alpine ice axe",
+    "ski touring poles",
+    "trail running pack",
+    "ice climbing picks",
+    "big wave gun",
+    "skyrunning poles",
+    
+    // New Artistic Elements
+    "sound visualization screen",
+    "living art specimen",
+    "light control board",
+    "data art display",
+    "kinetic sculpture piece",
+    "hologram projector",
+    "projection mapping screen",
+    "AR visualization",
+    "generative art display",
+    "installation framework",
+    
+    // New Hipster Elements
+    "rare mushroom collection",
+    "vintage game collection",
+    "film camera collection",
+    "ceramic art piece",
+    "limited edition zine",
+    "modular synthesizer",
+    "hydroponic garden",
+    "letterpress type set",
+    "kombucha brewing jar",
+    "rare streetwear piece",
+    
+    // Additional Adventure Elements
+    "climbing crash pad",
+    "slackline tension system",
+    "wing foil board",
+    "speedflying parachute",
+    "ice swimming thermometer",
+    "canyon rope system",
+    "snow kite control bar",
+    "hydrofoil board",
+    "aerial dance silk",
+    "coasteering gear set",
+    
+    // Additional Artistic Elements
+    "blockchain visualization",
+    "biofeedback display",
+    "neural pattern screen",
+    "fractal generation display",
+    "glitch effect monitor",
+    "voxel creation space",
+    "AI collaboration display",
+    "bio-design specimen",
+    "quantum state display",
+    "4D art projection",
+    
+    // Additional Hipster Elements
+    "solar power system",
+    "restored vintage device",
+    "vegan craft creation",
+    "minimalist art piece",
+    "upcycled sculpture",
+    "microgreen garden",
+    "rare vinyl collection",
+    "tech-woven fabric",
+    "algae culture system",
+    "field recording setup"
+  ];
+
+  // Create a combination of elements
+  const primary = primaryAccessories[Math.floor(Math.random() * primaryAccessories.length)];
+  const secondary = secondaryAccessories[Math.floor(Math.random() * secondaryAccessories.length)];
+  const neck = neckwear[Math.floor(Math.random() * neckwear.length)];
+  const cloth = clothing[Math.floor(Math.random() * clothing.length)];
+  const additional = additionalElements[Math.floor(Math.random() * additionalElements.length)];
+
+  const magritteBearPFP = [
+    `a distinguished bear portrait in profile wearing a ${primary}, ${secondary}, and ${neck}, dressed in a ${cloth}, with ${additional}, painted in Magritte's precise style against a Belgian sky blue background`,
+  ];
+  
+  return magritteBearPFP[0];
 }
 
 // Determine the category to use
-const detectedCategory = categoryArg || 'magritte_classic';
+const detectedCategory = categoryArg || 'bear_pfp_classic';
 
 // Check for category-specific art direction if category is provided
 const categoryArtDirection = loadCategoryArtDirection(detectedCategory);
@@ -295,7 +1452,7 @@ if (categoryArg) {
 } else if (detectedCategory) {
   console.log(`- Using auto-detected category: "${detectedCategory}"`);
 } else {
-  console.log('- Using default Magritte art direction (no specific category)');
+  console.log('- Using default bear portrait');
 }
 
 if (fileArtDirection) {
@@ -305,7 +1462,7 @@ if (fileArtDirection) {
 if (categoryArtDirection) {
   console.log(`- Applied category-specific art direction from: ${detectedCategory}.json`);
 } else if (detectedCategory) {
-  console.log(`- No category-specific file found for "${detectedCategory}", using base Magritte direction`);
+  console.log(`- No category-specific file found for "${detectedCategory}", using base bear portrait`);
 }
 
 // Merge art directions with priority: category > file > default
@@ -669,143 +1826,145 @@ const LIVE_THE_LIFE_ELEMENTS = {
   ]
 };
 
-// Define portrait-specific categories
-const magritteCategories = [
-  // Portrait-focused Categories
-  'magritte_portrait_classic',       // Traditional Magritte portrait style
-  'magritte_portrait_mirror',        // Portraits with mirror reflections
-  'magritte_portrait_obscured',      // Faces obscured by objects
-  'magritte_portrait_metamorphosis', // Transforming portrait elements
-  'magritte_portrait_multiplied',    // Multiple identical figures
-  'magritte_portrait_window',        // Portraits with window elements
-  'magritte_portrait_sky',           // Portraits against surreal skies
-  'magritte_portrait_interior',      // Portraits in mysterious rooms
-  'magritte_portrait_symbolic',      // Portraits with symbolic objects
-  'magritte_portrait_paradox',       // Portraits with visual paradoxes
-  
-  // Clothing-focused Categories
-  'magritte_fashion_surreal',        // Surreal clothing transformations
-  'magritte_fashion_floating',       // Floating clothing elements
-  'magritte_fashion_mirror',         // Mirror-reflected clothing
-  'magritte_fashion_metamorphosis',  // Transforming clothing
-  'magritte_fashion_symbolic',       // Symbolic clothing elements
-  
-  // Accessory-focused Categories
-  'magritte_accessory_floating',     // Floating accessories
-  'magritte_accessory_symbolic',     // Symbolic accessories
-  'magritte_accessory_paradox',      // Paradoxical accessories
-  'magritte_accessory_multiplied',   // Repeated accessory patterns
-  'magritte_accessory_surreal'       // Surreal accessory transformations
-];
-
 // Create project configuration function
 function createProjectConfig(concept: string, selectedCategory: string, baseFilename: string, categoryArtDirection: any) {
-  // Define traditional Magritte elements to use instead of modern tech
-  const traditionalElements = {
-    objects: [
-      'green apple', 'wooden pipe', 'candlestick', 'mirror', 'window frame',
-      'curtain', 'wine bottle', 'bread loaf', 'musical instrument', 'stone'
-    ],
-    settings: [
-      'belgian coastline', 'empty room', 'infinite sky', 'stone wall',
-      'wooden floor', 'fireplace', 'garden path', 'forest clearing'
-    ],
-    clothing: [
-      'vintage fedora', 'wool beanie', 'wide-brim felt hat', 'flat cap',
-      'porkpie hat', 'tweed flat cap', 'leather gloves', 'silk cravat',
-      'tailored suit', 'waistcoat', 'dress shirt', 'wool cardigan'
-    ],
-    accessories: [
-      'silk pocket square', 'vintage tie pin', 'patterned bow tie',
-      'round wire spectacles', 'monocle', 'wooden pipe', 'gold watch chain',
-      'silver tie clip', 'walking stick', 'umbrella'
-    ]
-  };
-
-  // Create a traditional Magritte-style creative process explanation
-  const creativeProcess = `This composition embraces the metaphysical wonder of Belgian surrealism. By depicting an intimate portrait scene with ${traditionalElements.objects[Math.floor(Math.random() * traditionalElements.objects.length)]}, it creates a striking visual paradox that challenges our perceptions of reality and representation.
-
-The precise oil painting technique in the style of Magritte's classic works grounds the image in traditional mastery, while the impossible scale relationships and symbolic use of everyday objects inject an air of conceptual mystery. The figure's elegant attire, including a ${traditionalElements.clothing[Math.floor(Math.random() * traditionalElements.clothing.length)]} and ${traditionalElements.accessories[Math.floor(Math.random() * traditionalElements.accessories.length)]}, reinforces the deeper philosophical questions about identity and appearance.
-
-By juxtaposing classical portraiture with surreal elements, the composition maintains the contemplative spirit of traditional surrealism. The end result should inspire metaphysical contemplation on the nature of reality and representation.`;
-
   return {
     title: concept,
-    description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealist portrait artwork: "${concept}"`,
+    description: `Create a Magritte-style bear PFP portrait: "${concept}"`,
     useFlux: true,
     modelConfig: {
-      ...MAGRITTE_STYLE_CONFIG,
-      prompt_prefix: `In René Magritte's ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealist portrait style, create an elegant figure with distinctive clothing and accessories. The portrait should feature `,
-      prompt_suffix: `. Render with:
-- Portrait: Classical pose with perfect clarity
-- Clothing: Meticulous fabric detail and elegant draping
-- Accessories: 2-3 carefully chosen pieces
-- Lighting: Dramatic illumination highlighting textures
-- Color: Rich, deep tones for clothing against Magritte's signature sky
-- Composition: Perfect balance of figure and surreal elements
-Style emphasizing both sartorial elegance and surreal transformation.`,
+      prompt_prefix: `Create a portrait of a distinguished bear in René Magritte's distinctive painting style, perfectly centered for a PFP (Profile Picture). The image should embody Magritte's precise yet painterly technique that captures `,
+      prompt_suffix: `. Render with Magritte's signature artistic elements:
+- Painting Style: 
+  * Magritte's characteristic smooth, matte finish
+  * Subtle visible brushwork in flat color areas
+  * Soft edges with precise control
+  * Deliberate paint application with minimal texture
+  * Careful gradients reminiscent of Belgian sky
+  * Oil painting technique with minimal impasto
+- Artistic Elements:
+  * Clean, unmodulated color fields
+  * Subtle tonal transitions
+  * Precise yet painterly edges
+  * Careful attention to light and shadow
+  * Magritte's characteristic surface quality
+Must maintain the artist's distinctive painting style while being perfectly centered for profile picture use.`,
       negative_prompt: [
-        // Portrait-specific elements to avoid
-        "casual clothing", "modern fashion", "streetwear", "sportswear", "contemporary style",
-        "urban fashion", "trendy accessories", "modern jewelry", "casual poses", "informal attire",
-        
-        // Modern technology to avoid
-        "tesla", "electric vehicles", "modern cars", "autonomous technology", "electric",
-        "charging stations", "digital devices", "screens", "modern technology", "electronics",
-        "computers", "smartphones", "tablets", "digital interfaces", "modern machinery",
-        
-        // Style-breaking elements
-        "expressive brushwork", "loose painting", "abstract style", "impressionistic",
-        "cartoon", "anime", "stylized", "graphic", "pop art", "minimalist",
-        
-        // Specific elements to avoid
-        "bowler hat", "bowler hats", "derby hat", "derby hats"
+        "photorealistic", "hyperrealistic", "camera photo", "photograph", "DSLR", "studio lighting",
+        "3D rendering", "CGI", "digital art", "graphic design", "illustration", "cartoon",
+        "rough texture", "heavy impasto", "visible brushstrokes", "expressionistic", "loose style",
+        "sketchy", "unfinished", "abstract", "modernist", "contemporary", "avant-garde",
+        "full body shot", "landscape format", "action poses", "busy backgrounds",
+        "natural wilderness", "full face view", "messy composition", "cluttered elements",
+        "informal poses", "casual style", "modern clothing", "contemporary fashion",
+        "sports wear", "casual accessories"
       ].join(", ")
     },
     requirements: [
-      `Create a precise Magritte surrealist portrait with distinctive clothing`,
-      `Include unique hat/headwear and 2-3 carefully chosen accessories`,
-      `Ensure meticulous attention to fabric textures and details`,
+      "Create a perfectly centered portrait in Magritte's painting style",
+      "Capture his distinctive smooth, matte finish and subtle brushwork",
+      "Maintain clean, unmodulated color fields with precise edges",
       ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3)
     ],
     outputFilename: baseFilename,
     artDirection: {
       ...(categoryArtDirection || defaultArtDirection),
+      styleEmphasis: [
+        // Painting Technique
+        "Magritte's characteristic smooth, matte finish",
+        "Subtle visible brushwork in flat areas",
+        "Precise yet painterly edges",
+        "Careful oil paint application",
+        "Minimal surface texture",
+        "Controlled tonal transitions",
+        "Clean color fields",
+        "Belgian surrealist painting style",
+        "Traditional oil painting method",
+        "Deliberate artistic technique",
+        
+        // Composition Elements
+        "Perfect center alignment",
+        "Noble bearing and dignity",
+        "Formal portrait arrangement",
+        "Classical profile view",
+        "Elegant accessory placement"
+      ],
+      visualElements: [
+        // Headwear
+        "classic bowler hat with Magritte's matte finish",
+        "dignified top hat with subtle paint texture",
+        "academic cap with careful brushwork",
+        "pith helmet with precise edge control",
+        "naval officer's cap with clean color fields",
+        
+        // Eyewear
+        "gold-rimmed monocle with painterly reflection",
+        "wire-framed spectacles with delicate brushwork",
+        "pince-nez glasses with subtle highlights",
+        "curator's eyepiece with careful detailing",
+        "jeweled opera glasses with controlled shine",
+        
+        // Neckwear
+        "silk bow tie with smooth color transition",
+        "formal cravat with subtle fabric texture",
+        "ceremonial sash with clean color blocks",
+        "academic stole with precise folds",
+        "diplomatic corps tie with careful shading",
+        
+        // Additional Elements
+        "golden pocket watch with painterly reflection",
+        "black umbrella with Magritte's characteristic finish",
+        "floating apple with perfect matte surface",
+        "smoking pipe with subtle wood grain",
+        "leather-bound book with careful detail work"
+      ],
       colorPalette: [
-        // Portrait colors
-        ...(MAGRITTE_COLOR_PALETTE.portraits.flesh.color),
-        ...(MAGRITTE_COLOR_PALETTE.portraits.hair.color),
-        ...(MAGRITTE_COLOR_PALETTE.portraits.cloth.color),
-        // Sky colors
-        ...(MAGRITTE_COLOR_PALETTE.sky.day.color),
-        ...(MAGRITTE_COLOR_PALETTE.sky.night.color),
-        // Background colors
-        ...(MAGRITTE_COLOR_PALETTE.backgrounds.wall.color),
-        ...(MAGRITTE_COLOR_PALETTE.backgrounds.void.color),
-        ...(MAGRITTE_COLOR_PALETTE.backgrounds.sky.color)
+        // Magritte's Signature Colors
+        "Belgian sky blue (smooth gradient)",
+        "Magritte cloud white (unmodulated)",
+        "Son of Man apple green (matte finish)",
+        "Empire of Light blue (careful transition)",
+        "Golconda grey (precise tone)",
+        
+        // Clothing Colors
+        "deep black (smooth application)",
+        "midnight blue (subtle variation)",
+        "charcoal grey (controlled shade)",
+        "oxford grey (clean field)",
+        
+        // Metallic Colors
+        "polished brass (painterly shine)",
+        "antique gold (careful highlight)",
+        "burnished silver (subtle reflection)",
+        
+        // Accent Colors
+        "burgundy (deep tone)",
+        "forest green (rich hue)",
+        "royal purple (noble shade)",
+        "classic ivory (pure field)",
+        "rich mahogany (warm tone)"
       ],
-      lighting: [
-        "Dramatic side lighting for fabric texture",
-        "Soft frontal fill for facial features",
-        "Rim light for figure separation",
-        "Atmospheric depth for surreal elements"
-      ],
-      references: [
-        // Portrait-specific Magritte references
-        "The Son of Man (1964) - Iconic portrait with face obscured by floating apple",
-        "The Great War (1964) - Portrait with face obscured by floating flower",
-        "The Central Story (1928) - Figure with cloth-draped head",
-        "The Pilgrim (1966) - Elegant figure in surreal landscape",
-        "Portrait of Georgette Magritte - Intimate portrait with symbolic elements",
-        "The Therapist (1937) - Seated figure with birdcage head",
-        "Golconda (1953) - Multiple identical figures in suits",
-        "The Healer (1936) - Figure with candle flame face",
-        "The Happy Donor (1966) - Portrait with landscape reflection",
-        "The Heart of the Matter (1928) - Mysterious draped figure"
+      compositionGuidelines: [
+        // Painting-Focused Guidelines
+        "maintain Magritte's characteristic smooth finish",
+        "apply colors in clean, unmodulated fields",
+        "create subtle transitions between tones",
+        "control edge quality with precision",
+        "balance painterly and precise elements",
+        "achieve proper oil paint surface quality",
+        "capture traditional portrait dignity",
+        "emphasize careful detail rendering",
+        "focus on clean color relationships",
+        "preserve artistic integrity"
       ]
-    },
-    creativeProcess: creativeProcess
+    }
   };
+}
+
+// Modify the concept detection to always use bear portrait style
+function detectConceptCategory(concept: string): string {
+  // Always return bear_pfp_classic as default
+  return 'bear_pfp_classic';
 }
 
 // Update the generateArt function
@@ -876,41 +2035,12 @@ async function generateArt(concept: string) {
     console.log('🤖 ArtBot Multi-Agent System initialized for Magritte-style generation');
     console.log('✅ Services initialized');
 
-    // Randomly select a Magritte category
-    const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
-    console.log(`\n✨ Using ${selectedCategory.replace('magritte_', '').replace('_', ' ')} for generation`);
-
-    // If no concept is provided, generate a fusion concept
-    let artConcept = concept || 'surreal portrait';
+    // If no concept is provided, generate a bear-focused concept
+    let artConcept = concept || generateBearConcept();
     
-    if (!concept) {
-      // Get the category-specific art direction
-      const categoryArtDirection = loadCategoryArtDirection(selectedCategory);
-      
-      console.log(`\n🎨 Generating Magritte-style concept for ${selectedCategory.replace('magritte_', '').replace('_', ' ')}...`);
-      
-      // Get elements from the Magritte style
-      const magritteElements = categoryArtDirection?.visualElements || defaultArtDirection.visualElements;
-      const magritteStyle = categoryArtDirection?.styleEmphasis || defaultArtDirection.styleEmphasis;
-      
-      // Select random elements from the Magritte style with fallbacks
-      const selectedMagritteElement = magritteElements[Math.floor(Math.random() * magritteElements.length)] || "floating apple";
-      const selectedMagritteStyle = magritteStyle[Math.floor(Math.random() * magritteStyle.length)] || "Magritte's metaphysical precision";
-      
-      // Create a Magritte-style surrealist portrait concept
-      const magritteConceptTemplate = [
-        `A surrealist portrait where ${selectedMagritteElement} obscures the face, painted with ${selectedMagritteStyle}`,
-        `An enigmatic figure wearing a distinctive hat with ${selectedMagritteElement} as a face, executed in the style of ${selectedMagritteStyle}`,
-        `A portrait with ${selectedMagritteElement} as a mask, rendered with ${selectedMagritteStyle}`,
-        `A dreamlike portrait of a figure with ${selectedMagritteElement} for a head, imbued with ${selectedMagritteStyle}`,
-        `Multiple identical figures in elegant attire, with ${selectedMagritteElement} heads, composed like Golconda and painted with ${selectedMagritteStyle}`
-      ];
-
-      const magritteConceptIndex = Math.floor(Math.random() * magritteConceptTemplate.length);
-      artConcept = magritteConceptTemplate[magritteConceptIndex];
-
-      console.log(`\n✨ Generated Magritte-style portrait concept: "${artConcept}"`);
-    }
+    // Randomly select a bear portrait category
+    const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
+    console.log(`\n✨ Using ${selectedCategory.replace('bear_', '').replace('_', ' ')} for generation`);
     
     console.log(`\n💡 Using concept: "${artConcept}"`);
 
@@ -923,14 +2053,14 @@ async function generateArt(concept: string) {
       .slice(0, 8);
     
     const timestamp = new Date().getTime().toString(36).slice(-6);
-    const stylePrefix = selectedCategory.replace('magritte_', '').slice(0, 4);
+    const stylePrefix = selectedCategory.replace('bear_', '').slice(0, 4);
     const baseFilename = `${stylePrefix}-${timestamp}-${hash}`;
     
     // Create the project configuration
     const project = createProjectConfig(artConcept, selectedCategory, baseFilename, categoryArtDirection);
 
     // Update logging to show selected style configuration
-    console.log(`\n🎨 ${selectedCategory.replace('magritte_', '').replace('_', ' ')} Style Configuration:`);
+    console.log(`\n🎨 ${selectedCategory.replace('bear_', '').replace('_', ' ')} Style Configuration:`);
     console.log('- Style emphasis:', project.artDirection.styleEmphasis.slice(0, 3).join(', '));
     console.log(formatColorPalette(project.artDirection.colorPalette, 10));
     
@@ -1005,9 +2135,9 @@ async function generateArt(concept: string) {
       { 
         type: 'artwork', 
         concept: artConcept,
-        style: selectedCategory.replace('magritte_', '').replace('_', '')
+        style: selectedCategory.replace('bear_', '').replace('_', '')
       },
-      ['artwork', 'flux', 'multi-agent', selectedCategory.replace('magritte_', '').replace('_', ''), ...artConcept.split(' ')]
+      ['artwork', 'flux', 'multi-agent', selectedCategory.replace('bear_', '').replace('_', ''), ...artConcept.split(' ')]
     );
     
     // Minimal completion message
