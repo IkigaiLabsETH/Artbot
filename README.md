@@ -1,30 +1,21 @@
-# ArtBot - Exploring the Future of Creative Intelligence
+# Surrealist Bear Portraits: A Digital Art Collection
 
 <div align="center">
 
 ```ascii
     ╭──────────────────────╮
-    │       ARTBOT         │
+    │   SURREALIST        │
+    │   BEAR PORTRAITS    │
     │    ┌──────────┐     │
-    │    │ 🎨 AI    │     │
+    │    │ 🎨 🐻    │     │
     │    └──────────┘     │
-    │  Creative Partner    │
+    │  Magritte Style    │
     ╰──────────────────────╯
 ```
 
-```ascii
-    ┌─────────────┐  🍎
-    │  ┌───────┐  │    floating
-    │  │       │  │    in the
-    │  │ ][    │  │    void
-    │  │       │  │
-    └──┴───────┴──┘
-       Apple ][
-```
+*Where Belgian Surrealism Meets Ursine Elegance*
 
-*Bridging Belgian Surrealism with Vintage Computing*
-
-[Features](#features) • [Installation](#installation) • [Usage](#usage) • [Documentation](#documentation) • [Contributing](#contributing)
+[Collection Series](#collection-series) • [Artistic Vision](#artistic-vision) • [Technical Details](#technical-details) • [Installation](#installation)
 
 </div>
 
@@ -35,11 +26,10 @@
     /  .---------------.  \
    /  /                 \  \
   /  /    This is not    \  \
- /  /      a computer     \  \
+ /  /       a bear        \  \
  |  |                     |  |
  |  |    ┌─────────┐     |  |
- |  |    │ Happy   │     |  |
- |  |    │  Mac    │     |  |
+ |  |    │  🎩 🐻  │     |  |
  |  |    └─────────┘     |  |
  \  \                   /  /
   \  \                 /  /
@@ -47,186 +37,97 @@
     '-------------------'
 ```
 
-ArtBot represents a unique fusion of René Magritte's Belgian surrealism with vintage Apple technology (1976-1995). Through sophisticated oil painting techniques and philosophical depth, ArtBot transforms classic computing artifacts into surreal masterpieces that question reality while celebrating technological heritage.
+This unique NFT collection reimagines René Magritte's surrealist masterpieces through a series of distinguished bear portraits. Each piece combines the Belgian master's meticulous painting technique with contemporary digital art, creating profile pictures that challenge reality while celebrating ursine dignity.
 
-Our approach is built on three core principles:
+## Collection Series
 
-1. **Traditional Oil Painting**: Meticulous attention to Magritte's painting techniques - smooth surfaces, precise edges, and crystalline clarity.
-2. **Vintage Computing**: Exclusive focus on classic Apple products and interfaces, from the Apple II to early Macintosh era.
-3. **Philosophical Surrealism**: Deep engagement with Belgian surrealist traditions of questioning reality through technological metaphors.
+### 🌟 Adventure Series
+- **Arctic Explorer** - With thermal gear and navigation tools
+- **Desert Wanderer** - Adorned in shemagh and sun-worn equipment
+- **Jungle Pioneer** - Sporting a pith helmet and botanical tools
+- **Volcano Researcher** - In specialized heat suit with measuring devices
+- **Submarine Captain** - With brass periscope and depth gauges
 
-## Features
+### 🎨 Artistic Series
+- **Glassblower** - Wielding molten glass and specialized tools
+- **Ceramicist** - With clay-stained apron and potter's wheel
+- **Muralist** - Equipped with spray cans and urban art tools
+- **Weaver** - Surrounded by looms and textile implements
+- **Jeweler** - With precious gems and precision instruments
 
-```ascii
-    ╭─────────────╮
-    │ ⌘ Features │
-    ├─────────────┴────────╮
-    │ ▢ Oil Painting      │
-    │ ▢ Vintage Hardware  │
-    │ ▢ Surreal Logic    │
-    │ ▢ Period Details   │
-    │ ▢ Philosophy       │
-    ╰──────────────────────╯
-```
+### 🌿 Hipster Series
+- **Zero Waste Pioneer** - With sustainable living accessories
+- **Urban Beekeeper** - Tending to rooftop hives
+- **Fermentation Specialist** - Surrounded by brewing vessels
+- **Herbalist** - With medicinal plants and drying racks
+- **Vinyl DJ** - Behind vintage turntables
 
-- **Oil Painting Engine**: Sophisticated rendering of traditional painting techniques
-- **Vintage Hardware Library**: Comprehensive database of classic Apple products
-- **Surrealist Composition**: Advanced algorithms for impossible arrangements
-- **Period-Accurate Details**: Precise representation of vintage computing elements
-- **Philosophical Framework**: Integration of Belgian surrealist concepts
+### 📚 Academic Series
+- **Distinguished Professor** - With scholarly robes and ancient tomes
+- **Astronomer** - Gazing through brass telescopes
+- **Archaeologist** - Among artifacts and field tools
+- **Botanist** - With rare specimens and magnifying glass
+- **Philosopher** - Deep in contemplation with classical texts
 
-## Style Architecture
-
-```ascii
-       .─────────.                            .─────────.
-      /   Oil    \                          /  Belgian  \
-     /  Painting  \________________________/  Surrealism \
-     \  Portrait  /                        \            /
-      \ Style    /      ┌──────────┐       \          /
-       '────────'       │  Vintage  │        '────────'
-                       │ Computing │
-                        └──────────┘
-```
-
-## Technical Specifications
-
-### Magritte Portrait Technique
-- Faces treated as mysterious objects
-- Perfect, mask-like flesh rendering
-- Crystal-clear edge definition
-- Absolutely flat, shadowless surfaces
-- Pure, unmodulated color fields
-- Complete elimination of brushwork
-- Surgical precision in details
-- Perfect sourceless illumination
-
-### Color Palette Architecture
+## Artistic Style
 
 ```ascii
     ╭───────────────────────╮
-    │    Color Systems      │
+    │    Style Elements     │
     ├───────────┬───────────┤
-    │ Magritte  │  Vintage  │
-    │ Palette   │  Apple    │
+    │ Magritte  │  Digital  │
+    │ Technique │  Fusion   │
     ├───────────┴───────────┤
-    │ ▢ Portrait Colors     │
-    │ ▢ Background Fields   │
+    │ ▢ Perfect Clarity     │
+    │ ▢ Surreal Elements    │
+    │ ▢ Precise Execution   │
     │ ▢ Symbolic Objects    │
-    │ ▢ Hardware Tones     │
     ╰───────────────────────╯
 ```
 
-#### Magritte's Signature Colors
-- **Sky Palette**
-  - Luminous cerulean blue (Empire of Light, 1953-54)
-  - Deep prussian blue (Dominion of Light, 1948)
-  - Pale grey-blue (The Blank Signature, 1965)
+### Magritte's Signature Techniques
+- **Surface Quality**: Perfectly smooth, matte finish
+- **Edge Definition**: Crystal-clear, precise boundaries
+- **Color Fields**: Pure, unmodulated tones
+- **Lighting**: Sourceless, perfect illumination
+- **Composition**: Clean, enigmatic arrangements
 
-- **Portrait Elements**
-  - Pale porcelain flesh (The Son of Man, 1964)
-  - Deep charcoal grey (Golconda, 1953)
-  - Deep viridian green (The Son of Man apple)
-  - Cool prussian shadow (The Great War, 1964)
+### Color Palette Architecture
 
-- **Pure Backgrounds**
-  - Flat cerulean blue (The Victory, 1939)
-  - Pale grey-white (Decalcomania, 1966)
-  - Clear sky blue (Dominion of Light series)
+#### Portrait Colors
+- **Sky Palette**: Luminous cerulean blue, deep prussian blue
+- **Bear Elements**: Pale porcelain flesh, deep charcoal grey
+- **Clothing**: Deep viridian green, cool prussian shadow
+- **Backgrounds**: Flat cerulean blue, pale grey-white
 
-#### Vintage Apple Hardware Colors
-- **Plastics**
-  - Pantone 453C warm beige (Macintosh 128K, 1984)
-  - Pantone 427C cool grey (Macintosh SE, 1987)
-  - Pantone 7527C warm cream (Apple IIe, 1983)
+## Technical Details
 
-- **Accents**
-  - Muted rainbow spectrum (Apple logo, 1977-1998)
-  - Dark warm grey (Apple II text)
-  - Soft warm grey (Original Macintosh display)
+### Generation Parameters
+- Resolution: 1024x1024
+- Style: Magritte-inspired oil painting technique
+- Format: Digital art with traditional painting aesthetics
+- Composition: Perfect center alignment for PFP use
 
-### Portrait Compositions
-- Mysterious figures with technological elements
-- Business suits with vintage computing artifacts
-- Multiple Golconda-style figures with monitor heads
-- Son of Man poses with floating vintage screens
-- Rainbow Apple logo as surreal face element
-- Floating Macintosh obscuring portrait faces
-
-### Background Treatment
-- Pure, flat color fields only
-- No atmospheric perspective
-- Perfect, clean surfaces
-- Modern, timeless settings
-- Absolute geometric precision
-- Clear, enigmatic spaces
-- Pristine emptiness
-
-### Technical Parameters
-- Maximum portrait precision
-- Perfect face flatness
-- Surgical edge definition
-- Pure color separation
-- Complete texture elimination
-- Absolute surface control
-- Perfect finish quality
-
-## Multi-Agent System
-
-```ascii
-    ╭──────────╮    ╭──────────╮    ╭──────────╮
-    │ Director │───▶│ Ideator  │───▶│ Stylist  │
-    ╰──────────╯    ╰──────────╯    ╰──────────╯
-         │               │               │
-         │               │               │
-    ╭──────────╮    ╭──────────╮    ╭──────────╮
-    │ Message  │◀───│  Critic  │◀───│ Refiner  │
-    ╰──────────╯    ╰──────────╯    ╰──────────╯
-```
-
-ArtBot employs a sophisticated multi-agent system for artwork creation:
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    MultiAgentSystem                         │
-│                                                             │
-│  ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐    │
-│  │Director │   │Ideator  │   │Stylist  │   │Refiner  │    │
-│  │Agent    │<->│Agent    │<->│Agent    │<->│Agent    │<->┐ │
-│  └─────────┘   └─────────┘   └─────────┘   └─────────┘   │ │
-│       ^                                                   │ │
-│       │                                                   │ │
-│       v                                                   v │
-│  ┌─────────┐                                         ┌─────────┐
-│  │Message  │                                         │Critic   │
-│  │Queue    │<----------------------------------------│Agent    │
-│  └─────────┘                                         └─────────┘
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Agent Roles
-
-1. **Director Agent**: Coordinates the creative process with Magritte's precision
-2. **Ideator Agent**: Generates surreal concepts using vintage Apple elements
-3. **Stylist Agent**: Develops oil painting techniques for computing artifacts
-4. **Refiner Agent**: Perfects the traditional painting aesthetics
-5. **Critic Agent**: Ensures philosophical depth and technical accuracy
+### Smart Contract Features
+- Provenance: On-chain metadata
+- Rarity: Programmatically determined
+- Traits: Dynamically generated
+- Authenticity: Blockchain verified
 
 ## Installation
 
-```ascii
-     ┌─────────────────┐
-     │   Installation  │
-     │  ┌───────────┐  │
-     │  │ pnpm i    │  │
-     │  │ pnpm build│  │
-     │  │ pnpm start│  │
-     │  └───────────┘  │
-     └─────────────────┘
+```bash
+# Install dependencies
+pnpm i
+
+# Build the project
+pnpm build
+
+# Generate portraits
+pnpm start
 ```
 
 ## Configuration
-
-Configure the system through environment variables:
 
 ```env
 ANTHROPIC_API_KEY=your_api_key
@@ -234,15 +135,9 @@ REPLICATE_API_KEY=your_api_key
 STORAGE_PATH=.artbot
 ```
 
-## Usage
-
-```bash
-pnpm i && pnpm build && pnpm start
-```
-
 ## Contributing
 
-We welcome contributions that enhance our fusion of Belgian surrealism and vintage computing. To contribute:
+We welcome contributions that enhance our surrealist bear portrait collection:
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -254,39 +149,17 @@ We welcome contributions that enhance our fusion of Belgian surrealism and vinta
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-
-- Inspired by René Magritte's surrealist masterpieces
-- Built with Claude 3.5 Sonnet and Stable Diffusion
-- Dedicated to the golden age of Apple computing
-
-## Philosophy
-
-```ascii
-    ┌──────────────────┐
-    │   This is not    │
-    │     README       │
-    │   ┌─────────┐    │
-    │   │ README  │    │
-    │   └─────────┘    │
-    └──────────────────┘
-```
-
-ArtBot explores the intersection of traditional oil painting techniques, vintage computing artifacts, and Belgian surrealist philosophy. By rendering classic Apple products through Magritte's meticulous painting style, we create a unique dialogue between technological heritage and philosophical questioning.
-
-Our approach demonstrates that AI can not only generate images but can deeply engage with artistic traditions while celebrating the aesthetic and philosophical aspects of early computing history.
-
 <div align="center">
 
 ---
 
 ```ascii
     ╭───────────────────╮
-    │   Made with 🎨    │
-    │   by ArtBot Team  │
+    │   Created with    │
+    │   🎨 & 🐻        │
     ╰───────────────────╯
 ```
 
-[Report Bug](https://github.com/yourusername/artbot/issues) • [Request Feature](https://github.com/yourusername/artbot/issues)
+[Report Bug](https://github.com/yourusername/surrealist-bears/issues) • [Request Feature](https://github.com/yourusername/surrealist-bears/issues)
 
 </div>
