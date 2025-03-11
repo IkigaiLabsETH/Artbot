@@ -34,214 +34,160 @@ interface ArtDirection {
 const defaultArtDirection: ArtDirection = {
   styleEmphasis: [
     // Magritte's Key Painting Series References
-    "Empire of Light series (1953-54) technique: Tesla Superchargers under impossible day-night skies",
-    "Time Transfixed (1938) approach: Bitcoin transactions emerging from Tesla ports like Magritte's locomotive",
-    "The Human Condition series (1933-35) style: Tesla screens showing landscapes that perfectly continue beyond their frames",
-    "Son of Man (1964) treatment: Model S obscured by floating Bitcoin blocks with Magritte's perfect shadows",
-    "The Treachery of Images series (1929) concept: Tesla interfaces with paradoxical text about cryptocurrency",
-    "Golconda (1953) multiplication: identical Tesla key cards raining against architectural grid",
-    "The False Mirror (1929) technique: Cybertruck headlight containing infinite blockchain space",
+    "Empire of Light series (1953-54) technique: fashion models under impossible day-night skies",
+    "Time Transfixed (1938) approach: fashion accessories emerging from unexpected spaces like Magritte's locomotive",
+    "The Human Condition series (1933-35) style: windows and portholes showing landscapes that perfectly continue beyond their frames",
+    "Son of Man (1964) treatment: fashion figures obscured by floating geometric objects with Magritte's perfect shadows",
+    "The Treachery of Images series (1929) concept: fashion displays with paradoxical text about reality",
+    "Golconda (1953) multiplication: identical fashion accessories raining against architectural grid",
+    "The False Mirror (1929) technique: porthole windows containing infinite dreamlike space",
     
     // Specific Magritte Painting Techniques
-    "La Belle Captive (1931) approach: Tesla windshield as canvas-within-canvas showing impossible landscapes",
-    "The Listening Room (1952) scale play: giant Bitcoin mining rig filling tiny Magritte interior",
-    "The Blank Signature (1965) technique: horse-rider silhouette made of flowing blockchain data",
-    "The Central Story (1928) style: Tesla components floating in pure gradient sky",
-    "The Six Elements (1929) fragmentation: Model 3 divided into surreal painted segments",
-    "Memory of a Journey (1955) technique: recursive Tesla doorways leading to mining operations",
-    "The Beautiful Relations (1963) approach: charging cables transforming into Magritte's branches",
+    "La Belle Captive (1931) approach: windows as canvas-within-canvas showing impossible landscapes",
+    "The Listening Room (1952) scale play: giant fashion accessories filling tiny Magritte interior",
+    "The Blank Signature (1965) technique: human silhouette made of flowing fabric or color",
+    "The Central Story (1928) style: fashion elements floating in pure gradient sky",
+    "The Six Elements (1929) fragmentation: human figure divided into surreal painted segments",
+    "Memory of a Journey (1955) technique: recursive doorways leading to dreamlike spaces",
+    "The Beautiful Relations (1963) approach: ordinary objects transforming into Magritte's branches",
     
     // Magritte's Philosophical Devices
-    "The Key to Dreams (1930) word-image relationships: Tesla parts with contradictory blockchain labels",
-    "Personal Values (1952) scale distortion: giant Bitcoin nodes dwarfing Model S interior",
-    "The Forbidden Universe (1943) doubling: twin Cybertrucks in impossible mirror arrangement",
-    "The Explanation (1952) symbolic objects: Tesla yoke transformed into Magritte's symbolic forms",
-    "The Beautiful World (1962) transformation: charging port flowering into Bitcoin transactions",
-    "The Art of Living (1967) repetition: Tesla Powerwalls in Magritte's grid patterns",
-    "The Mysteries of the Horizon (1955) multiplication: multiple Magritte moons above Supercharger",
+    "The Key to Dreams (1930) word-image relationships: fashion items with contradictory labels",
+    "Personal Values (1952) scale distortion: giant everyday objects dwarfing intimate interior spaces",
+    "The Forbidden Universe (1943) doubling: twin fashion figures in impossible mirror arrangement",
+    "The Explanation (1952) symbolic objects: ordinary items transformed into Magritte's symbolic forms",
+    "The Beautiful World (1962) transformation: fashion accessories flowering into surreal forms",
+    "The Art of Living (1967) repetition: fashion elements in Magritte's grid patterns",
+    "The Mysteries of the Horizon (1955) multiplication: multiple Magritte moons above fashion scene",
     
     // Signature Magritte Elements
-    "The Victory (1939) technique: Tesla surfaces painted with Magritte's stone-like flatness",
-    "The Dominion of Light (1948) lighting: impossible day-night illumination of charging stations",
-    "The Collective Invention (1934) hybridization: Tesla-Bitcoin metamorphosis forms",
-    "The Palace of Curtains (1929) trompe l'oeil: painted curtains revealing Model X displays",
-    "The Pilgrim (1966) composition: lone Tesla in Magritte's desolate landscape",
-    "The Ladder of Fire (1939) transformation: charging cable becoming flame-like Bitcoin flow",
-    "The Fair Captive (1947) framing: Model S viewed through Magritte's painted frame"
+    "The Victory (1939) technique: fashion surfaces painted with Magritte's stone-like flatness",
+    "The Dominion of Light (1948) lighting: impossible day-night illumination of fashion settings",
+    "The Collective Invention (1934) hybridization: fashion-object metamorphosis forms",
+    "The Palace of Curtains (1929) trompe l'oeil: painted curtains revealing fashion displays",
+    "The Pilgrim (1966) composition: lone figure in Magritte's desolate landscape",
+    "The Ladder of Fire (1939) transformation: ordinary objects becoming flame-like surreal forms",
+    "The Fair Captive (1947) framing: fashion scene viewed through Magritte's painted frame"
   ],
   visualElements: [
-    // Classic Magritte Paradoxes with Tesla
-    "bowler-hatted figures with Tesla touchscreen faces (from The Son of Man)",
-    "floating rocks replaced by hovering Cybertrucks (from Castle of the Pyrenees)",
-    "Magritte's pipe emitting Bitcoin transactions (from The Treachery of Images)",
-    "billowing curtains revealing Tesla mining operations (from The Voice of Blood)",
-    "mirrors reflecting impossible Tesla charging scenes (from Reproduction Prohibited)",
-    "windows showing contradictory Tesla landscapes (from The Human Condition)",
-    "birds morphing into Tesla components (from The Large Family)",
-    "Tesla door handles painted as Magritte's lips (from The Beautiful Prisoner)",
-    "Cybertruck windows that are actually painted skies (from The Key of Dreams)",
-    "Model S headlights containing miniature suns (from The Light of Coincidence)",
+    // Classic Magritte Paradoxes with Fashion Elements
+    "bowler-hatted figures with mirror or porthole faces (from The Son of Man)",
+    "floating objects replaced by hovering fashion accessories (from Castle of the Pyrenees)",
+    "Magritte's pipe emitting colorful fabric (from The Treachery of Images)",
+    "billowing curtains revealing surreal fashion scenes (from The Voice of Blood)",
+    "mirrors reflecting impossible fashion scenarios (from Reproduction Prohibited)",
+    "windows showing contradictory fashion landscapes (from The Human Condition)",
+    "birds morphing into fashion elements (from The Large Family)",
+    "doorways painted as Magritte's lips (from The Beautiful Prisoner)",
+    "fashion display windows that are actually painted skies (from The Key of Dreams)",
+    "porthole windows containing miniature suns (from The Light of Coincidence)",
     
-    // Magritte's Image-Within-Image with Tesla
-    "Tesla screen displaying exact view behind it like Magritte's easel (from The Human Condition)",
-    "Supercharger station containing its own infinite reflection (from Not to be Reproduced)",
-    "Model 3 dashboard showing impossible Bitcoin landscapes (from The Domain of Arnheim)",
-    "charging port revealing deep space vista (from The Universe Unmasked)",
-    "side mirrors showing different times of day (from The Dominion of Light)",
-    "Tesla app interface containing real clouds (from The Perfect Image)",
-    "Autopilot display continuing the road beyond its frame (from Evening Falls)",
-    "vehicle windows as portals to other Magritte paintings (from The Living Mirror)",
+    // Magritte's Image-Within-Image with Fashion
+    "fashion display showing exact view behind it like Magritte's easel (from The Human Condition)",
+    "porthole window containing its own infinite reflection (from Not to be Reproduced)",
+    "fashion magazine showing impossible landscapes (from The Domain of Arnheim)",
+    "handbag opening revealing deep space vista (from The Universe Unmasked)",
+    "mirrors showing different times of day (from The Dominion of Light)",
+    "fashion advertisement containing real clouds (from The Perfect Image)",
+    "window display continuing the street beyond its frame (from Evening Falls)",
+    "fashion boutique windows as portals to other Magritte paintings (from The Living Mirror)",
     
     // Magritte's Scale Distortions
-    "gigantic Tesla key card dominating tiny city (from Personal Values)",
-    "microscopic Supercharger network floating in vast sky (from The Lost Jockey)",
-    "enormous Bitcoin symbol eclipsing the sun (from The Banquet)",
-    "Model X dwarfed by colossal charging cable (from The Anniversary)",
-    "tiny Tesla factories inside full-size Powerwall (from The Six Elements)",
-    "massive Autopilot icon as architectural element (from Megalomania)",
-    "planet-sized Tesla logo in intimate room (from The Listening Room)",
-    "miniature mining rigs arranged on giant bowler hat (from The Happy Donor)",
+    "gigantic fashion accessory dominating tiny city (from Personal Values)",
+    "microscopic fashion elements floating in vast sky (from The Lost Jockey)",
+    "enormous shoe eclipsing the sun (from The Banquet)",
+    "fashion model dwarfed by colossal everyday object (from The Anniversary)",
+    "tiny fashion boutiques inside full-size handbag (from The Six Elements)",
+    "massive fashion icon as architectural element (from Megalomania)",
+    "planet-sized fashion logo in intimate room (from The Listening Room)",
+    "miniature fashion accessories arranged on giant bowler hat (from The Happy Donor)",
     
     // Magritte's Metamorphosis Elements
-    "Tesla wheels transforming into clockfaces (from Time Transfixed)",
-    "charging cables becoming liquid silver (from The Waterfall)",
-    "Cybertruck edges dissolving into birds (from The Large Family)",
-    "Model S body flowing into ocean waves (from The Wonders of Nature)",
-    "Bitcoin nodes growing like crystal formations (from The Gradation of Fire)",
-    "Supercharger stations sprouting like trees (from The Blank Signature)",
-    "Tesla seats morphing into clouds (from The Central Story)",
-    "dashboard controls becoming musical notes (from The Alphabet of Revelations)",
+    "fashion accessories transforming into clockfaces (from Time Transfixed)",
+    "fabric becoming liquid silver (from The Waterfall)",
+    "fashion silhouettes dissolving into birds (from The Large Family)",
+    "clothing flowing into ocean waves (from The Wonders of Nature)",
+    "fashion displays growing like crystal formations (from The Gradation of Fire)",
+    "shoes sprouting like trees (from The Blank Signature)",
+    "fashion elements morphing into clouds (from The Central Story)",
+    "jewelry becoming musical notes (from The Alphabet of Revelations)",
     
     // Magritte's Impossible Juxtapositions
-    "Tesla factory interior filled with forest (from The Blank Check)",
-    "Supercharger station underwater but perfectly dry (from The Summer Steps)",
-    "Model S floating in space but casting ground shadow (from The Victory)",
-    "Bitcoin mining rigs made of glass containing sky (from The Future of Statues)",
-    "charging cables knitted like wool (from The Red Model)",
-    "Tesla screen showing what's behind the viewer (from Portrait of Edward James)",
-    "Autopilot cameras seeing yesterday (from Memory of a Journey)",
-    "vehicle interior bigger than exterior (from The Forbidden Universe)",
+    "fashion boutique interior filled with forest (from The Blank Check)",
+    "fashion runway underwater but perfectly dry (from The Summer Steps)",
+    "fashion model floating in space but casting ground shadow (from The Victory)",
+    "fashion accessories made of glass containing sky (from The Future of Statues)",
+    "fabric knitted like impossible materials (from The Red Model)",
+    "fashion display showing what's behind the viewer (from Portrait of Edward James)",
+    "mirrors seeing yesterday (from Memory of a Journey)",
+    "boutique interior bigger than exterior (from The Forbidden Universe)",
     
     // Magritte's Trompe l'oeil Techniques
-    "Tesla door that's actually painted on wall (from The Victory)",
-    "Bitcoin interface revealing real space behind wall (from The Human Condition II)",
-    "Supercharger cable emerging from painted outlet (from Time Transfixed)",
-    "Model 3 casting shadow of different car (from The Mysteries of the Horizon)",
-    "charging station that's actually reflection of nothing (from The False Mirror)",
-    "vehicle panel gaps revealing infinite depth (from The Kiss)",
-    "Autopilot screen continuing exact landscape but at night (from Empire of Light)",
-    "Tesla logo that's actually hole in canvas (from The Two Mysteries)",
-    
-    // Magritte's Recurring Motifs Applied
-    "bowler hats raining inside Tesla cabin (from Golconda)",
-    "green apples replacing all charging indicators (from The Son of Man)",
-    "curtains of Bitcoin code revealing/concealing car (from The Voice of Blood)",
-    "Tesla interior filled with Belgian sky (from The Dominion of Light)",
-    "Model S composed entirely of cloud fragments (from The Battle of the Argonne)",
-    "Cybertruck angles containing nested paintings (from Euclidean Walks)",
-    "charging stations playing Magritte's musical notes (from The Alphabet of Revelations)",
-    "Tesla autopilot seeing through Magritte's eye (from The False Mirror)",
-    
-    // Pure Magritte Painting Techniques
-    "unmodulated color fields on Tesla surfaces (from The Listening Room)",
-    "perfect edge definition on Cybertruck angles (from The Menaced Assassin)",
-    "flat oil paint treatment of screens (from The Physical Possibilities of Thought)",
-    "simplified geometric forms of charging equipment (from The Six Elements)",
-    "pure painted shadows under floating Teslas (from The Dominion of Light)",
-    "matte finish on all technological surfaces (from The Blank Page)",
-    "precise trompe l'oeil effects on Bitcoin interfaces (from The Human Condition)",
-    "absolute flatness in metallic surfaces (from The Ready-Made Bouquet)"
+    "fashion boutique door that's actually painted on wall (from The Victory)",
+    "fashion display revealing real space behind wall (from The Human Condition II)",
+    "clothing emerging from painted wardrobe (from Time Transfixed)",
+    "fashion model casting shadow of different person (from The Mysteries of the Horizon)",
+    "mirror that's actually reflection of nothing (from The False Mirror)"
   ],
   colorPalette: [
-    // Magritte's Sky and Atmosphere Colors
-    "Empire of Light day sky blue (RGB: 135, 206, 235)",
-    "Empire of Light night blue (RGB: 25, 25, 112)",
-    "The Dominion of Light twilight purple (RGB: 46, 39, 57)",
-    "The Voice of Space deep cosmos blue (RGB: 15, 15, 48)",
-    "The Curse celestial azure (RGB: 89, 147, 193)",
+    // Classic Magritte Painting Colors
+    "The Empire of Light sky blue (RGB: 135, 206, 235)",
+    "The Son of Man apple green (RGB: 126, 186, 86)",
+    "The Treachery of Images tobacco brown (RGB: 193, 154, 107)",
+    "The Human Condition cloud white (RGB: 236, 236, 236)",
+    "Golconda bowler hat black (RGB: 28, 28, 28)",
     "The False Mirror iris blue (RGB: 70, 130, 180)",
-    "Memory cloud white (RGB: 245, 245, 245)",
-    "The Great War storm grey (RGB: 112, 128, 144)",
-    
-    // Magritte's Architectural Colors
-    "Golconda building cream (RGB: 255, 253, 208)",
-    "The Empire of Light facade grey (RGB: 169, 169, 169)",
-    "Castle of the Pyrenees stone brown (RGB: 139, 131, 120)",
-    "Personal Values wall beige (RGB: 245, 245, 220)",
-    "The Human Condition window frame brown (RGB: 101, 67, 33)",
-    "The Listening Room interior ochre (RGB: 204, 119, 34)",
-    "The Secret Player stage grey (RGB: 105, 105, 105)",
-    "The Annunciation marble white (RGB: 255, 253, 250)",
-    
-    // Magritte's Natural Elements
-    "Son of Man apple green (RGB: 34, 139, 34)",
-    "The Great War leaf green (RGB: 85, 107, 47)",
-    "The Blank Signature grass green (RGB: 124, 252, 0)",
-    "The Beautiful World rose red (RGB: 180, 20, 40)",
-    "The Return bird blue (RGB: 135, 206, 250)",
-    "The Central Story branch brown (RGB: 139, 69, 19)",
-    "The Flowers of Evil blood red (RGB: 139, 0, 0)",
-    "The Large Family tree green (RGB: 34, 139, 34)",
-    
-    // Magritte's Object Colors
-    "The Treachery of Images pipe brown (RGB: 139, 69, 19)",
-    "Time Transfixed locomotive black (RGB: 28, 28, 28)",
-    "Personal Values comb gold (RGB: 255, 215, 0)",
-    "The Son of Man bowler hat black (RGB: 25, 25, 25)",
-    "The Victory stone grey (RGB: 128, 128, 128)",
-    "The Key of Dreams mirror silver (RGB: 192, 192, 192)",
-    "The Mysteries of the Horizon bowler brown (RGB: 92, 64, 51)",
-    "The Ready-Made Bouquet vase blue (RGB: 65, 105, 225)",
-    
-    // Magritte's Atmospheric Effects
-    "The Dominion of Light lamplight yellow (RGB: 255, 244, 224)",
-    "Empire of Light shadow purple (RGB: 48, 25, 52)",
-    "The Human Condition cloud shadow (RGB: 119, 136, 153)",
+    "Time Transfixed locomotive black (RGB: 20, 20, 20)",
+    "The Listening Room apple green (RGB: 141, 182, 0)",
+    "Personal Values comb blue (RGB: 176, 196, 222)",
+    "The Menaced Assassin blood red (RGB: 138, 7, 7)",
     "The Voice of Blood curtain shadow (RGB: 47, 79, 79)",
     "The Gradation of Fire flame orange (RGB: 226, 88, 34)",
     "Pandora's Box mist grey (RGB: 200, 200, 200)",
     "The Six Elements air blue (RGB: 176, 196, 222)",
     "The Future of Statues moonlight blue (RGB: 230, 230, 250)",
     
-    // Tesla Colors in Magritte Style
-    "Tesla pearl white (painted flat as The Promise clouds) (RGB: 255, 255, 250)",
-    "Tesla deep blue metallic (unmodulated as The False Mirror) (RGB: 70, 130, 180)",
-    "Tesla red multi-coat (pure as The Beautiful World rose) (RGB: 180, 20, 40)",
-    "Tesla solid black (matte as Time Transfixed) (RGB: 28, 28, 28)",
-    "Tesla silver (flat as The Victory stone) (RGB: 192, 192, 192)",
-    "Tesla chrome delete (pure as Golconda shadows) (RGB: 47, 79, 79)",
-    "Tesla glass (painted as Empire of Light windows) (RGB: 176, 196, 222)",
-    "Tesla interior black (matte as The Son of Man suit) (RGB: 25, 25, 25)",
-    
-    // Bitcoin Elements in Magritte Style
-    "Bitcoin orange (flat as The Gradation of Fire) (RGB: 226, 88, 34)",
-    "Blockchain blue (pure as The Voice of Space) (RGB: 15, 15, 48)",
-    "Node green (unmodulated as The Great War leaves) (RGB: 85, 107, 47)",
-    "Lightning purple (matte as Memory of a Journey) (RGB: 46, 39, 57)",
-    "Mining rig grey (flat as Personal Values metal) (RGB: 169, 169, 169)",
-    "Crypto gold (pure as Personal Values mirror) (RGB: 255, 215, 0)",
-    "Transaction blue (painted as The False Mirror iris) (RGB: 70, 130, 180)",
-    "Wallet black (matte as The Key of Dreams night) (RGB: 25, 25, 112)"
+    // Contemporary Fashion Surrealism Colors
+    "Porthole aqua (clean as The False Mirror) (RGB: 64, 224, 208)",
+    "Fashion orange (vibrant as The Gradation of Fire) (RGB: 255, 140, 0)",
+    "Runway yellow (pure as The Beautiful World) (RGB: 255, 223, 0)",
+    "Studio pink (soft as The Rose of the Winds) (RGB: 255, 182, 193)",
+    "Accessory red (bold as The Menaced Assassin) (RGB: 220, 20, 60)",
+    "Minimalist white (flat as Empire of Light clouds) (RGB: 245, 245, 245)",
+    "Surreal blue (deep as The Dominion of Light) (RGB: 25, 25, 112)",
+    "Fashion neutral (matte as The Son of Man suit) (RGB: 210, 180, 140)",
+    "Porthole glass (reflective as Not to be Reproduced) (RGB: 176, 224, 230)",
+    "Impossible shadow (dark as Time Transfixed) (RGB: 47, 79, 79)",
+    "Dreamscape lavender (soft as Memory of a Journey) (RGB: 230, 230, 250)",
+    "Surreal green (vibrant as The Domain of Arnheim) (RGB: 0, 158, 96)",
+    "Fashion metallic (reflective as Personal Values mirror) (RGB: 192, 192, 192)",
+    "Boutique blue (clean as The Human Condition sky) (RGB: 135, 206, 250)",
+    "Accessory gold (pure as The Golden Legend) (RGB: 255, 215, 0)"
   ],
   compositionGuidelines: [
-    // Belgian Surrealist Compositional Principles with Tesla Elements
-    "Magritte's paradoxical placement",
-    "Delvaux's architectural perspective",
-    "Baes's intimate staging",
-    "Mariën's object poetry",
-    "Graverol's symbolic framing",
-    "Nougé's conceptual arrangement",
-    "Broodthaers's institutional spaces",
-    "mysterious depth",
-    "surreal scale relationships",
-    "metaphysical perspective",
-    "poetic object placement",
-    "dramatic tension",
-    "geometric rhythm",
-    "philosophical space",
-    "symbolic resonance"
+    // Contemporary Surrealist Fashion Principles
+    "Clean minimalist environments with bold color blocking",
+    "Dramatic use of porthole windows and confined spaces",
+    "Impossible perspectives and gravity-defying poses",
+    "Reflective surfaces and mirror play",
+    "Repetition of figures and fashion elements",
+    "Intimate spaces opening to infinite vistas",
+    "Underwater and floating compositions",
+    "Strong geometric architectural framing",
+    "Saturated color against neutral backgrounds",
+    "Multiple identical figures in surreal arrangements",
+    "Juxtaposition of interior and exterior spaces",
+    "Fashion elements at impossible scales",
+    "Models interacting with surreal environments",
+    "Dreamlike lighting and color transitions",
+    "Architectural elements as fashion frames",
+    "Symmetrical and balanced compositions",
+    "Floating objects and suspended motion",
+    "Portals and doorways to impossible spaces",
+    "Play with scale and perspective",
+    "Integration of fashion with surreal elements"
   ],
-  moodAndTone: "Create a deeply surreal and metaphysical atmosphere drawing from the Belgian Surrealist tradition, where modern Tesla technology becomes mysterious through paradoxical placement and symbolic resonance. Blend Magritte's precise execution, Delvaux's dreamy atmosphere, Baes's mysticism, Mariën's object poetry, Graverol's metamorphoses, Nougé's conceptual approach, and Broodthaers's institutional critique.",
+  moodAndTone: "Create a deeply surreal and metaphysical atmosphere drawing from the Belgian Surrealist tradition, where everyday objects become mysterious through paradoxical placement and symbolic resonance. Evoke a dreamlike quality with clean, minimalist environments featuring bold, saturated colors (especially oranges, yellows, blues, and pinks). Compose scenes with impossible perspectives where fashion elements and ordinary objects take on extraordinary significance through unusual scale relationships, repetition, and unexpected juxtapositions. Portray confined spaces with porthole/window motifs that create a sense of both intimacy and infinity. Blend Magritte's precise execution, Delvaux's dreamy atmosphere, Baes's mysticism, Mariën's object poetry, Graverol's metamorphoses, Nougé's conceptual approach, and Broodthaers's institutional critique. The overall aesthetic should feel contemporary and fashion-forward while maintaining the philosophical depth of surrealism - creating scenes that are simultaneously beautiful, unsettling, and thought-provoking. Emphasize the tension between reality and illusion, interior and exterior spaces, presence and absence, singularity and multiplicity. The human figure should interact with the surreal elements in ways that question conventional relationships between body, object, and environment, suggesting narratives that remain tantalizingly open to interpretation.",
   references: [
     // Belgian Surrealist Master Influences
     "Magritte's pristine execution and impossible scenarios",
@@ -376,33 +322,33 @@ const MINIMAX_MODEL = 'minimax/image-01';
 
 // Define the models with Belgian Surrealist-LiveTheLifeTV fusion settings
 const MAGRITTE_STYLE_CONFIG = {
-  prompt_prefix: "Create an enigmatic Magritte-style portrait composition with his signature pristine execution, absolute flatness, and metaphysical atmosphere. Eliminate any trace of brushwork, texture, or depth. Adhering precisely to the techniques in 'The Son of Man' (1964), 'The Lovers' (1928), and 'Golconda' (1953), with their machine-like perfection and razor-sharp edges, create ",
-  prompt_suffix: `. The portrait must epitomize Magritte's iconic style:
+  prompt_prefix: "Create a contemporary surrealist fashion composition with clean, minimalist execution and metaphysical atmosphere. Drawing from both Magritte's surrealist precision and modern fashion photography, compose ",
+  prompt_suffix: `. The image must epitomize contemporary surrealist fashion:
 
-- Pristine Execution:
-  * Faces as perfectly smooth, mask-like objects
-  * Absolutely flat, shadowless flesh with no modeling
-  * Crystal-clear edge definition and surgical exactness
-  * Pure, unmodulated color fields and complete flatness
-  * Photographic clarity and precision in every detail
-  * Total elimination of any visible brushwork or texture
+- Visual Execution:
+  * Clean, minimalist environments with perfect clarity
+  * Bold, saturated colors with dramatic contrasts
+  * Pristine surfaces and sharp edge definition
+  * Architectural precision in spatial relationships
+  * Photographic clarity with surreal elements
+  * Complete control of light and shadow
 
-- Enigmatic Atmosphere:
-  * Timeless, otherworldly spaces of pristine emptiness
-  * Metaphysical staging with philosophical undertones
-  * Surreal juxtapositions and conceptual paradoxes
-  * Poetic arrangement of objects in evocative constellations
-  * Sense of mystery, displacement, and cognitive dissonance
-  * Tension between hyperrealism and dream-like surrealism
+- Surreal Atmosphere:
+  * Impossible perspectives and gravity-defying poses
+  * Dreamlike spaces with infinite depth
+  * Porthole windows and confined spaces opening to vast vistas
+  * Multiple reflections and mirror effects
+  * Underwater environments and floating elements
+  * Repetition of figures and fashion elements
 
-- Magritte's Metaphysical Themes:
-  * The uncanny and the everyday made strange
-  * The double, the mirror, and the split self
-  * Metamorphosis and transformation of figures and objects
-  * The crisis of the object and the phantom object
-  * The resolution of dream and reality into a surreality
-  * The omnipotence of desire and the triumph of love`,
-  negative_prompt: "painterly, expressive, loose, gestural, impressionistic, abstract, rough, sketchy, uneven, textured surface, visible canvas, brush marks, paint thickness, palette knife, dry brush, scumbling, glazing, layered paint, broken color, atmospheric perspective, sfumato, chiaroscuro, tonal gradation, color blending, soft edges, feathered edges, visible brushwork, artistic looseness, textural variation, surface irregularity, paint drips, spontaneous marks, energetic brushwork, thick impasto, variable paint application, artistic interpretation, expressive technique, painterly style, artistic flourish, creative expression, interpretive style, loose handling, artistic spontaneity, expressive freedom, creative license, artistic variation, interpretive freedom, loose style, creative interpretation, expressive style, painterly freedom, creative style, interpretive technique, loose technique, expressive interpretation, creative technique, painterly interpretation, artistic expression, loose expression, creative expression, interpretive expression, visible artist's hand, evidence of process, imperfection, 3D, depth, volume, modeling, shading, form, contour, highlight, shadow, cast shadow, core shadow, reflected light, photographic effects, camera blur, lens flare, bokeh, vignette, film grain, noise, pixelation, posterization, halftone, screen printing, risograph, linocut, woodcut, etching, engraving, aquatint, mezzotint, lithography, silkscreen, monoprint, cyanotype, blueprint, ascii art, vector art, 3D render, CGI, computer graphics, digital art, glitch art, pixel art, low poly, wireframe, hologram, VR, AR, stereoscopic, anaglyph",
+- Contemporary Fashion Elements:
+  * Modern, fashion-forward styling
+  * Bold color blocking and geometric forms
+  * Architectural framing of the human figure
+  * Interaction between fashion and surreal space
+  * Play with scale and proportion
+  * Integration of fashion with environment`,
+  negative_prompt: "vintage, retro, antique, old-fashioned, weathered, distressed, grungy, textured, noisy, grainy, blurry, soft, painterly, sketchy, hand-drawn, illustrated, cartoon, anime, stylized, abstract, expressionistic, impressionistic, loose, gestural, brushy, impasto, rough, uneven, dirty, damaged, worn, faded, muted, desaturated, dull, flat, lifeless, amateur, unprofessional, low-quality, poor lighting, bad composition, awkward poses, unfashionable, outdated, period costume, historical, classical, traditional, folk, rustic, primitive, tribal, ethnic, ornate, decorative, cluttered, busy, chaotic, messy, disorganized, unbalanced, asymmetrical, random, accidental, spontaneous, casual, informal, candid, snapshot, documentary, journalistic, editorial, commercial, advertising, product, stock photo, generic, cliché, boring, ordinary, mundane, everyday, common, typical, standard, conventional, mainstream, trendy, fashionable, hip, cool, edgy, urban, street, graffiti, industrial, mechanical, technical, digital, electronic, futuristic, sci-fi, fantasy, magical, mystical, spiritual, religious, symbolic, metaphorical, allegorical, narrative, storytelling, conceptual, minimal, simple, clean, modern, contemporary, timeless, classic, elegant, sophisticated, luxurious, glamorous, beautiful, pretty, cute, sweet, romantic, feminine, masculine, neutral, natural, organic, environmental, landscape, cityscape, architecture, interior, exterior, day, night, indoor, outdoor, studio, location, portrait, fashion, beauty, lifestyle, still life, nature, wildlife, travel, sports, action, movement, emotion, mood, atmosphere, lighting, color, composition, perspective, depth, space, time, reality, surreal, abstract, conceptual, experimental, avant-garde, artistic, creative, innovative, original, unique, personal, authentic, genuine, real, true, honest, sincere, meaningful, powerful, impactful, memorable, iconic, timeless",
   num_inference_steps: 300,
   guidance_scale: 45.0,
   scheduler: "DDIM",
@@ -418,44 +364,44 @@ const MAGRITTE_STYLE_CONFIG = {
   style_fidelity: 1.0,
   init_image_strength: 0.05,
   custom_style_params: {
-    portrait_precision: 1.0,
-    face_flatness: 1.0,
-    flesh_smoothness: 1.0,
-    edge_sharpness: 1.0,
+    fashion_precision: 1.0,
+    minimalist_environment: 1.0,
+    color_saturation: 1.0,
+    architectural_clarity: 1.0,
     surface_quality: 1.0,
-    color_separation: 1.0,
-    brushwork_elimination: 1.0,
-    depth_removal: 1.0,
-    atmospheric_negation: 1.0,
-    conceptual_emphasis: 1.0,
-    metaphysical_resonance: 1.0,
-    surreal_juxtaposition: 1.0,
-    enigmatic_staging: 1.0,
-    cognitive_dissonance: 1.0,
-    hyperreal_surrealism: 1.0
+    lighting_control: 1.0,
+    reflection_quality: 1.0,
+    depth_control: 1.0,
+    perspective_manipulation: 1.0,
+    fashion_integration: 1.0,
+    surreal_atmosphere: 1.0,
+    spatial_composition: 1.0,
+    figure_placement: 1.0,
+    color_harmony: 1.0,
+    modern_aesthetic: 1.0
   },
   compositionGuidelines: [
-    // Magritte's Iconic Compositional Devices in Portraits
-    "Obscuring the face with displaced objects ('The Son of Man')",
-    "Multiplying figures in grid-like arrangements ('Golconda')",
-    "Transforming facial features into uncanny objects ('The Rape')",
-    "Fusing figures with background elements ('The Therapist')",
-    "Shrouding heads with cloth or drapery ('The Lovers')",
-    "Isolating figures in empty, infinite spaces ('The Month of the Grape Harvest')",
-    "Merging portrait and landscape/skyscape ('The Happy Donor')",
-    "Repeating motifs across a series ('The Dominion of Light')",
-    "Fragmenting and recomposing the body ('The Eternally Obvious')",
-    "Juxtaposing day and night, interior and exterior ('Time Transfixed')",
-    "Paradoxical object placement to create cognitive dissonance",
-    "Metaphysical flattening of space to suggest timeless unreality",
-    "Symbolic framing with windows, doors, and curtains",
-    "Conceptual staging of philosophical and existential themes",
-    "Geometric precision and architectural structuring of space",
-    "Surreal scale juxtapositions and relative size distortions",
-    "Dramatic frontality and confrontational central subject",
-    "Symmetrical balancing and mirroring of compositional elements",
-    "Visual puns, double meanings, and semiotic slippage",
-    "Poetic arrangement of objects in evocative constellations"
+    // Contemporary Surrealist Fashion Composition
+    "Clean minimalist environments with bold color blocking",
+    "Dramatic use of porthole windows and confined spaces",
+    "Impossible perspectives and gravity-defying poses",
+    "Reflective surfaces and mirror play",
+    "Repetition of figures and fashion elements",
+    "Intimate spaces opening to infinite vistas",
+    "Underwater and floating compositions",
+    "Strong geometric architectural framing",
+    "Saturated color against neutral backgrounds",
+    "Multiple identical figures in surreal arrangements",
+    "Juxtaposition of interior and exterior spaces",
+    "Fashion elements at impossible scales",
+    "Models interacting with surreal environments",
+    "Dreamlike lighting and color transitions",
+    "Architectural elements as fashion frames",
+    "Symmetrical and balanced compositions",
+    "Floating objects and suspended motion",
+    "Portals and doorways to impossible spaces",
+    "Play with scale and perspective",
+    "Integration of fashion with surreal elements"
   ]
 };
 
@@ -662,27 +608,41 @@ const LIVE_THE_LIFE_ELEMENTS = {
     "absolute clarity from Empire of Light"
   ],
   styleEmphasis: [
-    // Key aspects of Magritte's style in portrait works
-    "Magritte's absolute precision and pristine execution",
-    "Perfectly flat, shadowless rendering of all surfaces",
-    "Crystal-clear edge definition and razor-sharp details",
-    "Pure, unmodulated color fields with no blending or shading",
-    "Photographic clarity and machine-like reproducibility",
-    "Total elimination of any visible brushwork or texture",
-    "Timeless, enigmatic staging with no period references",
-    "Metaphysical flattening of space and perspective",
-    "Conceptual emphasis on philosophical and existential themes",
-    "Poetic juxtaposition and symbolic arrangement of objects",
-    "Geometric precision and architectural structuring of composition",
-    "Surreal distortions of scale and relative sizes",
-    "Confrontational frontality and centrality of subject",
-    "Symmetrical balancing and mirroring of elements",
-    "Visual paradoxes, double meanings, and cognitive dissonance",
-    "Uncanny transformations and fusions of figures and objects",
-    "Displacement and dislocation of expected realities",
-    "Tension between hyperrealism and oneiric surrealism",
-    "Sense of mystery, ambiguity, and metaphysical resonance",
-    "Absolute mastery of technique in service of concept"
+    // Magritte's Key Painting Series References
+    "Empire of Light series (1953-54) technique: fashion models under impossible day-night skies",
+    "Time Transfixed (1938) approach: fashion accessories emerging from unexpected spaces like Magritte's locomotive",
+    "The Human Condition series (1933-35) style: windows and portholes showing landscapes that perfectly continue beyond their frames",
+    "Son of Man (1964) treatment: fashion figures obscured by floating geometric objects with Magritte's perfect shadows",
+    "The Treachery of Images series (1929) concept: fashion displays with paradoxical text about reality",
+    "Golconda (1953) multiplication: identical fashion accessories raining against architectural grid",
+    "The False Mirror (1929) technique: porthole windows containing infinite dreamlike space",
+    
+    // Specific Magritte Painting Techniques
+    "La Belle Captive (1931) approach: windows as canvas-within-canvas showing impossible landscapes",
+    "The Listening Room (1952) scale play: giant fashion accessories filling tiny Magritte interior",
+    "The Blank Signature (1965) technique: human silhouette made of flowing fabric or color",
+    "The Central Story (1928) style: fashion elements floating in pure gradient sky",
+    "The Six Elements (1929) fragmentation: human figure divided into surreal painted segments",
+    "Memory of a Journey (1955) technique: recursive doorways leading to dreamlike spaces",
+    "The Beautiful Relations (1963) approach: ordinary objects transforming into Magritte's branches",
+    
+    // Magritte's Philosophical Devices
+    "The Key to Dreams (1930) word-image relationships: fashion items with contradictory labels",
+    "Personal Values (1952) scale distortion: giant everyday objects dwarfing intimate interior spaces",
+    "The Forbidden Universe (1943) doubling: twin fashion figures in impossible mirror arrangement",
+    "The Explanation (1952) symbolic objects: ordinary items transformed into Magritte's symbolic forms",
+    "The Beautiful World (1962) transformation: fashion accessories flowering into surreal forms",
+    "The Art of Living (1967) repetition: fashion elements in Magritte's grid patterns",
+    "The Mysteries of the Horizon (1955) multiplication: multiple Magritte moons above fashion scene",
+    
+    // Signature Magritte Elements
+    "The Victory (1939) technique: fashion surfaces painted with Magritte's stone-like flatness",
+    "The Dominion of Light (1948) lighting: impossible day-night illumination of fashion settings",
+    "The Collective Invention (1934) hybridization: fashion-object metamorphosis forms",
+    "The Palace of Curtains (1929) trompe l'oeil: painted curtains revealing fashion displays",
+    "The Pilgrim (1966) composition: lone figure in Magritte's desolate landscape",
+    "The Ladder of Fire (1939) transformation: ordinary objects becoming flame-like surreal forms",
+    "The Fair Captive (1947) framing: fashion scene viewed through Magritte's painted frame"
   ],
   references: [
     // Magritte's most iconic and recognizable portrait works
@@ -702,7 +662,7 @@ const LIVE_THE_LIFE_ELEMENTS = {
     "The Listening Room (1952) - Giant green apple filling interior room",
     "The Six Elements (1929) - Fragmented portrait with wooden objects",
     "Decalcomania (1966) - Sky merging into rocky cliffside",
-    "The Treachery of Images (1929) - 'This is not a pipe' inscription",
+    "The Treachery of Images (1929) - 'Ceci n'est pas une pipe' inscription",
     "Time Transfixed (1938) - Train emerging from fireplace",
     "The Eternally Obvious (1930) - Fragmented and recomposed female nude",
     "The Art of Living (1967) - Stone relief with bowler-hatted men"
@@ -1098,44 +1058,4 @@ function getStyleFromArtDirection(artDirection: any, style: ArtistStyle = 'magri
   }
   
   return styleManager.getStyle(style);
-}
-
-// Define modern Tesla colors with specific model references
-const TESLA_COLOR_PALETTE = {
-  exteriors: {
-    pearlWhite: {
-      color: "Pearl White Multi-Coat",
-      reference: "Model S/3/X/Y (2020+)",
-      usage: "Main vehicle color"
-    },
-    midnightSilver: {
-      color: "Midnight Silver Metallic",
-      reference: "Model S/3/X/Y (2020+)",
-      usage: "Premium exterior option"
-    },
-    deepBlue: {
-      color: "Deep Blue Metallic",
-      reference: "Model S/3/X/Y (2020+)",
-      usage: "Premium exterior option"
-    }
-  },
-  interiors: {
-    black: {
-      color: "Premium Black",
-      reference: "Model S/3/X/Y (2020+)",
-      usage: "Interior trim and seats"
-    },
-    white: {
-      color: "Ultra White",
-      reference: "Model S/3/X/Y (2020+)",
-      usage: "Premium interior option"
-    }
-  },
-  displays: {
-    screen: {
-      color: "Tesla UI Black",
-      reference: "Model S/3/X/Y (2020+)",
-      usage: "Display elements"
-    }
-  }
-}; 
+} 
