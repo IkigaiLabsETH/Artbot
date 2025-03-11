@@ -2487,6 +2487,33 @@ function detectConceptCategory(concept: string): string {
   return 'bear_pfp_classic';
 }
 
+// Add NFT Metadata Interface
+interface NFTMetadata {
+  name: string;                 // Title of the NFT
+  description: string;          // Detailed description
+  image: string;               // Image URL
+  attributes: {                // NFT traits/characteristics
+    category: string;          // e.g., "Hipster Series"
+    subcategory: string;       // e.g., "Urban Forager"
+    style: string;            // e.g., "Magritte Surrealist"
+    accessories: string[];     // List of accessories
+    clothing: string;          // Main clothing item
+    tools: string[];          // Special tools/equipment
+    palette: string[];        // Color palette used
+    [key: string]: any;       // Additional custom attributes
+  };
+  external_url?: string;       // Optional link to external site
+  background_color?: string;   // Optional background color
+  animation_url?: string;      // Optional animation/3D model
+  youtube_url?: string;        // Optional YouTube link
+  tags: string[];             // Searchable tags
+  created_by: string;         // Artist/Creator name
+  creation_date: string;      // ISO date string
+  series: string;             // Collection series name
+  edition?: number;           // Edition number if limited
+  total_editions?: number;    // Total editions if limited
+}
+
 // Update the generateArt function
 async function generateArt(concept: string) {
   try {
@@ -2626,28 +2653,86 @@ async function generateArt(concept: string) {
     fs.writeFileSync(imagePath, imageUrl);
     console.log(`\n✨ Generated Image URL: ${imageUrl}`);
     
-    // Create metadata object
-    const metadata = {
-      concept: artConcept,
-      prompt: prompt,
-      creativeProcess: creativeProcess,
-      imageUrl: imageUrl,
-      timestamp: new Date().toISOString(),
-      isSurrealist: true,
-      multiAgentCollaboration: true,
-      artDirection: project.artDirection
+    // Generate concept elements by parsing the concept string
+    const conceptString = generateBearConcept();
+    const withParts = conceptString.split(', ')[0].split(' with ');
+    const dressedParts = withParts[1]?.split(' dressed in ') || [];
+    const andParts = dressedParts[0]?.split(' and ') || [];
+    
+    const conceptElements = {
+      primary: andParts[0] || '',
+      secondary: andParts[1]?.split(', with ')[0] || '',
+      cloth: dressedParts[1]?.split(', with ')[0] || '',
+      additional: dressedParts[1]?.split(', with ')[1] || ''
     };
-    
-    // Save metadata silently
-    fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
-    
-    // Update memory tags to include selected style
+
+    const { primary, secondary, cloth, additional } = conceptElements;
+
+    // Create metadata object with NFT standards
+    const metadata: NFTMetadata = {
+      name: `${selectedCategory.replace('bear_pfp_', '').split('_').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} Bear`,
+      description: `${artConcept}\n\nA distinguished bear portrait in Magritte's surrealist style, featuring a ${
+        selectedCategory.replace('bear_pfp_', '').replace(/_/g, ' ')
+      } bear with characteristic accessories and tools. Created through multi-agent AI collaboration.`,
+      image: imageUrl,
+      attributes: {
+        category: selectedCategory.split('_')[2] || 'Classic',
+        subcategory: selectedCategory.replace('bear_pfp_', ''),
+        style: "Magritte Surrealist",
+        accessories: [primary, secondary].filter(Boolean),
+        clothing: cloth,
+        tools: [additional].filter(Boolean),
+        palette: project.artDirection.colorPalette?.slice(0, 5) || [],
+      },
+      tags: [
+        'bear portrait',
+        'surrealist',
+        'magritte style',
+        selectedCategory.replace('bear_pfp_', '').replace(/_/g, ' '),
+        ...artConcept.toLowerCase().split(' ').filter(word => word.length > 3),
+        primary.split(' ')[0],
+        cloth.split(' ')[0]
+      ].filter(Boolean),
+      created_by: "ArtBot Multi-Agent System",
+      creation_date: new Date().toISOString(),
+      series: "Surrealist Bear Portraits",
+      edition: 1,
+      total_editions: 1
+    };
+
+    // Define output paths
+    const outputPaths = {
+      metadata: path.join(outputDir, `${baseFilename}-metadata.json`),
+      openSea: path.join(outputDir, `${baseFilename}-opensea.json`),
+      image: path.join(outputDir, `${baseFilename}.txt`)
+    };
+
+    // Save complete metadata
+    fs.writeFileSync(outputPaths.metadata, JSON.stringify(metadata, null, 2));
+
+    // Create OpenSea-compatible metadata version
+    const openSeaMetadata = {
+      name: metadata.name,
+      description: metadata.description,
+      image: metadata.image,
+      attributes: Object.entries(metadata.attributes).map(([trait_type, value]) => ({
+        trait_type,
+        value: Array.isArray(value) ? value.join(', ') : value
+      })),
+      external_url: `https://surrealist-bears.art/${baseFilename}`,
+      background_color: project.artDirection.colorPalette?.[0]?.replace(/[^0-9A-Fa-f]/g, '') || 'FFFFFF'
+    };
+
+    // Save OpenSea metadata
+    fs.writeFileSync(outputPaths.openSea, JSON.stringify(openSeaMetadata, null, 2));
+
+    // Update memory system with NFT metadata
     await memorySystem.storeMemory(
       {
-        concept: artConcept,
+        ...metadata,
         prompt: prompt,
         creativeProcess: creativeProcess,
-        imageUrl: imageUrl,
         multiAgentCollaboration: true,
         artDirection: project.artDirection
       },
@@ -2655,10 +2740,16 @@ async function generateArt(concept: string) {
       { 
         type: 'artwork', 
         concept: artConcept,
-        style: selectedCategory.replace('bear_', '').replace('_', '')
+        style: selectedCategory.replace('bear_', '').replace('_', ''),
+        nft: true
       },
-      ['artwork', 'flux', 'multi-agent', selectedCategory.replace('bear_', '').replace('_', ''), ...artConcept.split(' ')]
+      ['artwork', 'nft', 'flux', 'multi-agent', selectedCategory.replace('bear_', '').replace('_', ''), ...metadata.tags]
     );
+
+    // Log metadata creation
+    console.log('\n📝 Generated NFT metadata files:');
+    console.log(`- Full metadata: ${outputPaths.metadata}`);
+    console.log(`- OpenSea format: ${outputPaths.openSea}`);
     
     // Minimal completion message
     console.log('✅ Generation complete');

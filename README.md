@@ -108,6 +108,63 @@ This unique NFT collection reimagines René Magritte's surrealist masterpieces t
 - Format: Digital art with traditional painting aesthetics
 - Composition: Perfect center alignment for PFP use
 
+### NFT Metadata Features
+```ascii
+    ╭────────────────────────────╮
+    │    NFT Metadata System     │
+    ├────────────────┬───────────┤
+    │  Attributes    │  Format   │
+    │  Tracking      │  Support  │
+    ├────────────────┴───────────┤
+    │ ▢ OpenSea Compatible       │
+    │ ▢ Rich Attributes         │
+    │ ▢ Detailed Provenance     │
+    │ ▢ Collection Tracking     │
+    ╰────────────────────────────╯
+```
+
+Each generated artwork includes comprehensive NFT-ready metadata:
+
+- **Rich Metadata Structure**
+  - Unique title and description
+  - Category and subcategory classification
+  - Detailed attribute tracking
+  - Complete provenance information
+
+- **Attribute Tracking**
+  - Style elements and techniques
+  - Accessories and tools
+  - Clothing and decorative elements
+  - Color palette specifications
+
+- **Platform Compatibility**
+  - OpenSea-ready format
+  - General NFT marketplace support
+  - Automated metadata generation
+  - JSON schema validation
+
+- **Collection Management**
+  - Series tracking
+  - Edition numbering
+  - Creation timestamps
+  - Artist attribution
+
+Example metadata structure:
+```json
+{
+  "name": "Urban Forager Bear",
+  "description": "A distinguished bear portrait in Magritte's surrealist style...",
+  "attributes": {
+    "category": "hipster",
+    "style": "Magritte Surrealist",
+    "accessories": ["foraging basket", "identification guide"],
+    "clothing": "urban foraging vest"
+  },
+  "series": "Surrealist Bear Portraits",
+  "created_by": "ArtBot Multi-Agent System"
+}
+```
+
 ### Smart Contract Features
 - Provenance: On-chain metadata
 - Rarity: Programmatically determined
