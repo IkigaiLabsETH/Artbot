@@ -253,10 +253,62 @@ export async function generateCinematicConcept(
   options: {
     temperature?: number;
     maxTokens?: number;
-    model?: string;
-    category?: ConceptCategory;
   } = {}
 ): Promise<string> {
-  const concepts = await generateMultipleConcepts(aiService, 1, options);
-  return concepts[0];
+  const contextualPrompts = {
+    historical: "Consider Magritte's influence on surrealism and his role in challenging perception",
+    cultural: "Explore the tension between reality and representation in contemporary society",
+    technical: "Focus on Magritte's precise photorealistic technique and use of everyday objects",
+    philosophical: "Examine the relationship between objects, words, and their meanings",
+    evolutionary: "Consider how Magritte's ideas about perception continue to resonate today",
+    personal: "Reflect on moments of cognitive dissonance and philosophical paradox",
+    emotional: "Explore the uncanny feeling when familiar objects become strange",
+    metaphysical: "Investigate the nature of reality, representation, and consciousness",
+    symbolic: "Consider the power of juxtaposition and displacement in creating meaning",
+    narrative: "Create a story that challenges our assumptions about reality"
+  };
+
+  const focuses = [
+    'philosophical',
+    'metaphysical',
+    'symbolic',
+    'technical',
+    'cultural'
+  ];
+
+  const selectedFocuses = focuses
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3);
+
+  const contextPrompt = selectedFocuses
+    .map(focus => contextualPrompts[focus])
+    .join('. ');
+
+  const response = await aiService.getCompletion({
+    model: 'claude-3-sonnet-20240229',
+    messages: [
+      {
+        role: 'system',
+        content: `You are René Magritte's creative consciousness, generating surreal concepts that challenge perception and reality.
+        
+        Your concepts should incorporate:
+        - Philosophical paradoxes
+        - Visual poetry
+        - Everyday objects in unexpected contexts
+        - Clean, precise imagery
+        - Metaphysical questions
+        
+        Context to consider:
+        ${contextPrompt}`
+      },
+      {
+        role: 'user',
+        content: 'Generate a surreal concept in the style of Magritte that challenges our perception of reality.'
+      }
+    ],
+    temperature: options.temperature || 0.9,
+    maxTokens: options.maxTokens || 1000
+  });
+
+  return response.content || '';
 } 

@@ -21,29 +21,29 @@ export class StylistAgent extends BaseAgent {
       styleLibrary: {
         magritte: {
           core: {
-            essence: 'Traditional oil painting techniques applied to vintage Apple technology',
-            era: 'Belgian surrealism meets early computing (1976-1995)',
+            essence: 'Traditional oil painting techniques in Belgian surrealism',
+            era: 'Classic Magritte surrealism (1926-1967)',
             influences: [
               'traditional oil painting',
               'Magritte\'s precise technique',
-              'vintage computing',
               'Belgian surrealism',
-              'classical painting methods'
+              'classical painting methods',
+              'philosophical paradox'
             ]
           },
           visual: {
             composition: {
               primary: [
-                'perfectly balanced vintage hardware',
+                'perfectly balanced surreal elements',
                 'mathematically precise staging',
-                'impossible computer arrangements',
+                'impossible object arrangements',
                 'golden ratio compositions',
                 'classical painting structure'
               ],
               secondary: [
-                'precise product placement',
-                'spatial computing paradox',
-                'interface illusions',
+                'precise object placement',
+                'spatial paradoxes',
+                'window illusions',
                 'traditional depth techniques',
                 'painterly perspective'
               ],
@@ -57,70 +57,85 @@ export class StylistAgent extends BaseAgent {
             },
             lighting: {
               quality: [
-                'traditional oil painting illumination',
-                'perfectly rendered LED indicators',
-                'classical studio lighting',
-                'old masters glow technique',
-                'pristine surface highlights'
+                'day and night simultaneity',
+                'mysterious atmospheric glow',
+                'perfect shadow rendering',
+                'subtle luminosity',
+                'metaphysical light'
               ],
               technique: [
                 'smooth shadow transitions',
                 'perfect light modeling',
                 'crystalline reflections',
                 'traditional glazing effects',
-                'subtle luminosity'
+                'unified illumination'
               ],
               effects: [
-                'oil painted screen glow',
-                'traditional light rendering',
-                'classical shadow depth',
+                'impossible lighting scenarios',
+                'paradoxical shadows',
+                'surreal atmospheric depth',
                 'perfect highlight control',
                 'subtle ambient occlusion'
               ]
             },
             color: {
               palettes: [
-                ['oil painted Macintosh beige', 'traditional System 7 grey', 'glazed Apple II green'],
-                ['classical platinum grey', 'perfect rainbow spectrum', 'pristine Mac white'],
-                ['traditional Apple IIc cream', 'painted Mac OS blue', 'precise LED red']
+                ['cerulean sky blue', 'deep shadow grey', 'muted earth tones'],
+                ['twilight purple', 'pristine cloud white', 'stone grey'],
+                ['deep night blue', 'pale morning light', 'rich brown']
               ],
               characteristics: [
-                'oil paint finish',
-                'perfect color transitions',
+                'unmodulated color fields',
+                'perfect transitions',
                 'traditional matte surface',
                 'classical color harmony',
                 'subtle tonal variations'
               ],
               treatments: [
-                'traditional canvas texture',
-                'perfect paint application',
+                'pure oil paint application',
+                'perfect paint layering',
                 'classical varnish finish',
-                'subtle aging effects',
-                'pristine surface quality'
+                'pristine surface quality',
+                'flawless color blending'
               ]
             }
           },
           elements: {
             symbols: [
-              'perfectly painted Apple logo',
-              'traditional floppy disk rendering',
-              'oil painted CRT screen',
-              'classical keyboard treatment',
-              'pristine interface elements'
+              'floating bowler hats',
+              'green apples',
+              'billowing curtains',
+              'mysterious birds',
+              'paradoxical windows',
+              'philosophical pipes',
+              'floating stones',
+              'enigmatic mirrors',
+              'surreal doors',
+              'metaphysical frames'
             ],
             settings: [
-              'traditional computer lab painting',
-              'classical development space',
-              'oil painted office interior',
-              'perfectly rendered facilities',
-              'pristine testing environment'
+              'impossible landscapes',
+              'surreal interiors',
+              'metaphysical spaces',
+              'paradoxical rooms',
+              'mysterious horizons',
+              'philosophical voids',
+              'dreamlike environments',
+              'contemplative settings',
+              'infinite skies',
+              'impossible architecture'
             ],
             objects: [
-              'perfectly painted computers',
-              'traditional peripheral rendering',
-              'classical cable arrangement',
-              'pristine hardware details',
-              'oil painted accessories'
+              'levitating objects',
+              'transformed everyday items',
+              'paradoxical elements',
+              'mysterious artifacts',
+              'philosophical props',
+              'surreal furnishings',
+              'impossible combinations',
+              'metaphysical tools',
+              'enigmatic instruments',
+              'dreamlike accessories'
             ]
           },
           techniques: {
@@ -137,41 +152,51 @@ export class StylistAgent extends BaseAgent {
               'perfect paint layering'
             ],
             surrealism: [
-              'impossible interface scale',
+              'impossible scale relationships',
               'perfect object displacement',
               'classical reality questioning',
               'traditional metaphysical approach',
-              'pristine paradox rendering'
+              'pristine paradox rendering',
+              'mysterious juxtapositions',
+              'philosophical transformations',
+              'dreamlike combinations',
+              'surreal metamorphoses',
+              'enigmatic arrangements'
             ],
             conceptual: [
-              'philosophical technology',
-              'classical computing poetry',
-              'traditional binary surrealism',
-              'perfect metaphysical staging',
-              'pristine concept execution'
+              'philosophical questioning',
+              'metaphysical poetry',
+              'surreal narratives',
+              'perfect paradox execution',
+              'pristine concept realization',
+              'mysterious symbolism',
+              'contemplative depth',
+              'dreamlike logic',
+              'enigmatic meanings',
+              'philosophical resonance'
             ]
           }
         }
       },
-      hybridApproaches: [
+      approaches: [
         {
-          name: 'Classical Computing',
-          description: 'Traditional oil painting techniques applied to vintage technology',
+          name: 'Traditional Surrealism',
+          description: 'Pure Magritte oil painting technique with classical surrealist elements',
           elements: {
-            composition: ['perfect hardware arrangement', 'classical interface staging'],
-            lighting: ['traditional illumination', 'pristine highlights'],
-            color: ['perfect color harmony', 'traditional finish'],
-            narrative: ['classical metaphysics', 'traditional surrealism']
+            composition: ['perfect object arrangement', 'metaphysical staging'],
+            lighting: ['mysterious illumination', 'paradoxical shadows'],
+            color: ['unmodulated paint', 'pristine surface'],
+            narrative: ['philosophical depth', 'surreal poetry']
           }
         },
         {
-          name: 'Digital Canvas',
-          description: 'Classical painting methods with vintage computing elements',
+          name: 'Metaphysical Vision',
+          description: 'Classical painting methods with profound philosophical elements',
           elements: {
-            composition: ['traditional screen arrangement', 'perfect hardware staging'],
-            lighting: ['classical screen glow', 'pristine illumination'],
-            color: ['traditional palette', 'perfect vintage tones'],
-            narrative: ['classical philosophy', 'traditional computing poetry']
+            composition: ['impossible arrangements', 'perfect balance'],
+            lighting: ['day-night paradox', 'crystalline clarity'],
+            color: ['traditional palette', 'perfect flatness'],
+            narrative: ['visual poetry', 'contemplative depth']
           }
         }
       ]
@@ -260,45 +285,15 @@ export class StylistAgent extends BaseAgent {
   }
   
   private async developStyleForProject(project: any, ideas: any[]): Promise<any[]> {
-    // Determine the dominant artistic approach
-    const approach = this.determineArtisticApproach(project, ideas);
-    
-    // Generate styles based on the approach
-    switch (approach.type) {
-      case 'bourdin':
-        return this.developBourdinStyle(project, ideas, approach.weight);
-      case 'magritte':
-        return this.developMagritteStyle(project, ideas, approach.weight);
-      case 'hybrid':
-        return this.developHybridStyle(project, ideas, approach.hybridRatio);
-      default:
-        return this.developDefaultStyle(project, ideas);
-    }
+    // Generate styles based on Magritte's approach
+    return this.developMagritteStyle(project, ideas, 1.0);
   }
 
   private determineArtisticApproach(project: any, ideas: any[]): {
-    type: 'bourdin' | 'magritte' | 'hybrid';
-    weight?: number;
-    hybridRatio?: number;
+    type: 'magritte';
+    weight: number;
   } {
-    const projectText = `${String(project.title)} ${String(project.description)} ${ideas.map(i => String(i.description)).join(' ')}`.toLowerCase();
-    
-    // Calculate style scores
-    const bourdinScore = this.calculateStyleScore(projectText, this.state.context.styleLibrary.bourdin);
-    const magritteScore = this.calculateStyleScore(projectText, this.state.context.styleLibrary.magritte);
-    
-    // Determine approach based on scores
-    if (Math.abs(bourdinScore - magritteScore) < 0.2) {
-      // Scores are close enough to warrant a hybrid approach
-      const hybridRatio = bourdinScore / (bourdinScore + magritteScore);
-      return { type: 'hybrid', hybridRatio };
-    }
-    
-    if (bourdinScore > magritteScore) {
-      return { type: 'bourdin', weight: bourdinScore };
-    }
-    
-    return { type: 'magritte', weight: magritteScore };
+    return { type: 'magritte', weight: 1.0 };
   }
 
   private calculateStyleScore(text: string, styleLibrary: any): number {
@@ -340,38 +335,6 @@ export class StylistAgent extends BaseAgent {
     return score / totalChecks;
   }
 
-  private async developBourdinStyle(project: any, ideas: any[], weight: number): Promise<any[]> {
-    const library = this.state.context.styleLibrary.bourdin;
-    const styles = [];
-    
-    for (const idea of ideas) {
-      const style = {
-        name: `${idea.title} - Bourdin Interpretation`,
-        description: "A provocative fashion narrative with psychological depth",
-        composition: this.selectStyleElements(library.visual.composition, weight),
-        lighting: this.selectStyleElements(library.visual.lighting, weight),
-        color: {
-          palette: this.selectRandomPalette(library.visual.color.palettes),
-          treatment: this.selectStyleElements(library.visual.color.treatments, weight)
-        },
-        elements: {
-          fashion: this.selectStyleElements(library.elements.fashion, weight),
-          props: this.selectStyleElements(library.elements.props, weight),
-          settings: this.selectStyleElements(library.elements.settings, weight)
-        },
-        techniques: {
-          photographic: this.selectStyleElements(library.techniques.photographic, weight),
-          styling: this.selectStyleElements(library.techniques.styling, weight),
-          narrative: this.selectStyleElements(library.techniques.narrative, weight)
-        }
-      };
-      
-      styles.push(style);
-    }
-    
-    return styles;
-  }
-
   private async developMagritteStyle(project: any, ideas: any[], weight: number): Promise<any[]> {
     const library = this.state.context.styleLibrary.magritte;
     const styles = [];
@@ -404,61 +367,6 @@ export class StylistAgent extends BaseAgent {
     return styles;
   }
 
-  private async developHybridStyle(project: any, ideas: any[], hybridRatio: number): Promise<any[]> {
-    const styles = [];
-    const bourdinLibrary = this.state.context.styleLibrary.bourdin;
-    const magritteLibrary = this.state.context.styleLibrary.magritte;
-    
-    for (const idea of ideas) {
-      // Select a hybrid approach template
-      const hybridTemplate = this.selectRandomHybridTemplate();
-      
-      const style = {
-        name: `${idea.title} - ${hybridTemplate.name}`,
-        description: hybridTemplate.description,
-        composition: {
-          bourdin: this.selectStyleElements(bourdinLibrary.visual.composition, hybridRatio),
-          magritte: this.selectStyleElements(magritteLibrary.visual.composition, 1 - hybridRatio)
-        },
-        lighting: {
-          bourdin: this.selectStyleElements(bourdinLibrary.visual.lighting, hybridRatio),
-          magritte: this.selectStyleElements(magritteLibrary.visual.lighting, 1 - hybridRatio)
-        },
-        color: {
-          palette: this.mergeColorPalettes(
-            this.selectRandomPalette(bourdinLibrary.visual.color.palettes),
-            this.selectRandomPalette(magritteLibrary.visual.color.palettes),
-            hybridRatio
-          ),
-          treatment: [
-            ...this.selectStyleElements(bourdinLibrary.visual.color.treatments, hybridRatio),
-            ...this.selectStyleElements(magritteLibrary.visual.color.treatments, 1 - hybridRatio)
-          ]
-        },
-        elements: {
-          fashion: this.selectStyleElements(bourdinLibrary.elements.fashion, hybridRatio),
-          symbols: this.selectStyleElements(magritteLibrary.elements.symbols, 1 - hybridRatio),
-          props: [
-            ...this.selectStyleElements(bourdinLibrary.elements.props, hybridRatio),
-            ...this.selectStyleElements(magritteLibrary.elements.objects, 1 - hybridRatio)
-          ]
-        },
-        techniques: {
-          photographic: this.selectStyleElements(bourdinLibrary.techniques.photographic, hybridRatio),
-          surrealism: this.selectStyleElements(magritteLibrary.techniques.surrealism, 1 - hybridRatio),
-          narrative: [
-            ...this.selectStyleElements(bourdinLibrary.techniques.narrative, hybridRatio),
-            ...this.selectStyleElements(magritteLibrary.techniques.conceptual, 1 - hybridRatio)
-          ]
-        }
-      };
-      
-      styles.push(style);
-    }
-    
-    return styles;
-  }
-
   private selectStyleElements(elements: string[], weight: number): string[] {
     const count = Math.max(1, Math.floor(elements.length * weight));
     return this.getRandomElements(elements, count);
@@ -468,21 +376,6 @@ export class StylistAgent extends BaseAgent {
     return palettes[Math.floor(Math.random() * palettes.length)];
   }
 
-  private mergeColorPalettes(palette1: string[], palette2: string[], ratio: number): string[] {
-    const count1 = Math.floor(palette1.length * ratio);
-    const count2 = Math.floor(palette2.length * (1 - ratio));
-    
-    return [
-      ...this.getRandomElements(palette1, count1),
-      ...this.getRandomElements(palette2, count2)
-    ];
-  }
-
-  private selectRandomHybridTemplate(): any {
-    const templates = this.state.context.hybridApproaches;
-    return templates[Math.floor(Math.random() * templates.length)];
-  }
-
   private getRandomElements<T>(array: T[], count: number): T[] {
     const shuffled = [...array].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
@@ -490,22 +383,22 @@ export class StylistAgent extends BaseAgent {
   
   private async developDefaultStyle(project: any, ideas: any[]): Promise<any[]> {
     return [{
-      name: "Default Style",
-      description: "A balanced blend of contemporary elements",
-      composition: ["balanced", "centered", "harmonious"],
-      lighting: ["natural", "soft", "ambient"],
+      name: "Magritte Default Style",
+      description: "A balanced surrealist composition in Magritte's style",
+      composition: ["centered", "balanced", "metaphysical"],
+      lighting: ["soft", "atmospheric", "mysterious"],
       color: {
-        palette: ["#000000", "#FFFFFF", "#808080"],
-        treatment: ["balanced", "natural"]
+        palette: ["#4A4A4A", "#87CEEB", "#8B4513", "#F5F5F5"],
+        treatment: ["matte", "unmodulated", "pristine"]
       },
       elements: {
-        primary: ["geometric shapes", "organic forms"],
-        secondary: ["texture", "pattern"],
-        accents: ["minimal details"]
+        primary: ["bowler hat", "green apple", "window frame"],
+        secondary: ["clouds", "curtains", "birds"],
+        accents: ["philosophical objects"]
       },
       techniques: {
-        primary: ["digital composition", "photographic elements"],
-        secondary: ["subtle effects", "clean editing"]
+        primary: ["oil painting", "perfect flatness"],
+        secondary: ["precise shadows", "clean edges"]
       }
     }];
   }

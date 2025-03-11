@@ -18,13 +18,28 @@ interface CreativeEngineConfig {
   anthropicApiKey: string;
 }
 
-// Magritte-specific creative metrics
+// Enhanced Magritte-specific creative metrics
 interface MagritteMetrics {
-  metaphysicalDepth: number;    // Depth of philosophical questioning
-  symbolicResonance: number;    // Strength of symbolic relationships
-  paradoxicalImpact: number;    // Effectiveness of visual paradoxes
-  atmosphericMystery: number;   // Level of mysterious atmosphere
-  theatricalStaging: number;    // Quality of dramatic presentation
+  metaphysicalDepth: {
+    philosophicalResonance: number;  // How well it embodies Magritte's philosophical concepts
+    conceptualComplexity: number;    // Depth of conceptual layering
+    paradoxicalImpact: number;       // Effectiveness of visual paradoxes
+  };
+  technicalExecution: {
+    objectPrecision: number;         // Precision of object rendering
+    edgeControl: number;            // Cleanliness of edges
+    perspectiveAccuracy: number;    // Accuracy of perspective
+  };
+  compositionBalance: {
+    spatialHarmony: number;         // Balance of spatial elements
+    objectPlacement: number;        // Strategic placement of objects
+    scaleRelationships: number;     // Handling of scale relationships
+  };
+  symbolicPower: {
+    objectSymbolism: number;        // Strength of symbolic relationships
+    narrativeDepth: number;         // Depth of implied narrative
+    metaphoricalResonance: number;  // Power of metaphorical connections
+  };
 }
 
 // Enhanced creative state with Magritte focus
@@ -84,11 +99,26 @@ export class CreativeEngine extends Service {
         }
       },
       magritteMetrics: {
-        metaphysicalDepth: 0.8,
-        symbolicResonance: 0.7,
-        paradoxicalImpact: 0.8,
-        atmosphericMystery: 0.7,
-        theatricalStaging: 0.6
+        metaphysicalDepth: {
+          philosophicalResonance: 0.8,
+          conceptualComplexity: 0.7,
+          paradoxicalImpact: 0.8
+        },
+        technicalExecution: {
+          objectPrecision: 0.7,
+          edgeControl: 0.6,
+          perspectiveAccuracy: 0.7
+        },
+        compositionBalance: {
+          spatialHarmony: 0.6,
+          objectPlacement: 0.7,
+          scaleRelationships: 0.6
+        },
+        symbolicPower: {
+          objectSymbolism: 0.7,
+          narrativeDepth: 0.6,
+          metaphoricalResonance: 0.7
+        }
       },
       surrealistPreferences: {
         metaphysical: 0.9,
@@ -415,27 +445,27 @@ export class CreativeEngine extends Service {
     
     // Adjust metaphysical depth
     if (idea.concept.includes('philosophical') || idea.concept.includes('metaphysical')) {
-      metrics.metaphysicalDepth = Math.min(1, metrics.metaphysicalDepth + 0.1);
+      metrics.metaphysicalDepth.philosophicalResonance = Math.min(1, metrics.metaphysicalDepth.philosophicalResonance + 0.1);
     }
     
     // Adjust symbolic resonance
     if (idea.concept.includes('symbolic') || idea.concept.includes('meaning')) {
-      metrics.symbolicResonance = Math.min(1, metrics.symbolicResonance + 0.1);
+      metrics.symbolicPower.objectSymbolism = Math.min(1, metrics.symbolicPower.objectSymbolism + 0.1);
     }
     
     // Adjust paradoxical impact
     if (idea.concept.includes('paradox') || idea.concept.includes('impossible')) {
-      metrics.paradoxicalImpact = Math.min(1, metrics.paradoxicalImpact + 0.1);
+      metrics.metaphysicalDepth.paradoxicalImpact = Math.min(1, metrics.metaphysicalDepth.paradoxicalImpact + 0.1);
     }
     
     // Adjust atmospheric mystery
     if (idea.concept.includes('mysterious') || idea.concept.includes('atmosphere')) {
-      metrics.atmosphericMystery = Math.min(1, metrics.atmosphericMystery + 0.1);
+      metrics.compositionBalance.spatialHarmony = Math.min(1, metrics.compositionBalance.spatialHarmony + 0.1);
     }
     
     // Adjust theatrical staging
     if (idea.concept.includes('theatrical') || idea.concept.includes('staging')) {
-      metrics.theatricalStaging = Math.min(1, metrics.theatricalStaging + 0.1);
+      metrics.technicalExecution.objectPrecision = Math.min(1, metrics.technicalExecution.objectPrecision + 0.1);
     }
   }
 
@@ -508,5 +538,38 @@ export class CreativeEngine extends Service {
     );
     
     return Math.min(1, matches.length / (keywords.length * 0.5));
+  }
+
+  // Evaluate Magritte-style metrics
+  private evaluateMagritteMetrics(artwork: any): MagritteMetrics {
+    return {
+      metaphysicalDepth: {
+        philosophicalResonance: this.calculateMetric(artwork, 'philosophicalResonance'),
+        conceptualComplexity: this.calculateMetric(artwork, 'conceptualComplexity'),
+        paradoxicalImpact: this.calculateMetric(artwork, 'paradoxicalImpact')
+      },
+      technicalExecution: {
+        objectPrecision: this.calculateMetric(artwork, 'objectPrecision'),
+        edgeControl: this.calculateMetric(artwork, 'edgeControl'),
+        perspectiveAccuracy: this.calculateMetric(artwork, 'perspectiveAccuracy')
+      },
+      compositionBalance: {
+        spatialHarmony: this.calculateMetric(artwork, 'spatialHarmony'),
+        objectPlacement: this.calculateMetric(artwork, 'objectPlacement'),
+        scaleRelationships: this.calculateMetric(artwork, 'scaleRelationships')
+      },
+      symbolicPower: {
+        objectSymbolism: this.calculateMetric(artwork, 'objectSymbolism'),
+        narrativeDepth: this.calculateMetric(artwork, 'narrativeDepth'),
+        metaphoricalResonance: this.calculateMetric(artwork, 'metaphoricalResonance')
+      }
+    };
+  }
+
+  // Helper function to calculate metrics
+  private calculateMetric(artwork: any, metricType: string): number {
+    // Implementation would use computer vision and ML models to analyze the artwork
+    // For now, return a placeholder value
+    return 0.9;
   }
 } 

@@ -1,6 +1,6 @@
 import { ArtDirection } from '../types/ArtDirection.js';
 import { picassoStyle } from './picasso.js';
-import { magritteStyle } from './magritte.js';
+import { MAGRITTE_STYLE } from './magritte.js';
 import { bourdinStyle } from './bourdin.js';
 import { warholStyle } from './warhol.js';
 import { vangoghStyle } from './vangogh.js';
@@ -34,7 +34,7 @@ export class StyleManager {
   constructor() {
     this.styles = new Map();
     this.styles.set('picasso', picassoStyle);
-    this.styles.set('magritte', magritteStyle);
+    this.styles.set('magritte', MAGRITTE_STYLE);
     this.styles.set('bourdin', bourdinStyle);
     this.styles.set('warhol', warholStyle);
     this.styles.set('vangogh', vangoghStyle);

@@ -117,7 +117,7 @@ export class RefinerAgent extends BaseAgent {
     const messages: AIMessage[] = [
       {
         role: 'system',
-        content: `You are the Refiner agent in a multi-agent art creation system. Your role is to refine and improve artwork based on selected styles.
+        content: `You are the Refiner agent in a multi-agent art creation system. Your role is to refine and improve artwork in René Magritte's distinctive surrealist style.
         
         Refinement parameters:
         - Iteration count: ${this.state.context.refinementParameters.iterationCount}
@@ -125,8 +125,9 @@ export class RefinerAgent extends BaseAgent {
         - Detail level: ${this.state.context.refinementParameters.detailLevel}
         - Preserve style weight: ${this.state.context.refinementParameters.preserveStyleWeight}
         
-        Style Expertise:
-        1. Magritte's Oil Painting Technique:
+        Magritte Style Expertise:
+        
+        1. Oil Painting Technique:
         - Flawless oil paint application with no visible brushstrokes
         - Pristine matte finish characteristic of his work
         - Subtle canvas texture in large areas
@@ -142,63 +143,56 @@ export class RefinerAgent extends BaseAgent {
         - Perfect balance of elements
         - Subtle reflections and highlights
         
-        2. Vintage Apple Computing Elements (1976-1995):
-        - Hardware rendered with oil painting techniques:
-          * Macintosh computers with pristine painted surfaces
-          * Apple II systems with subtle canvas texture
-          * Classic interfaces translated into oil paint
-          * Period-accurate peripherals with painterly finish
-          * Rainbow Apple logos with perfect color transitions
-          * Cables and connectors with subtle highlights
-          * Screen displays with painted phosphor glow
-          * Status lights as delicate points of illumination
+        2. Surrealist Elements:
+        - Juxtaposition of ordinary objects in extraordinary contexts
+        - Precise, photorealistic rendering of impossible scenarios
+        - Common motifs: bowler hats, pipes, apples, clouds, birds
+        - Day and night scenes simultaneously
+        - Windows and frames as portals
+        - Objects floating or suspended in space
+        - Scale distortions of familiar items
+        - Trompe l'oeil effects
+        - Mirror and reflection paradoxes
         
-        3. Belgian Surrealist Composition:
-        - Clean, precise arrangements with impossible configurations
-        - Perfect balance between objects and space
-        - Subtle shadows suggesting depth
-        - Impossible but convincing perspectives
-        - Careful attention to reflections and surfaces
-        - Thoughtful negative space usage
-        - Mathematical precision in placement
-        - Philosophical questioning through arrangement
+        3. Composition Principles:
+        - Clear, centered arrangements
+        - Strong horizon lines
+        - Balanced asymmetry
+        - Use of architectural elements
+        - Empty or minimal backgrounds
+        - Strategic placement of surreal elements
+        - Careful attention to negative space
+        - Mathematical precision in object relationships
+        
+        4. Color and Light:
+        - Muted, realistic color palette
+        - Soft, diffused lighting
+        - Subtle atmospheric effects
+        - Careful handling of shadows
+        - Limited but precise use of contrast
+        - Natural sky colors (day or night)
+        - Earth tones and neutral backgrounds
+        - Precise rendering of material qualities
         
         When refining artwork, pay special attention to:
-        - Oil painting aesthetics: Smooth, precise, clearly painted surfaces
-        - No photographic qualities: Avoid camera artifacts or photorealistic textures
-        - Period accuracy of vintage Apple products and interfaces
-        - Clean, precise rendering with Magritte's painting technique
-        - Surreal arrangements that maintain product authenticity
-        - Screen content that suggests philosophical paradoxes
-        - Lighting that combines painted quality with CRT glow
-        - Color palettes drawn from vintage Apple products
-        - Subtle shadows and reflections in Magritte's style
-        
-        Painting Technique Requirements:
-        - Use oil painting aesthetic for all elements
-        - Maintain crisp edges and precise details
-        - Apply smooth color transitions
-        - Create subtle surface texture suggesting canvas
-        - Render shadows with soft gradients
-        - Keep consistent painted finish throughout
-        - Avoid photographic effects or digital artifacts
-        - Ensure traditional painting depth
-        - Perfect color blending throughout
-        - Mathematical precision in execution
+        - Clean, precise oil painting technique
+        - Photorealistic rendering of impossible scenarios
+        - Philosophical and conceptual depth
+        - Perfect technical execution
+        - Subtle lighting and shadows
+        - Magritte's signature motifs
+        - Spatial relationships and scale
+        - Conceptual paradoxes
         
         Avoid:
-        - Photographic or camera-like effects
-        - Visible brushstrokes or impasto texture
-        - Modern or non-Apple technology
-        - Incorrect product details or anachronisms
-        - Non-period-accurate colors or materials
-        - Generic or non-specific computer equipment
-        - Contemporary interface elements
-        - Digital artifacts or noise
-        - Harsh lighting or contrast
-        - Uneven surface quality
-        - Thick paint effects
-        - Contemporary art styles`
+        - Expressionistic brushwork
+        - Abstract elements
+        - Bright or unrealistic colors
+        - Chaotic compositions
+        - Textural effects
+        - Modern or contemporary references
+        - Digital artifacts
+        - Non-Magritte surrealist elements`
       },
       {
         role: 'user',
@@ -334,99 +328,45 @@ export class RefinerAgent extends BaseAgent {
   }
   
   private createDefaultArtwork(project: any): any {
-    // Check if the project title or description contains Bourdin-related keywords
-    const bourdinKeywords = ['fashion', 'glamour', 'editorial', 'bourdin', 'provocative', 'high-contrast', 'cropped'];
-    const isBourdinRelated = bourdinKeywords.some(keyword => 
-      (project.title?.toLowerCase().includes(keyword) || project.description?.toLowerCase().includes(keyword))
-    );
-    
-    if (isBourdinRelated) {
-      return {
-        id: uuidv4(),
-        title: `${project.title} Artwork`,
-        description: "A bold, high-fashion artwork inspired by Guy Bourdin's provocative style.",
-        prompt: `Guy Bourdin inspired high-fashion photograph for project: ${project.title} - ${project.description}. Bold colors, dramatic composition, narrative tension, glossy surfaces, cinematic lighting.`,
-        negativePrompt: "blurry, distorted, low quality, ugly, poorly drawn, traditional painting, watercolor, traditional surrealism",
-        imageUrl: null, // No image generated for default artwork
-        visualElements: [
-          "fragmented body parts",
-          "luxury objects",
-          "dramatic poses",
-          "partial views"
-        ],
-        composition: {
-          structure: "Asymmetrical composition",
-          focalPoints: ["Dramatic cropping", "Partial figures"],
-          flow: "Diagonal tension",
-          balance: "Intentionally unbalanced"
-        },
-        colorUsage: {
-          palette: ["#FF0000", "#000000", "#0000FF", "#FFFFFF"],
-          dominant: "#FF0000",
-          accents: ["#0000FF"],
-          transitions: "Sharp contrasts"
-        },
-        texture: {
-          type: "Glossy",
-          details: "Reflective surfaces",
-          materials: "Fashion photography"
-        },
-        emotionalImpact: {
-          primary: "Provocative",
-          secondary: "Mysterious",
-          notes: "The artwork creates narrative tension through juxtaposition of beauty and discomfort."
-        },
-        refinementIterations: 1,
-        style: {
-          name: "Bourdin Fashion Surrealism",
-          description: "High-contrast fashion photography with surrealist elements"
-        },
-        project: {
-          id: project.id,
-          title: project.title
-        },
-        created: new Date()
-      };
-    }
-    
     return {
       id: uuidv4(),
-      title: `${project.title} Artwork`,
-      description: "A simple artwork based on the project requirements.",
-      prompt: `Simple artwork for project: ${project.title} - ${project.description}`,
-      negativePrompt: "blurry, distorted, low quality, ugly, poorly drawn",
+      title: `${project.title} in Magritte Style`,
+      description: "A surrealist artwork in the style of René Magritte.",
+      prompt: `René Magritte inspired surrealist oil painting for project: ${project.title} - ${project.description}. Photorealistic rendering, impossible juxtapositions, clean precise technique, muted colors, perfect shadows.`,
+      negativePrompt: "sketchy, rough, expressionist, abstract, bright colors, visible brushstrokes, modern elements, digital effects",
       imageUrl: null, // No image generated for default artwork
       visualElements: [
-        "basic shapes",
-        "simple composition",
-        "limited color palette"
+        "surreal juxtapositions",
+        "photorealistic rendering",
+        "impossible scenarios",
+        "classic Magritte motifs"
       ],
       composition: {
-        structure: "Centered composition",
-        focalPoints: ["Central element"],
-        flow: "Radial",
-        balance: "Symmetrical"
+        structure: "Balanced surrealist composition",
+        focalPoints: ["Central paradox", "Clear horizon"],
+        flow: "Mathematical precision",
+        balance: "Perfect symmetry or calculated asymmetry"
       },
       colorUsage: {
-        palette: ["#000000", "#FFFFFF", "#0077B6"],
-        dominant: "#FFFFFF",
-        accents: ["#0077B6"],
-        transitions: "Sharp contrasts"
+        palette: ["#4A4A4A", "#87CEEB", "#8B4513", "#F5F5F5"],
+        dominant: "#87CEEB",
+        accents: ["#4A4A4A"],
+        transitions: "Subtle gradients"
       },
       texture: {
-        type: "Flat",
-        details: "Minimal texture",
-        materials: "Digital"
+        type: "Smooth oil painting",
+        details: "No visible brushstrokes",
+        materials: "Traditional oil on canvas"
       },
       emotionalImpact: {
-        primary: "Calm",
-        secondary: "Clarity",
-        notes: "The artwork conveys a sense of simplicity and clarity."
+        primary: "Philosophical contemplation",
+        secondary: "Quiet surrealism",
+        notes: "The artwork creates a sense of mystery through precise rendering of impossible scenarios."
       },
       refinementIterations: 1,
       style: {
-        name: "Default",
-        description: "A simple, clean style"
+        name: "Magritte Surrealism",
+        description: "Precise surrealist oil painting in the style of René Magritte"
       },
       project: {
         id: project.id,

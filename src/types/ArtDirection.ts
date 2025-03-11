@@ -77,6 +77,53 @@ export interface ArtDirection {
     }[];
   };
 
+  // Magritte-specific Contexts
+  magritteContext?: {
+    philosophicalFramework: {
+      beliefs: string[];
+      theories: string[];
+      conceptualFrameworks: string[];
+      paradoxes: string[];
+      visualDialectics: string[];
+    };
+    visualCategories: {
+      category: 'object_displacement' | 'window_paradox' | 'scale_distortion' | 
+                'time_paradox' | 'identity_concealment' | 'word_image_paradox' | 
+                'metamorphosis' | 'spatial_illusion' | 'mirror_paradox' | 'object_multiplication';
+      characteristics: string[];
+      keyElements: string[];
+      technicalRequirements: string[];
+    }[];
+    technicalExecution: {
+      renderingTechniques: string[];
+      materialPreparation: string[];
+      workingMethodology: string[];
+      qualityMetrics: string[];
+    };
+    creativeMetrics: {
+      metaphysicalDepth: {
+        philosophicalResonance: number;
+        conceptualComplexity: number;
+        paradoxicalImpact: number;
+      };
+      technicalExecution: {
+        objectPrecision: number;
+        edgeControl: number;
+        perspectiveAccuracy: number;
+      };
+      compositionBalance: {
+        spatialHarmony: number;
+        objectPlacement: number;
+        scaleRelationships: number;
+      };
+      symbolicPower: {
+        objectSymbolism: number;
+        narrativeDepth: number;
+        metaphoricalResonance: number;
+      };
+    };
+  };
+
   styles?: {
     [key: string]: ArtDirection;
   };

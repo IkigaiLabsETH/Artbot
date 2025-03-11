@@ -41,18 +41,25 @@ export class IdeatorAgent extends BaseAgent {
         [IdeationApproach.THEATRICAL]: 0.75
       },
       magritteKeywords: [
+        // Portrait Elements
+        'mysterious face', 'enigmatic expression', 'classical portrait', 'traditional profile',
+        'philosophical gaze', 'metaphysical features', 'surreal portrait', 'symbolic face',
+        'floating head', 'mirror reflection', 'masked figure', 'veiled face',
+        'traditional pose', 'classical composition', 'perfect symmetry', 'mysterious depth',
+        
         // Painting Techniques
         'traditional oil painting', 'flawless brushwork', 'pristine edges', 'perfect matte finish',
         'classical canvas texture', 'traditional medium', 'perfect surface quality', 'crystalline detail',
         'subtle shadows', 'unified lighting', 'smooth transitions', 'delicate modeling',
         'museum quality', 'masterful technique', 'perfect execution', 'classical approach',
         
-        // Core Symbols and Objects with Modern Hats
+        // Core Symbols and Objects
         'vintage fedora', 'classic newsboy cap', 'wool beanie', 'wide-brim felt hat',
-        'flat cap', 'slouchy knit cap', 'porkpie hat', 'distressed leather fedora',
-        'tweed flat cap', 'fisherman beanie', 'trilby hat', 'bucket hat',
+        'flat cap', 'slouchy knit cap', 'porkpie hat', 'tweed flat cap',
         'green apples', 'clouds', 'pipes', 'mirrors', 'curtains', 'windows', 
         'birds', 'men in suits', 'floating rocks', 'everyday objects', 'mysterious doors',
+        'candlesticks', 'chairs', 'tables', 'fruit', 'musical instruments',
+        'wine bottles', 'bread loaves', 'books', 'paintings', 'frames',
         
         // Philosophical Concepts
         'classical surrealism', 'traditional paradox', 'perfect mystery',
@@ -63,17 +70,19 @@ export class IdeatorAgent extends BaseAgent {
         'perfect lighting', 'traditional shadows', 'classical perspective',
         'pristine surfaces', 'perfect reflections', 'traditional depth',
         'flawless composition', 'classical framing', 'perfect symmetry',
+        'day-night paradox', 'impossible shadows', 'floating objects',
         
         // Settings and Environments
         'traditional interiors', 'classical landscapes', 'perfect rooms',
         'pristine skies', 'traditional architecture', 'perfect spaces',
         'classical chambers', 'traditional windows', 'perfect staging',
+        'belgian coastline', 'stone walls', 'wooden floors', 'wallpaper',
+        'fireplaces', 'seaside views', 'garden paths', 'forest clearings',
 
-        // Modern Hat Descriptions
-        'artisanal hat craftsmanship', 'vintage hat patina', 'handcrafted hat details',
-        'weathered hat leather', 'organic wool texture', 'sustainable hat materials',
-        'traditional hat making', 'contemporary hat styling', 'urban hat aesthetic',
-        'minimalist hat design', 'rustic hat elements', 'modern hat interpretation'
+        // Traditional Materials
+        'oil paint', 'canvas texture', 'wooden frames', 'linen surface',
+        'natural pigments', 'varnish finish', 'traditional brushwork',
+        'classical glazing', 'traditional gesso', 'artist palette'
       ],
       artisticApproaches: {
         magritte: {
@@ -328,48 +337,143 @@ export class IdeatorAgent extends BaseAgent {
   
   private getRandomModernHat(): string {
     const modernHats = [
-      'vintage fedora',
-      'classic newsboy cap',
-      'wool beanie',
-      'wide-brim felt hat',
-      'flat cap',
-      'slouchy knit cap',
-      'porkpie hat',
-      'distressed leather fedora',
-      'tweed flat cap',
-      'fisherman beanie',
-      'trilby hat',
-      'bucket hat'
+      // Classic Hats
+      'vintage fedora with grosgrain ribbon',
+      'classic newsboy cap in herringbone tweed',
+      'structured wool felt homburg',
+      'wide-brim felt fedora with leather band',
+      'classic porkpie hat with striped band',
+      'traditional trilby in charcoal felt',
+      
+      // Casual Hats
+      'slouchy merino wool beanie',
+      'distressed leather newsboy cap',
+      'weathered canvas bucket hat',
+      'textured fisherman beanie',
+      'waxed cotton flat cap',
+      'corduroy five-panel cap',
+      
+      // Statement Hats
+      'wide-brim safari hat with chin cord',
+      'structured bowler with satin lining',
+      'deerstalker cap with ear flaps',
+      'tweed flat cap with vintage pin',
+      'leather aviator cap with buckles',
+      'woven straw boater with ribbon'
     ];
     return modernHats[Math.floor(Math.random() * modernHats.length)];
+  }
+
+  private getRandomClothingStyle(): string {
+    const clothingStyles = [
+      // Classic Attire
+      'tailored wool suit with peaked lapels',
+      'pinstripe three-piece suit',
+      'traditional morning coat',
+      'herringbone tweed jacket',
+      'double-breasted blazer',
+      'formal dinner jacket',
+      
+      // Casual Elegance
+      'cable-knit sweater with collar',
+      'linen shirt with rolled sleeves',
+      'corduroy jacket with elbow patches',
+      'chambray shirt with tie',
+      'turtleneck sweater',
+      'wool cardigan with leather buttons',
+      
+      // Professional Wear
+      'crisp white dress shirt',
+      'silk ascot tie',
+      'waistcoat with watch chain',
+      'velvet smoking jacket',
+      'high-collar dress shirt',
+      'formal bow tie'
+    ];
+    return clothingStyles[Math.floor(Math.random() * clothingStyles.length)];
+  }
+
+  private getRandomAccessories(): string[] {
+    const accessories = [
+      // Neck Accessories
+      'silk pocket square',
+      'vintage tie pin',
+      'patterned bow tie',
+      'silk cravat',
+      'knit scarf',
+      'ascot with pearl pin',
+      
+      // Face Accessories
+      'round wire spectacles',
+      'tortoiseshell glasses',
+      'monocle with gold chain',
+      'vintage eyeglasses',
+      'pince-nez glasses',
+      'classic sunglasses',
+      
+      // Other Accessories
+      'leather gloves',
+      'wooden pipe',
+      'gold watch chain',
+      'silver tie clip',
+      'walking stick with silver handle',
+      'vintage collar pin',
+      'leather briefcase',
+      'umbrella with carved handle'
+    ];
+    
+    // Select 2-3 random accessories
+    const numAccessories = Math.floor(Math.random() * 2) + 2;
+    const selectedAccessories = [];
+    const availableAccessories = [...accessories];
+    
+    for (let i = 0; i < numAccessories; i++) {
+      const index = Math.floor(Math.random() * availableAccessories.length);
+      selectedAccessories.push(availableAccessories[index]);
+      availableAccessories.splice(index, 1);
+    }
+    
+    return selectedAccessories;
   }
 
   private async generateMetaphysicalIdeas(task: any, project: any): Promise<any[]> {
     const messages: AIMessage[] = [
       {
         role: 'system',
-        content: `You are the Ideator agent specializing in METAPHYSICAL ideation in Magritte's tradition. Focus on philosophical paradoxes, reality questioning, and metaphysical concepts. Generate ideas that challenge perception and provoke philosophical thought.
+        content: `You are the Ideator agent specializing in METAPHYSICAL ideation in Magritte's tradition, focusing on portrait-style PFPs. Generate ideas that combine philosophical depth with enigmatic portraits.
 
-        Important: Focus on traditional Magritte elements:
-        - Everyday objects in surreal contexts
-        - Philosophical paradoxes and metaphysical questions
-        - Natural elements (clouds, sky, birds, trees)
-        - Architectural elements (windows, doors, frames)
-        - Traditional objects (pipes, apples, mirrors)
-        - Modern hats (vintage fedora, newsboy cap, wool beanie, wide-brim felt hat, flat cap, slouchy knit cap, porkpie hat, etc.)
-        - Classical settings and environments
+        Important: Each portrait must be unique and include:
+        - A distinctive hat or headwear
+        - Specific clothing style and fabric details
+        - 2-3 carefully chosen accessories
+        - Traditional Magritte elements integrated with the outfit
+        
+        Focus on these elements:
+        - Portrait Elements (mysterious faces, enigmatic expressions, classical profiles)
+        - Clothing Details (fabric textures, patterns, layering)
+        - Accessories (glasses, pipes, ties, pocket squares)
+        - Traditional objects (mirrors, candlesticks, wine bottles)
+        - Natural elements (clouds, birds, trees)
+        - Classical settings (belgian coastline, stone walls, rooms)
+
+        Key Portrait Concepts:
+        - Unique character creation through clothing and accessories
+        - Face-obscuring elements integrated with outfit
+        - Mirror reflections showing different clothing details
+        - Traditional portrait poses with surreal twists
+        - Identity exploration through fashion elements
+        - Symbolic accessories and clothing details
 
         Avoid any references to:
-        - Modern technology
-        - Digital interfaces
-        - Contemporary machinery
-        - Electronic devices
+        - Modern technology or machinery
+        - Contemporary fashion trends
+        - Digital or electronic elements
         - Modern transportation
-        - Current innovations`
+        - Current innovations or trends`
       },
       {
         role: 'user',
-        content: `Generate 5 metaphysically-driven art ideas for the following project:
+        content: `Generate 5 metaphysically-driven portrait ideas for the following project:
         
         Title: ${project.title}
         Description: ${project.description}
@@ -378,8 +482,8 @@ export class IdeatorAgent extends BaseAgent {
         For each idea, provide:
         1. A title that encapsulates the metaphysical concept
         2. A philosophical paradox or question
-        3. Key symbolic elements (using traditional Magritte elements and modern hats)
-        4. Visual representation
+        3. Key portrait elements (including specific hat, clothing, and accessories)
+        4. Visual composition (focusing on portrait framing)
         5. Philosophical impact
         
         Format each idea as a JSON object.`
@@ -392,23 +496,35 @@ export class IdeatorAgent extends BaseAgent {
         temperature: 0.7
       });
       
-      // Mock metaphysical ideas with modern hats
+      // Mock metaphysical portrait ideas with detailed clothing
       return [
         {
-          title: "The Persistence of Identity",
-          description: "A visual exploration of self-referential reality",
-          elements: [this.getRandomModernHat(), "mirror reflecting its own absence", "window showing what it conceals"],
-          styles: ["metaphysical surrealism", "philosophical paradox", "symbolic resonance"],
-          impact: "questioning the nature of representation and reality",
-          visualRepresentation: "A series of nested frames containing contradictory realities"
+          title: "The Gentleman's Paradox",
+          description: "A portrait where identity is both revealed and concealed through clothing",
+          elements: [
+            this.getRandomModernHat(),
+            this.getRandomClothingStyle(),
+            ...this.getRandomAccessories(),
+            "floating green apple",
+            "mirror reflection"
+          ],
+          styles: ["metaphysical portrait", "philosophical paradox", "sartorial surrealism"],
+          impact: "questioning the relationship between identity and appearance",
+          visualRepresentation: "A classical portrait with surreal clothing elements"
         },
         {
-          title: "Time's Reflection",
-          description: "An investigation of temporal paradoxes through everyday objects",
-          elements: ["floating " + this.getRandomModernHat(), "melting clock", "infinite staircase"],
-          styles: ["temporal surrealism", "metaphysical time", "object poetry"],
-          impact: "contemplation of time's fluid nature",
-          visualRepresentation: "Objects that simultaneously exist in multiple temporal states"
+          title: "The Mirror's Wardrobe",
+          description: "A reflection wearing different clothes than its subject",
+          elements: [
+            this.getRandomModernHat(),
+            this.getRandomClothingStyle(),
+            ...this.getRandomAccessories(),
+            "impossible mirror",
+            "floating birds"
+          ],
+          styles: ["portrait surrealism", "metaphysical fashion", "object poetry"],
+          impact: "exploring the multiplicity of self through clothing",
+          visualRepresentation: "A traditional portrait with paradoxical clothing reflections"
         }
       ];
     } catch (error) {
@@ -426,24 +542,33 @@ export class IdeatorAgent extends BaseAgent {
     const messages: AIMessage[] = [
       {
         role: 'system',
-        content: `You are the Ideator agent specializing in SURREAL ideation in Magritte's style. Focus on impossible juxtapositions, dream-like scenarios, and reality-bending concepts. Generate ideas that challenge perception through surreal imagery.
+        content: `You are the Ideator agent specializing in SURREAL ideation in Magritte's style. Focus on impossible juxtapositions, dream-like scenarios, and reality-bending concepts that align with Magritte's traditional approach.
 
-        Important: Focus on traditional Magritte elements:
-        - Everyday objects in surreal contexts
-        - Philosophical paradoxes and metaphysical questions
-        - Natural elements (clouds, sky, birds, trees)
-        - Architectural elements (windows, doors, frames)
-        - Traditional objects (pipes, apples, mirrors)
-        - Modern hats (vintage fedora, newsboy cap, wool beanie, wide-brim felt hat, flat cap, slouchy knit cap, porkpie hat, etc.)
-        - Classical settings and environments
+        Important: Focus strictly on traditional Magritte elements:
+        - Traditional objects (pipes, apples, mirrors, candlesticks, wine bottles)
+        - Natural elements (clouds, sky, birds, trees, rocks)
+        - Architectural elements (windows, doors, frames, fireplaces)
+        - Interior elements (chairs, tables, curtains, wallpaper)
+        - Classical clothing (suits, modern hats like fedoras and caps)
+        - Traditional settings (belgian coastline, stone walls, rooms)
+        - Traditional painting materials (oil paint, canvas, wooden frames)
+
+        Key Surreal Concepts:
+        - Objects floating in pristine skies
+        - Windows revealing impossible views
+        - Day and night coexisting
+        - Scale distortions of everyday objects
+        - Metamorphosis of natural elements
+        - Classical paradoxes
+        - Traditional symbolism
+        - Visual poetry through ordinary objects
 
         Avoid any references to:
-        - Modern technology
-        - Digital interfaces
-        - Contemporary machinery
-        - Electronic devices
+        - Modern technology or machinery
+        - Contemporary objects or settings
+        - Digital or electronic elements
         - Modern transportation
-        - Current innovations`
+        - Current innovations or trends`
       },
       {
         role: 'user',
@@ -454,7 +579,7 @@ export class IdeatorAgent extends BaseAgent {
         For each idea, provide:
         1. A title that captures the surreal concept
         2. A description of the impossible scenario
-        3. Key surreal elements (using traditional Magritte elements and modern hats)
+        3. Key surreal elements (using traditional Magritte elements)
         4. Visual composition
         5. Perceptual impact
         
@@ -469,23 +594,23 @@ export class IdeatorAgent extends BaseAgent {
         maxTokens
       });
       
-      // Mock surreal ideas with modern hats
+      // Mock surreal ideas with traditional elements
       return [
         {
-          title: "The Floating Library",
-          description: "Books transforming into birds while a vintage fedora conducts their flight",
-          elements: [this.getRandomModernHat(), "flying books", "impossible library", "bird-pages"],
-          styles: ["surreal transformation", "literary flight", "magical realism"],
-          impact: "blurring boundaries between knowledge and freedom",
-          visualComposition: "Spiral arrangement of books becoming birds around a floating hat"
+          title: "The Room's Secret",
+          description: "A chamber where gravity affects only certain objects",
+          elements: [this.getRandomModernHat(), "floating furniture", "grounded shadows", "window to nowhere"],
+          styles: ["surreal space", "classical paradox", "traditional mystery"],
+          impact: "challenging perceptions of physical laws",
+          visualComposition: "Traditional room with objects obeying impossible physics"
         },
         {
-          title: "The Time Merchant",
-          description: "A figure in a wool beanie selling bottled moments of eternity",
-          elements: ["figure wearing " + this.getRandomModernHat(), "glass bottles of time", "liquid memories"],
-          styles: ["temporal surrealism", "bottle poetry", "memory market"],
-          impact: "questioning the commodification of time",
-          visualComposition: "Grid of glowing bottles with captured moments"
+          title: "The Bird's Mirror",
+          description: "Birds emerging from mirror reflections while their reflections remain",
+          elements: ["ornate mirror", this.getRandomModernHat(), "transforming birds", "empty perches"],
+          styles: ["natural surrealism", "mirror poetry", "classical transformation"],
+          impact: "questioning the boundary between reflection and reality",
+          visualComposition: "Symmetrical arrangement of mirrors and birds in metamorphosis"
         }
       ];
     } catch (error) {

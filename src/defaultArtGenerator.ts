@@ -669,113 +669,150 @@ const LIVE_THE_LIFE_ELEMENTS = {
   ]
 };
 
-// Add this helper function for user input
-async function getUserInput(question: string): Promise<string> {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
+// Define portrait-specific categories
+const magritteCategories = [
+  // Portrait-focused Categories
+  'magritte_portrait_classic',       // Traditional Magritte portrait style
+  'magritte_portrait_mirror',        // Portraits with mirror reflections
+  'magritte_portrait_obscured',      // Faces obscured by objects
+  'magritte_portrait_metamorphosis', // Transforming portrait elements
+  'magritte_portrait_multiplied',    // Multiple identical figures
+  'magritte_portrait_window',        // Portraits with window elements
+  'magritte_portrait_sky',           // Portraits against surreal skies
+  'magritte_portrait_interior',      // Portraits in mysterious rooms
+  'magritte_portrait_symbolic',      // Portraits with symbolic objects
+  'magritte_portrait_paradox',       // Portraits with visual paradoxes
+  
+  // Clothing-focused Categories
+  'magritte_fashion_surreal',        // Surreal clothing transformations
+  'magritte_fashion_floating',       // Floating clothing elements
+  'magritte_fashion_mirror',         // Mirror-reflected clothing
+  'magritte_fashion_metamorphosis',  // Transforming clothing
+  'magritte_fashion_symbolic',       // Symbolic clothing elements
+  
+  // Accessory-focused Categories
+  'magritte_accessory_floating',     // Floating accessories
+  'magritte_accessory_symbolic',     // Symbolic accessories
+  'magritte_accessory_paradox',      // Paradoxical accessories
+  'magritte_accessory_multiplied',   // Repeated accessory patterns
+  'magritte_accessory_surreal'       // Surreal accessory transformations
+];
 
-  return new Promise((resolve) => {
-    rl.question(question, (answer) => {
-      rl.close();
-      resolve(answer);
-    });
-  });
+// Create project configuration function
+function createProjectConfig(concept: string, selectedCategory: string, baseFilename: string, categoryArtDirection: any) {
+  // Define traditional Magritte elements to use instead of modern tech
+  const traditionalElements = {
+    objects: [
+      'green apple', 'wooden pipe', 'candlestick', 'mirror', 'window frame',
+      'curtain', 'wine bottle', 'bread loaf', 'musical instrument', 'stone'
+    ],
+    settings: [
+      'belgian coastline', 'empty room', 'infinite sky', 'stone wall',
+      'wooden floor', 'fireplace', 'garden path', 'forest clearing'
+    ],
+    clothing: [
+      'vintage fedora', 'wool beanie', 'wide-brim felt hat', 'flat cap',
+      'porkpie hat', 'tweed flat cap', 'leather gloves', 'silk cravat',
+      'tailored suit', 'waistcoat', 'dress shirt', 'wool cardigan'
+    ],
+    accessories: [
+      'silk pocket square', 'vintage tie pin', 'patterned bow tie',
+      'round wire spectacles', 'monocle', 'wooden pipe', 'gold watch chain',
+      'silver tie clip', 'walking stick', 'umbrella'
+    ]
+  };
+
+  // Create a traditional Magritte-style creative process explanation
+  const creativeProcess = `This composition embraces the metaphysical wonder of Belgian surrealism. By depicting an intimate portrait scene with ${traditionalElements.objects[Math.floor(Math.random() * traditionalElements.objects.length)]}, it creates a striking visual paradox that challenges our perceptions of reality and representation.
+
+The precise oil painting technique in the style of Magritte's classic works grounds the image in traditional mastery, while the impossible scale relationships and symbolic use of everyday objects inject an air of conceptual mystery. The figure's elegant attire, including a ${traditionalElements.clothing[Math.floor(Math.random() * traditionalElements.clothing.length)]} and ${traditionalElements.accessories[Math.floor(Math.random() * traditionalElements.accessories.length)]}, reinforces the deeper philosophical questions about identity and appearance.
+
+By juxtaposing classical portraiture with surreal elements, the composition maintains the contemplative spirit of traditional surrealism. The end result should inspire metaphysical contemplation on the nature of reality and representation.`;
+
+  return {
+    title: concept,
+    description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealist portrait artwork: "${concept}"`,
+    useFlux: true,
+    modelConfig: {
+      ...MAGRITTE_STYLE_CONFIG,
+      prompt_prefix: `In René Magritte's ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealist portrait style, create an elegant figure with distinctive clothing and accessories. The portrait should feature `,
+      prompt_suffix: `. Render with:
+- Portrait: Classical pose with perfect clarity
+- Clothing: Meticulous fabric detail and elegant draping
+- Accessories: 2-3 carefully chosen pieces
+- Lighting: Dramatic illumination highlighting textures
+- Color: Rich, deep tones for clothing against Magritte's signature sky
+- Composition: Perfect balance of figure and surreal elements
+Style emphasizing both sartorial elegance and surreal transformation.`,
+      negative_prompt: [
+        // Portrait-specific elements to avoid
+        "casual clothing", "modern fashion", "streetwear", "sportswear", "contemporary style",
+        "urban fashion", "trendy accessories", "modern jewelry", "casual poses", "informal attire",
+        
+        // Modern technology to avoid
+        "tesla", "electric vehicles", "modern cars", "autonomous technology", "electric",
+        "charging stations", "digital devices", "screens", "modern technology", "electronics",
+        "computers", "smartphones", "tablets", "digital interfaces", "modern machinery",
+        
+        // Style-breaking elements
+        "expressive brushwork", "loose painting", "abstract style", "impressionistic",
+        "cartoon", "anime", "stylized", "graphic", "pop art", "minimalist",
+        
+        // Specific elements to avoid
+        "bowler hat", "bowler hats", "derby hat", "derby hats"
+      ].join(", ")
+    },
+    requirements: [
+      `Create a precise Magritte surrealist portrait with distinctive clothing`,
+      `Include unique hat/headwear and 2-3 carefully chosen accessories`,
+      `Ensure meticulous attention to fabric textures and details`,
+      ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3)
+    ],
+    outputFilename: baseFilename,
+    artDirection: {
+      ...(categoryArtDirection || defaultArtDirection),
+      colorPalette: [
+        // Portrait colors
+        ...(MAGRITTE_COLOR_PALETTE.portraits.flesh.color),
+        ...(MAGRITTE_COLOR_PALETTE.portraits.hair.color),
+        ...(MAGRITTE_COLOR_PALETTE.portraits.cloth.color),
+        // Sky colors
+        ...(MAGRITTE_COLOR_PALETTE.sky.day.color),
+        ...(MAGRITTE_COLOR_PALETTE.sky.night.color),
+        // Background colors
+        ...(MAGRITTE_COLOR_PALETTE.backgrounds.wall.color),
+        ...(MAGRITTE_COLOR_PALETTE.backgrounds.void.color),
+        ...(MAGRITTE_COLOR_PALETTE.backgrounds.sky.color)
+      ],
+      lighting: [
+        "Dramatic side lighting for fabric texture",
+        "Soft frontal fill for facial features",
+        "Rim light for figure separation",
+        "Atmospheric depth for surreal elements"
+      ],
+      references: [
+        // Portrait-specific Magritte references
+        "The Son of Man (1964) - Iconic portrait with face obscured by floating apple",
+        "The Great War (1964) - Portrait with face obscured by floating flower",
+        "The Central Story (1928) - Figure with cloth-draped head",
+        "The Pilgrim (1966) - Elegant figure in surreal landscape",
+        "Portrait of Georgette Magritte - Intimate portrait with symbolic elements",
+        "The Therapist (1937) - Seated figure with birdcage head",
+        "Golconda (1953) - Multiple identical figures in suits",
+        "The Healer (1936) - Figure with candle flame face",
+        "The Happy Donor (1966) - Portrait with landscape reflection",
+        "The Heart of the Matter (1928) - Mysterious draped figure"
+      ]
+    },
+    creativeProcess: creativeProcess
+  };
 }
 
-/**
- * Formats a color palette for display with proper formatting and grouping
- * @param colors Array of color strings
- * @param maxDisplay Maximum number of colors to display (optional)
- * @returns Formatted string representation of the color palette
- */
-function formatColorPalette(colors: string[], maxDisplay?: number): string {
-  if (!colors || colors.length === 0) {
-    return 'No colors defined';
-  }
-
-  const displayColors = maxDisplay ? colors.slice(0, maxDisplay) : colors;
-  const remaining = maxDisplay && colors.length > maxDisplay ? colors.length - maxDisplay : 0;
-
-  const formattedColors = displayColors.map(color => {
-    // Clean up the color name and ensure proper formatting
-    const cleanColor = color.trim()
-      .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between camelCase
-      .replace(/_/g, ' ') // Replace underscores with spaces
-      .replace(/\s+/g, ' '); // Normalize spaces
-
-    // Check for RGB values and format them nicely
-    const rgbMatch = cleanColor.match(/\(RGB:\s*(\d+),\s*(\d+),\s*(\d+)\)/);
-    if (rgbMatch) {
-      const [_, r, g, b] = rgbMatch;
-      return `\n  - ${cleanColor.split('(')[0].trim()} (🎨 RGB: ${r}, ${g}, ${b})`;
-    }
-
-    // Check for Pantone values
-    const pantoneMatch = cleanColor.match(/\(Pantone [^)]+\)/);
-    if (pantoneMatch) {
-      return `\n  - ${cleanColor}`;
-    }
-
-    return `\n  - ${cleanColor}`;
-  }).join('');
-
-  let output = `Color Palette:${formattedColors}`;
-  if (remaining > 0) {
-    output += `\n  ... and ${remaining} more colors`;
-  }
-
-  return output;
-}
-
-// Modify the generateArt function
+// Update the generateArt function
 async function generateArt(concept: string) {
   try {
     // Initialize the style manager first
     const styleManager = new StyleManager();
-
-    // Define available Magritte-fusion categories
-    const magritteCategories = [
-      // Original Categories
-      'magritte_classic',
-      'magritte_empire_of_light',
-      'magritte_landscapes',
-      'magritte_metamorphosis',
-      'magritte_mystery',
-      'magritte_objects',
-      'magritte_scale',
-      'magritte_silhouettes',
-      'magritte_skies',
-      'magritte_windows',
-      'magritte_wordplay',
-      
-      // New Specialized Categories
-      'magritte_mirrors_illusion',      // Focuses on mirror reflections and optical illusions
-      'magritte_time_dilation',         // Explores temporal distortions and multiple time states
-      'magritte_floating_elements',     // Specialized in levitating objects and gravity defiance
-      'magritte_hybrid_forms',          // Blending of different objects or beings
-      'magritte_interior_exterior',     // Playing with inside/outside relationships
-      'magritte_perspective_paradox',   // Impossible perspectives and spatial relationships
-      'magritte_veiled_presence',       // Hidden or obscured figures and objects
-      'magritte_symbolic_doors',        // Doorways to impossible spaces
-      'magritte_cloud_metamorphosis',   // Cloud transformations and sky elements
-      'magritte_nocturnal_mystery',     // Night scenes with surreal elements
-      'magritte_domestic_surreal',      // Everyday objects made strange
-      'magritte_architectural_dreams',   // Impossible buildings and structures
-      'magritte_infinite_recursion',    // Images within images, endless repetition
-      'magritte_material_transmutation', // Objects changing material properties
-      'magritte_theatrical_reality',     // Stage-like settings with surreal elements
-      'magritte_philosophical_objects',  // Objects that question their own existence
-      'magritte_temporal_windows',       // Windows showing different times/realities
-      'magritte_identity_masks',         // Playing with hidden and revealed identities
-      'magritte_gravity_defiance',       // Objects and scenes that defy physics
-      'magritte_dimensional_portals'     // Portals to other dimensions/realities
-    ];
-
-    // Randomly select a Magritte category
-    const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
-    console.log(`\n✨ Using ${selectedCategory.replace('magritte_', '').replace('_', ' ')} for generation`);
 
     // Check for API keys
     const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
@@ -803,8 +840,8 @@ async function generateArt(concept: string) {
       defaultModel: process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL,
       defaultWidth: parseInt(process.env.IMAGE_WIDTH || '1024', 10),
       defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '1024', 10),
-      defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '200', 10),  // Increased to 200
-      defaultGuidanceScale: parseFloat(process.env.GUIDANCE_SCALE || '35.0'),       // Increased to 35.0
+      defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '200', 10),
+      defaultGuidanceScale: parseFloat(process.env.GUIDANCE_SCALE || '35.0'),
     });
     
     await replicateService.initialize();
@@ -838,11 +875,15 @@ async function generateArt(concept: string) {
     await artBotMultiAgentSystem.initialize();
     console.log('🤖 ArtBot Multi-Agent System initialized for Magritte-style generation');
     console.log('✅ Services initialized');
-    
+
+    // Randomly select a Magritte category
+    const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
+    console.log(`\n✨ Using ${selectedCategory.replace('magritte_', '').replace('_', ' ')} for generation`);
+
     // If no concept is provided, generate a fusion concept
-    let artConcept = concept;
+    let artConcept = concept || 'surreal portrait';
     
-    if (!artConcept) {
+    if (!concept) {
       // Get the category-specific art direction
       const categoryArtDirection = loadCategoryArtDirection(selectedCategory);
       
@@ -859,10 +900,10 @@ async function generateArt(concept: string) {
       // Create a Magritte-style surrealist portrait concept
       const magritteConceptTemplate = [
         `A surrealist portrait where ${selectedMagritteElement} obscures the face, painted with ${selectedMagritteStyle}`,
-        `An enigmatic figure wearing a bowler hat with ${selectedMagritteElement} as a face, executed in the style of ${selectedMagritteStyle}`,
+        `An enigmatic figure wearing a distinctive hat with ${selectedMagritteElement} as a face, executed in the style of ${selectedMagritteStyle}`,
         `A portrait with ${selectedMagritteElement} as a mask, rendered with ${selectedMagritteStyle}`,
         `A dreamlike portrait of a figure with ${selectedMagritteElement} for a head, imbued with ${selectedMagritteStyle}`,
-        `Multiple identical figures in bowler hats and suits, with ${selectedMagritteElement} heads, composed like Golconda and painted with ${selectedMagritteStyle}`
+        `Multiple identical figures in elegant attire, with ${selectedMagritteElement} heads, composed like Golconda and painted with ${selectedMagritteStyle}`
       ];
 
       const magritteConceptIndex = Math.floor(Math.random() * magritteConceptTemplate.length);
@@ -872,93 +913,26 @@ async function generateArt(concept: string) {
     }
     
     console.log(`\n💡 Using concept: "${artConcept}"`);
-    
-    // Update the project creation
-    const hash = Buffer.from(artConcept).toString('base64')
-      .replace(/[+/=]/g, '') // Remove base64 special chars
-      .slice(0, 8); // Take first 8 chars of hash
-    
-    const timestamp = new Date().getTime().toString(36).slice(-6); // Take last 6 chars of timestamp
-    const stylePrefix = selectedCategory.replace('magritte_', '').slice(0, 4); // Take first 4 chars of style
-    const baseFilename = `${stylePrefix}-${timestamp}-${hash}`; // Will be ~19 chars long
-    
-    const project = {
-      title: artConcept,
-      description: `Create a ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealist portrait artwork: "${artConcept}"`,
-      useFlux: true,
-      modelConfig: {
-        ...MAGRITTE_STYLE_CONFIG,
-        prompt_prefix: `In René Magritte's ${selectedCategory.replace('magritte_', '').replace('_', ' ')} surrealist portrait style, create a composition that blends metaphysical wonder with enigmatic facial elements. Combine `,
-        prompt_suffix: `. Render with:
-- Lighting: Dramatic illumination with noir undertones
-- Color: Rich, warm vintage tones contrasted with deep blues
-- Composition: Clean Magritte-style surrealism focused on the figure
-- Atmosphere: Mysterious and narrative-driven
-- Technical quality: Hyperrealistic details with painterly surrealist elements
-Style emphasizing symbolic resonance and surreal portraiture.`
-      },
-      requirements: [
-        `Create a precise Magritte surrealist portrait composition`,
-        ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3)
-      ],
-      outputFilename: baseFilename,
-      artDirection: {
-        ...(categoryArtDirection || defaultArtDirection),
-        colorPalette: [
-          // Portrait colors
-          ...(MAGRITTE_COLOR_PALETTE.portraits.flesh.color),
-          ...(MAGRITTE_COLOR_PALETTE.portraits.hair.color),
-          ...(MAGRITTE_COLOR_PALETTE.portraits.cloth.color),
-          // Sky colors
-          ...(MAGRITTE_COLOR_PALETTE.sky.day.color),
-          ...(MAGRITTE_COLOR_PALETTE.sky.night.color),
-          // Background colors
-          ...(MAGRITTE_COLOR_PALETTE.backgrounds.wall.color),
-          ...(MAGRITTE_COLOR_PALETTE.backgrounds.void.color),
-          ...(MAGRITTE_COLOR_PALETTE.backgrounds.sky.color)
-        ],
-        lighting: [...(MAGRITTE_COLOR_PALETTE.portraits.cloth.color)],
-        references: [
-          // Expanded references to Magritte's specific portrait techniques
-          "The Son of Man (1964) - Iconic apple obscuring bowler-hatted man's face",
-          "The Lovers (1928) - Kissing couple with cloth-shrouded heads",
-          "Golconda (1953) - Raining men in bowler hats and suits",
-          "The Great War (1964) - Bowler-hatted figure with flowers obscuring face",
-          "The Therapist (1937) - Seated figure with birdcage head",
-          "The Rape (1934) - Woman's face replaced by torso",
-          "The Happy Donor (1966) - Landscape reflected in man's head silhouette", 
-          "The Heart of the Matter (1928) - Mysterious figure wrapped in white cloth",
-          "The Month of the Grape Harvest (1959) - Suited man with apple in barren landscape",
-          "The Dominion of Light series (1949-1965) - Paradoxical day/night scenes",
-          "The Empire of Light series (1948-1964) - Glowing windows in night scenes",
-          "The Human Condition series (1933-1935) - Paintings within paintings",
-          "The Castle of the Pyrenees (1959) - Massive stone on small base",
-          "The Listening Room (1952) - Giant green apple filling interior room",
-          "The Six Elements (1929) - Fragmented portrait with wooden objects",
-          "Decalcomania (1966) - Sky merging into rocky cliffside",
-          "The Treachery of Images (1929) - 'Ceci n'est pas une pipe' inscription",
-          "Time Transfixed (1938) - Train emerging from fireplace",
-          "The Eternally Obvious (1930) - Fragmented and recomposed female nude",
-          "The Art of Living (1967) - Stone relief with bowler-hatted men",
-          "The Memoirs of a Saint (1960) - Candlelit figure in bowler hat",
-          "The Happy Donor (1966) - Landscape reflected in man's head silhouette",
-          "The Difficult Crossing (1926) - Figure struggling through surreal landscape",
-          "The Mysteries of the Horizon (1955) - Figures on beach with floating objects",
-          "The Philosopher's Lamp (1936) - Glowing light bulb with bowler hat",
-          "The Fair Captive (1931) - Nude woman with fish and ship elements",
-          "The Healer (1936) - Figure with candle flame obscuring face",
-          "The Cicerone (1947) - Faceless figure in art gallery with paintings",
-          "The Survivor (1950) - Fragmented classical statue in barren landscape",
-          "The Collective Invention (1934) - Mermaid figure on beach",
-          "The Explanation (1952) - Giant key in room with figure at window"
-        ]
-      }
-    };
 
-    // Update logging to show selected style configuration with improved formatting
+    // Create a safe string for hashing
+    const safeString = artConcept.toString();
+    
+    // Update the project creation with safe string handling
+    const hash = Buffer.from(safeString).toString('base64')
+      .replace(/[+/=]/g, '')
+      .slice(0, 8);
+    
+    const timestamp = new Date().getTime().toString(36).slice(-6);
+    const stylePrefix = selectedCategory.replace('magritte_', '').slice(0, 4);
+    const baseFilename = `${stylePrefix}-${timestamp}-${hash}`;
+    
+    // Create the project configuration
+    const project = createProjectConfig(artConcept, selectedCategory, baseFilename, categoryArtDirection);
+
+    // Update logging to show selected style configuration
     console.log(`\n🎨 ${selectedCategory.replace('magritte_', '').replace('_', ' ')} Style Configuration:`);
     console.log('- Style emphasis:', project.artDirection.styleEmphasis.slice(0, 3).join(', '));
-    console.log(formatColorPalette(project.artDirection.colorPalette, 10)); // Show first 10 colors
+    console.log(formatColorPalette(project.artDirection.colorPalette, 10));
     
     // Run the art project using the multi-agent system
     console.log(`\n🖼️ Generating Magritte-style portrait art using multi-agent collaboration...`);
@@ -1058,4 +1032,49 @@ function getStyleFromArtDirection(artDirection: any, style: ArtistStyle = 'magri
   }
   
   return styleManager.getStyle(style);
+}
+
+/**
+ * Formats a color palette for display with proper formatting and grouping
+ * @param colors Array of color strings
+ * @param maxDisplay Maximum number of colors to display (optional)
+ * @returns Formatted string representation of the color palette
+ */
+function formatColorPalette(colors: string[], maxDisplay?: number): string {
+  if (!colors || colors.length === 0) {
+    return 'No colors defined';
+  }
+
+  const displayColors = maxDisplay ? colors.slice(0, maxDisplay) : colors;
+  const remaining = maxDisplay && colors.length > maxDisplay ? colors.length - maxDisplay : 0;
+
+  const formattedColors = displayColors.map(color => {
+    // Clean up the color name and ensure proper formatting
+    const cleanColor = color.trim()
+      .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between camelCase
+      .replace(/_/g, ' ') // Replace underscores with spaces
+      .replace(/\s+/g, ' '); // Normalize spaces
+
+    // Check for RGB values and format them nicely
+    const rgbMatch = cleanColor.match(/\(RGB:\s*(\d+),\s*(\d+),\s*(\d+)\)/);
+    if (rgbMatch) {
+      const [_, r, g, b] = rgbMatch;
+      return `\n  - ${cleanColor.split('(')[0].trim()} (🎨 RGB: ${r}, ${g}, ${b})`;
+    }
+
+    // Check for Pantone values
+    const pantoneMatch = cleanColor.match(/\(Pantone [^)]+\)/);
+    if (pantoneMatch) {
+      return `\n  - ${cleanColor}`;
+    }
+
+    return `\n  - ${cleanColor}`;
+  }).join('');
+
+  let output = `Color Palette:${formattedColors}`;
+  if (remaining > 0) {
+    output += `\n  ... and ${remaining} more colors`;
+  }
+
+  return output;
 } 

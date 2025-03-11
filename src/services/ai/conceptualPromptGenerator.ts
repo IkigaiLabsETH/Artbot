@@ -164,269 +164,78 @@ interface BourdinElements {
   surreal_elements: string[];
 }
 
-// Style configurations for different artists
+// Style configurations
 const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
-  beeple: {
-    prompt_prefix: "In Beeple's distinctive dystopian digital art style, with monumental scale and technological decay. Create a hyper-detailed interpretation with ",
-    prompt_suffix: ". Use Beeple's characteristic sci-fi elements, pop culture references, and maximalist composition. Style of Everydays series.",
-    negative_prompt: "minimal, traditional, natural, historical, subtle, pastoral, romantic, abstract, vintage, painterly, delicate, classical, organic, conventional, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 50,
-    guidance_scale: 12.0,
-    style_emphasis: {
-      dystopian_influence: 0.8,
-      tech_elements: 0.7,
-      political_commentary: 0.6,
-      pop_culture: 0.5
-    }
-  },
-  xcopy: {
-    prompt_prefix: "In XCOPY's distinctive glitch art style, with dark surrealism and crypto punk aesthetic. Create a stark, corrupted interpretation with ",
-    prompt_suffix: ". Use XCOPY's characteristic glitch effects, death motifs, and minimal composition. Style of Right-click and Save As guy.",
-    negative_prompt: "realistic, natural, smooth, peaceful, traditional, clean, organic, decorative, photorealistic, gentle, soft, harmonious, balanced, conventional, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 45,
-    guidance_scale: 13.0,
-    style_emphasis: {
-      glitch_art: 0.9,
-      crypto_punk: 0.8,
-      dark_surrealism: 0.7,
-      digital_decay: 0.6
-    }
-  },
-  cherniak: {
-    prompt_prefix: "In Dmitri Cherniak's distinctive generative art style, with mathematical precision and algorithmic patterns. Create a systematic interpretation with ",
-    prompt_suffix: ". Use Cherniak's characteristic geometric elements, wrapped strings, and minimal composition. Style of Ringers series.",
-    negative_prompt: "organic, hand-drawn, textural, natural, expressive, emotional, random, decorative, figurative, painterly, loose, undefined, arbitrary, uncontrolled, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
+  magritte: {
+    prompt_prefix: "In René Magritte's distinctive surrealist style, with philosophical depth and pristine execution. Create a metaphysical interpretation with ",
+    prompt_suffix: ". Use Magritte's characteristic clean technique, conceptual paradoxes, and dreamlike clarity. Style of The Son of Man and The Empire of Light.",
+    negative_prompt: "expressionistic, loose, textural, abstract, gestural, emotional, chaotic, random, aggressive, messy, imperfect, rough, visible brushstrokes, painterly, modern technology, digital elements, contemporary objects",
     num_inference_steps: 40,
-    guidance_scale: 11.5,
+    guidance_scale: 10.0,
     style_emphasis: {
-      generative_algorithms: 0.9,
-      mathematical_precision: 0.8,
-      geometric_minimalism: 0.7,
-      systematic_variation: 0.6
-    }
-  },
-  hopper: {
-    prompt_prefix: "In Edward Hopper's distinctive American realist style, with dramatic light and shadow and urban solitude. Create a contemplative interpretation with ",
-    prompt_suffix: ". Use Hopper's characteristic architectural geometry, psychological atmosphere, and precise observation. Style of Nighthawks and Early Sunday Morning.",
-    negative_prompt: "busy, crowded, chaotic, abstract, expressionist, decorative, romantic, sentimental, impressionist, loose, emotional, dramatic, fantasy, surreal, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      psychological_realism: 0.9,
-      urban_solitude: 0.8,
-      dramatic_lighting: 0.8,
-      architectural_geometry: 0.7,
-      emotional_isolation: 0.7
-    }
-  },
-  picasso: {
-    prompt_prefix: "In Picasso's distinctive cubist style, with geometric fragmentation and multiple perspectives. Create a bold interpretation with ",
-    prompt_suffix: ". Use Picasso's characteristic angular forms, overlapping planes, and revolutionary composition. Style of Les Demoiselles d'Avignon and Guernica.",
-    negative_prompt: "realistic, traditional, photographic, conventional, decorative, naturalistic, symmetrical, perspective-correct, detailed, smooth, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 45,
-    guidance_scale: 12.0,
-    style_emphasis: {
-      cubist_fragmentation: 0.9,
-      geometric_abstraction: 0.8,
-      multiple_perspectives: 0.8,
-      bold_composition: 0.7
-    }
-  },
-  warhol: {
-    prompt_prefix: "In Andy Warhol's iconic pop art style, with bold colors and commercial imagery. Create a contemporary interpretation with ",
-    prompt_suffix: ". Use Warhol's characteristic repetition, screen-print aesthetic, and vibrant color palette. Style of Campbell's Soup Cans and Marilyn Diptych.",
-    negative_prompt: "subtle, painterly, traditional, natural, muted, complex, detailed, realistic, organic, classical, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      pop_art_aesthetic: 0.9,
-      commercial_imagery: 0.8,
-      bold_colors: 0.8,
-      repetition: 0.7
-    }
-  },
-  vangogh: {
-    prompt_prefix: "In Van Gogh's expressive post-impressionist style, with dynamic brushwork and emotional intensity. Create a passionate interpretation with ",
-    prompt_suffix: ". Use Van Gogh's characteristic impasto technique, swirling patterns, and vibrant colors. Style of Starry Night and Sunflowers.",
-    negative_prompt: "smooth, realistic, precise, controlled, photographic, flat, minimal, geometric, digital, clean, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 45,
-    guidance_scale: 12.0,
-    style_emphasis: {
-      expressive_brushwork: 0.9,
-      emotional_intensity: 0.8,
-      vibrant_color: 0.8,
-      swirling_patterns: 0.7
-    }
-  },
-  mondrian: {
-    prompt_prefix: "In Mondrian's neo-plastic style, with pure geometric abstraction and primary colors. Create a balanced interpretation with ",
-    prompt_suffix: ". Use Mondrian's characteristic grid structure, primary color blocks, and mathematical harmony. Style of Composition with Red, Blue, and Yellow.",
-    negative_prompt: "organic, curved, natural, decorative, complex, detailed, representational, textured, chaotic, diagonal, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      geometric_purity: 0.9,
-      primary_colors: 0.8,
-      grid_composition: 0.8,
-      balanced_asymmetry: 0.7
-    }
-  },
-  rothko: {
-    prompt_prefix: "In Rothko's color field style, with luminous rectangular forms and spiritual depth. Create a meditative interpretation with ",
-    prompt_suffix: ". Use Rothko's characteristic floating rectangles, subtle color transitions, and emotional resonance. Style of Orange and Yellow.",
-    negative_prompt: "detailed, representational, linear, geometric, sharp, busy, illustrative, narrative, decorative, patterned, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 45,
-    guidance_scale: 12.0,
-    style_emphasis: {
-      color_field: 0.9,
-      luminous_quality: 0.8,
-      spiritual_depth: 0.8,
-      emotional_impact: 0.7
-    }
-  },
-  kandinsky: {
-    prompt_prefix: "In Kandinsky's abstract expressionist style, with musical rhythm and spiritual geometry. Create a dynamic interpretation with ",
-    prompt_suffix: ". Use Kandinsky's characteristic geometric forms, vibrant colors, and musical composition. Style of Composition VIII.",
-    negative_prompt: "representational, realistic, static, muted, figurative, traditional, symmetrical, photographic, literal, narrative, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 45,
-    guidance_scale: 12.0,
-    style_emphasis: {
-      musical_rhythm: 0.9,
-      spiritual_geometry: 0.8,
-      dynamic_composition: 0.8,
-      color_harmony: 0.7
-    }
-  },
-  malevich: {
-    prompt_prefix: "In Malevich's suprematist style, with pure geometric abstraction and cosmic space. Create a revolutionary interpretation with ",
-    prompt_suffix: ". Use Malevich's characteristic floating forms, dynamic composition, and spiritual geometry. Style of Black Square and White on White.",
-    negative_prompt: "representational, decorative, natural, organic, traditional, realistic, narrative, detailed, textured, conventional, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      suprematist_purity: 0.9,
-      geometric_abstraction: 0.8,
-      cosmic_space: 0.8,
-      revolutionary_form: 0.7
-    }
-  },
-  popova: {
-    prompt_prefix: "In Popova's constructivist style, with dynamic spatial organization and architectural rhythm. Create a revolutionary interpretation with ",
-    prompt_suffix: ". Use Popova's characteristic geometric forms, spatial force lines, and revolutionary composition. Style of Space Force Construction.",
-    negative_prompt: "decorative, naturalistic, traditional, passive, static, organic, representational, ornamental, conventional, narrative, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      constructivist_form: 0.9,
-      spatial_dynamics: 0.8,
-      revolutionary_design: 0.8,
-      architectural_rhythm: 0.7
-    }
-  },
-  cartierbresson: {
-    prompt_prefix: "In Cartier-Bresson's decisive moment style, with perfect timing and geometric precision. Create a spontaneous interpretation with ",
-    prompt_suffix: ". Use Cartier-Bresson's characteristic geometric composition, street photography aesthetic, and decisive moment timing. Style of Behind the Gare Saint-Lazare.",
-    negative_prompt: "posed, artificial, staged, manipulated, digital, processed, filtered, contrived, forced, unnatural, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      decisive_moment: 0.9,
-      geometric_composition: 0.8,
-      street_photography: 0.8,
-      spontaneous_timing: 0.7
-    }
-  },
-  arbus: {
-    prompt_prefix: "In Diane Arbus's distinctive documentary style, with psychological intensity and social observation. Create a revealing interpretation with ",
-    prompt_suffix: ". Use Arbus's characteristic direct gaze, social marginality, and square format composition. Style of Identical Twins and Jewish Giant.",
-    negative_prompt: "glamorous, superficial, conventional, posed, artificial, flattering, decorative, sentimental, romantic, idealized, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      psychological_depth: 0.9,
-      social_documentation: 0.8,
-      direct_confrontation: 0.8,
-      square_composition: 0.7
-    }
-  },
-  avedon: {
-    prompt_prefix: "In Richard Avedon's stark portrait style, with minimalist white backgrounds and psychological intensity. Create a revealing interpretation with ",
-    prompt_suffix: ". Use Avedon's characteristic stark lighting, minimalist composition, and psychological depth. Style of In the American West.",
-    negative_prompt: "cluttered, decorative, environmental, soft, romantic, painterly, atmospheric, busy, complex, ornate, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      stark_minimalism: 0.9,
-      psychological_intensity: 0.8,
-      sharp_detail: 0.8,
-      white_background: 0.7
-    }
-  },
-  eggleston: {
-    prompt_prefix: "In William Eggleston's pioneering color style, with democratic vision and everyday beauty. Create a compelling interpretation with ",
-    prompt_suffix: ". Use Eggleston's characteristic saturated color, democratic subject matter, and precise composition. Style of The Red Ceiling and Memphis.",
-    negative_prompt: "black and white, monochrome, staged, artificial, dramatic, theatrical, posed, contrived, forced, unnatural, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      democratic_vision: 0.9,
-      color_intensity: 0.8,
-      everyday_beauty: 0.8,
-      precise_composition: 0.7
-    }
-  },
-  leibovitz: {
-    prompt_prefix: "In Annie Leibovitz's dramatic portrait style, with theatrical lighting and conceptual narrative. Create a powerful interpretation with ",
-    prompt_suffix: ". Use Leibovitz's characteristic dramatic lighting, environmental context, and narrative depth. Style of Vanity Fair portraits.",
-    negative_prompt: "candid, snapshot, casual, unplanned, spontaneous, documentary, unposed, natural, simple, understated, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      dramatic_lighting: 0.9,
-      conceptual_narrative: 0.8,
-      environmental_context: 0.8,
-      theatrical_staging: 0.7
-    }
-  },
-  coopergorfer: {
-    prompt_prefix: "In Cooper & Gorfer's dreamlike narrative style, with layered compositions and cultural storytelling. Create an ethereal interpretation with ",
-    prompt_suffix: ". Use Cooper & Gorfer's characteristic layered imagery, cultural elements, and dreamlike atmosphere. Style of Between These Folded Walls, Utopia.",
-    negative_prompt: "documentary, realistic, straightforward, unprocessed, literal, simple, stark, harsh, mundane, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      layered_composition: 0.9,
-      cultural_narrative: 0.8,
-      dreamlike_quality: 0.8,
-      ethereal_atmosphere: 0.7
-    }
-  },
-  vonwong: {
-    prompt_prefix: "In Benjamin Von Wong's epic environmental style, with dramatic staging and social impact. Create a powerful interpretation with ",
-    prompt_suffix: ". Use Von Wong's characteristic epic scale, environmental message, and dramatic lighting. Style of his environmental activism work.",
-    negative_prompt: "simple, understated, casual, candid, natural, unstaged, ordinary, mundane, subtle, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      epic_scale: 0.9,
-      environmental_message: 0.8,
-      dramatic_staging: 0.8,
-      social_impact: 0.7
-    }
-  },
-  bourdin: {
-    prompt_prefix: "In Guy Bourdin's surreal fashion style, with bold color and psychological tension. Create a provocative interpretation with ",
-    prompt_suffix: ". Use Bourdin's characteristic saturated color, narrative mystery, and psychological edge. Style of his Vogue and Charles Jourdan work.",
-    negative_prompt: "natural, documentary, candid, realistic, straightforward, conventional, traditional, expected, apple logo, bitten apple, apple computer logo, apple inc logo, apple brand symbol",
-    num_inference_steps: 40,
-    guidance_scale: 11.0,
-    style_emphasis: {
-      surreal_composition: 0.9,
-      bold_color: 0.8,
-      psychological_tension: 0.8,
-      narrative_mystery: 0.7
+      philosophical_surrealism: 0.95,
+      pristine_execution: 0.9,
+      conceptual_depth: 0.85,
+      metaphysical_mystery: 0.8,
+      dreamlike_clarity: 0.75
     }
   }
+};
+
+// Define Magritte-specific elements
+const MAGRITTE_ELEMENTS = {
+  visual_elements: [
+    "bowler hats",
+    "floating objects",
+    "clouded skies",
+    "mysterious windows",
+    "curtains and frames",
+    "men in suits",
+    "birds and stones",
+    "pipes and everyday objects",
+    "mirrors and reflections",
+    "architectural elements",
+    "precise shadows",
+    "clean surfaces",
+    "metaphysical spaces",
+    "surreal landscapes"
+  ],
+  techniques: [
+    "pristine oil painting",
+    "photorealistic rendering",
+    "clean edges",
+    "perfect shadows",
+    "subtle gradients",
+    "precise detail",
+    "controlled lighting",
+    "smooth surfaces",
+    "invisible brushwork",
+    "traditional glazing"
+  ],
+  concepts: [
+    "philosophical paradox",
+    "reality questioning",
+    "visual poetry",
+    "metaphysical mystery",
+    "symbolic resonance",
+    "conceptual juxtaposition",
+    "surreal logic",
+    "dreamlike atmosphere",
+    "impossible scenarios",
+    "everyday magic"
+  ],
+  compositions: [
+    "perfect central positioning",
+    "clean spatial organization",
+    "precise object placement",
+    "balanced surreal elements",
+    "clear figure-ground relationship",
+    "metaphysical depth",
+    "enigmatic framing",
+    "philosophical staging",
+    "contemplative space",
+    "mysterious perspective"
+  ]
 };
 
 // Add style-specific elements
@@ -1157,101 +966,36 @@ export async function generateConceptualPrompt(
   options: {
     temperature?: number;
     maxTokens?: number;
-    model?: string;
-    category?: ConceptCategory;
-    useFluxPro?: boolean;
-    postPhotoNative?: boolean;
-    style?: string;
   } = {}
 ): Promise<{ prompt: string; creativeProcess: string }> {
   let detailedPrompt = '';
   let creativeProcess = '';
   
-  // Get style-specific configuration
-  const styleConfig = STYLE_CONFIGS[options.style?.toLowerCase() || 'cherniak'];
-  let styleElements;
+  // Get Magritte's style configuration
+  const styleConfig = STYLE_CONFIGS.magritte;
   
-  // Select appropriate style elements
-  switch(options.style?.toLowerCase()) {
-    case 'beeple':
-      styleElements = BEEPLE_ELEMENTS;
-      break;
-    case 'xcopy':
-      styleElements = XCOPY_ELEMENTS;
-      break;
-    case 'cherniak':
-      styleElements = CHERNIAK_ELEMENTS;
-      break;
-    case 'hopper':
-      styleElements = HOPPER_ELEMENTS;
-      break;
-    case 'picasso':
-      styleElements = PICASSO_ELEMENTS;
-      break;
-    case 'warhol':
-      styleElements = WARHOL_ELEMENTS;
-      break;
-    case 'vangogh':
-      styleElements = VANGOGH_ELEMENTS;
-      break;
-    case 'mondrian':
-      styleElements = MONDRIAN_ELEMENTS;
-      break;
-    case 'rothko':
-      styleElements = ROTHKO_ELEMENTS;
-      break;
-    case 'kandinsky':
-      styleElements = KANDINSKY_ELEMENTS;
-      break;
-    case 'malevich':
-      styleElements = MALEVICH_ELEMENTS;
-      break;
-    case 'popova':
-      styleElements = POPOVA_ELEMENTS;
-      break;
-    case 'cartierbresson':
-      styleElements = CARTIERBRESSON_ELEMENTS;
-      break;
-    case 'arbus':
-      styleElements = ARBUS_ELEMENTS;
-      break;
-    case 'avedon':
-      styleElements = AVEDON_ELEMENTS;
-      break;
-    case 'eggleston':
-      styleElements = EGGLESTON_ELEMENTS;
-      break;
-    case 'leibovitz':
-      styleElements = LEIBOVITZ_ELEMENTS;
-      break;
-    case 'coopergorfer':
-      styleElements = COOPERGORFER_ELEMENTS;
-      break;
-    case 'vonwong':
-      styleElements = VONWONG_ELEMENTS;
-      break;
-    case 'bourdin':
-      styleElements = BOURDIN_ELEMENTS;
-      break;
-    default:
-      styleElements = CHERNIAK_ELEMENTS; // Default to Cherniak
-  }
-
   const promptResponse = await aiService.getCompletion({
-    model: options.model || 'claude-3-sonnet-20240229',
+    model: 'claude-3-sonnet-20240229',
     messages: [
       {
         role: 'system',
-        content: `You are a visionary artist working in the style of ${options.style || 'Cherniak'}. 
-        Create a detailed prompt that incorporates the following style elements:
-        ${JSON.stringify(styleElements, null, 2)}
+        content: `You are René Magritte, the master of philosophical surrealism. 
+        Create a detailed prompt that incorporates your distinctive style elements:
+        ${JSON.stringify(MAGRITTE_ELEMENTS, null, 2)}
         
-        Use the style configuration:
-        ${JSON.stringify(styleConfig, null, 2)}`
+        Use your style configuration:
+        ${JSON.stringify(styleConfig, null, 2)}
+        
+        Focus on:
+        1. Philosophical depth and conceptual paradoxes
+        2. Pristine technical execution
+        3. Dreamlike clarity and metaphysical mystery
+        4. Traditional painting techniques
+        5. Surreal juxtapositions of everyday objects`
       },
       {
         role: 'user',
-        content: `Create a deeply expressive prompt for "${concept}" in the style of ${options.style || 'Cherniak'}. Include both the prompt and creative process.`
+        content: `Create a deeply surreal and philosophical prompt for "${concept}" in your distinctive style. Include both the prompt and your creative process.`
       }
     ],
     temperature: options.temperature || 0.85,
@@ -1272,82 +1016,18 @@ export async function generateConceptualPrompt(
       creativeProcess = processMatch[1].trim();
     }
 
-    // Enhance prompt with style-specific elements
-    if (styleElements && detailedPrompt) {
-      // Add random style-specific elements based on the selected style
-      const addStyleElements = (elements: string[], count: number = 2) => {
+    // Enhance prompt with Magritte-specific elements
+    if (detailedPrompt) {
+      const addMagritteElements = (elements: string[], count: number = 2) => {
         return elements
           .sort(() => Math.random() - 0.5)
           .slice(0, count)
           .join(', ');
       };
 
-      let styleEnhancement = '';
+      const styleEnhancement = `, featuring ${addMagritteElements(MAGRITTE_ELEMENTS.visual_elements)}, with ${addMagritteElements(MAGRITTE_ELEMENTS.techniques)}, incorporating ${addMagritteElements(MAGRITTE_ELEMENTS.concepts)}`;
       
-      switch(options.style?.toLowerCase()) {
-        case 'beeple':
-          styleEnhancement = `, featuring ${addStyleElements(BEEPLE_ELEMENTS.dystopian_scenes)}, with ${addStyleElements(BEEPLE_ELEMENTS.tech_elements)}, incorporating ${addStyleElements(BEEPLE_ELEMENTS.political_elements)}`;
-          break;
-        case 'xcopy':
-          styleEnhancement = `, with ${addStyleElements(XCOPY_ELEMENTS.glitch_effects)}, featuring ${addStyleElements(XCOPY_ELEMENTS.dark_themes)}, incorporating ${addStyleElements(XCOPY_ELEMENTS.digital_artifacts)}`;
-          break;
-        case 'cherniak':
-          styleEnhancement = `, with ${addStyleElements(CHERNIAK_ELEMENTS.geometric_forms)}, featuring ${addStyleElements(CHERNIAK_ELEMENTS.algorithmic_patterns)}, incorporating ${addStyleElements(CHERNIAK_ELEMENTS.mathematical_elements)}`;
-          break;
-        case 'hopper':
-          styleEnhancement = `, with ${addStyleElements(HOPPER_ELEMENTS.lighting_elements)}, featuring ${addStyleElements(HOPPER_ELEMENTS.urban_scenes)}, incorporating ${addStyleElements(HOPPER_ELEMENTS.psychological_elements)}`;
-          break;
-        case 'picasso':
-          styleEnhancement = `, with ${addStyleElements(PICASSO_ELEMENTS.cubist_forms)}, featuring ${addStyleElements(PICASSO_ELEMENTS.geometric_elements)}, incorporating ${addStyleElements(PICASSO_ELEMENTS.abstract_figures)}`;
-          break;
-        case 'warhol':
-          styleEnhancement = `, with ${addStyleElements(WARHOL_ELEMENTS.pop_culture)}, incorporating ${addStyleElements(WARHOL_ELEMENTS.repetition_elements)}`;
-          break;
-        case 'vangogh':
-          styleEnhancement = `, with ${addStyleElements(VANGOGH_ELEMENTS.brushwork_elements)}, incorporating ${addStyleElements(VANGOGH_ELEMENTS.color_elements)}`;
-          break;
-        case 'mondrian':
-          styleEnhancement = `, with ${addStyleElements(MONDRIAN_ELEMENTS.geometric_elements)}, featuring ${addStyleElements(MONDRIAN_ELEMENTS.color_blocks)}, incorporating ${addStyleElements(MONDRIAN_ELEMENTS.compositional_elements)}`;
-          break;
-        case 'rothko':
-          styleEnhancement = `, with ${addStyleElements(ROTHKO_ELEMENTS.color_fields)}, featuring ${addStyleElements(ROTHKO_ELEMENTS.atmospheric_elements)}, incorporating ${addStyleElements(ROTHKO_ELEMENTS.emotional_elements)}`;
-          break;
-        case 'kandinsky':
-          styleEnhancement = `, with ${addStyleElements(KANDINSKY_ELEMENTS.abstract_forms)}, featuring ${addStyleElements(KANDINSKY_ELEMENTS.musical_elements)}, incorporating ${addStyleElements(KANDINSKY_ELEMENTS.geometric_shapes)}`;
-          break;
-        case 'malevich':
-          styleEnhancement = `, with ${addStyleElements(MALEVICH_ELEMENTS.suprematist_forms)}, featuring ${addStyleElements(MALEVICH_ELEMENTS.spatial_elements)}, incorporating ${addStyleElements(MALEVICH_ELEMENTS.color_elements)}`;
-          break;
-        case 'popova':
-          styleEnhancement = `, with ${addStyleElements(POPOVA_ELEMENTS.constructivist_forms)}, featuring ${addStyleElements(POPOVA_ELEMENTS.spatial_elements)}, incorporating ${addStyleElements(POPOVA_ELEMENTS.dynamic_elements)}`;
-          break;
-        case 'cartierbresson':
-          styleEnhancement = `, with ${addStyleElements(CARTIERBRESSON_ELEMENTS.decisive_moments)}, featuring ${addStyleElements(CARTIERBRESSON_ELEMENTS.composition_elements)}, incorporating ${addStyleElements(CARTIERBRESSON_ELEMENTS.street_elements)}`;
-          break;
-        case 'arbus':
-          styleEnhancement = `, with ${addStyleElements(ARBUS_ELEMENTS.portrait_elements)}, featuring ${addStyleElements(ARBUS_ELEMENTS.psychological_elements)}, incorporating ${addStyleElements(ARBUS_ELEMENTS.social_elements)}`;
-          break;
-        case 'avedon':
-          styleEnhancement = `, with ${addStyleElements(AVEDON_ELEMENTS.portrait_style)}, featuring ${addStyleElements(AVEDON_ELEMENTS.lighting_elements)}, incorporating ${addStyleElements(AVEDON_ELEMENTS.psychological_elements)}`;
-          break;
-        case 'eggleston':
-          styleEnhancement = `, with ${addStyleElements(EGGLESTON_ELEMENTS.color_elements)}, featuring ${addStyleElements(EGGLESTON_ELEMENTS.composition_elements)}, incorporating ${addStyleElements(EGGLESTON_ELEMENTS.everyday_elements)}`;
-          break;
-        case 'leibovitz':
-          styleEnhancement = `, with ${addStyleElements(LEIBOVITZ_ELEMENTS.portrait_elements)}, featuring ${addStyleElements(LEIBOVITZ_ELEMENTS.lighting_elements)}, incorporating ${addStyleElements(LEIBOVITZ_ELEMENTS.conceptual_elements)}`;
-          break;
-        case 'coopergorfer':
-          styleEnhancement = `, with ${addStyleElements(COOPERGORFER_ELEMENTS.narrative_elements)}, featuring ${addStyleElements(COOPERGORFER_ELEMENTS.composition_elements)}, incorporating ${addStyleElements(COOPERGORFER_ELEMENTS.cultural_elements)}`;
-          break;
-        case 'vonwong':
-          styleEnhancement = `, with ${addStyleElements(VONWONG_ELEMENTS.epic_elements)}, featuring ${addStyleElements(VONWONG_ELEMENTS.environmental_elements)}, incorporating ${addStyleElements(VONWONG_ELEMENTS.impact_elements)}`;
-          break;
-        case 'bourdin':
-          styleEnhancement = `, with ${addStyleElements(BOURDIN_ELEMENTS.fashion_elements)}, featuring ${addStyleElements(BOURDIN_ELEMENTS.color_elements)}, incorporating ${addStyleElements(BOURDIN_ELEMENTS.surreal_elements)}`;
-          break;
-      }
-      
-      detailedPrompt = `${detailedPrompt}${styleEnhancement}`;
+      detailedPrompt = `${styleConfig.prompt_prefix}${detailedPrompt}${styleEnhancement}${styleConfig.prompt_suffix}`;
     }
   }
 

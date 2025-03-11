@@ -1,63 +1,43 @@
 import { ArtDirection } from '../types/ArtDirection.js';
 
-export const magritteStyle: ArtDirection = {
+export const MAGRITTE_STYLE: ArtDirection = {
   styleEmphasis: [
-    // Magritte's Distinctive Style
     "philosophical surrealism",
-    "precise photorealistic technique",
-    "metaphysical questioning",
-    "dreamlike clarity",
-    "conceptual juxtaposition",
-    "poetic surrealism",
+    "paradoxical realism",
+    "symbolic juxtaposition",
     "mysterious atmosphere",
-    "symbolic resonance",
-    "paradoxical imagery",
-    "clean technical execution",
-    "enigmatic presence",
-    "metaphysical stillness",
-    "surreal logic",
-    "precise object relationships",
-    "contemplative composition"
+    "theatrical staging",
+    "poetic displacement",
+    "dreamlike composition",
+    "metaphysical questioning",
+    "spatial illusion",
+    "precise execution"
   ],
   visualElements: [
-    // Magritte's Visual Language with Modern Hat Variations
+    "bowler hats",
     "floating objects",
-    "vintage fedoras",
-    "classic newsboy caps",
-    "wool beanies",
-    "wide-brim felt hats",
-    "flat caps",
-    "slouchy knit caps",
-    "porkpie hats",
-    "impossible scale relationships",
-    "mysterious windows",
-    "curtains and frames",
-    "clouds and sky elements",
-    "men in suits",
-    "birds and stones",
-    "mirrors and reflections",
-    "pipes and everyday objects",
-    "architectural elements",
-    "precise shadows",
-    "clean surfaces",
-    "metaphysical spaces",
-    "surreal landscapes"
+    "clouded skies",
+    "mysterious doorways",
+    "impossible windows",
+    "billowing curtains",
+    "mirror reflections",
+    "geometric forms",
+    "dramatic shadows",
+    "symbolic objects"
   ],
   colorPalette: [
-    // Magritte's Refined Palette
-    "deep sky blue (RGB: 135, 206, 235)",
-    "crisp daylight blue (RGB: 176, 196, 222)",
-    "clean grey tones (RGB: 128, 128, 128)",
-    "pure black (RGB: 0, 0, 0)",
-    "pristine white (RGB: 255, 255, 255)",
+    "belgian sky blue (RGB: 135, 206, 235)",
+    "deep twilight (RGB: 47, 79, 79)",
+    "dramatic red (RGB: 138, 7, 7)",
+    "spiritual yellow (RGB: 255, 223, 0)",
+    "metaphysical green (RGB: 126, 186, 86)",
+    "mysterious grey (RGB: 200, 200, 200)",
+    "pure black (RGB: 28, 28, 28)",
+    "pristine white (RGB: 245, 245, 245)",
     "subtle earth tones (RGB: 193, 154, 107)",
-    "clear cloud white (RGB: 236, 236, 236)",
-    "precise shadow tones (RGB: 47, 79, 79)",
-    "clean highlight blue (RGB: 230, 230, 250)",
-    "pure neutral tones (RGB: 210, 180, 140)"
+    "clear cloud white (RGB: 236, 236, 236)"
   ],
   compositionGuidelines: [
-    // Magritte's Compositional Approach
     "perfect central positioning",
     "clean spatial organization",
     "precise object placement",
@@ -67,28 +47,154 @@ export const magritteStyle: ArtDirection = {
     "enigmatic framing",
     "philosophical staging",
     "precise symmetry",
-    "contemplative space",
-    "clean compositional lines",
-    "surreal spatial logic",
-    "careful object isolation",
-    "mysterious depth",
-    "paradoxical perspective"
+    "contemplative space"
   ],
-  moodAndTone: "Create a precise Magritte-style surrealist interpretation that embodies his philosophical questioning of reality. The execution must demonstrate his characteristic pristine technique and conceptual depth. Every element should contribute to a sense of metaphysical mystery, rendered with his signature clean, dreamlike clarity.",
+  moodAndTone: "Create a deeply surreal and metaphysical atmosphere where familiar objects become mysterious through paradoxical placement and symbolic resonance. Each piece should challenge perception through impossible juxtapositions while maintaining pristine technical execution and philosophical depth.",
+  
+  // Enhanced Magritte-specific Context
+  magritteContext: {
+    philosophicalFramework: {
+      beliefs: [
+        "The treachery of representation",
+        "The gap between words and things",
+        "The mystery of the ordinary",
+        "The questioning of perceived reality",
+        "The power of paradox in revealing truth"
+      ],
+      theories: [
+        "Object displacement theory",
+        "Visual-linguistic paradox theory",
+        "Reality-representation dialectic",
+        "Metaphysical window theory",
+        "Object-identity dissociation"
+      ],
+      conceptualFrameworks: [
+        "The pipe is not a pipe",
+        "The window as metaphysical portal",
+        "The bowler hat as anonymity symbol",
+        "The apple as obstruction of truth",
+        "The bird as transformation symbol"
+      ],
+      paradoxes: [
+        "Image-reality contradiction",
+        "Day-night coexistence",
+        "Scale-context dissonance",
+        "Object-identity confusion",
+        "Space-time discontinuity"
+      ],
+      visualDialectics: [
+        "Interior vs. exterior",
+        "Presence vs. absence",
+        "Reality vs. representation",
+        "Visible vs. hidden",
+        "Unity vs. fragmentation"
+      ]
+    },
+    visualCategories: [
+      {
+        category: "object_displacement",
+        characteristics: [
+          "Objects floating in impossible spaces",
+          "Everyday items in surreal contexts",
+          "Displacement of familiar elements"
+        ],
+        keyElements: [
+          "Floating rocks",
+          "Levitating objects",
+          "Misplaced everyday items"
+        ],
+        technicalRequirements: [
+          "Perfect shadow casting",
+          "Realistic object rendering",
+          "Precise spatial relationships"
+        ]
+      },
+      {
+        category: "window_paradox",
+        characteristics: [
+          "Windows showing impossible views",
+          "Recursive window imagery",
+          "Interior-exterior confusion"
+        ],
+        keyElements: [
+          "Canvas-within-canvas",
+          "Impossible perspectives",
+          "Seamless transitions"
+        ],
+        technicalRequirements: [
+          "Perfect perspective matching",
+          "Seamless edge integration",
+          "Consistent lighting across planes"
+        ]
+      }
+    ],
+    technicalExecution: {
+      renderingTechniques: [
+        "Photorealistic object rendering",
+        "Sharp edge definition",
+        "Smooth gradients for sky",
+        "Perfect shadow casting",
+        "Precise perspective manipulation"
+      ],
+      materialPreparation: [
+        "Oil paint with minimal texture",
+        "Canvas with smooth preparation",
+        "Controlled brushwork for invisibility",
+        "Precise underpainting technique",
+        "Layered glazing for depth"
+      ],
+      workingMethodology: [
+        "Preliminary sketches for composition",
+        "Careful object placement studies",
+        "Multiple perspective calculations",
+        "Systematic color relationships",
+        "Precise edge control"
+      ],
+      qualityMetrics: [
+        "Edge precision",
+        "Surface smoothness",
+        "Shadow accuracy",
+        "Color consistency",
+        "Perspective correctness"
+      ]
+    },
+    creativeMetrics: {
+      metaphysicalDepth: {
+        philosophicalResonance: 0.95,
+        conceptualComplexity: 0.90,
+        paradoxicalImpact: 0.95
+      },
+      technicalExecution: {
+        objectPrecision: 0.98,
+        edgeControl: 0.97,
+        perspectiveAccuracy: 0.95
+      },
+      compositionBalance: {
+        spatialHarmony: 0.92,
+        objectPlacement: 0.95,
+        scaleRelationships: 0.93
+      },
+      symbolicPower: {
+        objectSymbolism: 0.94,
+        narrativeDepth: 0.91,
+        metaphoricalResonance: 0.93
+      }
+    }
+  },
+  
   references: [
-    "Magritte's 'The Son of Man' (1964) - for mysterious presence",
-    "Magritte's 'The False Mirror' (1929) - for surreal eye treatment",
-    "Magritte's 'The Treachery of Images' (1929) - for conceptual depth",
-    "Magritte's 'The Empire of Light' (1953-54) - for paradoxical light",
-    "Magritte's 'The Human Condition' (1933) - for metaphysical space",
-    "Magritte's 'Time Transfixed' (1938) - for surreal logic",
-    "Magritte's 'The Blank Signature' (1965) - for clean execution",
-    "Magritte's 'The Key to Dreams' (1930) - for symbolic relationships",
-    "Magritte's 'Personal Values' (1952) - for scale relationships",
-    "Magritte's 'The Castle of the Pyrenees' (1959) - for impossible juxtaposition"
+    "The Son of Man (1964)",
+    "The Treachery of Images (1929)",
+    "The Empire of Light (1953-54)",
+    "The Human Condition (1933)",
+    "Time Transfixed (1938)",
+    "The False Mirror (1929)",
+    "Personal Values (1952)",
+    "Golconda (1953)",
+    "The Listening Room (1952)",
+    "The Key to Dreams (1930)"
   ],
   avoidElements: [
-    // Anti-Magritte Elements
     "expressionistic effects",
     "loose brushwork",
     "textural experimentation",
@@ -98,36 +204,13 @@ export const magritteStyle: ArtDirection = {
     "chaotic composition",
     "random elements",
     "aggressive distortion",
-    "messy technique",
-    "imperfect execution",
-    "rough surfaces",
-    "visible brushstrokes",
-    "painterly effects",
-    "spontaneous elements",
-    // Style Elements to Avoid
-    "impressionistic style",
-    "abstract expressionism",
-    "cubist fragmentation",
-    "fauvist color",
-    "pointillist technique",
-    // General Elements to Avoid
-    "emotional drama",
-    "dynamic movement",
-    "temporal effects",
-    "narrative action",
-    "decorative elements",
-    // Modern Elements to Avoid
-    "contemporary technology",
-    "digital interfaces",
-    "modern machinery",
-    "electronic devices",
-    "current fashion"
+    "messy technique"
   ],
   modelConfig: {
-    prompt_prefix: "In the distinctive style of René Magritte's surrealism, with pristine execution and philosophical depth. Create a surrealist interpretation with ",
-    prompt_suffix: ". Use Magritte's characteristic clean technique, metaphysical questioning, and dreamlike clarity. Style of The Son of Man and The Empire of Light.",
-    negative_prompt: "expressionistic, loose, textural, abstract, gestural, emotional, chaotic, random, aggressive, messy, imperfect, rough, visible brushstrokes, painterly",
-    num_inference_steps: 40,
-    guidance_scale: 10.0
+    prompt_prefix: "In the precise surrealist style of René Magritte, create a metaphysical scene with ",
+    prompt_suffix: ". Maintain photorealistic execution with perfect shadows and clean edges. Style referencing The Son of Man and The Empire of Light.",
+    negative_prompt: "expressionistic, loose, textural, abstract, gestural, emotional, chaotic, random, aggressive, messy, imperfect, rough, visible brushstrokes",
+    num_inference_steps: 50,
+    guidance_scale: 12.0
   }
 }; 

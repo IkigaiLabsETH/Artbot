@@ -40,129 +40,125 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
         outputFormat: "png"
       },
       examplePrompts: [
-        // Pure Oil Painting with Tesla and Bitcoin
-        {
-          prompt: "IKIGAI Pure oil painting in Magritte style: Model S rendered in absolutely flat, unmodulated paint strokes like the stone in 'Castle of the Pyrenees', floating in pristine cerulean sky. Vehicle's metallic surfaces transformed into pure matte oil paint without reflections or shine. Minimalist touchscreen painted as a flat canvas showing Bitcoin patterns, like the painting-within-painting of 'The Human Condition'. Tesla logo and Bitcoin symbols multiplied across pure oil-painted sky like the bowler hats in 'Golconda'. Steering yoke simplified into geometric forms hovering over proof-of-work calculations, painted with the same flatness as objects in 'Personal Values'. Charging port rendered in pure paint strokes without technological detail. Every element executed with Magritte's oil painting technique: pure color fields, perfect flatness, no visible brushwork.",
-          process: "I focused entirely on Magritte's oil painting technique, deliberately avoiding any photorealistic or metallic effects. The Model S is painted with the same flat, unmodulated technique he used for the stone in 'Castle of the Pyrenees'. All technological elements are reduced to pure painted forms, using his characteristic smooth oil technique with absolutely flat color fields. The composition references his masterworks while maintaining the pure painted quality throughout."
-        },
-        {
-          prompt: "IKIGAI Cybertruck in pure Magritte oil technique: angular surfaces painted in flat, unmodulated greys like the buildings in 'Empire of Light', stripped of all metallic qualities. Each panel rendered as a pure geometric form in oil paint, floating in Magritte blue void. Dashboard painted as a flat canvas showing Bitcoin Lightning patterns through a window frame, exactly as in 'The Human Condition'. Tesla yoke reduced to simple painted shapes with Bitcoin symbols rendered in flat gold paint. Charging cables painted with fluid brushstrokes like Magritte's ropes. Every surface executed in pure oil paint without digital or photographic effects, maintaining perfect flatness throughout.",
-          process: "This piece transforms the Cybertruck's metallic surfaces into pure oil paint, using Magritte's technique of absolutely flat, unmodulated color fields. Each technological element is simplified into pure painted forms, avoiding any hint of photorealism. The composition uses his painting-within-painting concept while maintaining the material quality of oil paint throughout."
-        },
-        // Pure Magritte Reference
-        {
-          prompt: "IKIGAI Ultra-close bear portrait channeling 'The Son of Man': face fills exactly 95% of frame, mysterious depth in eyes referencing 'The False Mirror', perfect Magritte-style symmetry, photorealistic fur detail with philosophical weight, metaphysical lighting creating subtle shadows, surrealist undertones in expression, pristine technical execution in oil painting style, deep Magritte blue background, conceptual depth through visual paradox, analog.",
-          process: "This piece directly references Magritte's most iconic works while maintaining his philosophical approach. The composition draws from 'The Son of Man' but focuses entirely on the bear's face, while the treatment of the eyes references 'The False Mirror'. Every element is rendered with Magritte's characteristic precision and clarity, creating a portrait that questions the nature of representation itself."
-        },
-        // Pure Magritte Oil Painting
         {
           prompt: "IKIGAI Pure Magritte oil painting: mysterious window frame rendered in flat, unmodulated paint against twilight sky from 'The Dominion of Light', all reflective surfaces transformed into matte paint. Multiple moons painted as pure circular forms through curtains executed in the style of 'The Human Condition'. Floating bowler hat painted with fluid strokes, every element reduced to pure oil paint forms, maintaining Magritte's perfect flatness and philosophical depth.",
           process: "This piece strictly adheres to Magritte's oil painting technique, deliberately transforming all surfaces into pure painted forms. The window frame is rendered with the same flat, unmodulated approach he used for objects in 'Personal Values', completely avoiding photorealistic effects. Every element is reduced to its essential painted form, using his characteristic technique of pure color fields and perfect flatness."
         },
-        // Hopper-style examples
         {
-          prompt: "IKIGAI Urban solitude in pure Hopper style: empty diner at dawn, dramatic diagonal sunlight through large windows, geometric shadows creating psychological depth, stark architectural simplicity, precise observation of morning light, muted color palette with warm highlights, contemplative atmosphere, pristine technical execution with photorealistic detail, analog.",
-          process: "Drawing directly from Hopper's mastery of urban solitude and light, I focused on creating a psychologically charged space through dramatic morning light. The empty diner and geometric shadows echo Hopper's exploration of modern isolation, while the precise architectural detail and muted palette capture his characteristic style of American realism."
+          prompt: "IKIGAI Magritte-style surrealist scene: perfectly rendered bowler hat floating against cerulean sky, casting impossible shadows on invisible ground. Crystal-clear execution in traditional oil technique, every element painted with absolute flatness. Green apple suspended in perfect stillness, rendered in pure unmodulated paint. Window frame revealing paradoxical night sky in daylight, executed with Magritte's precise technique. No visible brushwork, maintaining pristine surface throughout.",
+          process: "Drawing directly from Magritte's masterful technique, this composition focuses on his signature motifs while maintaining perfect technical execution. Each element is rendered with his characteristic flat, unmodulated paint application, creating a scene that questions reality through pristine oil painting technique."
+        },
+        {
+          prompt: "IKIGAI Classic Magritte paradox: stone castle floating impossibly above tranquil sea, rendered in pure oil paint technique referencing 'The Castle of the Pyrenees'. Perfect blue sky with mathematically arranged clouds, each one painted with unmodulated precision. Mysterious door opening to infinite sky, executed in style of 'The Victory'. Giant green apple occupying impossible scale, painted with absolute flatness like 'The Listening Room'. Every element maintaining Magritte's pristine surface quality.",
+          process: "This composition combines several of Magritte's most powerful motifs and techniques. The floating castle employs his characteristic treatment of weight and gravity, while the door and apple explore his fascination with scale and spatial relationships. Every element is executed with his signature unmodulated paint application."
+        },
+        {
+          prompt: "IKIGAI Pure Magritte technique: man in bowler hat with dove's face, referencing 'The Central Story'. Pristine blue sky background with mathematically precise clouds inspired by 'The Curse'. Traditional canvas texture visible in large areas, every surface painted with absolute flatness. Perfect shadows suggesting metaphysical depth, maintaining Magritte's signature style throughout. Mirror reflecting impossible scene as in 'Not to be Reproduced'.",
+          process: "This piece combines Magritte's most iconic elements with his rigorous painting technique. Each component is executed with the same precise, flat application of paint that characterizes his work, creating a philosophically rich scene through pure painting means."
+        },
+        {
+          prompt: "IKIGAI Magritte spatial paradox: perfectly rendered curtains revealing paradoxical landscape as in 'The Human Condition', painted with absolute flatness. Traditional oil painting approach with no visible brushwork. Room interior transitioning impossibly to exterior sky, executed with unmodulated paint strokes like 'The Domain of Arnheim'. Perfect shadows cast by objects floating in void, maintaining crystal-clear execution throughout. Giant pipe hovering like in 'The Treachery of Images', rendered with pure painted forms.",
+          process: "This composition employs Magritte's characteristic painting technique to create a scene of philosophical depth. Each element is rendered with his precise, flat application of paint, avoiding any photographic effects in favor of pure painted forms. The spatial paradoxes reference his exploration of interior and exterior spaces."
         }
       ],
       postPhotographyStyle: {
         styleEmphasis: [
-          "precise Magritte-style photorealism",
-          "vintage Apple product placement",
-          "surrealist juxtaposition of classic computers",
-          "pristine rendering of original Macintosh",
-          "philosophical contemplation through vintage tech",
-          "clean lines of early Apple design",
-          "mysterious atmospheric depth with retro elements",
-          "conceptual depth with vintage computing",
-          "poetic surrealism in classic Apple products",
-          "symbolic resonance in early Mac interfaces",
-          "extreme close-up of vintage hardware",
-          "absolute photorealistic detail in beige cases",
-          "perfectly smooth vintage plastic surfaces",
-          "razor-sharp screen definition",
-          "masterful rendering of Apple rainbow logo"
+          "precise Magritte-style oil painting",
+          "perfect unmodulated paint surfaces",
+          "traditional canvas texture",
+          "crystal-clear execution",
+          "philosophical surrealism",
+          "metaphysical depth",
+          "pristine technical rendering",
+          "absolute flatness in paint",
+          "perfect shadow execution",
+          "mathematical precision",
+          "mysterious atmospheric quality",
+          "conceptual paradox",
+          "pure painted forms",
+          "traditional oil technique",
+          "perfect color transitions"
         ],
         visualElements: [
-          "floating vintage Macintosh computers",
-          "levitating Apple II displays",
-          "System 6/7 interface elements",
-          "original rainbow Apple logos",
-          "classic Mac keyboards and mice",
-          "Apple IIc portable computer",
-          "Macintosh Portable laptop",
-          "Newton MessagePad PDA",
-          "Apple QuickTake digital camera",
-          "Macintosh Color Classic",
-          "Apple Desktop Bus peripherals",
-          "HyperCard stack graphics",
-          "classic Mac OS splash screens",
-          "Claris software packaging",
-          "Apple Newton 'egg freckles' texture"
+          "floating bowler hats",
+          "mysterious windows",
+          "paradoxical doors",
+          "perfect green apples",
+          "pristine blue skies",
+          "mathematically precise clouds",
+          "impossible shadows",
+          "metaphysical curtains",
+          "surreal landscapes",
+          "floating stones",
+          "mysterious birds",
+          "perfect mirrors",
+          "philosophical pipes",
+          "enigmatic figures",
+          "traditional frames"
         ],
         colorPalette: [
-          "original Macintosh beige (RGB: 235, 228, 215)",
-          "Apple II warm cream (RGB: 245, 238, 225)",
-          "platinum grey (RGB: 190, 190, 190)",
-          "classic Mac OS blue (RGB: 0, 0, 170)",
-          "rainbow logo red (RGB: 255, 59, 48)",
-          "rainbow logo orange (RGB: 255, 149, 0)",
-          "rainbow logo yellow (RGB: 255, 204, 0)",
-          "rainbow logo green (RGB: 76, 217, 100)",
-          "rainbow logo blue (RGB: 0, 122, 255)",
-          "rainbow logo purple (RGB: 88, 86, 214)",
-          "System 7 window grey (RGB: 204, 204, 204)",
-          "Apple II green phosphor (RGB: 51, 255, 51)",
-          "early Mac menu bar white (RGB: 255, 255, 255)",
-          "classic Mac shadow grey (RGB: 128, 128, 128)",
-          "vintage keyboard beige (RGB: 225, 220, 205)"
+          "Magritte sky blue (RGB: 135, 206, 235)",
+          "deep shadow grey (RGB: 74, 74, 74)",
+          "perfect apple green (RGB: 86, 130, 89)",
+          "pristine cloud white (RGB: 245, 245, 245)",
+          "rich earth brown (RGB: 139, 69, 19)",
+          "stone grey (RGB: 128, 128, 128)",
+          "deep night blue (RGB: 25, 25, 112)",
+          "matte black (RGB: 28, 28, 28)",
+          "pure canvas cream (RGB: 255, 253, 208)",
+          "shadow blue (RGB: 68, 85, 90)",
+          "pale sky (RGB: 176, 196, 222)",
+          "deep foliage (RGB: 47, 79, 79)",
+          "twilight purple (RGB: 78, 81, 128)",
+          "morning grey (RGB: 169, 169, 169)",
+          "horizon blue (RGB: 137, 207, 240)"
         ],
         compositionGuidelines: [
-          "perfect central positioning of vintage hardware",
-          "mysterious depth through precise product placement",
-          "metaphysical balance of classic Apple elements",
-          "surreal scale relationships with retro tech",
-          "philosophical use of vintage interface elements",
-          "product must fill 60-80% of frame",
-          "screens positioned for maximum impact",
-          "cables arranged in impossible patterns",
+          "perfect central positioning",
+          "mathematical balance",
+          "mysterious depth through precise placement",
+          "metaphysical arrangement of elements",
+          "surreal scale relationships",
+          "philosophical use of space",
+          "object must fill 60-80% of frame",
+          "precise horizon placement",
+          "impossible shadows",
           "absolute symmetrical balance",
           "perfect square 1:1 aspect ratio",
-          "dramatic lighting on beige cases",
-          "geometric arrangement of interface elements",
-          "precise perspective on keyboards",
-          "psychological use of empty space",
-          "stark shadow patterns on vintage plastic"
+          "traditional painting perspective",
+          "pristine geometric arrangement",
+          "careful negative space",
+          "stark shadow patterns"
         ],
-        moodAndTone: "Create scenes that embody the philosophical wonder of Magritte's surrealism through the lens of vintage Apple technology. Each piece should celebrate the clean design and innovative spirit of early Apple products while maintaining the mysterious and contemplative nature of Belgian surrealism. The execution must demonstrate pristine technical precision while suggesting deeper metaphysical meanings through impossible arrangements and juxtapositions of classic Apple hardware and interfaces.",
+        moodAndTone: "Create scenes that embody the philosophical wonder of Magritte's surrealism through pure oil painting technique. Each piece should celebrate his precise, unmodulated paint application while maintaining the mysterious and contemplative nature of Belgian surrealism. The execution must demonstrate pristine technical precision while suggesting deeper metaphysical meanings through impossible arrangements and juxtapositions.",
         references: [
-          "Original 1984 Macintosh - for iconic form",
-          "Apple II series - for vintage computing aesthetic",
-          "System 6/7 interface - for classic GUI elements",
-          "Original rainbow Apple logo - for brand identity",
-          "Macintosh Plus - for evolved design language",
-          "Apple Extended Keyboard - for peripheral aesthetics",
-          "ImageWriter printer - for complete ecosystem",
-          "HyperCard interface - for software aesthetics",
-          "Apple II green phosphor display - for early computing",
-          "Classic Mac OS elements - for interface design"
+          "'The Son of Man' - for iconic composition",
+          "'The Human Condition' - for paradoxical windows",
+          "'The Dominion of Light' - for impossible lighting",
+          "'Empire of Light' - for day/night paradox",
+          "'The False Mirror' - for scale and mystery",
+          "'Golconda' - for repeated elements",
+          "'The Castle of the Pyrenees' - for floating objects",
+          "'Personal Values' - for scale distortion",
+          "'The Treachery of Images' - for philosophical depth",
+          "'Time Transfixed' - for impossible locomotion"
         ],
         avoidElements: [
-          "modern Apple products",
-          "contemporary interfaces",
-          "flat design elements",
-          "LCD displays",
-          "modern peripherals",
-          "USB ports",
-          "wireless devices",
-          "aluminum surfaces",
-          "glass screens",
-          "touch interfaces",
-          "modern operating systems",
-          "current Apple logo",
-          "retina displays",
-          "modern keyboards",
-          "contemporary mice"
+          "visible brushstrokes",
+          "expressionist elements",
+          "abstract forms",
+          "bright unrealistic colors",
+          "chaotic compositions",
+          "heavy textures",
+          "modern references",
+          "digital effects",
+          "photographic qualities",
+          "contemporary objects",
+          "non-traditional materials",
+          "gestural painting",
+          "impasto technique",
+          "loose handling",
+          "spontaneous effects"
         ]
       }
     };
@@ -326,7 +322,7 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
     }
     
     // Save the image URL to a file
-    const baseFilename = project.outputFilename || `flux-vintage-apple-${project.title.replace(/\s+/g, '-').toLowerCase()}`;
+    const baseFilename = project.outputFilename || `flux-magritte-${project.title.replace(/\s+/g, '-').toLowerCase()}`;
     const outputUrlPath = path.join(this.outputDir, `${baseFilename}.txt`);
     
     // Ensure the directory exists for the URL file
@@ -342,11 +338,11 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
     // Return the result
     return {
       id: uuidv4(),
-      title: `${project.title} - Vintage Apple Surrealism`,
-      description: `A surrealist artwork inspired by vintage Apple aesthetics and Magritte's style.`,
+      title: `${project.title} - Magritte Surrealism`,
+      description: `A surrealist artwork in the style of René Magritte.`,
       prompt: detailedPrompt,
       imageUrl: imageUrl,
-      creativeProcess: `Generated using ${model} with vintage Apple computing aesthetics and Belgian surrealist style.`,
+      creativeProcess: `Generated using ${model} in the style of Belgian surrealism, following Magritte's philosophical approach.`,
       parameters: {
         width,
         height,
@@ -416,58 +412,13 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
       `Example ${i+1}:\nPrompt: ${ex.prompt}\nCreative Process: ${ex.process}`
     ).join('\n\n');
     
-    // Determine if we should use post-photography style
-    const isPostPhotography = project.isPostPhotoNative || 
-                             (project.description && 
-                              (project.description.toLowerCase().includes('fashion') || 
-                               project.description.toLowerCase().includes('bourdin') || 
-                               project.description.toLowerCase().includes('newton') || 
-                               project.description.toLowerCase().includes('glamour')));
-    
     // Generate a detailed prompt based on the project and style
     const promptResponse = await this.aiService.getCompletion({
       model: 'claude-3-sonnet-20240229',
       messages: [
         {
           role: 'system',
-          content: isPostPhotography ? 
-            // Post-photography system prompt
-            `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate modern Tesla aesthetics through the lens of Belgian surrealism.
-
-Your prompts should celebrate the iconic design and innovative spirit of Tesla vehicles while maintaining the mysterious and contemplative nature of Belgian surrealism. Focus on Tesla's cutting-edge vehicles, software interfaces, charging systems, and period-accurate details from across the Tesla ecosystem.
-
-For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "electric vehicles", "modern Tesla", "autonomous technology", and "electric" for better quality.
-
-Here are the key elements to emphasize in your prompts:
-${this.state.context.postPhotographyStyle.styleEmphasis.map(item => `- ${item}`).join('\n')}
-
-Visual elements to incorporate:  
-${this.state.context.postPhotographyStyle.visualElements.map(item => `- ${item}`).join('\n')}
-
-Color palette to utilize:
-${this.formatColorPalette(this.state.context.postPhotographyStyle.colorPalette)}
-
-Composition guidelines:
-${this.state.context.postPhotographyStyle.compositionGuidelines.map(item => `- ${item}`).join('\n')}
-
-Mood and tone:  
-${this.state.context.postPhotographyStyle.moodAndTone}
-
-References to draw from:
-${this.state.context.postPhotographyStyle.references.map(item => `- ${item}`).join('\n')}
-
-Elements to avoid:  
-${this.state.context.postPhotographyStyle.avoidElements.map(item => `- ${item}`).join('\n')}
-
-Create a prompt that:
-1. Celebrates the innovation of Tesla technology with surrealist wonder  
-2. Incorporates a wide range of modern vehicles, software, and design elements
-3. Suggests philosophical depth through impossible arrangements
-4. Emphasizes pristine technical execution  
-5. Maintains the mysterious and contemplative nature of Belgian surrealism`
-            :
-            // Magritte-style system prompt
-            `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's surrealist style.
+          content: `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's surrealist style.
 
 Your prompts should embody Magritte's philosophical approach to surrealism, creating scenes that question reality while celebrating the mystery of everyday objects. Focus on pristine execution, impossible arrangements, and metaphysical wonder.
 
@@ -491,18 +442,7 @@ Also provide a brief "Creative Process" explanation that reveals the thinking be
         },
         {
           role: 'user',
-          content: isPostPhotography ?
-            // Post-photography user prompt 
-            `Create a conceptually rich, detailed art prompt for the project titled "${project.title}" with the following description: "${project.description}".
-
-The style guide specifies: ${JSON.stringify(style)}
-
-The output should maintain the mysterious and contemplative nature of Belgian surrealism, even when incorporating diverse vintage Apple elements from across their ecosystem. Aim for metaphysical depth and conceptual richness.
-
-Include both the prompt itself and a brief creative process explanation.`
-            : 
-            // Magritte-style user prompt
-            `Create a conceptually rich, detailed art prompt for the project titled "${project.title}" with the following description: "${project.description}".
+          content: `Create a conceptually rich, detailed art prompt for the project titled "${project.title}" with the following description: "${project.description}".
 
 The style guide specifies: ${JSON.stringify(style)}
 
@@ -535,9 +475,7 @@ Include both the prompt itself and a brief creative process explanation.`
     }
     
     // Add style-specific keywords if they're not already present
-    const styleKeywords = isPostPhotography ? 
-      ['electric vehicles', 'modern Tesla', 'autonomous technology', 'electric', 'minimalist', 'futuristic'] :
-      ['modern Tesla', 'electric mobility', 'autonomous technology', 'clean energy', 'minimalist interfaces', 'electric'];
+    const styleKeywords = ['surreal', 'metaphysical', 'philosophical', 'dreamlike', 'mysterious', 'contemplative'];
     
     let keywordsToAdd = styleKeywords.filter(keyword => !detailedPrompt.toLowerCase().includes(keyword.toLowerCase()));
     

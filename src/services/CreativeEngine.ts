@@ -7,6 +7,7 @@ import { StyleService } from './style/index.js';
 import { ReplicateService } from './replicate/index.js';
 import { SocialEngagementService, SocialPlatform, FeedbackType, FeedbackSentiment } from './social/index.js';
 import { ArtBotMultiAgentSystem } from '../artbot-multiagent-system.js';
+import { MAGRITTE_CATEGORIES } from '../styles/magritteCategories.js';
 
 // Define interfaces for the components we need
 interface CreativeState {
@@ -107,6 +108,20 @@ interface StyleParams {
   };
   techniques?: {
     [key: string]: string[];
+  };
+  category?: string;
+  philosophicalFramework?: {
+    beliefs: string[];
+    theories: string[];
+    conceptualFrameworks: string[];
+    paradoxes: string[];
+    visualDialectics: string[];
+  };
+  technicalExecution?: {
+    renderingTechniques: string[];
+    materialPreparation: string[];
+    workingMethodology: string[];
+    qualityMetrics: string[];
   };
 }
 
@@ -489,6 +504,137 @@ const artisticParams = {
           "Words and Images (1929) - Language and representation"
         ]
       }
+    }
+  }
+};
+
+const MAGRITTE_STYLE_CONFIG = {
+  prompt_prefix: "Create a surrealist portrait in Magritte's style with distinctive clothing and accessories. The portrait should feature ",
+  prompt_suffix: `. The image must epitomize surrealist portraiture:
+
+- Portrait Elements:
+  * Distinctive hat or headwear as a key element
+  * Elegant clothing with precise fabric details
+  * Carefully chosen accessories (2-3 pieces)
+  * Classical pose and composition
+  * Perfect clarity and photographic precision
+  * Enigmatic expression or concealed face
+
+- Clothing Details:
+  * Tailored suits or elegant attire
+  * Rich fabric textures and patterns
+  * Traditional accessories (ties, pocket squares)
+  * Period-appropriate styling
+  * Meticulous attention to detail
+  * Perfect draping and folds
+
+- Surreal Elements:
+  * Face-obscuring objects integrated with outfit
+  * Impossible reflections in mirrors
+  * Floating clothing elements
+  * Metamorphosis of fabric and form
+  * Paradoxical clothing states
+  * Symbolic accessory placement`,
+  negative_prompt: [
+    // Portrait-specific elements to avoid
+    "casual clothing", "modern fashion", "streetwear", "sportswear", "contemporary style",
+    "urban fashion", "trendy accessories", "modern jewelry", "casual poses", "informal attire",
+    
+    // Technical elements to avoid
+    "grainy", "blurry", "noisy", "low quality", "poor lighting", "bad composition",
+    "amateur", "unprofessional", "sketchy", "unfinished", "rough", "messy",
+    
+    // Modern elements to avoid
+    "digital devices", "modern technology", "contemporary objects", "current fashion trends",
+    "modern architecture", "urban settings", "current innovations", "modern transportation",
+    
+    // Style-breaking elements
+    "expressive brushwork", "loose painting", "abstract style", "impressionistic",
+    "cartoon", "anime", "stylized", "graphic", "pop art", "minimalist",
+    
+    // Specific elements to avoid
+    "bowler hat", "bowler hats", "derby hat", "derby hats"
+  ].join(", "),
+  num_inference_steps: 300,
+  guidance_scale: 45.0,
+  scheduler: "DDIM",
+  num_samples: 1,
+  seed: -1,
+  cfg_scale: 45.0,
+  image_resolution: 1024,
+  sampler_name: "DPM++ 2M Karras",
+  denoising_strength: 0.05,
+  control_scale: 1.0,
+  control_start: 0.0,
+  control_end: 1.0,
+  style_fidelity: 1.0,
+  init_image_strength: 0.05,
+  custom_style_params: {
+    portrait_precision: 1.0,
+    clothing_detail: 1.0,
+    accessory_clarity: 1.0,
+    fabric_texture: 1.0,
+    surface_quality: 1.0,
+    lighting_control: 1.0,
+    reflection_quality: 1.0,
+    depth_control: 1.0,
+    pose_refinement: 1.0,
+    clothing_integration: 1.0,
+    surreal_atmosphere: 1.0,
+    composition_balance: 1.0,
+    figure_placement: 1.0,
+    color_harmony: 1.0,
+    classical_aesthetic: 1.0
+  },
+  compositionGuidelines: [
+    // Portrait-focused Composition
+    "Classical three-quarter view portrait framing",
+    "Perfect balance of figure and negative space",
+    "Dramatic use of light on clothing and accessories",
+    "Precise placement of face-obscuring elements",
+    "Elegant pose with surreal elements",
+    "Integration of clothing with surreal space",
+    "Careful arrangement of accessories",
+    "Symmetrical or golden ratio composition",
+    "Clear hierarchy of visual elements",
+    "Strong vertical or diagonal emphasis"
+  ]
+};
+
+// Define Magritte's portrait-focused color palette
+const MAGRITTE_PORTRAIT_PALETTE = {
+  skin: {
+    light: {
+      color: "Magritte porcelain (RGB: 255, 239, 224)",
+      usage: "Main skin tone for figures"
+    },
+    shadow: {
+      color: "Magritte flesh shadow (RGB: 227, 199, 178)",
+      usage: "Subtle skin shadows"
+    }
+  },
+  clothing: {
+    suit: {
+      color: "Magritte charcoal (RGB: 54, 54, 54)",
+      usage: "Main suit color"
+    },
+    shirt: {
+      color: "Magritte white (RGB: 255, 255, 255)",
+      usage: "Crisp shirt color"
+    },
+    accessories: {
+      color: "Magritte silk (RGB: 200, 200, 200)",
+      usage: "Ties and pocket squares"
+    }
+  },
+  background: {
+    sky: {
+      color: "Magritte blue (RGB: 135, 206, 235)",
+      usage: "Classic sky background"
+    },
+    interior: {
+      color: "Magritte grey (RGB: 180, 180, 180)",
+      usage: "Interior settings"
     }
   }
 };
@@ -1693,23 +1839,185 @@ export class CreativeEngine {
     artisticDetails: StyleParams;
   }> {
     try {
-      const selectedStyle = options.style?.toLowerCase() || 'cherniak';
-      const currentStyle = artisticParams[selectedStyle as keyof typeof artisticParams] || artisticParams.cherniak;
+      const currentStyle = artisticParams.magritte;
+
+      // Get random visual elements from different categories
+      const selectedElements = [
+        ...currentStyle.elements.objects,
+        ...currentStyle.elements.symbols,
+        ...currentStyle.elements.settings
+      ].sort(() => Math.random() - 0.5)
+        .slice(0, 3);
+
+      // Get composition elements
+      const selectedCompositions = [
+        currentStyle.composition.arrangement,
+        currentStyle.composition.balance,
+        currentStyle.composition.perspective,
+        currentStyle.composition.depth,
+        currentStyle.composition.framing
+      ].filter(Boolean)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 2);
+
+      // Get composition techniques
+      const selectedTechniques = (currentStyle.techniques.composition || [])
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3);
+
+      // Select a specific Magritte category for focused style
+      const magritteCategories = [
+        'object_displacement',
+        'window_paradox',
+        'scale_distortion',
+        'time_paradox',
+        'identity_concealment',
+        'word_image_paradox',
+        'metamorphosis',
+        'spatial_illusion',
+        'mirror_paradox',
+        'object_multiplication'
+      ];
+      
+      const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
+      const categoryStyle = MAGRITTE_CATEGORIES[selectedCategory];
 
       // Generate the prompt using the imported function
-      const { prompt, creativeProcess } = await generateConceptualPrompt(
+      const { prompt: basePrompt, creativeProcess } = await generateConceptualPrompt(
         this.aiService,
         concept,
         {
-          ...options,
-          style: selectedStyle
+          temperature: options.temperature,
+          maxTokens: options.maxTokens
         }
       );
 
-      // Prepare the generation parameters based on style
+      // Enhance the prompt with Magritte-specific elements
+      const enhancedPrompt = `Create a Belgian surrealist oil painting in the exact style of René Magritte, capturing his unique 1940s-1950s period technique. The scene should depict: ${basePrompt}
+
+Essential Magritte Elements:
+1. Core Visual Elements:
+   - Primary elements: ${selectedElements.join(', ')}
+   - Composition: ${selectedCompositions.join(', ')}
+   - Techniques: ${selectedTechniques.join(', ')}
+   - Category focus: ${categoryStyle.styleEmphasis.join(', ')}
+
+2. Magritte's Oil Painting Technique:
+   - Thin, precise application of oil paint
+   - Smooth, even surfaces with minimal visible brushwork
+   - Subtle glazing for atmospheric effects
+   - Characteristic Belgian academic painting style
+   - Careful layering for depth without texture
+   - Traditional canvas preparation showing through
+
+3. Magritte's Signature Lighting:
+   - Style: ${currentStyle.lighting.style}
+   - Direction: ${currentStyle.lighting.direction}
+   - Shadows: ${currentStyle.lighting.shadows}
+   - Highlights: ${currentStyle.lighting.highlights}
+   - Mood: ${currentStyle.lighting.mood}
+   - Soft, diffused northern European light
+
+4. Philosophical Framework (${selectedCategory}):
+   - Beliefs: ${categoryStyle.magritteContext.philosophicalFramework.beliefs.join(', ')}
+   - Visual Dialectics: ${categoryStyle.magritteContext.philosophicalFramework.visualDialectics.join(', ')}
+   - Paradoxes: ${categoryStyle.magritteContext.philosophicalFramework.paradoxes.join(', ')}
+
+5. Technical Requirements:
+   - ${categoryStyle.visualCategories[0].technicalRequirements.join('\n   - ')}
+
+6. Magritte's Color Approach:
+   - Limited, controlled palette using ${MAGRITTE_PORTRAIT_PALETTE.clothing.suit.color} for dark elements
+   - Muted, naturalistic colors with ${MAGRITTE_PORTRAIT_PALETTE.background.sky.color} for skies
+   - Subtle atmospheric perspective
+   - Cool sky blues and warm earth tones
+   - Precise value relationships
+   - Slightly desaturated overall effect
+
+7. Composition Guidelines:
+   - ${categoryStyle.compositionGuidelines.join('\n   - ')}
+
+Reference specific Magritte works:
+- 'The Empire of Light' (1953-54) for day-night paradox
+- 'The Human Condition' (1933) for painting-within-painting technique
+- 'Personal Values' (1952) for scale relationships
+- 'The Listening Room' (1952) for object-space relationships
+- 'Time Transfixed' (1938) for impossible juxtapositions
+
+The final image should embody Magritte's precise, academic painting technique - not photorealistic, but traditionally painted with his characteristic Belgian surrealist style.`;
+
+      // Prepare Magritte-specific generation parameters
       const generationParams = {
-        prompt,
-        ...this.getStyleSpecificParams(selectedStyle)
+        prompt: enhancedPrompt,
+        negative_prompt: [
+          // Anti-modern elements
+          "modern", "contemporary", "digital", "photographic", "camera", "lens",
+          "high resolution", "ultra detailed", "4k", "8k", "hyperrealistic",
+          
+          // Anti-texture elements
+          "impasto", "heavy texture", "thick paint", "visible brushstrokes",
+          "rough surface", "expressive strokes", "painterly", "loose brushwork",
+          
+          // Anti-style elements
+          "impressionistic", "expressionistic", "abstract", "cubist",
+          "pop art", "street art", "contemporary art", "concept art",
+          
+          // Anti-digital elements
+          "3d", "CGI", "digital art", "artificial", "photoshop", "filtered",
+          "instagram", "social media", "digital effects", "rendered",
+          
+          // Anti-execution elements
+          "messy", "chaotic", "random", "spontaneous", "gestural",
+          "unfinished", "sketchy", "experimental", "accidental",
+          
+          // Anti-atmosphere elements
+          "foggy", "misty", "atmospheric blur", "soft focus", "dreamy blur",
+          "lens blur", "bokeh", "motion blur", "camera effects"
+        ].join(", "),
+        num_inference_steps: 80,
+        guidance_scale: 12.0,
+        width: 1024,
+        height: 1024,
+        scheduler: "DPMSolverMultistep",
+        custom_style_params: {
+          ...categoryStyle.creativeMetrics.technicalExecution,
+          ...categoryStyle.creativeMetrics.compositionBalance,
+          flatness: 0.7,
+          edge_precision: 0.85,
+          surface_smoothness: 0.75,
+          atmospheric_clarity: 0.9,
+          dream_logic: 0.95,
+          technical_quality: 0.9,
+          detail_preservation: 0.85,
+          color_accuracy: 0.9,
+          lighting_control: 0.9,
+          composition_balance: 0.95
+        },
+        style_preset: "traditional_oil_painting",
+        image_style: "belgian_academic",
+        style_strength: 0.9,
+        quality: "balanced",
+        high_res_results: true,
+        enhance_face_detail: false,
+        enhance_background_detail: false,
+        denoise_strength: 0.4,
+        upscale_strength: 0.6,
+        color_coherence: "natural",
+        color_match: "balanced",
+        saturation: 0.65,
+        contrast: 0.75,
+        oil_paint_simulation: {
+          brush_texture: 0.25,
+          paint_thickness: 0.2,
+          glaze_layers: 0.35,
+          surface_variation: 0.2,
+          edge_softness: 0.3,
+          paint_transparency: 0.25,
+          canvas_texture: 0.15,
+          paint_buildup: 0.2,
+          brush_stroke_direction: 0.3,
+          paint_consistency: 0.8
+        }
       };
 
       // Generate the image
@@ -1718,173 +2026,20 @@ export class CreativeEngine {
         generationParams
       );
 
-      // Process and return the result
       return {
         imageUrl: result?.output?.[0] || null,
-        prompt,
-        creativeProcess,
-        style: selectedStyle,
-        artisticDetails: currentStyle
-      };
-    } catch (error) {
-      console.error(`Error generating conceptual image: ${error}`);
-      return {
-        imageUrl: null,
-        prompt: '',
-        creativeProcess: '',
-        style: '',
-        artisticDetails: {} as StyleParams
-      };
-    }
-  }
-
-  private getStyleSpecificParams(style: string): Record<string, any> {
-    // Define style-specific generation parameters
-    const styleParams: Record<string, Record<string, any>> = {
-      beeple: {
-        num_inference_steps: 50,
-        guidance_scale: 12.0,
-        width: 1024,
-        height: 1024,
-        scheduler: "DPMSolverMultistep"
-      },
-      xcopy: {
-        num_inference_steps: 45,
-        guidance_scale: 13.0,
-        width: 1024,
-        height: 1024,
-        scheduler: "DDIM" // Better for glitch effects
-      },
-      cherniak: {
-        num_inference_steps: 40,
-        guidance_scale: 11.5,
-        width: 1024,
-        height: 1024,
-        scheduler: "EulerAncestral" // Better for geometric precision
-      }
-    };
-
-    return styleParams[style] || styleParams.cherniak;
-  }
-
-  /**
-   * Generate a conceptual image with Magritte style focus
-   */
-  async generateMagritteConceptualImage(
-    concept: string,
-    options: ConceptGenerationOptions = {}
-  ): Promise<{
-    imageUrl: string | null;
-    prompt: string;
-    creativeProcess: string;
-    style: string;
-    artisticDetails: StyleParams;
-  }> {
-    try {
-      const currentStyle = artisticParams.magritte;
-
-      // Select random reference works for inspiration
-      const selectedReferences = currentStyle.references.keyWorks
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 2);
-      
-      // Select random techniques to emphasize
-      const selectedTechniques = currentStyle.references.techniques
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 2);
-
-      // Generate the prompt with Magritte-specific considerations
-      const { prompt, creativeProcess } = await generateConceptualPrompt(
-        this.aiService,
-        concept,
-        {
-          temperature: options.temperature || 0.8,
-          maxTokens: options.maxTokens,
-          model: options.model,
-          category: ConceptCategory.MAGRITTE,
-          useFluxPro: options.useFluxPro,
-          postPhotoNative: options.postPhotoNative,
-          style: 'magritte'
-        }
-      );
-
-      // Prepare enhanced Magritte-specific generation parameters
-      const generationParams = {
-        prompt: `In the precise style of René Magritte's surrealist oil paintings, particularly referencing the techniques from ${selectedReferences.join(' and ')}, create: ${prompt}. ${selectedTechniques.join('. ')} Emphasize Magritte's characteristic flat oil painting technique with sharp edges, matte surfaces, and pristine clarity. Use his signature style of smooth, even brushwork with minimal visible texture, creating a dreamlike atmosphere through precise execution rather than expressive brushstrokes.`,
-        num_inference_steps: 50, // Increased for better quality
-        guidance_scale: 14.0, // Increased for stronger style adherence
-        width: 1024,
-        height: 1024,
-        scheduler: "DPMSolverMultistep",
-        negative_prompt: [
-          // Anti-photographic elements
-          "photographic", "photo-realistic", "camera", "lens", "photograph", "DSLR", "high-resolution",
-          
-          // Anti-texture elements
-          "grainy", "textured", "rough", "impasto", "thick paint", "visible brushstrokes", "expressive brushwork",
-          
-          // Anti-modern style elements
-          "impressionistic", "abstract", "expressionist", "contemporary", "modern art", "digital",
-          
-          // Anti-distortion elements
-          "distorted", "warped", "blurred", "sketchy", "loose", "gestural", "painterly",
-          
-          // Anti-lighting elements
-          "dramatic lighting", "high contrast", "harsh shadows", "lens flare", "HDR",
-          
-          // Anti-digital elements
-          "3d rendering", "CGI", "digital art", "computer generated", "artificial",
-          
-          // Anti-texture details
-          "canvas texture", "brush texture", "paint texture", "surface detail",
-          
-          // Style-breaking elements
-          "atmospheric perspective", "depth of field", "bokeh", "motion blur",
-          "dynamic range", "high detail", "ultra detailed", "hyperrealistic",
-          
-          // Modern technology elements to avoid
-          "digital interfaces", "screens", "modern technology", "electronic devices",
-          "contemporary gadgets", "smart devices", "digital displays", "modern UI",
-          "touch interfaces", "wireless technology", "modern machinery", "digital art",
-          "computer generated", "3D rendering", "CGI", "artificial intelligence",
-
-          // Specific elements to avoid
-          "bowler hat", "bowler hats", "derby hat", "derby hats"
-        ].join(", "),
-        // Additional parameters for style control
-        image_style: "oil painting",
-        style_strength: 0.95, // Strong style enforcement
-        override_defaults: true,
-        // Custom parameters for Magritte-specific effects
-        custom_style_params: {
-          flatness: 0.9,
-          edge_precision: 0.95,
-          surface_smoothness: 0.9,
-          atmospheric_clarity: 0.85,
-          dream_logic: 0.9
-        }
-      };
-
-      // Generate the image with explicit model override to ensure correct dimensions
-      const result = await this.replicateService.runPrediction(
-        undefined,
-        {
-          ...generationParams,
-          // Double-ensure the dimensions by setting them at the top level
-          width: 1024,
-          height: 1024
-        }
-      );
-
-      return {
-        imageUrl: result?.output?.[0] || null,
-        prompt: generationParams.prompt,
+        prompt: enhancedPrompt,
         creativeProcess,
         style: 'magritte',
-        artisticDetails: currentStyle
+        artisticDetails: {
+          ...currentStyle,
+          category: selectedCategory,
+          philosophicalFramework: categoryStyle.magritteContext.philosophicalFramework,
+          technicalExecution: categoryStyle.magritteContext.technicalExecution
+        }
       };
     } catch (error) {
-      console.error(`Error generating Magritte conceptual image: ${error}`);
+      console.error(`Error generating Magritte-style image: ${error}`);
       return {
         imageUrl: null,
         prompt: '',
