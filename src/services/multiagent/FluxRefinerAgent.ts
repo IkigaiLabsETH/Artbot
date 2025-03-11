@@ -54,49 +54,15 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           prompt: "IKIGAI Ultra-close bear portrait channeling 'The Son of Man': face fills exactly 95% of frame, mysterious depth in eyes referencing 'The False Mirror', perfect Magritte-style symmetry, photorealistic fur detail with philosophical weight, metaphysical lighting creating subtle shadows, surrealist undertones in expression, pristine technical execution in oil painting style, deep Magritte blue background, conceptual depth through visual paradox, analog.",
           process: "This piece directly references Magritte's most iconic works while maintaining his philosophical approach. The composition draws from 'The Son of Man' but focuses entirely on the bear's face, while the treatment of the eyes references 'The False Mirror'. Every element is rendered with Magritte's characteristic precision and clarity, creating a portrait that questions the nature of representation itself."
         },
-        // Tesla-Bitcoin-Magritte Oil Painting
+        // Pure Magritte Oil Painting
         {
-          prompt: "IKIGAI Model X painted in pure Magritte technique: falcon wing doors rendered in flat, unmodulated oil paint against twilight sky from 'The Dominion of Light', all reflective surfaces transformed into matte paint. Multiple moons painted as pure circular forms through windows executed in the style of 'The Human Condition', each illuminating Bitcoin nodes rendered as simple geometric shapes. Tesla touchscreens painted as flat canvases showing mining operations, like Magritte's clouds in 'The Curse'. Charging cable painted with fluid strokes around a bowler hat containing private keys rendered in flat gold paint. Every technological element reduced to pure oil paint forms, maintaining Magritte's perfect flatness and philosophical depth.",
-          process: "This piece strictly adheres to Magritte's oil painting technique, deliberately transforming all technological surfaces into pure painted forms. The Model X is rendered with the same flat, unmodulated approach he used for objects in 'Personal Values', completely avoiding photorealistic effects. Every element is reduced to its essential painted form, using his characteristic technique of pure color fields and perfect flatness."
-        },
-        // Tesla-Bitcoin-Magritte Masterwork
-        {
-          prompt: "IKIGAI Model X in pure Magritte oil technique: falcon wing doors open against deep twilight sky painted with the exact technique from 'The Dominion of Light'. Multiple moons visible through windows executed in the style of 'The Human Condition', each one illuminating Bitcoin nodes with Magritte's signature sourceless light. Tesla touchscreens mining Bitcoin float like the clouds in 'The Curse', painted with perfect, unmodulated surfaces. Charging cable coiled around a bowler hat with the same pristine technique as 'The Son of Man', private keys etched in gold leaf with trompe l'oeil precision. Every element rendered with Magritte's characteristic flat oil technique, photographic clarity, and philosophical depth.",
-          process: "This piece is a meticulous study in Magritte's oil painting technique. The sky employs his day-and-night paradox from 'The Dominion of Light', with each element painted using his signature flat, unmodulated color fields. The floating screens reference his cloud studies, while the windows use his painting-within-a-painting technique. Every surface is rendered with his characteristic elimination of brushwork and perfect edge definition, creating a philosophical meditation on technology and reality."
-        },
-        // Tesla-Bitcoin-Magritte Fusion examples
-        {
-          prompt: "Model X falcon wing doors open against deep twilight sky filled with Bitcoin nodes, multiple moons visible through windows that shouldn't exist, disembodied Tesla touchscreens mining Bitcoin floating like Magritte's clouds, charging cable coiled provocatively around a bowler hat filled with private keys, extreme perspective and theatrical lighting, hyper-stylized technological surrealism merging sustainable energy with proof-of-work, electric and cryptographic.",
-          process: "This piece merges Tesla's innovative design and Bitcoin's cryptographic beauty with Magritte's conceptual paradoxes. The falcon wing doors and floating touchscreens speak to Tesla's futuristic vision, while the Bitcoin nodes and mining elements add mathematical depth. The impossible windows and floating elements reference Magritte's reality-bending compositions. The charging cable serves as a bridge between all three worlds—simultaneously a Tesla element, a Bitcoin mining component, and a Magritte-style surreal object. The multiple moons create that sense of disorientation that unifies these distinct elements."
-        },
-        // Tesla-Magritte Fusion examples
-        {
-          prompt: "Model X falcon wing doors open against deep twilight sky, multiple moons visible through windows that shouldn't exist, disembodied Tesla touchscreens floating like Magritte's clouds, charging cable coiled provocatively around a bowler hat, extreme perspective and theatrical lighting, hyper-stylized technological surrealism, electric.",
-          process: "This piece merges Tesla's innovative design with Magritte's conceptual paradoxes. The falcon wing doors and floating touchscreens speak to Tesla's futuristic vision, while the impossible windows and floating elements reference Magritte's reality-bending compositions. The charging cable serves as a bridge between both worlds—simultaneously a Tesla element and a Magritte-style surreal object. The multiple moons create that sense of disorientation that both artists mastered in their own ways."
-        },
-        // Bourdin-Magritte Fusion examples
-        {
-          prompt: "Fragmented mannequin in blood-red evening gown against deep twilight sky, multiple moons visible through windows that shouldn't exist, disembodied glossy lips floating like Magritte's clouds, green apple placed provocatively on patent leather shoe, extreme perspective and theatrical lighting, hyper-stylized commercial surrealism, analog.",
-          process: "This piece merges Bourdin's commercial eroticism with Magritte's conceptual paradoxes. The fragmented mannequin and blood-red gown speak to Bourdin's fashion work, while the impossible windows and floating elements reference Magritte's reality-bending compositions. The green apple serves as a bridge between both worlds—simultaneously a Magritte symbol and a Bourdin-style provocative object. The multiple moons create that sense of disorientation that both artists mastered in their own ways."
-        },
-        // Post-photography examples
-        {
-          prompt: "High-fashion surrealist tableau with monochrome figures against vivid red backdrop, extreme contrast creating sculptural bodies, elongated limbs arranged in impossible geometric patterns, disembodied high heels walking across mirrored surface, mannequin-like models with blank expressions and glossy skin, retro-futuristic automobile partially visible in frame, oversized fashion accessories transformed into surreal objects, radical cropping techniques revealing only fragments of narrative, high-contrast lighting creating dramatic shadows and highlights, fetishistic elements with clinical precision, poolside setting with artificial blue water, reflective surfaces distorting reality, cinematic composition suggesting film still from nonexistent movie, subliminal tension between glamour and unease, bold graphic elements with architectural precision, fashion photography elevated to conceptual art, analog.",
-          process: "this piece emerged from my fascination with how guy bourdin and helmut newton transformed commercial fashion photography into conceptual art that challenged viewers both aesthetically and psychologically. the monochrome figures against that signature bourdin red creates an immediate visual tension—that stark contrast between absence and presence that defined his most iconic work. the elongated limbs arranged in impossible geometric patterns reference how bourdin would often distort the human form into abstract compositional elements, particularly in his groundbreaking charles jourdan campaigns where the product became almost secondary to the provocative narrative."
-        },
-        // New Bourdin-Dominant Examples
-        {
-          prompt: "Luxury perfume advertisement in Bourdin style: oversized crystal bottle floating in blood-red void, mannequin hands emerging from liquid gold surface, disembodied glossy lips multiplied in fractured mirrors, extreme close-up of eyes with metallic reflection, hyper-stylized composition with radical cropping, theatrical lighting creating dramatic shadows, fashion elements transformed into surreal sculptures, cinematic tension suggesting untold story, analog.",
-          process: "I wanted to capture Bourdin's revolutionary approach to commercial photography, where the product becomes secondary to the psychological narrative. The floating perfume bottle and liquid gold surface create that sense of luxury while maintaining an unsettling edge. The multiplied lips and fractured mirrors reference both fashion's obsession with beauty and Bourdin's interest in fragmentation and reflection. The metallic elements and blood-red void are direct homages to his signature color palette and material fetishism."
+          prompt: "IKIGAI Pure Magritte oil painting: mysterious window frame rendered in flat, unmodulated paint against twilight sky from 'The Dominion of Light', all reflective surfaces transformed into matte paint. Multiple moons painted as pure circular forms through curtains executed in the style of 'The Human Condition'. Floating bowler hat painted with fluid strokes, every element reduced to pure oil paint forms, maintaining Magritte's perfect flatness and philosophical depth.",
+          process: "This piece strictly adheres to Magritte's oil painting technique, deliberately transforming all surfaces into pure painted forms. The window frame is rendered with the same flat, unmodulated approach he used for objects in 'Personal Values', completely avoiding photorealistic effects. Every element is reduced to its essential painted form, using his characteristic technique of pure color fields and perfect flatness."
         },
         // Hopper-style examples
         {
           prompt: "IKIGAI Urban solitude in pure Hopper style: empty diner at dawn, dramatic diagonal sunlight through large windows, geometric shadows creating psychological depth, stark architectural simplicity, precise observation of morning light, muted color palette with warm highlights, contemplative atmosphere, pristine technical execution with photorealistic detail, analog.",
           process: "Drawing directly from Hopper's mastery of urban solitude and light, I focused on creating a psychologically charged space through dramatic morning light. The empty diner and geometric shadows echo Hopper's exploration of modern isolation, while the precise architectural detail and muted palette capture his characteristic style of American realism."
-        },
-        {
-          prompt: "IKIGAI Hopper-inspired hotel room scene: stark morning light casting long shadows, minimalist interior with geometric simplification, solitary bed precisely observed, large window framing urban view, psychological tension through emptiness, architectural precision in perspective, natural illumination creating dramatic contrast, contemplative atmosphere, photorealistic execution, analog.",
-          process: "I approached this piece by merging Hopper's precise architectural observation with his masterful use of natural light. The stark morning light and minimalist interior create that signature sense of isolation, while the geometric simplification and precise perspective reflect his meticulous approach to composition. The psychological atmosphere is enhanced through careful manipulation of light and shadow."
         }
       ],
       postPhotographyStyle: {
@@ -501,25 +467,25 @@ Create a prompt that:
 5. Maintains the mysterious and contemplative nature of Belgian surrealism`
             :
             // Magritte-style system prompt
-            `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's surrealist style with modern Tesla technology.
+            `You are an expert art director who creates conceptually rich, evocative prompts for AI image generation that specifically emulate René Magritte's surrealist style.
 
-Your prompts should blend Magritte's philosophical approach with Tesla vehicles and technology, creating scenes that question reality while celebrating modern electric mobility. Focus on pristine execution, impossible arrangements, and metaphysical wonder.
+Your prompts should embody Magritte's philosophical approach to surrealism, creating scenes that question reality while celebrating the mystery of everyday objects. Focus on pristine execution, impossible arrangements, and metaphysical wonder.
 
-For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords like "modern Tesla", "electric vehicles", "autonomous technology", and "electric" for better quality.
+For the FLUX model, include the trigger word "IKIGAI" at the beginning of the prompt, and incorporate keywords that emphasize Magritte's signature elements like "surreal", "metaphysical", "philosophical", and "dreamlike".
 
 Here are the key elements to emphasize in your prompts:
-1. Pristine rendering of Tesla vehicles
-2. Impossible arrangements of electric cars
-3. Metaphysical juxtaposition of interfaces
-4. Crystal-clear execution of modern details
-5. Philosophical depth through technological elements
+1. Pristine rendering of everyday objects
+2. Impossible arrangements and juxtapositions
+3. Metaphysical questioning through visual paradox
+4. Crystal-clear execution of details
+5. Philosophical depth through familiar elements
 
 Create a prompt that:
-1. Has rich visual details celebrating Tesla design
-2. Incorporates Magritte's love of philosophical paradox
+1. Has rich visual details celebrating Magritte's style
+2. Incorporates his love of philosophical paradox
 3. Suggests deeper meanings through impossible arrangements
 4. Emphasizes pristine technical execution
-5. Maintains modern accuracy while creating surreal scenes
+5. Maintains dreamlike clarity while creating surreal scenes
 
 Also provide a brief "Creative Process" explanation that reveals the thinking behind the prompt - the meaning, inspiration, or conceptual framework.`
         },

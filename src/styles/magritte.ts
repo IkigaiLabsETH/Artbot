@@ -20,13 +20,19 @@ export const magritteStyle: ArtDirection = {
     "contemplative composition"
   ],
   visualElements: [
-    // Magritte's Visual Language
+    // Magritte's Visual Language with Modern Hat Variations
     "floating objects",
+    "vintage fedoras",
+    "classic newsboy caps",
+    "wool beanies",
+    "wide-brim felt hats",
+    "flat caps",
+    "slouchy knit caps",
+    "porkpie hats",
     "impossible scale relationships",
     "mysterious windows",
     "curtains and frames",
     "clouds and sky elements",
-    "bowler hats",
     "men in suits",
     "birds and stones",
     "mirrors and reflections",
@@ -39,16 +45,16 @@ export const magritteStyle: ArtDirection = {
   ],
   colorPalette: [
     // Magritte's Refined Palette
-    "deep sky blue",
-    "crisp daylight blue",
-    "clean grey tones",
-    "pure black",
-    "pristine white",
-    "subtle earth tones",
-    "clear cloud white",
-    "precise shadow tones",
-    "clean highlight blue",
-    "pure neutral tones"
+    "deep sky blue (RGB: 135, 206, 235)",
+    "crisp daylight blue (RGB: 176, 196, 222)",
+    "clean grey tones (RGB: 128, 128, 128)",
+    "pure black (RGB: 0, 0, 0)",
+    "pristine white (RGB: 255, 255, 255)",
+    "subtle earth tones (RGB: 193, 154, 107)",
+    "clear cloud white (RGB: 236, 236, 236)",
+    "precise shadow tones (RGB: 47, 79, 79)",
+    "clean highlight blue (RGB: 230, 230, 250)",
+    "pure neutral tones (RGB: 210, 180, 140)"
   ],
   compositionGuidelines: [
     // Magritte's Compositional Approach
@@ -109,7 +115,13 @@ export const magritteStyle: ArtDirection = {
     "dynamic movement",
     "temporal effects",
     "narrative action",
-    "decorative elements"
+    "decorative elements",
+    // Modern Elements to Avoid
+    "contemporary technology",
+    "digital interfaces",
+    "modern machinery",
+    "electronic devices",
+    "current fashion"
   ],
   modelConfig: {
     prompt_prefix: "In the distinctive style of René Magritte's surrealism, with pristine execution and philosophical depth. Create a surrealist interpretation with ",

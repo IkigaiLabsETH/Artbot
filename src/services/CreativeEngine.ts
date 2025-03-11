@@ -274,7 +274,13 @@ const artisticParams = {
     },
     elements: {
       symbols: [
-        "bowler hats",
+        "vintage fedoras",
+        "classic newsboy caps",
+        "wool beanies",
+        "wide-brim felt hats",
+        "flat caps",
+        "slouchy knit caps",
+        "porkpie hats",
         "green apples",
         "clouds",
         "pipes",
@@ -1836,14 +1842,14 @@ export class CreativeEngine {
           "atmospheric perspective", "depth of field", "bokeh", "motion blur",
           "dynamic range", "high detail", "ultra detailed", "hyperrealistic",
           
-          // Tesla logo restrictions
-          "tesla logo", "tesla badge", "tesla emblem", "tesla brand symbol", "tesla wordmark",
-          
-          // Unwanted car elements
-          "gas station", "exhaust pipe", "fuel cap", "internal combustion", "gasoline",
-          "traditional dashboard", "gear shifter", "transmission", "engine bay",
-          "gas pump", "tailpipe", "oil change", "carburetor", "muffler",
-          "fuel gauge", "gas tank", "radiator", "spark plugs", "combustion engine"
+          // Modern technology elements to avoid
+          "digital interfaces", "screens", "modern technology", "electronic devices",
+          "contemporary gadgets", "smart devices", "digital displays", "modern UI",
+          "touch interfaces", "wireless technology", "modern machinery", "digital art",
+          "computer generated", "3D rendering", "CGI", "artificial intelligence",
+
+          // Specific elements to avoid
+          "bowler hat", "bowler hats", "derby hat", "derby hats"
         ].join(", "),
         // Additional parameters for style control
         image_style: "oil painting",
