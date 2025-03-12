@@ -261,6 +261,74 @@ The Surrealist Bear Portraits collection spans 15 distinct series, each explorin
 - Blockchain: Multiple Platform Support
 - Special Features: Detailed Attribute Tracking
 
+## Tokenomics
+
+### IKIGAI Token Overview
+- **Token Standard**: ERC20
+- **Symbol**: IKIGAI
+- **Maximum Supply**: 1,000,000,000 (1 billion)
+- **Initial Supply**: 0 (fair launch)
+- **Decimals**: 18
+
+### NFT Integration
+- **Genesis Collection**:
+  - Mint with BERA tokens
+  - Receive vested IKIGAI rewards (90-day vesting, 7-day cliff)
+  - Priority access for BeraChain NFT holders
+  - Whitelist support with discounts
+
+- **Post-Genesis Collections**:
+  - Mint with IKIGAI tokens
+  - 35% to buyback (90% burned, 10% to rewards)
+  - 50% to creators
+  - 15% to treasury
+
+### Staking Benefits
+- **Lock Periods**: 7 to 365 days
+- **Minimum Stakes**:
+  - Base: 1,000 IKIGAI
+  - Silver: 5,000 IKIGAI (10% mint discount)
+  - Gold: 10,000 IKIGAI (20% mint discount)
+  - Diamond: 25,000 IKIGAI (30% mint discount)
+
+### Dynamic Reward System
+- **Trading Rewards**: 3% base in IKIGAI tokens (up to 5x multiplier)
+- **Minting Rewards**: 5% with priority discounts
+- **Staking Rewards**: 2% base with tiered multipliers
+- **Referral Program**: 1% with unlimited referrals
+
+### Buyback System
+| Source | Allocation |
+|--------|------------|
+| Trading Fees | 30% |
+| NFT Sales | 35% |
+| Treasury Yield | 25% |
+| Transfer Tax | 2-5% |
+| Staking Fees | 25% |
+
+### Protocol Revenue Distribution
+- 40% Buy & Burn
+- 30% Staking Rewards
+- 20% Treasury
+- 10% Development
+
+### Security Features
+- Role-based access control
+- Multi-signature requirements
+- Emergency pause functionality
+- Anti-bot protection
+- Rate limiting and cooldowns
+- Blacklist system
+- Price impact protection
+
+### Advanced Features
+- Cross-collection NFT synergies
+- Governance-weighted staking
+- Milestone-based token unlocks
+- Protocol-owned NFT vault
+- Dynamic fee structure
+- Adaptive emission control
+
 ## Artistic Style
 
 ```ascii
@@ -405,7 +473,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```ascii
     ╭───────────────────╮
     │   Created with    │
-    │   🎨 & 🐻        │
+    │   �� & 🐻        │
     ╰───────────────────╯
 ```
 
