@@ -2544,8 +2544,8 @@ async function generateArt(concept: string) {
     const replicateService = new ReplicateService({
       apiKey: replicateApiKey,
       defaultModel: process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL,
-      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '1024', 10),
-      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '1024', 10),
+      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '2048', 10),
+      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '2048', 10),
       defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '200', 10),
       defaultGuidanceScale: parseFloat(process.env.GUIDANCE_SCALE || '35.0'),
     });

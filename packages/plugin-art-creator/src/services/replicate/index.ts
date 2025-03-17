@@ -3,6 +3,11 @@ import { Style } from '../../types/index.js';
 import { ModelHandler, REPLICATE_MODELS } from './models.js';
 import { validateConfig, interpolateStyles, createStyleVariation, convertOutputToStyle } from '../../utils/index.js';
 
+// Define the models
+const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
+const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
+const FALLBACK_MODEL = 'minimax/image-01';
+
 export interface ModelPrediction {
   id: string;
   status: string;
@@ -24,14 +29,26 @@ export class ReplicateService extends Service {
 
   private config: ReplicateConfig;
   private modelHandlers: Map<string, ModelHandler> = new Map();
+  private apiKey: string;
+  private baseUrl: string = 'https://api.replicate.com/v1';
+  private defaultModel: string;
+  private defaultWidth: number;
+  private defaultHeight: number;
+  private defaultNumInferenceSteps: number;
+  private defaultGuidanceScale: number;
 
   static get serviceType(): ServiceType {
     return ServiceType.TEXT_GENERATION;
   }
 
-  constructor(config: Partial<ReplicateConfig> = {}) {
+  constructor(config: Record<string, any> = {}) {
     super();
-    this.config = { ...this.defaultConfig, ...config };
+    this.apiKey = config.apiKey || process.env.REPLICATE_API_KEY || '';
+    this.defaultModel = config.defaultModel || process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL;
+    this.defaultWidth = config.defaultWidth || parseInt(process.env.IMAGE_WIDTH || '2048', 10);
+    this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '2048', 10);
+    this.defaultNumInferenceSteps = config.defaultNumInferenceSteps || parseInt(process.env.NUM_INFERENCE_STEPS || '200', 10);
+    this.defaultGuidanceScale = config.defaultGuidanceScale || parseFloat(process.env.GUIDANCE_SCALE || '35.0');
   }
 
   async initialize(): Promise<void> {
@@ -144,7 +161,7 @@ export class ReplicateService extends Service {
   }
 
   async runPrediction(modelId: string, input: any): Promise<ModelPrediction> {
-    if (!this.config.apiKey) {
+    if (!this.apiKey) {
       throw new Error('Replicate API key is required');
     }
 
@@ -153,10 +170,10 @@ export class ReplicateService extends Service {
     
     try {
       // Create prediction
-      const createResponse = await fetch(`${this.config.apiUrl}/predictions`, {
+      const createResponse = await fetch(`${this.baseUrl}/predictions`, {
         method: 'POST',
         headers: {
-          'Authorization': `Token ${this.config.apiKey}`,
+          'Authorization': `Token ${this.apiKey}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -179,9 +196,9 @@ export class ReplicateService extends Service {
         // Wait before polling again
         await new Promise(resolve => setTimeout(resolve, 1000));
         
-        const statusResponse = await fetch(`${this.config.apiUrl}/predictions/${predictionId}`, {
+        const statusResponse = await fetch(`${this.baseUrl}/predictions/${predictionId}`, {
           headers: {
-            'Authorization': `Token ${this.config.apiKey}`,
+            'Authorization': `Token ${this.apiKey}`,
             'Content-Type': 'application/json'
           }
         });
@@ -223,5 +240,9 @@ export class ReplicateService extends Service {
         error: error.message || 'Unknown error'
       };
     }
+  }
+
+  getDefaultModel(): string {
+    return this.defaultModel;
   }
 } 

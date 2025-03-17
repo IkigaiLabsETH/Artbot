@@ -21,8 +21,8 @@ export class ReplicateService {
   constructor(config: Record<string, any> = {}) {
     this.apiKey = config.apiKey || process.env.REPLICATE_API_KEY || '';
     this.defaultModel = config.defaultModel || process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL;
-    this.defaultWidth = config.defaultWidth || parseInt(process.env.IMAGE_WIDTH || '1024', 10);
-    this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '1024', 10);
+    this.defaultWidth = config.defaultWidth || parseInt(process.env.IMAGE_WIDTH || '2048', 10);
+    this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '2048', 10);
     this.defaultNumInferenceSteps = config.defaultNumInferenceSteps || parseInt(process.env.NUM_INFERENCE_STEPS || '28', 10);
     this.defaultGuidanceScale = config.defaultGuidanceScale || parseFloat(process.env.GUIDANCE_SCALE || '3.0');
   }

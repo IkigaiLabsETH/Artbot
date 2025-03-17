@@ -21,8 +21,8 @@ export const REPLICATE_MODELS: ModelRegistry = {
       num_inference_steps: 30,
       guidance_scale: 7.5,
       negative_prompt: 'low quality, bad quality, sketchy, broken',
-      width: 1024,
-      height: 1024,
+      width: 2048,
+      height: 2048,
       refine: 'expert_ensemble_refiner',
       scheduler: 'K_EULER',
       lora_scale: 0.6

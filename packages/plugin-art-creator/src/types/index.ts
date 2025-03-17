@@ -152,4 +152,56 @@ export interface CreativeDialogue {
   memoryReferences: string[];
 }
 
+export enum AgentRole {
+  REFINER = 'refiner',
+  DIRECTOR = 'director',
+  IDEATOR = 'ideator',
+  CRITIC = 'critic',
+  STYLIST = 'stylist'
+}
+
+export interface AgentState {
+  status: string;
+  context: Record<string, any>;
+}
+
+export interface AgentMessage {
+  id: string;
+  fromAgent: string;
+  toAgent: string;
+  content: string | Record<string, any>;
+  timestamp: Date;
+  type: string;
+}
+
+export interface Agent {
+  id: string;
+  role: AgentRole;
+  initialize(): Promise<void>;
+  process(message: AgentMessage): Promise<AgentMessage | null>;
+  getState(): AgentState;
+}
+
+export abstract class BaseAgent implements Agent {
+  id: string;
+  role: AgentRole;
+  protected state: AgentState;
+
+  constructor(role: AgentRole, id?: string) {
+    this.id = id || `${role}-${Date.now()}`;
+    this.role = role;
+    this.state = {
+      status: 'initialized',
+      context: {}
+    };
+  }
+
+  abstract initialize(): Promise<void>;
+  abstract process(message: AgentMessage): Promise<AgentMessage | null>;
+  
+  getState(): AgentState {
+    return this.state;
+  }
+}
+
 export * from './social/index.js'; 
