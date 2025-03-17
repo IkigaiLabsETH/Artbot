@@ -27,8 +27,8 @@ async function testReplicateService() {
     console.log('Generating image...');
     const result = await replicateService.generateImage({
       prompt: 'A futuristic AI artist creating a masterpiece, digital art style',
-      width: 768,
-      height: 768
+      width: 2048,
+      height: 2048
     });
     
     console.log('Image generation successful!');
