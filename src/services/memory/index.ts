@@ -126,6 +126,12 @@ export class MemorySystem {
         if (file.endsWith('.json')) {
           const content = await fs.readFile(path.join(this.memoryDir, file), 'utf-8');
           const memory = JSON.parse(content) as Memory;
+          
+          // Ensure memory has tags property
+          if (!memory.tags) {
+            memory.tags = [];
+          }
+          
           this.memories.set(memory.id, memory);
         }
       }
@@ -202,7 +208,7 @@ export class MemorySystem {
     
     if (options.tags && options.tags.length > 0) {
       filteredMemories = filteredMemories.filter(memory => 
-        options.tags!.some(tag => memory.tags.includes(tag))
+        memory.tags && options.tags!.some(tag => memory.tags.includes(tag))
       );
     }
     
@@ -318,7 +324,11 @@ export class MemorySystem {
     }
     
     // Add new tags without duplicates
-    memory.tags = [...new Set([...memory.tags, ...tags])];
+    if (!memory.tags) {
+      memory.tags = [...tags];
+    } else {
+      memory.tags = [...new Set([...memory.tags, ...tags])];
+    }
     await this.saveMemoryToDisk(memory);
     
     return memory;
