@@ -246,8 +246,8 @@ async function generateArtWithFlux() {
     }
 
     // Use style-specific parameters
-    const width = 768;
-    const height = 768;
+    const width = 2048;
+    const height = 2048;
     const numInferenceSteps = styleConfig.num_inference_steps;
     const guidanceScale = styleConfig.guidance_scale;
 

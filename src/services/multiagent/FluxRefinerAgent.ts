@@ -274,8 +274,8 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
     console.log(`Generated detailed prompt: ${detailedPrompt}`);
     
     // Default image settings
-    const width = 768;
-    const height = 768;
+    const width = 2048;
+    const height = 2048;
     const numInferenceSteps = 28;
     const guidanceScale = 3;
     const outputFormat = "png";
