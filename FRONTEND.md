@@ -56,14 +56,13 @@ src/
 
 ```typescript
 // src/components/common/WalletConnect.tsx
-import { ConnectWallet } from "@thirdweb-dev/react";
+import { ConnectButton } from "thirdweb/react";
 
 export function WalletConnect() {
   return (
-    <ConnectWallet
+    <ConnectButton
       theme="dark"
-      btnTitle="Connect Wallet"
-      modalTitle="Select Wallet"
+      className="connect-button"
     />
   );
 }
@@ -74,19 +73,26 @@ export function WalletConnect() {
 ```typescript
 // src/components/modules/nft/MintingCard.tsx
 import { useState } from "react";
-import { useContract, useNFTDrop } from "@thirdweb-dev/react";
+import { useReadContract, useSendTransaction } from "thirdweb/react";
+import { claimTo } from "thirdweb/extensions/erc721";
 import { toast } from "react-hot-toast";
 
 export function MintingCard() {
   const [isMinting, setIsMinting] = useState(false);
-  const { contract: nftDrop } = useNFTDrop(NFT_DROP_ADDRESS);
+  const { mutate: sendTx } = useSendTransaction();
+  const account = useActiveAccount();
 
   const handleMint = async () => {
     try {
       setIsMinting(true);
-      const tx = await nftDrop?.claim(1);
+      const transaction = claimTo({
+        contract: NFT_DROP_ADDRESS,
+        to: account?.address,
+        quantity: 1n,
+      });
+      
+      await sendTx(transaction);
       toast.success("NFT Minted Successfully!");
-      console.log("Success:", tx);
     } catch (err) {
       toast.error("Failed to mint NFT");
       console.error(err);
@@ -114,26 +120,33 @@ export function MintingCard() {
 ```typescript
 // src/components/modules/staking/StakingDashboard.tsx
 import { useState } from "react";
-import { useContract, useStaking, useToken } from "@thirdweb-dev/react";
+import { useReadContract, useSendTransaction } from "thirdweb/react";
+import { stake } from "thirdweb/extensions/erc20-staking";
+import { setAllowance } from "thirdweb/extensions/erc20";
 import { parseEther } from "viem";
+import { toast } from "react-hot-toast";
 
 export function StakingDashboard() {
   const [amount, setAmount] = useState("");
-  const { contract: staking } = useStaking(STAKING_ADDRESS);
-  const { contract: token } = useToken(TOKEN_ADDRESS);
+  const { mutate: sendTx } = useSendTransaction();
 
   const handleStake = async () => {
     try {
       // First approve tokens
-      const approval = await token?.setAllowance(
-        STAKING_ADDRESS,
-        parseEther(amount)
-      );
-      await approval?.wait();
+      const approvalTx = setAllowance({
+        contract: TOKEN_ADDRESS,
+        spender: STAKING_ADDRESS,
+        amount: parseEther(amount),
+      });
+      await sendTx(approvalTx);
 
       // Then stake
-      const tx = await staking?.stake(parseEther(amount));
-      await tx?.wait();
+      const stakeTx = stake({
+        contract: STAKING_ADDRESS,
+        amount: parseEther(amount),
+      });
+      await sendTx(stakeTx);
+      
       toast.success("Tokens Staked Successfully!");
     } catch (err) {
       toast.error("Failed to stake tokens");
@@ -161,18 +174,24 @@ export function StakingDashboard() {
 ```typescript
 // src/components/modules/bundle/BundleCreator.tsx
 import { useState } from "react";
-import { useContract } from "@thirdweb-dev/react";
+import { useReadContract, useSendTransaction } from "thirdweb/react";
+import { wrap } from "thirdweb/extensions/multiwrap";
+import { toast } from "react-hot-toast";
 
 export function BundleCreator() {
-  const { contract: multiwrap } = useContract(MULTIWRAP_ADDRESS);
   const [tokens, setTokens] = useState([]);
+  const { mutate: sendTx } = useSendTransaction();
+  const account = useActiveAccount();
 
   const createBundle = async () => {
     try {
-      const tx = await multiwrap?.wrap({
+      const transaction = wrap({
+        contract: MULTIWRAP_ADDRESS,
         tokensToWrap: tokens,
-        recipientAddress: address,
+        recipient: account?.address,
       });
+      
+      await sendTx(transaction);
       toast.success("Bundle Created!");
     } catch (err) {
       toast.error("Failed to create bundle");
@@ -194,19 +213,21 @@ export function BundleCreator() {
 
 ```typescript
 // src/components/modules/governance/ProposalList.tsx
-import { useContract } from "@thirdweb-dev/react";
+import { useReadContract } from "thirdweb/react";
+import { getAll } from "thirdweb/extensions/erc20-votes";
+import { useState, useEffect } from "react";
 
 export function ProposalList() {
-  const { contract: vote } = useContract(VOTE_ADDRESS);
   const [proposals, setProposals] = useState([]);
+  const { data: allProposals } = useReadContract(getAll, {
+    contract: VOTE_ADDRESS,
+  });
 
   useEffect(() => {
-    const fetchProposals = async () => {
-      const allProposals = await vote?.getAll();
+    if (allProposals) {
       setProposals(allProposals);
-    };
-    fetchProposals();
-  }, [vote]);
+    }
+  }, [allProposals]);
 
   return (
     <div className="proposal-list">
@@ -246,28 +267,185 @@ export default function Home() {
 
 ```typescript
 // src/pages/mint.tsx
-import { MintingCard } from "../components/modules/nft/MintingCard";
-import { useAddress } from "@thirdweb-dev/react";
-import { useRouter } from "next/router";
+import { FC, useEffect, useState } from 'react';
+import { useReadContract, useSendTransaction, useActiveAccount } from "thirdweb/react";
+import { claimTo } from "thirdweb/extensions/erc721";
+import { Layout } from "../components/layout/Layout";
+import { CollectionHeader } from "../components/modules/collection/CollectionHeader";
+import { CollectionStat } from "../components/modules/collection/CollectionStat";
+import { Amount } from "../components/modules/form/Amount";
+import { Loader } from "../components/common/Loader";
+import { toast } from "react-hot-toast";
 
-export default function Mint() {
-  const address = useAddress();
-  const router = useRouter();
+interface MintPageProps {
+  contractAddress?: string;
+  tokenId?: string;
+}
 
-  if (!address) {
-    router.push("/");
-    return null;
+const MintPage: FC<MintPageProps> = ({ 
+  contractAddress = process.env.NEXT_PUBLIC_NFT_DROP_ADDRESS,
+  tokenId = "0" 
+}) => {
+  // State management
+  const [localClaimedSupply, setLocalClaimedSupply] = useState(0);
+  const [amountToMint, setAmountToMint] = useState(1);
+  const [maxClaimable, setMaxClaimable] = useState<string | number>(1);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [error, setError] = useState<string>('');
+  const [isMinting, setIsMinting] = useState(false);
+
+  const account = useActiveAccount();
+  const { mutate: sendTx } = useSendTransaction();
+
+  // Contract and NFT data
+  const { data: nft, isLoading } = useReadContract({
+    contract: contractAddress,
+    method: "tokenURI",
+    params: [tokenId],
+  });
+
+  // Validation
+  useEffect(() => {
+    if (!contractAddress) {
+      setError('Contract address is required');
+      return;
+    }
+    if (!tokenId) {
+      setError('Token ID is required');
+      return;
+    }
+  }, [contractAddress, tokenId]);
+
+  // Amount controls
+  const onPlus = () => {
+    if (amountToMint >= (maxClaimable === 'unlimited' ? 9999999999 : parseInt(maxClaimable as string, 10))) return;
+    setAmountToMint(amountToMint + 1);
+  };
+
+  const onMinus = () => {
+    if (amountToMint <= 1) return;
+    setAmountToMint(amountToMint - 1);
+  };
+
+  const handleMint = async () => {
+    if (!account) {
+      toast.error("Please connect your wallet");
+      return;
+    }
+
+    try {
+      setIsMinting(true);
+      const transaction = claimTo({
+        contract: contractAddress,
+        to: account.address,
+        quantity: BigInt(amountToMint),
+      });
+      
+      await sendTx(transaction);
+      setLocalClaimedSupply(prev => prev + amountToMint);
+      toast.success("Successfully minted NFT!");
+    } catch (err) {
+      console.error("Minting failed:", err);
+      toast.error("Failed to mint NFT");
+    } finally {
+      setIsMinting(false);
+    }
+  };
+
+  // Loading states
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
+  if (isLoading || !nft) {
+    return <Loader />;
   }
 
   return (
     <Layout>
-      <div className="mint-page">
-        <h1>Mint Genesis NFT</h1>
-        <MintingCard />
+      <div className="flex flex-col w-full">
+        <CollectionHeader
+          eyebrow="Welcome"
+          coverImage={nft.image}
+          name={String(nft.name)}
+          description={String(nft.description)}
+        >
+          <div className="flex flex-col">
+            {/* NFT Image */}
+            <div className="relative aspect-square w-full overflow-hidden rounded-lg">
+              {!imageLoaded && <Loader />}
+              <img 
+                src={nft.image}
+                alt={String(nft.name)}
+                className={`w-full h-full object-cover transition-opacity duration-300 ${
+                  imageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                onLoad={() => setImageLoaded(true)}
+              />
+            </div>
+
+            {/* Collection Stats */}
+            <div className="grid grid-cols-3 gap-4 w-full border-y border-y-gray-700 py-8 mt-6">
+              <CollectionStat label="Price">
+                {/* Add price from claim conditions */}
+                0.1 ETH
+              </CollectionStat>
+              <CollectionStat label="Minted">
+                {`${localClaimedSupply} / 1000`}
+              </CollectionStat>
+              <CollectionStat label="Max Per Wallet">
+                {maxClaimable === 'unlimited' ? 'Unlimited' : maxClaimable}
+              </CollectionStat>
+            </div>
+
+            {/* Mint Date */}
+            <div className="grid grid-cols-1 gap-4 w-full border-b border-b-gray-700 py-8">
+              <CollectionStat label="Opens:">
+                {new Date().toLocaleDateString()}
+              </CollectionStat>
+            </div>
+
+            {/* Mint Controls */}
+            <div className="flex flex-col md:flex-row w-full mt-6 justify-between items-center">
+              <Amount 
+                amount={amountToMint} 
+                onMinus={onMinus} 
+                onPlus={onPlus}
+              />
+              
+              <div className="w-full md:w-3/4 md:pl-4">
+                <button
+                  onClick={handleMint}
+                  disabled={isMinting || !account}
+                  className="mint-button w-full font-boska disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isMinting ? "Minting..." : "Mint Now"}
+                </button>
+              </div>
+            </div>
+
+            {/* Contract Details */}
+            <div className="flex flex-col w-full mt-1 text-gray-600 border-y border-y-gray-700 py-8 text-sm font-satoshi">
+              <ul>
+                <li>
+                  <span className="font-bold">Blockchain:</span> Berachain
+                </li>
+                <li className="break-all">
+                  <span className="font-bold">Contract Address:</span> {contractAddress}
+                </li>
+                <li>
+                  <span className="font-bold">Token Standard:</span> ERC-721
+                </li>
+              </ul>
+            </div>
+          </div>
+        </CollectionHeader>
       </div>
     </Layout>
   );
-}
+};
+
+export default MintPage;
 ```
 
 ### 3. Staking Page
@@ -906,12 +1084,14 @@ export const Loader: FC = () => {
 ```typescript
 // src/pages/mint.tsx
 import { FC, useEffect, useState } from 'react';
-import { useContract, useNFT, Web3Button } from "@thirdweb-dev/react";
+import { useReadContract, useSendTransaction, useActiveAccount } from "thirdweb/react";
+import { claimTo } from "thirdweb/extensions/erc721";
 import { Layout } from "../components/layout/Layout";
 import { CollectionHeader } from "../components/modules/collection/CollectionHeader";
 import { CollectionStat } from "../components/modules/collection/CollectionStat";
 import { Amount } from "../components/modules/form/Amount";
 import { Loader } from "../components/common/Loader";
+import { toast } from "react-hot-toast";
 
 interface MintPageProps {
   contractAddress?: string;
@@ -928,10 +1108,17 @@ const MintPage: FC<MintPageProps> = ({
   const [maxClaimable, setMaxClaimable] = useState<string | number>(1);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [error, setError] = useState<string>('');
+  const [isMinting, setIsMinting] = useState(false);
+
+  const account = useActiveAccount();
+  const { mutate: sendTx } = useSendTransaction();
 
   // Contract and NFT data
-  const { contract } = useContract(contractAddress);
-  const { data: nft, isLoading } = useNFT(contract, tokenId);
+  const { data: nft, isLoading } = useReadContract({
+    contract: contractAddress,
+    method: "tokenURI",
+    params: [tokenId],
+  });
 
   // Validation
   useEffect(() => {
@@ -956,6 +1143,31 @@ const MintPage: FC<MintPageProps> = ({
     setAmountToMint(amountToMint - 1);
   };
 
+  const handleMint = async () => {
+    if (!account) {
+      toast.error("Please connect your wallet");
+      return;
+    }
+
+    try {
+      setIsMinting(true);
+      const transaction = claimTo({
+        contract: contractAddress,
+        to: account.address,
+        quantity: BigInt(amountToMint),
+      });
+      
+      await sendTx(transaction);
+      setLocalClaimedSupply(prev => prev + amountToMint);
+      toast.success("Successfully minted NFT!");
+    } catch (err) {
+      console.error("Minting failed:", err);
+      toast.error("Failed to mint NFT");
+    } finally {
+      setIsMinting(false);
+    }
+  };
+
   // Loading states
   if (error) {
     return <div className="text-red-500">{error}</div>;
@@ -970,17 +1182,17 @@ const MintPage: FC<MintPageProps> = ({
       <div className="flex flex-col w-full">
         <CollectionHeader
           eyebrow="Welcome"
-          coverImage={nft.metadata.image}
-          name={String(nft.metadata.name)}
-          description={String(nft.metadata.description)}
+          coverImage={nft.image}
+          name={String(nft.name)}
+          description={String(nft.description)}
         >
           <div className="flex flex-col">
             {/* NFT Image */}
             <div className="relative aspect-square w-full overflow-hidden rounded-lg">
               {!imageLoaded && <Loader />}
               <img 
-                src={nft.metadata.image}
-                alt={String(nft.metadata.name)}
+                src={nft.image}
+                alt={String(nft.name)}
                 className={`w-full h-full object-cover transition-opacity duration-300 ${
                   imageLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
@@ -1018,18 +1230,13 @@ const MintPage: FC<MintPageProps> = ({
               />
               
               <div className="w-full md:w-3/4 md:pl-4">
-                <Web3Button
-                  contractAddress={contractAddress}
-                  action={async (contract) => {
-                    await contract.erc721.claim(amountToMint);
-                  }}
-                  className="mint-button w-full font-boska"
-                  onSuccess={(result) => {
-                    setLocalClaimedSupply(prev => prev + amountToMint);
-                  }}
+                <button
+                  onClick={handleMint}
+                  disabled={isMinting || !account}
+                  className="mint-button w-full font-boska disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Mint Now
-                </Web3Button>
+                  {isMinting ? "Minting..." : "Mint Now"}
+                </button>
               </div>
             </div>
 
@@ -2233,15 +2440,18 @@ Update your post-genesis page to use these enhanced features:
 ```typescript
 // src/pages/post-genesis.tsx
 import { useState } from 'react';
-import { useAddress, useSignMessage } from "@thirdweb-dev/react";
+import { useActiveAccount, useSignMessage } from "thirdweb/react";
 import { Layout } from "../components/layout/Layout";
 import { GenerationProcess } from "../components/modules/generation/GenerationProcess";
 import { ImageComparison } from "../components/modules/generation/ImageComparison";
 import { MetadataVisualizer } from "../components/modules/generation/MetadataVisualizer";
+import { WalletConnect } from "../components/common/WalletConnect";
+import { toast } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 export default function PostGenesis() {
-  const address = useAddress();
-  const signMessage = useSignMessage();
+  const account = useActiveAccount();
+  const { mutate: signMessage } = useSignMessage();
   
   const [images, setImages] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -2255,9 +2465,9 @@ export default function PostGenesis() {
 
       // Sign message for verification
       const timestamp = Date.now();
-      const signature = await signMessage(
-        `Generate images at ${timestamp}`
-      );
+      const signature = await signMessage({
+        message: `Generate images at ${timestamp}`,
+      });
 
       // Simulate progress updates
       const progressInterval = setInterval(() => {
@@ -2271,7 +2481,7 @@ export default function PostGenesis() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          address,
+          address: account?.address,
           signature,
           timestamp,
         }),
@@ -2292,7 +2502,7 @@ export default function PostGenesis() {
     }
   };
 
-  if (!address) {
+  if (!account) {
     return (
       <Layout>
         <div className="min-h-screen flex items-center justify-center">
@@ -2365,7 +2575,6 @@ export default function PostGenesis() {
   );
 }
 ```
-
 These enhancements provide:
 
 1. **Advanced Generation Process**
@@ -2398,3 +2607,4 @@ Would you like me to:
 2. Enhance the metadata visualization with charts?
 3. Add more security features?
 4. Include additional generation options?
+
