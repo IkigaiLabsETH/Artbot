@@ -106,8 +106,8 @@ The FLUX integration can be configured through environment variables:
 REPLICATE_API_KEY=your_replicate_api_key
 ANTHROPIC_API_KEY=your_anthropic_api_key  # Optional if using OpenAI
 OPENAI_API_KEY=your_openai_api_key        # Optional if using Anthropic
-IMAGE_WIDTH=768                           # Default width for FLUX images
-IMAGE_HEIGHT=768                          # Default height for FLUX images
+IMAGE_WIDTH=2048                           # Default width for FLUX images
+IMAGE_HEIGHT=2048                          # Default height for FLUX images
 NUM_INFERENCE_STEPS=28                    # Default inference steps for FLUX
 GUIDANCE_SCALE=3.0                        # Default guidance scale for FLUX
 ```
@@ -128,8 +128,8 @@ The FLUX model supports the following parameters:
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | prompt | string | required | The prompt for image generation. For best results, include the trigger word "IKIGAI" and keywords like "cinestill 800t", "night time", and "analog". |
-| width | integer | 768 | Width of the generated image (256-1440) |
-| height | integer | 768 | Height of the generated image (256-1440) |
+| width | integer | 2048 | Width of the generated image (256-1440) |
+| height | integer | 2048 | Height of the generated image (256-1440) |
 | num_inference_steps | integer | 28 | Number of denoising steps (1-50) |
 | guidance_scale | number | 3 | Influences how closely the image follows the prompt (0-10) |
 | output_format | string | "png" | Format of the output image ("webp", "jpg", or "png") |

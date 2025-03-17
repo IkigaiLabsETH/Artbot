@@ -43,8 +43,8 @@ export const generationConfig: GenerationConfig = {
       inferenceSteps: 28,    // Optimized for FLUX
       guidanceScale: 3,      // FLUX-specific
       dimensions: {
-        width: 768,          // FLUX optimal dimension
-        height: 768          // FLUX optimal dimension
+        width: 2048,          // FLUX optimal dimension
+        height: 2048          // FLUX optimal dimension
       }
     }
   }
@@ -393,8 +393,8 @@ interface EnhancedMetadata {
       "inferenceSteps": 28,
       "guidanceScale": 3,
       "dimensions": {
-        "width": 768,
-        "height": 768
+        "width": 2048,
+        "height": 2048
       }
     },
     "prompt": "a distinguished bear portrait in profile wearing...",

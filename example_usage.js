@@ -35,7 +35,7 @@ function runExamples() {
   const classicNegativePrompt = artDirectionLoader.buildNegativePrompt(classicArtDirection);
   const classicParams = artDirectionLoader.applyArtDirectionToParams(
     classicArtDirection, 
-    { width: 768, height: 768 }
+    { width: 2048, height: 2048 }
   );
   
   generateArt(classicPrompt, classicNegativePrompt, classicParams);
@@ -50,7 +50,7 @@ function runExamples() {
   const empireNegativePrompt = artDirectionLoader.buildNegativePrompt(empireArtDirection);
   const empireParams = artDirectionLoader.applyArtDirectionToParams(
     empireArtDirection, 
-    { width: 768, height: 768 }
+    { width: 2048, height: 2048 }
   );
   
   generateArt(empirePrompt, empireNegativePrompt, empireParams);
@@ -65,7 +65,7 @@ function runExamples() {
   const objectsNegativePrompt = artDirectionLoader.buildNegativePrompt(objectsArtDirection);
   const objectsParams = artDirectionLoader.applyArtDirectionToParams(
     objectsArtDirection, 
-    { width: 768, height: 768 }
+    { width: 2048, height: 2048 }
   );
   
   generateArt(objectsPrompt, objectsNegativePrompt, objectsParams);
@@ -80,7 +80,7 @@ function runExamples() {
   const scaleNegativePrompt = artDirectionLoader.buildNegativePrompt(scaleArtDirection);
   const scaleParams = artDirectionLoader.applyArtDirectionToParams(
     scaleArtDirection, 
-    { width: 768, height: 768 }
+    { width: 2048, height: 2048 }
   );
   
   generateArt(scalePrompt, scaleNegativePrompt, scaleParams);
@@ -95,7 +95,7 @@ function runExamples() {
   const wordplayNegativePrompt = artDirectionLoader.buildNegativePrompt(wordplayArtDirection);
   const wordplayParams = artDirectionLoader.applyArtDirectionToParams(
     wordplayArtDirection, 
-    { width: 768, height: 768 }
+    { width: 2048, height: 2048 }
   );
   
   generateArt(wordplayPrompt, wordplayNegativePrompt, wordplayParams);
