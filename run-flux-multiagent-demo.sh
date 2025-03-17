@@ -82,6 +82,10 @@ echo -e "${YELLOW}This will run a complete art creation process with multiple ag
 echo -e "${YELLOW}The process may take several minutes to complete${NC}"
 echo ""
 
+# Set output format to PNG
+export OUTPUT_FORMAT="png"
+echo -e "${GREEN}Output format: ${OUTPUT_FORMAT}${NC}"
+
 node dist/demo-flux-multiagent.js "$@"
 
 # Check if the demo was successful

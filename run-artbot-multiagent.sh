@@ -174,6 +174,10 @@ echo -e "${BLUE}Description: ${PROJECT_DESCRIPTION}${NC}"
 echo -e "${YELLOW}This process may take several minutes to complete.${NC}"
 echo ""
 
+# Set output format to PNG
+export OUTPUT_FORMAT="png"
+echo -e "${GREEN}Output format: ${OUTPUT_FORMAT}${NC}"
+
 node $TEMP_FILE
 
 # Clean up

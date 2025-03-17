@@ -112,6 +112,10 @@ echo -e "${YELLOW}This will generate a conceptually rich prompt and create an im
 echo -e "${YELLOW}The process may take a minute or two to complete${NC}"
 echo ""
 
+# Set output format to PNG
+export OUTPUT_FORMAT="png"
+echo -e "${GREEN}Output format: ${OUTPUT_FORMAT}${NC}"
+
 node dist/generate-art-flux.js "$@"
 
 # Check if the generation was successful

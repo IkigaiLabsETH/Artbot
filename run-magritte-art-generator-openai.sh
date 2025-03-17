@@ -53,7 +53,9 @@ echo -e "${GREEN}Using OpenAI as the primary model for AI completions.${NC}"
 
 # Set the image model to FLUX Pro
 export DEFAULT_IMAGE_MODEL="black-forest-labs/flux-1.1-pro"
+export OUTPUT_FORMAT="png"
 echo -e "${GREEN}Using image model: ${DEFAULT_IMAGE_MODEL}${NC}"
+echo -e "${GREEN}Output format: ${OUTPUT_FORMAT}${NC}"
 
 # Compile TypeScript code
 echo -e "${GREEN}Compiling TypeScript code...${NC}"

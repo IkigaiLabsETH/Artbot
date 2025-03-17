@@ -7,7 +7,7 @@ export { ModelPrediction };
 // Define the models
 const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
 const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
-const FALLBACK_MODEL = 'minimax/image-01';
+const FALLBACK_MODEL = 'black-forest-labs/flux-1.1-pro';
 
 export class ReplicateService {
   private apiKey: string;
@@ -17,6 +17,7 @@ export class ReplicateService {
   private defaultHeight: number;
   private defaultNumInferenceSteps: number;
   private defaultGuidanceScale: number;
+  private defaultOutputFormat: string;
   
   constructor(config: Record<string, any> = {}) {
     this.apiKey = config.apiKey || process.env.REPLICATE_API_KEY || '';
@@ -25,6 +26,7 @@ export class ReplicateService {
     this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '2048', 10);
     this.defaultNumInferenceSteps = config.defaultNumInferenceSteps || parseInt(process.env.NUM_INFERENCE_STEPS || '28', 10);
     this.defaultGuidanceScale = config.defaultGuidanceScale || parseFloat(process.env.GUIDANCE_SCALE || '3.0');
+    this.defaultOutputFormat = config.defaultOutputFormat || process.env.OUTPUT_FORMAT || 'png';
   }
   
   async initialize(): Promise<void> {
@@ -36,6 +38,7 @@ export class ReplicateService {
       console.log(`📐 Image dimensions: ${this.defaultWidth}x${this.defaultHeight}`);
       console.log(`🔄 Inference steps: ${this.defaultNumInferenceSteps}`);
       console.log(`🎯 Guidance scale: ${this.defaultGuidanceScale}`);
+      console.log(`🖼️ Output format: ${this.defaultOutputFormat}`);
     }
   }
   
@@ -44,6 +47,13 @@ export class ReplicateService {
    */
   getDefaultModel(): string {
     return this.defaultModel;
+  }
+  
+  /**
+   * Get the default output format
+   */
+  getDefaultOutputFormat(): string {
+    return this.defaultOutputFormat;
   }
   
   /**
@@ -81,7 +91,7 @@ export class ReplicateService {
         input.height = input.height || this.defaultHeight;
         input.num_inference_steps = input.num_inference_steps || this.defaultNumInferenceSteps;
         input.guidance_scale = input.guidance_scale || this.defaultGuidanceScale;
-        input.output_format = input.output_format || "png";
+        input.output_format = input.output_format || this.defaultOutputFormat;
         
         // Ensure the prompt has the FLUX trigger word
         if (input.prompt && !input.prompt.includes('IKIGAI')) {
@@ -102,6 +112,7 @@ export class ReplicateService {
       else if (isFluxProModel) {
         input.width = input.width || this.defaultWidth;
         input.height = input.height || this.defaultHeight;
+        input.output_format = input.output_format || this.defaultOutputFormat;
         
         // FLUX Pro doesn't need the IKIGAI trigger word or specific keywords
         // But we'll keep any cinematic elements in the prompt
@@ -118,6 +129,7 @@ export class ReplicateService {
         // Minimax model typically uses these parameters
         input.width = input.width || this.defaultWidth;
         input.height = input.height || this.defaultHeight;
+        input.output_format = input.output_format || this.defaultOutputFormat;
         // Remove any FLUX-specific parameters that might not be compatible
         delete input.num_inference_steps;
         delete input.guidance_scale;
@@ -130,6 +142,7 @@ export class ReplicateService {
         input.width = input.width || this.defaultWidth;
         input.height = input.height || this.defaultHeight;
         input.num_outputs = input.num_outputs || 1;
+        input.output_format = input.output_format || this.defaultOutputFormat;
       }
       
       console.log(`🔄 Running prediction on model: ${selectedModel}`);
