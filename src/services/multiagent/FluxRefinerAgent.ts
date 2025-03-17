@@ -33,8 +33,8 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
     // Initialize context with default parameters
     this.state.context = {
       fluxParameters: {
-        width: 2048,
-        height: 2048,
+        width: 1024,
+        height: 1024,
         numInferenceSteps: 28,
         guidanceScale: 3,
         outputFormat: "png"
@@ -274,8 +274,8 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
     console.log(`Generated detailed prompt: ${detailedPrompt}`);
     
     // Default image settings
-    const width = 2048;
-    const height = 2048;
+    const width = 768;
+    const height = 768;
     const numInferenceSteps = 28;
     const guidanceScale = 3;
     const outputFormat = "png";
