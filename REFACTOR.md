@@ -397,7 +397,7 @@ interface EnhancedMetadata {
         "height": 2048
       }
     },
-    "prompt": "a distinguished bear portrait in profile wearing...",
+    "prompt": "a distinguished female bear portrait in profile wearing...",
     "timestamp": "2024-03-19T14:23:45.789Z"
   }
 }

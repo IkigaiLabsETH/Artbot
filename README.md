@@ -37,7 +37,7 @@
     '-------------------'
 ```
 
-This unique NFT collection reimagines René Magritte's surrealist masterpieces through a series of distinguished bear portraits. Each piece combines the Belgian master's meticulous painting technique with contemporary digital art, creating profile pictures that challenge reality while celebrating ursine dignity.
+This unique NFT collection reimagines René Magritte's surrealist masterpieces through a series of distinguished female bear portraits. Each piece combines the Belgian master's meticulous painting technique with contemporary digital art, creating profile pictures that challenge reality while celebrating ursine dignity.
 
 ⸻
 
@@ -435,7 +435,7 @@ Example metadata structure:
 ```json
 {
   "name": "Urban Forager Bear",
-  "description": "A distinguished bear portrait in Magritte's surrealist style...",
+  "description": "A distinguished female bear portrait in Magritte's surrealist style...",
   "attributes": {
     "category": "hipster",
     "style": "Magritte Surrealist",
