@@ -1953,7 +1953,7 @@ function generateBearConcept(): string {
   const additional = additionalElements[Math.floor(Math.random() * additionalElements.length)];
 
   const magritteBearPFP = [
-    `a distinguished female bear portrait in profile wearing a ${primary}, ${secondary}, and ${neck}, dressed in a ${cloth}, with ${additional}, painted in Magritte's precise style against a Belgian sky blue background`,
+    `a distinguished bear portrait in profile wearing a ${primary}, ${secondary}, and ${neck}, dressed in a ${cloth}, with ${additional}, painted in Magritte's precise style against a Belgian sky blue background`,
   ];
   
   return magritteBearPFP[0];
@@ -2353,7 +2353,7 @@ function createProjectConfig(concept: string, selectedCategory: string, baseFile
     description: `Create a Magritte-style bear PFP portrait: "${concept}"`,
     useFlux: true,
     modelConfig: {
-      prompt_prefix: `Create a portrait of a distinguished female bear in René Magritte's distinctive painting style, perfectly centered for a PFP (Profile Picture). The image should embody Magritte's precise yet painterly technique that captures `,
+      prompt_prefix: `Create a portrait of a distinguished bear in René Magritte's distinctive painting style, perfectly centered for a PFP (Profile Picture). The image should embody Magritte's precise yet painterly technique that captures `,
       prompt_suffix: `. Render with Magritte's signature artistic elements:
 - Painting Style: 
   * Magritte's characteristic smooth, matte finish
@@ -2672,7 +2672,7 @@ async function generateArt(concept: string) {
     const metadata: NFTMetadata = {
       name: `${selectedCategory.replace('bear_pfp_', '').split('_').map(word => 
         word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} Bear`,
-      description: `${artConcept}\n\nA distinguished female bear portrait in Magritte's surrealist style, featuring a ${
+      description: `${artConcept}\n\nA distinguished bear portrait in Magritte's surrealist style, featuring a ${
         selectedCategory.replace('bear_pfp_', '').replace(/_/g, ' ')
       } bear with characteristic accessories and tools. Created through multi-agent AI collaboration.`,
       image: imageUrl,
