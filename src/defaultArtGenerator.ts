@@ -384,6 +384,19 @@ const magritteCategories = [
   'bear_pfp_datavis',       // Data visualization artist
   'bear_pfp_augmented',     // Augmented reality creator
   
+  // Blockchain & Web3 Art Forms
+  'bear_pfp_defi',          // DeFi trader with charts and tokens
+  'bear_pfp_dao',           // DAO governance participant
+  'bear_pfp_hodler',        // Long-term crypto hodler
+  'bear_pfp_miner',         // Crypto mining operator
+  'bear_pfp_validator',     // Blockchain validator/staker
+  'bear_pfp_tokenomics',    // Tokenomics designer
+  'bear_pfp_dapp',          // Decentralized app developer
+  'bear_pfp_metaverse',     // Metaverse architect
+  'bear_pfp_onchain',       // On-chain data analyst
+  'bear_pfp_smartcontract', // Smart contract developer
+  'bear_pfp_tradfi',        // TradFi to crypto bridge
+  
   // Experimental Art Forms
   'bear_pfp_lightart',      // Light installation artist
   'bear_pfp_kinetic',       // Kinetic sculpture creator
@@ -629,7 +642,129 @@ const magritteCategories = [
   'bear_pfp_vinylhunter',   // Rare vinyl hunter
   'bear_pfp_techweaver',    // Tech-integrated textiles
   'bear_pfp_algaelab',      // Algae cultivation artist
-  'bear_pfp_soundhunter',   // Field recording artist
+  'bear_pfp_soundhunter',   // Field recording artist,
+  
+  // Additional Adventure Headwear
+  "bouldering beanie",
+  "slackline balance cap",
+  "wing foiling helmet",
+  "speedflying aerodynamic helmet",
+  "ice swimming cap",
+  "canyoneering helmet",
+  "snow kiting goggles",
+  "hydrofoil racing helmet",
+  "aerial dance headpiece",
+  "coasteering safety helmet",
+  
+  // Blockchain & Web3 Headwear
+  "crypto trader's LED matrix glasses",
+  "bitcoin miner's cooling headset",
+  "blockchain developer's AR visor",
+  "NFT artist's holographic crown",
+  "DAO governance cap with voting indicators",
+  "hardware wallet security helmet",
+  "DeFi analyst's multi-chart glasses",
+  "validator node operator's cooling headband",
+  "metaverse explorer's VR headset",
+  "smart contract auditor's debugging glasses",
+  "web3 hacker's terminal visor",
+  "token economist's data crown",
+  
+  // Additional Artistic Headwear
+  "crypto-art visor",
+  "biofeedback sensor crown",
+  "neural interface headset",
+  "fractal projection glasses",
+  "glitch effect visor",
+  "voxel creator headset",
+  "AI collaboration interface",
+  "bio-design protective mask",
+  "quantum computing glasses",
+  "4D visualization headset",
+  
+  // Additional Hipster Headwear
+  "solarpunk crystal crown",
+  "vintage tech headphones",
+  "sustainable fiber cap",
+  "minimalist design hat",
+  "upcycled material headband",
+  "microgreen grower's cap",
+  "vinyl collector's headphones",
+  "tech-weave beanie",
+  "algae lab protective cap",
+  "field recording headphones",
+  
+  // Hipster Headwear
+  "barista's flat cap",
+  "vintage fedora",
+  "craft brewer's beanie",
+  "botanical sun hat",
+  "mixologist's newsboy cap",
+  "antique collector's cap",
+  "bookshop reading glasses",
+  "gastronome's tasting cap",
+  "fixed gear cycling cap",
+  "artisan's work cap",
+  
+  // New Hipster Headwear
+  "sourdough baker's linen cap",
+  "coffee scientist's tasting cap",
+  "fountain pen collector's visor",
+  "printmaker's protective cap",
+  "natural dyer's bandana",
+  "leatherworker's craftsman cap",
+  "book restorer's magnifying visor",
+  "typewriter enthusiast's vintage cap",
+  "bonsai master's sun hat",
+  "bicycle restorer's workshop cap",
+  
+  // Contemporary Craft Headwear
+  "small-batch maker's bandana",
+  "slow food chef's toque",
+  "natural dye artist's head wrap",
+  "bookbinder's work cap",
+  "wood type printer's visor",
+  "botanical mixologist's cap",
+  "seed collector's field hat",
+  "cheesemaker's hygiene cap",
+  "knifesmith's safety visor",
+  "ceramicist's clay-proof cap",
+  
+  // Urban Homesteading Headwear
+  "urban farmer's straw hat",
+  "food preserver's hair net",
+  "herb gardener's sun visor",
+  "rainwater collector's cap",
+  "compost specialist's bandana",
+  "soap maker's protective cap",
+  "candle crafter's work cap",
+  "fiber artist's weaving band",
+  "mead maker's brewing cap",
+  "foraging expert's field hat",
+  
+  // Modern Maker Headwear
+  "synth builder's anti-static cap",
+  "modular electronics visor",
+  "camera repair magnifying cap",
+  "vinyl pressing safety cap",
+  "tape label curator's beanie",
+  "zine maker's creative cap",
+  "patch designer's work hat",
+  "pin maker's safety glasses",
+  "sticker artist's bandana",
+  "riso print master's cap",
+  
+  // Sustainable Living Headwear
+  "repair cafe specialist's cap",
+  "thrifting expert's vintage hat",
+  "upcycler's creative bandana",
+  "minimalist's essential cap",
+  "zero-waste shop cap",
+  "clothing repair visor",
+  "tool restoration goggles",
+  "furniture upcycler's cap",
+  "eco-fashion designer's hat",
+  "swap shop curator's beanie"
 ];
 
 // Function to generate bear PFP concepts in Magritte's style
@@ -793,6 +928,20 @@ function generateBearConcept(): string {
     "hydrofoil racing helmet",
     "aerial dance headpiece",
     "coasteering safety helmet",
+    
+    // Blockchain & Web3 Headwear
+    "crypto trader's LED matrix glasses",
+    "bitcoin miner's cooling headset",
+    "blockchain developer's AR visor",
+    "NFT artist's holographic crown",
+    "DAO governance cap with voting indicators",
+    "hardware wallet security helmet",
+    "DeFi analyst's multi-chart glasses",
+    "validator node operator's cooling headband",
+    "metaverse explorer's VR headset",
+    "smart contract auditor's debugging glasses",
+    "web3 hacker's terminal visor",
+    "token economist's data crown",
     
     // Additional Artistic Headwear
     "crypto-art visor",
@@ -1051,6 +1200,23 @@ function generateBearConcept(): string {
     "aerial dance apparatus",
     "coasteering navigation tool",
     
+    // Blockchain & Web3 Tools
+    "hardware wallet device",
+    "crypto trading terminal",
+    "blockchain explorer tablet",
+    "NFT authentication scanner",
+    "smart contract auditing tool",
+    "validator node console",
+    "token staking interface",
+    "private key management device",
+    "merkle tree visualizer",
+    "multi-signature signing pad",
+    "gas fee optimizer",
+    "DeFi portfolio analyzer",
+    "mempool transaction viewer",
+    "cold storage vault key",
+    "hash verification system",
+    
     // Additional Artistic Tools
     "blockchain art tablet",
     "biofeedback visualizer",
@@ -1302,6 +1468,21 @@ function generateBearConcept(): string {
     "hydrofoil impact vest",
     "aerial dance sling",
     "coasteering safety line",
+    
+    // Blockchain & Web3 Neckwear
+    "hardware wallet pendant",
+    "private key QR code scarf",
+    "bitcoin logo medallion",
+    "blockchain node status collar",
+    "mining rig cooling scarf",
+    "NFT showcase display pendant",
+    "consensus algorithm pattern tie",
+    "ledger security lanyard",
+    "crypto portfolio tracker collar",
+    "validator node status indicator",
+    "DeFi protocol map scarf",
+    "token holder voting badge",
+    "multi-chain connector links",
     
     // Additional Artistic Neckwear
     "crypto art medallion",
