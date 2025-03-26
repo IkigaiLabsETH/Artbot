@@ -20,7 +20,7 @@ const artworkDatabase = [];
 
 /**
  * Generate a simulated artwork for training purposes
- * @param {string} category - The Magritte category
+ * @param {string} category - The Margritte category
  * @returns {Object} The generated artwork data
  */
 function generateSimulatedArtwork(category) {
@@ -30,7 +30,7 @@ function generateSimulatedArtwork(category) {
   // Create a simple prompt
   const basePrompts = [
     "A surreal scene with",
-    "A Magritte-inspired painting featuring",
+    "A Margritte-inspired painting featuring",
     "A dreamlike composition with",
     "A mysterious landscape with",
     "A surrealist portrait with"
@@ -227,7 +227,7 @@ async function runTrainingSession(comparisons) {
  * Main function
  */
 async function main() {
-  console.log('=== Magritte Art Generator: Taste Model Trainer ===');
+  console.log('=== Margritte Art Generator: Taste Model Trainer ===');
   
   // Create readline interface
   const rl = readline.createInterface({

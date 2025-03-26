@@ -24,8 +24,8 @@ async function testReplicateAPI() {
         version: MODEL_VERSION,
         input: {
           prompt: 'An artistic collaboration between human and AI, digital art',
-          width: 2048,
-          height: 2048,
+          width: 1440,
+          height: 1440,
           num_outputs: 1
         }
       })

@@ -18,10 +18,10 @@ interface CreativeEngineConfig {
   anthropicApiKey: string;
 }
 
-// Enhanced Magritte-specific creative metrics
-interface MagritteMetrics {
+// Enhanced Margritte-specific creative metrics
+interface MargritteMetrics {
   metaphysicalDepth: {
-    philosophicalResonance: number;  // How well it embodies Magritte's philosophical concepts
+    philosophicalResonance: number;  // How well it embodies Margritte's philosophical concepts
     conceptualComplexity: number;    // Depth of conceptual layering
     paradoxicalImpact: number;       // Effectiveness of visual paradoxes
   };
@@ -42,9 +42,9 @@ interface MagritteMetrics {
   };
 }
 
-// Enhanced creative state with Magritte focus
+// Enhanced creative state with Margritte focus
 interface EnhancedCreativeState extends CreativeState {
-  magritteMetrics: MagritteMetrics;
+  MargritteMetrics: MargritteMetrics;
   surrealistPreferences: {
     metaphysical: number;
     symbolic: number;
@@ -75,7 +75,7 @@ export class CreativeEngine extends Service {
     this.memorySystem = new MemorySystem();
     this.reflectionEngine = new ReflectionEngine();
     
-    // Initialize enhanced creative state with Magritte focus
+    // Initialize enhanced creative state with Margritte focus
     this.state = {
       currentIdeas: [],
       completedWorks: [],
@@ -98,7 +98,7 @@ export class CreativeEngine extends Service {
           stylistic: 0
         }
       },
-      magritteMetrics: {
+      MargritteMetrics: {
         metaphysicalDepth: {
           philosophicalResonance: 0.8,
           conceptualComplexity: 0.7,
@@ -329,40 +329,40 @@ export class CreativeEngine extends Service {
   }
 
   /**
-   * Generate art ideas using the current provider with Magritte focus
+   * Generate art ideas using the current provider with Margritte focus
    */
   async generateArtIdeas(count: number = 3): Promise<ArtworkIdea[]> {
-    console.log(`Generating ${count} Magritte-inspired art ideas using ${this.getProvider()}`);
+    console.log(`Generating ${count} Margritte-inspired art ideas using ${this.getProvider()}`);
     
     const ideas: ArtworkIdea[] = [];
     
     for (let i = 0; i < count; i++) {
-      const concept = await this.generateMagritteInspiredConcept();
+      const concept = await this.generateMargritteInspiredConcept();
       const dialogue = await this.selfDialogue.explore(concept);
       
       const idea: ArtworkIdea = {
         id: uuidv4(),
         concept: dialogue.concept,
-        medium: this.selectMagritteMedium(),
-        style: this.selectMagritteStyle(),
-        score: this.evaluateMagritteScore(dialogue),
+        medium: this.selectMargritteMedium(),
+        style: this.selectMargritteStyle(),
+        score: this.evaluateMargritteScore(dialogue),
         timestamp: Date.now()
       };
       
       ideas.push(idea);
       this.state.currentIdeas.push(idea);
       
-      // Update Magritte metrics based on the generated idea
-      this.updateMagritteMetrics(idea);
+      // Update Margritte metrics based on the generated idea
+      this.updateMargritteMetrics(idea);
     }
     
     return ideas;
   }
 
   /**
-   * Generate a Magritte-inspired concept
+   * Generate a Margritte-inspired concept
    */
-  private async generateMagritteInspiredConcept(): Promise<string> {
+  private async generateMargritteInspiredConcept(): Promise<string> {
     const elements = [
       'bowler hat', 'green apple', 'pipe', 'window', 'mirror',
       'clouds', 'bird', 'castle', 'curtain', 'key'
@@ -386,9 +386,9 @@ export class CreativeEngine extends Service {
   }
 
   /**
-   * Select appropriate medium for Magritte-style work
+   * Select appropriate medium for Margritte-style work
    */
-  private selectMagritteMedium(): string {
+  private selectMargritteMedium(): string {
     const media = [
       'Oil painting',
       'Gouache',
@@ -400,9 +400,9 @@ export class CreativeEngine extends Service {
   }
 
   /**
-   * Select appropriate style for Magritte-inspired work
+   * Select appropriate style for Margritte-inspired work
    */
-  private selectMagritteStyle(): string {
+  private selectMargritteStyle(): string {
     const styles = [
       'Metaphysical surrealism',
       'Philosophical paradox',
@@ -415,9 +415,9 @@ export class CreativeEngine extends Service {
   }
 
   /**
-   * Evaluate score based on Magritte-specific criteria
+   * Evaluate score based on Margritte-specific criteria
    */
-  private evaluateMagritteScore(dialogue: CreativeDialogue): number {
+  private evaluateMargritteScore(dialogue: CreativeDialogue): number {
     const metrics = {
       metaphysicalDepth: this.evaluateMetaphysicalDepth(dialogue),
       symbolicResonance: this.evaluateSymbolicResonance(dialogue),
@@ -437,11 +437,11 @@ export class CreativeEngine extends Service {
   }
 
   /**
-   * Update Magritte-specific metrics based on generated idea
+   * Update Margritte-specific metrics based on generated idea
    */
-  private updateMagritteMetrics(idea: ArtworkIdea): void {
+  private updateMargritteMetrics(idea: ArtworkIdea): void {
     // Update metrics based on idea characteristics
-    const metrics = this.state.magritteMetrics;
+    const metrics = this.state.MargritteMetrics;
     
     // Adjust metaphysical depth
     if (idea.concept.includes('philosophical') || idea.concept.includes('metaphysical')) {
@@ -540,8 +540,8 @@ export class CreativeEngine extends Service {
     return Math.min(1, matches.length / (keywords.length * 0.5));
   }
 
-  // Evaluate Magritte-style metrics
-  private evaluateMagritteMetrics(artwork: any): MagritteMetrics {
+  // Evaluate Margritte-style metrics
+  private evaluateMargritteMetrics(artwork: any): MargritteMetrics {
     return {
       metaphysicalDepth: {
         philosophicalResonance: this.calculateMetric(artwork, 'philosophicalResonance'),

@@ -1,5 +1,5 @@
 /**
- * Aesthetic Judgment System for Magritte Art Generator
+ * Aesthetic Judgment System for Margritte Art Generator
  * 
  * This system provides sophisticated evaluation of generated artwork
  * based on art direction guidelines and aesthetic principles.
@@ -17,7 +17,7 @@ function initializeAestheticJudgmentSystem() {
   const evaluationCriteria = {
     styleAdherence: {
       weight: 0.25,
-      description: "How well the artwork adheres to Magritte's style and painterly qualities"
+      description: "How well the artwork adheres to Margritte's style and painterly qualities"
     },
     visualElementsPresence: {
       weight: 0.20,
@@ -213,8 +213,8 @@ function initializeAestheticJudgmentSystem() {
       // Longer prompts might indicate more conceptual detail
       const lengthFactor = Math.min(prompt.length / 200, 1.0) * 0.5;
       
-      // Presence of "surreal" or "Magritte" terms indicates conceptual focus
-      const conceptTerms = ["surreal", "magritte", "paradox", "juxtaposition", "impossible"];
+      // Presence of "surreal" or "Margritte" terms indicates conceptual focus
+      const conceptTerms = ["surreal", "Margritte", "paradox", "juxtaposition", "impossible"];
       let conceptFactor = 0;
       
       for (const term of conceptTerms) {
@@ -264,11 +264,11 @@ function initializeAestheticJudgmentSystem() {
       
       // Style adherence feedback
       if (scores.styleAdherence > 0.8) {
-        feedback.styleAdherence = "The artwork excellently incorporates the painterly quality and visible brushstrokes characteristic of Magritte's oil painting technique.";
+        feedback.styleAdherence = "The artwork excellently incorporates the painterly quality and visible brushstrokes characteristic of Margritte's oil painting technique.";
       } else if (scores.styleAdherence > 0.6) {
-        feedback.styleAdherence = "The artwork successfully incorporates the painterly quality and visible brushstrokes characteristic of Magritte's oil painting technique.";
+        feedback.styleAdherence = "The artwork successfully incorporates the painterly quality and visible brushstrokes characteristic of Margritte's oil painting technique.";
       } else {
-        feedback.styleAdherence = "The artwork could better incorporate the painterly quality and visible brushstrokes characteristic of Magritte's oil painting technique.";
+        feedback.styleAdherence = "The artwork could better incorporate the painterly quality and visible brushstrokes characteristic of Margritte's oil painting technique.";
       }
       
       // Visual elements feedback
@@ -294,11 +294,11 @@ function initializeAestheticJudgmentSystem() {
       const overallScore = (scores.styleAdherence + scores.visualElementsPresence + scores.compositionQuality + scores.colorHarmony + scores.conceptualClarity + scores.technicalExecution) / 6;
       
       if (overallScore > 0.8) {
-        feedback.overallImpression = "The artwork brilliantly captures the essence of Magritte's surrealism while incorporating the user's requested elements.";
+        feedback.overallImpression = "The artwork brilliantly captures the essence of Margritte's surrealism while incorporating the user's requested elements.";
       } else if (overallScore > 0.6) {
-        feedback.overallImpression = "The artwork successfully captures the essence of Magritte's surrealism while incorporating the user's requested elements.";
+        feedback.overallImpression = "The artwork successfully captures the essence of Margritte's surrealism while incorporating the user's requested elements.";
       } else {
-        feedback.overallImpression = "The artwork shows potential but could better capture the essence of Magritte's surrealism while incorporating the user's requested elements.";
+        feedback.overallImpression = "The artwork shows potential but could better capture the essence of Margritte's surrealism while incorporating the user's requested elements.";
       }
       
       // References
@@ -327,7 +327,7 @@ function initializeAestheticJudgmentSystem() {
           suggestions.push("Enhance the painterly quality by emphasizing visible brushstrokes and canvas texture.");
           break;
         case 'visualElementsPresence':
-          suggestions.push(`Incorporate more distinctive Magritte elements such as ${artDirection.visualElements[0]} and ${artDirection.visualElements[1]}.`);
+          suggestions.push(`Incorporate more distinctive Margritte elements such as ${artDirection.visualElements[0]} and ${artDirection.visualElements[1]}.`);
           break;
         case 'compositionQuality':
           suggestions.push(`Consider using ${artDirection.compositionGuidelines[0]} to improve the composition.`);
@@ -344,7 +344,7 @@ function initializeAestheticJudgmentSystem() {
       }
       
       // Add a general suggestion
-      suggestions.push("Consider referencing Magritte's original works more directly for inspiration on style and composition.");
+      suggestions.push("Consider referencing Margritte's original works more directly for inspiration on style and composition.");
       
       return suggestions.join(" ");
     }

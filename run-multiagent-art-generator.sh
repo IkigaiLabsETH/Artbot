@@ -21,7 +21,7 @@ fi
 CONCEPT="$1"
 
 # Get the category from the second argument (optional)
-CATEGORY="${2:-magritte_surrealism}"
+CATEGORY="${2:-Margritte_surrealism}"
 
 # Check if TypeScript is installed
 if ! command -v tsc &> /dev/null; then

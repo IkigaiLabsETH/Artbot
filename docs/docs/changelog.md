@@ -1321,7 +1321,7 @@ Complete changelog:
 * fix: Update Key Derive in TEE by @HashWarlock in https://github.com/elizaOS/eliza/pull/2039
 * Revert "fix: Update Key Derive in TEE" by @shakkernerd in https://github.com/elizaOS/eliza/pull/2049
 * fix: Categorize & Format .env.example by @proteanx in https://github.com/elizaOS/eliza/pull/2052
-* fix: update regex to allow Unicode characters in message processing by @taofengno1 in https://github.com/elizaOS/eliza/pull/2048
+* fix: update regex to allow Unicode characters in message processing by @taofengno1 in https://github.com/elizaOS/eliza/pull/1440
 * Fix: more specific rpc urls by @zhourunlai in https://github.com/elizaOS/eliza/pull/2018
 * feat: Proof of Pizza - Agentic Dominos Ordering by @bayological in https://github.com/elizaOS/eliza/pull/2042
 * Feature/plugin coingecko by @Lukapetro in https://github.com/elizaOS/eliza/pull/1761
@@ -1332,7 +1332,7 @@ Complete changelog:
 * Galadriel docs and .env.example update by @kristjanpeterson1 in https://github.com/elizaOS/eliza/pull/2061
 * fix: PGVector_embedding_validation (#1687)  by @AIFlowML in https://github.com/elizaOS/eliza/pull/1750
 * fix: fix multiversx-plugin by @mgavrila in https://github.com/elizaOS/eliza/pull/2017
-* revert: #2048 by @wtfsayo in https://github.com/elizaOS/eliza/pull/2059
+* revert: #1440 by @wtfsayo in https://github.com/elizaOS/eliza/pull/2059
 * feat: support TEE logging and support running eliza in Intel SGX by @ShuochengWang in https://github.com/elizaOS/eliza/pull/1470
 * Update README_CN to match latest English README by @bxngxl in https://github.com/elizaOS/eliza/pull/2069
 * Fix: case-sensitive column reference in knowledge table CHECK constraint by @antman1p in https://github.com/elizaOS/eliza/pull/2058
@@ -1457,7 +1457,7 @@ Complete changelog:
 * @antman1p made their first contribution in https://github.com/elizaOS/eliza/pull/2031
 * @brauliolomeli made their first contribution in https://github.com/elizaOS/eliza/pull/2030
 * @AnonJon made their first contribution in https://github.com/elizaOS/eliza/pull/2044
-* @taofengno1 made their first contribution in https://github.com/elizaOS/eliza/pull/2048
+* @taofengno1 made their first contribution in https://github.com/elizaOS/eliza/pull/1440
 * @bayological made their first contribution in https://github.com/elizaOS/eliza/pull/2042
 * @tripathiarpan20 made their first contribution in https://github.com/elizaOS/eliza/pull/2022
 * @DanielWahl made their first contribution in https://github.com/elizaOS/eliza/pull/2062

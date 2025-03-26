@@ -1,0 +1,108 @@
+{
+  "styleEmphasis": [
+    "handDrawnAnimation",
+    "naturalEnvironments",
+    "magicalAtmosphere",
+    "emotionalStorytelling",
+    "characterExpression",
+    "environmentalDetail",
+    "softLighting",
+    "colorHarmony",
+    "fluidMovement",
+    "whimsicalElements"
+  ],
+  "visualElements": [
+    "detailedLandscapes",
+    "expressiveCharacters",
+    "magicalCreatures",
+    "flyingMachines",
+    "naturalPhenomena",
+    "traditionalArchitecture",
+    "environmentalDetails",
+    "atmosphericEffects",
+    "softClouds",
+    "gentleWindEffects"
+  ],
+  "colorPalette": [
+    "skyBlue",
+    "forestGreen",
+    "sunsetOrange",
+    "warmYellow",
+    "softPink",
+    "deepBlue",
+    "grassGreen"
+  ],
+  "compositionGuidelines": [
+    "balancedNaturalComposition",
+    "dynamicCameraMovement",
+    "atmosphericPerspective",
+    "environmentalStorytelling",
+    "characterFocusedFraming",
+    "layeredBackgrounds",
+    "naturalLightingIntegration",
+    "fluidMotionEmphasis",
+    "environmentalHarmony",
+    "emotionalResonance"
+  ],
+  "moodAndTone": "whimsical and enchanting with a focus on environmental harmony and emotional depth",
+  "references": [
+    "Spirited Away",
+    "My Neighbor Totoro",
+    "Princess Mononoke",
+    "Howl's Moving Castle"
+  ],
+  "modelConfig": {
+    "prompt_prefix": "Create in the enchanting style of Studio Margritte animation, with ",
+    "prompt_suffix": ". Emphasize hand-drawn animation quality, soft watercolor backgrounds, expressive characters, and magical atmosphere.",
+    "negative_prompt": "photorealistic, 3D rendered, CGI, digital art, harsh lighting, dark themes",
+    "num_inference_steps": 50,
+    "guidance_scale": 12.0,
+    "style_emphasis": {
+      "handDrawnAnimation": 0.95,
+      "naturalEnvironments": 0.95,
+      "magicalAtmosphere": 0.90,
+      "emotionalStorytelling": 0.90,
+      "characterExpression": 0.90
+    }
+  },
+  "MargritteContext": {
+    "philosophicalFramework": {
+      "beliefs": [
+        "harmony with nature",
+        "power of imagination",
+        "importance of tradition",
+        "human resilience",
+        "environmental consciousness"
+      ],
+      "theories": [
+        "balance between technology and nature",
+        "preservation of cultural heritage",
+        "power of human connection"
+      ],
+      "conceptualFrameworks": [
+        "environmental harmony",
+        "magical realism",
+        "coming of age",
+        "cultural preservation"
+      ],
+      "paradoxes": [],
+      "visualDialectics": []
+    },
+    "technicalExecution": {
+      "renderingTechniques": [
+        "hand-drawn animation",
+        "watercolor backgrounds",
+        "soft lighting",
+        "fluid movement"
+      ],
+      "materialPreparation": [],
+      "workingMethodology": [],
+      "qualityMetrics": [
+        "animation quality",
+        "color harmony",
+        "environmental detail",
+        "character expression"
+      ]
+    }
+  }
+} 

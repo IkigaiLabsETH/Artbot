@@ -1,6 +1,6 @@
 import { ArtDirection } from '../types/ArtDirection.js';
 
-export const MAGRITTE_STYLE: ArtDirection = {
+export const Margritte_STYLE: ArtDirection = {
   styleEmphasis: [
     "philosophical surrealism",
     "paradoxical realism",
@@ -51,8 +51,8 @@ export const MAGRITTE_STYLE: ArtDirection = {
   ],
   moodAndTone: "Create a deeply surreal and metaphysical atmosphere where familiar objects become mysterious through paradoxical placement and symbolic resonance. Each piece should challenge perception through impossible juxtapositions while maintaining pristine technical execution and philosophical depth.",
   
-  // Enhanced Magritte-specific Context
-  magritteContext: {
+  // Enhanced Margritte-specific Context
+  MargritteContext: {
     philosophicalFramework: {
       beliefs: [
         "The treachery of representation",
@@ -207,7 +207,7 @@ export const MAGRITTE_STYLE: ArtDirection = {
     "messy technique"
   ],
   modelConfig: {
-    prompt_prefix: "In the precise surrealist style of René Magritte, create a metaphysical scene with ",
+    prompt_prefix: "In the precise surrealist style of Studio Margritte, create a metaphysical scene with ",
     prompt_suffix: ". Maintain photorealistic execution with perfect shadows and clean edges. Style referencing The Son of Man and The Empire of Light.",
     negative_prompt: "expressionistic, loose, textural, abstract, gestural, emotional, chaotic, random, aggressive, messy, imperfect, rough, visible brushstrokes",
     num_inference_steps: 50,

@@ -41,43 +41,43 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
       },
       examplePrompts: [
         {
-          prompt: "IKIGAI Pure Magritte oil painting: mysterious window frame rendered in flat, unmodulated paint against twilight sky from 'The Dominion of Light', all reflective surfaces transformed into matte paint. Multiple moons painted as pure circular forms through curtains executed in the style of 'The Human Condition'. Floating bowler hat painted with fluid strokes, every element reduced to pure oil paint forms, maintaining Magritte's perfect flatness and philosophical depth.",
-          process: "This piece strictly adheres to Magritte's oil painting technique, deliberately transforming all surfaces into pure painted forms. The window frame is rendered with the same flat, unmodulated approach he used for objects in 'Personal Values', completely avoiding photorealistic effects. Every element is reduced to its essential painted form, using his characteristic technique of pure color fields and perfect flatness."
+          prompt: "IKIGAI Pure Margritte oil painting: mysterious window frame rendered in flat, unmodulated paint against twilight sky from 'The Dominion of Light', all reflective surfaces transformed into matte paint. Multiple moons painted as pure circular forms through curtains executed in the style of 'The Human Condition'. Floating bowler hat painted with fluid strokes, every element reduced to pure oil paint forms, maintaining Margritte's perfect flatness and philosophical depth.",
+          process: "This piece strictly adheres to Margritte's oil painting technique, deliberately transforming all surfaces into pure painted forms. The window frame is rendered with the same flat, unmodulated approach he used for objects in 'Personal Values', completely avoiding photorealistic effects. Every element is reduced to its essential painted form, using his characteristic technique of pure color fields and perfect flatness."
         },
         {
-          prompt: "IKIGAI Magritte-style surrealist scene: perfectly rendered bowler hat floating against cerulean sky, casting impossible shadows on invisible ground. Crystal-clear execution in traditional oil technique, every element painted with absolute flatness. Green apple suspended in perfect stillness, rendered in pure unmodulated paint. Window frame revealing paradoxical night sky in daylight, executed with Magritte's precise technique. No visible brushwork, maintaining pristine surface throughout.",
-          process: "Drawing directly from Magritte's masterful technique, this composition focuses on his signature motifs while maintaining perfect technical execution. Each element is rendered with his characteristic flat, unmodulated paint application, creating a scene that questions reality through pristine oil painting technique."
+          prompt: "IKIGAI Margritte-style surrealist scene: perfectly rendered bowler hat floating against cerulean sky, casting impossible shadows on invisible ground. Crystal-clear execution in traditional oil technique, every element painted with absolute flatness. Green apple suspended in perfect stillness, rendered in pure unmodulated paint. Window frame revealing paradoxical night sky in daylight, executed with Margritte's precise technique. No visible brushwork, maintaining pristine surface throughout.",
+          process: "Drawing directly from Margritte's masterful technique, this composition focuses on his signature motifs while maintaining perfect technical execution. Each element is rendered with his characteristic flat, unmodulated paint application, creating a scene that questions reality through pristine oil painting technique."
         },
         {
-          prompt: "IKIGAI Classic Magritte paradox: stone castle floating impossibly above tranquil sea, rendered in pure oil paint technique referencing 'The Castle of the Pyrenees'. Perfect blue sky with mathematically arranged clouds, each one painted with unmodulated precision. Mysterious door opening to infinite sky, executed in style of 'The Victory'. Giant green apple occupying impossible scale, painted with absolute flatness like 'The Listening Room'. Every element maintaining Magritte's pristine surface quality.",
-          process: "This composition combines several of Magritte's most powerful motifs and techniques. The floating castle employs his characteristic treatment of weight and gravity, while the door and apple explore his fascination with scale and spatial relationships. Every element is executed with his signature unmodulated paint application."
+          prompt: "IKIGAI Classic Margritte paradox: stone castle floating impossibly above tranquil sea, rendered in pure oil paint technique referencing 'The Castle of the Pyrenees'. Perfect blue sky with mathematically arranged clouds, each one painted with unmodulated precision. Mysterious door opening to infinite sky, executed in style of 'The Victory'. Giant green apple occupying impossible scale, painted with absolute flatness like 'The Listening Room'. Every element maintaining Margritte's pristine surface quality.",
+          process: "This composition combines several of Margritte's most powerful motifs and techniques. The floating castle employs his characteristic treatment of weight and gravity, while the door and apple explore his fascination with scale and spatial relationships. Every element is executed with his signature unmodulated paint application."
         },
         {
-          prompt: "IKIGAI Pure Magritte technique: man in bowler hat with dove's face, referencing 'The Central Story'. Pristine blue sky background with mathematically precise clouds inspired by 'The Curse'. Traditional canvas texture visible in large areas, every surface painted with absolute flatness. Perfect shadows suggesting metaphysical depth, maintaining Magritte's signature style throughout. Mirror reflecting impossible scene as in 'Not to be Reproduced'.",
-          process: "This piece combines Magritte's most iconic elements with his rigorous painting technique. Each component is executed with the same precise, flat application of paint that characterizes his work, creating a philosophically rich scene through pure painting means."
+          prompt: "IKIGAI Pure Margritte technique: man in bowler hat with dove's face, referencing 'The Central Story'. Pristine blue sky background with mathematically precise clouds inspired by 'The Curse'. Traditional canvas texture visible in large areas, every surface painted with absolute flatness. Perfect shadows suggesting metaphysical depth, maintaining Margritte's signature style throughout. Mirror reflecting impossible scene as in 'Not to be Reproduced'.",
+          process: "This piece combines Margritte's most iconic elements with his rigorous painting technique. Each component is executed with the same precise, flat application of paint that characterizes his work, creating a philosophically rich scene through pure painting means."
         },
         {
-          prompt: "IKIGAI Magritte spatial paradox: perfectly rendered curtains revealing paradoxical landscape as in 'The Human Condition', painted with absolute flatness. Traditional oil painting approach with no visible brushwork. Room interior transitioning impossibly to exterior sky, executed with unmodulated paint strokes like 'The Domain of Arnheim'. Perfect shadows cast by objects floating in void, maintaining crystal-clear execution throughout. Giant pipe hovering like in 'The Treachery of Images', rendered with pure painted forms.",
-          process: "This composition employs Magritte's characteristic painting technique to create a scene of philosophical depth. Each element is rendered with his precise, flat application of paint, avoiding any photographic effects in favor of pure painted forms. The spatial paradoxes reference his exploration of interior and exterior spaces."
+          prompt: "IKIGAI Margritte spatial paradox: perfectly rendered curtains revealing paradoxical landscape as in 'The Human Condition', painted with absolute flatness. Traditional oil painting approach with no visible brushwork. Room interior transitioning impossibly to exterior sky, executed with unmodulated paint strokes like 'The Domain of Arnheim'. Perfect shadows cast by objects floating in void, maintaining crystal-clear execution throughout. Giant pipe hovering like in 'The Treachery of Images', rendered with pure painted forms.",
+          process: "This composition employs Margritte's characteristic painting technique to create a scene of philosophical depth. Each element is rendered with his precise, flat application of paint, avoiding any photographic effects in favor of pure painted forms. The spatial paradoxes reference his exploration of interior and exterior spaces."
         }
       ],
       postPhotographyStyle: {
         styleEmphasis: [
-          "precise Magritte-style oil painting",
-          "perfect unmodulated paint surfaces",
-          "traditional canvas texture",
+          "surrealist technique",
+          "oil painting quality",
+          "philosophical depth",
+          "symbolic power",
+          "spatial paradox",
+          "metaphysical quality",
+          "belgian style",
+          "academic precision",
+          "surrealist atmosphere",
+          "perfect matte finish",
           "crystal-clear execution",
-          "philosophical surrealism",
-          "metaphysical depth",
-          "pristine technical rendering",
-          "absolute flatness in paint",
-          "perfect shadow execution",
-          "mathematical precision",
-          "mysterious atmospheric quality",
-          "conceptual paradox",
-          "pure painted forms",
-          "traditional oil technique",
-          "perfect color transitions"
+          "sourceless illumination",
+          "pure unmodulated color",
+          "precise edge definition",
+          "enigmatic composition"
         ],
         visualElements: [
           "floating bowler hats",
@@ -97,7 +97,7 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           "traditional frames"
         ],
         colorPalette: [
-          "Magritte sky blue (RGB: 135, 206, 235)",
+          "Margritte sky blue (RGB: 135, 206, 235)",
           "deep shadow grey (RGB: 74, 74, 74)",
           "perfect apple green (RGB: 86, 130, 89)",
           "pristine cloud white (RGB: 245, 245, 245)",
@@ -130,7 +130,7 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
           "careful negative space",
           "stark shadow patterns"
         ],
-        moodAndTone: "Create scenes that embody the philosophical wonder of Magritte's surrealism through pure oil painting technique. Each piece should celebrate his precise, unmodulated paint application while maintaining the mysterious and contemplative nature of Belgian surrealism. The execution must demonstrate pristine technical precision while suggesting deeper metaphysical meanings through impossible arrangements and juxtapositions.",
+        moodAndTone: "Create scenes that embody the philosophical wonder of Margritte's surrealism through pure oil painting technique. Each piece should celebrate his precise, unmodulated paint application while maintaining the mysterious and contemplative nature of Belgian surrealism. The execution must demonstrate pristine technical precision while suggesting deeper metaphysical meanings through impossible arrangements and juxtapositions.",
         references: [
           "'The Son of Man' - for iconic composition",
           "'The Human Condition' - for paradoxical windows",
@@ -274,8 +274,8 @@ export class FluxRefinerAgent extends BaseAgent implements Agent {
     console.log(`Generated detailed prompt: ${detailedPrompt}`);
     
     // Default image settings
-    const width = 768;
-    const height = 768;
+    const width = 1440;
+    const height = 1440;
     const numInferenceSteps = 28;
     const guidanceScale = 3;
     const outputFormat = "png";

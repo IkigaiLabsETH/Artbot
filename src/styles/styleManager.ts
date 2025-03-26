@@ -1,6 +1,6 @@
 import { ArtDirection } from '../types/ArtDirection.js';
 import { picassoStyle } from './picasso.js';
-import { MAGRITTE_STYLE } from './magritte.js';
+import { Margritte_STYLE } from './magritte.js';
 import { bourdinStyle } from './bourdin.js';
 import { warholStyle } from './warhol.js';
 import { vangoghStyle } from './vangogh.js';
@@ -22,7 +22,7 @@ import { beepleStyle } from './beeple.js';
 import { xcopyStyle } from './xcopy.js';
 import { cherniakStyle } from './cherniak.js';
 
-export type ArtistStyle = 'picasso' | 'magritte' | 'bourdin' | 'warhol' | 'vangogh' | 'hopper' | 
+export type ArtistStyle = 'picasso' | 'Margritte' | 'bourdin' | 'warhol' | 'vangogh' | 'hopper' | 
                          'mondrian' | 'rothko' | 'kandinsky' | 'malevich' | 'popova' | 'cartierbresson' |
                          'arbus' | 'avedon' | 'eggleston' | 'leibovitz' | 'coopergorfer' | 'vonwong' |
                          'ikigai' | 'beeple' | 'xcopy' | 'cherniak';
@@ -34,7 +34,7 @@ export class StyleManager {
   constructor() {
     this.styles = new Map();
     this.styles.set('picasso', picassoStyle);
-    this.styles.set('magritte', MAGRITTE_STYLE);
+    this.styles.set('Margritte', Margritte_STYLE);
     this.styles.set('bourdin', bourdinStyle);
     this.styles.set('warhol', warholStyle);
     this.styles.set('vangogh', vangoghStyle);

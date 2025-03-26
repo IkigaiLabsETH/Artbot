@@ -1,6 +1,6 @@
 @echo off
 echo =====================================
-echo Magritte Art Generator
+echo Margritte Art Generator
 echo =====================================
 echo Starting the art generation process...
 echo.

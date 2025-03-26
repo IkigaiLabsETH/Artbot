@@ -57,7 +57,7 @@ if echo "$RESPONSE" | grep -q "error"; then
     echo -e "3. The scripts will automatically fall back to other models if FLUX Pro is not available"
 else
     echo -e "${GREEN}✅ You have access to the FLUX Pro model!${NC}"
-    echo -e "${YELLOW}The Magritte art generator scripts will use this model for image generation.${NC}"
+    echo -e "${YELLOW}The Margritte art generator scripts will use this model for image generation.${NC}"
     
     # Extract and display the model's latest version
     LATEST_VERSION=$(echo "$RESPONSE" | grep -o '"latest_version": {[^}]*}' | grep -o '"id": "[^"]*"' | cut -d'"' -f4)
@@ -66,5 +66,5 @@ else
     fi
 fi
 
-echo -e "\n${BLUE}For more information about the Magritte art generator, see:${NC}"
-echo -e "${YELLOW}MAGRITTE-ART-GENERATOR-README.md${NC}" 
+echo -e "\n${BLUE}For more information about the Margritte art generator, see:${NC}"
+echo -e "${YELLOW}Margritte-ART-GENERATOR-README.md${NC}" 

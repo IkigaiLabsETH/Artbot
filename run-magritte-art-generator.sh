@@ -11,7 +11,7 @@ NC='\033[0m' # No Color
 echo -e "${BLUE}"
 echo "╔════════════════════════════════════════════════════════════╗"
 echo "║                                                            ║"
-echo "║   🎩 Magritte Surrealism Art Generator 🎨                  ║"
+echo "║   🎩 Margritte Surrealism Art Generator 🎨                  ║"
 echo "║                                                            ║"
 echo "╚════════════════════════════════════════════════════════════╝"
 echo -e "${NC}"
@@ -44,7 +44,7 @@ fi
 # Get the concept from command line arguments or use a default
 CONCEPT="$*"
 if [ -z "$CONCEPT" ]; then
-    echo -e "${YELLOW}No concept provided. Will generate a random Magritte surrealist concept.${NC}"
+    echo -e "${YELLOW}No concept provided. Will generate a random Margritte surrealist concept.${NC}"
 fi
 
 # Set the image model to FLUX Pro
@@ -57,9 +57,9 @@ echo -e "${GREEN}Output format: ${OUTPUT_FORMAT}${NC}"
 echo -e "${GREEN}Compiling TypeScript code...${NC}"
 tsc
 
-# Run the art generator with Magritte surrealism category
-echo -e "${GREEN}Running Magritte Surrealism Art Generator...${NC}"
-node dist/defaultArtGenerator.js --category=magritte_surrealism "$CONCEPT"
+# Run the art generator with Margritte surrealism category
+echo -e "${GREEN}Running Margritte Surrealism Art Generator...${NC}"
+node dist/defaultArtGenerator.js --category=Margritte_surrealism "$CONCEPT"
 
 # Check if the command was successful
 if [ $? -eq 0 ]; then

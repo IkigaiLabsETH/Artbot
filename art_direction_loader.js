@@ -49,7 +49,7 @@ const config = {
 /**
  * Loads the art direction file for a specific style category
  * 
- * @param {string} category - The style category (e.g., 'magritte_classic', 'kandinsky_abstract')
+ * @param {string} category - The style category (e.g., 'Margritte_classic', 'kandinsky_abstract')
  * @param {Object} [options] - Loading options
  * @param {boolean} [options.useCache=true] - Whether to use cache
  * @param {boolean} [options.validate=true] - Whether to validate the loaded data
@@ -274,7 +274,7 @@ function applyArtDirectionToParams(artStyle, params) {
 
   // Apply color palette influence
   if (artStyle.colorPalette?.some(color => color.includes('belgian sky blue'))) {
-    updatedParams.colorEmphasis = 'magritte';
+    updatedParams.colorEmphasis = 'Margritte';
   }
 
   // Apply style weights if available

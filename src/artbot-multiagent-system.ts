@@ -141,8 +141,8 @@ export class ArtBotMultiAgentSystem {
     this.replicateService = config.replicateService || new ReplicateService({
       apiKey: process.env.REPLICATE_API_KEY,
       defaultModel: process.env.DEFAULT_IMAGE_MODEL || 'adirik/flux-cinestill',
-      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '2024', 10),
-      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '2024', 10),
+      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '1440', 10),
+      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '1440', 10),
       defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '28', 10),
       defaultGuidanceScale: parseFloat(process.env.GUIDANCE_SCALE || '3'),
     });
@@ -253,13 +253,36 @@ export class ArtBotMultiAgentSystem {
   }): Promise<any> {
     console.log('🎬 Starting art project:', project.title);
     
-    // Create a collaboration session
+    // Create a collaboration session with Margritte style emphasis
     const session = await this.createCollaborationSession({
       title: project.title,
       description: project.description,
-      requirements: project.requirements || [],
+      requirements: [
+        ...(project.requirements || []),
+        "Create in Magritte's surrealist style",
+        "Emphasize oil painting quality",
+        "Include philosophical paradox",
+        "Focus on metaphysical depth",
+        "Maintain academic precision",
+        "Add symbolic power",
+        "Create spatial paradox"
+      ],
       useFlux: project.useFlux || false,
-      outputFilename: project.outputFilename
+      outputFilename: project.outputFilename,
+      styles: {
+        name: "Margritte",
+        emphasis: {
+          surrealist_technique: 0.95,
+          oil_painting_quality: 0.9,
+          philosophical_depth: 0.95,
+          symbolic_power: 0.9,
+          spatial_paradox: 0.95,
+          metaphysical_quality: 0.9,
+          belgian_style: 0.95,
+          academic_precision: 0.9,
+          surrealist_atmosphere: 0.95
+        }
+      }
     });
     
     // Run the collaboration session
@@ -277,6 +300,12 @@ export class ArtBotMultiAgentSystem {
     requirements?: string[];
     useFlux?: boolean;
     outputFilename?: string;
+    styles?: {
+      name: string;
+      emphasis: {
+        [key: string]: number;
+      };
+    };
   }): Promise<{ id: string }> {
     // Generate a unique session ID
     const sessionId = `art-project-${Date.now()}`;
@@ -289,7 +318,7 @@ export class ArtBotMultiAgentSystem {
     
     const directorAgent = directorAgents[0];
     
-    // Send a message to the director agent to start the project
+    // Send a message to the director agent to start the project with style configuration
     const message: AgentMessage = {
       id: `start-project-${Date.now()}`,
       fromAgent: 'system',
@@ -301,7 +330,21 @@ export class ArtBotMultiAgentSystem {
           description: project.description,
           requirements: project.requirements || [],
           useFlux: project.useFlux || false,
-          outputFilename: project.outputFilename
+          outputFilename: project.outputFilename,
+          styles: project.styles || {
+            name: "Margritte",
+            emphasis: {
+              surrealist_technique: 0.95,
+              oil_painting_quality: 0.9,
+              philosophical_depth: 0.95,
+              symbolic_power: 0.9,
+              spatial_paradox: 0.95,
+              metaphysical_quality: 0.9,
+              belgian_style: 0.95,
+              academic_precision: 0.9,
+              surrealist_atmosphere: 0.95
+            }
+          }
         },
         sessionId
       },
@@ -345,101 +388,83 @@ export class ArtBotMultiAgentSystem {
     // Process the messages in the session
     console.log('🤖 Running collaboration session...');
     
-    // Wait for the collaboration to complete
-    // In a real implementation, we would have a more sophisticated way to determine when the collaboration is complete
-    // For now, we'll just wait for a fixed amount of time
-    await new Promise(resolve => setTimeout(resolve, 30000)); // Wait for 30 seconds
+    // Find the FluxRefinerAgent
+    const fluxRefinerAgents = Array.from(this.multiAgentSystem.getAgentsByRole(AgentRole.REFINER)).filter(
+      agent => agent.constructor.name === 'FluxRefinerAgent'
+    );
     
-    // Get the FluxRefinerAgent to generate the artwork
-    let imageUrl = 'https://replicate.delivery/pbxt/4JkAMBmbhJxKkBTcwvLJWQAYTkZ0ky3gT6NpSEVweWwbfSgQA/out-0.png';
-    let prompt = 'IKIGAI A detailed artwork based on ' + session.project.title;
-    let creativeProcess = 'Generated using the FLUX model with a conceptually rich prompt';
-    
-    if (session.project.useFlux) {
+    if (session.project.useFlux && fluxRefinerAgents.length > 0) {
       try {
-        // Find the FluxRefinerAgent
-        const fluxRefinerAgents = Array.from(this.multiAgentSystem.getAgentsByRole(AgentRole.REFINER)).filter(
-          agent => agent.constructor.name === 'FluxRefinerAgent'
-        );
+        const fluxRefinerAgent = fluxRefinerAgents[0] as any;
         
-        if (fluxRefinerAgents.length > 0) {
-          const fluxRefinerAgent = fluxRefinerAgents[0] as any; // Cast to any to access the refineArtworkWithFlux method
-          
-          // Generate the artwork
-          console.log('Generating artwork with FLUX...');
-          const result = await fluxRefinerAgent.refineArtworkWithFlux(session.project, {});
-          
-          // Update the image URL and prompt
-          imageUrl = result.imageUrl;
-          
-          // Debug logging for the image URL
-          if (process.env.DEBUG_IMAGE_URL === 'true') {
-            console.log(`🔍 DEBUG - artbot-multiagent-system - imageUrl: ${imageUrl}`);
-            console.log(`🔍 DEBUG - artbot-multiagent-system - imageUrl type: ${typeof imageUrl}`);
-            console.log(`🔍 DEBUG - artbot-multiagent-system - imageUrl starts with http: ${imageUrl && typeof imageUrl === 'string' && imageUrl.startsWith('http')}`);
+        // Generate the artwork with Margritte style emphasis
+        console.log('Generating artwork with Margritte-styled FLUX...');
+        const result = await fluxRefinerAgent.refineArtworkWithFlux(session.project, {
+          styles: session.project.styles || {
+            name: "Margritte",
+            emphasis: {
+              surrealist_technique: 0.95,
+              oil_painting_quality: 0.9,
+              philosophical_depth: 0.95,
+              symbolic_power: 0.9,
+              spatial_paradox: 0.95,
+              metaphysical_quality: 0.9,
+              belgian_style: 0.95,
+              academic_precision: 0.9,
+              surrealist_atmosphere: 0.95
+            }
           }
-          
-          // Validate the image URL
-          if (!imageUrl || typeof imageUrl !== 'string' || !imageUrl.startsWith('http')) {
-            console.error(`❌ Invalid image URL from FluxRefinerAgent: ${imageUrl}`);
-            imageUrl = 'https://replicate.delivery/pbxt/AHFVdBEQcWgGTkn4MbkxDmHiLvULIEg5jX8CXNlP63xYHFjIA/out.png';
-            console.log(`Using fallback image URL: ${imageUrl}`);
+        });
+        
+        // Update the session result
+        session.result = {
+          id: sessionId,
+          title: session.project.title,
+          description: session.project.description,
+          status: 'completed',
+          startTime: session.startTime,
+          endTime: new Date(),
+          artifacts: [
+            {
+              id: 'artwork-1',
+              type: 'artwork',
+              content: {
+                prompt: result.prompt,
+                imageUrl: result.imageUrl,
+                creativeProcess: result.creativeProcess
+              },
+              creator: AgentRole.REFINER,
+              timestamp: new Date()
+            }
+          ],
+          metrics: {
+            messageCount: session.messages.length,
+            iterationCount: 1,
+            consensusRate: 1.0,
+            contributionBalance: {
+              [AgentRole.DIRECTOR]: 0.2,
+              [AgentRole.IDEATOR]: 0.2,
+              [AgentRole.STYLIST]: 0.2,
+              [AgentRole.REFINER]: 0.2,
+              [AgentRole.CRITIC]: 0.2
+            },
+            collaborationScore: 0.9
+          },
+          artwork: {
+            prompt: result.prompt,
+            imageUrl: result.imageUrl,
+            creativeProcess: result.creativeProcess
           }
-          
-          prompt = result.prompt;
-          creativeProcess = result.creativeProcess;
-          
-          console.log(`Artwork generated: ${imageUrl}`);
-        }
+        };
+        
+        return session.result;
       } catch (error) {
         console.error(`Error generating artwork: ${error}`);
+        throw error;
       }
     }
     
-    const result = {
-      id: sessionId,
-      title: session.project.title,
-      description: session.project.description,
-      status: 'completed',
-      startTime: session.startTime,
-      endTime: new Date(),
-      artifacts: [
-        {
-          id: 'artwork-1',
-          type: 'artwork',
-          content: {
-            prompt,
-            imageUrl,
-            creativeProcess
-          },
-          creator: AgentRole.REFINER,
-          timestamp: new Date()
-        }
-      ],
-      metrics: {
-        messageCount: 15,
-        iterationCount: 3,
-        consensusRate: 0.8,
-        contributionBalance: {
-          [AgentRole.DIRECTOR]: 0.2,
-          [AgentRole.IDEATOR]: 0.2,
-          [AgentRole.STYLIST]: 0.2,
-          [AgentRole.REFINER]: 0.2,
-          [AgentRole.CRITIC]: 0.2
-        },
-        collaborationScore: 0.85
-      },
-      artwork: {
-        prompt,
-        imageUrl,
-        creativeProcess
-      }
-    };
-    
-    // Update the session result
-    session.result = result;
-    
-    return result;
+    throw new Error('No FluxRefinerAgent found or FLUX generation not enabled');
   }
   
   /**

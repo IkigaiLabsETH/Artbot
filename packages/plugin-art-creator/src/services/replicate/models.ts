@@ -21,8 +21,8 @@ export const REPLICATE_MODELS: ModelRegistry = {
       num_inference_steps: 30,
       guidance_scale: 7.5,
       negative_prompt: 'low quality, bad quality, sketchy, broken',
-      width: 2048,
-      height: 2048,
+      width: 1440,
+      height: 1440,
       refine: 'expert_ensemble_refiner',
       scheduler: 'K_EULER',
       lora_scale: 0.6
@@ -153,6 +153,35 @@ export const REPLICATE_MODELS: ModelRegistry = {
         throw new Error('Input image is required for video generation');
       }
       return input;
+    }
+  },
+
+  'black-forest-labs/flux-1.1-pro': {
+    version: '39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b',
+    defaultParams: {
+      num_inference_steps: 30,
+      guidance_scale: 7.5,
+      negative_prompt: 'low quality, bad quality, sketchy, broken',
+      width: 1440,
+      height: 1440,
+      refine: 'expert_ensemble_refiner',
+      scheduler: 'K_EULER',
+      lora_scale: 0.6
+    },
+    parameterMapping: {
+      strength: 'prompt_strength',
+      steps: 'num_inference_steps',
+      guidance: 'guidance_scale',
+      seed: 'seed',
+      width: 'width',
+      height: 'height',
+      refiner: 'refine',
+      scheduler: 'scheduler'
+    },
+    outputMapping: {
+      image: 'output',
+      seed: 'seed',
+      prompt_strength: 'strength'
     }
   }
 };

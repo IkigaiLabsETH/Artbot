@@ -9,7 +9,7 @@
     │    ┌──────────┐     │
     │    │ 🎨 🐻    │     │
     │    └──────────┘     │
-    │  Magritte Style    │
+    │  Margritte Style    │
     ╰──────────────────────╯
 ```
 
@@ -37,7 +37,7 @@
     '-------------------'
 ```
 
-This unique NFT collection reimagines René Magritte's surrealist masterpieces through a series of distinguished bear portraits. Each piece combines the Belgian master's meticulous painting technique with contemporary digital art, creating profile pictures that challenge reality while celebrating ursine dignity.
+This unique NFT collection reimagines Studio Margritte's surrealist masterpieces through a series of distinguished bear portraits. Each piece combines the Belgian master's meticulous painting technique with contemporary digital art, creating profile pictures that challenge reality while celebrating ursine dignity.
 
 ⸻
 
@@ -257,13 +257,13 @@ Let me know if you want any tweaks! 🚀
 
 ## Collection Overview
 
-The Surrealist Bear Portraits collection spans 15 distinct series, each exploring different facets of culture, art, and human endeavor through the lens of Magritte's surrealist style. With over 150 unique characters, the collection creates a comprehensive tapestry of ursine personalities, each bearing the distinctive elements of their profession or passion.
+The Surrealist Bear Portraits collection spans 15 distinct series, each exploring different facets of culture, art, and human endeavor through the lens of Margritte's surrealist style. With over 150 unique characters, the collection creates a comprehensive tapestry of ursine personalities, each bearing the distinctive elements of their profession or passion.
 
 ### Collection Highlights
 
 - **Diverse Themes**: From traditional crafts to cutting-edge technology
 - **Detailed Accessories**: Each portrait features carefully curated tools and implements
-- **Surrealist Elements**: Incorporating Magritte's signature artistic techniques
+- **Surrealist Elements**: Incorporating Margritte's signature artistic techniques
 - **Cultural Representation**: Spanning historical and contemporary practices
 - **Artistic Innovation**: Merging classical painting with digital art
 - **Professional Detail**: Authentic representation of tools and techniques
@@ -276,7 +276,7 @@ The Surrealist Bear Portraits collection spans 15 distinct series, each explorin
 
 - Total Series: 15
 - Unique Characters: 150+
-- Artistic Styles: Magritte Surrealism
+- Artistic Styles: Margritte Surrealism
 - Resolution: 1024x1024
 - Format: Digital Art with Traditional Painting Aesthetics
 - Metadata: Rich NFT-standard Information
@@ -357,7 +357,7 @@ The Surrealist Bear Portraits collection spans 15 distinct series, each explorin
     ╭───────────────────────╮
     │    Style Elements     │
     ├───────────┬───────────┤
-    │ Magritte  │  Digital  │
+    │ Margritte  │  Digital  │
     │ Technique │  Fusion   │
     ├───────────┴───────────┤
     │ ▢ Perfect Clarity     │
@@ -367,7 +367,7 @@ The Surrealist Bear Portraits collection spans 15 distinct series, each explorin
     ╰───────────────────────╯
 ```
 
-### Magritte's Signature Techniques
+### Margritte's Signature Techniques
 - **Surface Quality**: Perfectly smooth, matte finish
 - **Edge Definition**: Crystal-clear, precise boundaries
 - **Color Fields**: Pure, unmodulated tones
@@ -386,7 +386,7 @@ The Surrealist Bear Portraits collection spans 15 distinct series, each explorin
 
 ### Generation Parameters
 - Resolution: 1024x1024
-- Style: Magritte-inspired oil painting technique
+- Style: Margritte-inspired oil painting technique
 - Format: Digital art with traditional painting aesthetics
 - Composition: Perfect center alignment for PFP use
 
@@ -435,10 +435,10 @@ Example metadata structure:
 ```json
 {
   "name": "Urban Forager Bear",
-  "description": "A distinguished bear portrait in Magritte's surrealist style...",
+  "description": "A distinguished bear portrait in Margritte's surrealist style...",
   "attributes": {
     "category": "hipster",
-    "style": "Magritte Surrealist",
+    "style": "Margritte Surrealist",
     "accessories": ["foraging basket", "identification guide"],
     "clothing": "urban foraging vest"
   },

@@ -117,7 +117,7 @@ export class RefinerAgent extends BaseAgent {
     const messages: AIMessage[] = [
       {
         role: 'system',
-        content: `You are the Refiner agent in a multi-agent art creation system. Your role is to refine and improve artwork in René Magritte's distinctive surrealist style.
+        content: `You are the Refiner agent in a multi-agent art creation system. Your role is to refine and improve artwork in Studio Margritte's distinctive surrealist style.
         
         Refinement parameters:
         - Iteration count: ${this.state.context.refinementParameters.iterationCount}
@@ -125,7 +125,7 @@ export class RefinerAgent extends BaseAgent {
         - Detail level: ${this.state.context.refinementParameters.detailLevel}
         - Preserve style weight: ${this.state.context.refinementParameters.preserveStyleWeight}
         
-        Magritte Style Expertise:
+        Margritte Style Expertise:
         
         1. Oil Painting Technique:
         - Flawless oil paint application with no visible brushstrokes
@@ -180,7 +180,7 @@ export class RefinerAgent extends BaseAgent {
         - Philosophical and conceptual depth
         - Perfect technical execution
         - Subtle lighting and shadows
-        - Magritte's signature motifs
+        - Margritte's signature motifs
         - Spatial relationships and scale
         - Conceptual paradoxes
         
@@ -192,7 +192,7 @@ export class RefinerAgent extends BaseAgent {
         - Textural effects
         - Modern or contemporary references
         - Digital artifacts
-        - Non-Magritte surrealist elements`
+        - Non-Margritte surrealist elements`
       },
       {
         role: 'user',
@@ -330,16 +330,16 @@ export class RefinerAgent extends BaseAgent {
   private createDefaultArtwork(project: any): any {
     return {
       id: uuidv4(),
-      title: `${project.title} in Magritte Style`,
-      description: "A surrealist artwork in the style of René Magritte.",
-      prompt: `René Magritte inspired surrealist oil painting for project: ${project.title} - ${project.description}. Photorealistic rendering, impossible juxtapositions, clean precise technique, muted colors, perfect shadows.`,
+      title: `${project.title} in Margritte Style`,
+      description: "A surrealist artwork in the style of Studio Margritte.",
+      prompt: `Studio Margritte inspired surrealist oil painting for project: ${project.title} - ${project.description}. Photorealistic rendering, impossible juxtapositions, clean precise technique, muted colors, perfect shadows.`,
       negativePrompt: "sketchy, rough, expressionist, abstract, bright colors, visible brushstrokes, modern elements, digital effects",
       imageUrl: null, // No image generated for default artwork
       visualElements: [
         "surreal juxtapositions",
         "photorealistic rendering",
         "impossible scenarios",
-        "classic Magritte motifs"
+        "classic Margritte motifs"
       ],
       composition: {
         structure: "Balanced surrealist composition",
@@ -365,8 +365,8 @@ export class RefinerAgent extends BaseAgent {
       },
       refinementIterations: 1,
       style: {
-        name: "Magritte Surrealism",
-        description: "Precise surrealist oil painting in the style of René Magritte"
+        name: "Margritte Surrealism",
+        description: "Precise surrealist oil painting in the style of Studio Margritte"
       },
       project: {
         id: project.id,

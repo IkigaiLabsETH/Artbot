@@ -1,11 +1,11 @@
-# Magritte Art Generator - Project Structure
+# Margritte Art Generator - Project Structure
 
-This document outlines the structure of the Magritte Art Generator project, explaining the purpose and relationships between different components.
+This document outlines the structure of the Margritte Art Generator project, explaining the purpose and relationships between different components.
 
 ## Directory Structure
 
 ```
-magritte-art-generator/
+Margritte-art-generator/
 ├── README.md                       # Project overview and documentation
 ├── LICENSE                         # MIT license
 ├── package.json                    # Project dependencies and scripts
@@ -20,19 +20,19 @@ magritte-art-generator/
 ├── aesthetic_judgment_system.js    # Artwork evaluation system
 ├── personalized_taste_model.js     # Personalized preference learning system
 ├── art_direction/                  # Art direction files by category
-│   ├── magritte_classic.json       # Classic Magritte style
-│   ├── magritte_empire_light.json  # Empire of Light series
-│   ├── magritte_landscapes.json    # Landscape compositions
-│   ├── magritte_metamorphosis.json # Metamorphosis themes
-│   ├── magritte_mystery.json       # Mystery and enigma themes
-│   ├── magritte_objects.json       # Object-focused compositions
-│   ├── magritte_scale.json         # Scale manipulation themes
-│   ├── magritte_silhouettes.json   # Silhouette compositions
-│   ├── magritte_skies.json         # Sky-focused compositions
-│   ├── magritte_windows.json       # Window-themed compositions
-│   └── magritte_wordplay.json      # Word and language play
+│   ├── Margritte_classic.json       # Classic Margritte style
+│   ├── Margritte_empire_light.json  # Empire of Light series
+│   ├── Margritte_landscapes.json    # Landscape compositions
+│   ├── Margritte_metamorphosis.json # Metamorphosis themes
+│   ├── Margritte_mystery.json       # Mystery and enigma themes
+│   ├── Margritte_objects.json       # Object-focused compositions
+│   ├── Margritte_scale.json         # Scale manipulation themes
+│   ├── Margritte_silhouettes.json   # Silhouette compositions
+│   ├── Margritte_skies.json         # Sky-focused compositions
+│   ├── Margritte_windows.json       # Window-themed compositions
+│   └── Margritte_wordplay.json      # Word and language play
 └── docs/                           # Documentation files
-    ├── MAGRITTE-ART-DIRECTION-README.md  # Art direction documentation
+    ├── Margritte-ART-DIRECTION-README.md  # Art direction documentation
     ├── FINE-TUNING-SUMMARY.md            # Fine-tuning documentation
     ├── FINAL-ENHANCEMENTS-SUMMARY.md     # Final enhancements summary
     └── PROJECT-STRUCTURE.md              # This file
@@ -100,11 +100,11 @@ magritte-art-generator/
 
 - **art_direction_loader.js**: Utility for loading and applying category-specific art direction files.
 
-- **Art Direction Files**: JSON files containing structured guidance for different Magritte-inspired categories, including style emphasis, visual elements, color palette, composition guidelines, mood and tone, references, and elements to avoid.
+- **Art Direction Files**: JSON files containing structured guidance for different Margritte-inspired categories, including style emphasis, visual elements, color palette, composition guidelines, mood and tone, references, and elements to avoid.
 
 ### Evaluation Systems
 
-- **aesthetic_judgment_system.js**: Implements objective evaluation of artwork quality based on multiple criteria, including composition, color harmony, concept originality, surrealist elements, technical execution, emotional impact, and Magritte authenticity.
+- **aesthetic_judgment_system.js**: Implements objective evaluation of artwork quality based on multiple criteria, including composition, color harmony, concept originality, surrealist elements, technical execution, emotional impact, and Margritte authenticity.
 
 - **personalized_taste_model.js**: Implements a personalized preference learning system using an ELO rating system and exploration bonuses to balance between exploiting known preferences and exploring new artistic possibilities.
 
@@ -130,7 +130,7 @@ magritte-art-generator/
 
 The system is designed to be extensible in several ways:
 
-1. **New Categories**: Additional art direction files can be added to support new Magritte-inspired categories.
+1. **New Categories**: Additional art direction files can be added to support new Margritte-inspired categories.
 
 2. **Enhanced Agents**: The multi-agent system can be extended with new specialized agents.
 

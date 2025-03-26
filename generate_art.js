@@ -2,7 +2,7 @@
  * Interactive Art Generator
  * 
  * This script provides a user-friendly interface for generating
- * Magritte-inspired artwork using the multi-agent system.
+ * Margritte-inspired artwork using the multi-agent system.
  */
 
 const readline = require('readline');
@@ -39,9 +39,9 @@ const directorAgent = new DirectorAgent();
  */
 function displayWelcome() {
   console.log('\n==============================================');
-  console.log('   MAGRITTE ART GENERATOR - INTERACTIVE MODE');
+  console.log('   Margritte ART GENERATOR - INTERACTIVE MODE');
   console.log('==============================================\n');
-  console.log('Generate surrealist artwork in the style of René Magritte\n');
+  console.log('Generate surrealist artwork in the style of Studio Margritte\n');
 }
 
 /**
@@ -126,7 +126,7 @@ function askForAnotherArtwork() {
     if (answer.toLowerCase() === 'y') {
       askForCategory();
     } else {
-      console.log('\nThank you for using the Magritte Art Generator!');
+      console.log('\nThank you for using the Margritte Art Generator!');
       rl.close();
     }
   });

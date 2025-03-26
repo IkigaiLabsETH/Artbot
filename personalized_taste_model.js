@@ -1,5 +1,5 @@
 /**
- * Personalized Taste Model for Magritte Art Generator
+ * Personalized Taste Model for Margritte Art Generator
  * 
  * This module implements a personalized taste model that evaluates generated artwork
  * based on both aesthetic quality and alignment with evolving preferences.
@@ -40,7 +40,7 @@ class PersonalizedTasteModel {
   _initializeFeatureWeights() {
     // Style features
     this.featureWeights.style = {
-      'magritte_surrealism': 0.5,
+      'Margritte_surrealism': 0.5,
       'oil_painting_technique': 0.5,
       'visible_brushstrokes': 0.5,
       'canvas_texture': 0.5,
@@ -63,7 +63,7 @@ class PersonalizedTasteModel {
     
     // Color palette
     this.featureWeights.colorPalette = {
-      'magritte_blues': 0.5,
+      'Margritte_blues': 0.5,
       'earthy_browns': 0.5,
       'soft_greens': 0.5,
       'rich_reds': 0.5,

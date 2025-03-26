@@ -28,197 +28,118 @@ interface ArtDirection {
     [key: string]: ArtDirection;
   };
   defaultStyle?: string;          // Default style to use
+  modelConfig?: {
+    prompt_prefix: string;
+    prompt_suffix: string;
+    negative_prompt: string;
+    num_inference_steps: number;
+    guidance_scale: number;
+    style_emphasis?: {
+      [key: string]: number;
+    };
+  };
+  MargritteContext?: {
+    philosophicalFramework?: {
+      beliefs: string[];
+      theories: string[];
+      conceptualFrameworks: string[];
+      paradoxes: string[];
+      visualDialectics: string[];
+    };
+    technicalExecution?: {
+      renderingTechniques: string[];
+      materialPreparation: string[];
+      workingMethodology: string[];
+      qualityMetrics: string[];
+    };
+  };
 }
 
-// Default art direction that can be overridden by environment variables or parameters
-const defaultArtDirection: ArtDirection = {
-  styleEmphasis: [
-    // Magritte's Key Painting Series References
-    "Empire of Light series (1953-54) technique: fashion models under impossible day-night skies",
-    "Time Transfixed (1938) approach: fashion accessories emerging from unexpected spaces like Magritte's locomotive",
-    "The Human Condition series (1933-35) style: windows and portholes showing landscapes that perfectly continue beyond their frames",
-    "Son of Man (1964) treatment: fashion figures obscured by floating geometric objects with Magritte's perfect shadows",
-    "The Treachery of Images series (1929) concept: fashion displays with paradoxical text about reality",
-    "Golconda (1953) multiplication: identical fashion accessories raining against architectural grid",
-    "The False Mirror (1929) technique: porthole windows containing infinite dreamlike space",
-    
-    // Specific Magritte Painting Techniques
-    "La Belle Captive (1931) approach: windows as canvas-within-canvas showing impossible landscapes",
-    "The Listening Room (1952) scale play: giant fashion accessories filling tiny Magritte interior",
-    "The Blank Signature (1965) technique: human silhouette made of flowing fabric or color",
-    "The Central Story (1928) style: fashion elements floating in pure gradient sky",
-    "The Six Elements (1929) fragmentation: human figure divided into surreal painted segments",
-    "Memory of a Journey (1955) technique: recursive doorways leading to dreamlike spaces",
-    "The Beautiful Relations (1963) approach: ordinary objects transforming into Magritte's branches",
-    
-    // Magritte's Philosophical Devices
-    "The Key to Dreams (1930) word-image relationships: fashion items with contradictory labels",
-    "Personal Values (1952) scale distortion: giant everyday objects dwarfing intimate interior spaces",
-    "The Forbidden Universe (1943) doubling: twin fashion figures in impossible mirror arrangement",
-    "The Explanation (1952) symbolic objects: ordinary items transformed into Magritte's symbolic forms",
-    "The Beautiful World (1962) transformation: fashion accessories flowering into surreal forms",
-    "The Art of Living (1967) repetition: fashion elements in Magritte's grid patterns",
-    "The Mysteries of the Horizon (1955) multiplication: multiple Magritte moons above fashion scene",
-    
-    // Signature Magritte Elements
-    "The Victory (1939) technique: fashion surfaces painted with Magritte's stone-like flatness",
-    "The Dominion of Light (1948) lighting: impossible day-night illumination of fashion settings",
-    "The Collective Invention (1934) hybridization: fashion-object metamorphosis forms",
-    "The Palace of Curtains (1929) trompe l'oeil: painted curtains revealing fashion displays",
-    "The Pilgrim (1966) composition: lone figure in Magritte's desolate landscape",
-    "The Ladder of Fire (1939) transformation: ordinary objects becoming flame-like surreal forms",
-    "The Fair Captive (1947) framing: fashion scene viewed through Magritte's painted frame"
-  ],
-  visualElements: [
-    // Classic Magritte Paradoxes with Fashion Elements
-    "bowler-hatted figures with mirror or porthole faces (from The Son of Man)",
-    "floating objects replaced by hovering fashion accessories (from Castle of the Pyrenees)",
-    "Magritte's pipe emitting colorful fabric (from The Treachery of Images)",
-    "billowing curtains revealing surreal fashion scenes (from The Voice of Blood)",
-    "mirrors reflecting impossible fashion scenarios (from Reproduction Prohibited)",
-    "windows showing contradictory fashion landscapes (from The Human Condition)",
-    "birds morphing into fashion elements (from The Large Family)",
-    "doorways painted as Magritte's lips (from The Beautiful Prisoner)",
-    "fashion display windows that are actually painted skies (from The Key of Dreams)",
-    "porthole windows containing miniature suns (from The Light of Coincidence)",
-    
-    // Magritte's Image-Within-Image with Fashion
-    "fashion display showing exact view behind it like Magritte's easel (from The Human Condition)",
-    "porthole window containing its own infinite reflection (from Not to be Reproduced)",
-    "fashion magazine showing impossible landscapes (from The Domain of Arnheim)",
-    "handbag opening revealing deep space vista (from The Universe Unmasked)",
-    "mirrors showing different times of day (from The Dominion of Light)",
-    "fashion advertisement containing real clouds (from The Perfect Image)",
-    "window display continuing the street beyond its frame (from Evening Falls)",
-    "fashion boutique windows as portals to other Magritte paintings (from The Living Mirror)",
-    
-    // Magritte's Scale Distortions
-    "gigantic fashion accessory dominating tiny city (from Personal Values)",
-    "microscopic fashion elements floating in vast sky (from The Lost Jockey)",
-    "enormous shoe eclipsing the sun (from The Banquet)",
-    "fashion model dwarfed by colossal everyday object (from The Anniversary)",
-    "tiny fashion boutiques inside full-size handbag (from The Six Elements)",
-    "massive fashion icon as architectural element (from Megalomania)",
-    "planet-sized fashion logo in intimate room (from The Listening Room)",
-    "miniature fashion accessories arranged on giant bowler hat (from The Happy Donor)",
-    
-    // Magritte's Metamorphosis Elements
-    "fashion accessories transforming into clockfaces (from Time Transfixed)",
-    "fabric becoming liquid silver (from The Waterfall)",
-    "fashion silhouettes dissolving into birds (from The Large Family)",
-    "clothing flowing into ocean waves (from The Wonders of Nature)",
-    "fashion displays growing like crystal formations (from The Gradation of Fire)",
-    "shoes sprouting like trees (from The Blank Signature)",
-    "fashion elements morphing into clouds (from The Central Story)",
-    "jewelry becoming musical notes (from The Alphabet of Revelations)",
-    
-    // Magritte's Impossible Juxtapositions
-    "fashion boutique interior filled with forest (from The Blank Check)",
-    "fashion runway underwater but perfectly dry (from The Summer Steps)",
-    "fashion model floating in space but casting ground shadow (from The Victory)",
-    "fashion accessories made of glass containing sky (from The Future of Statues)",
-    "fabric knitted like impossible materials (from The Red Model)",
-    "fashion display showing what's behind the viewer (from Portrait of Edward James)",
-    "mirrors seeing yesterday (from Memory of a Journey)",
-    "boutique interior bigger than exterior (from The Forbidden Universe)",
-    
-    // Magritte's Trompe l'oeil Techniques
-    "fashion boutique door that's actually painted on wall (from The Victory)",
-    "fashion display revealing real space behind wall (from The Human Condition II)",
-    "clothing emerging from painted wardrobe (from Time Transfixed)",
-    "fashion model casting shadow of different person (from The Mysteries of the Horizon)",
-    "mirror that's actually reflection of nothing (from The False Mirror)"
-  ],
-  colorPalette: [
-    // Classic Magritte Painting Colors
-    "The Empire of Light sky blue (RGB: 135, 206, 235)",
-    "The Son of Man apple green (RGB: 126, 186, 86)",
-    "The Treachery of Images tobacco brown (RGB: 193, 154, 107)",
-    "The Human Condition cloud white (RGB: 236, 236, 236)",
-    "Golconda bowler hat black (RGB: 28, 28, 28)",
-    "The False Mirror iris blue (RGB: 70, 130, 180)",
-    "Time Transfixed locomotive black (RGB: 20, 20, 20)",
-    "The Listening Room apple green (RGB: 141, 182, 0)",
-    "Personal Values comb blue (RGB: 176, 196, 222)",
-    "The Menaced Assassin blood red (RGB: 138, 7, 7)",
-    "The Voice of Blood curtain shadow (RGB: 47, 79, 79)",
-    "The Gradation of Fire flame orange (RGB: 226, 88, 34)",
-    "Pandora's Box mist grey (RGB: 200, 200, 200)",
-    "The Six Elements air blue (RGB: 176, 196, 222)",
-    "The Future of Statues moonlight blue (RGB: 230, 230, 250)",
-    
-    // Contemporary Fashion Surrealism Colors
-    "Porthole aqua (clean as The False Mirror) (RGB: 64, 224, 208)",
-    "Fashion orange (vibrant as The Gradation of Fire) (RGB: 255, 140, 0)",
-    "Runway yellow (pure as The Beautiful World) (RGB: 255, 223, 0)",
-    "Studio pink (soft as The Rose of the Winds) (RGB: 255, 182, 193)",
-    "Accessory red (bold as The Menaced Assassin) (RGB: 220, 20, 60)",
-    "Minimalist white (flat as Empire of Light clouds) (RGB: 245, 245, 245)",
-    "Surreal blue (deep as The Dominion of Light) (RGB: 25, 25, 112)",
-    "Fashion neutral (matte as The Son of Man suit) (RGB: 210, 180, 140)",
-    "Porthole glass (reflective as Not to be Reproduced) (RGB: 176, 224, 230)",
-    "Impossible shadow (dark as Time Transfixed) (RGB: 47, 79, 79)",
-    "Dreamscape lavender (soft as Memory of a Journey) (RGB: 230, 230, 250)",
-    "Surreal green (vibrant as The Domain of Arnheim) (RGB: 0, 158, 96)",
-    "Fashion metallic (reflective as Personal Values mirror) (RGB: 192, 192, 192)",
-    "Boutique blue (clean as The Human Condition sky) (RGB: 135, 206, 250)",
-    "Accessory gold (pure as The Golden Legend) (RGB: 255, 215, 0)"
-  ],
-  compositionGuidelines: [
-    // Contemporary Surrealist Fashion Principles
-    "Clean minimalist environments with bold color blocking",
-    "Dramatic use of porthole windows and confined spaces",
-    "Impossible perspectives and gravity-defying poses",
-    "Reflective surfaces and mirror play",
-    "Repetition of figures and fashion elements",
-    "Intimate spaces opening to infinite vistas",
-    "Underwater and floating compositions",
-    "Strong geometric architectural framing",
-    "Saturated color against neutral backgrounds",
-    "Multiple identical figures in surreal arrangements",
-    "Juxtaposition of interior and exterior spaces",
-    "Fashion elements at impossible scales",
-    "Models interacting with surreal environments",
-    "Dreamlike lighting and color transitions",
-    "Architectural elements as fashion frames",
-    "Symmetrical and balanced compositions",
-    "Floating objects and suspended motion",
-    "Portals and doorways to impossible spaces",
-    "Play with scale and perspective",
-    "Integration of fashion with surreal elements"
-  ],
-  moodAndTone: "Create a deeply surreal and metaphysical atmosphere drawing from the Belgian Surrealist tradition, where everyday objects become mysterious through paradoxical placement and symbolic resonance. Evoke a dreamlike quality with clean, minimalist environments featuring bold, saturated colors (especially oranges, yellows, blues, and pinks). Compose scenes with impossible perspectives where fashion elements and ordinary objects take on extraordinary significance through unusual scale relationships, repetition, and unexpected juxtapositions. Portray confined spaces with porthole/window motifs that create a sense of both intimacy and infinity. Blend Magritte's precise execution, Delvaux's dreamy atmosphere, Baes's mysticism, Mariën's object poetry, Graverol's metamorphoses, Nougé's conceptual approach, and Broodthaers's institutional critique. The overall aesthetic should feel contemporary and fashion-forward while maintaining the philosophical depth of surrealism - creating scenes that are simultaneously beautiful, unsettling, and thought-provoking. Emphasize the tension between reality and illusion, interior and exterior spaces, presence and absence, singularity and multiplicity. The human figure should interact with the surreal elements in ways that question conventional relationships between body, object, and environment, suggesting narratives that remain tantalizingly open to interpretation.",
-  references: [
-    // Belgian Surrealist Master Influences
-    "Magritte's pristine execution and impossible scenarios",
-    "Delvaux's dreamy architectural spaces",
-    "Rachel Baes's mysterious feminine symbolism",
-    "Marcel Mariën's poetic object arrangements",
-    "Jane Graverol's surreal transformations",
-    "Paul Nougé's conceptual paradoxes",
-    "Marcel Broodthaers's institutional critiques",
-    "Belgian surrealist use of text and image",
-    "Collective Belgian surrealist atmosphere",
-    "Shared themes of displacement and mystery"
-  ],
-  avoidElements: [
-    // Elements to Strictly Avoid
-    "non-Apple antique objects",
-    "vintage furniture or decor",
-    "traditional antique elements",
-    "period architectural details",
-    "classical ornaments",
-    "vintage clothing or fashion",
-    "antique books or papers",
-    "historical artifacts",
-    "period-specific decorative elements",
-    "vintage mechanical objects",
-    "antique scientific instruments",
-    "old-world aesthetics",
-    "vintage transportation elements",
-    "period lighting fixtures",
-    "traditional art materials"
-  ]
+// Define the default art direction
+const artDirection: ArtDirection = {
+  styles: {
+    magritte: {
+      styleEmphasis: [
+        "surrealistComposition",
+        "meticulousPainting",
+        "enigmaticElements",
+        "symbolicJuxtaposition",
+        "dreamlikeAtmosphere",
+        "perfectMatteFinish",
+        "crystalClearEdges",
+        "pureColorFields",
+        "sourcelessIllumination",
+        "paradoxicalScenes",
+        "floatingElements",
+        "geometricForms",
+        "mysteriousComposition",
+        "symbolicElements",
+        "visualTension"
+      ],
+      visualElements: [
+        "floatingObjects",
+        "geometricForms",
+        "symbolicElements",
+        "mysteriousComposition",
+        "paradoxicalScenes",
+        "bowlerHat",
+        "pipe",
+        "greenApple",
+        "cloudySky",
+        "floatingRocks",
+        "mirrorReflections",
+        "wordPaintings",
+        "hiddenFaces",
+        "impossiblePerspectives",
+        "visualParadoxes"
+      ],
+      colorPalette: [
+        "#1E90FF", // Magritte's signature cerulean blue
+        "#000080", // Deep navy blue
+        "#F5F5F5", // Pure white porcelain
+        "#2F4F4F", // Dark slate grey
+        "#006400", // Deep forest green
+        "#004225", // Dark emerald
+        "#228B22", // Forest green
+        "#87CEEB", // Light sky blue
+        "#D3D3D3", // Light grey
+        "#E0E0E0"  // Light grey
+      ],
+      compositionGuidelines: [
+        "perfectlySmoothMatteFinish",
+        "crystalClearEdgeDefinition",
+        "pureUnmodulatedColorFields",
+        "sourcelessPerfectIllumination",
+        "cleanEnigmaticComposition",
+        "preciseGeometricForms",
+        "balancedVisualElements",
+        "paradoxicalArrangement",
+        "mysteriousAtmosphere",
+        "symbolicJuxtaposition"
+      ],
+      moodAndTone: "mysterious and enigmatic with a focus on surrealist juxtaposition and visual paradox",
+      modelConfig: {
+        prompt_prefix: "Create in the surrealist style of René Magritte, with ",
+        prompt_suffix: ". Emphasize perfectly smooth matte finish, crystal clear edge definition, pure unmodulated color fields, and sourceless perfect illumination. Include surrealist juxtaposition and enigmatic composition. Use Magritte's signature cerulean blue sky and meticulous painting technique.",
+        negative_prompt: "photorealistic, 3D rendered, CGI, digital art, harsh lighting, dark themes, anime style, cartoon style, watercolor, hand-drawn, sketchy, rough edges, Studio Margritte, animation, whimsical, cute, fantasy",
+        num_inference_steps: 50,
+        guidance_scale: 12.0,
+        style_emphasis: {
+          surrealistComposition: 0.95,
+          meticulousPainting: 0.95,
+          enigmaticElements: 0.90,
+          symbolicJuxtaposition: 0.90,
+          dreamlikeAtmosphere: 0.90,
+          perfectMatteFinish: 0.95,
+          crystalClearEdges: 0.95,
+          pureColorFields: 0.90,
+          sourcelessIllumination: 0.90,
+          paradoxicalScenes: 0.90
+        }
+      }
+    }
+  },
+  defaultStyle: "magritte"
 };
 
 // Function to load art direction from a JSON file if it exists
@@ -238,16 +159,14 @@ function loadArtDirectionFromFile(filePath: string): ArtDirection | null {
 function loadCategoryArtDirection(category?: string): ArtDirection | null {
   if (!category) return null;
   
-  // Convert category to filename format (now including Ikigai)
-  const prefix = category.toLowerCase().includes('ikigai') ? 'ikigai' : 
-                category.toLowerCase().includes('bourdin') ? 'bourdin' : 'magritte';
-  const categoryName = category.toLowerCase().replace(/^ikigai_|^bourdin_|^magritte_/, '');
-  const categoryFileName = `${prefix}_${categoryName.replace(/\s+/g, '_')}.json`;
+  // Always use Margritte prefix and force Margritte style
+  const prefix = 'Margritte';
+  const categoryFileName = `${prefix}_classic.json`;
   const categoryFilePath = path.join(process.cwd(), categoryFileName);
   
   const categoryArtDirection = loadArtDirectionFromFile(categoryFilePath);
   if (categoryArtDirection) {
-    console.log(`Loaded category-specific art direction from ${categoryFileName}`);
+    console.log(`Loaded Margritte art direction from ${categoryFileName}`);
     return categoryArtDirection;
   }
   
@@ -277,7 +196,7 @@ const categoryArg = process.argv[3];
 const styleManager = new StyleManager();
 
 // Define portrait-specific categories for PFP series
-const magritteCategories = [
+const MargritteCategories = [
   // Adventure Series
   'bear_pfp_pilot',          // Vintage aviator with leather jacket
   'bear_pfp_surfer',         // Retro surf culture with board
@@ -491,66 +410,6 @@ const magritteCategories = [
   'bear_pfp_ecofashion',    // Sustainable fashion designer
   'bear_pfp_swapshop',      // Item exchange curator
   
-  // Academic Series (New)
-  'bear_pfp_professor',     // Distinguished professor with glasses
-  'bear_pfp_astronomer',    // Stargazer with telescope
-  'bear_pfp_archaeologist', // Field researcher with tools
-  'bear_pfp_botanist_academic', // Academic botanist with specimens
-  'bear_pfp_librarian',     // Rare book curator
-  'bear_pfp_mathematician', // Mathematician with formulas
-  'bear_pfp_chemist',      // Chemist with laboratory coat
-  'bear_pfp_linguist',     // Language scholar with manuscripts
-  'bear_pfp_historian',    // History scholar with documents
-  'bear_pfp_philosopher',  // Philosophy professor with tome
-  
-  // Mystical Series (New)
-  'bear_pfp_alchemist',    // Alchemist with potions
-  'bear_pfp_astrologer',   // Astrologer with celestial maps
-  'bear_pfp_fortune',      // Fortune teller with crystal ball
-  'bear_pfp_mystic',       // Mystic with sacred scrolls
-  'bear_pfp_shaman',       // Shaman with ritual items
-  'bear_pfp_druid',        // Druid with nature elements
-  'bear_pfp_oracle',       // Oracle with prophetic tools
-  'bear_pfp_wizard',       // Wizard with magical items
-  'bear_pfp_sage',         // Sage with ancient texts
-  'bear_pfp_occultist',    // Occultist with arcane symbols
-  
-  // Steampunk Series (New)
-  'bear_pfp_inventor',      // Victorian inventor with brass goggles
-  'bear_pfp_timekeeper',    // Clockwork master with gears
-  'bear_pfp_aeronaut',      // Airship captain with brass telescope
-  'bear_pfp_mechanist',     // Steam engine expert with tools
-  'bear_pfp_alchemtech',    // Steampunk alchemist with apparatus
-  'bear_pfp_automaton',     // Mechanical being with brass parts
-  'bear_pfp_navigator',     // Sky charts and brass compass
-  'bear_pfp_artificer',     // Mechanical craftsman with tools
-  'bear_pfp_steamsmith',    // Steam machinery expert
-  'bear_pfp_chronologist',  // Time device specialist
-  
-  // Classical Series (New)
-  'bear_pfp_composer',      // Classical music composer
-  'bear_pfp_conductor',     // Orchestra conductor with baton
-  'bear_pfp_violinist',     // Violin virtuoso with instrument
-  'bear_pfp_pianist',       // Grand piano performer
-  'bear_pfp_cellist',       // Cello master with bow
-  'bear_pfp_harpist',       // Harp player with strings
-  'bear_pfp_flautist',      // Flute player with instrument
-  'bear_pfp_operatic',      // Opera singer with score
-  'bear_pfp_chamber',       // Chamber musician
-  'bear_pfp_maestro',       // Music master with manuscript
-  
-  // Diplomatic Series (New)
-  'bear_pfp_ambassador',    // Distinguished diplomat
-  'bear_pfp_consul',        // Consular official with seal
-  'bear_pfp_attache',       // Cultural attaché with portfolio
-  'bear_pfp_envoy',         // Special envoy with documents
-  'bear_pfp_minister',      // Foreign minister with briefcase
-  'bear_pfp_delegate',        // UN delegate with credentials
-  'bear_pfp_emissary',      // Royal emissary with scroll
-  'bear_pfp_chancellor',    // Chancellor with ceremonial chain
-  'bear_pfp_secretary',      // Secretary of state with portfolio
-  'bear_pfp_legate',          // Papal legate with seal
-  
   // Additional Adventure Types
   'bear_pfp_balloonist',      // Hot air balloon explorer
   'bear_pfp_polar',          // Polar expedition leader
@@ -565,12 +424,6 @@ const magritteCategories = [
   'bear_pfp_fresco',            // Fresco painter with tools
   'bear_pfp_miniature',        // Miniature painting artist
   
-  // Additional Academic Types
-  'bear_pfp_cartographer',      // Map maker with tools
-  'bear_pfp_paleographer',      // Ancient writing expert
-  'bear_pfp_antiquarian',        // Antique manuscript expert
-  'bear_pfp_naturalist',        // Nature study scholar
-  'bear_pfp_cosmologist',        // Universe study scholar
   
   // New Adventure Series Additions
   'bear_pfp_freediver',     // Freediving explorer with monofin
@@ -605,7 +458,6 @@ const magritteCategories = [
   'bear_pfp_synthwave',     // Synthwave music producer
   'bear_pfp_hydroponics',   // Urban hydroponic farmer
   'bear_pfp_letterpress',   // Letterpress print artist
-  'bear_pfp_kombucha',      // Kombucha brewing master
   'bear_pfp_streetwear',    // Vintage streetwear curator
   
   // Additional Adventure Series
@@ -821,66 +673,6 @@ function generateBearConcept(): string {
     "herbalist's woven hat",
     "vinyl DJ's headphones",
     
-    // Academic Headwear
-    "professor's mortarboard",
-    "astronomer's night cap",
-    "archaeologist's field hat",
-    "curator's reading glasses",
-    "mathematician's spectacles",
-    "chemist's safety goggles",
-    "linguist's translation lens",
-    "historian's archive cap",
-    "philosopher's thinking cap",
-    "researcher's magnifying glass",
-    
-    // Mystical Headwear
-    "alchemist's hood",
-    "astrologer's star cap",
-    "fortune teller's head wrap",
-    "mystic's ceremonial crown",
-    "shaman's spirit mask",
-    "druid's leaf crown",
-    "oracle's veil",
-    "wizard's pointed hat",
-    "sage's wisdom band",
-    "occultist's symbolic hat",
-    
-    // Steampunk Headwear
-    "brass goggled top hat",
-    "gear-decorated bowler",
-    "copper-plated aviator cap",
-    "mechanical monocle hat",
-    "steam-powered helmet",
-    "clockwork crown",
-    "brass-fitted cap",
-    "gear-rimmed glasses",
-    "mechanical eye patch",
-    "steam valve hat",
-    
-    // Classical Music Headwear
-    "conductor's formal cap",
-    "composer's velvet beret",
-    "virtuoso's silk headband",
-    "maestro's ceremonial hat",
-    "chamber musician's cap",
-    "opera performer's crown",
-    "concert master's hat",
-    "orchestral director's cap",
-    "soloist's formal headpiece",
-    "classical performer's hat",
-    
-    // Diplomatic Headwear
-    "ambassador's formal hat",
-    "diplomatic corps cap",
-    "consular official's hat",
-    "ministerial top hat",
-    "envoy's formal cap",
-    "chancellor's ceremonial hat",
-    "emissary's plumed hat",
-    "delegate's formal headpiece",
-    "diplomatic service cap",
-    "ceremonial state hat",
-    
     // New Adventure Headwear
     "freediving mask",
     "highliner's balance cap",
@@ -1092,66 +884,6 @@ function generateBearConcept(): string {
     "herb drying rack",
     "turntable needle",
     
-    // Academic Tools
-    "rare book magnifier",
-    "star chart compass",
-    "archaeological brush",
-    "specimen collection box",
-    "library catalog cards",
-    "mathematical compass",
-    "laboratory equipment",
-    "ancient manuscript case",
-    "historical documents",
-    "philosophical treatise",
-    
-    // Mystical Items
-    "alchemical apparatus",
-    "celestial armillary",
-    "crystal ball stand",
-    "mystical scrollcase",
-    "ritual medicine bag",
-    "natural talismans",
-    "prophetic tablets",
-    "magical implements",
-    "wisdom scrolls",
-    "occult symbols",
-    
-    // Steampunk Accessories
-    "brass mechanical arm",
-    "clockwork compass",
-    "steam pressure gauge",
-    "gear-decorated spyglass",
-    "mechanical calculator",
-    "steam-powered tool",
-    "brass navigation device",
-    "mechanical measuring tool",
-    "steam engine miniature",
-    "clockwork assistant",
-    
-    // Classical Music Accessories
-    "conductor's baton",
-    "golden music stand",
-    "vintage metronome",
-    "orchestral score",
-    "classical instrument",
-    "sheet music folder",
-    "tuning fork set",
-    "composer's quill",
-    "musical manuscript",
-    "performance program",
-    
-    // Diplomatic Accessories
-    "diplomatic portfolio",
-    "official seal press",
-    "ceremonial staff",
-    "document case",
-    "credential holder",
-    "treaty scroll",
-    "diplomatic pouch",
-    "official dispatch box",
-    "state seal",
-    "ceremonial mace",
-    
     // New Adventure Tools
     "freediving computer",
     "highline balance meter",
@@ -1361,66 +1093,6 @@ function generateBearConcept(): string {
     "dried herb garland",
     "audio cable wrap",
     
-    // Academic Neckwear
-    "professor's bow tie",
-    "observatory scarf",
-    "field researcher's tie",
-    "curator's cravat",
-    "academic stole",
-    "laboratory safety collar",
-    "translator's neckerchief",
-    "archivist's tie",
-    "philosophical scarf",
-    "scholar's collar",
-    
-    // Mystical Neckwear
-    "alchemist's chain",
-    "celestial collar",
-    "mystic beads",
-    "ritual necklace",
-    "spirit fetish",
-    "natural fiber wrap",
-    "oracle's collar",
-    "wizard's chain",
-    "sage's meditation beads",
-    "symbolic amulet",
-    
-    // Steampunk Neckwear
-    "gear-decorated cravat",
-    "brass-buttoned collar",
-    "steam pipe necklace",
-    "mechanical bow tie",
-    "clockwork collar",
-    "copper chain collar",
-    "brass gear tie",
-    "mechanical choker",
-    "steam valve collar",
-    "gear link chain",
-    
-    // Classical Music Neckwear
-    "conductor's white tie",
-    "performer's bow tie",
-    "orchestral cravat",
-    "maestro's silk scarf",
-    "classical collar",
-    "concert bow tie",
-    "formal neck ruff",
-    "musical score tie",
-    "performance collar",
-    "ceremonial neck chain",
-    
-    // Diplomatic Neckwear
-    "diplomatic corps tie",
-    "ambassador's cravat",
-    "ceremonial collar",
-    "official neck chain",
-    "state ceremony tie",
-    "diplomatic service scarf",
-    "formal state collar",
-    "embassy formal tie",
-    "consular corps cravat",
-    "ministerial chain",
-    
     // New Adventure Neckwear
     "freediver's neck weight",
     "highliner's safety harness",
@@ -1628,66 +1300,6 @@ function generateBearConcept(): string {
     "herbalist's garden coat",
     "DJ's vintage jacket",
     
-    // Academic Attire
-    "professor's robes",
-    "observatory coat",
-    "field researcher's vest",
-    "curator's jacket",
-    "academic gown",
-    "laboratory coat",
-    "translator's blazer",
-    "archivist's coat",
-    "philosopher's robe",
-    "scholar's jacket",
-    
-    // Mystical Garments
-    "alchemist's robe",
-    "astrologer's cloak",
-    "fortune teller's shawl",
-    "mystic's ceremonial robe",
-    "shaman's ritual garb",
-    "druid's natural vestments",
-    "oracle's flowing robe",
-    "wizard's star-patterned cloak",
-    "sage's meditation robe",
-    "occultist's symbolic vestments",
-    
-    // Steampunk Attire
-    "brass-fitted coat",
-    "gear-decorated vest",
-    "steam engineer's jacket",
-    "mechanical suit",
-    "clockwork waistcoat",
-    "copper-plated armor",
-    "steam-powered suit",
-    "mechanical formal wear",
-    "brass-buttoned coat",
-    "gear mechanism suit",
-    
-    // Classical Music Attire
-    "conductor's tailcoat",
-    "performer's formal suit",
-    "orchestral dress coat",
-    "concert formal wear",
-    "chamber music attire",
-    "opera performance coat",
-    "classical musician's suit",
-    "maestro's formal jacket",
-    "soloist's concert wear",
-    "performance formal coat",
-    
-    // Diplomatic Attire
-    "ambassador's formal suit",
-    "diplomatic corps uniform",
-    "consular official's coat",
-    "ministerial formal wear",
-    "embassy formal suit",
-    "chancellor's robes",
-    "diplomatic service uniform",
-    "state ceremony coat",
-    "official diplomatic wear",
-    "formal state uniform",
-    
     // New Adventure Wear
     "freediving wetsuit",
     "highliner's harness suit",
@@ -1880,66 +1492,6 @@ function generateBearConcept(): string {
     "herb bundle",
     "turntable setup",
     
-    // Academic Elements
-    "rare manuscript",
-    "brass telescope",
-    "archaeological artifacts",
-    "preserved specimens",
-    "library index",
-    "geometric instruments",
-    "laboratory apparatus",
-    "ancient scrolls",
-    "historical documents",
-    "philosophical texts",
-    
-    // Mystical Elements
-    "alchemical vessel",
-    "astrolabe",
-    "crystal sphere",
-    "mystical tome",
-    "medicine bundle",
-    "natural artifacts",
-    "prophetic runes",
-    "magical staff",
-    "wisdom tablets",
-    "occult grimoire",
-    
-    // Steampunk Elements
-    "brass clockwork device",
-    "steam pressure meter",
-    "mechanical calculator",
-    "gear mechanism display",
-    "steam engine model",
-    "brass navigation tool",
-    "clockwork automaton",
-    "steam-powered invention",
-    "mechanical measuring device",
-    "brass scientific instrument",
-    
-    // Classical Music Elements
-    "golden conductor's stand",
-    "vintage musical score",
-    "classical instrument case",
-    "orchestral arrangement",
-    "composer's manuscript",
-    "antique metronome",
-    "performance program",
-    "musical notation book",
-    "concert hall sketch",
-    "classical music award",
-    
-    // Diplomatic Elements
-    "diplomatic seal",
-    "official document case",
-    "ceremonial staff",
-    "state credentials",
-    "treaty document",
-    "embassy seal press",
-    "diplomatic dispatch",
-    "official portfolio",
-    "state ceremony medal",
-    "diplomatic code book",
-    
     // New Adventure Elements
     "freediving fins",
     "highline balance bar",
@@ -2029,66 +1581,6 @@ function generateBearConcept(): string {
     "herb bundle",
     "turntable setup",
     
-    // Academic Elements
-    "rare manuscript",
-    "brass telescope",
-    "archaeological artifacts",
-    "preserved specimens",
-    "library index",
-    "geometric instruments",
-    "laboratory apparatus",
-    "ancient scrolls",
-    "historical documents",
-    "philosophical texts",
-    
-    // Mystical Elements
-    "alchemical vessel",
-    "astrolabe",
-    "crystal sphere",
-    "mystical tome",
-    "medicine bundle",
-    "natural artifacts",
-    "prophetic runes",
-    "magical staff",
-    "wisdom tablets",
-    "occult grimoire",
-    
-    // Steampunk Elements
-    "brass clockwork device",
-    "steam pressure meter",
-    "mechanical calculator",
-    "gear mechanism display",
-    "steam engine model",
-    "brass navigation tool",
-    "clockwork automaton",
-    "steam-powered invention",
-    "mechanical measuring device",
-    "brass scientific instrument",
-    
-    // Classical Music Elements
-    "golden conductor's stand",
-    "vintage musical score",
-    "classical instrument case",
-    "orchestral arrangement",
-    "composer's manuscript",
-    "antique metronome",
-    "performance program",
-    "musical notation book",
-    "concert hall sketch",
-    "classical music award",
-    
-    // Diplomatic Elements
-    "diplomatic seal",
-    "official document case",
-    "ceremonial staff",
-    "state credentials",
-    "treaty document",
-    "embassy seal press",
-    "diplomatic dispatch",
-    "official portfolio",
-    "state ceremony medal",
-    "diplomatic code book",
-    
     // New Adventure Elements
     "freediving fins",
     "highline balance bar",
@@ -2134,538 +1626,15 @@ function generateBearConcept(): string {
   const additional = additionalElements[Math.floor(Math.random() * additionalElements.length)];
 
   const magritteBearPFP = [
-    `a distinguished bear portrait in profile wearing a ${primary}, ${secondary}, and ${neck}, dressed in a ${cloth}, with ${additional}, painted in Magritte's precise style against a Belgian sky blue background`,
+    `a distinguished bear portrait in profile wearing a ${primary}, ${secondary}, and ${neck}, dressed in a ${cloth}, with ${additional}, painted in Magritte's surrealist style against a Belgian sky blue background`,
   ];
   
   return magritteBearPFP[0];
 }
 
-// Determine the category to use
-const detectedCategory = categoryArg || 'bear_pfp_classic';
-
-// Check for category-specific art direction if category is provided
-const categoryArtDirection = loadCategoryArtDirection(detectedCategory);
-
-// Log the art direction selection process
-console.log('\n🎨 Art Direction Selection:');
-if (categoryArg) {
-  console.log(`- Using explicitly specified category: "${categoryArg}"`);
-} else if (detectedCategory) {
-  console.log(`- Using auto-detected category: "${detectedCategory}"`);
-} else {
-  console.log('- Using default bear portrait');
-}
-
-if (fileArtDirection) {
-  console.log('- Found custom art-direction.json file');
-}
-
-if (categoryArtDirection) {
-  console.log(`- Applied category-specific art direction from: ${detectedCategory}.json`);
-} else if (detectedCategory) {
-  console.log(`- No category-specific file found for "${detectedCategory}", using base bear portrait`);
-}
-
-// Merge art directions with priority: category > file > default
-const artDirection: ArtDirection = {
-  ...defaultArtDirection,
-  ...fileArtDirection,
-  ...categoryArtDirection
-};
-
-// Define the models
-const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
-const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
-const MINIMAX_MODEL = 'minimax/image-01';
-
-// Define the models with Belgian Surrealist-LiveTheLifeTV fusion settings
-const MAGRITTE_STYLE_CONFIG = {
-  prompt_prefix: "Create a contemporary surrealist fashion composition with clean, minimalist execution and metaphysical atmosphere. Drawing from both Magritte's surrealist precision and modern fashion photography, compose ",
-  prompt_suffix: `. The image must epitomize contemporary surrealist fashion:
-
-- Visual Execution:
-  * Clean, minimalist environments with perfect clarity
-  * Bold, saturated colors with dramatic contrasts
-  * Pristine surfaces and sharp edge definition
-  * Architectural precision in spatial relationships
-  * Photographic clarity with surreal elements
-  * Complete control of light and shadow
-
-- Surreal Atmosphere:
-  * Impossible perspectives and gravity-defying poses
-  * Dreamlike spaces with infinite depth
-  * Porthole windows and confined spaces opening to vast vistas
-  * Multiple reflections and mirror effects
-  * Underwater environments and floating elements
-  * Repetition of figures and fashion elements
-
-- Contemporary Fashion Elements:
-  * Modern, fashion-forward styling
-  * Bold color blocking and geometric forms
-  * Architectural framing of the human figure
-  * Interaction between fashion and surreal space
-  * Play with scale and proportion
-  * Integration of fashion with environment`,
-  negative_prompt: "vintage, retro, antique, old-fashioned, weathered, distressed, grungy, textured, noisy, grainy, blurry, soft, painterly, sketchy, hand-drawn, illustrated, cartoon, anime, stylized, abstract, expressionistic, impressionistic, loose, gestural, brushy, impasto, rough, uneven, dirty, damaged, worn, faded, muted, desaturated, dull, flat, lifeless, amateur, unprofessional, low-quality, poor lighting, bad composition, awkward poses, unfashionable, outdated, period costume, historical, classical, traditional, folk, rustic, primitive, tribal, ethnic, ornate, decorative, cluttered, busy, chaotic, messy, disorganized, unbalanced, asymmetrical, random, accidental, spontaneous, casual, informal, candid, snapshot, documentary, journalistic, editorial, commercial, advertising, product, stock photo, generic, cliché, boring, ordinary, mundane, everyday, common, typical, standard, conventional, mainstream, trendy, fashionable, hip, cool, edgy, urban, street, graffiti, industrial, mechanical, technical, digital, electronic, futuristic, sci-fi, fantasy, magical, mystical, spiritual, religious, symbolic, metaphorical, allegorical, narrative, storytelling, conceptual, minimal, simple, clean, modern, contemporary, timeless, classic, elegant, sophisticated, luxurious, glamorous, beautiful, pretty, cute, sweet, romantic, feminine, masculine, neutral, natural, organic, environmental, landscape, cityscape, architecture, interior, exterior, day, night, indoor, outdoor, studio, location, portrait, fashion, beauty, lifestyle, still life, nature, wildlife, travel, sports, action, movement, emotion, mood, atmosphere, lighting, color, composition, perspective, depth, space, time, reality, surreal, abstract, conceptual, experimental, avant-garde, artistic, creative, innovative, original, unique, personal, authentic, genuine, real, true, honest, sincere, meaningful, powerful, impactful, memorable, iconic, timeless",
-  num_inference_steps: 300,
-  guidance_scale: 45.0,
-  scheduler: "DDIM",
-  num_samples: 1,
-  seed: -1,
-  cfg_scale: 45.0,
-  image_resolution: 1024,
-  sampler_name: "DPM++ 2M Karras",
-  denoising_strength: 0.05,
-  control_scale: 1.0,
-  control_start: 0.0,
-  control_end: 1.0,
-  style_fidelity: 1.0,
-  init_image_strength: 0.05,
-  custom_style_params: {
-    fashion_precision: 1.0,
-    minimalist_environment: 1.0,
-    color_saturation: 1.0,
-    architectural_clarity: 1.0,
-    surface_quality: 1.0,
-    lighting_control: 1.0,
-    reflection_quality: 1.0,
-    depth_control: 1.0,
-    perspective_manipulation: 1.0,
-    fashion_integration: 1.0,
-    surreal_atmosphere: 1.0,
-    spatial_composition: 1.0,
-    figure_placement: 1.0,
-    color_harmony: 1.0,
-    modern_aesthetic: 1.0
-  },
-  compositionGuidelines: [
-    // Contemporary Surrealist Fashion Composition
-    "Clean minimalist environments with bold color blocking",
-    "Dramatic use of porthole windows and confined spaces",
-    "Impossible perspectives and gravity-defying poses",
-    "Reflective surfaces and mirror play",
-    "Repetition of figures and fashion elements",
-    "Intimate spaces opening to infinite vistas",
-    "Underwater and floating compositions",
-    "Strong geometric architectural framing",
-    "Saturated color against neutral backgrounds",
-    "Multiple identical figures in surreal arrangements",
-    "Juxtaposition of interior and exterior spaces",
-    "Fashion elements at impossible scales",
-    "Models interacting with surreal environments",
-    "Dreamlike lighting and color transitions",
-    "Architectural elements as fashion frames",
-    "Symmetrical and balanced compositions",
-    "Floating objects and suspended motion",
-    "Portals and doorways to impossible spaces",
-    "Play with scale and perspective",
-    "Integration of fashion with surreal elements"
-  ]
-};
-
-// Define Magritte's iconic color palette with specific artwork references
-const MAGRITTE_COLOR_PALETTE = {
-  // Refined color palette limited to Magritte's unmodulated tones
-  sky: {
-    day: {
-      color: "Magritte sky blue (Pantone 292 C)",
-      reference: "The Dominion of Light series, The Son of Man",
-      usage: "Luminous daytime skies"
-    },
-    night: {
-      color: "Magritte midnight blue (Pantone 540 C)",
-      reference: "The Empire of Light series, The Lovers",
-      usage: "Enigmatic night skies"
-    }
-  },
-  
-  portraits: {
-    flesh: {
-      color: "Magritte porcelain flesh (Pantone 7506 C)",
-      reference: "The Son of Man, The Lovers, The Great War",
-      usage: "Smooth, flat skin tones"
-    },
-    hair: {
-      color: "Magritte chestnut brown (Pantone 469 C)",
-      reference: "The Great War, Golconda, The Son of Man",
-      usage: "Neatly groomed hair"
-    },
-    cloth: {
-      color: "Magritte drapery white (Pantone 7541 C)",
-      reference: "The Lovers, The Heart of the Matter, The Therapist",
-      usage: "Flowing fabric and shrouds"
-    }
-  },
-
-  objects: {
-    apple: {
-      color: "Magritte apple green (Pantone 360 C)",
-      reference: "The Son of Man, The Listening Room",
-      usage: "Iconic green apples"
-    },
-    stone: {
-      color: "Magritte stone grey (Pantone 409 C)",
-      reference: "The Castle of the Pyrenees, The Art of Living",
-      usage: "Massive stone elements"
-    },
-    wood: {
-      color: "Magritte wood brown (Pantone 730 C)",
-      reference: "The Treachery of Images, The Six Elements",
-      usage: "Wooden objects and surfaces"
-    }
-  },
-
-  backgrounds: {
-    wall: {
-      color: "Magritte wall grey (Pantone 400 C)",
-      reference: "The Human Condition, The Memoirs of a Saint",
-      usage: "Flat interior walls"
-    },
-    void: {
-      color: "Magritte void black (Pantone Black C)", 
-      reference: "The Dominion of Light, Time Transfixed",
-      usage: "Absolute darkness and shadows"
-    },
-    sky: {
-      color: "Magritte sky white (Pantone 663 C)",
-      reference: "Decalcomania, The Happy Donor",
-      usage: "Pale, infinite skyscapes" 
-    }
-  }
-};
-
-// Define vintage computer hardware colors with generic model references
-const VINTAGE_COMPUTER_PALETTE = {
-  plastics: {
-    beige: {
-      color: "Pantone 453C warm beige",
-      reference: "Classic Personal Computer (1980s)",
-      usage: "Main computer case color"
-    },
-    platinum: {
-      color: "Pantone 427C cool grey",
-      reference: "Professional Workstation (1987)",
-      usage: "Later model case color"
-    },
-    cream: {
-      color: "Pantone 7527C warm cream",
-      reference: "Home Computer (1983)",
-      usage: "Early model case color"
-    }
-  },
-  accents: {
-    text: {
-      color: "dark warm grey",
-      reference: "Classic computer text",
-      usage: "Labels and text elements"
-    },
-    screen: {
-      color: "phosphor green",
-      reference: "Vintage monitor display",
-      usage: "Display elements"
-    }
-  },
-  screens: {
-    background: {
-      color: "soft warm grey",
-      reference: "Classic computer display",
-      usage: "Monitor background color"
-    }
-  }
-};
-
-// Update LIVE_THE_LIFE_ELEMENTS with portrait focus
-const LIVE_THE_LIFE_ELEMENTS = {
-  settings: [
-    "pure cerulean blue background from The Victory",
-    "stark neutral space with Decalcomania's clarity",
-    "clean grey-white backdrop from The Great War",
-    "luminous sky blue setting from Empire of Light",
-    "pristine pale background from The Son of Man",
-    "perfect shadowless space from Golconda",
-    "crystalline void from The Central Story"
-  ],
-  portraits: [
-    "mysterious figure in bowler hat with monitor face",
-    "business suit figure with screen head",
-    "Golconda-style figure carrying vintage device",
-    "Son of Man pose with floating vintage screen",
-    "multiple identical figures with monitor heads like Golconda",
-    "figure in suit with glowing screen face",
-    "portrait with floating computer obscuring face"
-  ],
-  objects: [
-    "vintage computer floating like a mysterious object",
-    "retro machine as a surreal element",
-    "classic interface as an enigmatic symbol",
-    "keyboard suspended in pure blue space",
-    "monitor screen as a void into another reality",
-    "floppy disk as an enigmatic floating object",
-    "computer mouse transformed into a surreal portrait element",
-    "CRT monitor as a window into a metaphysical realm",
-    "vintage computer components arranged in impossible configurations",
-    "classic keyboard keys raining from a surreal sky",
-    "floppy disks metamorphosing into mysterious creatures",
-    "computer mouse cord tangled in a surreal knot",
-    "vintage computer manual pages scattered in a dreamlike landscape",
-    "computer tower opened to reveal a surreal interior world",
-    "computer chip as a labyrinthine city in a surreal space",
-    "vintage computer fan as a hypnotic vortex",
-    "computer speaker as a portal to an alternate reality",
-    "computer cables twisted into surreal organic forms",
-    "motherboard as an abstract expressionist landscape",
-    "punch cards as enigmatic symbols in a surreal composition",
-    "computer case as a frame for a metaphysical still life",
-    "vintage computer ad as a surreal collage element",
-    "computer programming book as a surreal pop-up sculpture"
-  ],
-  color_palettes: [
-    // Portrait-focused palettes
-    ["pure cerulean blue", "pale porcelain flesh", "deep charcoal grey"],
-    ["clear sky blue", "Pantone 453C beige", "pure black"],
-    ["pale grey-white", "deep viridian", "platinum grey"],
-    ["luminous blue", "pale flesh", "matte black"],
-    
-    // Empire of Light palettes
-    ["midnight blue", "golden lamplight", "misty grey"],
-    ["twilight cerulean", "warm ivory", "deep shadow black"],
-    ["dusk purple", "pale yellow", "charcoal darkness"],
-    
-    // Mysterious Interior palettes
-    ["deep mahogany brown", "pale alabaster", "prussian blue"],
-    ["rich burgundy", "antique ivory", "slate grey"],
-    ["dark emerald", "cream white", "ebony black"],
-    
-    // Symbolic Object palettes
-    ["blood crimson", "pearl white", "deep navy"],
-    ["forest green", "bone white", "dark umber"],
-    ["royal purple", "shell pink", "graphite grey"],
-    
-    // Metaphysical Landscape palettes
-    ["horizon blue", "cloud white", "earth brown"],
-    ["sunset orange", "misty grey", "deep indigo"],
-    ["morning gold", "fog white", "mountain grey"],
-    
-    // Belgian Surrealist Masters palettes
-    ["Delvaux twilight blue", "moonlit flesh", "shadow black"],
-    ["Graverol emerald", "mystical white", "dark violet"],
-    ["Mariën cobalt", "paper white", "ink black"],
-    
-    // Contemporary Interpretations
-    ["electric blue", "digital white", "matte black"],
-    ["neon cerulean", "synthetic flesh", "carbon grey"],
-    ["cyber azure", "artificial ivory", "obsidian black"]
-  ],
-  lighting: [
-    "perfect sourceless light from Son of Man",
-    "clear shadowless illumination from Golconda",
-    "pure even lighting from The Great War",
-    "pristine clarity from The Central Story",
-    "crystalline illumination from Victory",
-    "perfect diffusion from Decalcomania",
-    "absolute clarity from Empire of Light"
-  ],
-  styleEmphasis: [
-    // Magritte's Key Painting Series References
-    "Empire of Light series (1953-54) technique: fashion models under impossible day-night skies",
-    "Time Transfixed (1938) approach: fashion accessories emerging from unexpected spaces like Magritte's locomotive",
-    "The Human Condition series (1933-35) style: windows and portholes showing landscapes that perfectly continue beyond their frames",
-    "Son of Man (1964) treatment: fashion figures obscured by floating geometric objects with Magritte's perfect shadows",
-    "The Treachery of Images series (1929) concept: fashion displays with paradoxical text about reality",
-    "Golconda (1953) multiplication: identical fashion accessories raining against architectural grid",
-    "The False Mirror (1929) technique: porthole windows containing infinite dreamlike space",
-    
-    // Specific Magritte Painting Techniques
-    "La Belle Captive (1931) approach: windows as canvas-within-canvas showing impossible landscapes",
-    "The Listening Room (1952) scale play: giant fashion accessories filling tiny Magritte interior",
-    "The Blank Signature (1965) technique: human silhouette made of flowing fabric or color",
-    "The Central Story (1928) style: fashion elements floating in pure gradient sky",
-    "The Six Elements (1929) fragmentation: human figure divided into surreal painted segments",
-    "Memory of a Journey (1955) technique: recursive doorways leading to dreamlike spaces",
-    "The Beautiful Relations (1963) approach: ordinary objects transforming into Magritte's branches",
-    
-    // Magritte's Philosophical Devices
-    "The Key to Dreams (1930) word-image relationships: fashion items with contradictory labels",
-    "Personal Values (1952) scale distortion: giant everyday objects dwarfing intimate interior spaces",
-    "The Forbidden Universe (1943) doubling: twin fashion figures in impossible mirror arrangement",
-    "The Explanation (1952) symbolic objects: ordinary items transformed into Magritte's symbolic forms",
-    "The Beautiful World (1962) transformation: fashion accessories flowering into surreal forms",
-    "The Art of Living (1967) repetition: fashion elements in Magritte's grid patterns",
-    "The Mysteries of the Horizon (1955) multiplication: multiple Magritte moons above fashion scene",
-    
-    // Signature Magritte Elements
-    "The Victory (1939) technique: fashion surfaces painted with Magritte's stone-like flatness",
-    "The Dominion of Light (1948) lighting: impossible day-night illumination of fashion settings",
-    "The Collective Invention (1934) hybridization: fashion-object metamorphosis forms",
-    "The Palace of Curtains (1929) trompe l'oeil: painted curtains revealing fashion displays",
-    "The Pilgrim (1966) composition: lone figure in Magritte's desolate landscape",
-    "The Ladder of Fire (1939) transformation: ordinary objects becoming flame-like surreal forms",
-    "The Fair Captive (1947) framing: fashion scene viewed through Magritte's painted frame"
-  ],
-  references: [
-    // Magritte's most iconic and recognizable portrait works
-    "The Son of Man (1964) - Apple obscuring bowler-hatted man's face",
-    "The Lovers (1928) - Kissing couple with cloth-shrouded heads", 
-    "Golconda (1953) - Raining men in identical bowler hats and suits",
-    "The Great War (1964) - Flowers obscuring bowler-hatted figure's face",
-    "The Therapist (1937) - Seated figure with birdcage head",
-    "The Rape (1934) - Woman's face replaced by nude torso",
-    "The Happy Donor (1966) - Landscape reflected in man's head silhouette",
-    "The Heart of the Matter (1928) - Mysterious cloth-wrapped figure",
-    "The Month of the Grape Harvest (1959) - Suited man with apple in barren landscape",
-    "The Dominion of Light series (1949-1965) - Paradoxical day/night scenes",
-    "The Empire of Light series (1948-1964) - Glowing windows in night scenes",
-    "The Human Condition series (1933-1935) - Paintings within paintings",
-    "The Castle of the Pyrenees (1959) - Massive stone on tiny base",
-    "The Listening Room (1952) - Giant green apple filling interior room",
-    "The Six Elements (1929) - Fragmented portrait with wooden objects",
-    "Decalcomania (1966) - Sky merging into rocky cliffside",
-    "The Treachery of Images (1929) - 'Ceci n'est pas une pipe' inscription",
-    "Time Transfixed (1938) - Train emerging from fireplace",
-    "The Eternally Obvious (1930) - Fragmented and recomposed female nude",
-    "The Art of Living (1967) - Stone relief with bowler-hatted men"
-  ]
-};
-
-// Create project configuration function
-function createProjectConfig(concept: string, selectedCategory: string, baseFilename: string, categoryArtDirection: any) {
-  return {
-    title: concept,
-    description: `Create a Magritte-style bear PFP portrait: "${concept}"`,
-    useFlux: true,
-    modelConfig: {
-      prompt_prefix: `Create a portrait of a distinguished bear in René Magritte's distinctive painting style, perfectly centered for a PFP (Profile Picture). The image should embody Magritte's precise yet painterly technique that captures `,
-      prompt_suffix: `. Render with Magritte's signature artistic elements:
-- Painting Style: 
-  * Magritte's characteristic smooth, matte finish
-  * Subtle visible brushwork in flat color areas
-  * Soft edges with precise control
-  * Deliberate paint application with minimal texture
-  * Careful gradients reminiscent of Belgian sky
-  * Oil painting technique with minimal impasto
-- Artistic Elements:
-  * Clean, unmodulated color fields
-  * Subtle tonal transitions
-  * Precise yet painterly edges
-  * Careful attention to light and shadow
-  * Magritte's characteristic surface quality
-Must maintain the artist's distinctive painting style while being perfectly centered for profile picture use.`,
-      negative_prompt: [
-        "photorealistic", "hyperrealistic", "camera photo", "photograph", "DSLR", "studio lighting",
-        "3D rendering", "CGI", "digital art", "graphic design", "illustration", "cartoon",
-        "rough texture", "heavy impasto", "visible brushstrokes", "expressionistic", "loose style",
-        "sketchy", "unfinished", "abstract", "modernist", "contemporary", "avant-garde",
-        "full body shot", "landscape format", "action poses", "busy backgrounds",
-        "natural wilderness", "full face view", "messy composition", "cluttered elements",
-        "informal poses", "casual style", "modern clothing", "contemporary fashion",
-        "sports wear", "casual accessories"
-      ].join(", ")
-    },
-    requirements: [
-      "Create a perfectly centered portrait in Magritte's painting style",
-      "Capture his distinctive smooth, matte finish and subtle brushwork",
-      "Maintain clean, unmodulated color fields with precise edges",
-      ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3)
-    ],
-    outputFilename: baseFilename,
-    artDirection: {
-      ...(categoryArtDirection || defaultArtDirection),
-      styleEmphasis: [
-        // Painting Technique
-        "Magritte's characteristic smooth, matte finish",
-        "Subtle visible brushwork in flat areas",
-        "Precise yet painterly edges",
-        "Careful oil paint application",
-        "Minimal surface texture",
-        "Controlled tonal transitions",
-        "Clean color fields",
-        "Belgian surrealist painting style",
-        "Traditional oil painting method",
-        "Deliberate artistic technique",
-        
-        // Composition Elements
-        "Perfect center alignment",
-        "Noble bearing and dignity",
-        "Formal portrait arrangement",
-        "Classical profile view",
-        "Elegant accessory placement"
-      ],
-      visualElements: [
-        // Headwear
-        "classic bowler hat with Magritte's matte finish",
-        "dignified top hat with subtle paint texture",
-        "academic cap with careful brushwork",
-        "pith helmet with precise edge control",
-        "naval officer's cap with clean color fields",
-        
-        // Eyewear
-        "gold-rimmed monocle with painterly reflection",
-        "wire-framed spectacles with delicate brushwork",
-        "pince-nez glasses with subtle highlights",
-        "curator's eyepiece with careful detailing",
-        "jeweled opera glasses with controlled shine",
-        
-        // Neckwear
-        "silk bow tie with smooth color transition",
-        "formal cravat with subtle fabric texture",
-        "ceremonial sash with clean color blocks",
-        "academic stole with precise folds",
-        "diplomatic corps tie with careful shading",
-        
-        // Additional Elements
-        "golden pocket watch with painterly reflection",
-        "black umbrella with Magritte's characteristic finish",
-        "floating apple with perfect matte surface",
-        "smoking pipe with subtle wood grain",
-        "leather-bound book with careful detail work"
-      ],
-      colorPalette: [
-        // Magritte's Signature Colors
-        "Belgian sky blue (smooth gradient)",
-        "Magritte cloud white (unmodulated)",
-        "Son of Man apple green (matte finish)",
-        "Empire of Light blue (careful transition)",
-        "Golconda grey (precise tone)",
-        
-        // Clothing Colors
-        "deep black (smooth application)",
-        "midnight blue (subtle variation)",
-        "charcoal grey (controlled shade)",
-        "oxford grey (clean field)",
-        
-        // Metallic Colors
-        "polished brass (painterly shine)",
-        "antique gold (careful highlight)",
-        "burnished silver (subtle reflection)",
-        
-        // Accent Colors
-        "burgundy (deep tone)",
-        "forest green (rich hue)",
-        "royal purple (noble shade)",
-        "classic ivory (pure field)",
-        "rich mahogany (warm tone)"
-      ],
-      compositionGuidelines: [
-        // Painting-Focused Guidelines
-        "maintain Magritte's characteristic smooth finish",
-        "apply colors in clean, unmodulated fields",
-        "create subtle transitions between tones",
-        "control edge quality with precision",
-        "balance painterly and precise elements",
-        "achieve proper oil paint surface quality",
-        "capture traditional portrait dignity",
-        "emphasize careful detail rendering",
-        "focus on clean color relationships",
-        "preserve artistic integrity"
-      ]
-    }
-  };
-}
-
-// Modify the concept detection to always use bear portrait style
+// Modify the concept detection to use Magritte style
 function detectConceptCategory(concept: string): string {
-  // Always return bear_pfp_classic as default
-  return 'bear_pfp_classic';
+  return 'magritte';  // Always return magritte to force Magritte style
 }
 
 // Add NFT Metadata Interface
@@ -2725,8 +1694,8 @@ async function generateArt(concept: string) {
     const replicateService = new ReplicateService({
       apiKey: replicateApiKey,
       defaultModel: process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL,
-      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '2048', 10),
-      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '2048', 10),
+      defaultWidth: parseInt(process.env.IMAGE_WIDTH || '1440', 10),
+      defaultHeight: parseInt(process.env.IMAGE_HEIGHT || '1440', 10),
       defaultNumInferenceSteps: parseInt(process.env.INFERENCE_STEPS || '200', 10),
       defaultGuidanceScale: parseFloat(process.env.GUIDANCE_SCALE || '35.0'),
     });
@@ -2767,7 +1736,7 @@ async function generateArt(concept: string) {
     let artConcept = concept || generateBearConcept();
     
     // Randomly select a bear portrait category
-    const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
+    const selectedCategory = MargritteCategories[Math.floor(Math.random() * MargritteCategories.length)];
     console.log(`\n✨ Using ${selectedCategory.replace('bear_', '').replace('_', ' ')} for generation`);
     
     console.log(`\n💡 Using concept: "${artConcept}"`);
@@ -2869,7 +1838,7 @@ async function generateArt(concept: string) {
       tags: [
         'bear portrait',
         'surrealist',
-        'magritte style',
+        'Magritte style',
         selectedCategory.replace('bear_pfp_', '').replace(/_/g, ' '),
         ...artConcept.toLowerCase().split(' ').filter(word => word.length > 3),
         primary.split(' ')[0],
@@ -2947,7 +1916,7 @@ generateArt(concept).catch(console.error);
 export { generateArt, ArtistStyle };
 
 // Modify the getStyleFromArtDirection function
-function getStyleFromArtDirection(artDirection: any, style: ArtistStyle = 'magritte'): ArtDirection {
+function getStyleFromArtDirection(artDirection: any, style: ArtistStyle = 'Margritte'): ArtDirection {
   if (artDirection && artDirection.styles) {
     const selectedStyle = artDirection.styles[style] || styleManager.getStyle(style);
     return selectedStyle;
@@ -3000,3 +1969,112 @@ function formatColorPalette(colors: string[], maxDisplay?: number): string {
 
   return output;
 } 
+
+// Determine the category to use
+const detectedCategory = 'magritte';  // Always use magritte
+
+// Check for category-specific art direction
+const categoryArtDirection = loadCategoryArtDirection(detectedCategory);
+
+// Log the art direction selection process
+console.log('\n🎨 Art Direction Selection:');
+console.log(`- Using Magritte art style`);
+
+if (fileArtDirection) {
+  console.log('- Found custom art-direction.json file');
+}
+
+if (categoryArtDirection) {
+  console.log(`- Applied Magritte art direction from magritte_classic.json`);
+} else {
+  console.log(`- Creating new Magritte art direction file...`);
+  // Create the Magritte style file if it doesn't exist
+  const magritteStylePath = path.join(process.cwd(), 'magritte_classic.json');
+  if (!fs.existsSync(magritteStylePath)) {
+    fs.writeFileSync(magritteStylePath, JSON.stringify(artDirection.styles.magritte, null, 2));
+    console.log('- Created Magritte style configuration file');
+  }
+}
+
+// Define the models
+const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
+const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
+const FALLBACK_MODEL = 'black-forest-labs/flux-1.1-pro';
+const MINIMAX_MODEL = 'minimax/image-01';
+
+// Create project configuration function
+function createProjectConfig(concept: string, selectedCategory: string, baseFilename: string, categoryArtDirection: ArtDirection | null) {
+  return {
+    title: concept,
+    description: `Create a Magritte-style bear PFP portrait: "${concept}"`,
+    useFlux: true,
+    modelConfig: {
+      prompt_prefix: "Create in the surrealist style of René Magritte, with ",
+      prompt_suffix: ". Emphasize perfectly smooth matte finish, crystal clear edge definition, pure unmodulated color fields, and sourceless perfect illumination. Include surrealist juxtaposition and enigmatic composition.",
+      negative_prompt: "photorealistic, 3D rendered, CGI, digital art, harsh lighting, dark themes, anime style, cartoon style, watercolor, hand-drawn, sketchy, rough edges",
+      num_inference_steps: 50,
+      guidance_scale: 12.0
+    },
+    requirements: [
+      "Create a perfectly centered portrait in Magritte's surrealist style",
+      "Use Magritte's signature cerulean blue sky",
+      "Maintain crystal clear edge definition",
+      "Apply pure unmodulated color fields",
+      "Include surrealist juxtaposition",
+      "Create enigmatic composition",
+      "Use meticulous painting technique",
+      "Add floating elements",
+      "Create dreamlike atmosphere",
+      "Emphasize perfect matte finish",
+      "Include symbolic elements",
+      "Create paradoxical scenes",
+      "Use precise geometric forms",
+      "Maintain sourceless illumination",
+      "Add mysterious elements",
+      ...(categoryArtDirection?.styleEmphasis || []).slice(0, 3)
+    ],
+    outputFilename: baseFilename,
+    artDirection: {
+      ...(categoryArtDirection || artDirection.styles.magritte),
+      colorPalette: artDirection.styles.magritte.colorPalette
+    }
+  };
+}
+
+// Magritte-inspired color palette
+const magritteColors = {
+  sky: {
+    primary: '#1E90FF',    // Magritte's signature cerulean blue
+    secondary: '#000080',  // Deep navy blue
+    accent: '#87CEEB'      // Light sky blue
+  },
+  bear: {
+    primary: '#F5F5F5',    // Pure white porcelain
+    secondary: '#2F4F4F',  // Dark slate grey
+    accent: '#D3D3D3'      // Light grey
+  },
+  clothing: {
+    primary: '#006400',    // Deep forest green
+    secondary: '#004225',  // Dark emerald
+    accent: '#228B22'      // Forest green
+  },
+  background: {
+    primary: '#1E90FF',    // Magritte's signature cerulean blue
+    secondary: '#F5F5F5',  // Pure white
+    accent: '#E0E0E0'      // Light grey
+  }
+};
+
+// Add Magritte's signature style elements
+const magritteStyle = [
+  'perfectly smooth matte finish',
+  'crystal clear edge definition',
+  'pure unmodulated color fields',
+  'sourceless perfect illumination',
+  'clean enigmatic composition',
+  'surrealist juxtaposition',
+  'meticulous painting technique',
+  'precise geometric forms',
+  'floating elements',
+  'dreamlike atmosphere'
+];

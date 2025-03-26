@@ -14,81 +14,78 @@ interface RefinementConfig {
   technical_requirements: string[];
 }
 
-const MAGRITTE_REFINEMENT_CONFIG: RefinementConfig = {
-  prompt_prefix: "IKIGAI Enhance in Magritte's meticulous oil painting style with ",
-  prompt_suffix: ". Maximize philosophical depth and surreal juxtapositions while maintaining traditional oil painting quality. Render with absolute precision and pristine surface quality.",
+const Margritte_REFINEMENT_CONFIG: RefinementConfig = {
+  prompt_prefix: "Enhance in Studio Margritte's enchanting hand-drawn animation style with ",
+  prompt_suffix: ". Maximize environmental detail, character expressiveness, and magical atmosphere while maintaining traditional animation quality. Render with soft lighting and natural color harmony.",
   refinement_steps: 5,
   style_parameters: {
-    oil_painting_quality: 0.98,
-    surrealism_level: 0.95,
-    philosophical_depth: 0.92,
-    edge_precision: "crystalline",
-    surface_finish: "pristine matte",
-    lighting: "sourceless perfection",
-    composition: "mathematical balance",
-    detail_level: "museum quality",
-    texture: "perfectly smooth",
-    brushwork: "invisible",
-    varnish: "traditional matte"
+    animation_quality: 0.95,
+    environmental_detail: 0.95,
+    character_expression: 0.90,
+    color_harmony: 0.90,
+    lighting: "soft and natural",
+    composition: "balanced and dynamic",
+    detail_level: "hand-drawn precision",
+    texture: "traditional animation",
+    atmosphere: "magical and whimsical",
+    movement: "fluid and natural"
   },
   quality_checks: [
-    "Verify flawless oil painting technique",
-    "Check crystalline edge precision",
-    "Ensure profound philosophical depth",
-    "Validate surreal juxtapositions",
-    "Confirm pristine matte surface",
-    "Check mathematical composition",
-    "Validate invisible brushwork",
-    "Ensure perfect light modeling",
-    "Confirm traditional varnish quality",
-    "Verify philosophical paradox",
-    "Check surreal scale relationships"
+    "Verify hand-drawn animation quality",
+    "Check environmental detail",
+    "Ensure character expressiveness",
+    "Validate color harmony",
+    "Confirm soft lighting",
+    "Check composition balance",
+    "Validate fluid movement",
+    "Ensure magical atmosphere",
+    "Confirm natural elements",
+    "Verify emotional depth"
   ],
   style_elements: [
-    "flawless oil paint application",
-    "perfect matte finish",
-    "crystalline detail rendering",
-    "sourceless illumination",
-    "impossible arrangements",
-    "philosophical paradoxes",
-    "mathematical precision",
-    "surreal scale relationships",
-    "metaphysical staging",
-    "traditional glazing effects",
-    "perfect color transitions"
+    "traditional animation technique",
+    "detailed backgrounds",
+    "expressive characters",
+    "natural environments",
+    "magical elements",
+    "atmospheric effects",
+    "soft lighting",
+    "fluid movement",
+    "cultural details",
+    "emotional storytelling"
   ],
   color_palette: [
-    "sky blue (RGB: 135, 206, 235)",
-    "deep shadow grey (RGB: 128, 128, 128)",
-    "pure white (RGB: 255, 255, 255)",
-    "philosophical black (RGB: 0, 0, 0)",
-    "mystery green (RGB: 0, 100, 0)",
-    "warm brown (RGB: 139, 69, 19)",
-    "deep blue (RGB: 0, 0, 139)"
+    "sky blue (RGB: 135, 206, 250)",
+    "forest green (RGB: 34, 139, 34)",
+    "sunset orange (RGB: 255, 164, 116)",
+    "warm yellow (RGB: 255, 223, 186)",
+    "soft pink (RGB: 255, 182, 193)",
+    "deep blue (RGB: 65, 105, 225)",
+    "grass green (RGB: 124, 252, 0)"
   ],
   composition_rules: [
-    "Perfect central positioning",
-    "Mysterious depth through precise placement",
-    "Metaphysical balance of elements",
-    "Surreal scale relationships",
-    "Philosophical object placement",
-    "Subject must fill 60-80% of frame",
-    "Elements positioned for maximum impact",
-    "Absolute symmetrical balance",
-    "Perfect square 1:1 aspect ratio",
-    "Stark shadow patterns"
+    "balanced natural composition",
+    "dynamic camera movement",
+    "atmospheric perspective",
+    "environmental storytelling",
+    "character-focused framing",
+    "layered backgrounds",
+    "natural lighting integration",
+    "fluid motion emphasis",
+    "environmental harmony",
+    "emotional resonance"
   ],
   technical_requirements: [
-    "Absolutely flat, shadowless surfaces",
-    "Complete elimination of brushwork",
-    "Surgical precision in details",
-    "Perfect sourceless illumination",
-    "Crystal-clear edge definition",
-    "Pure, unmodulated color fields",
-    "Complete texture elimination",
-    "Perfect paint layering",
-    "Traditional varnish finish",
-    "Museum-quality execution"
+    "hand-drawn animation quality",
+    "watercolor effects",
+    "soft lighting",
+    "atmospheric perspective",
+    "environmental detail",
+    "fluid movement",
+    "character expression",
+    "natural color harmony",
+    "traditional animation",
+    "painted backgrounds"
   ]
 };
 
@@ -99,7 +96,7 @@ export class FluxRefinerAgent {
     this.aiService = aiService;
   }
 
-  async refineArtworkInMagritteStyle(
+  async refineArtworkInMargritteStyle(
     prompt: string,
     options: {
       temperature?: number;
@@ -117,15 +114,23 @@ export class FluxRefinerAgent {
         messages: [
           {
             role: 'system',
-            content: `You are an expert art refiner specializing in Magritte's surrealist style.
+            content: `You are an expert art refiner specializing in Studio Margritte's enchanting animation style.
             Use the following refinement configuration:
-            ${JSON.stringify(MAGRITTE_REFINEMENT_CONFIG, null, 2)}
+            ${JSON.stringify(Margritte_REFINEMENT_CONFIG, null, 2)}
             
-            Generate specific refinement steps that enhance the artwork according to these style parameters and quality checks.`
+            Generate specific refinement steps that enhance the artwork according to Margritte's signature style elements:
+            - Hand-drawn animation quality
+            - Detailed natural environments
+            - Expressive character design
+            - Magical atmosphere
+            - Soft lighting and color harmony
+            - Fluid movement and traditional animation techniques
+            - Cultural authenticity
+            - Emotional storytelling`
           },
           {
             role: 'user',
-            content: `Refine the following artwork prompt in Magritte's style:
+            content: `Refine the following artwork prompt in Margritte's style:
             "${prompt}"
             
             Provide detailed refinement steps and quality checks.`
@@ -139,12 +144,12 @@ export class FluxRefinerAgent {
       const refinementSteps = this.extractRefinementSteps(response.content || '');
       
       // Build refined prompt
-      const refinedPrompt = this.buildRefinedPrompt(prompt, MAGRITTE_REFINEMENT_CONFIG, refinementSteps);
+      const refinedPrompt = this.buildRefinedPrompt(prompt, Margritte_REFINEMENT_CONFIG, refinementSteps);
 
       return {
         refinedPrompt,
         refinementSteps,
-        qualityChecks: MAGRITTE_REFINEMENT_CONFIG.quality_checks
+        qualityChecks: Margritte_REFINEMENT_CONFIG.quality_checks
       };
     } catch (error) {
       console.error(`Error refining artwork: ${error}`);

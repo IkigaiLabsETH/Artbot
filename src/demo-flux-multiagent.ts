@@ -300,8 +300,8 @@ ${styleResult.styleContent}`
     console.log('✨ Refiner Agent: Generating image with FLUX...');
     
     // Default image settings for FLUX
-    const width = 768;
-    const height = 768;
+    const width = 1440;
+    const height = 1440;
     const numInferenceSteps = 28;
     const guidanceScale = 3;
     

@@ -43,8 +43,8 @@ export const generationConfig: GenerationConfig = {
       inferenceSteps: 28,    // Optimized for FLUX
       guidanceScale: 3,      // FLUX-specific
       dimensions: {
-        width: 2048,          // FLUX optimal dimension
-        height: 2048          // FLUX optimal dimension
+        width: 1440,          // FLUX optimal dimension
+        height: 1440          // FLUX optimal dimension
       }
     }
   }
@@ -378,7 +378,7 @@ interface EnhancedMetadata {
   "style": {
     "primary": "Surrealism",
     "influences": [
-      "René Magritte",
+      "Studio Margritte",
       "Belgian Art Movement"
     ],
     "techniques": [
@@ -393,8 +393,8 @@ interface EnhancedMetadata {
       "inferenceSteps": 28,
       "guidanceScale": 3,
       "dimensions": {
-        "width": 2048,
-        "height": 2048
+        "width": 1440,
+        "height": 1440
       }
     },
     "prompt": "a distinguished bear portrait in profile wearing...",
@@ -606,7 +606,7 @@ collection/
       },
       {
         "trait_type": "Artistic Influence",
-        "value": "René Magritte"
+        "value": "Studio Margritte"
       },
       {
         "trait_type": "Personality",

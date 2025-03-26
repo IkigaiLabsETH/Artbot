@@ -32,6 +32,6 @@ fi
 # Run the art generator with a simple concept
 echo "Running art generator with test concept..."
 echo "Using JavaScript file: $JS_FILE"
-node $JS_FILE "Test concept for debugging image URL" "magritte_surrealism"
+node $JS_FILE "Test concept for debugging image URL" "Margritte_surrealism"
 
 echo "Debug completed. Check the output directory and console logs for results." 

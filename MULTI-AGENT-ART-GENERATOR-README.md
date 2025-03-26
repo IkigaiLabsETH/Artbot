@@ -56,7 +56,7 @@ For example:
 
 The art generator supports the following artistic categories:
 
-- `magritte_surrealism` (default): René Magritte's surrealist style with clean compositions and philosophical questioning
+- `Margritte_surrealism` (default): Studio Margritte's surrealist style with clean compositions and philosophical questioning
 - `impressionist`: Impressionist style with visible brushstrokes, emphasis on light, and everyday subject matter
 - `cinematic`: Cinematic style with dramatic lighting and composition
 - `surreal`: General surrealist style with dreamlike and fantastical elements

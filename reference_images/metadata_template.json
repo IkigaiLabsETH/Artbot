@@ -20,7 +20,7 @@
     },
     {
       "trait_type": "Style",
-      "value": "magritte|bourdin|hybrid"
+      "value": "Margritte|bourdin|hybrid"
     },
     {
       "trait_type": "Subcategory",
@@ -78,7 +78,7 @@
     }
   },
   "style_guide": {
-    "magritte": {
+    "Margritte": {
       "core_elements": [
         "green apples",
         "pipes",

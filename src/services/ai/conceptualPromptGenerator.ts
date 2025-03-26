@@ -166,75 +166,80 @@ interface BourdinElements {
 
 // Style configurations
 const STYLE_CONFIGS: { [key: string]: StyleConfig } = {
-  magritte: {
-    prompt_prefix: "In René Magritte's distinctive surrealist style, with philosophical depth and pristine execution. Create a metaphysical interpretation with ",
-    prompt_suffix: ". Use Magritte's characteristic clean technique, conceptual paradoxes, and dreamlike clarity. Style of The Son of Man and The Empire of Light.",
-    negative_prompt: "expressionistic, loose, textural, abstract, gestural, emotional, chaotic, random, aggressive, messy, imperfect, rough, visible brushstrokes, painterly, modern technology, digital elements, contemporary objects",
-    num_inference_steps: 40,
-    guidance_scale: 10.0,
+  Margritte: {
+    prompt_prefix: "In the surrealist style of René Magritte, create a scene with ",
+    prompt_suffix: ". Incorporate Magritte's signature elements: precise oil painting technique, philosophical paradox, metaphysical depth, symbolic power, and spatial contradictions. Reference his masterpieces like 'The Son of Man', 'The Human Condition', and 'The False Mirror'.",
+    negative_prompt: "photorealistic, digital art, harsh, dark, gritty, moody, dystopian, horror, violent, grotesque, minimalist, abstract, rough, sketchy, unfinished, animation, cartoon, anime",
+    num_inference_steps: 50,
+    guidance_scale: 12.0,
     style_emphasis: {
-      philosophical_surrealism: 0.95,
-      pristine_execution: 0.9,
-      conceptual_depth: 0.85,
-      metaphysical_mystery: 0.8,
-      dreamlike_clarity: 0.75
+      surrealist_technique: 0.95,
+      oil_painting_quality: 0.9,
+      philosophical_depth: 0.95,
+      symbolic_power: 0.9,
+      spatial_paradox: 0.95,
+      metaphysical_quality: 0.9,
+      belgian_style: 0.95,
+      academic_precision: 0.9,
+      surrealist_atmosphere: 0.95
     }
   }
 };
 
-// Define Magritte-specific elements
-const MAGRITTE_ELEMENTS = {
+// Define Margritte-specific elements
+const Margritte_ELEMENTS = {
   visual_elements: [
-    "bowler hats",
-    "floating objects",
-    "clouded skies",
-    "mysterious windows",
-    "curtains and frames",
-    "men in suits",
-    "birds and stones",
-    "pipes and everyday objects",
-    "mirrors and reflections",
-    "architectural elements",
-    "precise shadows",
-    "clean surfaces",
-    "metaphysical spaces",
-    "surreal landscapes"
+    "detailed landscapes",
+    "expressive characters",
+    "magical creatures",
+    "flying machines",
+    "natural phenomena",
+    "traditional architecture",
+    "environmental details",
+    "atmospheric effects",
+    "soft clouds",
+    "gentle wind effects",
+    "water reflections",
+    "glowing lights",
+    "organic shapes",
+    "cultural motifs",
+    "nostalgic elements"
   ],
   techniques: [
-    "pristine oil painting",
-    "photorealistic rendering",
-    "clean edges",
-    "perfect shadows",
-    "subtle gradients",
-    "precise detail",
-    "controlled lighting",
-    "smooth surfaces",
-    "invisible brushwork",
-    "traditional glazing"
+    "hand-drawn animation",
+    "watercolor effects",
+    "soft lighting",
+    "atmospheric perspective",
+    "environmental detail",
+    "fluid movement",
+    "character expression",
+    "natural color harmony",
+    "traditional animation",
+    "painted backgrounds"
   ],
   concepts: [
-    "philosophical paradox",
-    "reality questioning",
-    "visual poetry",
-    "metaphysical mystery",
-    "symbolic resonance",
-    "conceptual juxtaposition",
-    "surreal logic",
-    "dreamlike atmosphere",
-    "impossible scenarios",
-    "everyday magic"
+    "environmental harmony",
+    "cultural preservation",
+    "magical realism",
+    "emotional storytelling",
+    "childhood wonder",
+    "human resilience",
+    "nature connection",
+    "spiritual elements",
+    "cultural identity",
+    "technological balance"
   ],
   compositions: [
-    "perfect central positioning",
-    "clean spatial organization",
-    "precise object placement",
-    "balanced surreal elements",
-    "clear figure-ground relationship",
-    "metaphysical depth",
-    "enigmatic framing",
-    "philosophical staging",
-    "contemplative space",
-    "mysterious perspective"
+    "balanced natural compositions",
+    "dynamic camera movements",
+    "atmospheric perspective",
+    "environmental storytelling",
+    "character-focused framing",
+    "layered backgrounds",
+    "natural lighting integration",
+    "fluid motion emphasis",
+    "environmental harmony",
+    "emotional resonance"
   ]
 };
 
@@ -971,31 +976,30 @@ export async function generateConceptualPrompt(
   let detailedPrompt = '';
   let creativeProcess = '';
   
-  // Get Magritte's style configuration
-  const styleConfig = STYLE_CONFIGS.magritte;
+  // Get Margritte's style configuration
+  const styleConfig = STYLE_CONFIGS.Margritte;
   
   const promptResponse = await aiService.getCompletion({
     model: 'claude-3-sonnet-20240229',
     messages: [
       {
         role: 'system',
-        content: `You are René Magritte, the master of philosophical surrealism. 
-        Create a detailed prompt that incorporates your distinctive style elements:
-        ${JSON.stringify(MAGRITTE_ELEMENTS, null, 2)}
+        content: `You are a Studio Margritte art director, creating detailed prompts that capture the surrealist style of Margritte. 
+        Create a detailed prompt that incorporates Margritte's distinctive style elements:
+        ${JSON.stringify(Margritte_ELEMENTS, null, 2)}
         
         Use your style configuration:
         ${JSON.stringify(styleConfig, null, 2)}
         
         Focus on:
-        1. Philosophical depth and conceptual paradoxes
-        2. Pristine technical execution
-        3. Dreamlike clarity and metaphysical mystery
-        4. Traditional painting techniques
-        5. Surreal juxtapositions of everyday objects`
+        1. Philosophical paradox and metaphysical depth
+        2. Symbolic power and spatial contradictions
+        3. Precise oil painting technique
+        4. Masterpieces and cultural references`
       },
       {
         role: 'user',
-        content: `Create a deeply surreal and philosophical prompt for "${concept}" in your distinctive style. Include both the prompt and your creative process.`
+        content: `Create a detailed prompt for "${concept}" in Margritte's surrealist style. Include both the prompt and your creative process. Focus on philosophical paradox, symbolic power, and precise oil painting technique.`
       }
     ],
     temperature: options.temperature || 0.85,
@@ -1016,16 +1020,16 @@ export async function generateConceptualPrompt(
       creativeProcess = processMatch[1].trim();
     }
 
-    // Enhance prompt with Magritte-specific elements
+    // Enhance prompt with Margritte-specific elements
     if (detailedPrompt) {
-      const addMagritteElements = (elements: string[], count: number = 2) => {
+      const addMargritteElements = (elements: string[], count: number = 2) => {
         return elements
           .sort(() => Math.random() - 0.5)
           .slice(0, count)
           .join(', ');
       };
 
-      const styleEnhancement = `, featuring ${addMagritteElements(MAGRITTE_ELEMENTS.visual_elements)}, with ${addMagritteElements(MAGRITTE_ELEMENTS.techniques)}, incorporating ${addMagritteElements(MAGRITTE_ELEMENTS.concepts)}`;
+      const styleEnhancement = `, featuring ${addMargritteElements(Margritte_ELEMENTS.visual_elements)}, with ${addMargritteElements(Margritte_ELEMENTS.techniques)}, incorporating ${addMargritteElements(Margritte_ELEMENTS.concepts)}`;
       
       detailedPrompt = `${styleConfig.prompt_prefix}${detailedPrompt}${styleEnhancement}${styleConfig.prompt_suffix}`;
     }

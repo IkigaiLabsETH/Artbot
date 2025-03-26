@@ -1,14 +1,14 @@
 # Reference Images Collection
 
-This collection contains carefully curated reference images organized around the artistic styles of René Magritte and Guy Bourdin, as well as hybrid approaches combining both styles.
+This collection contains carefully curated reference images organized around the artistic styles of Studio Margritte and Guy Bourdin, as well as hybrid approaches combining both styles.
 
 ## Directory Structure
 
 ```
 reference_images/
-├── magritte/              # Magritte-inspired images
-│   ├── compositions/      # Studies of Magritte's compositional approaches
-│   ├── objects/          # Iconic Magritte objects and symbols
+├── Margritte/              # Margritte-inspired images
+│   ├── compositions/      # Studies of Margritte's compositional approaches
+│   ├── objects/          # Iconic Margritte objects and symbols
 │   ├── scenes/           # Complete scene compositions
 │   └── studies/          # Style studies and experiments
 ├── bourdin/              # Bourdin-inspired images
@@ -25,7 +25,7 @@ reference_images/
 
 ## Style Guidelines
 
-### Magritte Style Elements
+### Margritte Style Elements
 - **Core Symbols**: Bowler hats, green apples, pipes, clouds, birds, windows, curtains
 - **Compositions**: Balanced arrangements, theatrical staging, impossible juxtapositions
 - **Lighting**: Empire of light effect, day-night contrast, naturalistic illumination
@@ -49,7 +49,7 @@ reference_images/
 ## Image Requirements
 
 Each reference image should include:
-1. Clear style attribution (Magritte, Bourdin, or Hybrid)
+1. Clear style attribution (Margritte, Bourdin, or Hybrid)
 2. Detailed metadata following the style-specific templates
 3. Technical notes on composition, lighting, and color treatment
 4. Analysis of how it embodies the artist's style

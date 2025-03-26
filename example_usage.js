@@ -2,7 +2,7 @@
  * Example Usage of Art Direction Loader
  * 
  * This script demonstrates how to use the art direction loader
- * to enhance prompts for the Magritte-inspired art generator.
+ * to enhance prompts for the Margritte-inspired art generator.
  */
 
 const artDirectionLoader = require('./art_direction_loader');
@@ -18,7 +18,7 @@ function generateArt(prompt, negativePrompt, params) {
 
 // Main example function
 function runExamples() {
-  console.log('=== Magritte Art Direction Examples ===\n');
+  console.log('=== Margritte Art Direction Examples ===\n');
   
   // List available categories
   const categories = artDirectionLoader.listCategories();
@@ -35,7 +35,7 @@ function runExamples() {
   const classicNegativePrompt = artDirectionLoader.buildNegativePrompt(classicArtDirection);
   const classicParams = artDirectionLoader.applyArtDirectionToParams(
     classicArtDirection, 
-    { width: 2048, height: 2048 }
+    { width: 1440, height: 1440 }
   );
   
   generateArt(classicPrompt, classicNegativePrompt, classicParams);
@@ -50,7 +50,7 @@ function runExamples() {
   const empireNegativePrompt = artDirectionLoader.buildNegativePrompt(empireArtDirection);
   const empireParams = artDirectionLoader.applyArtDirectionToParams(
     empireArtDirection, 
-    { width: 2048, height: 2048 }
+    { width: 1440, height: 1440 }
   );
   
   generateArt(empirePrompt, empireNegativePrompt, empireParams);
@@ -65,7 +65,7 @@ function runExamples() {
   const objectsNegativePrompt = artDirectionLoader.buildNegativePrompt(objectsArtDirection);
   const objectsParams = artDirectionLoader.applyArtDirectionToParams(
     objectsArtDirection, 
-    { width: 2048, height: 2048 }
+    { width: 1440, height: 1440 }
   );
   
   generateArt(objectsPrompt, objectsNegativePrompt, objectsParams);
@@ -80,7 +80,7 @@ function runExamples() {
   const scaleNegativePrompt = artDirectionLoader.buildNegativePrompt(scaleArtDirection);
   const scaleParams = artDirectionLoader.applyArtDirectionToParams(
     scaleArtDirection, 
-    { width: 2048, height: 2048 }
+    { width: 1440, height: 1440 }
   );
   
   generateArt(scalePrompt, scaleNegativePrompt, scaleParams);
@@ -95,7 +95,7 @@ function runExamples() {
   const wordplayNegativePrompt = artDirectionLoader.buildNegativePrompt(wordplayArtDirection);
   const wordplayParams = artDirectionLoader.applyArtDirectionToParams(
     wordplayArtDirection, 
-    { width: 2048, height: 2048 }
+    { width: 1440, height: 1440 }
   );
   
   generateArt(wordplayPrompt, wordplayNegativePrompt, wordplayParams);

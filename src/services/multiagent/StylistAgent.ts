@@ -19,13 +19,13 @@ export class StylistAgent extends BaseAgent {
         adaptabilityWeight: 0.6
       },
       styleLibrary: {
-        magritte: {
+        Margritte: {
           core: {
             essence: 'Traditional oil painting techniques in Belgian surrealism',
-            era: 'Classic Magritte surrealism (1926-1967)',
+            era: 'Classic Margritte surrealism (1926-1967)',
             influences: [
               'traditional oil painting',
-              'Magritte\'s precise technique',
+              'Margritte\'s precise technique',
               'Belgian surrealism',
               'classical painting methods',
               'philosophical paradox'
@@ -181,7 +181,7 @@ export class StylistAgent extends BaseAgent {
       approaches: [
         {
           name: 'Traditional Surrealism',
-          description: 'Pure Magritte oil painting technique with classical surrealist elements',
+          description: 'Pure Margritte oil painting technique with classical surrealist elements',
           elements: {
             composition: ['perfect object arrangement', 'metaphysical staging'],
             lighting: ['mysterious illumination', 'paradoxical shadows'],
@@ -285,15 +285,15 @@ export class StylistAgent extends BaseAgent {
   }
   
   private async developStyleForProject(project: any, ideas: any[]): Promise<any[]> {
-    // Generate styles based on Magritte's approach
-    return this.developMagritteStyle(project, ideas, 1.0);
+    // Generate styles based on Margritte's approach
+    return this.developMargritteStyle(project, ideas, 1.0);
   }
 
   private determineArtisticApproach(project: any, ideas: any[]): {
-    type: 'magritte';
+    type: 'Margritte';
     weight: number;
   } {
-    return { type: 'magritte', weight: 1.0 };
+    return { type: 'Margritte', weight: 1.0 };
   }
 
   private calculateStyleScore(text: string, styleLibrary: any): number {
@@ -335,13 +335,13 @@ export class StylistAgent extends BaseAgent {
     return score / totalChecks;
   }
 
-  private async developMagritteStyle(project: any, ideas: any[], weight: number): Promise<any[]> {
-    const library = this.state.context.styleLibrary.magritte;
+  private async developMargritteStyle(project: any, ideas: any[], weight: number): Promise<any[]> {
+    const library = this.state.context.styleLibrary.Margritte;
     const styles = [];
     
     for (const idea of ideas) {
       const style = {
-        name: `${idea.title} - Magritte Vision`,
+        name: `${idea.title} - Margritte Vision`,
         description: "A philosophical surrealist exploration of reality",
         composition: this.selectStyleElements(library.visual.composition, weight),
         lighting: this.selectStyleElements(library.visual.lighting, weight),
@@ -383,8 +383,8 @@ export class StylistAgent extends BaseAgent {
   
   private async developDefaultStyle(project: any, ideas: any[]): Promise<any[]> {
     return [{
-      name: "Magritte Default Style",
-      description: "A balanced surrealist composition in Magritte's style",
+      name: "Margritte Default Style",
+      description: "A balanced surrealist composition in Margritte's style",
       composition: ["centered", "balanced", "metaphysical"],
       lighting: ["soft", "atmospheric", "mysterious"],
       color: {

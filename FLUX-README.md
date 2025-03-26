@@ -124,8 +124,8 @@ The FLUX model supports the following parameters:
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | prompt | string | required | The prompt for image generation. For best results, include the trigger word "IKIGAI" and keywords like "cinestill 800t", "night time", and "analog". |
-| width | integer | 2048 | Width of the generated image (256-1440) |
-| height | integer | 2048 | Height of the generated image (256-1440) |
+| width | integer | 1440 | Width of the generated image (256-1440) |
+| height | integer | 1440 | Height of the generated image (256-1440) |
 | num_inference_steps | integer | 28 | Number of denoising steps (1-50) |
 | guidance_scale | number | 3 | Influences how closely the image follows the prompt (0-10) |
 | output_format | string | "png" | Format of the output image ("webp", "jpg", or "png") |

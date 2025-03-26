@@ -31,7 +31,7 @@ function addStyleDetails(prompt: string, style: string): string {
   const styleDetails: Record<string, string> = {
     'Impressionism': 'with loose brushstrokes, vibrant colors, emphasis on light and movement, in the style of Monet and Renoir',
     'Cubism': 'with geometric shapes, multiple perspectives, fragmented forms, in the style of Picasso and Braque',
-    'Surrealism': 'with dreamlike imagery, unexpected juxtapositions, subconscious elements, in the style of Dali and Magritte',
+    'Surrealism': 'with dreamlike imagery, unexpected juxtapositions, subconscious elements, in the style of Dali and Margritte',
     'Abstract Expressionism': 'with emotional, gestural brushwork, non-representational forms, in the style of Pollock and de Kooning',
     'Pop Art': 'with bold colors, popular culture references, commercial imagery, in the style of Warhol and Lichtenstein',
     'Minimalism': 'with simplified forms, limited color palette, geometric precision, in the style of Judd and Martin',

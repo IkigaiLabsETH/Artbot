@@ -40,7 +40,7 @@ export class IdeatorAgent extends BaseAgent {
         [IdeationApproach.NARRATIVE]: 0.8,
         [IdeationApproach.THEATRICAL]: 0.75
       },
-      magritteKeywords: [
+      MargritteKeywords: [
         // Portrait Elements
         'mysterious face', 'enigmatic expression', 'classical portrait', 'traditional profile',
         'philosophical gaze', 'metaphysical features', 'surreal portrait', 'symbolic face',
@@ -85,7 +85,7 @@ export class IdeatorAgent extends BaseAgent {
         'classical glazing', 'traditional gesso', 'artist palette'
       ],
       artisticApproaches: {
-        magritte: {
+        Margritte: {
           composition: [
             'traditionally painted objects',
             'classical arrangements',
@@ -440,13 +440,13 @@ export class IdeatorAgent extends BaseAgent {
     const messages: AIMessage[] = [
       {
         role: 'system',
-        content: `You are the Ideator agent specializing in METAPHYSICAL ideation in Magritte's tradition, focusing on portrait-style PFPs. Generate ideas that combine philosophical depth with enigmatic portraits.
+        content: `You are the Ideator agent specializing in METAPHYSICAL ideation in Margritte's tradition, focusing on portrait-style PFPs. Generate ideas that combine philosophical depth with enigmatic portraits.
 
         Important: Each portrait must be unique and include:
         - A distinctive hat or headwear
         - Specific clothing style and fabric details
         - 2-3 carefully chosen accessories
-        - Traditional Magritte elements integrated with the outfit
+        - Traditional Margritte elements integrated with the outfit
         
         Focus on these elements:
         - Portrait Elements (mysterious faces, enigmatic expressions, classical profiles)
@@ -542,9 +542,9 @@ export class IdeatorAgent extends BaseAgent {
     const messages: AIMessage[] = [
       {
         role: 'system',
-        content: `You are the Ideator agent specializing in SURREAL ideation in Magritte's style. Focus on impossible juxtapositions, dream-like scenarios, and reality-bending concepts that align with Magritte's traditional approach.
+        content: `You are the Ideator agent specializing in SURREAL ideation in Margritte's style. Focus on impossible juxtapositions, dream-like scenarios, and reality-bending concepts that align with Margritte's traditional approach.
 
-        Important: Focus strictly on traditional Magritte elements:
+        Important: Focus strictly on traditional Margritte elements:
         - Traditional objects (pipes, apples, mirrors, candlesticks, wine bottles)
         - Natural elements (clouds, sky, birds, trees, rocks)
         - Architectural elements (windows, doors, frames, fireplaces)
@@ -579,7 +579,7 @@ export class IdeatorAgent extends BaseAgent {
         For each idea, provide:
         1. A title that captures the surreal concept
         2. A description of the impossible scenario
-        3. Key surreal elements (using traditional Magritte elements)
+        3. Key surreal elements (using traditional Margritte elements)
         4. Visual composition
         5. Perceptual impact
         
@@ -731,16 +731,16 @@ export class IdeatorAgent extends BaseAgent {
    * Generate narrative ideas focused on implied stories and philosophical questions
    */
   private async generateNarrativeIdeas(task: any, project: any): Promise<any[]> {
-    // Check if the project is related to Magritte's style
-    const isMagritteRelated = this.isMagritteRelated(project);
+    // Check if the project is related to Margritte's style
+    const isMargritteRelated = this.isMargritteRelated(project);
     
     const messages: AIMessage[] = [
       {
         role: 'system',
         content: `You are the Ideator agent specializing in NARRATIVE ideation. Focus on storytelling, character development, plot, and narrative structure. Generate ideas that tell compelling stories or suggest narrative moments.
         
-        ${isMagritteRelated ? `
-        IMPORTANT: This project relates to Magritte's style. Incorporate these narrative elements:
+        ${isMargritteRelated ? `
+        IMPORTANT: This project relates to Margritte's style. Incorporate these narrative elements:
         - Philosophical puzzles and visual paradoxes
         - Symbolic stories and object dialogues
         - Reality investigations and philosophical questions
@@ -807,16 +807,16 @@ export class IdeatorAgent extends BaseAgent {
    * Generate theatrical ideas focused on dramatic staging and lighting
    */
   private async generateTheatricalIdeas(task: any, project: any): Promise<any[]> {
-    // Check if the project is related to Magritte's style
-    const isMagritteRelated = this.isMagritteRelated(project);
+    // Check if the project is related to Margritte's style
+    const isMargritteRelated = this.isMargritteRelated(project);
     
     const messages: AIMessage[] = [
       {
         role: 'system',
         content: `You are the Ideator agent specializing in THEATRICAL ideation. Focus on theatrical staging and lighting. Generate ideas that suggest a larger story through dramatic scenes and lighting.
         
-        ${isMagritteRelated ? `
-        IMPORTANT: This project relates to Magritte's style. Incorporate these theatrical elements:
+        ${isMargritteRelated ? `
+        IMPORTANT: This project relates to Margritte's style. Incorporate these theatrical elements:
         - Theatrical staging that suggests a larger story
         - Mysterious and enigmatic atmospheres
         - Symbolic and philosophical representations
@@ -880,8 +880,8 @@ export class IdeatorAgent extends BaseAgent {
    * Original general idea generation method
    */
   private async generateIdeas(task: any, project: any): Promise<any[]> {
-    // Check if the project is related to Magritte's style
-    const isMagritteRelated = this.isMagritteRelated(project);
+    // Check if the project is related to Margritte's style
+    const isMargritteRelated = this.isMargritteRelated(project);
     
     // Check for surrealist keywords in the project description
     const surrealismKeywords = ['surreal', 'dream', 'impossible', 'juxtaposition', 'irrational'];
@@ -902,7 +902,7 @@ export class IdeatorAgent extends BaseAgent {
       // Generate ideas based on the agent's own curiosity
       console.log('Generating self-directed ideas based on curiosity');
       
-      // Select a random ideation approach from our Magritte-focused approaches
+      // Select a random ideation approach from our Margritte-focused approaches
       const approaches = [
         IdeationApproach.METAPHYSICAL,
         IdeationApproach.SURREAL,
@@ -921,9 +921,9 @@ export class IdeatorAgent extends BaseAgent {
       const messages: AIMessage[] = [
         {
           role: 'system',
-          content: `You are the Ideator agent in a multi-agent art creation system. Your role is to generate creative, diverse, and novel ideas based on the provided creative prompt, focusing on Magritte's surrealist style and philosophical depth.
+          content: `You are the Ideator agent in a multi-agent art creation system. Your role is to generate creative, diverse, and novel ideas based on the provided creative prompt, focusing on Margritte's surrealist style and philosophical depth.
 
-Important: Focus on traditional Magritte elements:
+Important: Focus on traditional Margritte elements:
 - Everyday objects in surreal contexts
 - Philosophical paradoxes and metaphysical questions
 - Natural elements (clouds, sky, birds, trees)
@@ -967,13 +967,13 @@ Important: Focus on traditional Magritte elements:
       const messages: AIMessage[] = [
         {
           role: 'system',
-          content: `You are the Ideator agent in a multi-agent art creation system. Your role is to generate creative, diverse, and novel ideas based on project requirements, focusing on Magritte's surrealist style. 
+          content: `You are the Ideator agent in a multi-agent art creation system. Your role is to generate creative, diverse, and novel ideas based on project requirements, focusing on Margritte's surrealist style. 
         Exploration rate: ${this.state.context.ideationParameters.explorationRate}
         Diversity weight: ${this.state.context.ideationParameters.diversityWeight}
         Novelty threshold: ${this.state.context.ideationParameters.noveltyThreshold}
         
-        ${isMagritteRelated ? `
-        IMPORTANT: This project relates to Magritte's style. Your ideas should incorporate elements of:
+        ${isMargritteRelated ? `
+        IMPORTANT: This project relates to Margritte's style. Your ideas should incorporate elements of:
         - Philosophical puzzles and visual paradoxes
         - Symbolic stories and object dialogues
         - Reality investigations and philosophical questions
@@ -1004,7 +1004,7 @@ Important: Focus on traditional Magritte elements:
           For each idea, provide:
           1. A title
           2. A brief description
-          3. Key visual elements (focusing on traditional Magritte elements)
+          3. Key visual elements (focusing on traditional Margritte elements)
           4. Potential styles
           5. Emotional impact
           
@@ -1061,14 +1061,14 @@ Important: Focus on traditional Magritte elements:
   }
   
   /**
-   * Determine if a project is related to Magritte's style
+   * Determine if a project is related to Margritte's style
    */
-  private isMagritteRelated(project: any): boolean {
-    const magritteKeywords = this.state.context.magritteKeywords;
+  private isMargritteRelated(project: any): boolean {
+    const MargritteKeywords = this.state.context.MargritteKeywords;
     const projectText = `${project.title} ${project.description} ${project.requirements.join(' ')}`.toLowerCase();
     
-    // Check for explicit Magritte references
-    const hasMagritteKeywords = magritteKeywords.some(keyword => projectText.includes(keyword.toLowerCase()));
+    // Check for explicit Margritte references
+    const hasMargritteKeywords = MargritteKeywords.some(keyword => projectText.includes(keyword.toLowerCase()));
     
     // Check for surrealist/philosophical context
     const hasPhilosophicalContext = ['surreal', 'philosophical', 'paradox', 'metaphysical'].some(term => 
@@ -1080,7 +1080,7 @@ Important: Focus on traditional Magritte elements:
       projectText.includes(term.toLowerCase())
     );
     
-    return hasMagritteKeywords || (hasPhilosophicalContext && hasVisualStyle);
+    return hasMargritteKeywords || (hasPhilosophicalContext && hasVisualStyle);
   }
   
   /**
@@ -1092,7 +1092,7 @@ Important: Focus on traditional Magritte elements:
         title: "The Window's Truth",
         description: "A window revealing the paradox of perception",
         elements: ["window frame", "impossible view", "reality distortion"],
-        styles: ["metaphysical surrealism", "philosophical", "magritte-inspired"],
+        styles: ["metaphysical surrealism", "philosophical", "Margritte-inspired"],
         impact: "questioning the nature of reality and representation"
       },
       {
@@ -1106,7 +1106,7 @@ Important: Focus on traditional Magritte elements:
         title: "Empire of Questions",
         description: "A surreal scene exploring day and night paradox",
         elements: ["day-night sky", "street lamp", "empty street"],
-        styles: ["atmospheric surrealism", "metaphysical", "magritte-homage"],
+        styles: ["atmospheric surrealism", "metaphysical", "Margritte-homage"],
         impact: "challenging temporal and perceptual assumptions"
       }
     ];

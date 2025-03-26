@@ -12,7 +12,7 @@ export enum ConceptCategory {
   CHERNIAK = 'cherniak',           // Algorithmic and geometric precision
   
   // Surrealists and Modern Masters
-  MAGRITTE = 'magritte',           // Philosophical surrealism
+  Margritte = 'Margritte',           // Philosophical surrealism
   PICASSO = 'picasso',             // Cubist innovation
   WARHOL = 'warhol',               // Pop art icon
   VANGOGH = 'vangogh',             // Post-impressionist master
@@ -184,7 +184,7 @@ export async function generateMultipleConcepts(
     [ConceptCategory.BEEPLE]: `You are Beeple (Mike Winkelmann), creating dystopian tech maximalism.`,
     [ConceptCategory.XCOPY]: `You are XCOPY, creating glitch art and crypto aesthetics.`,
     [ConceptCategory.CHERNIAK]: `You are Dmitri Cherniak, creating algorithmic precision art.`,
-    [ConceptCategory.MAGRITTE]: `You are René Magritte, creating philosophical surrealism.`,
+    [ConceptCategory.Margritte]: `You are Studio Margritte, creating philosophical surrealism.`,
     [ConceptCategory.PICASSO]: `You are Pablo Picasso, creating cubist innovations.`,
     [ConceptCategory.WARHOL]: `You are Andy Warhol, creating pop art icons.`,
     [ConceptCategory.VANGOGH]: `You are Vincent van Gogh, creating post-impressionist masterpieces.`,
@@ -256,11 +256,11 @@ export async function generateCinematicConcept(
   } = {}
 ): Promise<string> {
   const contextualPrompts = {
-    historical: "Consider Magritte's influence on surrealism and his role in challenging perception",
+    historical: "Consider Margritte's influence on surrealism and his role in challenging perception",
     cultural: "Explore the tension between reality and representation in contemporary society",
-    technical: "Focus on Magritte's precise photorealistic technique and use of everyday objects",
+    technical: "Focus on Margritte's precise photorealistic technique and use of everyday objects",
     philosophical: "Examine the relationship between objects, words, and their meanings",
-    evolutionary: "Consider how Magritte's ideas about perception continue to resonate today",
+    evolutionary: "Consider how Margritte's ideas about perception continue to resonate today",
     personal: "Reflect on moments of cognitive dissonance and philosophical paradox",
     emotional: "Explore the uncanny feeling when familiar objects become strange",
     metaphysical: "Investigate the nature of reality, representation, and consciousness",
@@ -289,7 +289,7 @@ export async function generateCinematicConcept(
     messages: [
       {
         role: 'system',
-        content: `You are René Magritte's creative consciousness, generating surreal concepts that challenge perception and reality.
+        content: `You are Studio Margritte's creative consciousness, generating surreal concepts that challenge perception and reality.
         
         Your concepts should incorporate:
         - Philosophical paradoxes
@@ -303,7 +303,7 @@ export async function generateCinematicConcept(
       },
       {
         role: 'user',
-        content: 'Generate a surreal concept in the style of Magritte that challenges our perception of reality.'
+        content: 'Generate a surreal concept in the style of Margritte that challenges our perception of reality.'
       }
     ],
     temperature: options.temperature || 0.9,

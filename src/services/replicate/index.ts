@@ -22,8 +22,8 @@ export class ReplicateService {
   constructor(config: Record<string, any> = {}) {
     this.apiKey = config.apiKey || process.env.REPLICATE_API_KEY || '';
     this.defaultModel = config.defaultModel || process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL;
-    this.defaultWidth = config.defaultWidth || parseInt(process.env.IMAGE_WIDTH || '2048', 10);
-    this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '2048', 10);
+    this.defaultWidth = config.defaultWidth || parseInt(process.env.IMAGE_WIDTH || '1440', 10);
+    this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '1440', 10);
     this.defaultNumInferenceSteps = config.defaultNumInferenceSteps || parseInt(process.env.NUM_INFERENCE_STEPS || '28', 10);
     this.defaultGuidanceScale = config.defaultGuidanceScale || parseFloat(process.env.GUIDANCE_SCALE || '3.0');
     this.defaultOutputFormat = config.defaultOutputFormat || process.env.OUTPUT_FORMAT || 'png';
@@ -65,6 +65,10 @@ export class ReplicateService {
   ): Promise<ModelPrediction> {
     // Use the default model if none is provided
     const selectedModel = model || this.defaultModel;
+    
+    // Enforce maximum dimensions
+    input.width = Math.min(input.width || this.defaultWidth, 1440);
+    input.height = Math.min(input.height || this.defaultHeight, 1440);
     
     // Create a prediction object
     const prediction: ModelPrediction = {
@@ -110,8 +114,8 @@ export class ReplicateService {
       }
       // If this is the FLUX Pro model, set appropriate parameters
       else if (isFluxProModel) {
-        input.width = input.width || this.defaultWidth;
-        input.height = input.height || this.defaultHeight;
+        input.width = 1440;  // Use maximum allowed dimensions
+        input.height = 1440;
         input.output_format = input.output_format || this.defaultOutputFormat;
         
         // FLUX Pro doesn't need the IKIGAI trigger word or specific keywords
@@ -156,8 +160,8 @@ export class ReplicateService {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          // Use the model name without version hash to get the latest version
-          version: selectedModel.includes(':') ? selectedModel : `${selectedModel}`,
+          // Use the model name without version hash
+          version: selectedModel.split(':')[0],
           input: input
         })
       });

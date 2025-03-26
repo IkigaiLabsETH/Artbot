@@ -1,8 +1,8 @@
-# Magritte-Inspired Art Categories Guide
+# Margritte-Inspired Art Categories Guide
 
 ## Introduction
 
-This guide provides detailed information about the different René Magritte-inspired art categories available in our art generator. Each category captures a specific aspect of Magritte's artistic style and themes, allowing you to create artwork that reflects his unique surrealist vision. All generated images are designed to look and feel like traditional oil paintings, with visible brushstrokes, canvas texture, and the distinctive painterly quality that characterizes Magritte's work.
+This guide provides detailed information about the different Studio Margritte-inspired art categories available in our art generator. Each category captures a specific aspect of Margritte's artistic style and themes, allowing you to create artwork that reflects his unique surrealist vision. All generated images are designed to look and feel like traditional oil paintings, with visible brushstrokes, canvas texture, and the distinctive painterly quality that characterizes Margritte's work.
 
 ## Painterly Qualities Across All Categories
 
@@ -11,14 +11,14 @@ Regardless of which category you choose, the art generator emphasizes these pain
 - **Oil Painting Techniques**: Visible brushstrokes and traditional painting textures
 - **Canvas-Like Texture**: The distinctive texture of paint on canvas
 - **Non-Photorealistic Rendering**: Avoidance of photorealistic elements in favor of traditional painting aesthetics
-- **Magritte's Color Palette**: The distinctive color choices and mixing techniques used by Magritte
+- **Margritte's Color Palette**: The distinctive color choices and mixing techniques used by Margritte
 - **Traditional Composition**: Composition approaches typical of traditional painting rather than photography
 
 ## Available Categories
 
-### 1. `magritte_classic`
+### 1. `Margritte_classic`
 
-**Description:** The quintessential Magritte style featuring his most recognizable elements and techniques, rendered with the distinctive oil painting technique that characterized his work.
+**Description:** The quintessential Margritte style featuring his most recognizable elements and techniques, rendered with the distinctive oil painting technique that characterized his work.
 
 **Best for concepts involving:**
 - Everyday objects in unexpected contexts
@@ -28,9 +28,9 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "A pipe floating above a landscape with text"
 
-### 2. `magritte_empire_of_light`
+### 2. `Margritte_empire_of_light`
 
-**Description:** Inspired by Magritte's famous "Empire of Light" series, featuring paradoxical day and night scenes with the distinctive brushwork and canvas texture of his oil paintings.
+**Description:** Inspired by Margritte's famous "Empire of Light" series, featuring paradoxical day and night scenes with the distinctive brushwork and canvas texture of his oil paintings.
 
 **Best for concepts involving:**
 - Juxtaposition of day and night in the same scene
@@ -40,9 +40,9 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "A street with houses illuminated at night under a bright blue daytime sky"
 
-### 3. `magritte_objects`
+### 3. `Margritte_objects`
 
-**Description:** Focuses on Magritte's treatment of ordinary objects rendered extraordinary through context or transformation, with the painterly quality that gives his objects their distinctive presence.
+**Description:** Focuses on Margritte's treatment of ordinary objects rendered extraordinary through context or transformation, with the painterly quality that gives his objects their distinctive presence.
 
 **Best for concepts involving:**
 - Oversized or floating everyday items
@@ -52,9 +52,9 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "A room filled with floating green apples"
 
-### 4. `magritte_wordplay`
+### 4. `Margritte_wordplay`
 
-**Description:** Inspired by Magritte's exploration of the relationship between words, images, and meaning, rendered with the traditional painting techniques he employed.
+**Description:** Inspired by Margritte's exploration of the relationship between words, images, and meaning, rendered with the traditional painting techniques he employed.
 
 **Best for concepts involving:**
 - Text integrated with images
@@ -64,9 +64,9 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "A realistic painting of a bird with the word 'sky' written beneath it"
 
-### 5. `magritte_windows`
+### 5. `Margritte_windows`
 
-**Description:** Based on Magritte's use of windows, frames, and portals as devices to challenge perception, with the oil painting aesthetics that give his windows their distinctive look.
+**Description:** Based on Margritte's use of windows, frames, and portals as devices to challenge perception, with the oil painting aesthetics that give his windows their distinctive look.
 
 **Best for concepts involving:**
 - Windows showing impossible or contradictory scenes
@@ -76,9 +76,9 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "A window revealing an impossible scene"
 
-### 6. `magritte_scale`
+### 6. `Margritte_scale`
 
-**Description:** Focuses on Magritte's play with scale and proportion to create surreal effects, rendered with the painterly techniques that make his scale distortions so effective.
+**Description:** Focuses on Margritte's play with scale and proportion to create surreal effects, rendered with the painterly techniques that make his scale distortions so effective.
 
 **Best for concepts involving:**
 - Dramatically oversized objects in ordinary settings
@@ -88,9 +88,9 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "Giant apple filling a room"
 
-### 7. `magritte_metamorphosis`
+### 7. `Margritte_metamorphosis`
 
-**Description:** Inspired by Magritte's exploration of transformation and hybrid forms, with the oil painting techniques that give his metamorphoses their distinctive quality.
+**Description:** Inspired by Margritte's exploration of transformation and hybrid forms, with the oil painting techniques that give his metamorphoses their distinctive quality.
 
 **Best for concepts involving:**
 - Objects or figures transforming into other things
@@ -100,9 +100,9 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "A bird gradually transforming into leaves"
 
-### 8. `magritte_mystery`
+### 8. `Margritte_mystery`
 
-**Description:** Captures Magritte's creation of mysterious, enigmatic scenes that provoke questioning, rendered with the traditional painting techniques that enhance their mysterious quality.
+**Description:** Captures Margritte's creation of mysterious, enigmatic scenes that provoke questioning, rendered with the traditional painting techniques that enhance their mysterious quality.
 
 **Best for concepts involving:**
 - Veiled or hidden figures
@@ -112,9 +112,9 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "Figures in bowler hats with faces obscured by floating objects"
 
-### 9. `magritte_skies`
+### 9. `Margritte_skies`
 
-**Description:** Focuses on Magritte's distinctive treatment of skies, clouds, and celestial elements, with the painterly quality that makes his skies so recognizable.
+**Description:** Focuses on Margritte's distinctive treatment of skies, clouds, and celestial elements, with the painterly quality that makes his skies so recognizable.
 
 **Best for concepts involving:**
 - Cloud formations in unexpected contexts
@@ -124,9 +124,9 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "Clouds shaped like everyday objects floating in a blue sky"
 
-### 10. `magritte_silhouettes`
+### 10. `Margritte_silhouettes`
 
-**Description:** Inspired by Magritte's use of silhouettes and negative space, rendered with the oil painting techniques that give his silhouettes their distinctive presence.
+**Description:** Inspired by Margritte's use of silhouettes and negative space, rendered with the oil painting techniques that give his silhouettes their distinctive presence.
 
 **Best for concepts involving:**
 - Human or object silhouettes filled with alternative content
@@ -136,9 +136,9 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "Silhouette filled with night sky"
 
-### 11. `magritte_mirrors`
+### 11. `Margritte_mirrors`
 
-**Description:** Based on Magritte's exploration of reflection, mirrors, and doubled imagery, with the painterly quality that makes his mirror images so compelling.
+**Description:** Based on Margritte's exploration of reflection, mirrors, and doubled imagery, with the painterly quality that makes his mirror images so compelling.
 
 **Best for concepts involving:**
 - Mirrors showing unexpected reflections
@@ -148,44 +148,44 @@ Regardless of which category you choose, the art generator emphasizes these pain
 
 **Example prompt:** "A mirror reflecting something different than what stands before it"
 
-### 12. `magritte_surrealism`
+### 12. `Margritte_surrealism`
 
-**Description:** The broadest category, encompassing Magritte's general surrealist approach and philosophy, rendered with the traditional oil painting techniques that defined his work.
+**Description:** The broadest category, encompassing Margritte's general surrealist approach and philosophy, rendered with the traditional oil painting techniques that defined his work.
 
 **Best for concepts involving:**
 - Dream-like juxtapositions
 - Philosophical questioning of reality
-- Combinations of multiple Magritte techniques
+- Combinations of multiple Margritte techniques
 - Surreal scenes that challenge conventional perception
 
 **Example prompt:** "A surreal landscape with floating bowler hats"
 
 ## Tips for Effective Use
 
-1. **Be specific in your concept:** The more specific your concept, the better the art generator can apply the selected Magritte style.
+1. **Be specific in your concept:** The more specific your concept, the better the art generator can apply the selected Margritte style.
 
 2. **Consider the category's strengths:** Choose a category that best aligns with the core elements of your concept.
 
-3. **Combine visual elements:** Include multiple Magritte-inspired elements for more complex and interesting results.
+3. **Combine visual elements:** Include multiple Margritte-inspired elements for more complex and interesting results.
 
-4. **Experiment with different categories:** The same concept can yield dramatically different results when processed through different Magritte categories.
+4. **Experiment with different categories:** The same concept can yield dramatically different results when processed through different Margritte categories.
 
-5. **Study Magritte's paintings:** Familiarity with Magritte's oil paintings will help you craft concepts that better leverage his artistic vision.
+5. **Study Margritte's paintings:** Familiarity with Margritte's oil paintings will help you craft concepts that better leverage his artistic vision.
 
 ## Example Command
 
 ```bash
-./run-multiagent-art-generator.sh "Your concept here" magritte_category_name
+./run-multiagent-art-generator.sh "Your concept here" Margritte_category_name
 ```
 
 For example:
 
 ```bash
-./run-multiagent-art-generator.sh "A window revealing an impossible scene" magritte_windows
+./run-multiagent-art-generator.sh "A window revealing an impossible scene" Margritte_windows
 ```
 
 ## Further Resources
 
-- [René Magritte Museum](https://www.musee-magritte-museum.be)
-- [MoMA Collection: René Magritte](https://www.moma.org/artists/3692)
-- [Tate: René Magritte](https://www.tate.org.uk/art/artists/rene-magritte-1553) 
+- [Studio Margritte Museum](https://www.musee-Margritte-museum.be)
+- [MoMA Collection: Studio Margritte](https://www.moma.org/artists/3692)
+- [Tate: Studio Margritte](https://www.tate.org.uk/art/artists/rene-Margritte-1553) 

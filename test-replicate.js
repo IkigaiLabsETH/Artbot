@@ -17,7 +17,7 @@ async function testReplicateService() {
   // Create an instance of ReplicateService
   const replicateService = new ReplicateService({
     apiKey: process.env.REPLICATE_API_KEY,
-    defaultModel: 'stability-ai/sdxl'
+    defaultModel: 'black-forest-labs/flux-1.1-pro'
   });
   
   // Initialize the service
@@ -27,8 +27,8 @@ async function testReplicateService() {
     console.log('Generating image...');
     const result = await replicateService.generateImage({
       prompt: 'A futuristic AI artist creating a masterpiece, digital art style',
-      width: 2048,
-      height: 2048
+      width: 1440,
+      height: 1440
     });
     
     console.log('Image generation successful!');

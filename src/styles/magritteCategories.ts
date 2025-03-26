@@ -1,7 +1,7 @@
 import { ArtDirection } from '../types/ArtDirection.js';
 
-// Define Magritte-specific category types
-export type MagritteCategory = 
+// Define Margritte-specific category types
+export type MargritteCategory = 
   'object_displacement' |
   'window_paradox' |
   'scale_distortion' |
@@ -14,14 +14,18 @@ export type MagritteCategory =
   'object_multiplication';
 
 // Define category-specific art directions
-export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
+export const Margritte_CATEGORIES: Record<MargritteCategory, ArtDirection> = {
   object_displacement: {
     styleEmphasis: [
-      "floating object placement",
-      "impossible spatial relationships",
-      "gravity defiance",
-      "object displacement theory",
-      "surreal positioning"
+      "surrealist technique",
+      "oil painting quality",
+      "philosophical depth",
+      "symbolic power",
+      "spatial paradox",
+      "metaphysical quality",
+      "belgian style",
+      "academic precision",
+      "surrealist atmosphere"
     ],
     visualElements: [
       "floating rocks",
@@ -37,7 +41,7 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
       "balanced displacement",
       "controlled chaos"
     ],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: [
           "Objects have no fixed spatial relationship",
@@ -152,7 +156,7 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
       "reality-bending transitions",
       "frame-within-frame composition"
     ],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: [
           "Windows are portals to other realities",
@@ -249,7 +253,7 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
     styleEmphasis: ["scale manipulation", "size relationships", "proportional distortion"],
     visualElements: ["oversized objects", "miniaturized elements", "scale contrasts"],
     compositionGuidelines: ["dramatic scale differences", "proportional relationships", "size hierarchy"],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: ["Scale is relative", "Size relationships are subjective", "Proportion is malleable"],
         theories: ["Scale relativity theory", "Size perception theory", "Proportional distortion concept"],
@@ -298,7 +302,7 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
     styleEmphasis: ["temporal manipulation", "time distortion", "chronological paradox"],
     visualElements: ["multiple time states", "temporal overlaps", "time-based elements"],
     compositionGuidelines: ["temporal layering", "chronological juxtaposition", "time-space relationships"],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: ["Time is malleable", "Multiple times coexist", "Temporal reality is subjective"],
         theories: ["Temporal overlay theory", "Time manipulation concept", "Chronological paradox theory"],
@@ -347,7 +351,7 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
     styleEmphasis: ["hidden identity", "obscured faces", "anonymous presence"],
     visualElements: ["covered faces", "obscuring objects", "identity masks"],
     compositionGuidelines: ["strategic concealment", "identity hiding", "anonymous positioning"],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: ["Identity is fluid", "Faces can be hidden", "Anonymity has power"],
         theories: ["Identity concealment theory", "Face obscuration concept", "Anonymous presence theory"],
@@ -396,7 +400,7 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
     styleEmphasis: ["word-image relationships", "linguistic paradox", "textual integration"],
     visualElements: ["text elements", "word-object relationships", "linguistic components"],
     compositionGuidelines: ["text placement", "word-image balance", "linguistic integration"],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: ["Words and images interact", "Language affects perception", "Text creates reality"],
         theories: ["Word-image relationship theory", "Linguistic paradox concept", "Text-reality theory"],
@@ -445,7 +449,7 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
     styleEmphasis: ["transformation", "object mutation", "form evolution"],
     visualElements: ["transforming objects", "mutating forms", "evolutionary elements"],
     compositionGuidelines: ["transformation staging", "metamorphic flow", "evolutionary progression"],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: ["Forms can transform", "Objects evolve", "Matter is fluid"],
         theories: ["Metamorphosis theory", "Form evolution concept", "Transformation principle"],
@@ -494,7 +498,7 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
     styleEmphasis: ["spatial manipulation", "perspective illusion", "depth paradox"],
     visualElements: ["impossible spaces", "perspective tricks", "spatial anomalies"],
     compositionGuidelines: ["spatial organization", "perspective manipulation", "depth illusion"],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: ["Space is malleable", "Perspective is subjective", "Depth is illusory"],
         theories: ["Spatial manipulation theory", "Perspective illusion concept", "Depth paradox theory"],
@@ -543,7 +547,7 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
     styleEmphasis: ["reflection manipulation", "mirror illusion", "reflection paradox"],
     visualElements: ["impossible reflections", "mirror tricks", "reflection anomalies"],
     compositionGuidelines: ["reflection placement", "mirror manipulation", "reflection illusion"],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: ["Reflections can lie", "Mirrors show other realities", "Images are deceptive"],
         theories: ["Mirror paradox theory", "Reflection manipulation concept", "Image deception theory"],
@@ -592,7 +596,7 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
     styleEmphasis: ["object repetition", "pattern creation", "multiplication effect"],
     visualElements: ["repeated objects", "pattern elements", "multiplied forms"],
     compositionGuidelines: ["repetition placement", "pattern organization", "multiplication balance"],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: ["Objects can multiply", "Patterns have meaning", "Repetition creates reality"],
         theories: ["Object multiplication theory", "Pattern significance concept", "Repetition effect theory"],
@@ -638,25 +642,25 @@ export const MAGRITTE_CATEGORIES: Record<MagritteCategory, ArtDirection> = {
   }
 };
 
-// Helper functions for working with Magritte categories
-export function getMagritteCategory(category: MagritteCategory): ArtDirection {
-  return MAGRITTE_CATEGORIES[category];
+// Helper functions for working with Margritte categories
+export function getMargritteCategory(category: MargritteCategory): ArtDirection {
+  return Margritte_CATEGORIES[category];
 }
 
-export function isMagritteCategory(category: string): category is MagritteCategory {
-  return category in MAGRITTE_CATEGORIES;
+export function isMargritteCategory(category: string): category is MargritteCategory {
+  return category in Margritte_CATEGORIES;
 }
 
-export function getMagritteCategoryList(): MagritteCategory[] {
-  return Object.keys(MAGRITTE_CATEGORIES) as MagritteCategory[];
+export function getMargritteCategoryList(): MargritteCategory[] {
+  return Object.keys(Margritte_CATEGORIES) as MargritteCategory[];
 }
 
-export function combineMagritteCategories(categories: MagritteCategory[]): ArtDirection {
+export function combineMargritteCategories(categories: MargritteCategory[]): ArtDirection {
   const initialValue: ArtDirection = {
     styleEmphasis: [],
     visualElements: [],
     compositionGuidelines: [],
-    magritteContext: {
+    MargritteContext: {
       philosophicalFramework: {
         beliefs: [],
         theories: [],
@@ -697,57 +701,57 @@ export function combineMagritteCategories(categories: MagritteCategory[]): ArtDi
   };
 
   return categories.reduce((combined, category) => {
-    const categoryConfig = MAGRITTE_CATEGORIES[category];
+    const categoryConfig = Margritte_CATEGORIES[category];
     return {
       styleEmphasis: [...(combined.styleEmphasis || []), ...(categoryConfig.styleEmphasis || [])],
       visualElements: [...(combined.visualElements || []), ...(categoryConfig.visualElements || [])],
       compositionGuidelines: [...(combined.compositionGuidelines || []), ...(categoryConfig.compositionGuidelines || [])],
-      magritteContext: {
+      MargritteContext: {
         philosophicalFramework: {
           beliefs: [
-            ...(combined.magritteContext?.philosophicalFramework?.beliefs || []),
-            ...(categoryConfig.magritteContext?.philosophicalFramework?.beliefs || [])
+            ...(combined.MargritteContext?.philosophicalFramework?.beliefs || []),
+            ...(categoryConfig.MargritteContext?.philosophicalFramework?.beliefs || [])
           ],
           theories: [
-            ...(combined.magritteContext?.philosophicalFramework?.theories || []),
-            ...(categoryConfig.magritteContext?.philosophicalFramework?.theories || [])
+            ...(combined.MargritteContext?.philosophicalFramework?.theories || []),
+            ...(categoryConfig.MargritteContext?.philosophicalFramework?.theories || [])
           ],
           conceptualFrameworks: [
-            ...(combined.magritteContext?.philosophicalFramework?.conceptualFrameworks || []),
-            ...(categoryConfig.magritteContext?.philosophicalFramework?.conceptualFrameworks || [])
+            ...(combined.MargritteContext?.philosophicalFramework?.conceptualFrameworks || []),
+            ...(categoryConfig.MargritteContext?.philosophicalFramework?.conceptualFrameworks || [])
           ],
           paradoxes: [
-            ...(combined.magritteContext?.philosophicalFramework?.paradoxes || []),
-            ...(categoryConfig.magritteContext?.philosophicalFramework?.paradoxes || [])
+            ...(combined.MargritteContext?.philosophicalFramework?.paradoxes || []),
+            ...(categoryConfig.MargritteContext?.philosophicalFramework?.paradoxes || [])
           ],
           visualDialectics: [
-            ...(combined.magritteContext?.philosophicalFramework?.visualDialectics || []),
-            ...(categoryConfig.magritteContext?.philosophicalFramework?.visualDialectics || [])
+            ...(combined.MargritteContext?.philosophicalFramework?.visualDialectics || []),
+            ...(categoryConfig.MargritteContext?.philosophicalFramework?.visualDialectics || [])
           ]
         },
         visualCategories: [
-          ...(combined.magritteContext?.visualCategories || []),
-          ...(categoryConfig.magritteContext?.visualCategories || [])
+          ...(combined.MargritteContext?.visualCategories || []),
+          ...(categoryConfig.MargritteContext?.visualCategories || [])
         ],
         technicalExecution: {
           renderingTechniques: [
-            ...(combined.magritteContext?.technicalExecution?.renderingTechniques || []),
-            ...(categoryConfig.magritteContext?.technicalExecution?.renderingTechniques || [])
+            ...(combined.MargritteContext?.technicalExecution?.renderingTechniques || []),
+            ...(categoryConfig.MargritteContext?.technicalExecution?.renderingTechniques || [])
           ],
           materialPreparation: [
-            ...(combined.magritteContext?.technicalExecution?.materialPreparation || []),
-            ...(categoryConfig.magritteContext?.technicalExecution?.materialPreparation || [])
+            ...(combined.MargritteContext?.technicalExecution?.materialPreparation || []),
+            ...(categoryConfig.MargritteContext?.technicalExecution?.materialPreparation || [])
           ],
           workingMethodology: [
-            ...(combined.magritteContext?.technicalExecution?.workingMethodology || []),
-            ...(categoryConfig.magritteContext?.technicalExecution?.workingMethodology || [])
+            ...(combined.MargritteContext?.technicalExecution?.workingMethodology || []),
+            ...(categoryConfig.MargritteContext?.technicalExecution?.workingMethodology || [])
           ],
           qualityMetrics: [
-            ...(combined.magritteContext?.technicalExecution?.qualityMetrics || []),
-            ...(categoryConfig.magritteContext?.technicalExecution?.qualityMetrics || [])
+            ...(combined.MargritteContext?.technicalExecution?.qualityMetrics || []),
+            ...(categoryConfig.MargritteContext?.technicalExecution?.qualityMetrics || [])
           ]
         },
-        creativeMetrics: combined.magritteContext.creativeMetrics
+        creativeMetrics: combined.MargritteContext.creativeMetrics
       }
     };
   }, initialValue);

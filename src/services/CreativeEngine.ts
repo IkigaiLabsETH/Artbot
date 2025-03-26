@@ -7,7 +7,7 @@ import { StyleService } from './style/index.js';
 import { ReplicateService } from './replicate/index.js';
 import { SocialEngagementService, SocialPlatform, FeedbackType, FeedbackSentiment } from './social/index.js';
 import { ArtBotMultiAgentSystem } from '../artbot-multiagent-system.js';
-import { MAGRITTE_CATEGORIES } from '../styles/magritteCategories.js';
+import { Margritte_CATEGORIES } from '../styles/magritteCategories.js';
 
 // Define interfaces for the components we need
 interface CreativeState {
@@ -49,7 +49,7 @@ interface BourdinElements {
   poses: string[];
 }
 
-interface MagritteElements {
+interface MargritteElements {
   symbols: string[];
   settings: string[];
   objects: string[];
@@ -64,7 +64,7 @@ interface BourdinTechniques {
   narrative: string[];
 }
 
-interface MagritteTechniques {
+interface MargritteTechniques {
   painting: string[];
   surrealism: string[];
   philosophy: string[];
@@ -247,7 +247,7 @@ const artisticParams = {
       composition: ["golden ratio", "recursive patterns", "systematic spacing"]
     }
   },
-  magritte: {
+  Margritte: {
     composition: {
       arrangement: "metaphysical precision",
       balance: "philosophical symmetry",
@@ -508,8 +508,8 @@ const artisticParams = {
   }
 };
 
-const MAGRITTE_STYLE_CONFIG = {
-  prompt_prefix: "Create a surrealist portrait in Magritte's style with distinctive clothing and accessories. The portrait should feature ",
+const Margritte_STYLE_CONFIG = {
+  prompt_prefix: "Create a surrealist portrait in Margritte's style with distinctive clothing and accessories. The portrait should feature ",
   prompt_suffix: `. The image must epitomize surrealist portraiture:
 
 - Portrait Elements:
@@ -601,39 +601,39 @@ const MAGRITTE_STYLE_CONFIG = {
   ]
 };
 
-// Define Magritte's portrait-focused color palette
-const MAGRITTE_PORTRAIT_PALETTE = {
+// Define Margritte's portrait-focused color palette
+const Margritte_PORTRAIT_PALETTE = {
   skin: {
     light: {
-      color: "Magritte porcelain (RGB: 255, 239, 224)",
+      color: "Margritte porcelain (RGB: 255, 239, 224)",
       usage: "Main skin tone for figures"
     },
     shadow: {
-      color: "Magritte flesh shadow (RGB: 227, 199, 178)",
+      color: "Margritte flesh shadow (RGB: 227, 199, 178)",
       usage: "Subtle skin shadows"
     }
   },
   clothing: {
     suit: {
-      color: "Magritte charcoal (RGB: 54, 54, 54)",
+      color: "Margritte charcoal (RGB: 54, 54, 54)",
       usage: "Main suit color"
     },
     shirt: {
-      color: "Magritte white (RGB: 255, 255, 255)",
+      color: "Margritte white (RGB: 255, 255, 255)",
       usage: "Crisp shirt color"
     },
     accessories: {
-      color: "Magritte silk (RGB: 200, 200, 200)",
+      color: "Margritte silk (RGB: 200, 200, 200)",
       usage: "Ties and pocket squares"
     }
   },
   background: {
     sky: {
-      color: "Magritte blue (RGB: 135, 206, 235)",
+      color: "Margritte blue (RGB: 135, 206, 235)",
       usage: "Classic sky background"
     },
     interior: {
-      color: "Magritte grey (RGB: 180, 180, 180)",
+      color: "Margritte grey (RGB: 180, 180, 180)",
       usage: "Interior settings"
     }
   }
@@ -1839,7 +1839,7 @@ export class CreativeEngine {
     artisticDetails: StyleParams;
   }> {
     try {
-      const currentStyle = artisticParams.magritte;
+      const currentStyle = artisticParams.Margritte;
 
       // Get random visual elements from different categories
       const selectedElements = [
@@ -1865,8 +1865,8 @@ export class CreativeEngine {
         .sort(() => Math.random() - 0.5)
         .slice(0, 3);
 
-      // Select a specific Magritte category for focused style
-      const magritteCategories = [
+      // Select a specific Margritte category for focused style
+      const MargritteCategories = [
         'object_displacement',
         'window_paradox',
         'scale_distortion',
@@ -1879,8 +1879,8 @@ export class CreativeEngine {
         'object_multiplication'
       ];
       
-      const selectedCategory = magritteCategories[Math.floor(Math.random() * magritteCategories.length)];
-      const categoryStyle = MAGRITTE_CATEGORIES[selectedCategory];
+      const selectedCategory = MargritteCategories[Math.floor(Math.random() * MargritteCategories.length)];
+      const categoryStyle = Margritte_CATEGORIES[selectedCategory];
 
       // Generate the prompt using the imported function
       const { prompt: basePrompt, creativeProcess } = await generateConceptualPrompt(
@@ -1892,17 +1892,17 @@ export class CreativeEngine {
         }
       );
 
-      // Enhance the prompt with Magritte-specific elements
-      const enhancedPrompt = `Create a Belgian surrealist oil painting in the exact style of René Magritte, capturing his unique 1940s-1950s period technique. The scene should depict: ${basePrompt}
+      // Enhance the prompt with Margritte-specific elements
+      const enhancedPrompt = `Create a Belgian surrealist oil painting in the exact style of Studio Margritte, capturing his unique 1940s-1950s period technique. The scene should depict: ${basePrompt}
 
-Essential Magritte Elements:
+Essential Margritte Elements:
 1. Core Visual Elements:
    - Primary elements: ${selectedElements.join(', ')}
    - Composition: ${selectedCompositions.join(', ')}
    - Techniques: ${selectedTechniques.join(', ')}
    - Category focus: ${categoryStyle.styleEmphasis.join(', ')}
 
-2. Magritte's Oil Painting Technique:
+2. Margritte's Oil Painting Technique:
    - Thin, precise application of oil paint
    - Smooth, even surfaces with minimal visible brushwork
    - Subtle glazing for atmospheric effects
@@ -1910,7 +1910,7 @@ Essential Magritte Elements:
    - Careful layering for depth without texture
    - Traditional canvas preparation showing through
 
-3. Magritte's Signature Lighting:
+3. Margritte's Signature Lighting:
    - Style: ${currentStyle.lighting.style}
    - Direction: ${currentStyle.lighting.direction}
    - Shadows: ${currentStyle.lighting.shadows}
@@ -1919,16 +1919,16 @@ Essential Magritte Elements:
    - Soft, diffused northern European light
 
 4. Philosophical Framework (${selectedCategory}):
-   - Beliefs: ${categoryStyle.magritteContext.philosophicalFramework.beliefs.join(', ')}
-   - Visual Dialectics: ${categoryStyle.magritteContext.philosophicalFramework.visualDialectics.join(', ')}
-   - Paradoxes: ${categoryStyle.magritteContext.philosophicalFramework.paradoxes.join(', ')}
+   - Beliefs: ${categoryStyle.philosophicalFramework.beliefs.join(', ')}
+   - Visual Dialectics: ${categoryStyle.philosophicalFramework.visualDialectics.join(', ')}
+   - Paradoxes: ${categoryStyle.philosophicalFramework.paradoxes.join(', ')}
 
 5. Technical Requirements:
-   - ${categoryStyle.visualCategories[0].technicalRequirements.join('\n   - ')}
+   - ${categoryStyle.technicalExecution.technicalRequirements.join('\n   - ')}
 
-6. Magritte's Color Approach:
-   - Limited, controlled palette using ${MAGRITTE_PORTRAIT_PALETTE.clothing.suit.color} for dark elements
-   - Muted, naturalistic colors with ${MAGRITTE_PORTRAIT_PALETTE.background.sky.color} for skies
+6. Margritte's Color Approach:
+   - Limited, controlled palette using ${Margritte_PORTRAIT_PALETTE.clothing.suit.color} for dark elements
+   - Muted, naturalistic colors with ${Margritte_PORTRAIT_PALETTE.background.sky.color} for skies
    - Subtle atmospheric perspective
    - Cool sky blues and warm earth tones
    - Precise value relationships
@@ -1937,16 +1937,16 @@ Essential Magritte Elements:
 7. Composition Guidelines:
    - ${categoryStyle.compositionGuidelines.join('\n   - ')}
 
-Reference specific Magritte works:
+Reference specific Margritte works:
 - 'The Empire of Light' (1953-54) for day-night paradox
 - 'The Human Condition' (1933) for painting-within-painting technique
 - 'Personal Values' (1952) for scale relationships
 - 'The Listening Room' (1952) for object-space relationships
 - 'Time Transfixed' (1938) for impossible juxtapositions
 
-The final image should embody Magritte's precise, academic painting technique - not photorealistic, but traditionally painted with his characteristic Belgian surrealist style.`;
+The final image should embody Margritte's precise, academic painting technique - not photorealistic, but traditionally painted with his characteristic Belgian surrealist style.`;
 
-      // Prepare Magritte-specific generation parameters
+      // Prepare Margritte-specific generation parameters
       const generationParams = {
         prompt: enhancedPrompt,
         negative_prompt: [
@@ -1980,8 +1980,8 @@ The final image should embody Magritte's precise, academic painting technique - 
         height: 1024,
         scheduler: "DPMSolverMultistep",
         custom_style_params: {
-          ...categoryStyle.creativeMetrics.technicalExecution,
-          ...categoryStyle.creativeMetrics.compositionBalance,
+          ...categoryStyle.technicalExecution,
+          ...categoryStyle.philosophicalFramework,
           flatness: 0.7,
           edge_precision: 0.85,
           surface_smoothness: 0.75,
@@ -1991,7 +1991,27 @@ The final image should embody Magritte's precise, academic painting technique - 
           detail_preservation: 0.85,
           color_accuracy: 0.9,
           lighting_control: 0.9,
-          composition_balance: 0.95
+          composition_balance: 0.95,
+          surrealist_technique: 0.95,
+          oil_painting_quality: 0.9,
+          philosophical_depth: 0.95,
+          symbolic_power: 0.9,
+          spatial_paradox: 0.95,
+          metaphysical_quality: 0.9,
+          belgian_style: 0.95,
+          academic_precision: 0.9,
+          surrealist_atmosphere: 0.95,
+          emphasis: {
+            surrealist_technique: 0.95,
+            oil_painting_quality: 0.9,
+            philosophical_depth: 0.95,
+            symbolic_power: 0.9,
+            spatial_paradox: 0.95,
+            metaphysical_quality: 0.9,
+            belgian_style: 0.95,
+            academic_precision: 0.9,
+            surrealist_atmosphere: 0.95
+          }
         },
         style_preset: "traditional_oil_painting",
         image_style: "belgian_academic",
@@ -2030,21 +2050,21 @@ The final image should embody Magritte's precise, academic painting technique - 
         imageUrl: result?.output?.[0] || null,
         prompt: enhancedPrompt,
         creativeProcess,
-        style: 'magritte',
+        style: 'Margritte',
         artisticDetails: {
           ...currentStyle,
           category: selectedCategory,
-          philosophicalFramework: categoryStyle.magritteContext.philosophicalFramework,
-          technicalExecution: categoryStyle.magritteContext.technicalExecution
+          philosophicalFramework: categoryStyle.philosophicalFramework,
+          technicalExecution: categoryStyle.technicalExecution
         }
       };
     } catch (error) {
-      console.error(`Error generating Magritte-style image: ${error}`);
+      console.error(`Error generating Margritte-style image: ${error}`);
       return {
         imageUrl: null,
         prompt: '',
         creativeProcess: '',
-        style: 'magritte',
+        style: 'Margritte',
         artisticDetails: {} as StyleParams
       };
     }

@@ -1,6 +1,6 @@
-# Magritte Art Generator: Quickstart Guide
+# Margritte Art Generator: Quickstart Guide
 
-This guide will help you quickly get started with the Magritte Art Generator, a specialized multi-agent AI system designed to create artwork inspired by the surrealist painter René Magritte.
+This guide will help you quickly get started with the Margritte Art Generator, a specialized multi-agent AI system designed to create artwork inspired by the surrealist painter Studio Margritte.
 
 ## Prerequisites
 
@@ -35,71 +35,71 @@ This guide will help you quickly get started with the Magritte Art Generator, a 
 
 ## Generate Your First Artwork
 
-The Magritte Art Generator uses a simple command-line interface to generate artwork. The basic command is:
+The Margritte Art Generator uses a simple command-line interface to generate artwork. The basic command is:
 
 ```bash
-./run-multiagent-art-generator.sh "Your concept" magritte_category
+./run-multiagent-art-generator.sh "Your concept" Margritte_category
 ```
 
 Where:
 - `"Your concept"` is the artistic concept you want to visualize
-- `magritte_category` is one of the 12 specialized Magritte categories
+- `Margritte_category` is one of the 12 specialized Margritte categories
 
 ### Example Commands
 
-1. **Classic Magritte Style**:
+1. **Classic Margritte Style**:
    ```bash
-   ./run-multiagent-art-generator.sh "A pipe floating above a landscape" magritte_classic
+   ./run-multiagent-art-generator.sh "A pipe floating above a landscape" Margritte_classic
    ```
 
 2. **Empire of Light**:
    ```bash
-   ./run-multiagent-art-generator.sh "A street with houses illuminated at night under a bright blue daytime sky" magritte_empire_of_light
+   ./run-multiagent-art-generator.sh "A street with houses illuminated at night under a bright blue daytime sky" Margritte_empire_of_light
    ```
 
 3. **Objects**:
    ```bash
-   ./run-multiagent-art-generator.sh "A room filled with floating green apples" magritte_objects
+   ./run-multiagent-art-generator.sh "A room filled with floating green apples" Margritte_objects
    ```
 
 4. **Windows**:
    ```bash
-   ./run-multiagent-art-generator.sh "A window revealing an impossible scene" magritte_windows
+   ./run-multiagent-art-generator.sh "A window revealing an impossible scene" Margritte_windows
    ```
 
 5. **Scale**:
    ```bash
-   ./run-multiagent-art-generator.sh "Giant apple filling a room" magritte_scale
+   ./run-multiagent-art-generator.sh "Giant apple filling a room" Margritte_scale
    ```
 
 6. **Silhouettes**:
    ```bash
-   ./run-multiagent-art-generator.sh "Silhouette filled with night sky" magritte_silhouettes
+   ./run-multiagent-art-generator.sh "Silhouette filled with night sky" Margritte_silhouettes
    ```
 
 7. **Metamorphosis**:
    ```bash
-   ./run-multiagent-art-generator.sh "A bird gradually transforming into leaves" magritte_metamorphosis
+   ./run-multiagent-art-generator.sh "A bird gradually transforming into leaves" Margritte_metamorphosis
    ```
 
 ## Available Categories
 
-The Magritte Art Generator supports 12 specialized categories:
+The Margritte Art Generator supports 12 specialized categories:
 
-1. `magritte_classic`: The quintessential Magritte style
-2. `magritte_empire_of_light`: Day/night paradoxical scenes
-3. `magritte_objects`: Extraordinary treatment of ordinary objects
-4. `magritte_wordplay`: Exploration of words and images
-5. `magritte_windows`: Windows and frames as perceptual devices
-6. `magritte_scale`: Play with scale and proportion
-7. `magritte_metamorphosis`: Transformation and hybrid forms
-8. `magritte_mystery`: Enigmatic and mysterious scenes
-9. `magritte_skies`: Distinctive treatment of skies and clouds
-10. `magritte_silhouettes`: Use of silhouettes and negative space
-11. `magritte_mirrors`: Exploration of reflection and doubled imagery
-12. `magritte_surrealism`: General surrealist approach
+1. `Margritte_classic`: The quintessential Margritte style
+2. `Margritte_empire_of_light`: Day/night paradoxical scenes
+3. `Margritte_objects`: Extraordinary treatment of ordinary objects
+4. `Margritte_wordplay`: Exploration of words and images
+5. `Margritte_windows`: Windows and frames as perceptual devices
+6. `Margritte_scale`: Play with scale and proportion
+7. `Margritte_metamorphosis`: Transformation and hybrid forms
+8. `Margritte_mystery`: Enigmatic and mysterious scenes
+9. `Margritte_skies`: Distinctive treatment of skies and clouds
+10. `Margritte_silhouettes`: Use of silhouettes and negative space
+11. `Margritte_mirrors`: Exploration of reflection and doubled imagery
+12. `Margritte_surrealism`: General surrealist approach
 
-For detailed information about each category, refer to the [MAGRITTE-CATEGORIES-GUIDE.md](MAGRITTE-CATEGORIES-GUIDE.md) file.
+For detailed information about each category, refer to the [Margritte-CATEGORIES-GUIDE.md](Margritte-CATEGORIES-GUIDE.md) file.
 
 ## Output
 
@@ -129,11 +129,11 @@ If you encounter issues:
 ## Next Steps
 
 - Explore different concepts and categories to see how they affect the generated artwork
-- Check the [MAGRITTE-CATEGORIES-GUIDE.md](MAGRITTE-CATEGORIES-GUIDE.md) for detailed information about each category
-- Read the [README-MAGRITTE-ART-GENERATOR.md](README-MAGRITTE-ART-GENERATOR.md) for a comprehensive overview of the system
+- Check the [Margritte-CATEGORIES-GUIDE.md](Margritte-CATEGORIES-GUIDE.md) for detailed information about each category
+- Read the [README-Margritte-ART-GENERATOR.md](README-Margritte-ART-GENERATOR.md) for a comprehensive overview of the system
 
 ## Resources
 
-- [René Magritte Museum](https://www.musee-magritte-museum.be)
-- [MoMA Collection: René Magritte](https://www.moma.org/artists/3692)
-- [Tate: René Magritte](https://www.tate.org.uk/art/artists/rene-magritte-1553)
+- [Studio Margritte Museum](https://www.musee-Margritte-museum.be)
+- [MoMA Collection: Studio Margritte](https://www.moma.org/artists/3692)
+- [Tate: Studio Margritte](https://www.tate.org.uk/art/artists/rene-Margritte-1553)

@@ -77,8 +77,8 @@ export interface ArtDirection {
     }[];
   };
 
-  // Magritte-specific Contexts
-  magritteContext?: {
+  // Margritte-specific Contexts
+  MargritteContext?: {
     philosophicalFramework: {
       beliefs: string[];
       theories: string[];

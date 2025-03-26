@@ -122,7 +122,7 @@
               "#FFFFFF"
             ],
             "color_descriptions": [
-              "Deep Magritte sky blue",
+              "Deep Margritte sky blue",
               "Atmospheric light blue",
               "Warm accent red",
               "Golden hour yellow",
@@ -145,14 +145,14 @@
       "count": 0,
       "images": []
     },
-    "magritte": {
+    "Margritte": {
       "count": 1,
       "images": [
         {
-          "name": "Surreal Dreamscape - A Magritte Study",
-          "description": "This Magritte-inspired scene explores the artist's themes of spatial impossibility and reality questioning through floating architectural elements. The composition employs his characteristic clear sky backdrop and precise rendering style, while introducing impossible architectural arrangements that challenge viewer perception.",
+          "name": "Surreal Dreamscape - A Margritte Study",
+          "description": "This Margritte-inspired scene explores the artist's themes of spatial impossibility and reality questioning through floating architectural elements. The composition employs his characteristic clear sky backdrop and precise rendering style, while introducing impossible architectural arrangements that challenge viewer perception.",
           "image": "ipfs://[hash_placeholder]/surreal-dreamscape.png",
-          "external_url": "https://artbot.gallery/magritte/scenes/surreal-dreamscape",
+          "external_url": "https://artbot.gallery/Margritte/scenes/surreal-dreamscape",
           "animation_url": "",
           "background_color": "#1A2980",
           "attributes": [
@@ -166,11 +166,11 @@
             },
             {
               "trait_type": "Category",
-              "value": "magritte"
+              "value": "Margritte"
             },
             {
               "trait_type": "Style",
-              "value": "magritte"
+              "value": "Margritte"
             },
             {
               "trait_type": "Subcategory",
@@ -218,7 +218,7 @@
                 "#FFFFFF"
               ],
               "color_descriptions": [
-                "Deep Magritte sky blue",
+                "Deep Margritte sky blue",
                 "Atmospheric light blue",
                 "Warm accent red",
                 "Golden hour yellow",
@@ -235,7 +235,7 @@
               "spatial_relationships": "Impossible architectural arrangements defying gravity"
             },
             "technique": {
-              "primary_method": "Digital painting with classical Magritte-style rendering",
+              "primary_method": "Digital painting with classical Margritte-style rendering",
               "materials": [
                 "digital medium",
                 "atmospheric effects",
@@ -264,7 +264,7 @@
             ],
             "collection": {
               "name": "ArtBot Reference Collection",
-              "family": "ArtBot Magritte Studies"
+              "family": "ArtBot Margritte Studies"
             },
             "source": {
               "origin": "Original creation",
@@ -386,8 +386,8 @@
       "count": 1,
       "images": [
         {
-          "name": "Cosmic Garden - A Magritte-Bourdin Fusion",
-          "description": "This hybrid study combines Bourdin's bold color choices and glossy aesthetics with Magritte's surreal spatial arrangements. The cosmic garden setting serves as a metaphysical space where fashion meets philosophy, creating a unique fusion of both artists' signatures.",
+          "name": "Cosmic Garden - A Margritte-Bourdin Fusion",
+          "description": "This hybrid study combines Bourdin's bold color choices and glossy aesthetics with Margritte's surreal spatial arrangements. The cosmic garden setting serves as a metaphysical space where fashion meets philosophy, creating a unique fusion of both artists' signatures.",
           "image": "ipfs://[hash_placeholder]/cosmic-garden.png",
           "external_url": "https://artbot.gallery/hybrid/studies/cosmic-garden",
           "animation_url": "",
@@ -565,7 +565,7 @@
     }
   },
   "style_metadata_templates": {
-    "magritte": {
+    "Margritte": {
       "style_elements": {
         "core_symbols": [],
         "visual_paradox": "",
@@ -612,17 +612,17 @@
   },
   "tags_index": {
     "surreal": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/magritte/scenes/surreal-dreamscape.png",
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/Margritte/scenes/surreal-dreamscape.png",
       "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/hybrid/studies/cosmic-garden.png"
     ],
     "dreamscape": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/magritte/scenes/surreal-dreamscape.png"
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/Margritte/scenes/surreal-dreamscape.png"
     ],
     "floating": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/magritte/scenes/surreal-dreamscape.png"
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/Margritte/scenes/surreal-dreamscape.png"
     ],
     "ethereal": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/magritte/scenes/surreal-dreamscape.png"
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/Margritte/scenes/surreal-dreamscape.png"
     ],
     "cosmic": [
       "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/hybrid/studies/cosmic-garden.png"
@@ -634,7 +634,7 @@
       "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/hybrid/studies/cosmic-garden.png"
     ],
     "digital": [
-      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/magritte/scenes/surreal-dreamscape.png",
+      "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/Margritte/scenes/surreal-dreamscape.png",
       "/Users/macbookpro16/Downloads/eliza-0.25.9/reference_images/hybrid/studies/cosmic-garden.png"
     ]
   }

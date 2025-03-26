@@ -17,6 +17,6 @@ tsc
 
 # Run the art generator with a simple concept
 echo "Running art generator with test concept..."
-node dist/src/defaultArtGenerator.js "Test concept for image download" "magritte_surrealism"
+node dist/src/defaultArtGenerator.js "Test concept for image download" "Margritte_surrealism"
 
 echo "Test completed. Check the output directory for results." 

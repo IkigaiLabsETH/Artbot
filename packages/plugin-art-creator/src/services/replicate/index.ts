@@ -24,7 +24,7 @@ export interface ReplicateConfig {
 export class ReplicateService extends Service {
   private readonly defaultConfig: ReplicateConfig = {
     apiUrl: 'https://api.replicate.com/v1',
-    defaultModel: 'stability-ai/sdxl'
+    defaultModel: 'black-forest-labs/flux-1.1-pro'
   };
 
   private config: ReplicateConfig;
@@ -45,8 +45,8 @@ export class ReplicateService extends Service {
     super();
     this.apiKey = config.apiKey || process.env.REPLICATE_API_KEY || '';
     this.defaultModel = config.defaultModel || process.env.DEFAULT_IMAGE_MODEL || FLUX_PRO_MODEL;
-    this.defaultWidth = config.defaultWidth || parseInt(process.env.IMAGE_WIDTH || '2048', 10);
-    this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '2048', 10);
+    this.defaultWidth = config.defaultWidth || parseInt(process.env.IMAGE_WIDTH || '1440', 10);
+    this.defaultHeight = config.defaultHeight || parseInt(process.env.IMAGE_HEIGHT || '1440', 10);
     this.defaultNumInferenceSteps = config.defaultNumInferenceSteps || parseInt(process.env.NUM_INFERENCE_STEPS || '200', 10);
     this.defaultGuidanceScale = config.defaultGuidanceScale || parseFloat(process.env.GUIDANCE_SCALE || '35.0');
   }

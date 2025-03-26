@@ -1,7 +1,7 @@
 /**
- * Multi-Agent Integration for Magritte Art Direction
+ * Multi-Agent Integration for Margritte Art Direction
  * 
- * This script demonstrates how to integrate the Magritte art direction files
+ * This script demonstrates how to integrate the Margritte art direction files
  * with a multi-agent system for enhanced art generation.
  */
 
@@ -94,7 +94,7 @@ class DirectorAgent {
   /**
    * Process a user request to generate artwork
    * @param {string} userPrompt - The user's input prompt
-   * @param {string} category - The Magritte category to use
+   * @param {string} category - The Margritte category to use
    * @returns {Object} The generated artwork and evaluation
    */
   async processRequest(userPrompt, category) {
@@ -240,7 +240,7 @@ class StylistAgent {
     const selectedColors = colorPalette.slice(0, 2);
     
     // Build the styled prompt
-    const styledPrompt = `${ideationResult.enhancedPrompt}, with ${selectedStyles.join(', ')}, using ${selectedColors.join(', ')}, ${moodAndTone}, in the style of René Magritte`;
+    const styledPrompt = `${ideationResult.enhancedPrompt}, with ${selectedStyles.join(', ')}, using ${selectedColors.join(', ')}, ${moodAndTone}, in the style of Studio Margritte`;
     
     // Build negative prompt
     const negativePrompt = (artDirection.avoidElements || []).join(', ');
@@ -282,7 +282,7 @@ class RefinerAgent {
     // Refine the prompt
     const refinedPrompt = `${stylingResult.styledPrompt}, with composition: ${selectedComposition.join(', ')}`;
     
-    // Set parameters appropriate for Magritte-style generation
+    // Set parameters appropriate for Margritte-style generation
     const parameters = {
       width: 1024,
       height: 1024,
@@ -349,7 +349,7 @@ class TasteAgent {
    * @param {string} artworkId - Unique identifier for the artwork
    * @param {Object} refinementResult - The result from the Refiner Agent
    * @param {Object} evaluationResult - The result from the Critic Agent
-   * @param {string} category - The Magritte category
+   * @param {string} category - The Margritte category
    * @returns {Object} The taste evaluation result
    */
   async evaluateArtwork(artworkId, refinementResult, evaluationResult, category) {
@@ -417,8 +417,8 @@ async function runMultiAgentExample() {
   // Create the Director agent
   const director = new DirectorAgent();
   
-  // Example 1: Classic Magritte
-  console.log('\n=== Generating Classic Magritte Artwork ===');
+  // Example 1: Classic Margritte
+  console.log('\n=== Generating Classic Margritte Artwork ===');
   await director.processRequest(
     "A man with a bowler hat and an apple",
     "classic"
@@ -447,7 +447,7 @@ async function generateCustomArt() {
   
   // List available categories
   const categories = artDirectionLoader.listCategories();
-  console.log('\nAvailable Magritte categories:');
+  console.log('\nAvailable Margritte categories:');
   categories.forEach((category, index) => {
     console.log(`${index + 1}. ${category}`);
   });
@@ -494,7 +494,7 @@ async function generateCustomArt() {
  * Main function to run the application
  */
 async function main() {
-  console.log('=== Magritte Art Generator ===');
+  console.log('=== Margritte Art Generator ===');
   console.log('1. Run examples');
   console.log('2. Generate custom art');
   console.log('3. Train taste model');
