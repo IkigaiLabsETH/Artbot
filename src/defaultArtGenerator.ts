@@ -60,81 +60,72 @@ const artDirection: ArtDirection = {
   styles: {
     magritte: {
       styleEmphasis: [
-        "surrealistComposition",
-        "meticulousPainting",
-        "enigmaticElements",
-        "symbolicJuxtaposition",
-        "dreamlikeAtmosphere",
-        "perfectMatteFinish",
-        "crystalClearEdges",
-        "pureColorFields",
-        "sourcelessIllumination",
-        "paradoxicalScenes",
-        "floatingElements",
-        "geometricForms",
-        "mysteriousComposition",
-        "symbolicElements",
-        "visualTension"
-      ],
-      visualElements: [
-        "floatingObjects",
-        "geometricForms",
-        "symbolicElements",
-        "mysteriousComposition",
-        "paradoxicalScenes",
-        "bowlerHat",
-        "pipe",
-        "greenApple",
-        "cloudySky",
-        "floatingRocks",
-        "mirrorReflections",
-        "wordPaintings",
-        "hiddenFaces",
-        "impossiblePerspectives",
-        "visualParadoxes"
-      ],
-      colorPalette: [
-        "#1E90FF", // Magritte's signature cerulean blue
-        "#000080", // Deep navy blue
-        "#F5F5F5", // Pure white porcelain
-        "#2F4F4F", // Dark slate grey
-        "#006400", // Deep forest green
-        "#004225", // Dark emerald
-        "#228B22", // Forest green
-        "#87CEEB", // Light sky blue
-        "#D3D3D3", // Light grey
-        "#E0E0E0"  // Light grey
-      ],
-      compositionGuidelines: [
-        "perfectlySmoothMatteFinish",
-        "crystalClearEdgeDefinition",
-        "pureUnmodulatedColorFields",
-        "sourcelessPerfectIllumination",
-        "cleanEnigmaticComposition",
-        "preciseGeometricForms",
-        "balancedVisualElements",
-        "paradoxicalArrangement",
-        "mysteriousAtmosphere",
-        "symbolicJuxtaposition"
+        "surrealist_technique",
+        "oil_painting_quality",
+        "philosophical_depth",
+        "symbolic_power",
+        "spatial_paradox",
+        "metaphysical_quality",
+        "belgian_style",
+        "academic_precision",
+        "surrealist_atmosphere"
       ],
       moodAndTone: "mysterious and enigmatic with a focus on surrealist juxtaposition and visual paradox",
+      colorPalette: [
+        "#1E90FF", // Magritte's signature cerulean blue
+        "#FFEFE0", // Magritte's porcelain flesh tone
+        "#E3C7B2", // Magritte's flesh shadow tone
+        "#363636", // Magritte's deep charcoal
+        "#FFFFFF", // Magritte's pure white
+        "#C8C8C8", // Magritte's silk grey
+        "#87CEEB", // Magritte's sky blue
+        "#B4B4B4"  // Magritte's neutral grey
+      ],
+      visualElements: [
+        "floating_objects",
+        "geometric_forms",
+        "symbolic_elements",
+        "mysterious_composition",
+        "paradoxical_scenes",
+        "bowler_hat",
+        "pipe",
+        "green_apple",
+        "cloudy_sky",
+        "floating_rocks",
+        "mirror_reflections",
+        "word_paintings",
+        "hidden_faces",
+        "impossible_perspectives",
+        "visual_paradoxes"
+      ],
+      compositionGuidelines: [
+        "perfectly_smooth_matte_finish",
+        "crystal_clear_edge_definition",
+        "pure_unmodulated_color_fields",
+        "sourceless_perfect_illumination",
+        "clean_enigmatic_composition",
+        "precise_geometric_forms",
+        "balanced_visual_elements",
+        "paradoxical_arrangement",
+        "mysterious_atmosphere",
+        "symbolic_juxtaposition"
+      ],
       modelConfig: {
         prompt_prefix: "Create in the surrealist style of René Magritte, with ",
-        prompt_suffix: ". Emphasize perfectly smooth matte finish, crystal clear edge definition, pure unmodulated color fields, and sourceless perfect illumination. Include surrealist juxtaposition and enigmatic composition. Use Magritte's signature cerulean blue sky and meticulous painting technique.",
-        negative_prompt: "photorealistic, 3D rendered, CGI, digital art, harsh lighting, dark themes, anime style, cartoon style, watercolor, hand-drawn, sketchy, rough edges, Studio Margritte, animation, whimsical, cute, fantasy",
+        prompt_suffix: ". Emphasize Magritte's signature elements: perfectly smooth matte finish, crystal clear edge definition, pure unmodulated color fields, sourceless perfect illumination, and philosophical paradox. Reference his masterpieces like 'The Son of Man', 'The Human Condition', and 'The False Mirror'.",
+        negative_prompt: "photorealistic, digital art, harsh, dark, gritty, moody, dystopian, horror, violent, grotesque, minimalist, abstract, rough, sketchy, unfinished, animation, cartoon, anime, hand-drawn, sketchy, rough edges",
         num_inference_steps: 50,
         guidance_scale: 12.0,
         style_emphasis: {
-          surrealistComposition: 0.95,
-          meticulousPainting: 0.95,
-          enigmaticElements: 0.90,
-          symbolicJuxtaposition: 0.90,
-          dreamlikeAtmosphere: 0.90,
-          perfectMatteFinish: 0.95,
-          crystalClearEdges: 0.95,
-          pureColorFields: 0.90,
-          sourcelessIllumination: 0.90,
-          paradoxicalScenes: 0.90
+          surrealist_technique: 0.95,
+          oil_painting_quality: 0.9,
+          philosophical_depth: 0.95,
+          symbolic_power: 0.9,
+          spatial_paradox: 0.95,
+          metaphysical_quality: 0.9,
+          belgian_style: 0.95,
+          academic_precision: 0.9,
+          surrealist_atmosphere: 0.95
         }
       }
     }

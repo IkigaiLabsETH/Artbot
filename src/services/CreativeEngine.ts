@@ -100,6 +100,16 @@ interface StyleParams {
     saturation: string;
     contrast: string;
     treatment: string;
+    combinations?: {
+      dayScene: string[];
+      nightScene: string[];
+      interiorScene: string[];
+    };
+    technique?: {
+      base: any;
+      glazing: any;
+      finishing: string;
+    };
   };
   elements?: {
     symbols?: string[];
@@ -248,263 +258,33 @@ const artisticParams = {
     }
   },
   Margritte: {
-    composition: {
-      arrangement: "metaphysical precision",
-      balance: "philosophical symmetry",
-      perspective: "paradoxical space",
-      depth: "flat yet infinite",
-      scale: "reality-defying proportions",
-      cropping: "window-like framing",
-      framing: "theatrical presentation",
-      spacing: "symbolic isolation",
-      layering: "reality planes intersection"
+    prompt_prefix: "Create a surrealist portrait in Magritte's style with distinctive clothing and accessories. The portrait should feature ",
+    prompt_suffix: `. The image must epitomize surrealist portraiture:
+    - Perfectly smooth matte finish
+    - Crystal clear edge definition
+    - Pure unmodulated color fields
+    - Sourceless perfect illumination
+    - Philosophical paradox
+    - Metaphysical depth
+    - Symbolic power
+    - Spatial contradictions
+    - Academic precision
+    - Belgian surrealist style`,
+    negative_prompt: "photorealistic, digital art, harsh, dark, gritty, moody, dystopian, horror, violent, grotesque, minimalist, abstract, rough, sketchy, unfinished, animation, cartoon, anime, hand-drawn, sketchy, rough edges",
+    num_inference_steps: 50,
+    guidance_scale: 12.0,
+    style_emphasis: {
+      surrealist_technique: 0.95,
+      oil_painting_quality: 0.9,
+      philosophical_depth: 0.95,
+      symbolic_power: 0.9,
+      spatial_paradox: 0.95,
+      metaphysical_quality: 0.9,
+      belgian_style: 0.95,
+      academic_precision: 0.9,
+      surrealist_atmosphere: 0.95
     },
-    lighting: {
-      style: "crystalline illumination",
-      direction: "impossible light sources",
-      shadows: "metaphysical shadows",
-      highlights: "surreal accents",
-      mood: "dreamlike atmosphere",
-      timeOfDay: "eternal twilight",
-      contrast: "reality versus illusion",
-      quality: "pristine clarity"
-    },
-    color: {
-      palette: [
-        "sky blue",
-        "cloudy white",
-        "deep black",
-        "forest green",
-        "warm brown",
-        "evening blue",
-        "stone grey",
-        "blood red",
-        "pale flesh"
-      ],
-      saturation: "naturalistic yet surreal",
-      contrast: "subtle yet striking",
-      treatment: "flat oil painting technique",
-      harmony: "classical restraint",
-      symbolism: "color as metaphor"
-    },
-    elements: {
-      symbols: [
-        "vintage fedoras",
-        "classic newsboy caps",
-        "wool beanies",
-        "wide-brim felt hats",
-        "flat caps",
-        "slouchy knit caps",
-        "porkpie hats",
-        "green apples",
-        "clouds",
-        "pipes",
-        "mirrors",
-        "curtains",
-        "windows",
-        "birds",
-        "men in suits",
-        "floating rocks"
-      ],
-      settings: [
-        "infinite skies",
-        "windowframes",
-        "empty rooms",
-        "belgian landscapes",
-        "seaside walls",
-        "mysterious doorways",
-        "floating chambers",
-        "impossible interiors"
-      ],
-      objects: [
-        "floating stones",
-        "curtains",
-        "birds",
-        "bells",
-        "trees",
-        "picture frames",
-        "easels",
-        "chairs",
-        "musical instruments"
-      ],
-      paradoxes: [
-        "day-night coexistence",
-        "inside-outside fusion",
-        "scale contradictions",
-        "object transformations",
-        "reality-reflection inversions"
-      ],
-      skies: [
-        "daytime stars",
-        "impossible clouds",
-        "multiple moons",
-        "gradient twilight",
-        "luminous darkness"
-      ],
-      windows: [
-        "views to nowhere",
-        "impossible perspectives",
-        "reality portals",
-        "frame within frame",
-        "mirror reflections"
-      ]
-    },
-    techniques: {
-      painting: [
-        "flat color fields",
-        "sharp edges",
-        "precise brushwork",
-        "oil glazing",
-        "seamless blending",
-        "photorealistic detail",
-        "controlled texture"
-      ],
-      surrealism: [
-        "object displacement",
-        "scale distortion",
-        "impossible juxtapositions",
-        "reality questioning",
-        "dream logic",
-        "symbolic transformation"
-      ],
-      philosophy: [
-        "visual paradox",
-        "reality questioning",
-        "object poetry",
-        "meaning subversion",
-        "identity exploration",
-        "existence contemplation"
-      ],
-      composition: [
-        "theatrical staging",
-        "central focus",
-        "window framing",
-        "geometric balance",
-        "symbolic placement",
-        "depth illusion"
-      ],
-      lighting: [
-        "day-for-night",
-        "impossible shadows",
-        "crystalline clarity",
-        "metaphysical glow",
-        "eternal twilight",
-        "sourceless illumination"
-      ]
-    },
-    references: {
-      keyWorks: [
-        // 1920s - Early Surrealist Period
-        "The Lost Jockey (1926) - First surrealist work, featuring musical notes and trees in impossible scale",
-        "The Central Story (1927) - Early word-image exploration with floating objects",
-        "The Meaning of Night (1927) - Early nocturnal themes with mysterious figures",
-        "Discovery (1927) - First use of hybrid figures and metamorphosis",
-        "The False Mirror (1929) - Iconic eye filled with clouded sky, exploring perception",
-        "The Treachery of Images (1929) - Famous pipe painting with 'Ceci n'est pas une pipe'",
-        "Words and Images (1929) - Seminal work exploring language and visual representation",
-        
-        // 1930s - Mature Development
-        "The Key of Dreams (1930) - Complex word-object relationships and symbolic meanings",
-        "The Annunciation (1930) - Curtain and bell motifs in theatrical setting",
-        "The Human Condition (1933) - Masterful canvas-window paradox, reality versus representation",
-        "The Rape (1934) - Provocative face-torso transformation, identity exploration",
-        "Collective Invention (1934) - Hybrid creature theme, half-fish half-human",
-        "The Red Model (1935) - Transformative boot-foot fusion, everyday object surrealism",
-        "La Clef des Songes (1935) - Systematic object-word mismatches and associations",
-        "Not to be Reproduced (1937) - Mirror reflection paradox with repeated back view",
-        "Time Transfixed (1938) - Iconic locomotive emerging from fireplace",
-        "The Victory (1939) - Clouds transformed into stone, material paradox",
-        
-        // 1940s - Wartime Evolution
-        "The Return of the Flame (1943) - Fire transforming into wood in reverse alchemy",
-        "The Break in the Clouds (1942) - Bird-cloud fusion in impossible sky",
-        "The Misanthropes (1942) - Figure wrapped in fabric, identity concealment",
-        "Memory of a Journey (1944) - Recursive door-within-door composition",
-        "The Liberator (1947) - Bird-leaf hybrid in metamorphosis",
-        "The Fair Captive (1947) - Fire against landscape, element displacement",
-        "The Cicerone (1947) - Giant flower dominating interior space",
-        
-        // 1950s - Classical Period
-        "The Empire of Light Series (1953-54) - Day-night paradox in single scene",
-        "Golconda (1953) - Raining businessmen in bowler hats, social commentary",
-        "The Listening Room (1952) - Giant apple consuming interior space",
-        "The Month of the Grape Harvest (1959) - Cloud-curtain transformation",
-        "The Castle of the Pyrenees (1959) - Floating castle on rock above sea",
-        "The Battle of the Argonne (1959) - Tree-leaf paradox, nature transformation",
-        
-        // 1960s - Late Masterworks
-        "The Son of Man (1964) - Iconic businessman with floating apple obscuring face",
-        "The Great War (1964) - Face hidden by hovering flower, identity theme",
-        "The Blank Signature (1965) - Horse-rider fusion in landscape",
-        "The Beautiful Relations (1967) - Cloud-stone hybrid floating in sky",
-        "The Art of Living (1967) - Bird-leaf transformation in window",
-        "The Beautiful World (1962) - Giant rose filling room interior",
-        "The Good Connections (1963) - Glass shattering into sky fragments",
-        "The Clear Ideas (1958) - Glass transforming into sky, transparency theme"
-      ],
-      techniques: [
-        // Signature Techniques
-        "Precise oil painting technique from 'The Son of Man' (1964) - Photorealistic detail with surreal elements",
-        "Sky-ground relationship from 'The Empire of Light' (1953-54) - Day-night coexistence",
-        "Multiple identical elements from 'Golconda' (1953) - Pattern repetition",
-        "Frame-within-frame from 'The Human Condition' (1933) - Reality layering",
-        "Object displacement from 'Time Transfixed' (1938) - Impossible situations",
-        "Scale manipulation from 'Personal Values' (1952) - Object size distortion",
-        "Reality questioning from 'The Treachery of Images' (1929) - Image-text paradox",
-        
-        // Advanced Techniques
-        "Word-image juxtaposition from 'The Key of Dreams' (1930) - Semantic displacement",
-        "Day-night coexistence from 'The Empire of Light' series - Temporal paradox",
-        "Object transformation from 'The Red Model' (1935) - Material metamorphosis",
-        "Spatial paradox from 'The Human Condition' series - Reality versus representation",
-        "Material transmutation from 'The Castle of the Pyrenees' (1959) - Substance transformation",
-        "Figure multiplication from 'Golconda' (1953) - Pattern and repetition",
-        "Natural-artificial fusion from 'The Liberator' (1947) - Hybrid forms",
-        
-        // Compositional Techniques
-        "Window framing from 'The Fair Captive' (1947) - View manipulation",
-        "Mirror effects from 'Not to be Reproduced' (1937) - Reflection paradox",
-        "Scale distortion from 'The Listening Room' (1952) - Object-space relationship",
-        "Object isolation from 'The Son of Man' (1964) - Focus and concealment",
-        "Curtain motifs from 'The Central Story' (1927) - Theater and reality",
-        "Cloud-stone hybridization from 'The Victory' (1939) - Material transformation",
-        "Interior-exterior blending from 'The Month of the Grape Harvest' (1959) - Space fusion"
-      ],
-      periods: {
-        early: "1926-1929 - Establishment of surrealist vocabulary and foundational techniques",
-        mature: "1930-1939 - Development of major themes and sophisticated paradoxes",
-        wartime: "1940-1945 - Evolution of style during WWII with darker undertones",
-        postwar: "1946-1952 - Return to classic themes with new complexity",
-        late: "1953-1967 - Refinement of signature style and masterwork creation"
-      },
-      themes: {
-        paradox: [
-          "The Empire of Light Series (1953-54) - Day-night coexistence",
-          "Time Transfixed (1938) - Object displacement",
-          "The Human Condition Series (1933-35) - Reality versus representation"
-        ],
-        transformation: [
-          "The Red Model (1935) - Object metamorphosis",
-          "Collective Invention (1934) - Hybrid creatures",
-          "The Liberator (1947) - Natural transformation"
-        ],
-        displacement: [
-          "Personal Values (1952) - Scale and context",
-          "The Listening Room (1952) - Size and space",
-          "Golconda (1953) - Figure and environment"
-        ],
-        concealment: [
-          "The Son of Man (1964) - Hidden identity",
-          "The Central Story (1927) - Obscured meaning",
-          "The Great War (1964) - Covered face"
-        ],
-        wordImage: [
-          "The Treachery of Images (1929) - Image-text relationship",
-          "The Key of Dreams (1930) - Object-word association",
-          "Words and Images (1929) - Language and representation"
-        ]
-      }
-    }
+    color_system: {}
   }
 };
 
@@ -638,6 +418,140 @@ const Margritte_PORTRAIT_PALETTE = {
     }
   }
 };
+
+// Define Magritte's comprehensive color system
+const MAGRITTE_COLOR_SYSTEM = {
+  sky: {
+    day: {
+      primary: "#87CEEB",  // Signature cerulean blue
+      light: "#B0E2FF",    // Morning light
+      deep: "#4682B4",     // Deep afternoon
+      description: "Magritte's iconic day sky blue, used in 'The Empire of Light' series"
+    },
+    night: {
+      primary: "#1B2631", // Deep night
+      dark: "#0B0B1A",    // Darkest night
+      stars: "#E6E6FA",   // Star highlights
+      description: "Night sky tones from 'The Empire of Light' series"
+    },
+    twilight: {
+      primary: "#4B0082", // Deep twilight
+      transition: "#6A5ACD", // Dusk transition
+      description: "Transitional sky colors from day-night paradox works"
+    }
+  },
+  flesh: {
+    light: {
+      primary: "#FFEFE0",   // Main porcelain tone
+      shadow: "#E3C7B2",    // Shadow areas
+      highlight: "#FFF5EA", // Bright highlights
+      description: "Magritte's signature flesh tones for figures and portraits"
+    },
+    dark: {
+      primary: "#D4A588",   // Darker skin tone
+      shadow: "#B38B6D",    // Shadow areas
+      highlight: "#E5B89E", // Bright highlights
+      description: "Alternative flesh tones for varied figures"
+    }
+  },
+  clothing: {
+    suit: {
+      primary: "#363636",    // Classic dark suit
+      shadow: "#1A1A1A",     // Deep shadows
+      highlight: "#4D4D4D",  // Light catching edges
+      description: "Magritte's iconic businessman suit colors"
+    },
+    overcoat: {
+      primary: "#2F4F4F",    // Dark overcoat
+      shadow: "#1C2841",     // Deep shadows
+      highlight: "#405C60",  // Light areas
+      description: "Traditional Belgian overcoat colors"
+    },
+    accessories: {
+      bowlerHat: "#0C0C0C",  // Classic bowler hat
+      tie: "#000000",        // Traditional black tie
+      collar: "#FFFFFF",     // Crisp white collar
+      description: "Essential Magritte character accessories"
+    }
+  },
+  environment: {
+    walls: {
+      primary: "#C8C8C8",    // Standard wall
+      shadow: "#A8A8A8",     // Shadow areas
+      highlight: "#E0E0E0",  // Light areas
+      description: "Typical interior wall colors in Magritte works"
+    },
+    wood: {
+      primary: "#8B4513",    // Wood elements
+      dark: "#654321",       // Dark wood
+      light: "#DEB887",      // Light wood
+      description: "Wood tones for frames and furniture"
+    },
+    stone: {
+      primary: "#B4B4B4",    // Stone elements
+      shadow: "#808080",     // Shadow areas
+      highlight: "#D3D3D3",  // Light areas
+      description: "Stone textures in architectural elements"
+    }
+  },
+  symbolic: {
+    apple: {
+      primary: "#228B22",    // Green apple
+      shadow: "#006400",     // Shadow areas
+      highlight: "#32CD32",  // Light areas
+      description: "Magritte's iconic green apple color"
+    },
+    sky_objects: {
+      primary: "#B8D0E8",    // Floating objects
+      shadow: "#8CA6C5",     // Shadow areas
+      highlight: "#D4E5F7",  // Light areas
+      description: "Colors for objects against sky backgrounds"
+    },
+    curtain: {
+      primary: "#800020",    // Rich curtain red
+      shadow: "#4B0015",     // Deep shadows
+      highlight: "#B22222",  // Light areas
+      description: "Theater curtain colors from various works"
+    }
+  },
+  atmospheric: {
+    mist: {
+      primary: "#E6E6FA",    // Light mist
+      dense: "#B8B8DC",      // Dense fog
+      thin: "#F0F0FF",       // Thin atmospheric haze
+      description: "Atmospheric effects in landscape elements"
+    },
+    clouds: {
+      primary: "#FFFFFF",    // Bright clouds
+      shadow: "#E6E6E6",     // Cloud shadows
+      dark: "#C0C0C0",       // Storm clouds
+      description: "Cloud formations in sky scenes"
+    },
+    reflection: {
+      primary: "#ADD8E6",    // Water reflection
+      dark: "#5F9EA0",       // Deep reflection
+      bright: "#B0E0E6",     // Bright reflection
+      description: "Mirror and water reflection colors"
+    }
+  },
+  technique: {
+    underpainting: {
+      primary: "#F5F5DC",    // Base layer
+      warm: "#FFE4C4",       // Warm undertone
+      cool: "#F0F8FF",       // Cool undertone
+      description: "Traditional Belgian academic underpainting colors"
+    },
+    glazing: {
+      warm: "rgba(255, 160, 122, 0.2)",  // Warm glaze
+      cool: "rgba(176, 224, 230, 0.2)",   // Cool glaze
+      neutral: "rgba(245, 245, 245, 0.2)", // Neutral glaze
+      description: "Glazing colors for subtle effects"
+    }
+  }
+};
+
+// Update the artisticParams.Margritte color configuration
+artisticParams.Margritte.color_system = MAGRITTE_COLOR_SYSTEM;
 
 export class CreativeEngine {
   private state: CreativeState;
@@ -1841,46 +1755,39 @@ export class CreativeEngine {
     try {
       const currentStyle = artisticParams.Margritte;
 
-      // Get random visual elements from different categories
-      const selectedElements = [
-        ...currentStyle.elements.objects,
-        ...currentStyle.elements.symbols,
-        ...currentStyle.elements.settings
-      ].sort(() => Math.random() - 0.5)
+      // Define Magritte-specific elements
+      const magritteElements = {
+        visual: [
+          "bowler hat",
+          "green apple",
+          "floating objects",
+          "mysterious window",
+          "paradoxical door"
+        ],
+        compositions: [
+          "perfect central positioning",
+          "mathematical balance",
+          "mysterious depth"
+        ],
+        techniques: [
+          "perfectly smooth matte finish",
+          "crystal clear edge definition",
+          "pure unmodulated color fields"
+        ]
+      };
+
+      // Select random elements
+      const selectedElements = magritteElements.visual
+        .sort(() => Math.random() - 0.5)
         .slice(0, 3);
 
-      // Get composition elements
-      const selectedCompositions = [
-        currentStyle.composition.arrangement,
-        currentStyle.composition.balance,
-        currentStyle.composition.perspective,
-        currentStyle.composition.depth,
-        currentStyle.composition.framing
-      ].filter(Boolean)
+      const selectedCompositions = magritteElements.compositions
         .sort(() => Math.random() - 0.5)
         .slice(0, 2);
 
-      // Get composition techniques
-      const selectedTechniques = (currentStyle.techniques.composition || [])
+      const selectedTechniques = magritteElements.techniques
         .sort(() => Math.random() - 0.5)
         .slice(0, 3);
-
-      // Select a specific Margritte category for focused style
-      const MargritteCategories = [
-        'object_displacement',
-        'window_paradox',
-        'scale_distortion',
-        'time_paradox',
-        'identity_concealment',
-        'word_image_paradox',
-        'metamorphosis',
-        'spatial_illusion',
-        'mirror_paradox',
-        'object_multiplication'
-      ];
-      
-      const selectedCategory = MargritteCategories[Math.floor(Math.random() * MargritteCategories.length)];
-      const categoryStyle = Margritte_CATEGORIES[selectedCategory];
 
       // Generate the prompt using the imported function
       const { prompt: basePrompt, creativeProcess } = await generateConceptualPrompt(
@@ -1892,170 +1799,100 @@ export class CreativeEngine {
         }
       );
 
-      // Enhance the prompt with Margritte-specific elements
-      const enhancedPrompt = `Create a Belgian surrealist oil painting in the exact style of Studio Margritte, capturing his unique 1940s-1950s period technique. The scene should depict: ${basePrompt}
+      // Enhance the prompt with Magritte-specific elements
+      const enhancedPrompt = `Create a Belgian surrealist oil painting in the exact style of René Magritte. The scene should depict: ${basePrompt}
 
-Essential Margritte Elements:
+Essential Magritte Elements:
 1. Core Visual Elements:
    - Primary elements: ${selectedElements.join(', ')}
    - Composition: ${selectedCompositions.join(', ')}
    - Techniques: ${selectedTechniques.join(', ')}
-   - Category focus: ${categoryStyle.styleEmphasis.join(', ')}
 
-2. Margritte's Oil Painting Technique:
-   - Thin, precise application of oil paint
-   - Smooth, even surfaces with minimal visible brushwork
-   - Subtle glazing for atmospheric effects
-   - Characteristic Belgian academic painting style
-   - Careful layering for depth without texture
-   - Traditional canvas preparation showing through
+2. Technical Requirements:
+   - Perfect edge definition
+   - Unmodulated color fields
+   - Pristine surface quality
+   - Mathematical composition
+   - Precise geometric forms
+   - Crystal clear execution
 
-3. Margritte's Signature Lighting:
-   - Style: ${currentStyle.lighting.style}
-   - Direction: ${currentStyle.lighting.direction}
-   - Shadows: ${currentStyle.lighting.shadows}
-   - Highlights: ${currentStyle.lighting.highlights}
-   - Mood: ${currentStyle.lighting.mood}
+3. Lighting:
    - Soft, diffused northern European light
+   - Perfect illumination without visible source
+   - Subtle shadows with precise edges
+   - Even, controlled highlights
+   - Mysterious atmospheric quality
 
-4. Philosophical Framework (${selectedCategory}):
-   - Beliefs: ${categoryStyle.philosophicalFramework.beliefs.join(', ')}
-   - Visual Dialectics: ${categoryStyle.philosophicalFramework.visualDialectics.join(', ')}
-   - Paradoxes: ${categoryStyle.philosophicalFramework.paradoxes.join(', ')}
-
-5. Technical Requirements:
-   - ${categoryStyle.technicalExecution.technicalRequirements.join('\n   - ')}
-
-6. Margritte's Color Approach:
-   - Limited, controlled palette using ${Margritte_PORTRAIT_PALETTE.clothing.suit.color} for dark elements
-   - Muted, naturalistic colors with ${Margritte_PORTRAIT_PALETTE.background.sky.color} for skies
-   - Subtle atmospheric perspective
-   - Cool sky blues and warm earth tones
-   - Precise value relationships
-   - Slightly desaturated overall effect
-
-7. Composition Guidelines:
-   - ${categoryStyle.compositionGuidelines.join('\n   - ')}
-
-Reference specific Margritte works:
-- 'The Empire of Light' (1953-54) for day-night paradox
-- 'The Human Condition' (1933) for painting-within-painting technique
-- 'Personal Values' (1952) for scale relationships
-- 'The Listening Room' (1952) for object-space relationships
-- 'Time Transfixed' (1938) for impossible juxtapositions
-
-The final image should embody Margritte's precise, academic painting technique - not photorealistic, but traditionally painted with his characteristic Belgian surrealist style.`;
-
-      // Prepare Margritte-specific generation parameters
-      const generationParams = {
-        prompt: enhancedPrompt,
-        negative_prompt: [
-          // Anti-modern elements
-          "modern", "contemporary", "digital", "photographic", "camera", "lens",
-          "high resolution", "ultra detailed", "4k", "8k", "hyperrealistic",
-          
-          // Anti-texture elements
-          "impasto", "heavy texture", "thick paint", "visible brushstrokes",
-          "rough surface", "expressive strokes", "painterly", "loose brushwork",
-          
-          // Anti-style elements
-          "impressionistic", "expressionistic", "abstract", "cubist",
-          "pop art", "street art", "contemporary art", "concept art",
-          
-          // Anti-digital elements
-          "3d", "CGI", "digital art", "artificial", "photoshop", "filtered",
-          "instagram", "social media", "digital effects", "rendered",
-          
-          // Anti-execution elements
-          "messy", "chaotic", "random", "spontaneous", "gestural",
-          "unfinished", "sketchy", "experimental", "accidental",
-          
-          // Anti-atmosphere elements
-          "foggy", "misty", "atmospheric blur", "soft focus", "dreamy blur",
-          "lens blur", "bokeh", "motion blur", "camera effects"
-        ].join(", "),
-        num_inference_steps: 80,
-        guidance_scale: 12.0,
-        width: 1024,
-        height: 1024,
-        scheduler: "DPMSolverMultistep",
-        custom_style_params: {
-          ...categoryStyle.technicalExecution,
-          ...categoryStyle.philosophicalFramework,
-          flatness: 0.7,
-          edge_precision: 0.85,
-          surface_smoothness: 0.75,
-          atmospheric_clarity: 0.9,
-          dream_logic: 0.95,
-          technical_quality: 0.9,
-          detail_preservation: 0.85,
-          color_accuracy: 0.9,
-          lighting_control: 0.9,
-          composition_balance: 0.95,
-          surrealist_technique: 0.95,
-          oil_painting_quality: 0.9,
-          philosophical_depth: 0.95,
-          symbolic_power: 0.9,
-          spatial_paradox: 0.95,
-          metaphysical_quality: 0.9,
-          belgian_style: 0.95,
-          academic_precision: 0.9,
-          surrealist_atmosphere: 0.95,
-          emphasis: {
-            surrealist_technique: 0.95,
-            oil_painting_quality: 0.9,
-            philosophical_depth: 0.95,
-            symbolic_power: 0.9,
-            spatial_paradox: 0.95,
-            metaphysical_quality: 0.9,
-            belgian_style: 0.95,
-            academic_precision: 0.9,
-            surrealist_atmosphere: 0.95
-          }
-        },
-        style_preset: "traditional_oil_painting",
-        image_style: "belgian_academic",
-        style_strength: 0.9,
-        quality: "balanced",
-        high_res_results: true,
-        enhance_face_detail: false,
-        enhance_background_detail: false,
-        denoise_strength: 0.4,
-        upscale_strength: 0.6,
-        color_coherence: "natural",
-        color_match: "balanced",
-        saturation: 0.65,
-        contrast: 0.75,
-        oil_paint_simulation: {
-          brush_texture: 0.25,
-          paint_thickness: 0.2,
-          glaze_layers: 0.35,
-          surface_variation: 0.2,
-          edge_softness: 0.3,
-          paint_transparency: 0.25,
-          canvas_texture: 0.15,
-          paint_buildup: 0.2,
-          brush_stroke_direction: 0.3,
-          paint_consistency: 0.8
-        }
-      };
+The final image should embody Magritte's precise, academic painting technique.`;
 
       // Generate the image
       const result = await this.replicateService.runPrediction(
         undefined,
-        generationParams
+        {
+          prompt: enhancedPrompt,
+          negative_prompt: currentStyle.negative_prompt,
+          num_inference_steps: currentStyle.num_inference_steps,
+          guidance_scale: currentStyle.guidance_scale,
+          width: 1024,
+          height: 1024
+        }
       );
 
       return {
         imageUrl: result?.output?.[0] || null,
         prompt: enhancedPrompt,
         creativeProcess,
-        style: 'Margritte',
+        style: 'Magritte',
         artisticDetails: {
-          ...currentStyle,
-          category: selectedCategory,
-          philosophicalFramework: categoryStyle.philosophicalFramework,
-          technicalExecution: categoryStyle.technicalExecution
+          composition: {
+            arrangement: selectedCompositions[0] || "perfect central positioning",
+            balance: selectedCompositions[1] || "mathematical balance",
+            perspective: "traditional Belgian academic",
+            depth: "metaphysical depth"
+          },
+          lighting: {
+            style: "sourceless perfect illumination",
+            direction: "diffused northern European",
+            shadows: "precise edge definition",
+            highlights: "controlled unmodulated",
+            mood: "mysterious and contemplative"
+          },
+          color: {
+            palette: [
+              MAGRITTE_COLOR_SYSTEM.sky.day.primary,        // Signature cerulean blue
+              MAGRITTE_COLOR_SYSTEM.flesh.light.primary,    // Main porcelain tone
+              MAGRITTE_COLOR_SYSTEM.clothing.suit.primary,  // Classic dark suit
+              MAGRITTE_COLOR_SYSTEM.environment.walls.primary, // Standard wall
+              MAGRITTE_COLOR_SYSTEM.symbolic.apple.primary, // Green apple
+              MAGRITTE_COLOR_SYSTEM.atmospheric.clouds.primary, // Bright clouds
+              MAGRITTE_COLOR_SYSTEM.technique.underpainting.primary // Base layer
+            ],
+            combinations: {
+              dayScene: [
+                MAGRITTE_COLOR_SYSTEM.sky.day.primary,
+                MAGRITTE_COLOR_SYSTEM.atmospheric.clouds.primary,
+                MAGRITTE_COLOR_SYSTEM.flesh.light.primary
+              ],
+              nightScene: [
+                MAGRITTE_COLOR_SYSTEM.sky.night.primary,
+                MAGRITTE_COLOR_SYSTEM.sky.night.stars,
+                MAGRITTE_COLOR_SYSTEM.clothing.suit.primary
+              ],
+              interiorScene: [
+                MAGRITTE_COLOR_SYSTEM.environment.walls.primary,
+                MAGRITTE_COLOR_SYSTEM.environment.wood.primary,
+                MAGRITTE_COLOR_SYSTEM.symbolic.curtain.primary
+              ]
+            },
+            saturation: "controlled - typical of Belgian academic style",
+            contrast: "precise value relationships with clear distinction between elements",
+            treatment: "pure unmodulated fields with perfect edge definition",
+            technique: {
+              base: MAGRITTE_COLOR_SYSTEM.technique.underpainting,
+              glazing: MAGRITTE_COLOR_SYSTEM.technique.glazing,
+              finishing: "minimal surface texture with perfect matte finish"
+            }
+          }
         }
       };
     } catch (error) {
