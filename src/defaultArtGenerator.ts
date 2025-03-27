@@ -240,6 +240,171 @@ const MargritteCategories = [
   'bear_pfp_desertbot',      // Desert robotics expert
   'bear_pfp_junglearch',     // Lost city archaeology specialist
   
+  // New Extreme Adventure Series
+  'bear_pfp_basejumper',     // BASE jumping specialist with wingsuit
+  'bear_pfp_freediver',      // Deep freediving explorer
+  'bear_pfp_ultrarunner',    // Ultra-distance trail runner
+  'bear_pfp_iceclimber',     // Technical ice climbing expert
+  'bear_pfp_bigwave',        // Big wave surfing specialist
+  'bear_pfp_skyrunner',      // High-altitude mountain runner
+  'bear_pfp_wingfoiler',     // Wing foiling water sport expert
+  'bear_pfp_speedflyer',     // Speed flying adrenaline specialist
+  'bear_pfp_iceswimmer',     // Extreme ice swimming athlete
+  'bear_pfp_canyoneer',      // Technical canyon descent expert
+  'bear_pfp_snowkiter',      // Snow kiting adventurer
+  'bear_pfp_hydrofoiler',    // Hydrofoil board rider
+  'bear_pfp_skydancer',      // Aerial dance performer
+  'bear_pfp_coasteer',       // Coastal adventure explorer
+  'bear_pfp_volcanoboard',   // Volcano boarding specialist
+  'bear_pfp_glacierboard',   // Glacier boarding expert
+  'bear_pfp_sandboarder',    // Desert dune sandboarding master
+  'bear_pfp_iceclimber',     // Technical ice climbing specialist
+  'bear_pfp_avalanche',      // Avalanche research expert
+  'bear_pfp_desertexplor',   // Deep desert expedition leader
+  'bear_pfp_jungleroute',    // Jungle route finder
+  'bear_pfp_cavephotog',     // Cave photography specialist
+  'bear_pfp_polarnight',     // Polar night explorer
+  'bear_pfp_tropicstorm',    // Tropical storm chaser
+  'bear_pfp_tidepools',      // Extreme tide pool researcher
+  'bear_pfp_geothermal',     // Geothermal vent explorer
+  'bear_pfp_desertarch',     // Desert archaeology specialist
+  'bear_pfp_rainforest',     // Rainforest canopy researcher
+  'bear_pfp_permafrost',     // Permafrost research expert
+  'bear_pfp_seamount',       // Underwater seamount explorer
+  'bear_pfp_polarlights',    // Aurora research specialist
+  'bear_pfp_desertnight',    // Night desert navigator
+  'bear_pfp_cavebio',        // Cave biology researcher
+  'bear_pfp_glacierarch',    // Glacier archaeology expert
+  'bear_pfp_volcanogas',     // Volcanic gas researcher
+  'bear_pfp_junglemed',      // Jungle medicine explorer
+  'bear_pfp_polarbot',       // Polar robotics specialist
+  'bear_pfp_cavewater',      // Underground river explorer
+  'bear_pfp_desertbot',      // Desert robotics expert
+  'bear_pfp_junglearch',     // Lost city archaeology specialist,
+  
+  // New Adventure Headwear
+  "base jumping helmet with camera mount",
+  "freediving mask with depth gauge",
+  "ultra-running hydration pack",
+  "technical ice climbing helmet",
+  "big wave surfing impact helmet",
+  "skyrunning lightweight cap",
+  "wing foiling safety helmet",
+  "speedflying aerodynamic helmet",
+  "ice swimming thermal cap",
+  "canyoneering safety helmet",
+  "snow kiting goggles",
+  "hydrofoil racing helmet",
+  "aerial dance headpiece",
+  "coasteering safety helmet",
+  "volcano boarding heat shield",
+  "glacier boarding protective cap",
+  "sandboarding desert goggles",
+  "avalanche research helmet",
+  "desert exploration headgear",
+  "jungle navigation visor",
+  "cave photography headlamp",
+  "polar night navigation goggles",
+  "tropical storm research helmet",
+  "tide pool exploration visor",
+  "geothermal vent protective mask",
+  "desert archaeology sun hat",
+  "rainforest canopy climbing helmet",
+  "permafrost research headgear",
+  "seamount diving helmet",
+  "aurora research night vision",
+  "desert night navigation goggles",
+  "cave biology research headlamp",
+  "glacier archaeology protective cap",
+  "volcanic gas research mask",
+  "jungle medicine explorer's hat",
+  "polar robotics control helmet",
+  "cave water exploration headgear",
+  "desert robotics cooling helmet",
+  "jungle archaeology sun visor",
+  
+  // New Adventure Accessories
+  "base jumping altimeter",
+  "freediving depth computer",
+  "ultra-running GPS tracker",
+  "ice climbing ice screws",
+  "big wave surfboard leash",
+  "skyrunning hydration system",
+  "wing foil control bar",
+  "speedflying variometer",
+  "ice swimming thermometer",
+  "canyoneering rope system",
+  "snow kite control bar",
+  "hydrofoil trim control",
+  "aerial dance apparatus",
+  "coasteering navigation tool",
+  "volcano boarding heat shield",
+  "glacier boarding crampons",
+  "sandboarding wax kit",
+  "avalanche transceiver",
+  "desert navigation compass",
+  "jungle machete",
+  "cave photography equipment",
+  "polar night navigation system",
+  "tropical storm measurement tools",
+  "tide pool research kit",
+  "geothermal temperature probe",
+  "desert archaeology tools",
+  "rainforest canopy climbing gear",
+  "permafrost coring equipment",
+  "seamount sonar system",
+  "aurora research spectrometer",
+  "desert night vision goggles",
+  "cave biology sampling kit",
+  "glacier archaeology tools",
+  "volcanic gas analyzer",
+  "jungle medicine kit",
+  "polar robotics controller",
+  "cave water testing equipment",
+  "desert robotics cooling system",
+  "jungle archaeology mapping tools",
+  
+  // New Adventure Elements
+  "base jumping parachute",
+  "freediving fins",
+  "ultra-running trail markers",
+  "ice climbing picks",
+  "big wave surfboard",
+  "skyrunning poles",
+  "wing foil board",
+  "speedflying wing",
+  "ice swimming thermometer",
+  "canyoneering rope system",
+  "snow kite",
+  "hydrofoil board",
+  "aerial dance silk",
+  "coasteering gear set",
+  "volcano boarding heat shield",
+  "glacier boarding board",
+  "sandboarding board",
+  "avalanche probe",
+  "desert navigation system",
+  "jungle survival kit",
+  "cave photography setup",
+  "polar night navigation gear",
+  "tropical storm measurement system",
+  "tide pool research equipment",
+  "geothermal vent probe",
+  "desert archaeology tools",
+  "rainforest canopy climbing gear",
+  "permafrost research equipment",
+  "seamount sonar system",
+  "aurora research equipment",
+  "desert night vision system",
+  "cave biology research kit",
+  "glacier archaeology tools",
+  "volcanic gas measurement system",
+  "jungle medicine supplies",
+  "polar robotics equipment",
+  "cave water research kit",
+  "desert robotics cooling system",
+  "jungle archaeology mapping equipment",
+  
   // Artistic Series
   'bear_pfp_painter',        // Artist with beret and palette
   'bear_pfp_sculptor',       // Sculptor with chisel and smock
