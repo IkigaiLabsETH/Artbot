@@ -16,18 +16,36 @@ dotenv.config();
 
 // Art Direction Configuration
 // This allows us to provide specific artistic direction to the multi-agent system
+interface ColorSet {
+  primary: string;
+  secondary: string;
+  accent: string;
+}
+
+interface ColorPalette {
+  sky: ColorSet;
+  bear: ColorSet;
+  clothing: ColorSet;
+  background: ColorSet;
+}
+
 interface ArtDirection {
-  styleEmphasis?: string[];       // Specific styles to emphasize
-  visualElements?: string[];      // Required visual elements
-  colorPalette?: string[];        // Specific color palette to use
-  compositionGuidelines?: string[]; // Guidelines for composition
-  moodAndTone?: string;           // Overall mood and tone
-  references?: string[];          // Reference artists or works
-  avoidElements?: string[];       // Elements to avoid
-  styles?: {                      // Style variants
+  styleEmphasis: string[];
+  visualElements: string[];
+  colorPalette: ColorPalette;
+  compositionGuidelines: string[];
+  moodAndTone: string[];
+  lighting: string[];
+  texture: string[];
+  perspective: string[];
+  symbolism: string[];
+  surrealistElements: string[];
+  references?: string[];
+  avoidElements?: string[];
+  styles?: {
     [key: string]: ArtDirection;
   };
-  defaultStyle?: string;          // Default style to use
+  defaultStyle?: string;
   modelConfig?: {
     prompt_prefix: string;
     prompt_suffix: string;
@@ -57,9 +75,81 @@ interface ArtDirection {
 
 // Define the default art direction
 const artDirection: ArtDirection = {
+  styleEmphasis: [
+    "surrealist_composition",
+    "magritte_style",
+    "photorealistic_rendering"
+  ],
+  moodAndTone: [
+    "mysterious and enigmatic with a focus on surrealist juxtaposition and visual paradox"
+  ],
+  colorPalette: {
+    sky: {
+      primary: '#1E90FF',    // Magritte's signature cerulean blue
+      secondary: '#000080',  // Deep navy blue
+      accent: '#87CEEB'      // Light sky blue
+    },
+    bear: {
+      primary: '#F5F5F5',    // Pure white porcelain
+      secondary: '#2F4F4F',  // Dark slate grey
+      accent: '#D3D3D3'      // Light grey
+    },
+    clothing: {
+      primary: '#006400',    // Deep forest green
+      secondary: '#004225',  // Dark emerald
+      accent: '#228B22'      // Forest green
+    },
+    background: {
+      primary: '#1E90FF',    // Magritte's signature cerulean blue
+      secondary: '#F5F5F5',  // Pure white
+      accent: '#E0E0E0'      // Light grey
+    }
+  },
+  compositionGuidelines: [
+    "rule_of_thirds",
+    "golden_ratio",
+    "balanced_asymmetry"
+  ],
+  visualElements: [
+    "floating_objects",
+    "surrealist_juxtaposition",
+    "symbolic_elements",
+    "surrealist_atmosphere"
+  ],
+  lighting: [
+    "sourceless_illumination",
+    "soft_diffused_light",
+    "dramatic_shadows"
+  ],
+  texture: [
+    "smooth_matte_finish",
+    "porcelain_like_surface",
+    "precise_brushwork"
+  ],
+  perspective: [
+    "forced_perspective",
+    "multiple_viewpoints",
+    "spatial_ambiguity"
+  ],
+  symbolism: [
+    "everyday_objects_transformed",
+    "visual_paradoxes",
+    "hidden_meanings"
+  ],
+  surrealistElements: [
+    "impossible_combinations",
+    "scale_distortions",
+    "reality_questioning"
+  ],
   styles: {
     magritte: {
       styleEmphasis: [
+        "surrealist_composition",
+        "magritte_style",
+        "photorealistic_rendering"
+      ],
+      moodAndTone: [
+        "mysterious and enigmatic with a focus on surrealist juxtaposition and visual paradox",
         "surrealist_technique",
         "oil_painting_quality",
         "philosophical_depth",
@@ -70,17 +160,28 @@ const artDirection: ArtDirection = {
         "academic_precision",
         "surrealist_atmosphere"
       ],
-      moodAndTone: "mysterious and enigmatic with a focus on surrealist juxtaposition and visual paradox",
-      colorPalette: [
-        "#1E90FF", // Magritte's signature cerulean blue
-        "#FFEFE0", // Magritte's porcelain flesh tone
-        "#E3C7B2", // Magritte's flesh shadow tone
-        "#363636", // Magritte's deep charcoal
-        "#FFFFFF", // Magritte's pure white
-        "#C8C8C8", // Magritte's silk grey
-        "#87CEEB", // Magritte's sky blue
-        "#B4B4B4"  // Magritte's neutral grey
-      ],
+      colorPalette: {
+        sky: {
+          primary: '#1E90FF',    // Magritte's signature cerulean blue
+          secondary: '#000080',  // Deep navy blue
+          accent: '#87CEEB'      // Light sky blue
+        },
+        bear: {
+          primary: '#F5F5F5',    // Pure white porcelain
+          secondary: '#2F4F4F',  // Dark slate grey
+          accent: '#D3D3D3'      // Light grey
+        },
+        clothing: {
+          primary: '#006400',    // Deep forest green
+          secondary: '#004225',  // Dark emerald
+          accent: '#228B22'      // Forest green
+        },
+        background: {
+          primary: '#1E90FF',    // Magritte's signature cerulean blue
+          secondary: '#F5F5F5',  // Pure white
+          accent: '#E0E0E0'      // Light grey
+        }
+      },
       visualElements: [
         "floating_objects",
         "geometric_forms",
@@ -109,6 +210,41 @@ const artDirection: ArtDirection = {
         "paradoxical_arrangement",
         "mysterious_atmosphere",
         "symbolic_juxtaposition"
+      ],
+      lighting: [
+        "sourceless_illumination",
+        "soft_diffused_light",
+        "dramatic_shadows",
+        "perfect_illumination",
+        "enigmatic_lighting"
+      ],
+      texture: [
+        "smooth_matte_finish",
+        "porcelain_like_surface",
+        "precise_brushwork",
+        "flawless_surface",
+        "unmodulated_areas"
+      ],
+      perspective: [
+        "forced_perspective",
+        "multiple_viewpoints",
+        "spatial_ambiguity",
+        "impossible_spaces",
+        "surreal_depth"
+      ],
+      symbolism: [
+        "everyday_objects_transformed",
+        "visual_paradoxes",
+        "hidden_meanings",
+        "philosophical_elements",
+        "metaphysical_symbols"
+      ],
+      surrealistElements: [
+        "impossible_combinations",
+        "scale_distortions",
+        "reality_questioning",
+        "dream_logic",
+        "visual_poetry"
       ],
       modelConfig: {
         prompt_prefix: "Create in the surrealist style of René Magritte, with ",
@@ -1915,7 +2051,7 @@ async function generateArt(concept: string) {
     // Update logging to show selected style configuration
     console.log(`\n🎨 ${selectedCategory.replace('bear_', '').replace('_', ' ')} Style Configuration:`);
     console.log('- Style emphasis:', project.artDirection.styleEmphasis.slice(0, 3).join(', '));
-    console.log(formatColorPalette(project.artDirection.colorPalette, 10));
+    console.log('- Color Palette:', getDisplayColors(project.artDirection.colorPalette).join(', '));
     
     // Run the art project using the multi-agent system
     console.log(`\n🖼️ Generating Magritte-style portrait art using multi-agent collaboration...`);
@@ -1989,7 +2125,7 @@ async function generateArt(concept: string) {
         accessories: [primary, secondary].filter(Boolean),
         clothing: cloth,
         tools: [additional].filter(Boolean),
-        palette: project.artDirection.colorPalette?.slice(0, 5) || [],
+        palette: getDisplayColors(project.artDirection.colorPalette),
       },
       tags: [
         'bear portrait',
@@ -2072,59 +2208,64 @@ generateArt(concept).catch(console.error);
 export { generateArt, ArtistStyle };
 
 // Modify the getStyleFromArtDirection function
-function getStyleFromArtDirection(artDirection: any, style: ArtistStyle = 'Margritte'): ArtDirection {
-  if (artDirection && artDirection.styles) {
-    const selectedStyle = artDirection.styles[style] || styleManager.getStyle(style);
-    return selectedStyle;
-  }
-  
-  return styleManager.getStyle(style);
+function getStyleFromArtDirection(artDirection: ArtDirection): ArtDirection {
+  const defaultStyle: ArtDirection = {
+    styleEmphasis: [],
+    visualElements: [],
+    colorPalette: {
+      sky: { primary: '#1E90FF', secondary: '#000080', accent: '#87CEEB' },
+      bear: { primary: '#F5F5F5', secondary: '#2F4F4F', accent: '#D3D3D3' },
+      clothing: { primary: '#006400', secondary: '#004225', accent: '#228B22' },
+      background: { primary: '#1E90FF', secondary: '#F5F5F5', accent: '#E0E0E0' }
+    },
+    compositionGuidelines: [],
+    moodAndTone: [],
+    lighting: [],
+    texture: [],
+    perspective: [],
+    symbolism: [],
+    surrealistElements: []
+  };
+
+  // Get selected style from artDirection
+  const selectedStyle = artDirection.styles?.[artDirection.defaultStyle || ''] || defaultStyle;
+
+  // Merge styles
+  return {
+    ...defaultStyle,
+    ...selectedStyle,
+    colorPalette: selectedStyle.colorPalette || defaultStyle.colorPalette,
+    moodAndTone: Array.isArray(selectedStyle.moodAndTone) ? selectedStyle.moodAndTone : [selectedStyle.moodAndTone].filter(Boolean)
+  };
 }
 
-/**
- * Formats a color palette for display with proper formatting and grouping
- * @param colors Array of color strings
- * @param maxDisplay Maximum number of colors to display (optional)
- * @returns Formatted string representation of the color palette
- */
-function formatColorPalette(colors: string[], maxDisplay?: number): string {
-  if (!colors || colors.length === 0) {
-    return 'No colors defined';
-  }
+// Add utility functions for color palette handling
+function colorPaletteToArray(palette: ColorPalette): string[] {
+  return [
+    palette.sky.primary,
+    palette.sky.secondary,
+    palette.sky.accent,
+    palette.bear.primary,
+    palette.bear.secondary,
+    palette.bear.accent,
+    palette.clothing.primary,
+    palette.clothing.secondary,
+    palette.clothing.accent,
+    palette.background.primary,
+    palette.background.secondary,
+    palette.background.accent
+  ];
+}
 
-  const displayColors = maxDisplay ? colors.slice(0, maxDisplay) : colors;
-  const remaining = maxDisplay && colors.length > maxDisplay ? colors.length - maxDisplay : 0;
+function getDisplayColors(palette: ColorPalette, maxColors: number = 5): string[] {
+  return colorPaletteToArray(palette).slice(0, maxColors);
+}
 
-  const formattedColors = displayColors.map(color => {
-    // Clean up the color name and ensure proper formatting
-    const cleanColor = color.trim()
-      .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between camelCase
-      .replace(/_/g, ' ') // Replace underscores with spaces
-      .replace(/\s+/g, ' '); // Normalize spaces
-
-    // Check for RGB values and format them nicely
-    const rgbMatch = cleanColor.match(/\(RGB:\s*(\d+),\s*(\d+),\s*(\d+)\)/);
-    if (rgbMatch) {
-      const [_, r, g, b] = rgbMatch;
-      return `\n  - ${cleanColor.split('(')[0].trim()} (🎨 RGB: ${r}, ${g}, ${b})`;
-    }
-
-    // Check for Pantone values
-    const pantoneMatch = cleanColor.match(/\(Pantone [^)]+\)/);
-    if (pantoneMatch) {
-      return `\n  - ${cleanColor}`;
-    }
-
-    return `\n  - ${cleanColor}`;
-  }).join('');
-
-  let output = `Color Palette:${formattedColors}`;
-  if (remaining > 0) {
-    output += `\n  ... and ${remaining} more colors`;
-  }
-
-  return output;
-} 
+// Replace the existing formatColorPalette function with the new utility functions
+function formatColorPalette(palette: ColorPalette): string {
+  const colors = colorPaletteToArray(palette);
+  return `Color Palette:\n${colors.map(color => `  - ${color}`).join('\n')}`;
+}
 
 // Determine the category to use
 const detectedCategory = 'magritte';  // Always use magritte
@@ -2156,9 +2297,7 @@ if (categoryArtDirection) {
 const FLUX_PRO_MODEL = 'black-forest-labs/flux-1.1-pro';
 const FLUX_MODEL_BASE = 'adirik/flux-cinestill';
 const FALLBACK_MODEL = 'black-forest-labs/flux-1.1-pro';
-const MINIMAX_MODEL = 'minimax/image-01';
-
-// Create project configuration function
+const MINIMAX_MODEL = 'minimax/image-01';// Create project configuration function
 function createProjectConfig(concept: string, selectedCategory: string, baseFilename: string, categoryArtDirection: ArtDirection | null) {
   return {
     title: concept,
@@ -2234,3 +2373,4 @@ const magritteStyle = [
   'floating elements',
   'dreamlike atmosphere'
 ];
+
