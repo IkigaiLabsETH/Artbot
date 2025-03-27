@@ -126,9 +126,379 @@ Featured Portraits:
 - **Kombucha Brewer** - Crafting probiotic elixirs in small batches
 - **Vintage Typewriter Collector** - Preserving mechanical writing history
 
+### 🌟 Extreme Adventure Series
+Each extreme adventure portrait is crafted through our multi-agent system:
+- **Director Agent**: Coordinates extreme sports authenticity and safety equipment
+- **Ideator Agent**: Generates cutting-edge adventure concepts
+- **Stylist Agent**: Ensures Magritte-style consistency
+- **Refiner Agent**: Polishes technical details
+- **Critic Agent**: Validates equipment authenticity
+- **Flux Refiner**: Optimizes for FLUX model
 
+Featured Portraits:
 
-### 🌟 Contemporary Craft Series
+#### Extreme Sports Specialists
+- **BASE Jumper**
+  - Accessories: Wingsuit, altimeter, parachute, helmet with camera mount
+  - Elements: Cliff edge, wind indicators, jump markers, safety equipment
+  - Technical Gear: GPS tracker, wind meter, emergency beacon
+  - Safety Equipment: Reserve chute, impact protection, communication device
+
+- **Freediver**
+  - Accessories: Monofin, depth computer, weight belt, mask
+  - Elements: Underwater scene, depth markers, safety line
+  - Technical Gear: Dive watch, safety buoy, line reel
+  - Safety Equipment: Safety diver, oxygen tank, rescue equipment
+
+- **Ultra Runner**
+  - Accessories: Hydration pack, GPS tracker, trail shoes
+  - Elements: Mountain trail, elevation markers, aid stations
+  - Technical Gear: Heart rate monitor, elevation tracker, weather station
+  - Safety Equipment: Emergency beacon, first aid kit, satellite phone
+
+- **Ice Climber**
+  - Accessories: Ice screws, technical ice tools, crampons
+  - Elements: Ice wall, snow conditions, anchor points
+  - Technical Gear: Ice protection, belay device, rope system
+  - Safety Equipment: Helmet, harness, avalanche beacon
+
+- **Big Wave Surfer**
+  - Accessories: Impact vest, specialized board, leash
+  - Elements: Giant wave, wave indicators, safety boat
+  - Technical Gear: Wave forecasting device, board fins, wax kit
+  - Safety Equipment: Rescue sled, oxygen tank, emergency beacon
+
+- **Sky Runner**
+  - Accessories: Lightweight gear, altitude monitor, trail shoes
+  - Elements: Mountain path, elevation markers, weather conditions
+  - Technical Gear: GPS tracker, weather station, elevation tracker
+  - Safety Equipment: Emergency beacon, first aid kit, satellite phone
+
+- **Wing Foiler**
+  - Accessories: Hydrofoil board, wing sail, control bar
+  - Elements: Water surface, wind indicators, safety boat
+  - Technical Gear: Wind meter, board fins, trim control
+  - Safety Equipment: Impact vest, rescue equipment, communication device
+
+- **Speed Flyer**
+  - Accessories: Aerodynamic suit, variometer, wing
+  - Elements: Mountain slope, wind indicators, landing zone
+  - Technical Gear: GPS tracker, wind meter, altitude tracker
+  - Safety Equipment: Emergency parachute, helmet, communication device
+
+- **Ice Swimmer**
+  - Accessories: Thermal protection, safety line, goggles
+  - Elements: Ice hole, temperature gauge, safety platform
+  - Technical Gear: Water temperature monitor, safety rope, timing device
+  - Safety Equipment: Rescue sled, medical kit, emergency beacon
+
+- **Canyoneer**
+  - Accessories: Technical rope system, wetsuit, harness
+  - Elements: Canyon walls, water flow, anchor points
+  - Technical Gear: Rappel device, rope bag, water flow meter
+  - Safety Equipment: Emergency beacon, first aid kit, communication device
+
+#### Extreme Environment Explorers
+- **Snow Kiter**
+  - Accessories: Snow kite, control bar, snowboard
+  - Elements: Snow conditions, wind indicators, terrain markers
+  - Technical Gear: Wind meter, GPS tracker, avalanche beacon
+  - Safety Equipment: Emergency beacon, avalanche probe, shovel
+
+- **Hydrofoiler**
+  - Accessories: Hydrofoil board, wing sail, control bar
+  - Elements: Water surface, wind conditions, safety markers
+  - Technical Gear: Wind meter, board fins, trim control
+  - Safety Equipment: Impact vest, rescue equipment, communication device
+
+- **Skydancer**
+  - Accessories: Aerial dance apparatus, safety lines, performance suit
+  - Elements: Performance space, lighting system, safety net
+  - Technical Gear: Music system, lighting control, safety monitoring
+  - Safety Equipment: Safety harness, emergency system, medical kit
+
+- **Coasteer**
+  - Accessories: Coastal navigation tools, wetsuit, safety gear
+  - Elements: Coastal terrain, tide markers, safety points
+  - Technical Gear: Tide calculator, GPS tracker, weather station
+  - Safety Equipment: Emergency beacon, first aid kit, rescue equipment
+
+- **Volcano Boarder**
+  - Accessories: Heat-resistant suit, specialized board, protective gear
+  - Elements: Volcanic slope, temperature indicators, safety markers
+  - Technical Gear: Temperature monitor, GPS tracker, gas detector
+  - Safety Equipment: Emergency beacon, medical kit, rescue sled
+
+- **Glacier Boarder**
+  - Accessories: Specialized board, crampons, protective gear
+  - Elements: Glacier surface, crevasse markers, safety points
+  - Technical Gear: Ice radar, GPS tracker, temperature monitor
+  - Safety Equipment: Emergency beacon, avalanche probe, rescue equipment
+
+- **Sandboarder**
+  - Accessories: Desert board, wax kit, protective gear
+  - Elements: Dune terrain, wind indicators, safety markers
+  - Technical Gear: Wind meter, GPS tracker, temperature monitor
+  - Safety Equipment: Emergency beacon, first aid kit, communication device
+
+- **Avalanche Researcher**
+  - Accessories: Transceiver, probe, snow study kit
+  - Elements: Snow conditions, avalanche markers, research points
+  - Technical Gear: Snow study tools, weather station, GPS tracker
+  - Safety Equipment: Emergency beacon, avalanche probe, rescue equipment
+
+- **Desert Explorer**
+  - Accessories: Navigation system, water gear, protective clothing
+  - Elements: Desert terrain, water sources, safety markers
+  - Technical Gear: GPS tracker, weather station, water testing kit
+  - Safety Equipment: Emergency beacon, first aid kit, satellite phone
+
+- **Jungle Route Finder**
+  - Accessories: Machete, GPS system, protective gear
+  - Elements: Jungle terrain, trail markers, safety points
+  - Technical Gear: Navigation tools, weather station, terrain scanner
+  - Safety Equipment: Emergency beacon, medical kit, communication device
+
+#### Specialized Researchers
+- **Cave Photographer**
+  - Accessories: Specialized lighting, camera equipment, protective gear
+  - Elements: Cave formations, lighting setup, safety markers
+  - Technical Gear: Camera system, lighting control, air quality monitor
+  - Safety Equipment: Emergency beacon, first aid kit, rescue equipment
+
+- **Polar Night Explorer**
+  - Accessories: Night vision, thermal gear, navigation tools
+  - Elements: Polar terrain, aurora conditions, safety markers
+  - Technical Gear: Temperature monitor, GPS tracker, weather station
+  - Safety Equipment: Emergency beacon, medical kit, rescue sled
+
+- **Tropical Storm Chaser**
+  - Accessories: Weather monitoring equipment, protective gear, camera system
+  - Elements: Storm conditions, wind indicators, safety markers
+  - Technical Gear: Weather station, GPS tracker, wind meter
+  - Safety Equipment: Emergency beacon, medical kit, rescue vehicle
+
+- **Tide Pool Researcher**
+  - Accessories: Sampling kit, identification guide, protective gear
+  - Elements: Tide pools, specimen markers, safety points
+  - Technical Gear: Water testing kit, specimen containers, documentation tools
+  - Safety Equipment: Emergency beacon, first aid kit, rescue equipment
+
+- **Geothermal Explorer**
+  - Accessories: Heat-resistant suit, temperature probe, protective gear
+  - Elements: Geothermal features, temperature indicators, safety markers
+  - Technical Gear: Temperature monitor, gas detector, GPS tracker
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+- **Desert Archaeologist**
+  - Accessories: Excavation tools, documentation kit, protective gear
+  - Elements: Archaeological site, artifact markers, safety points
+  - Technical Gear: Surveying equipment, documentation tools, GPS tracker
+  - Safety Equipment: Emergency beacon, first aid kit, communication device
+
+- **Rainforest Canopy Researcher**
+  - Accessories: Climbing gear, specimen kit, protective equipment
+  - Elements: Canopy structure, research points, safety markers
+  - Technical Gear: Climbing equipment, specimen containers, GPS tracker
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+- **Permafrost Expert**
+  - Accessories: Coring equipment, temperature sensors, protective gear
+  - Elements: Permafrost layer, temperature indicators, research points
+  - Technical Gear: Temperature monitor, coring tools, GPS tracker
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+- **Seamount Explorer**
+  - Accessories: Sonar system, diving gear, specimen kit
+  - Elements: Underwater terrain, research points, safety markers
+  - Technical Gear: Sonar equipment, water testing kit, GPS tracker
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+- **Aurora Researcher**
+  - Accessories: Spectrometer, night vision, protective gear
+  - Elements: Aurora conditions, research points, safety markers
+  - Technical Gear: Light measurement tools, GPS tracker, weather station
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+#### Extreme Environment Specialists
+- **Desert Night Navigator**
+  - Accessories: Night vision, navigation system, protective gear
+  - Elements: Desert terrain, star navigation, safety markers
+  - Technical Gear: GPS tracker, temperature monitor, weather station
+  - Safety Equipment: Emergency beacon, medical kit, communication device
+
+- **Cave Biologist**
+  - Accessories: Sampling kit, headlamp, protective gear
+  - Elements: Cave formations, specimen markers, safety points
+  - Technical Gear: Specimen containers, air quality monitor, GPS tracker
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+- **Glacier Archaeologist**
+  - Accessories: Ice coring tools, preservation kit, protective gear
+  - Elements: Glacier surface, artifact markers, safety points
+  - Technical Gear: Ice radar, GPS tracker, temperature monitor
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+- **Volcanic Gas Researcher**
+  - Accessories: Gas analyzer, protective suit, sampling kit
+  - Elements: Volcanic features, gas indicators, safety markers
+  - Technical Gear: Gas detection equipment, GPS tracker, temperature monitor
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+- **Jungle Medicine Explorer**
+  - Accessories: Plant identification kit, specimen containers, protective gear
+  - Elements: Jungle terrain, plant markers, safety points
+  - Technical Gear: Documentation tools, GPS tracker, weather station
+  - Safety Equipment: Emergency beacon, medical kit, communication device
+
+- **Polar Robotics Specialist**
+  - Accessories: Control interface, monitoring system, protective gear
+  - Elements: Polar terrain, robot markers, safety points
+  - Technical Gear: Robot control system, GPS tracker, temperature monitor
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+- **Underground River Explorer**
+  - Accessories: Water testing kit, cave gear, protective equipment
+  - Elements: Underground river, flow markers, safety points
+  - Technical Gear: Water quality monitor, GPS tracker, flow meter
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+- **Desert Robotics Expert**
+  - Accessories: Cooling system, control interface, protective gear
+  - Elements: Desert terrain, robot markers, safety points
+  - Technical Gear: Robot control system, GPS tracker, temperature monitor
+  - Safety Equipment: Emergency beacon, medical kit, communication device
+
+- **Lost City Archaeologist**
+  - Accessories: Mapping tools, documentation kit, protective gear
+  - Elements: Archaeological site, artifact markers, safety points
+  - Technical Gear: Surveying equipment, GPS tracker, documentation tools
+  - Safety Equipment: Emergency beacon, medical kit, rescue equipment
+
+#### Specialized Equipment Categories
+Each portrait features carefully selected gear organized into categories:
+
+1. **Safety Equipment**
+   - Emergency beacons
+   - First aid kits
+   - Rescue equipment
+   - Communication devices
+   - Protective gear
+   - Medical supplies
+   - Emergency shelters
+   - Rescue sleds
+   - Safety harnesses
+   - Emergency oxygen
+
+2. **Navigation Tools**
+   - GPS trackers
+   - Compasses
+   - Maps
+   - Altimeters
+   - Weather stations
+   - Terrain scanners
+   - Depth meters
+   - Flow meters
+   - Temperature monitors
+   - Wind meters
+
+3. **Technical Gear**
+   - Specialized tools
+   - Measurement devices
+   - Control systems
+   - Monitoring equipment
+   - Testing kits
+   - Documentation tools
+   - Surveying equipment
+   - Sampling devices
+   - Analysis instruments
+   - Data loggers
+
+4. **Research Equipment**
+   - Specimen containers
+   - Testing kits
+   - Analysis tools
+   - Documentation systems
+   - Measurement devices
+   - Sampling equipment
+   - Surveying tools
+   - Data collection devices
+   - Monitoring systems
+   - Analysis instruments
+
+5. **Environmental Monitors**
+   - Weather stations
+   - Temperature sensors
+   - Air quality monitors
+   - Water quality testers
+   - Gas detectors
+   - Flow meters
+   - Pressure gauges
+   - Humidity sensors
+   - Wind meters
+   - Light meters
+
+6. **Communication Systems**
+   - Satellite phones
+   - Radios
+   - Emergency beacons
+   - Signal devices
+   - GPS trackers
+   - Weather radios
+   - Emergency alerts
+   - Rescue signals
+   - Location markers
+   - Safety notifications
+
+7. **Protective Equipment**
+   - Specialized suits
+   - Helmets
+   - Harnesses
+   - Safety lines
+   - Impact protection
+   - Weather gear
+   - Heat protection
+   - Cold protection
+   - Water protection
+   - Air protection
+
+8. **Documentation Tools**
+   - Cameras
+   - Notebooks
+   - Data loggers
+   - GPS trackers
+   - Weather stations
+   - Measurement devices
+   - Analysis tools
+   - Recording equipment
+   - Mapping systems
+   - Surveying tools
+
+9. **Rescue Equipment**
+   - Emergency beacons
+   - First aid kits
+   - Rescue sleds
+   - Safety harnesses
+   - Emergency oxygen
+   - Medical supplies
+   - Rescue ropes
+   - Emergency shelters
+   - Signal devices
+   - Location markers
+
+10. **Environmental Controls**
+    - Temperature control
+    - Air quality control
+    - Water quality control
+    - Pressure control
+    - Humidity control
+    - Wind protection
+    - Light control
+    - Sound control
+    - Vibration control
+    - Radiation protection
+
+### �� Contemporary Craft Series
 - **Small Batch Maker** - Creating limited edition artisanal goods
 - **Slow Food Chef** - Preserving traditional culinary arts
 - **Natural Dyer** - Working with plant-based color sources
@@ -230,8 +600,6 @@ Featured Portraits:
 - **Eco-System** - Creating balanced environmental works
 - **Future Vision** - Imagining sustainable tomorrows
 
-
-
 ### 🎮 Gaming Culture Series
 - **Retro Gamer** - Preserving classic gaming history
 - **E-Sports Athlete** - Competing in digital arenas
@@ -243,8 +611,6 @@ Featured Portraits:
 - **Game Streamer** - Sharing interactive experiences
 - **Mod Creator** - Modifying game worlds
 - **Virtual Athlete** - Competing in digital sports
-
-
 
 ## Collection Overview
 
